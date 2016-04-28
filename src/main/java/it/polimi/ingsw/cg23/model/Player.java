@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.model;
 
-import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.components.*;
