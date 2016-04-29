@@ -31,9 +31,9 @@ public class BonusCoin implements Bonus {
 
 	@Override
 	public void esegui(Player player) {
-		int coins=player.getRichness().getCoins();
+		int coins=player.getCoins();
 		coins=coins+this.coin;
-		player.getRichness().setCoins(coins);
+		player.setCoins(coins);
 	}
 	
 	

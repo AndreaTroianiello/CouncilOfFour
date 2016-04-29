@@ -83,31 +83,52 @@ public class Player {
 	}
 
 	/**
-	 * @return the assistantsPool
+	 * @return the assistants of the player
 	 */
-	public AssistantsPool getAssistantsPool() {
-		return assistantsPool;
+	public int getAssistants() {
+		return assistantsPool.getAssistants();
 	}
 
 	/**
-	 * @return the richness
+	 * @param assistants modify the player's assistants
 	 */
-	public Richness getRichness() {
-		return richness;
+	public void setAssistants(int assistants) {
+		assistantsPool.setAssistants(assistants);
+	}
+	
+	/**
+	 * @return the coins of the player
+	 */
+	public int getCoins() {
+		return richness.getCoins();
 	}
 
 	/**
-	 * @return the victoryTrack
+	 * @param coins modify the player's richness
 	 */
-	public VictoryTrack getVictoryTrack() {
-		return victoryTrack;
+	public void setCoins(int coins) {
+		richness.setCoins(coins);
+	}
+	
+	/**
+	 * @return the victory points of the player
+	 */
+	public int getVictoryPoints() {
+		return victoryTrack.getVictoryPoints();
+	}
+	
+	/**
+	 * @param points modify the player's victory points
+	 */
+	public void setVictoryPoints(int points) {
+		victoryTrack.setVictoryPoints(points);
 	}
 	
 	/**
 	 * @param politicCard the politic card to add at player's hand
 	 */
 	public void setHand(PoliticCard politicCard) {
-		this.politicsCards.add(politicCard);
+		politicsCards.add(politicCard);
 	}
 	
 	/**
