@@ -21,7 +21,4 @@ public class VictoryTrack {
 		this.victoryPoints = victoryPoints;
 	}
 	
-	
-	
-	
 }
