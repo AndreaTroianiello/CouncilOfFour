@@ -21,5 +21,4 @@ public class AssistantsPool {
 		this.assistants = assistants;
 	}
 	
-	
 }

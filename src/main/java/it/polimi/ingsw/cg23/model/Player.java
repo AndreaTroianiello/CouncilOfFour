@@ -159,6 +159,4 @@ public class Player {
 		return "Giocatore: da fare!";
 	}
 	
-	
-	
 }
