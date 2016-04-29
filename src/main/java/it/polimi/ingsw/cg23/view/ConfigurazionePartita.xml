@@ -5,48 +5,52 @@
 		<cities>
 			<city>
 				<Id>A</Id>
-				<name>Ancona</name>
+				<name>Arkon</name>
 				<link>
 					<Id>B</Id>
 					<Id>C</Id>
 				</link>
+				<color>yellow</color>
 				<bonus></bonus>
 			</city>
 			<city>
 				<Id>B</Id>
-				<name>Bari</name>
+				<name>Burgen</name>
 				<link>
 					<Id>A</Id>
 					<Id>D</Id>
-					<Id>E</Id>
 				</link>
+				<color>pink</color>
 				<bonus></bonus>
 			</city>
 			<city>
 				<Id>C</Id>
-				<name>Cuneo</name>
+				<name>Castrum</name>
 				<link>
-					<Id>B</Id>
+					<Id>A</Id>
 					<Id>F</Id>
 				</link>
+				<color>silver</color>
 				<bonus></bonus>
 			</city>
 			<city>
 				<Id>D</Id>
-				<name>Domodossola</name>
+				<name>Dorful</name>
 				<link>
 					<Id>B</Id>
-					<Id>L</Id>
+					<Id>G</Id>
 				</link>
+				<color>blue</color>
 				<bonus></bonus>
 			</city>
 			<city>
 				<Id>E</Id>
-				<name>Empoli</name>
+				<name>Esti</name>
 				<link>
 					<Id>B</Id>
-					<Id>l</Id>
+					<Id>H</Id>
 				</link>
+				<color>silver</color>
 				<bonus></bonus>
 			</city>
 		</cities>
@@ -55,49 +59,53 @@
 		<name>collina</name>
 		<cities>
 			<city>
-				<Id>A</Id>
-				<name>Ancona</name>
+				<Id>F</Id>
+				<name>Framek</name>
 				<link>
-					<Id>B</Id>
 					<Id>C</Id>
+					<Id>I</Id>
 				</link>
+				<color>yellow</color>
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>B</Id>
-				<name>Bari</name>
+				<Id>G</Id>
+				<name>Graden</name>
 				<link>
-					<Id>A</Id>
 					<Id>D</Id>
+					<Id>J</Id>
+				</link>
+				<color>purple</color>
+				<bonus></bonus>
+			</city>
+			<city>
+				<Id>H</Id>
+				<name>HellarCuneo</name>
+				<link>
 					<Id>E</Id>
+					<Id>J</Id>
 				</link>
+				<color>yellow</color>
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>C</Id>
-				<name>Cuneo</name>
+				<Id>I</Id>
+				<name>Indur</name>
 				<link>
-					<Id>B</Id>
-					<Id>F</Id>
+					<Id>I</Id>
+					<Id>K</Id>
 				</link>
+				<color>pink</color>
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>D</Id>
-				<name>Domodossola</name>
+				<Id>J</Id>
+				<name>Juvelar</name>
 				<link>
-					<Id>B</Id>
+					<Id>H</Id>
 					<Id>L</Id>
 				</link>
-				<bonus></bonus>
-			</city>
-			<city>
-				<Id>E</Id>
-				<name>Empoli</name>
-				<link>
-					<Id>B</Id>
-					<Id>l</Id>
-				</link>
+				<color>purple</color>
 				<bonus></bonus>
 			</city>
 		</cities>
@@ -106,40 +114,43 @@
 		<name>montagna</name>
 		<cities>
 			<city>
-				<Id>A</Id>
-				<name>Ancona</name>
+				<Id>K</Id>
+				<name>Kultos</name>
 				<link>
-					<Id>B</Id>
-					<Id>C</Id>
+					<Id>I</Id>
+					<Id>N</Id>
 				</link>
+				<color>yellow</color>
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>B</Id>
-				<name>Bari</name>
+				<Id>L</Id>
+				<name>Luvram</name>
 				<link>
-					<Id>A</Id>
-					<Id>D</Id>
-					<Id>E</Id>
+					<Id>J</Id>
+					<Id>O</Id>
 				</link>
+				<color>purple</color>
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>C</Id>
-				<name>Cuneo</name>
+				<Id>M</Id>
+				<name>Merkatim</name>
 				<link>
-					<Id>B</Id>
-					<Id>F</Id>
+					<Id>H</Id>
+					<Id>O</Id>
 				</link>
+				<color>blue</color>
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>D</Id>
-				<name>Domodossola</name>
+				<Id>N</Id>
+				<name>Naris</name>
 				<link>
-					<Id>B</Id>
-					<Id>L</Id>
+					<Id>K</Id>
+					<Id>O</Id>
 				</link>
+				<color>pink</color>
 				<bonus></bonus>
 			</city>
 			<city>
@@ -149,6 +160,7 @@
 					<Id>B</Id>
 					<Id>l</Id>
 				</link>
+				<color>yellow</color>
 				<bonus></bonus>
 			</city>
 		</cities>
