@@ -1,39 +1,58 @@
 package it.polimi.ingsw.cg23.view;
 
-//import java.util.Scanner;
-
-public class CliInterface {//classe per la comunicazione con l'utente
+/**
+ * classe per stampare le info sulla cli
+ */
+public class CliInterface {
 	//per main
 	//CliInterface nuovo=new CliInterface();
 	//nuovo.StartPartita(4);
 
-	//Scanner scan=new Scanner(System.in);
-	ReadXml newpartita=new ReadXml();
-	final int citynum=15;//numero di citta'
-	String[][] city=new String[citynum][4];//array multidim con city name, link e color, zone
+	ReadXml lettureXml=new ReadXml();
+	final int citynum=lettureXml.cityNumber();//numero di citta'
+	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
+	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, link, color, zone
 	
-	public void prova(){//PROVA PER ME
-		
-		String[][] city=new String[citynum][4];
-		for(int i=0;i<city.length;i++){
-			for(int k=0;k<4;k++){
-				city[i][k]=Integer.toString(i);
+	/**
+	 * carica il file con le infromazioni della partita
+	 * @return void
+	 * @param number of players
+	 */
+	public void StartPartita(int players){
+		cityInfo=lettureXml.ReadFileXml();
+		PrintArray(cityInfo);
+	}
+	
+	/**
+	 * stampa un array bidinemsionale
+	 * @return void
+	 * @param bidimensional array
+	 */
+	public void PrintArray(String[][] array){
+		for(int i=0;i<array.length;i++){
+			for(int k=0; k<array[0].length; k++){
+				System.out.print(array[i][k]+"    ");
 			}
+			System.out.print("\n");
 		}
-		//String[][] city={[][][][]};
-		CreateMap(city);
 	}
 	
-	public void StartPartita(int players){//carica il file con le infromazioni della partita
-		String lettura=newpartita.ReadFileXml();
-		System.out.println(lettura);
-	}
-	
-	public void Print(Object ogg, String testo){//stampa una qualunque cosa gli viene passata
+	/**
+	 * stampa una qualunque cosa gli viene passata
+	 * @return void
+	 * @param object (something to print)
+	 * @param testo da stampare
+	 */
+	public void Print(Object ogg, String testo){
 		System.out.println(testo+" "+ogg);
 	}
 	
-	public void CreateMap(String[][] city){//stampa la mappa
+	/**
+	 * stampa la mappa (non funziona)
+	 * @return void
+	 * @param bidimensional array with city
+	 */
+	public void CreateMap(String[][] city){
 		/*String plancia="   costa         collina          montagna\n";//la stringa che stampa la plancia di gioco
 		//System.out.println(city.length);
 		int n=city.length;
@@ -44,11 +63,11 @@ public class CliInterface {//classe per la comunicazione con l'utente
 			//}
 				if((i+1)%6==0)plancia+="\n";
 				//if()
-				
+
 		}
-		
+
 		System.out.println(plancia);
-	*/	
+		 */	
 	}
-		
+
 }
