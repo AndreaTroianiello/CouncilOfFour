@@ -18,9 +18,9 @@ public class CliInterface {
 	 * @return void
 	 * @param number of players
 	 */
-	public void StartPartita(int players){
-		cityInfo=lettureXml.ReadFileXml();
-		PrintArray(cityInfo);
+	public void startPartita(){
+		cityInfo=lettureXml.readFileXml();
+		printArray(cityInfo);
 	}
 	
 	/**
@@ -28,12 +28,11 @@ public class CliInterface {
 	 * @return void
 	 * @param bidimensional array
 	 */
-	public void PrintArray(String[][] array){
+	public void printArray(String[][] array){
 		for(int i=0;i<array.length;i++){
 			for(int k=0; k<array[0].length; k++){
 				System.out.print(array[i][k]+"    ");
 			}
-			System.out.print("\n");
 		}
 	}
 	
@@ -43,7 +42,7 @@ public class CliInterface {
 	 * @param object (something to print)
 	 * @param testo da stampare
 	 */
-	public void Print(Object ogg, String testo){
+	public void print(Object ogg, String testo){
 		System.out.println(testo+" "+ogg);
 	}
 	
@@ -52,17 +51,17 @@ public class CliInterface {
 	 * @return void
 	 * @param bidimensional array with city
 	 */
-	public void CreateMap(String[][] city){
+	public void createMap(String[][] city){
 		/*String plancia="   costa         collina          montagna\n";//la stringa che stampa la plancia di gioco
-		//System.out.println(city.length);
+		System.out.println(city.length);
 		int n=city.length;
 		for(int i=0; i<n; i++){//le righe da stampare sono 3
-			//for(int k=0; k<3; k++){
+			for(int k=0; k<3; k++){
 				plancia+=city[i][0]+"("+city[i][1]+") ";//0: nome citta', 1: colore citta'
 				if(i<=9)plancia+="  ";//aggiunge piu' spazi se 
-			//}
+			}
 				if((i+1)%6==0)plancia+="\n";
-				//if()
+				if()
 
 		}
 

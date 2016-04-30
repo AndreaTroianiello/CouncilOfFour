@@ -13,16 +13,17 @@ import org.w3c.dom.Element;
  * @author viga94
  *
  */
-public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_document.htm
-	//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-jaxp_7488_2.html
-
+public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-jaxp_7488_2.html
+	
+	String path="src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml";
+	
 	/**
 	 * legge il file xml
 	 * @return bidimensional array with city info, null if there is some problem
 	 */
-	public String[][] ReadFileXml(){
+	public String[][] readFileXml(){
 		try {	
-			File inputFile = new File("src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml");
+			File inputFile = new File(path);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
@@ -51,7 +52,6 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 			}
 			return city;
 		} catch (Exception e) {
-			// e.printStackTrace();
 			return null;
 		}
 	}
@@ -62,7 +62,7 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 	 */
 	public int cityNumber(){
 		try {	
-			File inputFile = new File("src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml");
+			File inputFile = new File(path);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
@@ -70,7 +70,6 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 			return citylist.getLength();//numero di citta'
 		}
 		catch(Exception e) {
-			// e.printStackTrace();
 			return 0;
 		}
 	}
@@ -81,7 +80,7 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 	 */
 	public int cityNodeNumber(){
 		try {	
-			File inputFile = new File("src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml");
+			File inputFile = new File(path);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
@@ -93,7 +92,6 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 			return (citty.getChildNodes().getLength()-1)/2; //numero di nodi di city
 		}
 		catch(Exception e) {
-			// e.printStackTrace();
 			return 0;
 		}
 	}
