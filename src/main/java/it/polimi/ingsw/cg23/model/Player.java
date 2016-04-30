@@ -8,7 +8,7 @@ public class Player {
 	private List<Emporium> availableEmporiums;					//the emporiums that are available to place
 	private List<Emporium> usedEmporiums;						//the emporiums that are already placed
 	private boolean additionalAction;							// main action given by the star bonus, the default value is false
-	private final AssistantsPool assistantsPool;		
+	private final AssistantsPool assistantsPool;				
 	private final Richness richness;
 	private final VictoryTrack victoryTrack;
 	private List<PoliticCard> politicsCards;					//the player's hand
@@ -36,10 +36,10 @@ public class Player {
 	}
 
 	/**
-	 * @param the available emporiums
+	 * @param availableEmporium add the available emporium at the list
 	 */
-	public void setAvailableEmporiums(List<Emporium> availableEmporiums) {
-		this.availableEmporiums=availableEmporiums;
+	public void setAvailableEmporium(Emporium availableEmporium) {
+		this.availableEmporiums.add(availableEmporium);
 	}
 	
 	/**
@@ -59,15 +59,13 @@ public class Player {
 		return usedEmporiums;
 	}
 
-	
 	/**
-	 * @param emporiums the used emporium to set
+	 * @param emporium the used emporium to set
 	 */
 	public void setEmporium(Emporium emporium) {
 		this.usedEmporiums.add(emporium);
 	}
 
-	
 	/**
 	 * @return the additionalAction
 	 */
@@ -76,10 +74,10 @@ public class Player {
 	}
 
 	/**
-	 * @param additionalAction the additionalAction to set
+	 * negate additionalAction status
 	 */
-	public void setAdditionalAction(boolean additionalAction) {
-		this.additionalAction = additionalAction;
+	public void switchAdditionalAction() {
+		this.additionalAction = !this.additionalAction;
 	}
 
 	/**
@@ -127,7 +125,7 @@ public class Player {
 	/**
 	 * @param politicCard the politic card to add at player's hand
 	 */
-	public void setHand(PoliticCard politicCard) {
+	public void addPoliticCard(PoliticCard politicCard) {
 		politicsCards.add(politicCard);
 	}
 	
@@ -138,23 +136,20 @@ public class Player {
 		return politicsCards;
 	}
 
-	
 	/**
 	 * @return the availableBusinessPermit
 	 */
-	public List<BusinessPermitTitle> getAvailableBusinessPermit() {
+	public List<BusinessPermitTitle> getAvailableBusinessPermits() {
 		return availableBusinesPermits;
 	}
 	
-
 	/**
 	 * @param businessPermit the business permit title to add at player's permits
 	 */
-	public void setAvailableBusinessPermit(BusinessPermitTitle businessPermit) {
+	public void addAvailableBusinessPermit(BusinessPermitTitle businessPermit) {
 		this.availableBusinesPermits.add(businessPermit);
 	}
 
-	
 	/**
 	 * @return the usedBusinessPermits
 	 */
@@ -170,7 +165,31 @@ public class Player {
 		this.usedBusinessPermits.add(businessPermit);
 	}
 
-	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+			
+		if (obj == null) 
+			return false;
+		
+		if (getClass() != obj.getClass()) 
+			return false;
+		
+		Player other = (Player) obj;
+		if (user == null)
+			if (other.user != null)
+				return false;
+		else 
+			if (!user.equals(other.user))
+				return false;
+		
+		return true;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.components.Emporium;
 
 public class City {
 	private final char id;
@@ -11,7 +12,7 @@ public class City {
 	private final String type;
 	private final Region region;
 	private final List<City> neighbors;
-	private boolean bonusAvailable;
+	private final List<Emporium> emporiums;
 	
 	public City(char id, String name, Bonus bonus, String type, Region region){
 		this.id=id;
@@ -19,8 +20,8 @@ public class City {
 		this.bonus=bonus;
 		this.type=type;
 		this.region=region;
-		this.neighbors=new ArrayList();
-		this.bonusAvailable=true;
+		this.neighbors=new ArrayList<City>();
+		this.emporiums=new ArrayList<Emporium>();
 	}
 	
 	/**
@@ -30,6 +31,7 @@ public class City {
 		return id;
 	}
 
+	
 	/**
 	 * @return get the name of city
 	 */
@@ -37,12 +39,14 @@ public class City {
 		return name;
 	}
 
+	
 	/**
 	 * @return get the type of city 
 	 */
 	public String getType() {
 		return type;
 	}
+	
 	
 	/**
 	 * @return get the region of city
@@ -51,14 +55,14 @@ public class City {
 		return region;
 	}
 	
-
+	
 	/**
-	 * 
 	 * @param neighbor add a city at neighbors
 	 */
 	public void addNeighbor(City neighbor){
 		neighbors.add(neighbor);
 	}
+	
 	
 	/**
 	 * @return all neighbors of the city
@@ -66,27 +70,45 @@ public class City {
 	public List<City> getNeighbors() {
 		return neighbors;
 	}
+
 	
 	/**
-	 * @return see if bonus is usable
+	 * @param emporium set a emporium
 	 */
-	public boolean isBonusAvailable() {
-		return bonusAvailable;
+	public void addEmporium(Emporium emporium){
+		this.emporiums.add(emporium);
+	}
+	
+	
+	/**
+	 * @return the emporiums built in the city
+	 */
+	public List<Emporium> getEmporiums() {
+		return emporiums;
 	}
 
-	/**
-	 *  set bonusAvailable at false
-	 */
-	public void setBonusUnavailable() {
-		this.bonusAvailable = false;
-	}
 
 	/**
-	 *  run the bonus associated to the city
+	 *  run the bonus associated to the city and its neighbors
 	 */
-	public void runBonus(Player player){
-		if(bonusAvailable)
-			bonus.esegui(player);
+	public void runBonusCity(Player player, List<String> citiesVisited ){
+		
+		boolean containsEmporium= false;
+		
+		//control if the city contains a player's emporium
+		for(int index=0;index<emporiums.size();++index){
+			Emporium emporium=emporiums.get(index);							//Extract the emporium at the index
+			Player emporiumPlayer=emporium.getPlayer();						//Get the player
+			containsEmporium=emporiumPlayer.equals(player);					//Control the player
+		}
+		
+		//execute if the city is just not visited and doesn't contain a player's emporium
+		if(!citiesVisited.contains(name) && !containsEmporium){
+			bonus.esegui(player);											//Run the bonus
+			for(int index=0;index<neighbors.size();++index)					//Visit the neighbors
+				(neighbors.get(index)).runBonusCity(player, citiesVisited);
+			citiesVisited.add(name);										//add the name of city at citiesVisited
+		}
 	}
 	
 }
