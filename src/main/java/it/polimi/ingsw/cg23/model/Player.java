@@ -5,8 +5,8 @@ import it.polimi.ingsw.cg23.model.components.*;
 
 public class Player {
 	private final String user;									//name of the player
-	private List<Emporium> availableEmporiums;					//the emporiums that are available to use
-	private List<Emporium> usedEmporiums;						//the emporiums that are just placed
+	private List<Emporium> availableEmporiums;					//the emporiums that are available to place
+	private List<Emporium> usedEmporiums;						//the emporiums that are already placed
 	private boolean additionalAction;							// main action given by the star bonus, the default value is false
 	private final AssistantsPool assistantsPool;		
 	private final Richness richness;

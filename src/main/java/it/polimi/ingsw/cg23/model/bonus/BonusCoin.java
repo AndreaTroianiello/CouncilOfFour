@@ -28,12 +28,13 @@ public class BonusCoin implements Bonus {
 		return coin;
 	}
 
-
+	
+	// add to the player's current coins the amount of coins of the bonus 
 	@Override
 	public void esegui(Player player) {
-		int coins=player.getCoins();
-		coins=coins+this.coin;
-		player.setCoins(coins);
+		int playerCoins=player.getCoins();
+		playerCoins=playerCoins+this.coin;
+		player.setCoins(playerCoins);
 	}
 	
 	
