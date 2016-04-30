@@ -14,7 +14,7 @@ public class Region {
 	public Region(String name, Bonus bonus) {
 		this.name = name;
 		this.bonus = bonus;
-		this.cities = new ArrayList();
+		this.cities = new ArrayList<City>();
 		this.bonusAvailable = true;
 	}
 
@@ -56,9 +56,11 @@ public class Region {
 	/**
 	 *  run the bonus associated to the region
 	 */
-	public void runBonus(Player player){
-		if(bonusAvailable)
+	public void runBonusRegion(Player player){
+		if(bonusAvailable){
 			bonus.esegui(player);
+			setBonusUnavailable();
+		}
 	}
 
 }
