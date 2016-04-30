@@ -1,5 +1,5 @@
 package it.polimi.ingsw.cg23.controller;
-import it.polimi.ingsw.cg23.view.*;
+//import it.polimi.ingsw.cg23.view.*;
 
 public class Main {
 

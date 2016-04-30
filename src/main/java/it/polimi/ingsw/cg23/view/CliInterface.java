@@ -22,7 +22,8 @@ public class CliInterface {//classe per la comunicazione con l'utente
 	}
 	
 	public void CreateMap(int del, String[][] city){
-		for(int i=0; i<city.length; i++){
+		String plancia=null;//la stringa che stampa la plancia di gioco
+		/*for(int i=0; i<city.length; i++){
 			for(int k=0; k<3; k++){
 				
 				if(k==0)System.out.println(city[i][0]);
@@ -31,7 +32,7 @@ public class CliInterface {//classe per la comunicazione con l'utente
 					System.out.println("--"+city[i][1]+"\n");
 				}
 			}
-		}
+		}*/
 	}
 	
 }
