@@ -14,7 +14,7 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 	/*
 	 * legge il file xml
 	 */
-	public String ReadFileXml(String nodo, String attributo){
+	public String ReadFileXml(String nodo){
 		try {	
 			File inputFile = new File("src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -29,7 +29,7 @@ public class ReadXml {//http://www.tutorialspoint.com/java_xml/java_dom_parse_do
 				for(int i=0; i<rootnode.getChildNodes().getLength(); i++){//cerco i nodi figli del nodo root (map)
 					Node zonenode = rootnode.getChildNodes().item(i);//il secondo nodo di xml e' zone
 					if(zonenode.getNodeName()==nodo){//il secondo nodo è quello cercato
-						if(zonenode.hasAttributes()==true&&zonenode.getAttributes().toString()==attributo)
+						if(zonenode.hasAttributes()==true)
 						return rootnode.getTextContent();
 					}else{
 						for(int j=0; i<zonenode.getChildNodes().getLength(); j++){//cerco i nodi figli del nodo zone
