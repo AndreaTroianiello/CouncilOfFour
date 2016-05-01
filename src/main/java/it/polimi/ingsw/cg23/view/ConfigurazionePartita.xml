@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map>
 	<zone>
-		<name>costa</name>
+		<namez>costa</namez>
 		<cities>
 			<city>
 				<Id>A</Id>
@@ -56,7 +56,7 @@
 		</cities>
 	</zone>
 	<zone>
-		<name>collina</name>
+		<namez>collina</namez>
 		<cities>
 			<city>
 				<Id>F</Id>
@@ -111,7 +111,7 @@
 		</cities>
 	</zone>
 	<zone>
-		<name>montagna</name>
+		<namez>montagna</namez>
 		<cities>
 			<city>
 				<Id>K</Id>
@@ -128,6 +128,10 @@
 				<name>Luvram</name>
 				<link>
 					<Id>J</Id>
+					<Id>O</Id>
+					<Id>O</Id>
+					<Id>J</Id>
+					<Id>O</Id>
 					<Id>O</Id>
 				</link>
 				<color>ferro</color>
@@ -154,11 +158,11 @@
 				<bonus></bonus>
 			</city>
 			<city>
-				<Id>E</Id>
-				<name>Empoli</name>
+				<Id>O</Id>
+				<name>Osium</name>
 				<link>
 					<Id>B</Id>
-					<Id>l</Id>
+					<Id>N</Id>
 				</link>
 				<color>gold</color>
 				<bonus></bonus>
