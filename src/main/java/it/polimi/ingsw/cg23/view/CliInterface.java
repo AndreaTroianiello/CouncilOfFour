@@ -1,14 +1,13 @@
 package it.polimi.ingsw.cg23.view;
-//import it.polimi.ingsw.cg23.model.*;
 
 /**
  * classe per stampare le info sulla cli
  */
 public class CliInterface {
-	//per main
-	//CliInterface nuovo=new CliInterface();
-	//nuovo.startPartita();
-
+	/*per main
+	* CliInterface nuovo=new CliInterface();
+	* nuovo.startPartita();
+	*/
 	ReadXml lettureXml=new ReadXml();
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
@@ -59,35 +58,49 @@ public class CliInterface {
 		int i;
 		int c=city.length/3;
 		int m=city.length/3*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
-		for(i=0; i<city.length/3;i++){//array che scorre le citta' per regione dastampare 5
-
+		for(i=0; i<city.length/3; i++,c++,m++){//array che scorre le citta' per regione dastampare 5
+			/* i posizione citta' costa
+			 * c posizione citta' collina
+			 * m posizione citta' montagna
+			 */
 			for(int k=0; k<3; k++){//aggiunge le 3 citta', una per ogni regione
-				int kk=k;//salvo il valore di k
-				if(k==0)k=i;//assegno a k il valore della zona "costa"
-				else if(k==1)k=c;//assegno a k il valore della zona "collina"
-				else if(k==2)k=m;//assegno a k il valore della zona "montagna"
-				String newcity=city[k][0]+"("+city[k][1]+") ";//recupero le informazioni dall'array
-
-				int length=20-newcity.length();//numero di spazi da aggiungere per raggiungere 20
-				if(newcity.length()<20){
-					for(int j=0; j<length; j++){
-						newcity+=" ";//aggiungo spazi
-					}
-				}
-				plancia+=newcity;//aggiungo le citta' appena aggiunte a quelle presenti
-				k=kk;//ripristino il valore di k
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String newcity=city[kk][0]+"("+city[kk][1]+") ";//recupero le informazioni dall'array
+				plancia+=addSpace(newcity, 20);//aggiungo le citta' appena aggiunte a quelle presenti
 			}
-			c++;//incremento le posizioni delle citta' di collina
-			m++;//incremento le posizioni delle citta' di montagna
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		String percorsi="Player     Richness          Victory            Money\n";
-		int rich=10, vict=10, money=10;//variabili provvisorie
+		int rich=10;//variabili provvisorie
+		int vict=10;//variabili provvisorie
+		int money=10;//variabili provvisorie
 		for(i=0; i<nPlayer; i++){//stampa i punteggi dei giocatori
 			percorsi+="P"+(i+1)+"            "+rich+"                "+vict+"                "+money;
 			percorsi+="\n";
 		}		
 		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
 		System.out.println(plancia);//stampo la plancia di gioco
+	}
+	
+	/**
+	 * @param nome the String you want to extend
+	 * @param totalSpace the total length you need (string + space)
+	 * @return the String extended
+	 */
+	public String addSpace(String nome, int totalSpace){//aggiunge spazi alla stringa data per raggiungere la lunghezza desiderata
+		int length=totalSpace-nome.length();//spazi da aggiungere
+		String nomeExtended=nome;
+		if(nome.length()<20){
+			for(int j=0; j<length; j++){//ciclo per aggiungere spazi
+				nomeExtended+=" ";//aggiungo spazi
+			}
+		}
+		return nomeExtended;
 	}
 }

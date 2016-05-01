@@ -15,10 +15,13 @@ import org.w3c.dom.Element;
  */
 public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-jaxp_7488_2.html
 	String path="src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml";
+	final int cityNodeNumber=cityNodeNumber(); //numero di nodi di city
+	final int citynum=cityNumber();//numero di citta'
+	String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
 
 	/**
 	 * legge il file xml
-	 * @return bidimensional array with city info, null if there is some problem
+	 * @return bidimensional array with city info, null array if there is some problems
 	 */
 	public String[][] readFileXml(){
 		try {	
@@ -28,16 +31,12 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 
 			/*Node rootnode = doc.getFirstChild();//recupera il primo nodo dell'xml (map)
-			Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
-			Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
-			Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = quinto nodo xml (city)
-			Node links=citty.getChildNodes().item(5);
+			* Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
+			* Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
+			* Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = quinto nodo xml (city)
+			* Node links=citty.getChildNodes().item(5);
 			*/
 			
-			final int cityNodeNumber=cityNodeNumber(); //numero di nodi di city
-			final int citynum=cityNumber();//numero di citta'
-			String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
-
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			NodeList zoneName=doc.getElementsByTagName("namez");//lista dei nodi che cntengono "namez" (nome della zona)
 			
@@ -55,8 +54,13 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, mare)
 			}
 			return city;
-		} catch (Exception e) {
-			return null;
+		} catch (Exception e) {//se ci sono dei problemi ritorna l'array null
+			for(int i=0;i<city.length;i++){
+				for(int k=0; k<city[0].length; k++){
+					city[i][k]=null;
+				}
+			}
+			return city;
 		}
 	}
 
