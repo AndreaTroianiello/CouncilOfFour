@@ -8,6 +8,8 @@ public class PoliticCard {
 	}
 
 	/**
+	 * Returns the color of the card.
+	 * 
 	 * @return the color
 	 */
 	public String getColor() {

@@ -8,6 +8,8 @@ public class VictoryTrack {
 	}
 
 	/**
+	 * Returns the victory points.
+	 * 
 	 * @return the victoryPoints
 	 */
 	public int getVictoryPoints() {
@@ -15,7 +17,9 @@ public class VictoryTrack {
 	}
 
 	/**
-	 * @param victoryPoints the victoryPoints to set
+	 * Sets the victory points contained in the victory track.
+	 * 
+	 * @param victoryPoints the number of victory points to set
 	 */
 	public void setVictoryPoints(int victoryPoints) {
 		this.victoryPoints = victoryPoints;

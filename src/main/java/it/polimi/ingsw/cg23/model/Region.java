@@ -14,47 +14,57 @@ public class Region {
 	public Region(String name, Bonus bonus) {
 		this.name = name;
 		this.bonus = bonus;
-		this.cities = new ArrayList<City>();
+		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
 	}
 
 	/**
-	 * @return the name
+	 * Returns the name of the region.
+	 * 
+	 * @return the name.
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @return the bonusAvailable
+	 * Returns the status of the bonus region. If true, the bonus is already available.
+	 * 
+	 * @return the bonusAvailable.
 	 */
 	public boolean isBonusAvailable() {
 		return bonusAvailable;
 	}
 
 	/**
-	 *  set bonusAvailable at false
+	 *  Sets the bonus status at false. The bonus is not available.
 	 */
 	public void setBonusUnavailable() {
 		this.bonusAvailable = false;
 	}
 
 	/**
-	 * @return the cities
+	 * Returns all cities of the region.
+	 * 
+	 * @return the list of cities.
 	 */
 	public List<City> getCities() {
 		return cities;
 	}
 	
 	/**
-	 * @param the city put the city in the region
+	 * Adds a city in the region.
+	 * 
+	 * @param city
 	 */
 	public void addCity(City city){
 		cities.add(city);
 	}
 	
 	/**
-	 *  run the bonus associated to the region
+	 *  Run the bonus associated to the region and sets the status of the bonus at false.
+	 *  
+	 *  @param player the player that takes the bonus of the region. 
 	 */
 	public void runBonusRegion(Player player){
 		if(bonusAvailable){

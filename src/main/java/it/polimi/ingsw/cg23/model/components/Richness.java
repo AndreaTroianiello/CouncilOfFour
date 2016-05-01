@@ -8,6 +8,8 @@ public class Richness {
 	}
 
 	/**
+	 * Returns the assistants of the pool.
+	 * 
 	 * @return the coins
 	 */
 	public int getCoins() {
@@ -15,7 +17,9 @@ public class Richness {
 	}
 
 	/**
-	 * @param coins the coins to set
+	 * Sets the coins contained in the richness.
+	 * 
+	 * @param coins the number of coins to set
 	 */
 	public void setCoins(int coins) {
 		this.coins = coins;

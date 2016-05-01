@@ -8,8 +8,8 @@ public class RegionDeck {
 	private final List<BusinessPermitTitle> businessPermitShowed;
 	
 	public RegionDeck(){
-		businessPermitHidden=new ArrayList<BusinessPermitTitle>();
-		businessPermitShowed=new ArrayList<BusinessPermitTitle>();
+		businessPermitHidden=new ArrayList<>();
+		businessPermitShowed=new ArrayList<>();
 	}
 
 	/**

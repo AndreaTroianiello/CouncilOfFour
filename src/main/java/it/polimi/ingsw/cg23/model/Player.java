@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.components.*;
 
@@ -21,14 +22,16 @@ public class Player {
 		this.assistantsPool = new AssistantsPool(assistants);
 		this.richness = new Richness(coins);
 		this.victoryTrack = new VictoryTrack();
-		this.politicsCards= null;
-		this.availableEmporiums=null;
-		this.usedEmporiums=null;
-		this.availableBusinesPermits=null;
-		this.usedBusinessPermits=null;
+		this.politicsCards= new ArrayList<>();
+		this.availableEmporiums=new ArrayList<>();
+		this.usedEmporiums=new ArrayList<>();
+		this.availableBusinesPermits=new ArrayList<>();
+		this.usedBusinessPermits=new ArrayList<>();
 	}
 
 	/**
+	 * Returns the name of the player. It's only one in the game.
+	 * 
 	 * @return the user
 	 */
 	public String getUser() {
@@ -36,14 +39,18 @@ public class Player {
 	}
 
 	/**
-	 * @param availableEmporium add the available emporium at the list
+	 * Adds an available emporium at the player's list.
+	 * 
+	 * @param availableEmporium 
 	 */
 	public void setAvailableEmporium(Emporium availableEmporium) {
 		this.availableEmporiums.add(availableEmporium);
 	}
 	
 	/**
-	 * @return an available emporium
+	 * Returns an available emporium of the player.
+	 * 
+	 * @return an available emporium or null (if the list in is empty).
 	 */
 	public Emporium getAvailableEmporium() {
 		if(!availableEmporiums.isEmpty())
@@ -53,34 +60,42 @@ public class Player {
 	}
 	
 	/**
-	 * @return the used emporiums
+	 * Returns the list of all emporiums builded by the player.
+	 * 
+	 * @return the emporiums used during the game.
 	 */
 	public List<Emporium> getEmporiums() {
 		return usedEmporiums;
 	}
 
 	/**
-	 * @param emporium the used emporium to set
+	 * Adds the emporium at the list of emporiums used
+	 * 
+	 * @param emporium an emporium builded.
 	 */
 	public void setEmporium(Emporium emporium) {
 		this.usedEmporiums.add(emporium);
 	}
 
 	/**
-	 * @return the additionalAction
+	 * Returns the status of the addictional action. If it's true, the player can perform another principal action.
+	 * 
+	 * @return the additionalAction status.
 	 */
 	public boolean isAdditionalAction() {
 		return additionalAction;
 	}
 
 	/**
-	 * negate additionalAction status
+	 * Negates the additionalAction status.
 	 */
 	public void switchAdditionalAction() {
 		this.additionalAction = !this.additionalAction;
 	}
 
 	/**
+	 * Returns the assistants pool of the player.
+	 * 
 	 * @return the assistants of the player
 	 */
 	public int getAssistants() {
@@ -88,13 +103,17 @@ public class Player {
 	}
 
 	/**
-	 * @param assistants modify the player's assistants
+	 * Modify the player's assistants.
+	 * 
+	 * @param assistants the assistants to set.
 	 */
 	public void setAssistants(int assistants) {
 		assistantsPool.setAssistants(assistants);
 	}
 	
 	/**
+	 * Returns the richness of the player.
+	 * 
 	 * @return the coins of the player
 	 */
 	public int getCoins() {
@@ -102,56 +121,72 @@ public class Player {
 	}
 
 	/**
-	 * @param coins modify the player's richness
+	 * Modify the player's richness.
+	 * 
+	 * @param coins the coins to set.
 	 */
 	public void setCoins(int coins) {
 		richness.setCoins(coins);
 	}
 	
 	/**
-	 * @return the victory points of the player
+	 * Returns the vitcory points of the player.
+	 * 
+	 * @return the victory points of the player.
 	 */
 	public int getVictoryPoints() {
 		return victoryTrack.getVictoryPoints();
 	}
 	
 	/**
-	 * @param points modify the player's victory points
+	 * Modify the player's victory points.
+	 * 
+	 * @param points the victory points to set.
 	 */
 	public void setVictoryPoints(int points) {
 		victoryTrack.setVictoryPoints(points);
 	}
 	
 	/**
-	 * @param politicCard the politic card to add at player's hand
+	 * Adds a politic card at player's hand.
+	 * 
+	 * @param politicCard a politic card.
 	 */
 	public void addPoliticCard(PoliticCard politicCard) {
 		politicsCards.add(politicCard);
 	}
 	
 	/**
-	 * @return the player's hand
+	 * Returns all politc cards of the player.
+	 * 
+	 * @return the player's hand.
 	 */
 	public List<PoliticCard> getHand() {
 		return politicsCards;
 	}
 
 	/**
-	 * @return the availableBusinessPermit
+	 * Returns all available titles of the player.
+	 * 
+	 * @return the availableBusinessPermits.
 	 */
 	public List<BusinessPermitTitle> getAvailableBusinessPermits() {
 		return availableBusinesPermits;
 	}
 	
 	/**
-	 * @param businessPermit the business permit title to add at player's permits
+	 * Adds a business permit title at the player's available titles.
+	 * 
+	 * @param businessPermit the business permit title to add at player's permits.
 	 */
 	public void addAvailableBusinessPermit(BusinessPermitTitle businessPermit) {
 		this.availableBusinesPermits.add(businessPermit);
 	}
 
 	/**
-	 * @return the usedBusinessPermits
+	 * Returns all used titles of the player.
+	 * 
+	 * @return the usedBusinessPermits.
 	 */
 	public List<BusinessPermitTitle> getUsedBusinessPermit() {
 		return usedBusinessPermits;
@@ -159,37 +194,17 @@ public class Player {
 
 	
 	/**
-	 * @param usedBusinessPermits the used business permit title to add at player's permits
+	 * Adds a business permits title at player's used titles.
+	 * 
+	 * @param usedBusinessPermits the used business permit title.
 	 */
 	public void setUsedBusinessPermit(BusinessPermitTitle businessPermit) {
 		this.usedBusinessPermits.add(businessPermit);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * Returns all stats of the player.
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-			
-		if (obj == null) 
-			return false;
-		
-		if (getClass() != obj.getClass()) 
-			return false;
-		
-		Player other = (Player) obj;
-		if (user == null)
-			if (other.user != null)
-				return false;
-		else 
-			if (!user.equals(other.user))
-				return false;
-		
-		return true;
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

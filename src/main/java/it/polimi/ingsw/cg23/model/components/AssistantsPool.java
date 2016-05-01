@@ -8,6 +8,8 @@ public class AssistantsPool {
 	}
 
 	/**
+	 * Returns the assistants of the pool.
+	 * 
 	 * @return the assistants
 	 */
 	public int getAssistants() {
@@ -15,7 +17,9 @@ public class AssistantsPool {
 	}
 
 	/**
-	 * @param assistants the assistants to set
+	 * Sets the assistants contained in the assistants pool.
+	 * 
+	 * @param assistants the number of assistants to set.
 	 */
 	public void setAssistants(int assistants) {
 		this.assistants = assistants;

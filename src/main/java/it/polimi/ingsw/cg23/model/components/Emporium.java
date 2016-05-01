@@ -13,6 +13,8 @@ public class Emporium {
 	}
 
 	/**
+	 * Returns the city in which it was built the emporium. 
+	 * 
 	 * @return the city
 	 */
 	public City getCity() {
@@ -20,13 +22,17 @@ public class Emporium {
 	}
 
 	/**
-	 * @param city the city to set
+	 * Sets the city of emporium. 
+	 * 
+	 * @param city the city in which it was built the emporium.
 	 */
 	public void setCity(City city) {
 		this.city = city;
 	}
 
 	/**
+	 * Returns the player owner of the emporium.
+	 * 
 	 * @return the player
 	 */
 	public Player getPlayer() {
