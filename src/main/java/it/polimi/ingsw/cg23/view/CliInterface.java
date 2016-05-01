@@ -1,4 +1,5 @@
 package it.polimi.ingsw.cg23.view;
+//import it.polimi.ingsw.cg23.model.*;
 
 /**
  * classe per stampare le info sulla cli
@@ -20,9 +21,8 @@ public class CliInterface {
 	 * @param number of players
 	 */
 	public void startPartita(){
-		//System.out.print(cityNodeNumber);
 		cityInfo=lettureXml.readFileXml();
-		createMap(cityInfo);//stampa array solo per le prove
+		createMap(cityInfo,4);//stampa array solo per le prove
 	}
 
 	/**
@@ -50,44 +50,42 @@ public class CliInterface {
 	}
 
 	/**
-	 * stampa la mappa ( funziona parzialmente)
+	 * stampa la mappa (funziona parzialmente)
 	 * @return void
 	 * @param bidimensional array with city
 	 */
-	public void createMap(String[][] city){
-		String plancia="     Costa             Collina              Montagna\n";//la stringa che stampa la plancia di gioco
-		int i=0, c=city.length/3, m=city.length/3*2;
-		for(i=0; i<city.length/3;){//le righe da stampare sono 5
-			//System.out.println("II"+i);
-			for(int k=0; k<3; k++){//aggiunge le 3 citta', una per ogni regione
-				int kk=k;
-				if(k==0)k=i;
-				if(k==1)k=c;
-				if(k==2)k=m;
-				
-				String newcity=city[k][0]+"("+city[k][1]+") ";
+	public void createMap(String[][] city, int nPlayer){
+		String plancia="     Costa            Collina              Montagna\n";//la stringa che stampa la plancia di gioco
+		int i=0, c=city.length/3, m=city.length/3*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
+		for(i=0; i<city.length/3;i++){//array che scorre le citta' per regione dastampare 5
 
-					//CONTROLLARE
-				int length=20-newcity.length();
-				if(length<20){
+			for(int k=0; k<3; k++){//aggiunge le 3 citta', una per ogni regione
+				int kk=k;//salvo il valore di k
+				if(k==0)k=i;//assegno a k il valore della zona "costa"
+				else if(k==1)k=c;//assegno a k il valore della zona "collina"
+				else if(k==2)k=m;//assegno a k il valore della zona "montagna"
+				String newcity=city[k][0]+"("+city[k][1]+") ";//recupero le informazioni dall'array
+
+				int length=20-newcity.length();//numero di spazi da aggiungere per raggiungere 20
+				if(newcity.length()<20){
 					for(int j=0; j<length; j++){
-						newcity+=" ";
-						//System.out.println(add+"|");
+						newcity+=" ";//aggiungo spazi
 					}
 				}
-				plancia+=newcity;
-				k=kk;
+				plancia+=newcity;//aggiungo le citta' appena aggiunte a quelle presenti
+				k=kk;//ripristino il valore di k
 			}
-			i++;
-			c++;
-			System.out.println(i);
-			m++;
-			System.out.println(m);
-			plancia+="\n";
+			c++;//incremento le posizioni delle citta' di collina
+			m++;//incremento le posizioni delle citta' di montagna
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
-
-		System.out.println(plancia);
-
+		String percorsi="Player     Richness          Victory            Money\n";
+		int rich=10, vict=10, money=10;//variabili provvisorie
+		for(i=0; i<nPlayer; i++){//stampa i punteggi dei giocatori
+			percorsi+="P"+(i+1)+"            "+rich+"                "+vict+"                "+money;
+			percorsi+="\n";
+		}		
+		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
+		System.out.println(plancia);//stampo la plancia di gioco
 	}
-
 }
