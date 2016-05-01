@@ -56,7 +56,9 @@ public class CliInterface {
 	 */
 	public void createMap(String[][] city, int nPlayer){
 		String plancia="     Costa            Collina              Montagna\n";//la stringa che stampa la plancia di gioco
-		int i=0, c=city.length/3, m=city.length/3*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
+		int i;
+		int c=city.length/3;
+		int m=city.length/3*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
 		for(i=0; i<city.length/3;i++){//array che scorre le citta' per regione dastampare 5
 
 			for(int k=0; k<3; k++){//aggiunge le 3 citta', una per ogni regione
