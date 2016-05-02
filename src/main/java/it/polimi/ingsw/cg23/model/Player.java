@@ -241,8 +241,7 @@ public class Player {
 	 */
 	@Override
 	public String toString() {
-		String stats="-User: " + user + "\n-Assistants: " + getAssistants() + "\n-Coins: "+ getCoins() + "\n-Victory points: " + getVictoryPoints() ;
-		return stats;
+		return "-User: " + user + "\n-Assistants: " + getAssistants() + "\n-Coins: "+ getCoins() + "\n-Victory points: " + getVictoryPoints() ;
 	}
 	
 }

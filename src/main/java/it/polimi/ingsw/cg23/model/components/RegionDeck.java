@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 public class RegionDeck {
-	private final int MAX_TITLES_SHOWED=2;
+	private final int maxTitlesShowed=2;
 	private final List<BusinessPermitTitle> businessPermitHidden;
 	private final List<BusinessPermitTitle> businessPermitShowed;
 	
@@ -45,7 +45,7 @@ public class RegionDeck {
 	public void setBusinessPermit(List<BusinessPermitTitle> businessPermitTitle){
 		
 		shuffleTitle(businessPermitTitle);										//Shuffles the titles.
-		for(int index=0;index<MAX_TITLES_SHOWED;++index)						//Puts MAX_TITLES_SHOWED titles in the showed deck. 
+		for(int index=0;index<maxTitlesShowed;++index)							//Puts maxTitlesShowed titles in the showed deck. 
 			businessPermitShowed.add(businessPermitTitle.remove(0));
 		while(!businessPermitTitle.isEmpty())									//Puts the other titles in the hidden deck.
 			businessPermitHidden.add(businessPermitTitle.remove(0));
@@ -65,13 +65,12 @@ public class RegionDeck {
 	}
 	
 	/**
-	 * 
-	 * 
+	 * Changes the showed titles with other titles from the hidden deck.
 	 */
 	public void changeShowedDeck(){
 		while(!businessPermitShowed.isEmpty())									//Puts the showed titles in the hidden deck.
 			businessPermitHidden.add(businessPermitShowed.remove(0));
-		for(int index=0;index<MAX_TITLES_SHOWED;++index)						//Puts MAX_TITLES_SHOWED titles in the showed deck. 
+		for(int index=0;index<maxTitlesShowed;++index)							//Puts maxTitlesShowed titles in the showed deck. 
 			businessPermitShowed.add(businessPermitHidden.remove(0));
 		
 	}
