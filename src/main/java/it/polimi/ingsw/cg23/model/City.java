@@ -96,7 +96,7 @@ public class City {
 	/**
 	 * Builds an emporium in the city. When a player builds a emporium loses assistants. The assistants of the player can't be negative.
 	 * 
-	 * @param emporium an emporium of the player, the city must be setted.
+	 * @param emporium an emporium of the player.
 	 * @throws NegativeNumberException the assistants of the player must be positive.
 	 */
 	public void buildEmporium(Emporium emporium) throws NegativeNumberException{
@@ -104,6 +104,7 @@ public class City {
 		assistantsPlayer=assistantsPlayer-emporiums.size();
 		emporium.getPlayer().setAssistants(assistantsPlayer);						//If sets a negative number throws a NegativeNumberException. 
 		runBonusCity(emporium.getPlayer(), new ArrayList<String>(), true);			//Runs the bonus of the city and visits the neighbors.
+		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporiums.
 	}
 	

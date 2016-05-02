@@ -6,20 +6,21 @@ import java.util.Random;
 
 
 public class RegionDeck {
-	private final int maxTitlesShowed=2;
+	private final int maxTitlesShowed;
 	private final List<BusinessPermitTitle> businessPermitHidden;
 	private final List<BusinessPermitTitle> businessPermitShowed;
 	
-	public RegionDeck(){
+	public RegionDeck(int maxTitlesShowed){
+		this.maxTitlesShowed=maxTitlesShowed;
 		businessPermitHidden=new ArrayList<>();
 		businessPermitShowed=new ArrayList<>();
 	}
 
 	/**
-	 * @return the businessPermitHidden
+	 * @return the size of hidden deck.
 	 */
-	public List<BusinessPermitTitle> getBusinessPermitHidden() {
-		return businessPermitHidden;
+	public int getBusinessPermitHidden() {
+		return businessPermitHidden.size();
 	}
 
 	/**
@@ -68,11 +69,11 @@ public class RegionDeck {
 	 * Changes the showed titles with other titles from the hidden deck.
 	 */
 	public void changeShowedDeck(){
-		while(!businessPermitShowed.isEmpty())									//Puts the showed titles in the hidden deck.
-			businessPermitHidden.add(businessPermitShowed.remove(0));
-		for(int index=0;index<maxTitlesShowed;++index)							//Puts maxTitlesShowed titles in the showed deck. 
+		if(businessPermitShowed.size()==maxTitlesShowed)										//If the showed deck is full, empties it.
+			while(!businessPermitShowed.isEmpty())												//Puts the showed titles in the hidden deck.
+				businessPermitHidden.add(businessPermitShowed.remove(0));
+		while(businessPermitShowed.size()<maxTitlesShowed && !businessPermitHidden.isEmpty())	//Puts titles in the showed deck. 
 			businessPermitShowed.add(businessPermitHidden.remove(0));
-		
 	}
 
 }

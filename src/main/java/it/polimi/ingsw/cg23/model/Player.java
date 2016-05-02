@@ -240,7 +240,7 @@ public class Player {
 	}
 	
 	/**
-	 * makes the player move i steps in the nobilityTrack 
+	 * Makes the player move i steps in the nobilityTrack 
 	 * 
 	 * @param i
 	 * @param nobilityTrack
