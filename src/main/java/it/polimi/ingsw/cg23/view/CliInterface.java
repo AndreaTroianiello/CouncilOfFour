@@ -1,13 +1,18 @@
 package it.polimi.ingsw.cg23.view;
 
+import java.util.Scanner;
+import it.polimi.ingsw.cg23.model.*;
+import it.polimi.ingsw.cg23.model.bonus.Bonus;
+
 /**
  * classe per stampare le info sulla cli
  */
 public class CliInterface {
 	/*per main
-	* CliInterface nuovo=new CliInterface();
-	* nuovo.startPartita();
-	*/
+	 * CliInterface nuovo=new CliInterface();
+	 * nuovo.startPartita();
+	 */
+	
 	ReadXml lettureXml=new ReadXml();
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
@@ -16,12 +21,12 @@ public class CliInterface {
 
 	/**
 	 * carica il file con le infromazioni della partita
-	 * @return void
-	 * @param number of players
+	 * @return a bidimensional array with all the city info
 	 */
-	public void startPartita(){
+	public String[][] startPartita(){
 		cityInfo=lettureXml.readFileXml();
-		createMap(cityInfo,4);//stampa array solo per le prove
+		regionObject();//SOLO PER LE PROVE
+		return cityInfo;
 	}
 
 	/**
@@ -39,6 +44,29 @@ public class CliInterface {
 	}
 
 	/**
+	 * @return an object of the readed value from the command line
+	 */
+	public Object returnValue(){
+		@SuppressWarnings("resource")
+		Scanner scan=new Scanner(System.in);//creto uno scanner per leggere l'input da cl
+		Object readValue=scan.nextLine();
+		return readValue;
+	}
+	
+	/**
+	 * 
+	 * @param testo, what you want to show on the cl
+	 * @param ogg, the object yu want to show with the test on the cl (null if none)
+	 * @return what the user write on the cl
+	 */
+	public Object writeReturnValue(String testo, Object ogg){
+		@SuppressWarnings("resource")
+		Scanner scan=new Scanner(System.in);
+		System.out.println(testo+" "+ogg);
+		return scan.nextLine();
+	}
+
+	/**
 	 * stampa una qualunque cosa gli viene passata
 	 * @return void
 	 * @param object (something to print)
@@ -48,6 +76,26 @@ public class CliInterface {
 		System.out.println(testo+" "+ogg);
 	}
 
+	public void regionObject(){
+		int i=0;//zona costa
+		int c=cityInfo.length/3;//zona collina
+		int m=cityInfo.length/3*2;//zona montagna
+		Bonus b = null;//OGGETTO BONUS
+		new Region(cityInfo[i][5],b);
+		new Region(cityInfo[c][5],b);
+		new Region(cityInfo[m][5],b);
+	}
+	
+	public void cityObject(){
+		for(int i=0; i<cityInfo.length; i++){
+			startPartita();//crea arrayInfo
+			Bonus b=null;//OGGETTO BONUS
+			regionObject();
+			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], null);
+			//System.out.println(c.getName());
+		}
+	}
+	
 	/**
 	 * stampa la mappa (funziona parzialmente)
 	 * @return void
@@ -87,7 +135,7 @@ public class CliInterface {
 		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
 		System.out.println(plancia);//stampo la plancia di gioco
 	}
-	
+
 	/**
 	 * @param nome the String you want to extend
 	 * @param totalSpace the total length you need (string + space)
