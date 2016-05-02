@@ -12,7 +12,7 @@ public class CliInterface {
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, link, color, zone
 	final int regionNumber=scrittureXml.regionNumber(cityInfo);
-
+	
 	/**
 	 * carica il file xml con le infromazioni della partita
 	 * @return a bidimensional array with all the city info
