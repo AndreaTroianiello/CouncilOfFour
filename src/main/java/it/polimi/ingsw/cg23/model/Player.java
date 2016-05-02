@@ -16,7 +16,7 @@ public class Player {
 	private List<BusinessPermitTitle> availableBusinesPermits;
 	private List<BusinessPermitTitle> usedBusinessPermits;
 	
-	public Player(String user, int assistants,int coins) {
+	public Player(String user, int assistants, int coins) {
 		this.user = user;
 		this.additionalAction = false;
 		this.assistantsPool = new AssistantsPool(assistants);
