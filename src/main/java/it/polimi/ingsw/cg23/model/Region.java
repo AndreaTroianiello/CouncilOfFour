@@ -62,6 +62,18 @@ public class Region {
 	}
 	
 	/**
+	 * Seeks a specific city by the id
+	 * 
+	 * @param id the identifier of the city.
+	 */
+	public City searchCity(char id){
+		for(int index=0;index<cities.size();++index)
+			if(cities.get(index).getId()==id)
+				return cities.get(index);
+		return null;
+	}
+	
+	/**
 	 *  Run the bonus associated to the region and sets the status of the bonus at false.
 	 *  
 	 *  @param player the player that takes the bonus of the region. 
