@@ -23,7 +23,7 @@ public class BonusAssistants implements Bonus {
 
 	// add to the player's assistants' pool the amount of assistants of the bonus
 	@Override
-	public void esegui(Player player) {
+	public void giveBonus(Player player) {
 		int playerAssistants = player.getAssistants();
 		playerAssistants = playerAssistants + this.assistants;
 		player.setAssistants(playerAssistants);

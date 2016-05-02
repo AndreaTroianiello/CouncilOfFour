@@ -1,15 +1,41 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NobilityTrack {
 	
-	private final NobilityBox[] nobilityBox;
+	private final NobilityBox[] nobilityBoxes;
 	private final int lenght;
 	
-	//must be modified
-	public NobilityTrack(NobilityBox[] nobilityBox, int lenght) {
-		this.nobilityBox = nobilityBox;
+	/**
+	 * the constructor creates a nobility track of a certain lenght
+	 * then it initializes the box in the track
+	 * 
+	 * @param lenght
+	 */
+	public NobilityTrack(int lenght) {
 		this.lenght = lenght;
+		this.nobilityBoxes = new NobilityBox[lenght];
+		for(int i=0; i<lenght; i++){
+			nobilityBoxes[i] = new NobilityBox(i);
+		}
 	}
+
+	/**
+	 * @return the nobilityBoxes
+	 */
+	public List<NobilityBox> getNobilityBoxes() {
+		return nobilityBoxes;
+	}
+
+	/**
+	 * @return the lenght
+	 */
+	public int getLenght() {
+		return lenght;
+	}
+	
 	
 	
 

@@ -1,38 +1,37 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
 public class NobilityBox {
-	private final Bonus[] bonus;
-	private final int bonusNumber;
+	private final List<Bonus> bonus;
 	private final int position;
 	
 
 	// must be modified
-	public NobilityBox(Bonus[] bonus, int bonusNumber, int position) {
-		this.bonus = bonus;
-		this.bonusNumber = bonusNumber;
+	public NobilityBox(int position) {
+		this.bonus = new ArrayList<Bonus>();
 		this.position = position;
 	}
-
 
 
 	/**
 	 * @return the bonus
 	 */
-	public Bonus[] getBonus() {
+	public List<Bonus> getBonus() {
 		return bonus;
 	}
-
-
-
+	
 	/**
-	 * @return the bonusNumber
+	 * add a bonus in the noibilityBox
+	 * 
+	 * @param bonus
 	 */
-	public int getBonusNumber() {
-		return bonusNumber;
+	public void addBonus(Bonus bonus){
+		this.bonus.add(bonus);	
 	}
-
 
 
 	/**
@@ -41,7 +40,8 @@ public class NobilityBox {
 	public int getPosition() {
 		return position;
 	}
-	
+
+
 	
 
 }

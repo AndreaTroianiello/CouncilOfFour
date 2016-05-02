@@ -21,7 +21,7 @@ public class BonusVictoryPoints implements Bonus {
 
 	//give to the player the amount of victory points of the bonus
 	@Override
-	public void esegui(Player player) {
+	public void giveBonus(Player player) {
 		int playerPoints = player.getVictoryPoints();
 		playerPoints = playerPoints + this.points;
 		player.setVictoryPoints(playerPoints);

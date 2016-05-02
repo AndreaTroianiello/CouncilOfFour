@@ -21,7 +21,7 @@ public class BonusPolitics implements Bonus {
 
 	//add a politic card to the player's hand
 	@Override
-	public void esegui(Player player) {
+	public void giveBonus(Player player) {
 		
 		player.addPoliticCard(card);
 

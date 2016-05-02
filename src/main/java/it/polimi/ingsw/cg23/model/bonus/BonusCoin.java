@@ -31,7 +31,7 @@ public class BonusCoin implements Bonus {
 	
 	// add to the player's current coins the amount of coins of the bonus 
 	@Override
-	public void esegui(Player player) {
+	public void giveBonus(Player player) {
 		int playerCoins=player.getCoins();
 		playerCoins=playerCoins+this.coin;
 		player.setCoins(playerCoins);

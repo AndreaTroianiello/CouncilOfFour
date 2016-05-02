@@ -134,7 +134,7 @@ public class City {
 		
 		//execute if the city is just not visited and doesn't contain a player's emporium
 		if(!citiesVisited.contains(name) && !containsEmporium){
-			bonus.esegui(player);														//Run the bonus
+			bonus.giveBonus(player);														//Run the bonus
 			if(visitNeighbors){															//IF true visits the neighbors
 				for(int index=0;index<neighbors.size();++index)							//Visit the neighbors
 					(neighbors.get(index)).runBonusCity(player, citiesVisited,true);
