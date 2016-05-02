@@ -7,6 +7,8 @@
 				<Id>A</Id>
 				<name>Arkon</name>
 				<link>
+					<Id>A</Id>
+					<Id>C</Id>
 					<Id>B</Id>
 					<Id>C</Id>
 				</link>
@@ -129,10 +131,7 @@
 				<link>
 					<Id>J</Id>
 					<Id>O</Id>
-					<Id>O</Id>
-					<Id>J</Id>
-					<Id>O</Id>
-					<Id>O</Id>
+					<Id>K</Id>
 				</link>
 				<color>ferro</color>
 				<bonus></bonus>

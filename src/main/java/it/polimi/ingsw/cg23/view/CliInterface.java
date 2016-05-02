@@ -11,6 +11,7 @@ public class CliInterface {
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, link, color, zone
+	final int regionNumber=scrittureXml.regionNumber(cityInfo);
 
 	/**
 	 * carica il file xml con le infromazioni della partita
@@ -24,28 +25,10 @@ public class CliInterface {
 	/**
 	 * salva le informazioni della partita in un file xml
 	 * @param bidimensional array with city info
+	 * @return an error if there is some errors
 	 */
-	public void savePartita(String [][] cityInfo){
-		scrittureXml.writeXmlFile(cityInfo);
-	}
-	
-	/**
-	 * calcola il numero di regioni
-	 * @return the number of regions
-	 */
-	public int regionNumber(){
-		startPartita();//aggiorna l'array con le informazioni delle citta'
-		int n=0;
-		for(int i=0; i<cityInfo.length; i++){
-			int k;//usata per evitare di eccedere i limiti dell'array
-			if(i>0)
-				k=i-1;
-			else 
-				k=i;
-			if(cityInfo[i][5]!=cityInfo[k][5])//conta le variazioni delle regioni
-				n++;
-		}
-		return n+1;//aggiunge 1 per contare la prima regione
+	public String savePartita(String [][] cityInfo){
+		return scrittureXml.writeXmlFile(cityInfo);
 	}
 	
 	/**
@@ -56,7 +39,7 @@ public class CliInterface {
 	public void printArray(String[][] array){
 		for(int i=0;i<array.length;i++){
 			for(int k=0; k<array[0].length; k++){
-				System.out.print(array[i][k]+"    ");
+				System.out.print(addSpace(array[i][k], 8)+"    ");
 			}
 			System.out.print("\n");
 		}
@@ -102,16 +85,15 @@ public class CliInterface {
 	 */
 	public void createMap(String[][] city, int nPlayer){
 		String plancia="     Costa            Collina              Montagna\n";//la stringa che stampa la plancia di gioco
-		int rn=regionNumber();//numero di regioni
 		int i;
-		int c=city.length/rn;
-		int m=city.length/rn*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
-		for(i=0; i<city.length/rn; i++,c++,m++){//array che scorre le citta' per regione dastampare 5
+		int c=city.length/regionNumber;
+		int m=city.length/regionNumber*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
+		for(i=0; i<city.length/regionNumber; i++,c++,m++){//array che scorre le citta' per regione dastampare 5
 			/* i posizione citta' costa
 			 * c posizione citta' collina
 			 * m posizione citta' montagna
 			 */
-			for(int k=0; k<rn; k++){//aggiunge le 3 citta', una per ogni regione
+			for(int k=0; k<regionNumber; k++){//aggiunge le 3 citta', una per ogni regione
 				int kk=0;//salvo il valore di k
 				if(k==0)
 					kk=i;//assegno a kk il valore della zona "costa" in base a k

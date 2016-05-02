@@ -30,24 +30,29 @@ public class ReadXml {
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 
 			/*Node rootnode = doc.getFirstChild();//recupera il primo nodo dell'xml (map)
-			* Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
-			* Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
-			* Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = quinto nodo xml (city)
-			* Node links=citty.getChildNodes().item(5);
-			*/
-			
+			 * Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
+			 * Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
+			 * Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = quinto nodo xml (city)
+			 * Node links=citty.getChildNodes().item(5);
+			 */
+
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			NodeList zoneName=doc.getElementsByTagName("namez");//lista dei nodi che cntengono "namez" (nome della zona)
-			
+
 			for (int i=0; i<citynum; i++){//scorre le citta' presenti nel file xml
 				Node actualNode=citylist.item(i);//nodo attualmente in uso
 				Element actualElement=(Element) actualNode;//cast del nodo in elemento per poterlo usare
 
 				city[i][0]=actualElement.getElementsByTagName("name").item(0).getTextContent();//recupera il nome della città
 				city[i][1]=actualElement.getElementsByTagName("color").item(0).getTextContent();//recupera il colore della città
-				city[i][2]=actualElement.getElementsByTagName("link").item(0).getTextContent();//recupera i link della città
+
+				String nome=actualElement.getElementsByTagName("link").item(0).getTextContent();//recupera i link della città (id delle citta' vicine)
+				int idnum=actualElement.getElementsByTagName("link").item(0).getChildNodes().getLength();//numero dei tag filgi di link + il tag di chiusura di link
+				idnum=(idnum-1)/2;//numero degli id (numero delle citta' vicine)
+				city[i][2]=idConversion(nome,idnum);
 				city[i][3]=actualElement.getElementsByTagName("Id").item(0).getTextContent();//recupera l'id della città
 				city[i][4]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus della città
+				
 				Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, mare)
 			}
@@ -60,6 +65,21 @@ public class ReadXml {
 			}
 			return city;
 		}
+	}
+
+	/**
+	 * strasforma la stringa che contiene le città vicine in una piu' leggibile
+	 * @param nome, the string to executhe the substring (the string contain the city link)
+	 * @param idnum, the number of the city link
+	 * @return a string with the city link easily to know 
+	 */
+	public String idConversion(String nome, int idnum){
+		String idConcat="";//id delle citta' vicine
+		for(int i=1; i<=idnum; i++){
+			int k=7*i;//nella stringa originaria gli id della citta' vicine sono a distanza di 7
+			idConcat+=nome.substring(k-1, k);
+		}
+		return idConcat;//ritorna la stringa della città
 	}
 
 	/**
@@ -83,7 +103,6 @@ public class ReadXml {
 	/**
 	 * calcola il numero di nodi (attributi) di citta'
 	 * @return the number of city nodes (attributes), 0 if no city or error
-	 * @throws Exception is there is an error
 	 */
 	public int cityNodeNumber(){
 		try {	
