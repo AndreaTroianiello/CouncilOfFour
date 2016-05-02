@@ -68,7 +68,7 @@ public class Region {
 	 */
 	public void runBonusRegion(Player player){
 		if(bonusAvailable){
-			bonus.esegui(player);
+			bonus.giveBonus(player);
 			setBonusUnavailable();
 		}
 	}
