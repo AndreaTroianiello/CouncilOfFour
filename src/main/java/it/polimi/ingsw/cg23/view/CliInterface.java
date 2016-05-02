@@ -1,22 +1,15 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.util.Scanner;
-import it.polimi.ingsw.cg23.model.*;
-import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
 /**
  * classe per stampare le info sulla cli
  */
 public class CliInterface {
-	/*per main
-	 * CliInterface nuovo=new CliInterface();
-	 * nuovo.startPartita();
-	 */
-	
 	ReadXml lettureXml=new ReadXml();
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
-
+	
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, link, color, zone
 
 	/**
@@ -25,7 +18,6 @@ public class CliInterface {
 	 */
 	public String[][] startPartita(){
 		cityInfo=lettureXml.readFileXml();
-		regionObject();//SOLO PER LE PROVE
 		return cityInfo;
 	}
 
@@ -49,8 +41,7 @@ public class CliInterface {
 	public Object returnValue(){
 		@SuppressWarnings("resource")
 		Scanner scan=new Scanner(System.in);//creto uno scanner per leggere l'input da cl
-		Object readValue=scan.nextLine();
-		return readValue;
+		return scan.nextLine();
 	}
 	
 	/**
@@ -74,25 +65,6 @@ public class CliInterface {
 	 */
 	public void print(Object ogg, String testo){
 		System.out.println(testo+" "+ogg);
-	}
-
-/*	public void regionObject(){
-		int i=0;//zona costa
-		int c=cityInfo.length/3;//zona collina
-		int m=cityInfo.length/3*2;//zona montagna
-		Bonus b = null;//OGGETTO BONUS
-		new Region(cityInfo[i][5],b);
-		new Region(cityInfo[c][5],b);
-		new Region(cityInfo[m][5],b);
-	}*/
-	
-	public void cityObject(){
-		for(int i=0; i<cityInfo.length; i++){
-			startPartita();//crea arrayInfo
-			Bonus b=null;//OGGETTO BONUS
-			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], new Region(cityInfo[i][5],b));
-			//System.out.println(c.getName());
-		}
 	}
 	
 	/**
