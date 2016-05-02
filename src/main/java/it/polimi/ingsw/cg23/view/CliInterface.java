@@ -76,7 +76,7 @@ public class CliInterface {
 		System.out.println(testo+" "+ogg);
 	}
 
-	public void regionObject(){
+/*	public void regionObject(){
 		int i=0;//zona costa
 		int c=cityInfo.length/3;//zona collina
 		int m=cityInfo.length/3*2;//zona montagna
@@ -84,14 +84,13 @@ public class CliInterface {
 		new Region(cityInfo[i][5],b);
 		new Region(cityInfo[c][5],b);
 		new Region(cityInfo[m][5],b);
-	}
+	}*/
 	
 	public void cityObject(){
 		for(int i=0; i<cityInfo.length; i++){
 			startPartita();//crea arrayInfo
 			Bonus b=null;//OGGETTO BONUS
-			regionObject();
-			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], null);
+			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], new Region(cityInfo[i][5],b));
 			//System.out.println(c.getName());
 		}
 	}
