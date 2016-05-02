@@ -15,6 +15,7 @@ public class Player {
 	private List<PoliticCard> politicsCards;					//the player's hand
 	private List<BusinessPermitTitle> availableBusinesPermits;
 	private List<BusinessPermitTitle> usedBusinessPermits;
+	private NobilityBox nobilityBox;
 	
 	public Player(String user, int assistants, int coins) {
 		this.user = user;
@@ -27,6 +28,7 @@ public class Player {
 		this.usedEmporiums=new ArrayList<>();
 		this.availableBusinesPermits=new ArrayList<>();
 		this.usedBusinessPermits=new ArrayList<>();
+		this.nobilityBox=null;
 	}
 
 	/**
@@ -200,6 +202,26 @@ public class Player {
 	 */
 	public void setUsedBusinessPermit(BusinessPermitTitle businessPermit) {
 		this.usedBusinessPermits.add(businessPermit);
+	}
+	
+	
+
+	/**
+	 * Returns the nobility box of the player.
+	 * 
+	 * @return the nobilityBox
+	 */
+	public NobilityBox getNobilityBox() {
+		return nobilityBox;
+	}
+
+	/**
+	 * Sets the new nobility box of the player.
+	 * 
+	 * @param nobilityBox the nobilityBox to set
+	 */
+	public void setNobilityBox(NobilityBox nobilityBox) {
+		this.nobilityBox = nobilityBox;
 	}
 
 	/**
