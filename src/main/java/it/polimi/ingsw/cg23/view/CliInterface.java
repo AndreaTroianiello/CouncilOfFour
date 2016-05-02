@@ -20,7 +20,22 @@ public class CliInterface {
 		cityInfo=lettureXml.readFileXml();
 		return cityInfo;
 	}
-
+	
+	public int regionNumber(){
+		startPartita();
+		int n=0;
+		for(int i=0; i<cityInfo.length; i++){
+			int k;
+			if(i>0)
+				k=i-1;
+			else 
+				k=i;
+			if(cityInfo[i][5]!=cityInfo[k][5])
+				n++;
+		}
+		return n+1;
+	}
+	
 	/**
 	 * stampa un array bidinemsionale
 	 * @return void

@@ -261,7 +261,7 @@ public class Player {
 	 */
 	@Override
 	public String toString() {
-		return "Giocatore: da fare!";
+		return "-User: " + user + "\n-Assistants: " + getAssistants() + "\n-Coins: "+ getCoins() + "\n-Victory points: " + getVictoryPoints() ;
 	}
 	
 }
