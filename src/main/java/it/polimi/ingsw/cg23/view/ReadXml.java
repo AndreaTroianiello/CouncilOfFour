@@ -66,7 +66,7 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 
 	/**
 	 * calcola il numero di citta' nel file xml
-	 * @return the number of cities in the xml file, 0 if no city or error
+	 * @return the number of cities in the xml file
 	 */
 	public int cityNumber(){
 		try {	
@@ -77,7 +77,7 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			return citylist.getLength();//numero di citta'
 		}
-		catch(Exception e) {
+		catch(Exception e){
 			return 0;
 		}
 	}
@@ -85,6 +85,7 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 	/**
 	 * calcola il numero di nodi (attributi) di citta'
 	 * @return the number of city nodes (attributes), 0 if no city or error
+	 * @throws Exception is there is an error
 	 */
 	public int cityNodeNumber(){
 		try {	
