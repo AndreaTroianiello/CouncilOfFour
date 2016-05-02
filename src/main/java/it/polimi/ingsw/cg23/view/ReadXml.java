@@ -29,13 +29,6 @@ public class ReadXml {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 
-			/*Node rootnode = doc.getFirstChild();//recupera il primo nodo dell'xml (map)
-			 * Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
-			 * Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
-			 * Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = quinto nodo xml (city)
-			 * Node links=citty.getChildNodes().item(5);
-			 */
-
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			NodeList zoneName=doc.getElementsByTagName("namez");//lista dei nodi che cntengono "namez" (nome della zona)
 
