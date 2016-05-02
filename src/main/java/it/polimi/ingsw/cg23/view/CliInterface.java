@@ -3,17 +3,17 @@ package it.polimi.ingsw.cg23.view;
 import java.util.Scanner;
 
 /**
- * classe per stampare le info sulla cli
+ * classe per stampare le info sulla cl
  */
 public class CliInterface {
-	ReadXml lettureXml=new ReadXml();
+	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
+	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
-	
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, link, color, zone
 
 	/**
-	 * carica il file con le infromazioni della partita
+	 * carica il file xml con le infromazioni della partita
 	 * @return a bidimensional array with all the city info
 	 */
 	public String[][] startPartita(){
@@ -21,19 +21,31 @@ public class CliInterface {
 		return cityInfo;
 	}
 	
+	/**
+	 * salva le informazioni della partita in un file xml
+	 * @param bidimensional array with city info
+	 */
+	public void savePartita(String [][] cityInfo){
+		scrittureXml.writeXmlFile(cityInfo);
+	}
+	
+	/**
+	 * calcola il numero di regioni
+	 * @return the number of regions
+	 */
 	public int regionNumber(){
-		startPartita();
+		startPartita();//aggiorna l'array con le informazioni delle citta'
 		int n=0;
 		for(int i=0; i<cityInfo.length; i++){
-			int k;
+			int k;//usata per evitare di eccedere i limiti dell'array
 			if(i>0)
 				k=i-1;
 			else 
 				k=i;
-			if(cityInfo[i][5]!=cityInfo[k][5])
+			if(cityInfo[i][5]!=cityInfo[k][5])//conta le variazioni delle regioni
 				n++;
 		}
-		return n+1;
+		return n+1;//aggiunge 1 per contare la prima regione
 	}
 	
 	/**
@@ -51,6 +63,7 @@ public class CliInterface {
 	}
 
 	/**
+	 * ritorna il valore letto dalla cl
 	 * @return an object of the readed value from the command line
 	 */
 	public Object returnValue(){
@@ -60,7 +73,7 @@ public class CliInterface {
 	}
 	
 	/**
-	 * 
+	 * stampa unq ualunque cosa gli viene passata e ritorna il valore letto dalla cl
 	 * @param testo, what you want to show on the cl
 	 * @param ogg, the object yu want to show with the test on the cl (null if none)
 	 * @return what the user write on the cl
@@ -89,15 +102,16 @@ public class CliInterface {
 	 */
 	public void createMap(String[][] city, int nPlayer){
 		String plancia="     Costa            Collina              Montagna\n";//la stringa che stampa la plancia di gioco
+		int rn=regionNumber();//numero di regioni
 		int i;
-		int c=city.length/3;
-		int m=city.length/3*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
-		for(i=0; i<city.length/3; i++,c++,m++){//array che scorre le citta' per regione dastampare 5
+		int c=city.length/rn;
+		int m=city.length/rn*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
+		for(i=0; i<city.length/rn; i++,c++,m++){//array che scorre le citta' per regione dastampare 5
 			/* i posizione citta' costa
 			 * c posizione citta' collina
 			 * m posizione citta' montagna
 			 */
-			for(int k=0; k<3; k++){//aggiunge le 3 citta', una per ogni regione
+			for(int k=0; k<rn; k++){//aggiunge le 3 citta', una per ogni regione
 				int kk=0;//salvo il valore di k
 				if(k==0)
 					kk=i;//assegno a kk il valore della zona "costa" in base a k
@@ -130,7 +144,7 @@ public class CliInterface {
 	public String addSpace(String nome, int totalSpace){//aggiunge spazi alla stringa data per raggiungere la lunghezza desiderata
 		int length=totalSpace-nome.length();//spazi da aggiungere
 		String nomeExtended=nome;
-		if(nome.length()<20){
+		if(nome.length()<totalSpace){
 			for(int j=0; j<length; j++){//ciclo per aggiungere spazi
 				nomeExtended+=" ";//aggiungo spazi
 			}

@@ -10,11 +10,10 @@ import org.w3c.dom.Element;
 
 /**
  * classe che si occupa della lettura del file xml 
- * @author viga94
  *
  */
-public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-jaxp_7488_2.html
-	String path="src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml";
+public class ReadXml {
+	String path="src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml";//percorso del file
 	final int cityNodeNumber=cityNodeNumber(); //numero di nodi di city
 	final int citynum=cityNumber();//numero di citta'
 	String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
@@ -25,7 +24,7 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 	 */
 	public String[][] readFileXml(){
 		try {	
-			File inputFile = new File(path);
+			File inputFile = new File(path);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
@@ -49,13 +48,12 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 				city[i][2]=actualElement.getElementsByTagName("link").item(0).getTextContent();//recupera i link della città
 				city[i][3]=actualElement.getElementsByTagName("Id").item(0).getTextContent();//recupera l'id della città
 				city[i][4]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus della città
-
 				Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, mare)
 			}
 			return city;
 		} catch (Exception e) {//se ci sono dei problemi ritorna l'array null
-			for(int i=0;i<city.length;i++){
+			for(int i=0;i<city.length;i++){//cicli per annullare l'array (richiesto da sonar)
 				for(int k=0; k<city[0].length; k++){
 					city[i][k]=null;
 				}
@@ -97,7 +95,6 @@ public class ReadXml {//http://www.mrwebmaster.it/java/xml-java-esempio-parsing-
 			Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
 			Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
 			Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = qunto nodo xml (city)
-
 			return (citty.getChildNodes().getLength()-1)/2+1; //numero di nodi di city, +1 perchè c'è da aggiungere zona
 		}
 		catch(Exception e) {
