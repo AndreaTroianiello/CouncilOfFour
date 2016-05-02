@@ -2,8 +2,6 @@ package it.polimi.ingsw.cg23.view;
 
 import java.util.Scanner;
 
-import it.polimi.ingsw.cg23.model.Player;
-
 /**
  * classe per stampare le info sulla cli
  */
