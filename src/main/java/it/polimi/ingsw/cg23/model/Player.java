@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.components.*;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class Player {
 	private final String user;									//name of the player
@@ -15,7 +16,7 @@ public class Player {
 	private List<PoliticCard> politicsCards;					//the player's hand
 	private List<BusinessPermitTitle> availableBusinesPermits;
 	private List<BusinessPermitTitle> usedBusinessPermits;
-	private NobilityBox nobilityBox;
+	private NobilityBox nobilityBox;							//the nobility box contained in the nobility track.
 	
 	public Player(String user, int assistants, int coins) {
 		this.user = user;
@@ -108,9 +109,13 @@ public class Player {
 	 * Modify the player's assistants.
 	 * 
 	 * @param assistants the assistants to set.
+	 * @throws NegativeNumberException the number of assistants must be positive.
 	 */
-	public void setAssistants(int assistants) {
-		assistantsPool.setAssistants(assistants);
+	public void setAssistants(int assistants) throws NegativeNumberException {
+		if (assistants>=0)
+			assistantsPool.setAssistants(assistants);
+		else
+			throw new NegativeNumberException("The number of assistants can't be negative.");
 	}
 	
 	/**
@@ -126,9 +131,13 @@ public class Player {
 	 * Modify the player's richness.
 	 * 
 	 * @param coins the coins to set.
+	 * @throws NegativeNumberException the number of coins must be positive.
 	 */
-	public void setCoins(int coins) {
-		richness.setCoins(coins);
+	public void setCoins(int coins) throws NegativeNumberException {
+		if(coins>=0)
+			richness.setCoins(coins);
+		else
+			throw new NegativeNumberException("The number of coins can't be negative.");
 	}
 	
 	/**
@@ -159,7 +168,7 @@ public class Player {
 	}
 	
 	/**
-	 * Returns all politc cards of the player.
+	 * Returns all politic cards of the player.
 	 * 
 	 * @return the player's hand.
 	 */

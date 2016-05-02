@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.Emporium;
-import it.polimi.ingsw.cg23.model.exception.NegativeAssistantsException;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class City {
 	private final char id;
@@ -94,23 +94,17 @@ public class City {
 	}
 
 	/**
-	 * Builds an emporium in the city.
+	 * Builds an emporium in the city. When a player builds a emporium loses assistants. The assistants of the player can't be negative.
 	 * 
 	 * @param emporium an emporium of the player, the city must be setted.
-	 * @throws NegativeAssistantsException the number of assistants must be positive.
+	 * @throws NegativeNumberException the assistants of the player must be positive.
 	 */
-	public void buildEmporium(Emporium emporium) throws NegativeAssistantsException{
+	public void buildEmporium(Emporium emporium) throws NegativeNumberException{
 		int assistantsPlayer=emporium.getPlayer().getAssistants();
-		
-		//If the number of assistants is lower than the number of city's emporiums, throws an exception.
-		if(assistantsPlayer>=emporiums.size()){
-			assistantsPlayer=assistantsPlayer-emporiums.size();
-			emporium.getPlayer().setAssistants(assistantsPlayer);
-			runBonusCity(emporium.getPlayer(), new ArrayList<String>(), true);         //Runs the bonus of the city and visits the neighbors.
-			this.emporiums.add(emporium);											   //Adds the emporiums.
-		} else {
-			throw new NegativeAssistantsException("The player has no assistants. The assistants can't be a negative number.");
-		}
+		assistantsPlayer=assistantsPlayer-emporiums.size();
+		emporium.getPlayer().setAssistants(assistantsPlayer);						//If sets a negative number throws a NegativeNumberException. 
+		runBonusCity(emporium.getPlayer(), new ArrayList<String>(), true);			//Runs the bonus of the city and visits the neighbors.
+		this.emporiums.add(emporium);												//Adds the emporiums.
 	}
 	
 	
@@ -134,8 +128,8 @@ public class City {
 		
 		//execute if the city is just not visited and doesn't contain a player's emporium
 		if(!citiesVisited.contains(name) && !containsEmporium){
-			bonus.giveBonus(player);														//Run the bonus
-			if(visitNeighbors){															//IF true visits the neighbors
+			bonus.giveBonus(player);													//Run the bonus
+			if(visitNeighbors){															//If true visits the neighbors
 				for(int index=0;index<neighbors.size();++index)							//Visit the neighbors
 					(neighbors.get(index)).runBonusCity(player, citiesVisited,true);
 				citiesVisited.add(name);												//add the name of city at citiesVisited

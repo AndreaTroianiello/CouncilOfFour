@@ -6,10 +6,10 @@ import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
 public class Region {
 
-	private final String name;
-	private final Bonus bonus;
-	private final List<City> cities;
-	private boolean bonusAvailable;
+	private final String name;													//the name of the region.
+	private final Bonus bonus;													//the bonus of the region.
+	private final List<City> cities;											//the list of cities contained.
+	private boolean bonusAvailable;												//status of the bonus.
 	
 	public Region(String name, Bonus bonus) {
 		this.name = name;

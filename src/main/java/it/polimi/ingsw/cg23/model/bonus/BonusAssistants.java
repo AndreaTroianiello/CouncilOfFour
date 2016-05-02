@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class BonusAssistants implements Bonus {
 	
@@ -20,13 +21,19 @@ public class BonusAssistants implements Bonus {
 		return assistants;
 	}
 
-
+	/**
+	 * @param player
+	 */
 	// add to the player's assistants' pool the amount of assistants of the bonus
 	@Override
 	public void giveBonus(Player player) {
 		int playerAssistants = player.getAssistants();
 		playerAssistants = playerAssistants + this.assistants;
-		player.setAssistants(playerAssistants);
+		try {
+			player.setAssistants(playerAssistants);
+		} catch (NegativeNumberException e) {
+			return;
+		}
 
 	}
 
