@@ -25,7 +25,7 @@ public class NobilityTrack {
 	/**
 	 * @return the nobilityBoxes
 	 */
-	public List<NobilityBox> getNobilityBoxes() {
+	public NobilityBox[] getNobilityBoxes() {
 		return nobilityBoxes;
 	}
 
