@@ -10,7 +10,6 @@ public class NobilityBox {
 	private final int position;
 	
 
-	// must be modified
 	public NobilityBox(int position) {
 		this.bonus = new ArrayList<Bonus>();
 		this.position = position;

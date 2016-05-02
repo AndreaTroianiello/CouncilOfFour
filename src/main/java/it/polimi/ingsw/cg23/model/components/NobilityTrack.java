@@ -1,7 +1,5 @@
 package it.polimi.ingsw.cg23.model.components;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class NobilityTrack {
 	

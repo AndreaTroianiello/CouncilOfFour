@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.*;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
@@ -16,9 +18,11 @@ public class Player {
 	private List<PoliticCard> politicsCards;					//the player's hand
 	private List<BusinessPermitTitle> availableBusinesPermits;
 	private List<BusinessPermitTitle> usedBusinessPermits;
-	private NobilityBox nobilityBox;							//the nobility box contained in the nobility track.
+	private final NobilityTrack playerNobilityTrack;			//to make getter and setter
+	private NobilityBox nobilityBox; 							//the nobility box contained in the nobility track.
+	private int nobilityBoxPoistion;							//to make getter and setter
 	
-	public Player(String user, int assistants, int coins) {
+	public Player(String user, int assistants, int coins, NobilityTrack nobilityTrack) { 
 		this.user = user;
 		this.additionalAction = false;
 		this.assistantsPool = new AssistantsPool(assistants);
@@ -29,7 +33,9 @@ public class Player {
 		this.usedEmporiums=new ArrayList<>();
 		this.availableBusinesPermits=new ArrayList<>();
 		this.usedBusinessPermits=new ArrayList<>();
-		this.nobilityBox=null;
+		this.nobilityBoxPoistion=0; 
+		this.playerNobilityTrack= nobilityTrack;
+		this.nobilityBox=this.playerNobilityTrack.getNobilityBoxes()[this.nobilityBoxPoistion];
 	}
 
 	/**
@@ -231,6 +237,20 @@ public class Player {
 	 */
 	public void setNobilityBox(NobilityBox nobilityBox) {
 		this.nobilityBox = nobilityBox;
+	}
+	
+	/**
+	 * makes the player move i steps in the nobilityTrack 
+	 * 
+	 * @param i
+	 * @param nobilityTrack
+	 */
+	public void moveNobilityTrack(int i){
+		this.nobilityBox = this.playerNobilityTrack.getNobilityBoxes()[this.nobilityBoxPoistion+i];
+		this.nobilityBoxPoistion = +i;
+		for(Bonus b: this.getNobilityBox().getBonus()){
+			b.giveBonus(this);
+		}
 	}
 
 	/**
