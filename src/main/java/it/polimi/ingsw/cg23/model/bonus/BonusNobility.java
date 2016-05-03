@@ -17,6 +17,14 @@ public class BonusNobility implements Bonus {
 	public BonusNobility(int steps) {
 		this.steps = steps;
 	}
+	
+	/**
+	 * @return the steps
+	 */
+	public int getSteps() {
+		return steps;
+	}
+	
 
 	/*
 	 * @see it.polimi.ingsw.cg23.model.bonus.Bonus#giveBonus(it.polimi.ingsw.cg23.model.Player)
@@ -28,12 +36,6 @@ public class BonusNobility implements Bonus {
 		player.moveNobilityTrack(steps);
 	}
 
-	/**
-	 * @return the steps
-	 */
-	public int getSteps() {
-		return steps;
-	}
 	
 	
 

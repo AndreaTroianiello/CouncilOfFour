@@ -28,7 +28,7 @@ public class BusinessPermitTile {
 	 * 
 	 * @return the bonusTitle
 	 */
-	public List<Bonus> getBonusTitle() {
+	public List<Bonus> getBonusTile() {
 		return bonusTile;
 	}
 	

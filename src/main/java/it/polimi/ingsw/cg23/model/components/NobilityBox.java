@@ -11,7 +11,7 @@ public class NobilityBox {
 	
 
 	public NobilityBox(int position) {
-		this.bonus = new ArrayList<Bonus>();
+		this.bonus = new ArrayList<>();
 		this.position = position;
 	}
 
