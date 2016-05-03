@@ -81,6 +81,7 @@ public class WriteXml {
 			File xmlFile=new File(path);//creo un nuovo file nel percorso
 			StreamResult result = new StreamResult(xmlFile);
 			transformer.transform(source, result);
+			
 			return "";
 		} catch (Exception e) {
 			return e.toString();

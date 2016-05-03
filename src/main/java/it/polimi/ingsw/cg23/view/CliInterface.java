@@ -55,7 +55,7 @@ public class CliInterface {
 	public void printArray(String[][] array){
 		for(int i=0;i<array.length;i++){
 			for(int k=0; k<array[0].length; k++){
-				System.out.print(addSpace(array[i][k], 8)+"    ");
+				System.out.print(array[i][k]+"    ");
 			}
 			System.out.print("\n");
 		}
