@@ -13,6 +13,7 @@ public class Deck {
 	public Deck(List<PoliticCard> politicCards){
 		this.politicCards=politicCards;
 		this.discardedCards=new ArrayList<>();
+		shuffleDeck();
 	}
 	
 	/**
@@ -38,7 +39,7 @@ public class Deck {
 	 * 
 	 * @return if the main deck is empty returns true.
 	 */
-	public boolean DeckIsEmpty(){
+	public boolean deckIsEmpty(){
 		return politicCards.isEmpty();
 	}
 	
