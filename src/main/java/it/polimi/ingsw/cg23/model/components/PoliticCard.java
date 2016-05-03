@@ -1,10 +1,12 @@
 package it.polimi.ingsw.cg23.model.components;
 
 public class PoliticCard {
-	private final String color;
+	private final String color;											//The color of the card.
+	private final boolean jolly;										//It indicates whether the card is multicolored. Yes is true, no is false.
 
-	public PoliticCard(String color) {
+	public PoliticCard(String color, boolean jolly) {
 		this.color = color;
+		this.jolly=jolly;
 	}
 
 	/**
@@ -15,6 +17,13 @@ public class PoliticCard {
 	public String getColor() {
 		return color;
 	}
-	
-	
+
+	/**
+	 * Returns the status of the jolly card.
+	 * 
+	 * @return If the card is multicolor returns true.
+	 */
+	public boolean isJolly() {
+		return jolly;
+	}
 }

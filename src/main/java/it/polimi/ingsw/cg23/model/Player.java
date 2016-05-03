@@ -16,8 +16,8 @@ public class Player {
 	private final Richness richness;
 	private final VictoryTrack victoryTrack;
 	private List<PoliticCard> politicsCards;					//the player's hand
-	private List<BusinessPermitTitle> availableBusinesPermits;
-	private List<BusinessPermitTitle> usedBusinessPermits;
+	private List<BusinessPermitTile> availableBusinesPermits;
+	private List<BusinessPermitTile> usedBusinessPermits;
 	private final NobilityTrack playerNobilityTrack;			//to make getter and setter
 	private NobilityBox nobilityBox; 							//the nobility box contained in the nobility track.
 	private int nobilityBoxPoistion;							//to make getter and setter
@@ -187,7 +187,7 @@ public class Player {
 	 * 
 	 * @return the availableBusinessPermits.
 	 */
-	public List<BusinessPermitTitle> getAvailableBusinessPermits() {
+	public List<BusinessPermitTile> getAvailableBusinessPermits() {
 		return availableBusinesPermits;
 	}
 	
@@ -196,7 +196,7 @@ public class Player {
 	 * 
 	 * @param businessPermit the business permit title to add at player's permits.
 	 */
-	public void addAvailableBusinessPermit(BusinessPermitTitle businessPermit) {
+	public void addAvailableBusinessPermit(BusinessPermitTile businessPermit) {
 		this.availableBusinesPermits.add(businessPermit);
 	}
 
@@ -205,7 +205,7 @@ public class Player {
 	 * 
 	 * @return the usedBusinessPermits.
 	 */
-	public List<BusinessPermitTitle> getUsedBusinessPermit() {
+	public List<BusinessPermitTile> getUsedBusinessPermit() {
 		return usedBusinessPermits;
 	}
 
@@ -215,7 +215,7 @@ public class Player {
 	 * 
 	 * @param usedBusinessPermits the used business permit title.
 	 */
-	public void setUsedBusinessPermit(BusinessPermitTitle businessPermit) {
+	public void setUsedBusinessPermit(BusinessPermitTile businessPermit) {
 		this.usedBusinessPermits.add(businessPermit);
 	}
 	

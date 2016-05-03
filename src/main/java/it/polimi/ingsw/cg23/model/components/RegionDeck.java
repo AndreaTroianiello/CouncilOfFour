@@ -6,12 +6,12 @@ import java.util.Random;
 
 
 public class RegionDeck {
-	private final int maxTitlesShowed;
-	private final List<BusinessPermitTitle> businessPermitHidden;
-	private final List<BusinessPermitTitle> businessPermitShowed;
+	private final int maxTilesShowed;												//the 
+	private final List<BusinessPermitTile> businessPermitHidden;
+	private final List<BusinessPermitTile> businessPermitShowed;
 	
-	public RegionDeck(int maxTitlesShowed){
-		this.maxTitlesShowed=maxTitlesShowed;
+	public RegionDeck(int maxTilesShowed){
+		this.maxTilesShowed=maxTilesShowed;
 		businessPermitHidden=new ArrayList<>();
 		businessPermitShowed=new ArrayList<>();
 	}
@@ -26,7 +26,7 @@ public class RegionDeck {
 	/**
 	 * @return the businessPermitShowed
 	 */
-	public List<BusinessPermitTitle> getBusinessPermitShowed() {
+	public List<BusinessPermitTile> getBusinessPermitShowed() {
 		return businessPermitShowed;
 	}
 	
@@ -38,41 +38,43 @@ public class RegionDeck {
 	public boolean isEmpty(){
 		return businessPermitHidden.isEmpty() && businessPermitShowed.isEmpty();
 	}
+	
 	/**
-	 * Puts the titles in the right deck.
+	 * Puts the tiles in the right deck.
 	 * 
-	 * @param businessPermitTitle
+	 * @param businessPermitTile
 	 */
-	public void setBusinessPermit(List<BusinessPermitTitle> businessPermitTitle){
+	public void setBusinessPermit(List<BusinessPermitTile> businessPermitTile){
 		
-		shuffleTitle(businessPermitTitle);										//Shuffles the titles.
-		for(int index=0;index<maxTitlesShowed;++index)							//Puts maxTitlesShowed titles in the showed deck. 
-			businessPermitShowed.add(businessPermitTitle.remove(0));
-		while(!businessPermitTitle.isEmpty())									//Puts the other titles in the hidden deck.
-			businessPermitHidden.add(businessPermitTitle.remove(0));
+		shuffleTitle(businessPermitTile);										//Shuffles the titles.
+		for(int index=0;index<maxTilesShowed;++index)							//Puts maxTilesShowed tiles in the showed deck. 
+			businessPermitShowed.add(businessPermitTile.remove(0));
+		while(!businessPermitTile.isEmpty())									//Puts the other tiles in the hidden deck.
+			businessPermitHidden.add(businessPermitTile.remove(0));
 	}
+	
 	/**
-	 * Shuffles the list of business permit title.
+	 * Shuffles the list of business permit tile.
 	 * 
-	 * @param businessPermitTitle the title that need to shuffle.
+	 * @param businessPermitTiles the titles that need to shuffle.
 	 */
-	public void shuffleTitle(List<BusinessPermitTitle> businessPermitTitle){
+	public void shuffleTitle(List<BusinessPermitTile> businessPermitTiles){
 		Random random= new Random();											//Create the random generator.
-		for(int index=businessPermitTitle.size();index>0;index--){
+		for(int index=businessPermitTiles.size();index>0;index--){
 			int randomIndex=random.nextInt(index);								//Gets a random index.
-			BusinessPermitTitle title=businessPermitTitle.remove(randomIndex);	//Removes the title at the random index.
-			businessPermitTitle.add(title);
+			BusinessPermitTile title=businessPermitTiles.remove(randomIndex);	//Removes the tile at the random index.
+			businessPermitTiles.add(title);
 		}
 	}
 	
 	/**
-	 * Changes the showed titles with other titles from the hidden deck.
+	 * Changes the showed tiles with other tiles from the hidden deck.
 	 */
 	public void changeShowedDeck(){
-		if(businessPermitShowed.size()==maxTitlesShowed)										//If the showed deck is full, empties it.
-			while(!businessPermitShowed.isEmpty())												//Puts the showed titles in the hidden deck.
+		if(businessPermitShowed.size()==maxTilesShowed)											//If the showed deck is full, empties it.
+			while(!businessPermitShowed.isEmpty())												//Puts the showed tiles in the hidden deck.
 				businessPermitHidden.add(businessPermitShowed.remove(0));
-		while(businessPermitShowed.size()<maxTitlesShowed && !businessPermitHidden.isEmpty())	//Puts titles in the showed deck. 
+		while(businessPermitShowed.size()<maxTilesShowed && !businessPermitHidden.isEmpty())	//Puts tiles in the showed deck. 
 			businessPermitShowed.add(businessPermitHidden.remove(0));
 	}
 

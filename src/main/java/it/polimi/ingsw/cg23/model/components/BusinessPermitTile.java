@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
-public class BusinessPermitTitle {
+public class BusinessPermitTile {
 	
 	private final List<Character> citiesId;
-	private final List<Bonus> bonusTitle;
+	private final List<Bonus> bonusTile;
 
-	public BusinessPermitTitle(List<Character> citiesId){
+	public BusinessPermitTile(List<Character> citiesId){
 		this.citiesId=citiesId;
-		this.bonusTitle=new ArrayList<>();
+		this.bonusTile=new ArrayList<>();
 	}
 
 	/**
@@ -24,20 +24,20 @@ public class BusinessPermitTitle {
 	}
 
 	/**
-	 * Returns all bonus of the title.
+	 * Returns all bonus of the tile.
 	 * 
 	 * @return the bonusTitle
 	 */
 	public List<Bonus> getBonusTitle() {
-		return bonusTitle;
+		return bonusTile;
 	}
 	
 	/**
-	 * Adds a bonus in the title.
+	 * Adds a bonus in the tile.
 	 * 
 	 * @param bonus
 	 */
 	public void addBonus(Bonus bonus){
-		this.bonusTitle.add(bonus);
+		this.bonusTile.add(bonus);
 	}
 }
