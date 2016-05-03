@@ -46,7 +46,7 @@ public class Deck {
 	 * If the discarded deck is not empty changes it with the main deck and shuffles. Clears the discarded deck. 
 	 */
 	public void changeDeck(){
-		if(!discardedCards.isEmpty()){
+		if(!discardedCards.isEmpty()){											//If the discarded deck isn't empty  do it
 			politicCards.addAll(discardedCards);
 			discardedCards.clear();
 			shuffleDeck();
