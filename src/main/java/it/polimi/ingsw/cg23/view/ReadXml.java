@@ -17,7 +17,15 @@ public class ReadXml {
 	final int cityNodeNumber=cityNodeNumber(); //numero di nodi di city
 	final int citynum=cityNumber();//numero di citta'
 	String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
-
+	/* array city prototype
+	 * coloumn 0: name of the city
+	 * coloumn 1: color of the city
+	 * coloumn 2: link of the city (the id to which it is connected the city)
+	 * coloumn 3: id of the city
+	 * coloumn 4: bonus of the city
+	 * coloumn 5: region of the city
+	 */
+	
 	/**
 	 * legge il file xml
 	 * @return bidimensional array with city info, null array if there is some problems

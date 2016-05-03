@@ -10,8 +10,8 @@ public class CliInterface {
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
-	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, link, color, zone
-	final int regionNumber=scrittureXml.regionNumber(cityInfo);
+	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
+	final int regionNumber=scrittureXml.regionNumber(cityInfo);//numero di regioni
 	
 	/**
 	 * carica il file xml con le infromazioni della partita
@@ -19,6 +19,14 @@ public class CliInterface {
 	 */
 	public String[][] startPartita(){
 		cityInfo=lettureXml.readFileXml();
+		/* array cityInfo prototype returned
+		 * coloumn 0: name of the city
+		 * coloumn 1: color of the city
+		 * coloumn 2: link of the city (the id to which it is connected the city)
+		 * coloumn 3: id of the city
+		 * coloumn 4: bonus of the city
+		 * coloumn 5: region of the city
+		 */
 		return cityInfo;
 	}
 	
@@ -29,6 +37,14 @@ public class CliInterface {
 	 */
 	public String savePartita(String [][] cityInfo){
 		return scrittureXml.writeXmlFile(cityInfo);
+		/* array cityInfo prototype require
+		 * coloumn 0: name of the city
+		 * coloumn 1: color of the city
+		 * coloumn 2: link of the city (the id to which it is connected the city)
+		 * coloumn 3: id of the city
+		 * coloumn 4: bonus of the city
+		 * coloumn 5: region of the city
+		 */
 	}
 	
 	/**

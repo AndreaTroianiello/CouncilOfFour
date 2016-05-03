@@ -24,6 +24,15 @@ public class WriteXml {
 	 * @return if array columns is less then 6 or there are some problems
 	 */
 	public String writeXmlFile(String[][] cityInfo){
+		/* array cityInfo prototype require
+		 * coloumn 0: name of the city
+		 * coloumn 1: color of the city
+		 * coloumn 2: link of the city (the id to which it is connected the city)
+		 * coloumn 3: id of the city
+		 * coloumn 4: bonus of the city
+		 * coloumn 5: region of the city
+		 */
+		
 		try {
 			if(cityInfo[0].length<6) 
 				return "Errore, le colonne sono meno di 6"; //nel caso venga passato un array con meno di 6 colonne termina
