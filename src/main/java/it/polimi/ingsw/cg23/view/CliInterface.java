@@ -8,11 +8,21 @@ import java.util.Scanner;
 public class CliInterface {
 	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
+	RandomCity randomC=new RandomCity();
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
 	final int regionNumber=scrittureXml.regionNumber(cityInfo);//numero di regioni
-	
+
+	/* codice se di dovesse usare il logger (come dice sonar)
+	 * Logger logger=Logger.getLogger("my logger");
+	 * ConsoleHandler handler = new ConsoleHandler();
+	 * logger.setLevel(Level.ALL);
+	 * handler.setFormatter(new SimpleFormatter());
+	 * logger.addHandler(handler);
+	 * handler.setLevel(Level.ALL);
+	 */
+
 	/**
 	 * carica il file xml con le infromazioni della partita
 	 * @return a bidimensional array with all the city info
@@ -29,7 +39,7 @@ public class CliInterface {
 		 */
 		return cityInfo;
 	}
-	
+
 	/**
 	 * salva le informazioni della partita in un file xml
 	 * @param bidimensional array with city info
@@ -46,7 +56,15 @@ public class CliInterface {
 		 * coloumn 5: region of the city
 		 */
 	}
-	
+
+	/**
+	 * create randomly the cities
+	 * @param citynum the number of cities to create
+	 */
+	public void createCity(int citynum){
+		randomC.createCity(citynum);
+	}
+
 	/**
 	 * stampa un array bidinemsionale
 	 * @return void
@@ -70,7 +88,7 @@ public class CliInterface {
 		Scanner scan=new Scanner(System.in);//creto uno scanner per leggere l'input da cl
 		return scan.nextLine();
 	}
-	
+
 	/**
 	 * stampa unq ualunque cosa gli viene passata e ritorna il valore letto dalla cl
 	 * @param testo, what you want to show on the cl
@@ -93,7 +111,7 @@ public class CliInterface {
 	public void print(Object ogg, String testo){
 		System.out.println(testo+" "+ogg);
 	}
-	
+
 	/**
 	 * stampa la mappa (funziona parzialmente)
 	 * @return void
@@ -118,9 +136,14 @@ public class CliInterface {
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
 				String newcity=city[kk][0]+"("+city[kk][1]+") ";//recupero le informazioni dall'array
-				plancia+=addSpace(newcity, 20);//aggiungo le citta' appena aggiunte a quelle presenti
+
+				if("purple".equals(city[kk][1])){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
+					newcity+="KING";
+					plancia+=addSpace(newcity,20);
+				}else
+					plancia+=addSpace(newcity, 20);//aggiungo la citta' appena aggiunta a quelle presenti
+				plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 			}
-			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		String percorsi="Player     Richness          Victory            Money\n";
 		int rich=10;//variabili provvisorie
