@@ -17,10 +17,7 @@ import org.w3c.dom.Element;
  *
  */
 public class ReadXml {
-	String path="src/main/java/it/polimi/ingsw/cg23/view/ConfigurazionePartita.xml";//percorso del file
-	final int cityNodeNumber=cityNodeNumber(); //numero di nodi di city
-	final int citynum=cityNumber();//numero di citta'
-	String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
+	String path="src/main/java/it/polimi/ingsw/cg23/view/";//file location
 	/* array city prototype
 	 * coloumn 0: name of the city
 	 * coloumn 1: color of the city
@@ -29,22 +26,27 @@ public class ReadXml {
 	 * coloumn 4: bonus of the city
 	 * coloumn 5: region of the city
 	 */
-
 	/**
 	 * legge il file xml
+	 * @param endpath, the name of file (with the extension ".xml")
 	 * @return bidimensional array with city info, null array if there is some problems
 	 */
-	public String[][] readFileXml(){
-		try {	
+	public String[][] readFileXml(String endPath){
+		final int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
+		final int citynum=cityNumber(endPath);//numero di citta'
+		String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
+		path+=endPath;//percorso completo del file da leggere
+		try {
 			File inputFile = new File(path);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
-
+			
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			NodeList zoneName=doc.getElementsByTagName("namez");//lista dei nodi che cntengono "namez" (nome della zona)
 
 			for (int i=0; i<citynum; i++){//scorre le citta' presenti nel file xml
+				
 				Node actualNode=citylist.item(i);//nodo attualmente in uso
 				Element actualElement=(Element) actualNode;//cast del nodo in elemento per poterlo usare
 
@@ -61,6 +63,7 @@ public class ReadXml {
 				Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, mare)
 			}
+			
 			return city;
 		} catch (Exception e) {//se ci sono dei problemi ritorna l'array null
 			for(int i=0;i<city.length;i++){//cicli per annullare l'array (richiesto da sonar)
@@ -94,9 +97,9 @@ public class ReadXml {
 	 * @throws IOException 
 	 * @throws SAXException 
 	 */
-	public int cityNumber(){
+	public int cityNumber(String endPath){
 		try {	
-			File inputFile = new File(path);
+			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
@@ -112,9 +115,9 @@ public class ReadXml {
 	 * calcola il numero di nodi (attributi) di citta'
 	 * @return the number of city nodes (attributes), 0 if no city or error
 	 */
-	public int cityNodeNumber(){
+	public int cityNodeNumber(String endPath){
 		try {	
-			File inputFile = new File(path);
+			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file

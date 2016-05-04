@@ -16,14 +16,16 @@ import org.w3c.dom.Element;
  *
  */
 public class WriteXml {
-	String path="src/main/java/it/polimi/ingsw/cg23/view/SalvataggioPartita.xml";//percorso del file
+	String path="src/main/java/it/polimi/ingsw/cg23/view/";//file location
 
 	/**
 	 * write the xml file
-	 * @param bidimensional array with the cityInfo
+	 * @param cityInfo, a bidimensional array with the cityInfo
+	 * @param endPath, the name of file to write on (with the extension ".xml")
 	 * @return if array columns is less then 6 or there are some problems
 	 */
-	public String writeXmlFile(String[][] cityInfo){
+	public String writeXmlFile(String[][] cityInfo, String endPath){
+		path+=endPath;//percorso completo del file
 		/* array cityInfo prototype require
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city

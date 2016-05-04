@@ -7,7 +7,8 @@ import it.polimi.ingsw.cg23.view.*;
 
 public class Partita {
 	CliInterface interfaccia=new CliInterface();
-	String[][] cityInfo=interfaccia.startPartita();//recupero le informazioni delle citta'
+	//il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
+	String[][] cityInfo=interfaccia.leggiXml("ConfigurazionePartita.xml");//recupero le informazioni delle citta'
 	Region region1;
 	Region region2;
 	Region region3;

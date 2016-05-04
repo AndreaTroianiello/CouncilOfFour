@@ -3,14 +3,16 @@ package it.polimi.ingsw.cg23.view;
 import java.util.Scanner;
 
 /**
+ * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
  * classe per stampare le info sulla cl
  */
 public class CliInterface {
 	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	RandomCity randomC=new RandomCity();
-	final int citynum=lettureXml.cityNumber();//numero di citta'
-	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
+	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
+	final int citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");//numero di citta'
+	final int cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
 
 	/* codice se di dovesse usare il logger (come dice sonar)
@@ -25,9 +27,11 @@ public class CliInterface {
 	/**
 	 * carica il file xml con le infromazioni della partita
 	 * @return a bidimensional array with all the city info
+	 * @param endPath, the name of the file to read
 	 */
-	public String[][] startPartita(){
-		cityInfo=lettureXml.readFileXml();
+	public String[][] leggiXml(String endPath){
+		cityInfo=lettureXml.readFileXml(endPath);
+		printArray(cityInfo);
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city
@@ -44,8 +48,8 @@ public class CliInterface {
 	 * @param bidimensional array with city info
 	 * @return an error if there is some errors
 	 */
-	public String savePartita(String [][] cityInfo){
-		String k=scrittureXml.writeXmlFile(cityInfo);
+	public String savePartita(String [][] cityInfo, String endPath){
+		String k=scrittureXml.writeXmlFile(cityInfo, endPath);
 		System.out.println(k);//stampa il valore di eventuali errori
 		return k;
 		/* array cityInfo prototype require
