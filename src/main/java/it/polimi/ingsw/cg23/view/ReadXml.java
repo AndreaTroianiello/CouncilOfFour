@@ -25,7 +25,7 @@ public class ReadXml {
 	 * coloumn 4: bonus of the city
 	 * coloumn 5: region of the city
 	 */
-	
+
 	/**
 	 * legge il file xml
 	 * @return bidimensional array with city info, null array if there is some problems
@@ -53,7 +53,7 @@ public class ReadXml {
 				city[i][2]=idConversion(nome,idnum);
 				city[i][3]=actualElement.getElementsByTagName("Id").item(0).getTextContent();//recupera l'id della città
 				city[i][4]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus della città
-				
+
 				Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, mare)
 			}

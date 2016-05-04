@@ -4,13 +4,15 @@ import java.util.Random;
 
 public class RandomCity {//PROTOTIPO
 	Random rnd = new Random();
+	
 	/**
 	 * create the city random
 	 * @param cityNumber the number of cities to create
 	 * @return a bidimensional array with the city info
 	 */
 	public String[][] createCity(int cityNumber){
-		String[][] cityInfo=new String[cityNumber][6];//array multidimensionale per salvare le informazioni della citta'
+		//array multidimensionale per salvare le informazioni della citta'
+		String[][] cityInfo=new String[cityNumber][6];
 
 		if(cityNumber%3!=0){//le citta' devono essere multile di 6
 			for(int i=0;i<cityInfo.length;i++){//cicli per annullare l'array (richiesto da sonar)
@@ -24,6 +26,7 @@ public class RandomCity {//PROTOTIPO
 			cityInfo[k][0]=createCityName(k);//aggiunta del nome della citta' creato all'array
 			cityInfo[k][1]=chooseColor();//aggiungta del colore della citta' all'array
 			cityInfo[k][3]=createCityId(cityInfo[k][0]);//aggiunta dell'id citta' all'array
+			cityInfo[k][4]=chooseBonus();//aggiunta dei bonus all'array
 			cityInfo[k][5]=chooseRegion(k, cityNumber);//aggiunge il tipo di regione
 		}
 		cityInfo[1][1]="purple";//la citta' del re e' di colore viola
@@ -36,19 +39,26 @@ public class RandomCity {//PROTOTIPO
 	 * @return a string with the name of the city created
 	 */
 	public String createCityName(int n){//n numero della citta'
-		String alfabeth = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//possibili combinazioni di nomi di citta'
+		String alfabeth = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//alfabeto completo e maiscolo per la prima lettera
+		String consonants= "bcdfghjklmnpqrstvwxyz";//alfabeto di consonanti
+		String vocali ="aeiou";//alfabeto di vocali
 		StringBuilder sb = new StringBuilder();
 		int realN=n%26;//se le città da scrivere sono piu' di 26, la prima lettera ricominci da A
-		String name=null;
-		try{//nel caso 
+		String name="";
+		try{//puo' esserci un errore nell'esecuzione della substring
 			name=alfabeth.substring(realN, realN+1);//la prima lettera del nome e' in ordine alfabetico
 		}catch(Exception e){
 			return "Errore nella creazione del nome della citta'";
 		}
-		for(int i=0; i<8; i++){//8 lunghezza massima nome della citta'
-			name=name+alfabeth.charAt(rnd.nextInt(alfabeth.length()));//aggiunta di nuove lettere al nome della citta'
-			sb.append(name);
+		for(int i=0; i<7; i++){//8 lunghezza massima nome della citta'
+			if(i%2!=0)//alterna una vocale e una consonate
+				//aggiunta di consonanti al nome della citta'
+				name+=Character.toString(consonants.charAt(rnd.nextInt(consonants.length())));//sonar consigla Character.toString
+			else
+				//aggiunta di vocali al nome della citta'
+			name+=Character.toString(vocali.charAt(rnd.nextInt(vocali.length())));//sonar consigla Character.toString
 		}
+		sb.append(name);//aggiunge il nome della citta' allo stream builder
 		return name;
 	}
 
@@ -58,7 +68,7 @@ public class RandomCity {//PROTOTIPO
 	 * @return a string with the ido of the city
 	 */
 	public String createCityId(String cityInfo){ //SE PIU' CITTA HANNO LO STESSO ID?
-		return cityInfo.substring(0,1);
+		return cityInfo.substring(0,1);//ritorna la prima lettra del nome della citta'
 	}
 
 	/**
@@ -67,10 +77,10 @@ public class RandomCity {//PROTOTIPO
 	 */
 	public String chooseColor(){
 		String[] colori=new String[]{"bronze", "gold", "silver", "ferro"};//array con i colori
-		int colorNumber=rnd.nextInt(4);//scelta di un numero casuale fra 0 e 3
+		int colorNumber=rnd.nextInt(colori.length);//scelta di un numero casuale fra 0 e 3
 		return colori[colorNumber];
 	}
-	
+
 	/**
 	 * choose the region type
 	 * @param actualCity the city i want the region
@@ -86,5 +96,17 @@ public class RandomCity {//PROTOTIPO
 			else
 				return "montagna";//terzo terzo di citta'
 		}
+	}
+	
+	/**
+	 * assign at every city a casual bonus
+	 * @return the city bonus
+	 */
+	public String chooseBonus(){
+		//array con i diversi tipi bonus
+		String[] bonus={"1nobility","2aiuntanti","1aiutante","1coin","1aiuntante,1card","2coins",
+				"3victory","1aiutante,1coin","1victory","1card","2victory","3coins","1card,1victory"};
+		int bonusNumber=rnd.nextInt(bonus.length);
+		return bonus[bonusNumber];
 	}
 }

@@ -13,8 +13,6 @@ public class CliInterface {
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
 
-	//final int regionNumber=scrittureXml.regionNumber(cityInfo);//numero di regioni
-
 	/* codice se di dovesse usare il logger (come dice sonar)
 	 * Logger logger=Logger.getLogger("my logger");
 	 * ConsoleHandler handler = new ConsoleHandler();
@@ -63,7 +61,8 @@ public class CliInterface {
 	 * @param citynum the number of cities to create
 	 */
 	public void createCity(int citynum){
-		randomC.createCity(citynum);
+		cityInfo=randomC.createCity(citynum);
+		printArray(cityInfo);
 	}
 
 	/**
@@ -130,7 +129,6 @@ public class CliInterface {
 		int c=city.length/regionNumber;
 		int m=city.length/regionNumber*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
 		for(i=0; i<city.length/regionNumber; i++,c++,m++){//array che scorre le citta' per regione da stampare 5
-
 			/* i posizione citta' costa
 			 * c posizione citta' collina
 			 * m posizione citta' montagna
