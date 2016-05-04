@@ -13,7 +13,7 @@
                     <Id>C</Id>
                 </link>
                 <color>gold</color>
-                <bonus/>
+                <bonus>1nobility</bonus>
             </city>
             <city>
                 <Id>B</Id>
@@ -23,7 +23,7 @@
                     <Id>D</Id>
                 </link>
                 <color>ferro</color>
-                <bonus/>
+                <bonus>2aiuntanti</bonus>
             </city>
             <city>
                 <Id>C</Id>
@@ -33,7 +33,7 @@
                     <Id>F</Id>
                 </link>
                 <color>silver</color>
-                <bonus/>
+                <bonus>1aiutante</bonus>
             </city>
             <city>
                 <Id>D</Id>
@@ -43,7 +43,7 @@
                     <Id>G</Id>
                 </link>
                 <color>bronze</color>
-                <bonus/>
+                <bonus>1coin</bonus>
             </city>
             <city>
                 <Id>E</Id>
@@ -53,7 +53,7 @@
                     <Id>H</Id>
                 </link>
                 <color>silver</color>
-                <bonus/>
+                <bonus>1aiuntante,1card</bonus>
             </city>
         </cities>
     </zone>
@@ -68,7 +68,7 @@
                     <Id>I</Id>
                 </link>
                 <color>bronze</color>
-                <bonus/>
+                <bonus>2coins</bonus>
             </city>
             <city>
                 <Id>G</Id>
@@ -78,7 +78,7 @@
                     <Id>J</Id>
                 </link>
                 <color>ferro</color>
-                <bonus/>
+                <bonus>3victory</bonus>
             </city>
             <city>
                 <Id>H</Id>
@@ -88,7 +88,7 @@
                     <Id>J</Id>
                 </link>
                 <color>gold</color>
-                <bonus/>
+                <bonus>1aiutante,1coin</bonus>
             </city>
             <city>
                 <Id>I</Id>
@@ -98,7 +98,7 @@
                     <Id>K</Id>
                 </link>
                 <color>ferro</color>
-                <bonus/>
+                <bonus>1victory</bonus>
             </city>
             <city>
                 <Id>J</Id>
@@ -108,7 +108,7 @@
                     <Id>L</Id>
                 </link>
                 <color>purple</color>
-                <bonus/>
+                <bonus> </bonus>
             </city>
         </cities>
     </zone>
@@ -123,7 +123,7 @@
                     <Id>N</Id>
                 </link>
                 <color>silver</color>
-                <bonus/>
+                <bonus>1card</bonus>
             </city>
             <city>
                 <Id>L</Id>
@@ -134,7 +134,7 @@
                     <Id>K</Id>
                 </link>
                 <color>ferro</color>
-                <bonus/>
+                <bonus>2victory</bonus>
             </city>
             <city>
                 <Id>M</Id>
@@ -144,7 +144,7 @@
                     <Id>O</Id>
                 </link>
                 <color>silver</color>
-                <bonus/>
+                <bonus>3coins</bonus>
             </city>
             <city>
                 <Id>N</Id>
@@ -154,7 +154,7 @@
                     <Id>O</Id>
                 </link>
                 <color>bronze</color>
-                <bonus/>
+                <bonus>1nobility</bonus>
             </city>
             <city>
                 <Id>O</Id>
@@ -164,7 +164,7 @@
                     <Id>N</Id>
                 </link>
                 <color>gold</color>
-                <bonus/>
+                <bonus>1card,1victory</bonus>
             </city>
         </cities>
     </zone>

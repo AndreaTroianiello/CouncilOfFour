@@ -12,7 +12,8 @@ public class CliInterface {
 	final int citynum=lettureXml.cityNumber();//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber();//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
-	final int regionNumber=scrittureXml.regionNumber(cityInfo);//numero di regioni
+
+	//final int regionNumber=scrittureXml.regionNumber(cityInfo);//numero di regioni
 
 	/* codice se di dovesse usare il logger (come dice sonar)
 	 * Logger logger=Logger.getLogger("my logger");
@@ -118,11 +119,18 @@ public class CliInterface {
 	 * @param bidimensional array with city
 	 */
 	public void createMap(String[][] city, int nPlayer){
-		String plancia="     Costa            Collina              Montagna\n";//la stringa che stampa la plancia di gioco
+		String plancia="";//la stringa che stampa la plancia di gioco
+		int space=35;
+		plancia+=addSpace("COSTA", space);//nomi delle regioni
+		plancia+=addSpace("COLLINA", space);
+		plancia+=addSpace("MONTAGNA", space);
+		plancia+="\n";
 		int i;
+		int regionNumber=scrittureXml.regionNumber(city);
 		int c=city.length/regionNumber;
 		int m=city.length/regionNumber*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
-		for(i=0; i<city.length/regionNumber; i++,c++,m++){//array che scorre le citta' per regione dastampare 5
+		for(i=0; i<city.length/regionNumber; i++,c++,m++){//array che scorre le citta' per regione da stampare 5
+
 			/* i posizione citta' costa
 			 * c posizione citta' collina
 			 * m posizione citta' montagna
@@ -135,15 +143,15 @@ public class CliInterface {
 					kk=c;//assegno a kk il valore della zona "collina" in base a k
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
-				String newcity=city[kk][0]+"("+city[kk][1]+") ";//recupero le informazioni dall'array
+				String newcity=city[kk][0]+"("+city[kk][1]+")("+city[kk][4]+") ";//recupero le informazioni dall'array
 
 				if("purple".equals(city[kk][1])){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
 					newcity+="KING";
-					plancia+=addSpace(newcity,20);
+					plancia+=addSpace(newcity, space);
 				}else
-					plancia+=addSpace(newcity, 20);//aggiungo la citta' appena aggiunta a quelle presenti
-				plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+					plancia+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
 			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		String percorsi="Player     Richness          Victory            Money\n";
 		int rich=10;//variabili provvisorie
