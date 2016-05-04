@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class RandomCity {//PROTOTIPO
 	Random rnd = new Random();
-	
 	/**
 	 * create the city random
 	 * @param cityNumber the number of cities to create
@@ -13,7 +12,7 @@ public class RandomCity {//PROTOTIPO
 	public String[][] createCity(int cityNumber){
 		//array multidimensionale per salvare le informazioni della citta'
 		String[][] cityInfo=new String[cityNumber][6];
-
+		
 		if(cityNumber%3!=0){//le citta' devono essere multile di 6
 			for(int i=0;i<cityInfo.length;i++){//cicli per annullare l'array (richiesto da sonar)
 				for(int k=0; k<cityInfo[0].length; k++){
@@ -29,10 +28,22 @@ public class RandomCity {//PROTOTIPO
 			cityInfo[k][4]=chooseBonus();//aggiunta dei bonus all'array
 			cityInfo[k][5]=chooseRegion(k, cityNumber);//aggiunge il tipo di regione
 		}
-		cityInfo[1][1]="purple";//la citta' del re e' di colore viola
+		int kingCity=chooseKingCity(cityInfo.length);//recupera la citta' del re
+		cityInfo[kingCity][0]=cityInfo[kingCity][0]+"(K)";
+		cityInfo[kingCity][1]="purple";//la citta' del re e' di colore viola
+		cityInfo[kingCity][4]="";//la citta' del re non ha bonus
 		return cityInfo;
 	}
-
+	
+	/**
+	 * choose the city for the king
+	 * @param citiesNumber the number of total cities
+	 * @return a random int from 0 to the number of cities
+	 */
+	public int chooseKingCity(int citiesNumber){
+		return rnd.nextInt(citiesNumber);//ritorna una città a caso che sara quella del re
+	}
+	
 	/**
 	 * create the name of the city
 	 * @param n number of the city to create
@@ -47,7 +58,7 @@ public class RandomCity {//PROTOTIPO
 		String name="";
 		try{//puo' esserci un errore nell'esecuzione della substring
 			name=alfabeth.substring(realN, realN+1);//la prima lettera del nome e' in ordine alfabetico
-		}catch(Exception e){
+		}catch(ArrayIndexOutOfBoundsException e){
 			return "Errore nella creazione del nome della citta'";
 		}
 		for(int i=0; i<7; i++){//8 lunghezza massima nome della citta'

@@ -32,11 +32,11 @@ public class WriteXml {
 		 * coloumn 4: bonus of the city
 		 * coloumn 5: region of the city
 		 */
-		
 		try {
 			if(cityInfo[0].length<6) 
 				return "Errore, le colonne sono meno di 6"; //nel caso venga passato un array con meno di 6 colonne termina
 			int regionNumber=regionNumber(cityInfo);//numero di regioni
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.newDocument();
@@ -47,19 +47,19 @@ public class WriteXml {
 			for(int j=0; j<regionNumber; j++){//ciclo che scorre le zone
 				Element zone = doc.createElement("zone");//creazione tag regioni
 				rootElement.appendChild(zone);//elemento inserito nel file come figlio di map
-				int ii=0;
+				int startRegion=0;//valore iniziale delle regioni
 				String regione=null;
 				if(j==0){
 					regione=cityInfo[0][5];//nome della prima regione
-					ii=0;//le citta' di costa iniziano da 0 nell'array
+					startRegion=0;//le citta' di costa iniziano da 0 nell'array
 				}
 				if(j==1){
 					regione=cityInfo[cityInfo.length/regionNumber][5];//nome della seconda regione
-					ii=cityInfo.length/regionNumber;//le citta' di collina iniziano da '5' nell'array
+					startRegion=cityInfo.length/regionNumber;//le citta' di collina iniziano da '5' nell'array
 				}
 				if(j==2){
 					regione=cityInfo[cityInfo.length/regionNumber*2][5];//nome della terza regione
-					ii=cityInfo.length/regionNumber*2;//le citta' di montagna iniziano da '10' nell'array
+					startRegion=cityInfo.length/regionNumber*2;//le citta' di montagna iniziano da '10' nell'array
 				}
 
 				Element namez=doc.createElement("namez"); //creazione tag nome della regione
@@ -69,7 +69,8 @@ public class WriteXml {
 				Element cities=doc.createElement("cities");//creazione tag cities
 				zone.appendChild(cities);//elemento inserito nel file come figlio di zone
 
-				doc=ezpansione(doc, cities, cityInfo, ii);
+				doc=ezpansione(doc, cities, cityInfo, startRegion);
+
 			}
 			// write the content into xml file
 			TransformerFactory transformerFactory =	TransformerFactory.newInstance();
@@ -81,7 +82,6 @@ public class WriteXml {
 			File xmlFile=new File(path);//creo un nuovo file nel percorso
 			StreamResult result = new StreamResult(xmlFile);
 			transformer.transform(source, result);
-			
 			return "";
 		} catch (Exception e) {
 			return e.toString();
@@ -96,11 +96,12 @@ public class WriteXml {
 	 * @param ii 
 	 * @return the document to write on the xml
 	 */
-	public Document ezpansione(Document doc, Element cities, String[][] cityInfo, int io){
+	public Document ezpansione(Document doc, Element cities, String[][] cityInfo, int startRegion){
 
 		int cityNumber=cityInfo.length;//numero di citta'
 		int regionNumber=regionNumber(cityInfo);//numero di regioni
-		int ii=io;
+		int ii=startRegion;//dichiarata nuova variabile perche' richiesta da sonar
+
 		for(int i=0; i<cityNumber/regionNumber; i++,ii++){//ciclo che scorre le citta' di una regione
 			Element city=doc.createElement("city");//creazione tag city
 			cities.appendChild(city);//elemento inserito nel file come figlio di cities
@@ -116,12 +117,13 @@ public class WriteXml {
 			Element link=doc.createElement("link");//creazione tag link
 			city.appendChild(link);//elemento inserito nel file come figlio di city
 
-			for(int k=0; k<cityInfo[ii][2].length(); k++){//ciclo che scorre tutti gli id delle citta' vicine
-				Element idl=doc.createElement("Id");//creazione tag id di link
-				link.appendChild(idl);//elemento inserito nel file come figlio di link
-				idl.setTextContent(cityInfo[ii][2].substring(k, k+1));//settato l'id della citta' collegata
+			if(cityInfo[ii][2]!=null){//se non ci sono link id non vengono salvati sull'xml
+				for(int k=0; k<cityInfo[ii][2].length(); k++){//ciclo che scorre tutti gli id delle citta' vicine
+					Element idl=doc.createElement("Id");//creazione tag id di link
+					link.appendChild(idl);//elemento inserito nel file come figlio di link
+					idl.setTextContent(cityInfo[ii][2].substring(k, k+1));//settato l'id della citta' collegata
+				}
 			}
-
 			Element color=doc.createElement("color");//creazione tag color
 			city.appendChild(color);//elemento inserito nel file come figlio di city
 			color.setTextContent(cityInfo[ii][1]);//settato il colore della citta'
@@ -129,7 +131,9 @@ public class WriteXml {
 			Element bonus=doc.createElement("bonus");//creazione tag bonus
 			city.appendChild(bonus);//elemento inserito nel file come figlio di city
 			bonus.setTextContent(cityInfo[ii][4]);//settato il bonus della citta'
+
 		}
+
 		return doc;
 	}
 

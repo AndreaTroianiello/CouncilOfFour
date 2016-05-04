@@ -45,7 +45,9 @@ public class CliInterface {
 	 * @return an error if there is some errors
 	 */
 	public String savePartita(String [][] cityInfo){
-		return scrittureXml.writeXmlFile(cityInfo);
+		String k=scrittureXml.writeXmlFile(cityInfo);
+		System.out.println(k);//stampa il valore di eventuali errori
+		return k;
 		/* array cityInfo prototype require
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city
@@ -60,9 +62,8 @@ public class CliInterface {
 	 * create randomly the cities
 	 * @param citynum the number of cities to create
 	 */
-	public void createCity(int citynum){
-		cityInfo=randomC.createCity(citynum);
-		printArray(cityInfo);
+	public String[][] createCity(int citynum){
+		return randomC.createCity(citynum);
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class CliInterface {
 	public void printArray(String[][] array){
 		for(int i=0;i<array.length;i++){
 			for(int k=0; k<array[0].length; k++){
-				System.out.print(array[i][k]+"    ");
+				System.out.print(array[i][k]+"      ");
 			}
 			System.out.print("\n");
 		}
