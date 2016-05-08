@@ -40,7 +40,7 @@ public class BonusCityToken implements Bonus {
 	@Override
 	public void giveBonus(Player player) {
 		for(int i=0; i<this.number; i++)
-			this.city[i].runBonusCity(player, null, false);
+			(this.city[i]).runBonusCity(player);
 	}
 
 }

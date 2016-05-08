@@ -1,5 +1,8 @@
 package it.polimi.ingsw.cg23.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
@@ -27,8 +30,8 @@ public class Partita {
 
 	public void cityObject(){
 		for(int i=0; i<cityInfo.length; i++){
-			Bonus b=null;//OGGETTO BONUS
-			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], new Region(cityInfo[i][5],b));
+			List<Bonus> b=new ArrayList<Bonus>();//OGGETTO BONUS
+			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], new Region(cityInfo[i][5],null));
 		}
 	}
 }

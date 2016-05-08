@@ -9,16 +9,16 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 public class City {
 	private final char id;
 	private final String name;
-	private final Bonus bonus;
+	private final List<Bonus> token;
 	private final String type;
 	private final Region region;
 	private final List<City> neighbors;
 	private final List<Emporium> emporiums;
 	
-	public City(char id, String name, Bonus bonus, String type, Region region){
+	public City(char id, String name, List<Bonus> token, String type, Region region){
 		this.id=id;
 		this.name=name;		
-		this.bonus=bonus;
+		this.token=token;
 		this.type=type;
 		this.region=region;
 		this.neighbors=new ArrayList<>();
@@ -103,20 +103,31 @@ public class City {
 		int assistantsPlayer=emporium.getPlayer().getAssistants();
 		assistantsPlayer=assistantsPlayer-emporiums.size();
 		emporium.getPlayer().setAssistants(assistantsPlayer);						//If sets a negative number throws a NegativeNumberException. 
-		runBonusCity(emporium.getPlayer(), new ArrayList<String>(), true);			//Runs the bonus of the city and visits the neighbors.
+		runBonusCityAndNeighbors(emporium.getPlayer(), new ArrayList<String>());			//Runs the bonus of the city and visits the neighbors.
 		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporiums.
 	}
 	
+	/**
+	 *  Runs the bonus associated to the city (only these).
+	 *  The neighbors are not visited.
+	 *  
+	 *  @param player the player who is to receive the bonus.
+	 */
+
+	public void runBonusCity(Player player){
+		for(int index=0;index<token.size();index++)
+			token.get(index).giveBonus(player);
+	}
 	
 	/**
-	 *  Runs the bonus associated to the city and its neighbors.
+	 *  Runs the token associated to the city and its neighbors.
 	 *  
 	 *  @param player the player who is to receive the bonus.
 	 *  @param citiesVisited the list of the cities already visited.
 	 *  @param visitNeighbors the status indicating if the neighbors must be visited.
 	 */
-	public void runBonusCity(Player player, List<String> citiesVisited, boolean visitNeighbors){
+	public void runBonusCityAndNeighbors(Player player, List<String> citiesVisited){
 		
 		boolean containsEmporium= false;
 		
@@ -129,13 +140,11 @@ public class City {
 		
 		//execute if the city is just not visited and doesn't contain a player's emporium
 		if(!citiesVisited.contains(name) && !containsEmporium){
-			bonus.giveBonus(player);													//Run the bonus
-			if(visitNeighbors){															//If true visits the neighbors
-				for(int index=0;index<neighbors.size();++index)							//Visit the neighbors
-					(neighbors.get(index)).runBonusCity(player, citiesVisited,true);
-				citiesVisited.add(name);												//add the name of city at citiesVisited
+			runBonusCity(player);														//Run the bonus
+			for(int index=0;index<neighbors.size();++index){							//Visit the neighbors
+				(neighbors.get(index)).runBonusCityAndNeighbors(player, citiesVisited);	//Visit the neighbor and run the bonus
+				citiesVisited.add(name);												//Add the name of city at citiesVisited
 			}
 		}
 	}
-	
 }
