@@ -30,8 +30,8 @@ public class Partita {
 
 	public void cityObject(){
 		for(int i=0; i<cityInfo.length; i++){
-			List<Bonus> b=new ArrayList<Bonus>();//OGGETTO BONUS
-			new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], new Region(cityInfo[i][5],null));
+			List<Bonus> b=new ArrayList<>();//OGGETTO BONUS
+			City city=new City(cityInfo[i][3].charAt(0), cityInfo[i][0], b, cityInfo[i][1], new Region(cityInfo[i][5],null));
 		}
 	}
 }
