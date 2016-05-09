@@ -103,7 +103,7 @@ public class City {
 		int assistantsPlayer=emporium.getPlayer().getAssistants();
 		assistantsPlayer=assistantsPlayer-emporiums.size();
 		emporium.getPlayer().setAssistants(assistantsPlayer);						//If sets a negative number throws a NegativeNumberException. 
-		runBonusCityAndNeighbors(emporium.getPlayer(), new ArrayList<String>());			//Runs the bonus of the city and visits the neighbors.
+		runBonusCityAndNeighbors(emporium.getPlayer(), new ArrayList<String>());	//Runs the bonus of the city and visits the neighbors.
 		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporiums.
 	}
@@ -125,7 +125,6 @@ public class City {
 	 *  
 	 *  @param player the player who is to receive the bonus.
 	 *  @param citiesVisited the list of the cities already visited.
-	 *  @param visitNeighbors the status indicating if the neighbors must be visited.
 	 */
 	public void runBonusCityAndNeighbors(Player player, List<String> citiesVisited){
 		
