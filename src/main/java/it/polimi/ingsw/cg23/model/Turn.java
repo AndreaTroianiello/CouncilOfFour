@@ -5,13 +5,11 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 
 public class Turn {
 	private Player currentPlayer;
-	private final Deck deck;
 	private Action action;
 	private final Board board;
 	
 	
-	public Turn(Deck deck, Board board){
-		this.deck=deck;
+	public Turn(Board board){
 		this.currentPlayer=null;
 		this.action=null;
 		this.board=board;
@@ -34,15 +32,6 @@ public class Turn {
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}
-
-	/**
-	 * Returns the deck of politic cards.
-	 * 
-	 * @return the deck
-	 */
-	public Deck getDeck() {
-		return deck;
-	}
 	
 	/**
 	 * 
@@ -55,6 +44,7 @@ public class Turn {
 	 * The player draws a politic card. If the deck is empty, the turn changes it.
 	 */
 	public void draw (){
+		Deck deck=board.getDeck();
 		if(deck.deckIsEmpty())
 			deck.changeDeck();
 		currentPlayer.addPoliticCard(deck.draw());

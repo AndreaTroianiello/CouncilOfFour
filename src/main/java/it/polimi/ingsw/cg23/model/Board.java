@@ -1,7 +1,8 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
@@ -11,12 +12,14 @@ public class Board {
 	private final List<Region> regions;
 	private final NobilityTrack nobilityTrack;
 	private final King king;
+	private final List<Councillor> councillorPool;
 	
 	public Board(Deck deck, List<Region> regions, NobilityTrack nobilityTrack, King king) {
 		this.deck = deck;
 		this.regions = regions;
 		this.nobilityTrack = nobilityTrack;
 		this.king = king;
+		this.councillorPool=new ArrayList<>();
 	}
 
 	/**
@@ -53,5 +56,12 @@ public class Board {
 	 */
 	public King getKing() {
 		return king;
-	}	
+	}
+
+	/**
+	 * @return the councillorPool
+	 */
+	public List<Councillor> getCouncillorPool() {
+		return councillorPool;
+	}
 }

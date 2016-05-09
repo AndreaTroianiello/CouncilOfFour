@@ -17,9 +17,8 @@ public class Player {
 	private List<PoliticCard> politicsCards;					//the player's hand
 	private List<BusinessPermitTile> availableBusinesPermits;
 	private List<BusinessPermitTile> usedBusinessPermits;
-	private final NobilityTrack playerNobilityTrack;			//to make getter and setter
-	private NobilityBox nobilityBox; 							//the nobility box contained in the nobility track.
-	private int nobilityBoxPosition;							//to make getter and setter
+	private final NobilityTrack playerNobilityTrack;			//the nobility track
+	private int nobilityBoxPosition;							//the position of the player
 	
 	public Player(String user, int assistants, int coins, NobilityTrack nobilityTrack) { 
 		this.user = user;
@@ -34,7 +33,6 @@ public class Player {
 		this.usedBusinessPermits=new ArrayList<>();
 		this.nobilityBoxPosition=0; 
 		this.playerNobilityTrack= nobilityTrack;
-		//this.nobilityBox=this.playerNobilityTrack.getNobilityBoxes().get(0);
 	}
 
 	/**
@@ -217,8 +215,6 @@ public class Player {
 	public void setUsedBusinessPermit(BusinessPermitTile businessPermit) {
 		this.usedBusinessPermits.add(businessPermit);
 	}
-	
-	
 
 	/**
 	 * @return the nobilityBoxPoistion
@@ -240,26 +236,7 @@ public class Player {
 	public NobilityTrack getPlayerNobilityTrack() {
 		return playerNobilityTrack;
 	}
-
-	/**
-	 * Returns the nobility box of the player.
-	 * 
-	 * @return the nobilityBox
-	 */
-	public NobilityBox getNobilityBox() {
-		return nobilityBox;
-	}
-
-	/**
-	 * Sets the new nobility box of the player.
-	 * 
-	 * @param nobilityBox the nobilityBox to set
-	 */
-	public void setNobilityBox(NobilityBox nobilityBox) {
-		this.nobilityBox = nobilityBox;
-	}
 	
-
 	/**
 	 * Returns all stats of the player.
 	 */
