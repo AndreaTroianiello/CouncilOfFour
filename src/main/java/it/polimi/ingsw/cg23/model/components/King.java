@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.model.components;
 
-import java.util.List;
 import it.polimi.ingsw.cg23.model.City;
 
 public class King {
@@ -26,9 +25,5 @@ public class King {
 	 */
 	public void setCity(City city) {
 		this.city = city;
-	}
-	
-	public void moveKing(List<String> cities){
-		
 	}
 }

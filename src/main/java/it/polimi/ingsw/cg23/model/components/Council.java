@@ -1,0 +1,31 @@
+package it.polimi.ingsw.cg23.model.components;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Council {
+	private final List<Councillor> councillors;
+	
+	public Council(){
+		this.councillors= new ArrayList<>();
+	}
+
+	/**
+	 * Returns the list of councillors.
+	 * 
+	 * @return the councillor
+	 */
+	public List<Councillor> getCouncillors() {
+		return councillors;
+	}
+	
+	/**
+	 * Adds a coucillor at the list.
+	 * 
+	 * @param councillor
+	 */
+	public void addCouncillor(Councillor councillor) {
+		councillors.add(councillor);
+	}
+
+}

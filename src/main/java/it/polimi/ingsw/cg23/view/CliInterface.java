@@ -2,11 +2,13 @@ package it.polimi.ingsw.cg23.view;
 
 import java.util.Scanner;
 
+
 /**
  * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
  * classe per stampare le info sulla cl
  */
 public class CliInterface {
+
 	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	RandomCity randomC=new RandomCity();
@@ -22,6 +24,11 @@ public class CliInterface {
 	 * handler.setFormatter(new SimpleFormatter());
 	 * logger.addHandler(handler);
 	 * handler.setLevel(Level.ALL);
+	 */
+
+	/*	public void addGiocatore(String name){
+		Player P1=new Player(name, ,0,)
+	}
 	 */
 
 	/**
@@ -95,7 +102,7 @@ public class CliInterface {
 	}
 
 	/**
-	 * stampa unq ualunque cosa gli viene passata e ritorna il valore letto dalla cl
+	 * stampa una qualunque cosa gli viene passata e ritorna il valore letto dalla cl
 	 * @param testo, what you want to show on the cl
 	 * @param ogg, the object yu want to show with the test on the cl (null if none)
 	 * @return what the user write on the cl
@@ -103,7 +110,10 @@ public class CliInterface {
 	public Object writeReturnValue(String testo, Object ogg){
 		@SuppressWarnings("resource")
 		Scanner scan=new Scanner(System.in);
-		System.out.println(testo+" "+ogg);
+		if(ogg!=null)
+			System.out.println(testo+" "+ogg);
+		else
+			System.out.println(testo);
 		return scan.nextLine();
 	}
 
@@ -114,7 +124,10 @@ public class CliInterface {
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-		System.out.println(testo+" "+ogg);
+		if(ogg!=null)
+			System.out.println(testo+" "+ogg);
+		else
+			System.out.println(testo);
 	}
 
 	/**
