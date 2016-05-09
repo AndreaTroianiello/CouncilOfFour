@@ -13,7 +13,7 @@ public class Controller {
 	List <Player> giocatori = new ArrayList<>();//lista giocatori
 	List <Region> regioni = new ArrayList<>();//lista regioni
 	List <City> citta = new ArrayList<>();//lista citta
-	NobilityTrack nT=new NobilityTrack(20);
+	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
 	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");;//array con le informazioni delle citta'
 
@@ -56,7 +56,6 @@ public class Controller {
 	public void createRegions(){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
-		//System.out.println(regionNumber);
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			regioni.add(new Region(cityInfo[i*c][5],null));//creata una nuova regione e aggiunta alla lista
 			createCities(i);

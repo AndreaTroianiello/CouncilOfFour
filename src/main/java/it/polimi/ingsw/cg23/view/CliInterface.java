@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.view;
 
 import java.util.Scanner;
 
+import it.polimi.ingsw.cg23.controller.Controller;
+
 
 
 /**
@@ -25,7 +27,6 @@ public class CliInterface {
 	 * logger.addHandler(handler);
 	 * handler.setLevel(Level.ALL);
 	 */
-
 
 	/**
 	 * carica il file xml con le infromazioni della partita
@@ -157,7 +158,7 @@ public class CliInterface {
 				String newcity=city[kk][0]+"("+city[kk][1]+")("+city[kk][4]+") ";//recupero le informazioni dall'array
 
 				if("purple".equals(city[kk][1])){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
-					newcity+="KING";
+					newcity=newcity.substring(0,newcity.length()-4)+"KING";//la citta del re non ha bonus
 					plancia+=addSpace(newcity, space);
 				}else
 					plancia+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
@@ -165,6 +166,7 @@ public class CliInterface {
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		String percorsi="Player     Richness          Victory            Money\n";
+		//COME FACCIO A PRENDERE LE INFORMAZIONI?
 		int rich=10;//variabili provvisorie
 		int vict=10;//variabili provvisorie
 		int money=10;//variabili provvisorie
@@ -176,6 +178,11 @@ public class CliInterface {
 		System.out.println(plancia);//stampo la plancia di gioco
 	}
 	
+	/**
+	 * calculate the number of regions
+	 * @param nome bidimensional array with the city infos
+	 * @return the number of the region
+	 */
 	public int regionsNumber(String[][] nome){
 		return scrittureXml.regionNumber(nome);
 	}
