@@ -1,8 +1,10 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.util.Scanner;
-
-import it.polimi.ingsw.cg23.controller.Controller;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 
 
@@ -19,14 +21,17 @@ public class CliInterface {
 	final int cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");//numero di attributi delle citta'
 	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
 
-	/* codice se di dovesse usare il logger (come dice sonar)
-	 * Logger logger=Logger.getLogger("my logger");
-	 * ConsoleHandler handler = new ConsoleHandler();
-	 * logger.setLevel(Level.ALL);
-	 * handler.setFormatter(new SimpleFormatter());
-	 * logger.addHandler(handler);
-	 * handler.setLevel(Level.ALL);
+	/**
+	 * code to use the logger (request by sonar)
 	 */
+	public void logging(){
+	 Logger logger=Logger.getLogger("my logger");
+	 ConsoleHandler handler = new ConsoleHandler();
+	 logger.setLevel(Level.ALL);
+	 handler.setFormatter(new SimpleFormatter());
+	 logger.addHandler(handler);
+	 handler.setLevel(Level.ALL);
+	}
 
 	/**
 	 * carica il file xml con le infromazioni della partita
@@ -52,9 +57,9 @@ public class CliInterface {
 	 * @return an error if there is some errors
 	 */
 	public String savePartita(String [][] cityInfo, String endPath){
-		String k=scrittureXml.writeXmlFile(cityInfo, endPath);
-		System.out.println(k);//stampa il valore di eventuali errori
-		return k;
+		String err=scrittureXml.writeXmlFile(cityInfo, endPath);
+		print(null, err);//stampa il valore di eventuali errori
+		return err;
 		/* array cityInfo prototype require
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city
@@ -79,12 +84,14 @@ public class CliInterface {
 	 * @param bidimensional array
 	 */
 	public void printArray(String[][] array){
+		String stampa="";
 		for(int i=0;i<array.length;i++){
 			for(int k=0; k<array[0].length; k++){
-				System.out.print(array[i][k]+"      ");
+				stampa+=array[i][k]+"      ";
 			}
-			System.out.print("\n");
+			stampa+="\n";
 		}
+		print(null, stampa);
 	}
 
 	/**
@@ -107,9 +114,9 @@ public class CliInterface {
 		@SuppressWarnings("resource")
 		Scanner scan=new Scanner(System.in);
 		if(ogg!=null)
-			System.out.println(testo+" "+ogg);
+			print(ogg,testo);
 		else
-			System.out.println(testo);
+			print(null,testo);
 		return scan.nextLine();
 	}
 
@@ -175,7 +182,7 @@ public class CliInterface {
 			percorsi+="\n";
 		}		
 		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
-		System.out.println(plancia);//stampo la plancia di gioco
+		print(null,plancia);//stampo la plancia di gioco
 	}
 	
 	/**

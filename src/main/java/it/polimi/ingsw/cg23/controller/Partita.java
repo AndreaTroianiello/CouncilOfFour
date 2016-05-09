@@ -20,10 +20,9 @@ public class Partita {
 		}
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), playerNumber);
-		
-		//TODO creazione elementi di gioco
-		//TODO turno
-	}
+		// DA FARE creazione elementi di gioco 
+		// DA FARE turno	
+		}
 	
 	/**
 	 * 
