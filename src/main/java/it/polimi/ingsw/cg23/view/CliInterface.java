@@ -85,13 +85,13 @@ public class CliInterface {
 	 */
 	public void printArray(String[][] array){
 		String stampa="";
-		for(int i=0;i<array.length;i++){
-			for(int k=0; k<array[0].length; k++){
+		for(int i=0;i<array.length;i++){//ciclo che scorre le righe
+			for(int k=0; k<array[0].length; k++){//ciclo che scorre le colonne
 				stampa+=array[i][k]+"      ";
 			}
-			stampa+="\n";
+			stampa+="\n";//alla fine di una riga si va a capo
 		}
-		print(null, stampa);
+		print(null, stampa);//stampo l'array
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class CliInterface {
 	 */
 	public Object returnValue(){
 		@SuppressWarnings("resource")
-		Scanner scan=new Scanner(System.in);//creto uno scanner per leggere l'input da cl
+		Scanner scan=new Scanner(System.in);//creo uno scanner per leggere l'input da cl
 		return scan.nextLine();
 	}
 
@@ -112,22 +112,23 @@ public class CliInterface {
 	 */
 	public Object writeReturnValue(String testo, Object ogg){
 		@SuppressWarnings("resource")
-		Scanner scan=new Scanner(System.in);
-		if(ogg!=null)
+		Scanner scan=new Scanner(System.in);//creo uno scanner per leggere l'input da cl
+		if(ogg!=null)//se l'oggetto passato e' nullo stampo solo il testo
 			print(ogg,testo);
 		else
 			print(null,testo);
-		return scan.nextLine();
+		return scan.nextLine();//ritorno il valore letto dalla cl
 	}
 
 	/**
 	 * stampa una qualunque cosa gli viene passata
+	 * it is the ONLY method to use the system.out.println
 	 * @return void
 	 * @param object (something to print)
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-		if(ogg!=null)
+		if(ogg!=null)//se l'oggetto passato e' nullo stampo solo il testo
 			System.out.println(testo+" "+ogg);
 		else
 			System.out.println(testo);
@@ -140,7 +141,7 @@ public class CliInterface {
 	 */
 	public void createMap(String[][] city, int nPlayer){
 		String plancia="";//la stringa che stampa la plancia di gioco
-		int space=35;
+		int space=35;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
 		plancia+=addSpace("COLLINA", space);
 		plancia+=addSpace("MONTAGNA", space);

@@ -13,14 +13,14 @@ public class Partita {
 	 */
 	public void startPartita(){//metodo per avviare la partita
 		cl.print(null, "Benvenuti a cof!");
-		//numero di giocatori della partita (richiesto per ora da cl)
-		int playerNumber=numeroGiocatori();
+		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 			c.createPlayer();
 		}
 		c.createRegions();//crea le regioni e le citta'
-		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), playerNumber);
-		// DA FARE creazione elementi di gioco 
+		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), playerNumber);//stampa la plancia di gioco
+		
+		// DA FARE creazione elementi di gioco (cartepolitiche, cartepermesso, azioni)
 		// DA FARE turno	
 		}
 	

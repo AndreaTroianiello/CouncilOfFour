@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class RandomCity {//PROTOTIPO
 	Random rnd = new Random();
+	
 	/**
 	 * create the city random
 	 * @param cityNumber the number of cities to create
