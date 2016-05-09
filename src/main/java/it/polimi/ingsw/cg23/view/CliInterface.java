@@ -38,7 +38,6 @@ public class CliInterface {
 	 */
 	public String[][] leggiXml(String endPath){
 		cityInfo=lettureXml.readFileXml(endPath);
-		printArray(cityInfo);
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city

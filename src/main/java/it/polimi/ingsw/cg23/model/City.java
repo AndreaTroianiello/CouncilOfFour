@@ -7,6 +7,15 @@ import it.polimi.ingsw.cg23.model.components.Emporium;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class City {
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "City [id=" + id + ", name=" + name + ", token=" + token + ", type=" + type + ", region=" + region
+				+ ", neighbors=" + neighbors + ", emporiums=" + emporiums + "]";
+	}
+
 	private final char id;
 	private final String name;
 	private final List<Bonus> token;

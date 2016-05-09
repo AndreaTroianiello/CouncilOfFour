@@ -34,7 +34,7 @@ public class Player {
 		this.usedBusinessPermits=new ArrayList<>();
 		this.nobilityBoxPosition=0; 
 		this.playerNobilityTrack= nobilityTrack;
-		this.nobilityBox=this.playerNobilityTrack.getNobilityBoxes().get(0);
+		//this.nobilityBox=this.playerNobilityTrack.getNobilityBoxes().get(0);
 	}
 
 	/**
