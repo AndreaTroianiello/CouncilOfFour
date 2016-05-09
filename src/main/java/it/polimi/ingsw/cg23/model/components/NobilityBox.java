@@ -7,12 +7,10 @@ import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
 public class NobilityBox {
 	private final List<Bonus> bonus;
-	private final int position;
 	
 
-	public NobilityBox(int position) {
+	public NobilityBox() {
 		this.bonus = new ArrayList<>();
-		this.position = position;
 	}
 
 
@@ -33,14 +31,5 @@ public class NobilityBox {
 	}
 
 
-	/**
-	 * @return the position
-	 */
-	public int getPosition() {
-		return position;
-	}
-
-
-	
 
 }

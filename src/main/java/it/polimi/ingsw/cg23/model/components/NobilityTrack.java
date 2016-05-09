@@ -12,8 +12,11 @@ public class NobilityTrack {
 	 * 
 	 * @param lenght
 	 */
-	public NobilityTrack() {
+	public NobilityTrack(int lenght) {
 		this.nobilityBoxes = new ArrayList<>();
+		for(int i=0; i<lenght; i++){
+			nobilityBoxes.add(new NobilityBox());
+		}
 	}
 
 	/**

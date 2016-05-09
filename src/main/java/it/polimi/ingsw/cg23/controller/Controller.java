@@ -9,7 +9,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Controller {
 	List <Player> giocatori = new ArrayList<>();//lista giocatori
-	NobilityTrack nT=new NobilityTrack();
+	NobilityTrack nT=new NobilityTrack(20);
 	CliInterface cl=new CliInterface();
 
 
