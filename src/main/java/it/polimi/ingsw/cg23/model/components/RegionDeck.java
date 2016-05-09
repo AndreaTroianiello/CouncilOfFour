@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 public class RegionDeck {
-	private final int maxTilesShowed;												//the 
+	private final int maxTilesShowed;			
 	private final List<BusinessPermitTile> businessPermitHidden;
 	private final List<BusinessPermitTile> businessPermitShowed;
 	
@@ -19,7 +19,7 @@ public class RegionDeck {
 	/**
 	 * @return the size of hidden deck.
 	 */
-	public int getBusinessPermitHidden() {
+	public int getBusinessPermitHiddenSize() {
 		return businessPermitHidden.size();
 	}
 

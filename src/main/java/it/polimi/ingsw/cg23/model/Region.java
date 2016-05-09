@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.components.Council;
 
 public class Region {
 
@@ -11,12 +12,14 @@ public class Region {
 	private final Bonus bonus;													//the bonus of the region.
 	private final List<City> cities;											//the list of cities contained.
 	private boolean bonusAvailable;												//status of the bonus.
+	private final Council council;
 	
 	public Region(String name, Bonus bonus) {
 		this.name = name;
 		this.bonus = bonus;
 		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
+		this.council=new Council();
 	}
 
 	/**
@@ -42,6 +45,15 @@ public class Region {
 	 */
 	public void setBonusUnavailable() {
 		this.bonusAvailable = false;
+	}
+	
+	/**
+	 * Returns the region's council.
+	 * 
+	 * @return the council
+	 */
+	public Council getCouncil() {
+		return council;
 	}
 
 	/**

@@ -4,9 +4,11 @@ import it.polimi.ingsw.cg23.model.City;
 
 public class King {
 	private City city;
+	private final Council council;
 	
 	public King(City city){
 		this.city=city;
+		this.council= new Council();
 	}
 
 	/**
@@ -25,5 +27,14 @@ public class King {
 	 */
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	/**
+	 * Returns the king's council.
+	 * 
+	 * @return the council
+	 */
+	public Council getCouncil() {
+		return council;
 	}
 }
