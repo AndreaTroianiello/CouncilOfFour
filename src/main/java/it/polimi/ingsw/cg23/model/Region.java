@@ -6,14 +6,6 @@ import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
 public class Region {
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Region [name=" + name + ", bonus=" + bonus + ", cities=" + cities + ", bonusAvailable=" + bonusAvailable
-				+ "]";
-	}
 
 	private final String name;													//the name of the region.
 	private final Bonus bonus;													//the bonus of the region.
@@ -94,4 +86,12 @@ public class Region {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Region [name=" + name + ", bonus=" + bonus + ", cities=" + cities + ", bonusAvailable=" + bonusAvailable
+				+ "]";
+	}
 }

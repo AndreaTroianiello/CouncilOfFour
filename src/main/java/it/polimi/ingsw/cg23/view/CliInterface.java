@@ -26,10 +26,6 @@ public class CliInterface {
 	 * handler.setLevel(Level.ALL);
 	 */
 
-	/*	public void addGiocatore(String name){
-		Player P1=new Player(name, ,0,)
-	}
-	 */
 
 	/**
 	 * carica il file xml con le infromazioni della partita
@@ -169,8 +165,6 @@ public class CliInterface {
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		String percorsi="Player     Richness          Victory            Money\n";
-		//int sup=c.playerNumber();
-		
 		int rich=10;//variabili provvisorie
 		int vict=10;//variabili provvisorie
 		int money=10;//variabili provvisorie

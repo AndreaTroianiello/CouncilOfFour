@@ -16,15 +16,11 @@ public class Partita {
 			cl.print(null, "Benvenuti a cof!");
 			//numero di giocatori della partita (richiesto per ora da cl)
 			int playerNumber=Integer.parseInt(cl.writeReturnValue("Quanti giocatori siete?", null).toString());
-			
 			for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 				c.createPlayer();
 			}
-			c.printList();//PROVVISORIO stampa la lista con i giocatori
 			c.createRegions();//crea le regioni e le citta'
-			//cl.createMap(city, playerNumber);
 			//creazione elementi di gioco
 			//turno
-			
 		}
 }
