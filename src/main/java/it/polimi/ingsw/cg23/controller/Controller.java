@@ -15,7 +15,7 @@ public class Controller {
 	List <City> citta = new ArrayList<>();//lista citta
 	NobilityTrack nT=new NobilityTrack(20);
 	CliInterface cl=new CliInterface();
-	String[][] cityInfo;//array con le informazioni delle citta'
+	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");;//array con le informazioni delle citta'
 
 	/**
 	 * add a player to the list
@@ -25,7 +25,6 @@ public class Controller {
 		String name=cl.writeReturnValue("come ti chiami?",null).toString();//recupero il nome del giocatore
 		Player p=new Player(name, assistant+10, 0, nT);
 		giocatori.add(p);//aggiunge un giocatore alla lista
-		cityInfo=cl.leggiXml("ConfigurazionePartita.xml");
 	}
 
 	/**
@@ -39,22 +38,22 @@ public class Controller {
 	/**
 	 * 	print the element of a list
 	 */
-	public void printList(List<?> lista){
-		for(int i=0;i<lista.size();i++){
-			cl.print(null,lista.get(i).toString());
+	public void printList(){
+		for(int i=0;i<giocatori.size();i++){
+			cl.print(null,giocatori.get(i).toString());
+		}
+		for(int i=0;i<regioni.size();i++){
+			cl.print(null,regioni.get(i).toString());
+		}
+		for(int i=0;i<citta.size();i++){
+			cl.print(null,citta.get(i).toString());
 		}
 	}
 
 	/**
 	 * create the regions object and add at the regions list
 	 */
-	public void createRegions(){//ARRAY VUOTO XKE'?
-		//ERRORE
-		//cityInfo=cl.leggiXml("ConfigurazionePartita.xml");
-		//System.out.println("cok");
-		//cl.printArray(cityInfo);
-		
-		//ERRORE
+	public void createRegions(){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		//System.out.println(regionNumber);
@@ -70,9 +69,13 @@ public class Controller {
 	 */
 	public void createCities(int j){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
-		for(int i=0; i<cityInfo.length/regionNumber; i++){//ciclo che scorre le citta' di una regione
-			//crea una nuova citta' e la aggiunge all'array
-			citta.add(new City(cityInfo[i][3].charAt(0), cityInfo[i][0], null, cityInfo[i][1], regioni.get(j)));
+		int ii=0;
+		int i=0;
+		if(j==0)ii=i;//se e' la prima regione le citta' partono da 0
+		if(j==1)ii=cityInfo.length/regionNumber;//se e' la seconda regione le citta' partono da 5(si autoregolano)
+		if(j==2)ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
+		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
+			citta.add(new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], null, cityInfo[ii][1], regioni.get(j)));
 		}
 	}
 }

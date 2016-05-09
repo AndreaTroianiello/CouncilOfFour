@@ -8,7 +8,6 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class Partita {
 		CliInterface cl=new CliInterface();
 		Controller c=new Controller();
-		
 		/**
 		 * to start the game
 		 */
@@ -19,7 +18,9 @@ public class Partita {
 			for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 				c.createPlayer();
 			}
+			//c.p
 			c.createRegions();//crea le regioni e le citta'
+			c.printList();
 			//creazione elementi di gioco
 			//turno
 		}
