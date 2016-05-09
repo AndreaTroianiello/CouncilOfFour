@@ -3,12 +3,12 @@ package it.polimi.ingsw.cg23.view;
 import java.util.Scanner;
 
 
+
 /**
  * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
  * classe per stampare le info sulla cl
  */
 public class CliInterface {
-
 	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	RandomCity randomC=new RandomCity();
@@ -170,6 +170,8 @@ public class CliInterface {
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		String percorsi="Player     Richness          Victory            Money\n";
+		//int sup=c.playerNumber();
+		
 		int rich=10;//variabili provvisorie
 		int vict=10;//variabili provvisorie
 		int money=10;//variabili provvisorie
@@ -180,7 +182,11 @@ public class CliInterface {
 		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
 		System.out.println(plancia);//stampo la plancia di gioco
 	}
-
+	
+	public int regionsNumber(String[][] nome){
+		return scrittureXml.regionNumber(nome);
+	}
+	
 	/**
 	 * @param nome the String you want to extend
 	 * @param totalSpace the total length you need (string + space)

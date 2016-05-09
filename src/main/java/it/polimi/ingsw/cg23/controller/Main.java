@@ -1,11 +1,12 @@
 package it.polimi.ingsw.cg23.controller;
 
 public class Main {
-
+	public Main(){//costruttore vuoto
+		
+	}
 	public static void main(String[] args) {
-		Controller c=new Controller();
-		for(int i=0; i<3; i++){
-		c.addPlayer();
-		}
+		Partita game=new Partita();
+		game.startPartita();
+		
 	}
 }
