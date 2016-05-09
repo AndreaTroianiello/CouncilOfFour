@@ -39,7 +39,7 @@ public class BonusGetPermitTile implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		BusinessPermitTile bonusPermit=this.deck.getBusinessPermitShowed().get(card);
+		BusinessPermitTile bonusPermit=this.deck.getShowedDeck().get(card);
 		player.getAvailableBusinessPermits().add(bonusPermit);   //add the choosen PermitTitle to the player collection
 		this.deck.changeShowedDeck();   						 //replace the PermitTitle chosen with the one in top of the deck
 	}

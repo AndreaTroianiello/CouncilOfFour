@@ -7,27 +7,27 @@ import java.util.Random;
 
 public class RegionDeck {
 	private final int maxTilesShowed;			
-	private final List<BusinessPermitTile> businessPermitHidden;
-	private final List<BusinessPermitTile> businessPermitShowed;
+	private final List<BusinessPermitTile> hiddenDeck;
+	private final List<BusinessPermitTile> showedDeck;
 	
 	public RegionDeck(int maxTilesShowed){
 		this.maxTilesShowed=maxTilesShowed;
-		businessPermitHidden=new ArrayList<>();
-		businessPermitShowed=new ArrayList<>();
+		hiddenDeck=new ArrayList<>();
+		showedDeck=new ArrayList<>();
 	}
 
 	/**
 	 * @return the size of hidden deck.
 	 */
-	public int getBusinessPermitHiddenSize() {
-		return businessPermitHidden.size();
+	public int getHiddenDeckSize() {
+		return hiddenDeck.size();
 	}
 
 	/**
-	 * @return the businessPermitShowed
+	 * @return the showed deck.
 	 */
-	public List<BusinessPermitTile> getBusinessPermitShowed() {
-		return businessPermitShowed;
+	public List<BusinessPermitTile> getShowedDeck() {
+		return showedDeck;
 	}
 	
 	/**
@@ -36,27 +36,27 @@ public class RegionDeck {
 	 * @return the status of the all deck.
 	 */
 	public boolean isEmpty(){
-		return businessPermitHidden.isEmpty() && businessPermitShowed.isEmpty();
+		return hiddenDeck.isEmpty() && showedDeck.isEmpty();
 	}
 	
 	/**
 	 * Puts the tiles in the right deck.
 	 * 
-	 * @param businessPermitTile
+	 * @param businessPermitTiles
 	 */
-	public void setBusinessPermit(List<BusinessPermitTile> businessPermitTile){
+	public void setBusinessPermitTiles(List<BusinessPermitTile> businessPermitTiles){
 		
-		shuffleTitle(businessPermitTile);										//Shuffles the titles.
+		shuffleTitle(businessPermitTiles);										//Shuffles the titles.
 		for(int index=0;index<maxTilesShowed;++index)							//Puts maxTilesShowed tiles in the showed deck. 
-			businessPermitShowed.add(businessPermitTile.remove(0));
-		while(!businessPermitTile.isEmpty())									//Puts the other tiles in the hidden deck.
-			businessPermitHidden.add(businessPermitTile.remove(0));
+			showedDeck.add(businessPermitTiles.remove(0));
+		while(!businessPermitTiles.isEmpty())									//Puts the other tiles in the hidden deck.
+			hiddenDeck.add(businessPermitTiles.remove(0));
 	}
 	
 	/**
 	 * Shuffles the list of business permit tile.
 	 * 
-	 * @param businessPermitTiles the titles that need to shuffle.
+	 * @param businessPermitTiles the tiles that need to shuffle.
 	 */
 	public void shuffleTitle(List<BusinessPermitTile> businessPermitTiles){
 		Random random= new Random();											//Create the random generator.
@@ -71,11 +71,11 @@ public class RegionDeck {
 	 * Changes the showed tiles with other tiles from the hidden deck.
 	 */
 	public void changeShowedDeck(){
-		if(businessPermitShowed.size()==maxTilesShowed)											//If the showed deck is full, empties it.
-			while(!businessPermitShowed.isEmpty())												//Puts the showed tiles in the hidden deck.
-				businessPermitHidden.add(businessPermitShowed.remove(0));
-		while(businessPermitShowed.size()<maxTilesShowed && !businessPermitHidden.isEmpty())	//Puts tiles in the showed deck. 
-			businessPermitShowed.add(businessPermitHidden.remove(0));
+		if(showedDeck.size()==maxTilesShowed)											//If the showed deck is full, empties it.
+			while(!showedDeck.isEmpty())												//Puts the showed tiles in the hidden deck.
+				hiddenDeck.add(showedDeck.remove(0));
+		while(showedDeck.size()<maxTilesShowed && !hiddenDeck.isEmpty())	//Puts tiles in the showed deck. 
+			showedDeck.add(hiddenDeck.remove(0));
 	}
 
 }
