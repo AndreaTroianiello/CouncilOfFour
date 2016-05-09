@@ -43,7 +43,7 @@ public class Controller {
 		int c=cityInfo.length/regionNumber;
 		for(int i=0; i<regionNumber; i++){//ciclo per creare le regioni
 			regioni.add(new Region(cityInfo[i*c][5],null));
-			createCities(i);//crea le citta'
+			System.out.println(regioni.get(i).toString());
 		}
 	}
 
@@ -55,6 +55,7 @@ public class Controller {
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		for(int i=0; i<cityInfo.length/regionNumber; i++){
 			citta.add(new City(cityInfo[i][3].charAt(0), cityInfo[i][0], null, cityInfo[i][1], regioni.get(j)));
+		
 		}
 	}
 }

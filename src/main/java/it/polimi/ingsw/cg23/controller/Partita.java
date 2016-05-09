@@ -22,7 +22,7 @@ public class Partita {
 			}
 			c.printList();//PROVVISORIO stampa la lista con i giocatori
 			c.createRegions();//crea le regioni e le citta'
-			
+			//cl.createMap(city, playerNumber);
 			//creazione elementi di gioco
 			//turno
 			
