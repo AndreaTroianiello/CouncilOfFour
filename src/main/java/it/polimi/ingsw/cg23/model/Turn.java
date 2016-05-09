@@ -7,11 +7,14 @@ public class Turn {
 	private Player currentPlayer;
 	private final Deck deck;
 	private Action action;
+	private final Board board;
 	
-	public Turn(Deck deck){
+	
+	public Turn(Deck deck, Board board){
 		this.deck=deck;
 		this.currentPlayer=null;
 		this.action=null;
+		this.board=board;
 	}
 
 	/**
@@ -61,6 +64,6 @@ public class Turn {
 	 * 
 	 */
 	public void runAction(){
-		action.runAction();
+		action.runAction(currentPlayer, board);
 	}
 }
