@@ -20,12 +20,13 @@ public class Council {
 	}
 	
 	/**
-	 * Adds a coucillor at the list.
+	 * Adds a councillor at first position of the list and removes the last councillor.
 	 * 
 	 * @param councillor
 	 */
-	public void addCouncillor(Councillor councillor) {
-		councillors.add(councillor);
+	public Councillor addCouncillor(Councillor councillor) {
+		councillors.add(0,councillor);
+		return councillors.remove(councillors.size()-1);
 	}
 
 }
