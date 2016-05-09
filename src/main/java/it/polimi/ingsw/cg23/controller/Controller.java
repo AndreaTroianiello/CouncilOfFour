@@ -37,7 +37,7 @@ public class Controller {
 	public void createregion(){
 		String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
-		//cl.printArray(cityInfo);
+		cl.printArray(cityInfo);
 		//System.out.println(regionNumber);
 		for(int i=0; i<regionNumber; i++){//ciclo per creare le regioni
 			//new Region();
