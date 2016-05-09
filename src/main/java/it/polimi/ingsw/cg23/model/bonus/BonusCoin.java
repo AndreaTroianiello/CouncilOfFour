@@ -40,7 +40,7 @@ public class BonusCoin implements Bonus {
 		try {
 			player.setCoins(playerCoins);
 		} catch (NegativeNumberException e) {
-			return;
+			System.out.println("The bonus makes the player have negative coins");
 		}
 	}
 	

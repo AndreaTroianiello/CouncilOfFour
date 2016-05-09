@@ -11,7 +11,7 @@ public class BonusTileBonus implements Bonus {
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
 	
 
-	public BonusTileBonus(BusinessPermitTile businessPermitTiles) {
+	public BonusTileBonus() {
 		this.businessPermitTiles = new ArrayList<>();
 	}
 

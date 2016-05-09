@@ -4,6 +4,7 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.components.NobilityBox;
 
 /**
  * @author utente
@@ -33,7 +34,13 @@ public class BonusNobility implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		player.moveNobilityTrack(steps);
+		NobilityBox nobilityBox = player.getNobilityBox();
+		nobilityBox = player.getPlayerNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition()+steps);
+		player.setNobilityBox(nobilityBox);
+		player.setNobilityBoxPoistion(player.getNobilityBoxPosition()+steps);
+		for(Bonus b: player.getNobilityBox().getBonus()){
+			b.giveBonus(player);
+		}
 	}
 
 	

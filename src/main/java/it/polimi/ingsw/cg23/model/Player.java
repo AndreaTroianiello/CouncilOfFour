@@ -3,7 +3,6 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.*;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
@@ -20,7 +19,7 @@ public class Player {
 	private List<BusinessPermitTile> usedBusinessPermits;
 	private final NobilityTrack playerNobilityTrack;			//to make getter and setter
 	private NobilityBox nobilityBox; 							//the nobility box contained in the nobility track.
-	private int nobilityBoxPoistion;							//to make getter and setter
+	private int nobilityBoxPosition;							//to make getter and setter
 	
 	public Player(String user, int assistants, int coins, NobilityTrack nobilityTrack) { 
 		this.user = user;
@@ -33,9 +32,9 @@ public class Player {
 		this.usedEmporiums=new ArrayList<>();
 		this.availableBusinesPermits=new ArrayList<>();
 		this.usedBusinessPermits=new ArrayList<>();
-		this.nobilityBoxPoistion=0; 
+		this.nobilityBoxPosition=0; 
 		this.playerNobilityTrack= nobilityTrack;
-		this.nobilityBox=this.playerNobilityTrack.getNobilityBoxes()[this.nobilityBoxPoistion];
+		this.nobilityBox=this.playerNobilityTrack.getNobilityBoxes().get(0);
 	}
 
 	/**
@@ -222,6 +221,27 @@ public class Player {
 	
 
 	/**
+	 * @return the nobilityBoxPoistion
+	 */
+	public int getNobilityBoxPosition() {
+		return nobilityBoxPosition;
+	}
+
+	/**
+	 * @param nobilityBoxPoistion the nobilityBoxPoistion to set
+	 */
+	public void setNobilityBoxPoistion(int nobilityBoxPoistion) {
+		this.nobilityBoxPosition = nobilityBoxPoistion;
+	}
+
+	/**
+	 * @return the playerNobilityTrack
+	 */
+	public NobilityTrack getPlayerNobilityTrack() {
+		return playerNobilityTrack;
+	}
+
+	/**
 	 * Returns the nobility box of the player.
 	 * 
 	 * @return the nobilityBox
@@ -239,19 +259,6 @@ public class Player {
 		this.nobilityBox = nobilityBox;
 	}
 	
-	/**
-	 * Makes the player move i steps in the nobilityTrack 
-	 * 
-	 * @param i
-	 * @param nobilityTrack
-	 */
-	public void moveNobilityTrack(int i){
-		this.nobilityBox = this.playerNobilityTrack.getNobilityBoxes()[this.nobilityBoxPoistion+i];
-		this.nobilityBoxPoistion = +i;
-		for(Bonus b: this.getNobilityBox().getBonus()){
-			b.giveBonus(this);
-		}
-	}
 
 	/**
 	 * Returns all stats of the player.

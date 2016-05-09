@@ -32,7 +32,7 @@ public class BonusAssistants implements Bonus {
 		try {
 			player.setAssistants(playerAssistants);
 		} catch (NegativeNumberException e) {
-			return;
+			System.out.println("The bonus makes the player have negative assistants");
 		}
 
 	}
