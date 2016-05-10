@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.Council;
+import it.polimi.ingsw.cg23.model.components.RegionDeck;
 
 public class Region {
 
@@ -13,13 +14,15 @@ public class Region {
 	private final List<City> cities;											//the list of cities contained.
 	private boolean bonusAvailable;												//status of the bonus.
 	private final Council council;
+	private final RegionDeck deck;
 	
-	public Region(String name, Bonus bonus) {
+	public Region(String name, Bonus bonus, RegionDeck deck) {
 		this.name = name;
 		this.bonus = bonus;
 		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
 		this.council=new Council();
+		this.deck=deck;
 	}
 
 	/**
@@ -73,7 +76,14 @@ public class Region {
 	public void addCity(City city){
 		cities.add(city);
 	}
-	
+		
+	/**
+	 * @return the deck
+	 */
+	public RegionDeck getDeck() {
+		return deck;
+	}
+
 	/**
 	 * Seeks a specific city by the id
 	 * 
