@@ -5,14 +5,14 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class ElectCouncillor extends PrimaryAction implements Action{
-	
+public class ElectCouncillorAssistant extends SecondaryAction implements Action {
+
 	private final Councillor councillor;
 	private final int region; 											//wich region the player choose 
 	private final boolean king;
 	
 	
-	public ElectCouncillor(Councillor councillor, int region, boolean king) {
+	public ElectCouncillorAssistant(Councillor councillor, int region, boolean king) {
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
@@ -55,26 +55,20 @@ public class ElectCouncillor extends PrimaryAction implements Action{
 		if(!this.king){
 			board.getRegions().get(this.region).getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
 			board.getRegions().get(this.region).getCouncil().getCouncillors().add(this.councillor);		//append the chosen councillor in the same council
-			int coin = player.getCoins();
-			coin = coin +4;
-			try{
-				player.setCoins(coin);
-			} catch(NegativeNumberException e){
-				System.out.println("The bonus makes the player have negative coins");
-			}
 		}
 		else{
 			board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
 			board.getKing().getCouncil().getCouncillors().add(this.councillor);		//append the chosen councillor in the same council
-			int coin = player.getCoins();
-			coin = coin +4;
-			try{
-				player.setCoins(coin);
-			} catch(NegativeNumberException e){
-				System.out.println("The bonus makes the player have negative coins");
-			}
+		}
+		
+		int assistants = player.getAssistants();
+		assistants = assistants - 1;
+		try {
+			player.setAssistants(assistants);
+		} catch (NegativeNumberException e) {
+			System.out.println("The player doesn't have enough assistants");
+			e.printStackTrace();
 		}
 		
 	}
-
 }

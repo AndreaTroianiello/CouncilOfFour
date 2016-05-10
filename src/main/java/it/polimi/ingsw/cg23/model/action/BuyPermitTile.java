@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
@@ -42,6 +43,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 	 * control how many match are there between cards' colors and councillors' colors,
 	 * if there is one or more the player take the card he chooses from the region he chooses
 	 * and the relative amount of money is taken from him
+	 * then it show another PermitTile form the hidden deck
 	 * @param player
 	 * @param board
 	 */
@@ -50,6 +52,8 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 		Council council = board.getRegions().get(this.region).getCouncil();
 		int cardNumber = howManyMatch(council);
 		player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+		//BusinessPermitTile card = board.getRegions().get(region).getDeck().g
+		//board.getRegions().get(region).getDeck().getShowedDeck().add(e)
 		payCoins(cardNumber, player);
 		
 	}
