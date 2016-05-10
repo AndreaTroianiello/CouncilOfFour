@@ -176,14 +176,21 @@ public class CliInterface {
 			}
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
-		String percorsi="Player     Richness(coin)          Victory            Nobility\n";
-		for(i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
-			percorsi+=giocatori.get(i).getUser()+"              "+giocatori.get(i).getCoins()+"                    "
+		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		print(null,plancia);//stampo la plancia di gioco
+	}
+	
+	public String createPlayerInfo(List<Player>giocatori){
+		int space=20;//spazi da mettere per rendere il testo ordinato
+		String percorsi="";
+		percorsi+=addSpace("Player", space)+addSpace("Richness(coin)", space)+addSpace("Victory", space)+addSpace("Nobility", space);
+		percorsi+="\n";
+		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
+			percorsi+=addSpace(giocatori.get(i).getUser(),space)+giocatori.get(i).getCoins()+"                      "
 		+giocatori.get(i).getVictoryPoints()+"                    "+giocatori.get(i).getNobilityBoxPosition();
 			percorsi+="\n";
-		}		
-		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
-		print(null,plancia);//stampo la plancia di gioco
+		}
+		return percorsi;
 	}
 	
 	/**

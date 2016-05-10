@@ -30,6 +30,11 @@ public class Controller {
 	public List<Player> getGiocatori(){
 		return giocatori;
 	}
+	
+	public List<Region> getRegioni(){
+		return regioni;
+	}
+	
 	/**
 	 * return the number of player in the list
 	 * @return the number of player

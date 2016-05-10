@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.view.CliInterface;
 /**
  * class that start the game
@@ -14,6 +15,7 @@ public class Partita {
 	CliInterface cl=new CliInterface();
 	Controller c=new Controller();
 	List <Player> giocatori;//lista giocatori
+	List <Region> region;//lista giocatori
 	Board bo;
 
 	public Partita(){
@@ -33,6 +35,11 @@ public class Partita {
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
+		//VERIFICARE CHE FUNZIONI
+		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
+		//IN MODIFICA
+		
+		System.out.println(c.getRegioni().toString());
 		
 		// DA FARE creazione elementi di gioco (cartepolitiche, cartepermesso, azioni)
 		// DA FARE turno
@@ -81,5 +88,12 @@ public class Partita {
 	 */
 	public void setBo(Board bo) {
 		this.bo = bo;
+	}
+	
+	/**
+	 * @param region the region to set
+	 */
+	public void setRegioni(List<Region> region) {
+		this.region = region;
 	}
 }
