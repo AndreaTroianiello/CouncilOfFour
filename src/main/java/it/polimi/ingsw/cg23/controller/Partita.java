@@ -1,5 +1,10 @@
 package it.polimi.ingsw.cg23.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import it.polimi.ingsw.cg23.model.Board;
+import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.view.CliInterface;
 /**
  * class that start the game
@@ -8,6 +13,14 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class Partita {
 	CliInterface cl=new CliInterface();
 	Controller c=new Controller();
+	List <Player> giocatori;//lista giocatori
+	Board bo;
+
+	public Partita(){
+		this.giocatori=new ArrayList<>();
+		this.bo=null;
+	}
+	
 	/**
 	 * to start the game
 	 */
@@ -17,11 +30,12 @@ public class Partita {
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 			c.createPlayer();
 		}
+		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
 		c.createRegions();//crea le regioni e le citta'
-		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), playerNumber);//stampa la plancia di gioco
+		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		
 		// DA FARE creazione elementi di gioco (cartepolitiche, cartepermesso, azioni)
-		// DA FARE turno	
+		// DA FARE turno
 		}
 	
 	/**
@@ -39,5 +53,33 @@ public class Partita {
 			}
 		}
 		return playerNumber;
+	}
+	
+	/**
+	 * @return the giocatori
+	 */
+	public List<Player> getGiocatori() {
+		return giocatori;
+	}
+
+	/**
+	 * @param giocatori the giocatori to set
+	 */
+	public void setGiocatori(List<Player> giocatori) {
+		this.giocatori = giocatori;
+	}
+
+	/**
+	 * @return the bo
+	 */
+	public Board getBo() {
+		return bo;
+	}
+
+	/**
+	 * @param bo the bo to set
+	 */
+	public void setBo(Board bo) {
+		this.bo = bo;
 	}
 }

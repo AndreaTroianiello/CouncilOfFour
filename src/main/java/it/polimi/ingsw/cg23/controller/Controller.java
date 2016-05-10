@@ -26,7 +26,10 @@ public class Controller {
 		Player p=new Player(name, assistant+10, 0, nT);
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}
-
+	
+	public List<Player> getGiocatori(){
+		return giocatori;
+	}
 	/**
 	 * return the number of player in the list
 	 * @return the number of player
@@ -34,7 +37,7 @@ public class Controller {
 	public int playerNumber(){
 		return giocatori.size();	
 	}
-
+	
 	/**
 	 * 	print the element of a list
 	 */

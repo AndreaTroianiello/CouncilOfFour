@@ -1,10 +1,13 @@
 package it.polimi.ingsw.cg23.view;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
+import it.polimi.ingsw.cg23.model.Player;
 
 
 
@@ -139,7 +142,7 @@ public class CliInterface {
 	 * @return void
 	 * @param bidimensional array with city
 	 */
-	public void createMap(String[][] city, int nPlayer){
+	public void createMap(String[][] city, List<Player>giocatori){
 		String plancia="";//la stringa che stampa la plancia di gioco
 		int space=35;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
@@ -173,13 +176,10 @@ public class CliInterface {
 			}
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
-		String percorsi="Player     Richness          Victory            Money\n";
-		//COME FACCIO A PRENDERE LE INFORMAZIONI?
-		int rich=10;//variabili provvisorie
-		int vict=10;//variabili provvisorie
-		int money=10;//variabili provvisorie
-		for(i=0; i<nPlayer; i++){//stampa i punteggi dei giocatori
-			percorsi+="P"+(i+1)+"            "+rich+"                "+vict+"                "+money;
+		String percorsi="Player     Richness(coin)          Victory            Nobility\n";
+		for(i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
+			percorsi+=giocatori.get(i).getUser()+"              "+giocatori.get(i).getCoins()+"                    "
+		+giocatori.get(i).getVictoryPoints()+"                    "+giocatori.get(i).getNobilityBoxPosition();
 			percorsi+="\n";
 		}		
 		plancia+="\n"+percorsi;//aggiunge alla plancia di gioco i punteggi giocatore
