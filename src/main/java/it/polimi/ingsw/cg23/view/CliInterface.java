@@ -61,7 +61,7 @@ public class CliInterface {
 	 */
 	public String savePartita(String [][] cityInfo, String endPath){
 		String err=scrittureXml.writeXmlFile(cityInfo, endPath);
-		print(null, err);//stampa il valore di eventuali errori
+		print("", err);//stampa il valore di eventuali errori
 		return err;
 		/* array cityInfo prototype require
 		 * coloumn 0: name of the city
@@ -94,7 +94,7 @@ public class CliInterface {
 			}
 			stampa+="\n";//alla fine di una riga si va a capo
 		}
-		print(null, stampa);//stampo l'array
+		print("", stampa);//stampo l'array
 	}
 
 	/**
@@ -117,9 +117,9 @@ public class CliInterface {
 		@SuppressWarnings("resource")
 		Scanner scan=new Scanner(System.in);//creo uno scanner per leggere l'input da cl
 		if(ogg!=null)//se l'oggetto passato e' nullo stampo solo il testo
-			print(ogg,testo);
+			print("",testo);
 		else
-			print(null,testo);
+			print("",testo);
 		return scan.nextLine();//ritorno il valore letto dalla cl
 	}
 
@@ -127,22 +127,21 @@ public class CliInterface {
 	 * stampa una qualunque cosa gli viene passata
 	 * it is the ONLY method to use the system.out.println
 	 * @return void
-	 * @param object (something to print)
+	 * @param object (something to print, must be "" is there isn't)
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-		if(ogg!=null)//se l'oggetto passato e' nullo stampo solo il testo
 			System.out.println(testo+" "+ogg);
-		else
-			System.out.println(testo);
+
 	}
 
 	/**
-	 * stampa la mappa (funziona parzialmente)
+	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
-	 * @param bidimensional array with city
+	 * @param city, a bidimensional array with city info
+	 * @param giocatori, a list with the players
 	 */
-	public void createMap(String[][] city, List<Player>giocatori){
+	public void createMap(String[][] city, List<Player>giocatori){//NON TIENE CONTO DEI COLLEGAMENTI
 		String plancia="";//la stringa che stampa la plancia di gioco
 		int space=35;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
@@ -177,9 +176,14 @@ public class CliInterface {
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
 		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
-		print(null,plancia);//stampo la plancia di gioco
+		print("",plancia);//stampo la plancia di gioco
 	}
 	
+	/**
+	 * create the players info
+	 * @param giocatori, a list with the players
+	 * @return a string to print
+	 */
 	public String createPlayerInfo(List<Player>giocatori){
 		int space=20;//spazi da mettere per rendere il testo ordinato
 		String percorsi="";

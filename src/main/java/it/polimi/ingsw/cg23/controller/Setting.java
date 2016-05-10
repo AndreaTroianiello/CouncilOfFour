@@ -46,10 +46,15 @@ public class Setting {
 		return politics;
 	}
 	
+	/**
+	 * find the king's city
+	 * @param citta, a list with all the cities
+	 * @return the king
+	 */
 	public King king(List<City>citta){
-		for(int i=0; i<citta.size(); i++){
-			if(citta.get(i).getType().equals("purple")){
-				return new King(citta.get(i));
+		for(int i=0; i<citta.size(); i++){//scorre le citta' per cercare quella del re
+			if("purple".equals(citta.get(i).getType())){//la citta' del re e' di colore purple
+				return new King(citta.get(i));//ritorno il re con la citta' trovata
 			}
 		}
 		return null;

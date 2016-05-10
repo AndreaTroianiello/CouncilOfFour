@@ -22,7 +22,7 @@ public class Controller {
 	 */
 	public void createPlayer(){
 		int assistant=playerNumber();//numero di giocatori gia' presenti nella lista
-		String name=cl.writeReturnValue("come ti chiami?",null).toString();//recupero il nome del giocatore
+		String name=cl.writeReturnValue("Come ti chiami giocatore?",null).toString();//recupero il nome del giocatore
 		Player p=new Player(name, assistant+10, 0, nT);
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}
@@ -51,13 +51,13 @@ public class Controller {
 	 */
 	public void printList(){
 		for(int i=0;i<giocatori.size();i++){
-			cl.print(null,giocatori.get(i).toString());
+			cl.print("",giocatori.get(i).toString());
 		}
 		for(int i=0;i<regioni.size();i++){
-			cl.print(null,regioni.get(i).toString());
+			cl.print("",regioni.get(i).toString());
 		}
 		for(int i=0;i<citta.size();i++){
-			cl.print(null,citta.get(i).toString());
+			cl.print("",citta.get(i).toString());
 		}
 	}
 
