@@ -22,6 +22,8 @@ public class Deck {
 	 * @return the first politic card of the main deck (remove it).
 	 */
 	public PoliticCard draw(){
+		if(deckIsEmpty())
+			changeDeck();
 		return politicCards.remove(0);
 	}
 	
