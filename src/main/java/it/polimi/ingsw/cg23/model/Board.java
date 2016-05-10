@@ -64,4 +64,15 @@ public class Board {
 	public List<Councillor> getCouncillorPool() {
 		return councillorPool;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Board [deck=" + deck + ", regions=" + regions + ", nobilityTrack=" + nobilityTrack + ", king=" + king
+				+ "]";
+	}
+	
+	
 }

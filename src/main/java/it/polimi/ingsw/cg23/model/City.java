@@ -152,7 +152,7 @@ public class City {
 	 */
 	@Override
 	public String toString() {
-		String city= "City [id=" + id + ", name=" + name + ", token=" + token + ", type=" + type +"vicini" +neighbors.size()+"]";
+		String city= "City [id=" + id + ", name=" + name + ", token=" + token + ", type=" + type +", neighbors=" +neighbors.size()+"]";
 		return city;
 	}
 }

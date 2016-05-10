@@ -18,5 +18,13 @@ public class Council {
 	public List<Councillor> getCouncillors() {
 		return councillors;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Council [councillors=" + councillors + "]";
+	}
 	
 }

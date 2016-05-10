@@ -40,4 +40,14 @@ public class BusinessPermitTile {
 	public void addBonus(Bonus bonus){
 		this.bonusTile.add(bonus);
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BusinessPermitTile [citiesId=" + citiesId + ", bonusTile=" + bonusTile + "]";
+	}
+	
+	
 }
