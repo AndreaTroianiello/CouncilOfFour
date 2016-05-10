@@ -22,7 +22,7 @@
 					<Id>A</Id>
 					<Id>D</Id>
 				</link>
-				<color>ferro</color>
+				<color>iron</color>
 				<bonus>2aiuntanti</bonus>
 			</city>
 			<city>
@@ -77,7 +77,7 @@
 					<Id>D</Id>
 					<Id>J</Id>
 				</link>
-				<color>ferro</color>
+				<color>iron</color>
 				<bonus>3victory</bonus>
 			</city>
 			<city>
@@ -97,7 +97,7 @@
 					<Id>I</Id>
 					<Id>K</Id>
 				</link>
-				<color>ferro</color>
+				<color>iron</color>
 				<bonus>1victory</bonus>
 			</city>
 			<city>
@@ -133,7 +133,7 @@
 					<Id>O</Id>
 					<Id>K</Id>
 				</link>
-				<color>ferro</color>
+				<color>iron</color>
 				<bonus>2victory</bonus>
 			</city>
 			<city>
