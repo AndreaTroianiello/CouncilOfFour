@@ -33,6 +33,7 @@ public class Player {
 		this.usedBusinessPermits=new ArrayList<>();
 		this.nobilityBoxPosition=0; 
 		this.playerNobilityTrack= nobilityTrack;
+		initializeAvailableEmporium();
 	}
 
 	/**
@@ -45,12 +46,13 @@ public class Player {
 	}
 
 	/**
-	 * Adds an available emporium at the player's list.
+	 * Adds the availables emporiums at the player's list.
 	 * 
 	 * @param availableEmporium 
 	 */
-	public void setAvailableEmporium(Emporium availableEmporium) {
-		this.availableEmporiums.add(availableEmporium);
+	public void initializeAvailableEmporium() {
+		for(int index=0;index<10;++index)
+			this.availableEmporiums.add(new Emporium(this));
 	}
 	
 	/**
