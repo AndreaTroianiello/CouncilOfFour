@@ -84,8 +84,11 @@ public class Controller {
 			ii=cityInfo.length/regionNumber;//se e' la seconda regione le citta' partono da 5(si autoregolano)
 		if(j==2)
 			ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
+
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
-			citta.add(new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], null, cityInfo[ii][1], regioni.get(j)));
+			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], null, cityInfo[ii][1], regioni.get(j));
+			citta.add(c);//aggiungo la citta' alla lista
+			regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
 		}
 	}
 }

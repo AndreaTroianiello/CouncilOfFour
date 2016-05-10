@@ -37,7 +37,8 @@ public class Partita {
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
-		
+		c.printList();
+		//System.out.println(regions.get(1).toString());
 		//IN MODIFICA
 		s.cityList(regions);//setta i vicini delle citta
 
