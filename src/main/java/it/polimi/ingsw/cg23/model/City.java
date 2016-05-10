@@ -68,7 +68,6 @@ public class City {
 	
 	/**
 	 * Adds a neighbors of the city.
-	 * 
 	 * @param neighbor a city near at this city.
 	 */
 	public void addNeighbor(City neighbor){

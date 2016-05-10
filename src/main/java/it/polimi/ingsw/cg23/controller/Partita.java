@@ -15,12 +15,12 @@ public class Partita {
 	CliInterface cl=new CliInterface();
 	Controller c=new Controller();
 	List <Player> giocatori;//lista giocatori
-	List <Region> region;//lista giocatori
-	Board bo;
+	List <Region> regions;//lista giocatori
+	Board board;
 
 	public Partita(){
 		this.giocatori=new ArrayList<>();
-		this.bo=null;
+		this.board=null;
 	}
 	
 	/**
@@ -35,12 +35,12 @@ public class Partita {
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
-		//VERIFICARE CHE FUNZIONI
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
+
 		//IN MODIFICA
 		
-		System.out.println(c.getRegioni().toString());
-		
+
+		// DA FARE 
 		// DA FARE creazione elementi di gioco (cartepolitiche, cartepermesso, azioni)
 		// DA FARE turno
 		}
@@ -70,6 +70,13 @@ public class Partita {
 	}
 
 	/**
+	 * @return the regioni
+	 */
+	public List<Region> getRegioni() {
+		return regions;
+	}
+	
+	/**
 	 * @param giocatori the giocatori to set
 	 */
 	public void setGiocatori(List<Player> giocatori) {
@@ -80,20 +87,20 @@ public class Partita {
 	 * @return the bo
 	 */
 	public Board getBo() {
-		return bo;
+		return board;
 	}
 
 	/**
-	 * @param bo the bo to set
+	 * @param bo the board to set
 	 */
 	public void setBo(Board bo) {
-		this.bo = bo;
+		this.board = bo;
 	}
 	
 	/**
 	 * @param region the region to set
 	 */
 	public void setRegioni(List<Region> region) {
-		this.region = region;
+		this.regions = region;
 	}
 }
