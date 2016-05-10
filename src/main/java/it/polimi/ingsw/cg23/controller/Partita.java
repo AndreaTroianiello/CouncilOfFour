@@ -42,7 +42,7 @@ public class Partita {
 		s.cityList(regions);//setta i vicini delle citta
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
 		
-		// DA FARE 
+		// DA FARE todo
 		// DA FARE creazione elementi di gioco (king, bonus, cartepermesso, azioni, board)
 		// DA FARE turno
 		}
