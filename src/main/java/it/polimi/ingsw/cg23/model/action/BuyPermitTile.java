@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
@@ -17,7 +16,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 	
 	
 	public BuyPermitTile(List<PoliticCard> cards, int region, int choosenTile) {
-		this.cards = new ArrayList<>();
+		this.cards = cards;
 		this.region = region;
 		this.chosenTile = choosenTile;
 	}
@@ -49,8 +48,9 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 	@Override
 	public void runAction(Player player, Board board) {
 		Council council = board.getRegions().get(this.region).getCouncil();
-		int cardNumber = howManyMatch(council, this.cards);
-		pickBusinessPermit(cardNumber, this.chosenTile, player, board);
+		int cardNumber = howManyMatch(council);
+		player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+		payCoins(cardNumber, player);
 		
 	}
 	
@@ -58,10 +58,9 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 	 * the method confront the color of the cards with the color of the councillors in the council
 	 * and return how many match are there 
 	 * @param council
-	 * @param cards
 	 * @return cardNumber
 	 */
-	public int howManyMatch(Council council, List<PoliticCard> cards){
+	public int howManyMatch(Council council){
 		
 		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the choosen region's council
 		int cardNumber = 0;											//the number of cards that the color match with the councillor's colors
@@ -73,7 +72,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 					match = true;									//if there is a match set the boolean true 
 					this.cards.remove(card);						//and remove the card from the list
 				}   
-				if(match == true){									//if the match is true 
+				if(match){											//if the match is true 
 					cardNumber = cardNumber + 1;					//update the counter
 					break;											//and break the second for cycle
 				}
@@ -85,17 +84,14 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 
 	
 	/**
-	 * pick the chosen permit tile from the chosen region and take 
-	 * the relative amount of money based on the number of match
+	 * take the relative amount of money based on the number of match
 	 * @param cardNumber
-	 * @param chosenTile
 	 * @param player
-	 * @param board
 	 */
-	public void pickBusinessPermit(int cardNumber, int chosenTile, Player player, Board board){
+	public void payCoins(int cardNumber, Player player){
 		int coin = player.getCoins();
 		switch(cardNumber){
-		case 1: player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+		case 1: 
 			try {
 				coin = coin -10;
 				player.setCoins(coin);
@@ -104,7 +100,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 				e.printStackTrace();
 			}
 			break;
-		case 2: player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+		case 2:
 			try {
 				coin = coin - 7;
 				player.setCoins(coin);
@@ -113,7 +109,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 				e.printStackTrace();
 			}
 			break;
-		case 3: player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+		case 3:
 			try {
 				coin = coin - 4;
 				player.setCoins(coin);
@@ -122,7 +118,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 				e.printStackTrace();
 			}
 			break;
-		case 4: player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+		case 4: 
 			break;
 			
 		default: System.out.println("Your cards don't match any councillor");
