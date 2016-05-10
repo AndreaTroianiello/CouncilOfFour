@@ -68,7 +68,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 		
 		for(int i=0; i<councilLenght; i++){							//iterate the council
 			for(PoliticCard card : this.cards){						//iterate the cards
-				if(card.getColor().toString().equals(council.getCouncillors().get(i))){		
+				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){		
 					match = true;									//if there is a match set the boolean true 
 					this.cards.remove(card);						//and remove the card from the list
 				}   
