@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
+import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.King;
+import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.CliInterface;
 /**
@@ -17,6 +21,7 @@ public class Partita {
 	Controller c=new Controller();
 	Setting s=new Setting();
 	List <Player> giocatori;//lista giocatori
+	List <City> citta;//lista giocatori
 	List <Region> regions;//lista giocatori
 	List <PoliticCard> politcards;//lista giocatori
 	Board board;
@@ -40,10 +45,15 @@ public class Partita {
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
 		s.cityList(regions);//setta i vicini delle citta
+		setCitta(c.getCitta());
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
+		King k=s.king(citta);//creato il re
+		Deck dec=new Deck(politcards);//creato il deck
+		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
+		
 		
 		// DA FARE todo
-		// DA FARE creazione elementi di gioco (king, bonus, cartepermesso, azioni, board)
+		// DA FARE creazione elementi di gioco (bonus, cartepermesso, azioni)
 		// DA FARE turno
 		}
 	
@@ -85,6 +95,13 @@ public class Partita {
 		this.giocatori = giocatori;
 	}
 
+	/**
+	 * @param cittas the city to set
+	 */
+	public void setCitta(List<City> cittas) {
+		this.citta = cittas;
+	}
+	
 	/**
 	 * @return the bo
 	 */

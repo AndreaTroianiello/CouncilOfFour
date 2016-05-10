@@ -6,6 +6,7 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
@@ -43,6 +44,15 @@ public class Setting {
 			politics.add(new PoliticCard(null,true));
 		}
 		return politics;
+	}
+	
+	public King king(List<City>citta){
+		for(int i=0; i<citta.size(); i++){
+			if(citta.get(i).getType().equals("purple")){
+				return new King(citta.get(i));
+			}
+		}
+		return null;
 	}
 	
 	/**
