@@ -14,6 +14,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class Partita {
 	CliInterface cl=new CliInterface();
 	Controller c=new Controller();
+	Setting s=new Setting();
 	List <Player> giocatori;//lista giocatori
 	List <Region> regions;//lista giocatori
 	Board board;
@@ -36,9 +37,9 @@ public class Partita {
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
-
-		//IN MODIFICA
 		
+		//IN MODIFICA
+		s.cityList(regions);//setta i vicini delle citta
 
 		// DA FARE 
 		// DA FARE creazione elementi di gioco (cartepolitiche, cartepermesso, azioni)
