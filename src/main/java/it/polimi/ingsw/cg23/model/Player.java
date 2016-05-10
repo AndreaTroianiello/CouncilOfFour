@@ -61,10 +61,11 @@ public class Player {
 	 * @return an available emporium or null (if the list in is empty).
 	 */
 	public Emporium getAvailableEmporium() {
-		if(!availableEmporiums.isEmpty())
+		try{
 			return availableEmporiums.remove(0);
-		else
+		}catch (Exception e){
 			return null;
+		}
 	}
 	
 	/**
