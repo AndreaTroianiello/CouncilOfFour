@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.CliInterface;
 /**
  * class that start the game
@@ -17,6 +18,7 @@ public class Partita {
 	Setting s=new Setting();
 	List <Player> giocatori;//lista giocatori
 	List <Region> regions;//lista giocatori
+	List <PoliticCard> politcards;//lista giocatori
 	Board board;
 
 	public Partita(){
@@ -37,12 +39,11 @@ public class Partita {
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
-		//IN MODIFICA
 		s.cityList(regions);//setta i vicini delle citta
-
-		c.printList();
+		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
+		
 		// DA FARE 
-		// DA FARE creazione elementi di gioco (cartepolitiche, cartepermesso, azioni)
+		// DA FARE creazione elementi di gioco (king, bonus, cartepermesso, azioni, board)
 		// DA FARE turno
 		}
 	

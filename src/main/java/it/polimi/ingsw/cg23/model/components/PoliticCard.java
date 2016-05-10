@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.model.components;
 import java.awt.Color;
 
 public class PoliticCard {
+
 	private final Color color;											//The color of the card.
 	private final boolean jolly;										//It indicates whether the card is multicolored. Yes is true, no is false.
 
@@ -27,5 +28,13 @@ public class PoliticCard {
 	 */
 	public boolean isJolly() {
 		return jolly;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PoliticCard [color=" + color+ ", jolly=" + jolly + "] \n";
 	}
 }
