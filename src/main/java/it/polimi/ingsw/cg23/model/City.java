@@ -152,7 +152,6 @@ public class City {
 	 */
 	@Override
 	public String toString() {
-		return "City [id=" + id + ", name=" + name + ", token=" + token + ", type=" + type + ", region=" + region
-				+ ", neighbors=" + neighbors + ", emporiums=" + emporiums + "]";
+		return "City [id=" + id + ", name=" + name + ", token=" + token + ", type=" + type + ", neighbors=" + neighbors + ", emporiums=" + emporiums + "]";
 	}
 }
