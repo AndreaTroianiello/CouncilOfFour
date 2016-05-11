@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;

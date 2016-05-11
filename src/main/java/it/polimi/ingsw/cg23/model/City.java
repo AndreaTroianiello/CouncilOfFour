@@ -147,6 +147,34 @@ public class City {
 		}
 	}
 	
+	/**
+	 * Returns the minimum distance between this city and the destination.
+	 * 
+	 * @param target the destination city.
+	 * @param path the list of cities already visited.
+	 * @return the minimum distance between the source and the target
+	 */
+	public double minimumDistance(City target,List<City> path)
+	{
+		if(this.equals(target))
+			return 0;
+		else{
+			ArrayList<City> neighbors=new ArrayList<>();
+			neighbors.addAll(0, this.neighbors);
+			System.out.println(neighbors.removeAll(path));
+			path.add(this);
+			double minDistance=Double.POSITIVE_INFINITY;
+			for (City neighbor : neighbors)
+			{
+				double distanceThroughSource=neighbor.minimumDistance(target,path);
+				if (distanceThroughSource < minDistance)
+					minDistance = distanceThroughSource;
+			}
+			path.remove(this);
+			return minDistance+1;
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -7,7 +7,6 @@
 				<Id>A</Id>
 				<name>Arkon</name>
 				<link>
-					<Id>A</Id>
 					<Id>C</Id>
 					<Id>B</Id>
 				</link>
@@ -93,7 +92,6 @@
 				<Id>I</Id>
 				<name>Indur</name>
 				<link>
-					<Id>I</Id>
 					<Id>K</Id>
 				</link>
 				<color>iron</color>
@@ -159,7 +157,6 @@
 				<Id>O</Id>
 				<name>Osium</name>
 				<link>
-					<Id>B</Id>
 					<Id>N</Id>
 				</link>
 				<color>gold</color>

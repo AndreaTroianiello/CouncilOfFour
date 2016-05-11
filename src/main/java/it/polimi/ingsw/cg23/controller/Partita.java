@@ -4,6 +4,6 @@ public class Partita {
 	
 	public void start(){
 		Avvio via=new Avvio();
-		via.startPartita();
+		via.startPartita();	
 	}
 }

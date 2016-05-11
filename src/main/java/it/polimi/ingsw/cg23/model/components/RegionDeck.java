@@ -69,12 +69,13 @@ public class RegionDeck {
 	
 	/**
 	 * Changes the showed tiles with other tiles from the hidden deck.
+	 * If you draw a showed card this method don't changes all showed cards,but shows a new card.
 	 */
 	public void changeShowedDeck(){
 		if(showedDeck.size()==maxTilesShowed)											//If the showed deck is full, empties it.
 			while(!showedDeck.isEmpty())												//Puts the showed tiles in the hidden deck.
 				hiddenDeck.add(showedDeck.remove(0));
-		while(showedDeck.size()<maxTilesShowed && !hiddenDeck.isEmpty())	//Puts tiles in the showed deck. 
+		while(showedDeck.size()<maxTilesShowed && !hiddenDeck.isEmpty())				//Puts tiles in the showed deck. 
 			showedDeck.add(hiddenDeck.remove(0));
 	}
 
