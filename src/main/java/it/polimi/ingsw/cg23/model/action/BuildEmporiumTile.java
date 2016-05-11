@@ -51,4 +51,16 @@ public class BuildEmporiumTile extends PrimaryAction implements Action {
 		
 	}
 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BuildEmporiumTile [card=" + card + ", cityID=" + cityID + "]";
+	}
+	
+	
+	
+
 }

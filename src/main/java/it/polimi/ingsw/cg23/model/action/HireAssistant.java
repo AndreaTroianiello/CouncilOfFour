@@ -33,4 +33,15 @@ public class HireAssistant extends SecondaryAction implements Action {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "HireAssistant []";
+	}
+	
+	
+	
+
 }

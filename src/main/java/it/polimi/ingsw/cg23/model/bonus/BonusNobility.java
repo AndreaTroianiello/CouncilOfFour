@@ -41,6 +41,14 @@ public class BonusNobility implements Bonus {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusNobility [steps=" + steps + "]";
+	}
+
 	
 	
 

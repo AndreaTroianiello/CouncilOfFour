@@ -1,24 +1,24 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.Council;
-import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class BuildEmporiumKing extends PrimaryAction implements Action {
 	
 	private final List<PoliticCard> cards;
-	private final List<City> cities;
+	private final City destination;
 		
 	
-	public BuildEmporiumKing(List<PoliticCard> cards, List<City> cities) {
+	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
 		this.cards = cards;
-		this.cities = cities;
+		this.destination = destination;
 	}
 	
 	
@@ -34,8 +34,8 @@ public class BuildEmporiumKing extends PrimaryAction implements Action {
 	/**
 	 * @return the city
 	 */
-	public List<City> getCities() {
-		return cities;
+	public City getDestination() {
+		return destination;
 	}
 
 
@@ -47,40 +47,38 @@ public class BuildEmporiumKing extends PrimaryAction implements Action {
 	public void runAction(Player player, Board board) {
 		int match = howManyMatch(board.getKing().getCouncil());			//control how many match between cards and councillors there are
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
-		boolean kingMoved = moveKing(board.getKing());					//check if the path is correct, and if it is, move the king
-		if(kingMoved){
-			int steps = this.cities.size();								//set steps as the length of the list
-			int coin = player.getCoins();								//set coin as the current money of the player
+		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
+		int coin = player.getCoins();									//set coin as the current money of the player
+		try {
+			coin = coin - steps*2;									
+			player.setCoins(coin);										//take from the player two coin for each steps the king moved
+		} catch (NegativeNumberException e) {
+			System.out.println("The player doesn't have enough money");
 			try {
-				coin = coin - steps*2;									
-				player.setCoins(coin);									//take from the player two coin for each steps the king moved
+				player.setCoins(coin+moneyPaid);						//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
+			} catch (NegativeNumberException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		if(player.getAvailableEmporium() != null){					//if the player has available emporiums, build one in the city
+			try {
+				this.destination.buildEmporium(player.getAvailableEmporium());
 			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
+				System.out.println("The player doesn't have available emporiums");
+				int currentCoin = player.getCoins();
 				try {
-					player.setCoins(coin+moneyPaid);					//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
+					player.setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
 				} catch (NegativeNumberException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				e.printStackTrace();
+				e.printStackTrace();					
 			}
-			if(player.getAvailableEmporium() != null){					//if the player has available emporiums, build one in the city
-				try {
-					this.cities.get(steps).buildEmporium(player.getAvailableEmporium());
-				} catch (NegativeNumberException e) {
-					System.out.println("The player doesn't have available emporiums");
-					int currentCoin = player.getCoins();
-					try {
-						player.setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
-					} catch (NegativeNumberException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					e.printStackTrace();					
-				}
-				
-			}
+			
 		}
+		
 		else{															//if the path isn't correct, give back the player the money previously paid
 			try {
 				player.setCoins(player.getCoins()+moneyPaid);
@@ -92,27 +90,7 @@ public class BuildEmporiumKing extends PrimaryAction implements Action {
 
 	}
 	
-	/**
-	 * control if every city in the list has the next one in the list as a neighbor,
-	 * and if it does it move the king in the last city on the list
-	 * @param king
-	 * @return boolean
-	 */
-	public boolean moveKing(King king){
-		boolean neighborChecked = true;
-		int iteration = this.cities.size() - 1;
-		for(int i=0; i<iteration; i++)
-			if(!this.cities.get(i).getNeighbors().contains(this.cities.get(i+1)))
-				neighborChecked = false;
-		int steps = this.cities.size();
-		if(neighborChecked){
-			king.setCity(this.cities.get(steps));
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+
 	
 	/**
 	 * take the relative amount of money based on the number of match
@@ -188,4 +166,16 @@ public class BuildEmporiumKing extends PrimaryAction implements Action {
 		return cardNumber;
 	}
 
+
+	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BuildEmporiumKing [cards=" + cards + ", destination=" + destination + "]";
+	}
+
+	
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
@@ -52,8 +51,7 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 		Council council = board.getRegions().get(this.region).getCouncil();
 		int cardNumber = howManyMatch(council);
 		player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
-		//BusinessPermitTile card = board.getRegions().get(region).getDeck().g
-		//board.getRegions().get(region).getDeck().getShowedDeck().add(e)
+		board.getRegions().get(region).getDeck().changeShowedDeck();
 		payCoins(cardNumber, player);
 		
 	}
@@ -130,4 +128,15 @@ public class BuyPermitTile extends PrimaryAction implements Action {
 			}
 		 
 		}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BuyPermitTile [cards=" + cards + ", region=" + region + ", chosenTile=" + chosenTile + "]";
+	}
+	
+	
 }

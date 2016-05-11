@@ -43,4 +43,16 @@ public class BonusGetPermitTile implements Bonus {
 		player.getAvailableBusinessPermits().add(bonusPermit);   //add the choosen PermitTitle to the player collection
 		this.deck.changeShowedDeck();   						 //replace the PermitTitle chosen with the one in top of the deck
 	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusGetPermitTile [deck=" + deck + ", card=" + card + "]";
+	}
+	
+	
 }

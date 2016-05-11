@@ -37,4 +37,15 @@ public class BonusAssistants implements Bonus {
 
 	}
 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusAssistants [assistants=" + assistants + "]";
+	}
+	
+	
+
 }

@@ -10,4 +10,14 @@ public class BonusAdditionalAction implements Bonus {
 			player.switchAdditionalAction();
 
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusAdditionalAction []";
+	}
+	
+	
 }

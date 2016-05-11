@@ -43,6 +43,15 @@ public class BonusCoin implements Bonus {
 			System.out.println("The bonus makes the player have negative coins");
 		}
 	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusCoin [coin=" + coin + "]";
+	}
 	
 	
 

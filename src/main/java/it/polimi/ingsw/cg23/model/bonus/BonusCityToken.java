@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
+import java.util.Arrays;
+
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 
@@ -43,4 +45,15 @@ public class BonusCityToken implements Bonus {
 			(this.city[i]).runBonusCity(player);
 	}
 
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusCityToken [number=" + number + ", city=" + Arrays.toString(city) + "]";
+	}
+
+	
 }

@@ -39,4 +39,14 @@ public class ChangeBusinessPermit extends SecondaryAction implements Action {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ChangeBusinessPermit [region=" + region + "]";
+	}
+	
+	
+
 }

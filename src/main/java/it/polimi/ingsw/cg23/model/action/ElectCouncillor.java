@@ -77,4 +77,16 @@ public class ElectCouncillor extends PrimaryAction implements Action{
 		
 	}
 
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ElectCouncillor [councillor=" + councillor + ", region=" + region + ", king=" + king + "]";
+	}
+	
+	
+
 }
