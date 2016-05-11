@@ -13,8 +13,8 @@ public class Region {
 	private final Bonus bonus;													//the bonus of the region.
 	private final List<City> cities;											//the list of cities contained.
 	private boolean bonusAvailable;												//status of the bonus.
-	private final Council council;
-	private final RegionDeck deck;
+	private final Council council;												//the council of the region.
+	private final RegionDeck deck;												//the deck of business permit tiles.
 	
 	public Region(String name, Bonus bonus, RegionDeck deck) {
 		this.name = name;
@@ -53,7 +53,7 @@ public class Region {
 	/**
 	 * Returns the region's council.
 	 * 
-	 * @return the council
+	 * @return the council 
 	 */
 	public Council getCouncil() {
 		return council;
@@ -71,21 +71,23 @@ public class Region {
 	/**
 	 * Adds a city in the region.
 	 * 
-	 * @param city
+	 * @param city the city to add.
 	 */
 	public void addCity(City city){
 		cities.add(city);
 	}
 		
 	/**
-	 * @return the deck
+	 * Returns the deck of the tiles.
+	 * 
+	 * @return the deck the deck of business permit tiles.
 	 */
 	public RegionDeck getDeck() {
 		return deck;
 	}
 
 	/**
-	 * Seeks a specific city by the id
+	 * Seeks a specific city by the id.
 	 * 
 	 * @param id the identifier of the city.
 	 */

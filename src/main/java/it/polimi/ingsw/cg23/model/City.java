@@ -94,6 +94,15 @@ public class City {
 	}
 
 	/**
+	 * Returns the list of the bonus.
+	 * 
+	 * @return the token.
+	 */
+	public List<Bonus> getToken() {
+		return token;
+	}
+
+	/**
 	 * Builds an emporium in the city. When a player builds a emporium loses assistants. The assistants of the player can't be negative.
 	 * 
 	 * @param emporium an emporium of the player.
@@ -152,7 +161,7 @@ public class City {
 	 * 
 	 * @param target the destination city.
 	 * @param path the list of cities already visited.
-	 * @return the minimum distance between the source and the target
+	 * @return the minimum distance between the source and the target.
 	 */
 	public double minimumDistance(City target,List<City> path)
 	{
@@ -180,7 +189,7 @@ public class City {
 	 */
 	@Override
 	public String toString() {
-		String city= "City [id=" + id + ", name=" + name + ", token=" + token + ", type=" + type +", neighbors=" +neighbors.size()+"]";
+		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.size() + ", type=" + type +", neighbors=" +neighbors.size()+"]";
 		return city;
 	}
 }

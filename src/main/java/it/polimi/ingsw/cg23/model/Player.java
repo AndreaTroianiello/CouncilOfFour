@@ -216,6 +216,8 @@ public class Player {
 	}
 
 	/**
+	 * Returns the position of the player in the nobility track.
+	 * 
 	 * @return the nobilityBoxPoistion
 	 */
 	public int getNobilityBoxPosition() {
@@ -223,13 +225,17 @@ public class Player {
 	}
 
 	/**
-	 * @param nobilityBoxPoistion the nobilityBoxPoistion to set
+	 * Sets the position of the player on the nobility track.
+	 * 
+	 * @param nobilityBoxPoistion the nobilityBoxPoistion to set.
 	 */
 	public void setNobilityBoxPoistion(int nobilityBoxPoistion) {
 		this.nobilityBoxPosition = nobilityBoxPoistion;
 	}
 
 	/**
+	 * Returns the nobility track of the player.
+	 * 
 	 * @return the playerNobilityTrack
 	 */
 	public NobilityTrack getPlayerNobilityTrack() {
