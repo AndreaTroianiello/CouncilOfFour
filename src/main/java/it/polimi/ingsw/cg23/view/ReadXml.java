@@ -17,7 +17,7 @@ import org.w3c.dom.Element;
  *
  */
 public class ReadXml {
-	String path="src/main/java/it/polimi/ingsw/cg23/view/";//file location
+	String path="src/main/resources/";//file location
 	/* array city prototype
 	 * coloumn 0: name of the city
 	 * coloumn 1: color of the city

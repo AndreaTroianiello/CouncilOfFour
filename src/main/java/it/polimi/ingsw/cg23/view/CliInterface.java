@@ -30,12 +30,12 @@ public class CliInterface {
 	 * code to use the logger (request by sonar)
 	 */
 	public void logging(){
-	 Logger logger=Logger.getLogger("my logger");
-	 ConsoleHandler handler = new ConsoleHandler();
-	 logger.setLevel(Level.ALL);
-	 handler.setFormatter(new SimpleFormatter());
-	 logger.addHandler(handler);
-	 handler.setLevel(Level.ALL);
+		Logger logger=Logger.getLogger("my logger");
+		ConsoleHandler handler = new ConsoleHandler();
+		logger.setLevel(Level.ALL);
+		handler.setFormatter(new SimpleFormatter());
+		logger.addHandler(handler);
+		handler.setLevel(Level.ALL);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class CliInterface {
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-			System.out.println(testo+" "+ogg);
+		System.out.println(testo+" "+ogg);
 
 	}
 
@@ -181,7 +181,7 @@ public class CliInterface {
 		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		print("",plancia);//stampo la plancia di gioco
 	}
-	
+
 	/**
 	 * calculate the number of regions from an city list
 	 * @param citta, a city list
@@ -195,7 +195,7 @@ public class CliInterface {
 		}
 		return regionNumber+1;
 	}
-	
+
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
@@ -239,7 +239,7 @@ public class CliInterface {
 		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		print("",plancia);//stampo la plancia di gioco
 	}
-	
+
 	/**
 	 * create the players info
 	 * @param giocatori, a list with the players
@@ -251,13 +251,13 @@ public class CliInterface {
 		percorsi+=addSpace("Player", space)+addSpace("Richness(coin)", space)+addSpace("Victory", space)+addSpace("Nobility", space);
 		percorsi+="\n";
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getUser(),space)+giocatori.get(i).getCoins()+"                      "
-		+giocatori.get(i).getVictoryPoints()+"                    "+giocatori.get(i).getNobilityBoxPosition();
+			percorsi+=addSpace(giocatori.get(i).getUser(),space)+addSpace(giocatori.get(i).getCoins(),space)
+					+addSpace(giocatori.get(i).getVictoryPoints(),space)+addSpace(giocatori.get(i).getNobilityBoxPosition(),space);
 			percorsi+="\n";
 		}
 		return percorsi;
 	}
-	
+
 	/**
 	 * calculate the number of regions
 	 * @param nome bidimensional array with the city infos
@@ -266,7 +266,7 @@ public class CliInterface {
 	public int regionsNumber(String[][] nome){
 		return scrittureXml.regionNumber(nome);
 	}
-	
+
 	/**
 	 * @param nome the String you want to extend
 	 * @param totalSpace the total length you need (string + space)
@@ -282,9 +282,40 @@ public class CliInterface {
 		}
 		return nomeExtended;
 	}
+
+	/**
+	 * 
+	 * @param number, the number to add space
+	 * @param totalSpace, the number of space you want to add
+	 * @return a string with the number and the space
+	 */
+	public String addSpace(int number, int totalSpace){	
+		String numberExtended=Integer.toString(number);
+		int length=totalSpace-digits(number);//spazi da aggiungere
+		if(digits(number)<totalSpace){
+			for(int j=0; j<length; j++){//ciclo per aggiungere spazi
+				numberExtended+=" ";//aggiungo spazi
+			}
+		}
+		return numberExtended;
+	}
 	
-	public String addSpace(int number, int totalSpace){	//DA FARE
-		String numberExtended="";
-		return numberExtended+=number;
+	/**
+	 * calculate the number of digits in a number
+	 * @param number, the number you want to calculate the digits
+	 * @return the number of digits
+	 */
+	public int digits(int number){
+		int count=0;
+		int num=number;//creata nuova variabile perche' richiesta da sonar
+		if(num==0)//se il numero e' 0 ha una cifra
+			return 1;
+		if(num<0)//se il numero e' minore di 0 lo modulizzo
+			num=Math.abs(num);
+		while(number>0){
+			num/=10;
+			count++; 
+		}
+		return count;
 	}
 }

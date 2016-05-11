@@ -16,7 +16,7 @@ import org.w3c.dom.Element;
  *
  */
 public class WriteXml {
-	String path="src/main/java/it/polimi/ingsw/cg23/view/";//file location
+	String path="src/main/resources/";//file location
 
 	/**
 	 * write the xml file
