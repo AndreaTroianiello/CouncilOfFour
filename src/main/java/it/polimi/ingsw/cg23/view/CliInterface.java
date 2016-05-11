@@ -150,7 +150,7 @@ public class CliInterface {
 		plancia+=addSpace("MONTAGNA", space);
 		plancia+="\n";
 		int i;
-		int regionNumber=scrittureXml.regionNumber(cityInfo);
+		int regionNumber=regionNumber(city);//recupera il numero di regioni
 		int c=city.size()/regionNumber;
 		int m=city.size()/regionNumber*2;//posizioni delle zone nella lista 
 		for(i=0; i<city.size()/regionNumber; i++,c++,m++){//ciclo che scorre le citta' per regione da stampare 5
@@ -167,9 +167,8 @@ public class CliInterface {
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
 				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+") ";//recupero le informazioni dall'array
-
-				if("purple".equals(city.get(kk).getName())){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
-					newcity=newcity.substring(0,newcity.length()-4)+"KING";//la citta del re non ha bonus
+				if("purple".equals(city.get(kk).getType())){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
+					newcity=newcity.substring(0,newcity.length()-5)+"KING";//la citta del re non ha bonus
 					plancia+=addSpace(newcity, space);
 				}else
 					plancia+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
@@ -178,6 +177,20 @@ public class CliInterface {
 		}
 		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		print("",plancia);//stampo la plancia di gioco
+	}
+	
+	/**
+	 * calculate the number of regions from an city list
+	 * @param citta, a city list
+	 * @return the number of regions
+	 */
+	public int regionNumber(List<City> citta){
+		int regionNumber=0;
+		for(int i=0; i<citta.size()-1; i++){
+			if(citta.get(i).getRegion()!=citta.get(i+1).getRegion())
+				regionNumber++;
+		}
+		return regionNumber+1;
 	}
 	
 	/**
