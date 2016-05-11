@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
@@ -49,11 +50,12 @@ public class Avvio {
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
 		King k=s.king(citta);//creato il re
 		Deck dec=new Deck(politcards);//creato il deck
-		new Board(dec, regions, new NobilityTrack(20), k);//creata la board
+		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
 		
 		
 		// DA FARE creazione elementi di gioco (bonus, cartepermesso, azioni)
-		// DA FARE turno
+
+		new Turn(bord);//creato il turno
 		}
 	
 	/**
