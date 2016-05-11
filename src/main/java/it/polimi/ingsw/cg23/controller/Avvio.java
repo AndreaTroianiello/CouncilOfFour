@@ -44,6 +44,7 @@ public class Avvio {
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
 		c.createRegions();//crea le regioni e le citta'
 		cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
+		cl.createMap(citta, giocatori);//stampa la plancia di gioco dalla lista
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
 		s.cityList(regions);//setta i vicini delle citta
 		setCitta(c.getCitta());
@@ -54,7 +55,7 @@ public class Avvio {
 		
 		
 		// DA FARE creazione elementi di gioco (bonus, cartepermesso, azioni)
-
+		
 		new Turn(bord);//creato il turno
 		}
 	

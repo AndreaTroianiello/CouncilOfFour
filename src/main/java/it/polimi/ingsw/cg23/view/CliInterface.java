@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 
 
@@ -138,6 +139,50 @@ public class CliInterface {
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
+	 * @param city, a city list with city info
+	 * @param giocatori, a list with the players
+	 */
+	public void createMap(List<City> city, List<Player>giocatori){//NON TIENE CONTO DEI COLLEGAMENTI
+		String plancia="";//la stringa che stampa la plancia di gioco
+		int space=35;//spazio da mettere tra una regione e l'altra
+		plancia+=addSpace("COSTA", space);//nomi delle regioni
+		plancia+=addSpace("COLLINA", space);
+		plancia+=addSpace("MONTAGNA", space);
+		plancia+="\n";
+		int i;
+		int regionNumber=scrittureXml.regionNumber(cityInfo);
+		int c=city.size()/regionNumber;
+		int m=city.size()/regionNumber*2;//posizioni delle zone nella lista 
+		for(i=0; i<city.size()/regionNumber; i++,c++,m++){//ciclo che scorre le citta' per regione da stampare 5
+			/* i posizione citta' costa
+			 * c posizione citta' collina
+			 * m posizione citta' montagna
+			 */
+			for(int k=0; k<regionNumber; k++){//aggiunge le 3 citta', una per ogni regione
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+") ";//recupero le informazioni dall'array
+
+				if("purple".equals(city.get(kk).getName())){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
+					newcity=newcity.substring(0,newcity.length()-4)+"KING";//la citta del re non ha bonus
+					plancia+=addSpace(newcity, space);
+				}else
+					plancia+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
+			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+		}
+		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		print("",plancia);//stampo la plancia di gioco
+	}
+	
+	/**
+	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
+	 * @return void
 	 * @param city, a bidimensional array with city info
 	 * @param giocatori, a list with the players
 	 */
@@ -151,8 +196,8 @@ public class CliInterface {
 		int i;
 		int regionNumber=scrittureXml.regionNumber(city);
 		int c=city.length/regionNumber;
-		int m=city.length/regionNumber*2;//posizioni delle zone nall'array (le citta' devono essere multiple di 3)
-		for(i=0; i<city.length/regionNumber; i++,c++,m++){//array che scorre le citta' per regione da stampare 5
+		int m=city.length/regionNumber*2;//posizioni delle zone nell'array (le citta' devono essere multiple di 3)
+		for(i=0; i<city.length/regionNumber; i++,c++,m++){//ciclo che scorre le citta' per regione da stampare 5
 			/* i posizione citta' costa
 			 * c posizione citta' collina
 			 * m posizione citta' montagna
