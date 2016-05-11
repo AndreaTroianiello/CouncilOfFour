@@ -53,10 +53,10 @@ public class Avvio {
 		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
 		
 		
-		// DA FARE creazione elementi di gioco (bonus, cartepermesso, azioni)
+		// DA FARE creazione elementi di gioco (balconi, bonus, cartepermesso, azioni)
 		
 		new Turn(bord);//creato il turno
-		cl.createMap(citta, giocatori);//stampa la plancia di gioco dalla lista
+		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
 		}
 	
 	/**

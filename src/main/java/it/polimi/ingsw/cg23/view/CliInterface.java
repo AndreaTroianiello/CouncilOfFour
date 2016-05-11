@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.components.King;
 
 
 
@@ -139,10 +140,11 @@ public class CliInterface {
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
+	 * @param king, the king
 	 * @param city, a city list with city info
 	 * @param giocatori, a list with the players
 	 */
-	public void createMap(List<City> city, List<Player>giocatori){//NON TIENE CONTO DEI COLLEGAMENTI
+	public void createMap(List<City> city, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 		String plancia="";//la stringa che stampa la plancia di gioco
 		int space=35;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
@@ -167,7 +169,8 @@ public class CliInterface {
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
 				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+") ";//recupero le informazioni dall'array
-				if("purple".equals(city.get(kk).getType())){//se la città e' quella viola inizialmente c'è il re (all'avvio della partita)
+				String kingCity=king.getCity().getName();//nome della citta' del re
+				if(kingCity.equals(city.get(kk).getName())){//se la città e' quella che sta ciclando la segno
 					newcity=newcity.substring(0,newcity.length()-5)+"KING";//la citta del re non ha bonus
 					plancia+=addSpace(newcity, space);
 				}else
@@ -175,7 +178,7 @@ public class CliInterface {
 			}
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
-		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		print("",plancia);//stampo la plancia di gioco
 	}
 	
@@ -233,7 +236,7 @@ public class CliInterface {
 			}
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
-		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		print("",plancia);//stampo la plancia di gioco
 	}
 	
@@ -278,5 +281,10 @@ public class CliInterface {
 			}
 		}
 		return nomeExtended;
+	}
+	
+	public String addSpace(int number, int totalSpace){	//DA FARE
+		String numberExtended="";
+		return numberExtended+=number;
 	}
 }
