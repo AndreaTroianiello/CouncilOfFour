@@ -49,7 +49,9 @@ public class BonusNobility implements Bonus {
 		return "BonusNobility [steps=" + steps + "]";
 	}
 
-	
+	public String toStringName(){
+		return "BonusNobility";
+	}
 	
 
 }
