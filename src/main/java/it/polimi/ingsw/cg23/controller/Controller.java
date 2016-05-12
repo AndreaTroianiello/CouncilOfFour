@@ -14,6 +14,7 @@ public class Controller {
 	List <Player> giocatori = new ArrayList<>();//lista giocatori
 	List <Region> regioni = new ArrayList<>();//lista regioni
 	List <City> citta = new ArrayList<>();//lista citta
+	List<Bonus> bonusList=new ArrayList<>();//lista di bonus
 	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
 	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");;//array con le informazioni delle citta'
@@ -90,6 +91,7 @@ public class Controller {
 			ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
 
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
+			//List<Bonus>bonusCity=getCityBonus(ii);
 			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], null, cityInfo[ii][1], regioni.get(j));
 			citta.add(c);//aggiungo la citta' alla lista
 			regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
@@ -97,14 +99,28 @@ public class Controller {
 	}
 	
 	/**
-	 * PARTIAL
+	 * return the a list of bonus for the select city
+	 * creiamo i bonus della citta', li mettiamo in una lista e la ritorniamo al creatore della citta'
+	 * 
+	 */
+	/*public List<Bonus> getCityBonus(int i){
+		
+		//cityInfo[i][4];//array che contiene i bonus della citta' presi dall'xml
+		 *contare le virgole e aggiungere 1
+		 *cerchiamo i bonus nella lista totale dei bonus
+		 *aggiungiamo i bonus trovati alla lista dei bonus della citta'
+		 *ritornaimo la lista dei bonus della citta'
+		//bon
+	}*/
+	
+	/**
+	 * PARTIAL-->
 	 * @return a bonus list with all the type of bonus
 	 */
 	public List<Bonus> bonusList(){//PARZIALE----------
-		List<Bonus> bonusList=new ArrayList<>();
 			bonusList.add(new BonusAdditionalAction());
 			bonusList.add(new BonusAssistants(0));
-			//bonusList.add(new BonusCityToken(0,null));//altrimenti crasha
+			bonusList.add(new BonusCityToken(0,null));
 			bonusList.add(new BonusCoin(0));
 			bonusList.add(new BonusGetPermitTile(0,0,null));
 			bonusList.add(new BonusNobility(0,null));
