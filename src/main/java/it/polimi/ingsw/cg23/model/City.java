@@ -165,22 +165,22 @@ public class City {
 	 */
 	public double minimumDistance(City target,List<City> path)
 	{
-		if(this.equals(target))
+		if(this.equals(target))														//If this city is the target returns 0.
 			return 0;
 		else{
-			ArrayList<City> neighbors=new ArrayList<>();
-			neighbors.addAll(0, this.neighbors);
-			System.out.println(neighbors.removeAll(path));
-			path.add(this);
-			double minDistance=Double.POSITIVE_INFINITY;
-			for (City neighbor : neighbors)
+			ArrayList<City> neighbors=new ArrayList<>();							//Creates a new list for the neighbors.
+			neighbors.addAll(0, this.neighbors);									//Copies the original list of neighbors.
+			System.out.println(neighbors.removeAll(path));							//Removes all cities already visited from neighbors' list
+			path.add(this);															//Adds this city at the list of cities already visited.
+			double minDistance=Double.POSITIVE_INFINITY;							//The minimum default distance has infinite value.
+			for (City neighbor : neighbors)											//Explores the neighbors' list.
 			{
-				double distanceThroughSource=neighbor.minimumDistance(target,path);
-				if (distanceThroughSource < minDistance)
-					minDistance = distanceThroughSource;
+				double distanceThroughSource=neighbor.minimumDistance(target,path);	//Gets the minimum distance of the neighbor.
+				if (distanceThroughSource < minDistance)							//Compares the distance.
+					minDistance = distanceThroughSource;							//If the new distance is smaller than the old, this becomes the new minimum distance.
 			}
-			path.remove(this);
-			return minDistance+1;
+			path.remove(this);														//Removes this city from the path. It can be visited again by new path.
+			return minDistance+1;													//Returns the minimum distance increased by one. 
 		}
 	}
 	

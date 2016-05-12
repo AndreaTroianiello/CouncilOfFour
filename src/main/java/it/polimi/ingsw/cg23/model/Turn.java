@@ -56,4 +56,13 @@ public class Turn {
 	public void runAction(){
 		action.runAction(currentPlayer, board);
 	}
+	
+	/**
+	 * It indicates whether the player has used all available emporiums.
+	 * 
+	 * return the status of availableEmporiums' list. It is true if this list is empty.
+	 */
+	 public boolean isFinalTurn(){
+		 return currentPlayer.isAvailableEmporiumEmpty();
+	 }
 }

@@ -56,6 +56,15 @@ public class Player {
 	}
 	
 	/**
+	 * Returns the status of the emporiums available
+	 * 
+	 * @return the status of availableEmporiums' list. It is true if this list is empty.
+	 */
+	public boolean isAvailableEmporiumEmpty(){
+		return availableEmporiums.isEmpty();
+	}
+	
+	/**
 	 * Returns an available emporium of the player.
 	 * 
 	 * @return an available emporium or null (if the list in is empty).
