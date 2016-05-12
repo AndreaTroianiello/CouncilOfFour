@@ -103,31 +103,13 @@ public class BuildEmporiumKing extends PrimaryAction implements Action {
 		int coin = player.getCoins();
 		switch(cardNumber){
 		case 1: 
-			try {
-				coin = coin -10;
-				player.setCoins(coin);
-			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
-				e.printStackTrace();
-			}
+			tryPayment(player, coin, 10);
 			return 10;
 		case 2:
-			try {
-				coin = coin - 7;
-				player.setCoins(coin);
-			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
-				e.printStackTrace();
-			}
+			tryPayment(player, coin, 7);
 			return 7;
 		case 3:
-			try {
-				coin = coin - 4;
-				player.setCoins(coin);
-			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
-				e.printStackTrace();
-			}
+			tryPayment(player, coin, 4);
 			return 4;
 		case 4: 
 			return 0;
@@ -137,6 +119,24 @@ public class BuildEmporiumKing extends PrimaryAction implements Action {
 			}
 		 
 		}
+	
+	/**
+	 * try to make the payment, and catch the exception if the 
+	 * player doesn't have enough money
+	 * 
+	 * @param player
+	 * @param coin
+	 * @param payment
+	 */
+	public void tryPayment(Player player,int coin, int payment){
+		try {
+			coin = coin - payment;
+			player.setCoins(coin);
+		} catch (NegativeNumberException e) {
+			System.out.println("The player doesn't have enough money");
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * the method confront the color of the cards with the color of the councillors in the council
