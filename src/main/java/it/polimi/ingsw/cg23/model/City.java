@@ -98,7 +98,10 @@ public class City {
 	 * 
 	 * @return the token.
 	 */
-	public List<Bonus> getToken() {
+	public List<String> getToken() {
+		List<String> token=new ArrayList<>();
+		for(Bonus bonus: this.token)
+			token.add(bonus.toString());
 		return token;
 	}
 	
