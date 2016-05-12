@@ -41,8 +41,9 @@ public class BonusCityToken implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		for(int i=0; i<this.number; i++)
-			(this.city[i]).runBonusCity(player);
+		for(int i=0; i<this.number; i++)					//iterate the city in the list
+			if(this.city[i].containsEmporium(player))		//control if the city contains an emporium
+				(this.city[i]).runBonusCity(player);		//if it does, give the player the bonus
 	}
 
 
