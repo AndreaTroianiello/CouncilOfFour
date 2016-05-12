@@ -3,6 +3,7 @@
  */
 package it.polimi.ingsw.cg23.model.bonus;
 
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.NobilityBox;
 
@@ -13,12 +14,24 @@ import it.polimi.ingsw.cg23.model.components.NobilityBox;
 public class BonusNobility implements Bonus {
 	
 	private final int steps;
+	private final Board board;
 	
 
-	public BonusNobility(int steps) {
+	public BonusNobility(int steps, Board board) {
 		this.steps = steps;
+		this.board = board;
 	}
+
 	
+	/**
+	 * @return the board
+	 */
+	public Board getBoard() {
+		return board;
+	}
+
+
+
 	/**
 	 * @return the steps
 	 */
@@ -34,7 +47,7 @@ public class BonusNobility implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		NobilityBox nobilityBox = player.getPlayerNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition()+steps);
+		NobilityBox nobilityBox = this.board.getNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition()+steps);
 		player.setNobilityBoxPoistion(player.getNobilityBoxPosition()+steps);
 		for(Bonus b: nobilityBox.getBonus()){
 			b.giveBonus(player);

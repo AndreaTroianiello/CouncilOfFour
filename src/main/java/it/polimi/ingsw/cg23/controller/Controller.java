@@ -106,9 +106,9 @@ public class Controller {
 			bonusList.add(new BonusAssistants(0));
 			//bonusList.add(new BonusCityToken(0,null));//altrimenti crasha
 			bonusList.add(new BonusCoin(0));
-			bonusList.add(new BonusGetPermitTile(null,0));
-			bonusList.add(new BonusNobility(0));
-			bonusList.add(new BonusPolitics(null));
+			bonusList.add(new BonusGetPermitTile(0,0,null));
+			bonusList.add(new BonusNobility(0,null));
+			bonusList.add(new BonusPolitics(0,null));
 			bonusList.add(new BonusTileBonus());
 			bonusList.add(new BonusVictoryPoints(0));
 			return bonusList;

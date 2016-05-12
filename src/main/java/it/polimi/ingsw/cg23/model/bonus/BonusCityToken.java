@@ -17,7 +17,7 @@ public class BonusCityToken implements Bonus {
 		this.number = number;
 		this.city = city;
 		this.bonusNobility = new boolean[this.city.length];
-		for(int i=0; i<this.bonusNobility.length; i++)
+		for(int i=0; i<this.bonusNobility.length; i++)			//set all the array's elements at false
 			this.bonusNobility[i] = false;
 	}
 

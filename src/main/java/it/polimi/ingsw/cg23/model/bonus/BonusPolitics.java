@@ -1,29 +1,46 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.components.Deck;
 
 
 public class BonusPolitics implements Bonus {
 	
-	private final Deck deck;
+	private final int cardNumber;
+	private final Board board;
+	
+	
+	public BonusPolitics(int cardNumber, Board board) {
+		this.cardNumber = cardNumber;
+		this.board = board;
+	}
 
-	public BonusPolitics(Deck deck) {
-		this.deck = deck;
+
+	/**
+	 * @return the board
+	 */
+	public Board getBoard() {
+		return board;
+	}
+
+
+	/**
+	 * @return the cardNumber
+	 */
+	public int getCardNumber() {
+		return cardNumber;
 	}
 
 	/**
-	 * @return the deck
+	 * add cardNumber politic's cards to the player's hand
+	 * 
+	 *  @param player
+	 *  @param board
 	 */
-	public Deck getDeck() {
-		return deck;
-	}
-
-
-	//add a politic card to the player's hand
 	@Override
 	public void giveBonus(Player player) {
-		player.addPoliticCard(deck.draw());
+		for(int i=0; i<cardNumber; i++)
+			player.addPoliticCard(this.board.getDeck().draw());			//draw a card from the politic's deck
 
 	}
 
@@ -32,7 +49,7 @@ public class BonusPolitics implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusPolitics [deck=" + deck + "]";
+		return "BonusPolitics [cardNumber=" + cardNumber + "]";
 	}
 
 	
