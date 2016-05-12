@@ -36,7 +36,7 @@ public class BuildEmporiumTile extends PrimaryAction implements Action {
 	@Override
 	public void runAction(Player player, Board board) {
 		for(Region region : board.getRegions()){
-			City city = region.searchCity(this.card.getCitiesId().get(this.cityID));
+			City city = region.searchCityById(this.card.getCitiesId().get(this.cityID));
 			if(player.getAvailableEmporium() != null){
 				try {
 					city.buildEmporium(player.getAvailableEmporium());

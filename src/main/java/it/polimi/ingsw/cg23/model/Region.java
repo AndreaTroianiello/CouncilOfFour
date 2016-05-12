@@ -91,11 +91,24 @@ public class Region {
 	 * 
 	 * @param id the identifier of the city.
 	 */
-	public City searchCity(char id){
-		for(int index=0;index<cities.size();++index)
-			if(cities.get(index).getId()==id)
-				return cities.get(index);
+	public City searchCityById(char id){
+		for(City city: cities)								//Explore the city.
+			if(city.getId()==id)							//Control the id of the city.
+				return city;								//If true return the city.
 		return null;
+	}
+	
+	/**
+	 * Returns to the city of a specific type.
+	 * 
+	 * @param type the specific type.
+	 */
+	public List<City> searchCityByType(String type){
+		List<City> citiesType= new ArrayList<>();				//Create the list of cities.
+		for(City city: cities)									//Explore the city.
+			if(type.equals(city.getType()))						//Control if the city has the same type.
+				citiesType.add(city);							//If true add the city at the list.
+		return citiesType;
 	}
 	
 
