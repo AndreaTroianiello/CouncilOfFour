@@ -98,15 +98,29 @@ public class Region {
 		return null;
 	}
 	
+
 	/**
-	 *  Run the bonus associated to the region and sets the status of the bonus at false.
+	 * Returns the status of the region for the specific player.
+	 * 
+	 * @param player
+	 * @return the status of the region. If true the region is completed by player.
+	 */
+	public boolean completedRegion(Player player){
+		boolean allCities=true;
+		for(City city: cities)											//Explore the region's cities.
+			allCities=allCities && city.containsEmporium(player);		//Control if the city contains a player's emporium.
+		return allCities;
+	}
+	
+	/**
+	 *  Runs the bonus associated to the region and sets the status of the bonus at false.
 	 *  
 	 *  @param player the player that takes the bonus of the region. 
 	 */
 	public void runBonusRegion(Player player){
-		if(bonusAvailable){
-			bonus.giveBonus(player);
-			setBonusUnavailable();
+		if(bonusAvailable && completedRegion(player)){					//Excute the bonus if it's available and the player has emporiums in all cities.
+			bonus.giveBonus(player);									//Run the bonus.
+			setBonusUnavailable();										//Set unavailable the bonus.
 		}
 	}
 

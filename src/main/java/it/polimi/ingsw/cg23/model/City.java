@@ -8,13 +8,13 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class City {
 
-	private final char id;
-	private final String name;
-	private final List<Bonus> token;
-	private final String type;
-	private final Region region;
-	private final List<City> neighbors;
-	private final List<Emporium> emporiums;
+	private final char id;									//The identifier of the city
+	private final String name;								//The name of the city, the first char is the id.
+	private final List<Bonus> token;						//The list of city's bonus.
+	private final String type;								//The city's type.
+	private final Region region;							//The city's region.
+	private final List<City> neighbors;						//The list of nearly cities.
+	private final List<Emporium> emporiums;					//The list of emporiums builded in the city.
 	
 	public City(char id, String name, List<Bonus> token, String type, Region region){
 		this.id=id;
@@ -101,9 +101,26 @@ public class City {
 	public List<Bonus> getToken() {
 		return token;
 	}
+	
+	/**
+	 * Controls if this city contains a player's emporium.
+	 * 
+	 * @param player the player to control.
+	 * @return if this city contains the emporium returns true, otherwise false.
+	 */
+	public boolean containsEmporium(Player player ){
+		//Control if the city contains a player's emporium
+		for(Emporium emporium: emporiums){							//Extract the emporium.
+			Player emporiumPlayer=emporium.getPlayer();				//Get the player of the emporium.
+			if(emporiumPlayer.equals(player))						//Control the player.
+				return true;										//If its return true.
+		}
+		return false;												//Otherwise false.
+	}
 
 	/**
 	 * Builds an emporium in the city. When a player builds a emporium loses assistants. The assistants of the player can't be negative.
+	 * This method doesn't control if the player hasn't a emporium in this city.
 	 * 
 	 * @param emporium an emporium of the player.
 	 * @throws NegativeNumberException the assistants of the player must be positive.
@@ -136,22 +153,14 @@ public class City {
 	 *  @param citiesVisited the list of the cities already visited.
 	 */
 	public void runBonusCityAndNeighbors(Player player, List<String> citiesVisited){
+		boolean containsEmporium=containsEmporium(player);					//Control if this city contains a player's emporium.
 		
-		boolean containsEmporium= false;
-		
-		//control if the city contains a player's emporium
-		for(int index=0;index<emporiums.size();++index){
-			Emporium emporium=emporiums.get(index);										//Extract the emporium at the index
-			Player emporiumPlayer=emporium.getPlayer();									//Get the player
-			containsEmporium=emporiumPlayer.equals(player);								//Control the player
-		}
-		
-		//execute if the city is just not visited and doesn't contain a player's emporium
+		//Execute if the city is just not visited and doesn't contain a player's emporium
 		if(!citiesVisited.contains(name) && !containsEmporium){
-			runBonusCity(player);														//Run the bonus
-			for(int index=0;index<neighbors.size();++index){							//Visit the neighbors
-				(neighbors.get(index)).runBonusCityAndNeighbors(player, citiesVisited);	//Visit the neighbor and run the bonus
-				citiesVisited.add(name);												//Add the name of city at citiesVisited
+			runBonusCity(player);											//Run the bonus
+			for(City neighbor: neighbors){									//Visit the neighbors
+				neighbor.runBonusCityAndNeighbors(player, citiesVisited);	//Visit the neighbor and run the bonus
+				citiesVisited.add(name);									//Add the name of city at citiesVisited
 			}
 		}
 	}
