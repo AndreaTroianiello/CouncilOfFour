@@ -47,7 +47,7 @@ public class BonusCityToken implements Bonus {
 	public void giveBonus(Player player) {
 		for(int i=0; i<this.number; i++){											//iterate the city in the list
 			for(int j=0; j<this.city[i].getToken().size(); j++) 					//iterate the bonus in every city
-				if(this.city[i].getToken().get(j)=="BonusNobility") {				//if the city contains a nobilityBonus bonus
+				if(this.city[i].getToken().get(j).contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
 					this.bonusNobility[i]=true;										//set as true the boolean referred to that city 
 					}
 			if(this.city[i].containsEmporium(player) && !this.bonusNobility[i])		//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
