@@ -8,11 +8,13 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Turn;
+import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.CliInterface;
+
 /**
  * class that start the game
  *
@@ -25,6 +27,7 @@ public class Avvio {
 	List <City> citta;//lista giocatori
 	List <Region> regions;//lista giocatori
 	List <PoliticCard> politcards;//lista giocatori
+	List <Bonus> bonusList;//lista dei bonus
 	Board board;
 
 	public Avvio(){
@@ -42,6 +45,7 @@ public class Avvio {
 			c.createPlayer();
 		}
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
+		bonusList=c.bonusList();//recupero la lista con tutti i bonus
 		c.createRegions();//crea le regioni e le citta'
 		//cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller

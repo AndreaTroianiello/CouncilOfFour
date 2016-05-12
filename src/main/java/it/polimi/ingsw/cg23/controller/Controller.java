@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.bonus.*;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
@@ -94,4 +95,23 @@ public class Controller {
 			regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
 		}
 	}
+	
+	/**
+	 * PARTIAL
+	 * @return a bonus list with all the type of bonus
+	 */
+	public List<Bonus> bonusList(){//PARZIALE----------
+		List<Bonus> bonusList=new ArrayList<>();
+			bonusList.add(new BonusAdditionalAction());
+			bonusList.add(new BonusAssistants(0));
+			//bonusList.add(new BonusCityToken(0,null));//altrimenti crasha
+			bonusList.add(new BonusCoin(0));
+			bonusList.add(new BonusGetPermitTile(null,0));
+			bonusList.add(new BonusNobility(0));
+			bonusList.add(new BonusPolitics(null));
+			bonusList.add(new BonusTileBonus());
+			bonusList.add(new BonusVictoryPoints(0));
+			return bonusList;
+	}
+	
 }
