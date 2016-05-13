@@ -102,7 +102,6 @@ public class Controller {
 	}
 
 	/**
-	 * PROVVISORIO
 	 * return the a list of bonus for the select city
 	 * creiamo i bonus della citta', li mettiamo in una lista e la ritorniamo al creatore della citta'
 	 * 
@@ -111,7 +110,7 @@ public class Controller {
 		if("purple".equals(c.getType()))//la citta' del re non ha bonus
 			return;
 
-		String b="";//contiene il nome del bonus
+		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);
 
 		while(st.hasMoreTokens()){
@@ -128,6 +127,12 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * 
+	 * @param nome, the string you want to search on
+	 * @param c, what you want to find
+	 * @return, a int with the coccurences
+	 */
 	public int occorrenze(String nome, char c){//calcola il numero di volte che compare il carattere nella stringa
 		int n=0;
 		for(int i=0; i<nome.length(); i++){
@@ -138,10 +143,9 @@ public class Controller {
 	}
 
 	/**
-	 * PARTIAL-->
 	 * @return a bonus list with all the type of bonus
 	 */
-	public List<Bonus> bonusList(){//PARZIALE----------
+	public List<Bonus> bonusList(){
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants(0));
 		bonusList.add(new BonusCityToken(0,null));

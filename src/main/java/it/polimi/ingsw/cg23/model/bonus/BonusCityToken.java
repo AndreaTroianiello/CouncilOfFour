@@ -10,7 +10,7 @@ import it.polimi.ingsw.cg23.model.Player;
 public class BonusCityToken implements Bonus {
 	
 	private final int number;				//how many times the player can run the bonus
-	private final List<City> city;				//the city the player chooses to run the bonus from
+	private final List<City> city;			//the city the player chooses to run the bonus from
 	private final boolean[] bonusNobility;	//a list of boolean that show if the bonus in the city are referred to the nobilityBonus
 		
 	
@@ -22,8 +22,6 @@ public class BonusCityToken implements Bonus {
 		for(int i=0; i<this.bonusNobility.length; i++)			//set all the array's elements at false
 			this.bonusNobility[i] = false;
 	}
-
-	
 
 	/**
 	 * @return the number
