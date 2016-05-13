@@ -18,7 +18,7 @@ import it.polimi.ingsw.cg23.model.components.King;
  * classe per stampare le info sulla cl
  */
 public class CliInterface {
-	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
+	ReadCittaXml lettureXml=new ReadCittaXml();//classe per leggere l'xml
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	RandomCity randomC=new RandomCity();
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"

@@ -55,13 +55,13 @@ public class Avvio {
 		King k=s.king(citta);//creato il re
 		Deck dec=new Deck(politcards);//creato il deck
 		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
-		
-		
+
+
 		// DA FARE creazione elementi di gioco (balconi, bonus, cartepermesso, azioni)
 
 		new Turn(bord);//creato il turno
 		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
-		c.printList();
+		c.printList(citta);
 		}
 	
 	/**

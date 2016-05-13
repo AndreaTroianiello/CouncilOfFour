@@ -16,7 +16,7 @@ import org.w3c.dom.Element;
  * classe che si occupa della lettura del file xml 
  *
  */
-public class ReadXml {
+public class ReadCittaXml {
 	String path="src/main/resources/";//file location
 	/* array city prototype
 	 * coloumn 0: name of the city

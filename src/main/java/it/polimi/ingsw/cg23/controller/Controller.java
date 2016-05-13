@@ -50,18 +50,13 @@ public class Controller {
 	}
 
 	/**
-	 * 	print the element of a list
+	 * 	print all the element of a list
 	 */
-	public void printList(){
-		for(int i=0;i<giocatori.size();i++){
-			cl.print("",giocatori.get(i).toString());
+	public void printList(List<?>lista){
+		for(int i=0;i<lista.size();i++){
+			cl.print("",lista.get(i).toString());
 		}
-		for(int i=0;i<regioni.size();i++){
-			cl.print("",regioni.get(i).toString());
-		}
-		for(int i=0;i<citta.size();i++){
-			cl.print("",citta.get(i).toString());
-		}
+
 	}
 
 	/**
