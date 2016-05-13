@@ -21,10 +21,10 @@ public class Controller {
 
 	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
-	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");;//array con le informazioni delle citta'
+	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");//array con le informazioni delle citta'
 
 	/**
-	 * add a player to the list
+	 * create and add a player to the list
 	 */
 	public void createPlayer(){
 		int assistant=playerNumber();//numero di giocatori gia' presenti nella lista
@@ -32,22 +32,39 @@ public class Controller {
 		Player p=new Player(name, assistant+10, 0, nT);
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}
-
+	
+	/**
+	 * 
+	 * @return the player list
+	 */
 	public List<Player> getGiocatori(){
 		return giocatori;
 	}
 
+	/**
+	 * 
+	 * @return the regions list
+	 */
 	public List<Region> getRegioni(){
 		return regioni;
 	}
-
+	
+	/**
+	 * 
+	 * @return the cities list
+	 */
 	public List<City> getCitta(){
 		return citta;
 	}
 	
+	/**
+	 * 
+	 * @return the costruction card list
+	 */
 	public List<BusinessPermitTile> getCostructionCard(){
 		return costructionCard;
 	}
+	
 	/**
 	 * return the number of player in the list
 	 * @return the number of player
@@ -74,7 +91,7 @@ public class Controller {
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			regioni.add(new Region(cityInfo[i*c][5],null,null));//creata una nuova regione e aggiunta alla lista
-			createCities(i);
+			createCities(i);//create the city
 		}
 	}
 
@@ -102,9 +119,9 @@ public class Controller {
 	}
 
 	/**
-	 * return the a list of bonus for the select city
-	 * creiamo i bonus della citta', li mettiamo in una lista e la ritorniamo al creatore della citta'
-	 * 
+	 * aggiunta di bonus alla citta'
+	 * @param i, to define the actual city (where find bonus in the array)
+	 * @param c, the actual city
 	 */
 	public void getCityBonus(int i, City c){
 		if("purple".equals(c.getType()))//la citta' del re non ha bonus
@@ -112,14 +129,13 @@ public class Controller {
 
 		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);
-
 		while(st.hasMoreTokens()){
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
 			//int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
 
-			for(int j=0; j<bonusList.size(); j++){
-				if(bonusList.get(j).toString().contains(b)){
+			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
+				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
 					c.addBonus(bonusList.get(j));
 					//c.addBonus(bonusList.get(j).set(number));//bosogna passare ai bonus il numero
 				}
@@ -158,19 +174,42 @@ public class Controller {
 		return bonusList;
 	}
 
+	/**
+	 * create and add at the list the costruction cards
+	 */
 	public void createCardCostruction(){
-		String[][] array=cl.getCostruction("CostructionCard.xml");
-		cl.printArray(array);
-		for(int i=0; i<array.length; i++){
-			List<Character> citiesId=new ArrayList<>();
-			for(int j=0; j<array[i][1].length(); j++){
-				citiesId.add(array[i][1].charAt(j));
+		String[][] array=cl.getCostruction("CostructionCard.xml");//informazioni sulle carte costruzione
+		for(int i=0; i<array.length; i++){//ciclo che scorre tutte le carte costruzione
+			List<Character> citiesId=new ArrayList<>();//lista di id delle citta'
+			for(int j=0; j<array[i][1].length(); j++){//ciclo che scorre il numero di citta' della carta costruzione
+				citiesId.add(array[i][1].charAt(j));//aggiungo l'id della citta' alla lista
 			}
-			BusinessPermitTile bpt=new BusinessPermitTile(citiesId);
-			for(int k=0; k<occorrenze(array[i][2], ','); k++){//numero di bonus
-				//bpt.addBonus(bonus);//creare i bonus da aggiungere a
+			BusinessPermitTile bpt=new BusinessPermitTile(citiesId, array[i][0]);//creo una nuova carta costruzione
+			getCostructorBonus(bpt, array[i][2]);//aggiungo i bonus alla carta costruzione
+			costructionCard.add(bpt);//aggiungo la nuova carta costruzione alla lista
+		}
+	}
+	
+	/**
+	 * aggiunta di bonus alla carta costruzione
+	 * @param i, to define the actual city (where find bonus in the array
+	 * @param c, the actual city
+	 */
+	public void getCostructorBonus(BusinessPermitTile bpt, String bonusTotali){
+		String b;//contiene il nome del bonus
+		StringTokenizer st = new StringTokenizer(bonusTotali);
+
+		while(st.hasMoreTokens()){
+			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
+			b=name.substring(1, name.length());//isolo il nome del bonus
+			//int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
+
+			for(int j=0; j<bonusList.size(); j++){//scorro la lista dei bonus
+				if(bonusList.get(j).toString().contains(b)){//cerco il bonus nella lista dei bonus
+					bpt.addBonus(bonusList.get(j));//aggiungo alla carta costruzione i suoi bonus
+					//bpt.addBonus(bonusList.get(j).set(number));//bosogna passare ai bonus il numero
+				}
 			}
-			costructionCard.add(bpt);//aggiungo la nuova carta permesso alla lista
 		}
 	}
 }

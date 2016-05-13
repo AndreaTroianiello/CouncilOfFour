@@ -59,12 +59,13 @@ public class Avvio {
 		Deck dec=new Deck(politcards);//creato il deck
 		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
 		c.createCardCostruction();//crea le carte costruzione
-		costructionCard=c.getCostructionCard();
+		costructionCard=c.getCostructionCard();//recupero la liste di carte costruzione
+		
+		
 		// DA FARE creazione elementi di gioco (balconi, bonus, cartepermesso, azioni)
 
 		new Turn(bord);//creato il turno
 		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
-		c.printList(costructionCard);
 		}
 	
 	/**
