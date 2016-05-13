@@ -61,6 +61,7 @@ public class Avvio {
 		
 		new Turn(bord);//creato il turno
 		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
+		c.printList();
 		}
 	
 	/**

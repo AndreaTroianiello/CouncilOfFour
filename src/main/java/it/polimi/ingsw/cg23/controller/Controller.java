@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
@@ -92,42 +93,65 @@ public class Controller {
 
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
 			//List<Bonus>bonusCity=getCityBonus(ii);
-			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], null, cityInfo[ii][1], regioni.get(j));
+
+			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], cityInfo[ii][1], regioni.get(j));
+			getCityBonus(ii,c);
 			citta.add(c);//aggiungo la citta' alla lista
 			regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
 		}
 	}
-	
+
 	/**
+	 * PROVVISORIO
 	 * return the a list of bonus for the select city
 	 * creiamo i bonus della citta', li mettiamo in una lista e la ritorniamo al creatore della citta'
 	 * 
 	 */
-	/*public List<Bonus> getCityBonus(int i){
-		
-		//cityInfo[i][4];//array che contiene i bonus della citta' presi dall'xml
-		 *contare le virgole e aggiungere 1
-		 *cerchiamo i bonus nella lista totale dei bonus
-		 *aggiungiamo i bonus trovati alla lista dei bonus della citta'
-		 *ritornaimo la lista dei bonus della citta'
-		//bon
-	}*/
-	
+	public void getCityBonus(int i, City c){
+		if("purple".equals(c.getType()))//la citta' del re non ha bonus
+			return;
+
+		String b="";//contiene il nome del bonus
+		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);
+
+		while(st.hasMoreTokens()){
+			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
+			b=name.substring(1, name.length());//isolo il nome del bonus
+			int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
+
+			for(int j=0; j<bonusList.size(); j++){
+				if(bonusList.get(j).toString().contains(b)){
+					c.addBonus(bonusList.get(j));
+					//c.addBonus(bonusList.get(j).set(number));//bosogna passare ai bonus il numero
+				}
+			}
+		}
+	}
+
+	public int occorrenze(String nome, char c){//calcola il numero di volte che compare il carattere nella stringa
+		int n=0;
+		for(int i=0; i<nome.length(); i++){
+			if(nome.charAt(i)==c)
+				n++;
+		}
+		return n;
+	}
+
 	/**
 	 * PARTIAL-->
 	 * @return a bonus list with all the type of bonus
 	 */
 	public List<Bonus> bonusList(){//PARZIALE----------
-			bonusList.add(new BonusAdditionalAction());
-			bonusList.add(new BonusAssistants(0));
-			bonusList.add(new BonusCityToken(0,null));
-			bonusList.add(new BonusCoin(0));
-			bonusList.add(new BonusGetPermitTile(0,0,null));
-			bonusList.add(new BonusNobility(0,null));
-			bonusList.add(new BonusPolitics(0,null));
-			bonusList.add(new BonusTileBonus());
-			bonusList.add(new BonusVictoryPoints(0));
-			return bonusList;
+		bonusList.add(new BonusAdditionalAction());
+		bonusList.add(new BonusAssistants(0));
+		bonusList.add(new BonusCityToken(0,null));
+		bonusList.add(new BonusCoin(0));
+		bonusList.add(new BonusGetPermitTile(0,0,null));
+		bonusList.add(new BonusNobility(0,null));
+		bonusList.add(new BonusPolitics(0,null));
+		bonusList.add(new BonusTileBonus());
+		bonusList.add(new BonusVictoryPoints(0));
+		return bonusList;
 	}
-	
+
 }

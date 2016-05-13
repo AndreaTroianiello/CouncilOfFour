@@ -86,7 +86,7 @@
 					<Id>J</Id>
 				</link>
 				<color>gold</color>
-				<bonus>1Assistants,1Coin</bonus>
+				<bonus>1Assistants,1Coin,4Politics</bonus>
 			</city>
 			<city>
 				<Id>I</Id>
@@ -105,7 +105,7 @@
 					<Id>L</Id>
 				</link>
 				<color>purple</color>
-				<bonus> </bonus>
+				<bonus></bonus>
 			</city>
 		</cities>
 	</zone>
@@ -120,7 +120,7 @@
 					<Id>N</Id>
 				</link>
 				<color>silver</color>
-				<bonus>1GetPermitTile</bonus>
+				<bonus>1PermitTile</bonus>
 			</city>
 			<city>
 				<Id>L</Id>
@@ -160,7 +160,7 @@
 					<Id>N</Id>
 				</link>
 				<color>gold</color>
-				<bonus>1GetPermitTile,1VictoryPoints</bonus>
+				<bonus>1PermitTile,1VictoryPoints</bonus>
 			</city>
 		</cities>
 	</zone>
