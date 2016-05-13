@@ -17,7 +17,7 @@ public class PrintMap {
 	 */
 	public void createMap(List<City> city, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 		String plancia="";//la stringa che stampa la plancia di gioco
-		int space=35;//spazio da mettere tra una regione e l'altra
+		int space=60;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
 		plancia+=addSpace("COLLINA", space);
 		plancia+=addSpace("MONTAGNA", space);
@@ -39,13 +39,12 @@ public class PrintMap {
 					kk=c;//assegno a kk il valore della zona "collina" in base a k
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
-				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+") ";//recupero le informazioni dall'array
-				//DA PROVARE QUANDO LE CITTA' AVRANNO I BONUS
-				//String citybonus=(cityBonus(city.get(kk)));//DA PROVARE
-				//newcity+="("+citybonus+")";//aggiungo alla nuova citta' i suoi bonus
+				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+")";//recupero le informazioni dall'array
+				String citybonus=(cityBonus(city.get(kk)));//bonus della citta'
+				newcity+="("+citybonus+")";//aggiungo alla nuova citta' i suoi bonus
 				String kingCity=king.getCity().getName();//nome della citta' del re
 				if(kingCity.equals(city.get(kk).getName())){//se la città e' quella che sta ciclando la segno
-					newcity=newcity.substring(0,newcity.length()-5)+"KING";//la citta del re non ha bonus
+					newcity=newcity.substring(0,newcity.length()-6)+"KING";//la citta del re non ha bonus
 					plancia+=addSpace(newcity, space);
 				}else
 					plancia+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
@@ -63,11 +62,14 @@ public class PrintMap {
 	 */
 	public String cityBonus(City city){//DA VERIFICARE
 		String bonus="";
+		
 		for(int i=0; i<city.getToken().size(); i++){//ciclo che scorre i bonus di una citta'
 			bonus+=city.getToken().get(i);//ritorna il nome del bonus
 			bonus+=", ";
 		}
-		bonus+=bonus.substring(0, bonus.length()-2);//tolgo l'ultima virgola e spazio
+		if(bonus.length()==0)//se non ci sono bonus ritorna una stringa vuota
+			return "";
+		bonus=bonus.substring(0, bonus.length()-2);//tolgo l'ultima virgola e spazio
 		return bonus;
 	}
 	

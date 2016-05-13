@@ -50,7 +50,7 @@ public class Avvio {
 			c.createPlayer();
 		}
 		cl.print("", "\nCreo gli elementi di gioco:");
-		cl.print("", "Creo i giocatori");
+		cl.print("", "-Creo i giocatori");
 		
 		//----------regioni e citta'----------
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
@@ -59,31 +59,31 @@ public class Avvio {
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
 		s.cityList(regions);//setta i vicini delle citta
 		setCitta(c.getCitta());
-		cl.print("", "Creo le regioni e le citta'");
+		cl.print("", "-Creo le regioni e le citta'");
 		
 		//----------carte politiche----------
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
-		cl.print("", "Creo le carte politiche");
+		cl.print("", "-Creo le carte politiche");
 		
 		//----------king----------
 		King k=s.king(citta);//creato il re
-		cl.print("", "Creo il re");
+		cl.print("", "-Creo il re");
 		
 		//----------deck----------
 		Deck dec=new Deck(politcards);//creato il deck
-		cl.print("", "Creo il deck");
+		cl.print("", "-Creo il deck");
 		
 		//----------board----------
 		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
-		cl.print("", "Creo la board");
+		cl.print("", "-Creo la board");
 		
 		//----------carte permesso di costruzione----------
 		c.createCardCostruction();//crea le carte costruzione
 		costructionCard=c.getCostructionCard();//recupero la liste di carte costruzione
-		cl.print("", "Creo le carte permesso di costruzione");
+		cl.print("", "-Creo le carte permesso di costruzione\n");
 		
 		//------------------------------------------------------------------
-		//BONUS E CARTE COSTRUZIONE parziale
+		//BONUS E CARTE COSTRUZIONE parziale (i bonus devono accettare tutti gli stessi parametri)
 		// DA FARE creazione elementi di gioco (balconi, azioni)
 
 		new Turn(bord);//creato il turno
