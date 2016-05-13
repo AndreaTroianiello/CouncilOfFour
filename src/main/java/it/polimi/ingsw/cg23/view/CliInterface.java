@@ -21,6 +21,7 @@ public class CliInterface {
 	ReadCittaXml lettureXml=new ReadCittaXml();//classe per leggere l'xml
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	RandomCity randomC=new RandomCity();
+	RandomCostruction cosRnd=new RandomCostruction();
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	final int citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");//numero di attributi delle citta'
@@ -149,6 +150,10 @@ public class CliInterface {
 				regionNumber++;
 		}
 		return regionNumber+1;
+	}
+	
+	public String[][] RandomCostruction(int numPerReg){
+		return cosRnd.PermitCard(numPerReg);
 	}
 	
 	/**
