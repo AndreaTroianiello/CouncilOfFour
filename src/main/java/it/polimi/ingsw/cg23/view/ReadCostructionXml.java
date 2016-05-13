@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -10,8 +9,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * the class read the xml who contains the costruction cards
+ *
+ */
 public class ReadCostructionXml {
 	String path="src/main/resources/";//file location
+	
 	/**
 	 * legge il file xml
 	 * @param endpath, the name of file (with the extension ".xml")

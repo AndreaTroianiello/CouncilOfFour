@@ -43,26 +43,48 @@ public class Avvio {
 	 */
 	public void startPartita(){//metodo per avviare la partita
 		cl.print("", "Benvenuti a cof!");
+		
+		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 			c.createPlayer();
 		}
+		cl.print("", "\nCreo gli elementi di gioco:");
+		cl.print("", "Creo i giocatori");
+		
+		//----------regioni e citta'----------
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
 		bonusList=c.bonusList();//recupero la lista con tutti i bonus
 		c.createRegions();//crea le regioni e le citta'
-		//cl.createMap(cl.leggiXml("ConfigurazionePartita.xml"), giocatori);//stampa la plancia di gioco
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
 		s.cityList(regions);//setta i vicini delle citta
 		setCitta(c.getCitta());
+		cl.print("", "Creo le regioni e le citta'");
+		
+		//----------carte politiche----------
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
+		cl.print("", "Creo le carte politiche");
+		
+		//----------king----------
 		King k=s.king(citta);//creato il re
+		cl.print("", "Creo il re");
+		
+		//----------deck----------
 		Deck dec=new Deck(politcards);//creato il deck
+		cl.print("", "Creo il deck");
+		
+		//----------board----------
 		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
+		cl.print("", "Creo la board");
+		
+		//----------carte permesso di costruzione----------
 		c.createCardCostruction();//crea le carte costruzione
 		costructionCard=c.getCostructionCard();//recupero la liste di carte costruzione
+		cl.print("", "Creo le carte permesso di costruzione");
 		
-		
-		// DA FARE creazione elementi di gioco (balconi, bonus, cartepermesso, azioni)
+		//------------------------------------------------------------------
+		//BONUS E CARTE COSTRUZIONE parziale
+		// DA FARE creazione elementi di gioco (balconi, azioni)
 
 		new Turn(bord);//creato il turno
 		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista

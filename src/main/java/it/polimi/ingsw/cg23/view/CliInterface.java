@@ -11,8 +11,6 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.King;
 
-
-
 /**
  * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
  * classe per stampare le info sulla cl
@@ -59,8 +57,18 @@ public class CliInterface {
 		return cityInfo;
 	}
 	
+	/**
+	 * 
+	 * @param endPath, the final part of the xml file path (name+extension)
+	 * @return a bidimensional array with the costruction cards info
+	 */
 	public String[][]getCostruction(String endPath){
 		return costructionXml.readCardXml(endPath);
+		/* array CostructionCard prototype require
+		 * coloumn 0: region
+		 * coloumn 1: city
+		 * coloumn 2: bonus
+		 */
 	}
 
 	/**
