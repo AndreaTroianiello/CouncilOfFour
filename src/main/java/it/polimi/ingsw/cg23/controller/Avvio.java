@@ -9,6 +9,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
@@ -23,11 +24,13 @@ public class Avvio {
 	CliInterface cl=new CliInterface();
 	Controller c=new Controller();
 	Setting s=new Setting();
+	
 	List <Player> giocatori;//lista giocatori
 	List <City> citta;//lista giocatori
 	List <Region> regions;//lista giocatori
 	List <PoliticCard> politcards;//lista giocatori
 	List <Bonus> bonusList;//lista dei bonus
+	List <BusinessPermitTile> costructionCard;//lista dei bonus
 	Board board;
 
 	public Avvio(){
@@ -55,13 +58,13 @@ public class Avvio {
 		King k=s.king(citta);//creato il re
 		Deck dec=new Deck(politcards);//creato il deck
 		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
-
-
+		c.createCardCostruction();//crea le carte costruzione
+		costructionCard=c.getCostructionCard();
 		// DA FARE creazione elementi di gioco (balconi, bonus, cartepermesso, azioni)
 
 		new Turn(bord);//creato il turno
 		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
-		c.printList(citta);
+		c.printList(costructionCard);
 		}
 	
 	/**

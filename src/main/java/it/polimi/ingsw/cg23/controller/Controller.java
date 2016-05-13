@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.bonus.*;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
@@ -15,7 +16,9 @@ public class Controller {
 	List <Player> giocatori = new ArrayList<>();//lista giocatori
 	List <Region> regioni = new ArrayList<>();//lista regioni
 	List <City> citta = new ArrayList<>();//lista citta
-	List<Bonus> bonusList=new ArrayList<>();//lista di bonus
+	List <Bonus> bonusList=new ArrayList<>();//lista di bonus
+	List <BusinessPermitTile> costructionCard=new ArrayList<>();//lista di carte costruzione
+
 	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
 	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");;//array con le informazioni delle citta'
@@ -40,6 +43,10 @@ public class Controller {
 
 	public List<City> getCitta(){
 		return citta;
+	}
+	
+	public List<BusinessPermitTile> getCostructionCard(){
+		return costructionCard;
 	}
 	/**
 	 * return the number of player in the list
@@ -151,4 +158,19 @@ public class Controller {
 		return bonusList;
 	}
 
+	public void createCardCostruction(){
+		String[][] array=cl.getCostruction("CostructionCard.xml");
+		cl.printArray(array);
+		for(int i=0; i<array.length; i++){
+			List<Character> citiesId=new ArrayList<>();
+			for(int j=0; j<array[i][1].length(); j++){
+				citiesId.add(array[i][1].charAt(j));
+			}
+			BusinessPermitTile bpt=new BusinessPermitTile(citiesId);
+			for(int k=0; k<occorrenze(array[i][2], ','); k++){//numero di bonus
+				//bpt.addBonus(bonus);//creare i bonus da aggiungere a
+			}
+			costructionCard.add(bpt);//aggiungo la nuova carta permesso alla lista
+		}
+	}
 }

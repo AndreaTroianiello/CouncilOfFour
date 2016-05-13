@@ -10,7 +10,9 @@ public class Main {
 		Partita game=new Partita();
 		game.start();
 		//CliInterface cl=new CliInterface();
-		//cl.printArray(cl.randomCostruction(15,3));
+		//cl.printArray(cl.getCostruction("CostructionCard.xml"));
+		//cl.getCostruction("CostructionCard.xml");
+		
 		
 	}
 }
