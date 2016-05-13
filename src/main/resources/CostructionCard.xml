@@ -4,216 +4,216 @@
 	<name>costa</name>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>C</id>
+			<id>D</id>
 		</city>
-		<bonus></bonus>
+		<bonus>3VictoryPoints,1Assistants</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>A</id>
+			<id>B</id>
+			<id>E</id>
 		</city>
-		<bonus></bonus>
+		<bonus>3Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>A</id>
+			<id>D</id>
+			<id>E</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Coin,2VictoryPoints </bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>B</id>
+			<id>C</id>
+			<id>D</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Assistants,1VictoryPoints</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>A</id>
+			<id>E</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Nobility</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>C</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Assistants,3Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>B</id>
+			<id>C</id>
 		</city>
-		<bonus></bonus>
+		<bonus>3VictoryPoints,3Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>B</id>
 		</city>
-		<bonus></bonus>
+		<bonus>3Politics,1Assistants</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>D</id>
 		</city>
-		<bonus></bonus>
+		<bonus>7VicotryPoints</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>D</id>
+			<id>E</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Assistants,3VictoryPoints </bonus>
 	</card>
 	<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>A</id>
+			<id>B</id>
+			<id>D</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Assistants</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>C</id>
+			<id>D</id>
+			<id>E</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Politics,1Nobility</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>E</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1AdditionalAction,2Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>A</id>
+			<id>B</id>
 		</city>
-		<bonus></bonus>
+		<bonus>3Coin,1Politics</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>A</id>
 		</city>
-		<bonus></bonus>
+		<bonus>4VictoryPoints,3Coin</bonus>
 	</card>
 	</region>
 		<region>
 	<name>collina</name>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>F</id>
+			<id>G</id>
+			<id>J</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Coin,1VictoryPoints</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>H</id>
+			<id>G</id>
 		</city>
-		<bonus></bonus>
+		<bonus>3Assistants</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>F</id>
+			<id>J</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Assistants,1Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>F</id>
+			<id>G</id>
 		</city>
-		<bonus></bonus>
+		<bonus>5Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>F</id>
+			<id>I</id>
+			<id>J</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Assistants,1Nobility</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>F</id>
+			<id>G</id>
+			<id>H</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Nobility,1Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>I</id>
+			<id>J</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Politics,1Nobility</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>H</id>
+			<id>I</id>
 		</city>
-		<bonus></bonus>
+		<bonus>5VictoryPoints</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>I</id>
+			<id>J</id>
+			<id>H</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Politics</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>H</id>
 		</city>
-		<bonus></bonus>
+		<bonus>4Assistants</bonus>
 	</card>
 	<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>I</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Assistants,2Politics</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>F</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2Politics,4Coin</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>G</id>
+			<id>H</id>
+			<id>I</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1Assistants,1Politics</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>J</id>
 		</city>
-		<bonus></bonus>
+		<bonus>1AdditionalAction,2VictoryPoints</bonus>
 	</card>
 		<card>
 		<city>
-			<id></id>
-			<id></id>
+			<id>G</id>
 		</city>
-		<bonus></bonus>
+		<bonus>2VictoryPoints,1Nobility,2Assistants</bonus>
 	</card>
 	</region>
 		<region>

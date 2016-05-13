@@ -152,8 +152,19 @@ public class CliInterface {
 		return regionNumber+1;
 	}
 	
-	public String[][] RandomCostruction(int numPerReg){
-		return cosRnd.PermitCard(numPerReg);
+	/**
+	 * create random business permit tile
+	 * @param numPerReg, number of card per region
+	 * @param regions, the number of regions
+	 * @return a bidimensional array with the info of costruction card
+	 */
+	public String[][] randomCostruction(int numPerReg, int regions){
+		/*array prototype:
+		 * coloumn 0: region
+		 * coloumn 1: cityID
+		 * coloumn 2: bonus
+		 */
+		return cosRnd.permitCard(numPerReg, regions);
 	}
 	
 	/**
