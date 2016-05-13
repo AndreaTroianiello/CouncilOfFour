@@ -8,7 +8,7 @@ public class BonusKing {
 	private List<Integer> bonus;					//Set of all bonus king.
 	
 	public BonusKing(List<Integer> bonus){
-		this.index=1;
+		this.index=0;
 		this.bonus=bonus;
 	}
 	
