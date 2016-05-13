@@ -8,8 +8,10 @@ public class BusinessPermitTile {
 	
 	private final List<Character> citiesId;
 	private final List<Bonus> bonusTile;
+	private final String zone;
 
-	public BusinessPermitTile(List<Character> citiesId){
+	public BusinessPermitTile(List<Character> citiesId, String zone){
+		this.zone=zone;
 		this.citiesId=citiesId;
 		this.bonusTile=new ArrayList<>();
 	}
@@ -46,7 +48,7 @@ public class BusinessPermitTile {
 	 */
 	@Override
 	public String toString() {
-		return "BusinessPermitTile [citiesId=" + citiesId + ", bonusTile=" + bonusTile + "]";
+		return "BusinessPermitTile [citiesId=" + citiesId + ", bonusTile=" + bonusTile + " zone="+zone+"]";
 	}
 	
 	

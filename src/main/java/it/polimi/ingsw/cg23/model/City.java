@@ -16,14 +16,19 @@ public class City {
 	private final List<City> neighbors;						//The list of nearly cities.
 	private final List<Emporium> emporiums;					//The list of emporiums builded in the city.
 	
-	public City(char id, String name, List<Bonus> token, String type, Region region){
+	private ObserverBonus observerBonus;
+	
+	
+	public City(char id, String name, String type, Region region){
 		this.id=id;
 		this.name=name;		
-		this.token=token;
+		this.token=new ArrayList<>();
 		this.type=type;
 		this.region=region;
 		this.neighbors=new ArrayList<>();
 		this.emporiums=new ArrayList<>();
+		
+		this.observerBonus=null;
 	}
 	
 	/**
@@ -93,6 +98,12 @@ public class City {
 		return emporiums;
 	}
 
+	/**
+	 * 
+	 */
+	public void addBonus(Bonus bonus){
+		this.token.add(bonus);
+	}
 	/**
 	 * Returns the list of the bonus.
 	 * 
@@ -201,7 +212,11 @@ public class City {
 	 */
 	@Override
 	public String toString() {
-		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.size() + ", type=" + type +", neighbors=" +neighbors.size()+"]";
+		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type +", neighbors=" +neighbors.size()+"]";
 		return city;
+	}
+	
+	public void setObserverBonus(ObserverBonus observerBonus){
+		this.observerBonus=observerBonus;
 	}
 }

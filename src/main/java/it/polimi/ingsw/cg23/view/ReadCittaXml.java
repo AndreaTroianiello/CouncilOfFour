@@ -1,14 +1,11 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
@@ -16,7 +13,7 @@ import org.w3c.dom.Element;
  * classe che si occupa della lettura del file xml 
  *
  */
-public class ReadXml {
+public class ReadCittaXml {
 	String path="src/main/resources/";//file location
 	/* array city prototype
 	 * coloumn 0: name of the city
@@ -61,7 +58,7 @@ public class ReadXml {
 				city[i][4]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus della città
 
 				Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
-				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, mare)
+				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, montagna)
 			}
 			
 			return city;
@@ -93,9 +90,6 @@ public class ReadXml {
 	/**
 	 * calcola il numero di citta' nel file xml
 	 * @return the number of cities in the xml file
-	 * @throws ParserConfigurationException 
-	 * @throws IOException 
-	 * @throws SAXException 
 	 */
 	public int cityNumber(String endPath){
 		try {	
@@ -112,8 +106,8 @@ public class ReadXml {
 	}
 
 	/**
-	 * calcola il numero di nodi (attributi) di citta'
-	 * @return the number of city nodes (attributes), 0 if no city or error
+	 * calcola il numero di nodi di citta'
+	 * @return the number of city nodes, 0 if no city or error
 	 */
 	public int cityNodeNumber(String endPath){
 		try {	
@@ -123,7 +117,7 @@ public class ReadXml {
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 			Node rootnode = doc.getFirstChild();//recupera il primo nodo dell'xml (map)
 			Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
-			Node cities= zone.getChildNodes().item(3);//terzo elemento dei filgi di zone = quarto nodo xml (cities)
+			Node cities= zone.getChildNodes().item(3);//terzo elemento dei figli di zone = quarto nodo xml (cities)
 			Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = qunto nodo xml (city)
 			return (citty.getChildNodes().getLength()-1)/2+1; //numero di nodi di city, +1 perchè c'è da aggiungere zona
 		}

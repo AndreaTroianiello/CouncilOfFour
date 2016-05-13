@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class Deck {
 
+
+
 	private final List<PoliticCard> politicCards ;								//Main deck.
 	private final List<PoliticCard> discardedCards;
 
@@ -68,5 +70,13 @@ public class Deck {
 			PoliticCard cards=politicCards.remove(randomIndex);					//Removes the card at the random index.
 			politicCards.add(cards);
 		}
+	}
+	
+	/** (Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Deck [politicCards=" + politicCards + ", discardedCards=" + discardedCards + "]";
 	}
 }

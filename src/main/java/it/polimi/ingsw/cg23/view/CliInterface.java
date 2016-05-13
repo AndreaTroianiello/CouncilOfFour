@@ -11,16 +11,17 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.King;
 
-
-
 /**
  * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
  * classe per stampare le info sulla cl
  */
 public class CliInterface {
-	ReadXml lettureXml=new ReadXml();//classe per leggere l'xml
+	ReadCittaXml lettureXml=new ReadCittaXml();//classe che legge l'xml delle citta'
+	ReadCostructionXml costructionXml=new ReadCostructionXml();//classe che legge l'xml delle carte costruzione
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
-	RandomCity randomC=new RandomCity();
+	RandomCity randomC=new RandomCity();//classe che crea le citta' random
+	RandomCostruction cosRnd=new RandomCostruction();//classe che crea le carte politiche random
+	
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	final int citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");//numero di citta'
 	final int cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");//numero di attributi delle citta'
@@ -54,6 +55,20 @@ public class CliInterface {
 		 * coloumn 5: region of the city
 		 */
 		return cityInfo;
+	}
+	
+	/**
+	 * 
+	 * @param endPath, the final part of the xml file path (name+extension)
+	 * @return a bidimensional array with the costruction cards info
+	 */
+	public String[][]getCostruction(String endPath){
+		return costructionXml.readCardXml(endPath);
+		/* array CostructionCard prototype require
+		 * coloumn 0: region
+		 * coloumn 1: city
+		 * coloumn 2: bonus
+		 */
 	}
 
 	/**
@@ -149,6 +164,21 @@ public class CliInterface {
 				regionNumber++;
 		}
 		return regionNumber+1;
+	}
+	
+	/**
+	 * create random business permit tile
+	 * @param numPerReg, number of card per region
+	 * @param regions, the number of regions
+	 * @return a bidimensional array with the info of costruction card
+	 */
+	public String[][] randomCostruction(int numPerReg, int regions){
+		/*array prototype:
+		 * coloumn 0: region
+		 * coloumn 1: cityID
+		 * coloumn 2: bonus
+		 */
+		return cosRnd.permitCard(numPerReg, regions);
 	}
 	
 	/**
