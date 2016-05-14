@@ -147,7 +147,6 @@ public class City {
 		runBonusCityAndNeighbors(player , new ArrayList<String>());					//Runs the bonus of the city and visits the neighbors.
 		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporiums.
-		player.setVictoryPoints(player.getVictoryPoints()+3);
 	}
 	
 	/**

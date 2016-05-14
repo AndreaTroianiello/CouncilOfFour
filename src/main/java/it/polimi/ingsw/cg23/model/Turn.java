@@ -12,6 +12,8 @@ public class Turn {
 	private Action action;
 	private final Board board;
 	private boolean finalTurn;
+	private boolean mainAction;
+	private boolean secondAction;
 	
 	
 	public Turn(List<Player> players,Board board){
@@ -20,6 +22,8 @@ public class Turn {
 		this.currentPlayer=null;
 		this.action=null;
 		this.finalTurn=false;
+		this.mainAction=true;
+		this.secondAction=true;
 	}
 
 	/**
@@ -37,9 +41,12 @@ public class Turn {
 	 * @return If true the game is finished and the first player of the list has built all emporiums available.
 	 */
 	public boolean changePlayer() {
-		players.add(currentPlayer);												//Add the current player at the list.
-		if(finalTurn && finalPlayer.equals(players.get(0)))						//Control if the first player has finished the game.
+		if(currentPlayer!=null)
+			players.add(currentPlayer);											//Add the current player at the list.
+		if(finalTurn && finalPlayer.equals(players.get(0))){					//Control if the first player has finished the game.
+			currentPlayer=null;
 			return true;
+		}
 		this.currentPlayer = players.remove(0);									//If false set the player as the current player.
 		return false;
 	}
@@ -75,8 +82,9 @@ public class Turn {
 	 */
 	public void runAction(){
 		action.runAction(currentPlayer, board);
-		if(!finalTurn){
-			finalTurn=currentPlayer.isAvailableEmporiumEmpty();
+		if(!finalTurn && currentPlayer.isAvailableEmporiumEmpty()){
+			finalTurn=true;
+			currentPlayer.setVictoryPoints(currentPlayer.getVictoryPoints()+3);
 		}
 	}
 }
