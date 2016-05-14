@@ -29,7 +29,7 @@ public class Controller {
 	public void createPlayer(){
 		int assistant=playerNumber();//numero di giocatori gia' presenti nella lista
 		String name=cl.writeReturnValue("Come ti chiami giocatore?",null).toString();//recupero il nome del giocatore
-		Player p=new Player(name, assistant+10, 0, nT);
+		Player p=new Player(name, assistant+10, 0, nT);//creo i giocatori
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}
 	
@@ -77,7 +77,7 @@ public class Controller {
 	 * 	print all the element of a list
 	 */
 	public void printList(List<?>lista){
-		for(int i=0;i<lista.size();i++){
+		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
 			cl.print("",lista.get(i).toString());
 		}
 
@@ -112,7 +112,7 @@ public class Controller {
 
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
 			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], cityInfo[ii][1], regioni.get(j));
-			getCityBonus(ii,c);
+			getCityBonus(ii,c);//aggiungo i bonus alle citta'
 			citta.add(c);//aggiungo la citta' alla lista
 			regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
 		}
@@ -128,7 +128,7 @@ public class Controller {
 			return;
 
 		String b;//contiene il nome del bonus
-		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);
+		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);//string tokenizer del nome dei bonus
 		while(st.hasMoreTokens()){
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
@@ -151,8 +151,8 @@ public class Controller {
 	 */
 	public int occorrenze(String nome, char c){//calcola il numero di volte che compare il carattere nella stringa
 		int n=0;
-		for(int i=0; i<nome.length(); i++){
-			if(nome.charAt(i)==c)
+		for(int i=0; i<nome.length(); i++){//scorro la lunghezza del nome
+			if(nome.charAt(i)==c)//cerco la lettera nella stringa
 				n++;
 		}
 		return n;
@@ -162,7 +162,7 @@ public class Controller {
 	 * @return a bonus list with all the type of bonus
 	 * I BONUS DEVONO Avere un metodo set(int)
 	 */
-	public List<Bonus> bonusList(){
+	public List<Bonus> bonusList(){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants(0));
 		bonusList.add(new BonusCityToken(0,null));
@@ -198,9 +198,9 @@ public class Controller {
 	 */
 	public void getCostructorBonus(BusinessPermitTile bpt, String bonusTotali){
 		String b;//contiene il nome del bonus
-		StringTokenizer st = new StringTokenizer(bonusTotali);
+		StringTokenizer st = new StringTokenizer(bonusTotali);//string tokenizer del nome dei bonus
 
-		while(st.hasMoreTokens()){
+		while(st.hasMoreTokens()){//ciclo finche' ci sono token
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
 			//int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins

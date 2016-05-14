@@ -45,7 +45,7 @@ public class Avvio {
 		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
-			c.createPlayer();
+			c.createPlayer();//creo i giocatori
 		}
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
@@ -81,13 +81,14 @@ public class Avvio {
 		//----------carte permesso di costruzione----------
 		c.createCardCostruction();//crea le carte costruzione
 		costructionCard=c.getCostructionCard();//recupero la liste di carte costruzione
-		cl.print("", "-Creo le carte permesso di costruzione\n");
+		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//------------------------------------------------------------------
-		//BONUS E CARTE COSTRUZIONE parziale (i bonus devono avere un metodo set(int))
-		// DA FARE creazione elementi di gioco (balconi, azioni)
+		// BONUS E CARTE COSTRUZIONE parziale (i bonus devono avere un metodo set(int))-->modifica controller
+		// DA FARE creazione elementi di gioco (balconi(consiglieri), azioni)
 
-		new Turn(giocatori,bord);//creato il turno
+		new Turn(giocatori, bord);//creato il turno
+		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
 		}
 	
@@ -98,7 +99,7 @@ public class Avvio {
 	public int numeroGiocatori(){
 		int playerNumber=0;
 		while(playerNumber==0){//si continua a ciclare finche' non e' stato inserito un numero valido
-			try{
+			try{//provo a recuperare il numero di giocatori
 			playerNumber=Integer.parseInt(cl.writeReturnValue("Quanti giocatori siete?", null).toString());
 			}catch(NumberFormatException e){
 				cl.print(null, "devi inserire un numero");

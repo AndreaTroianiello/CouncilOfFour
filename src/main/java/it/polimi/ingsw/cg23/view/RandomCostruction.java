@@ -50,7 +50,7 @@ public class RandomCostruction {
 	 * @return a string with the city id
 	 */
 	public String randomCity(String region){
-		String idCity;
+		String idCity;//stringa con gli id della citta'
 		String[]city=new String[5];//array che contiene gli id delle possibili citta'
 		if(region=="costa"){//id delle citta' della costa
 			city[0]="A";
@@ -103,12 +103,12 @@ public class RandomCostruction {
 		do{
 			bonus="";//annullo i bonus
 			for(int i=0; i<rnd.nextInt(3)+1; i++){//viene scelto a caso il numero di bonus (1,2)
-				int k=rnd.nextInt(9);
+				int k=rnd.nextInt(9);//recupero un numero random da 0 a 8
 				bonus+=(rnd.nextInt(4)+1)+bonusArray[k]+",";//i bonus sono aggiunti alla stringa
 
 				if("AdditionalAction".equals(bonusArray[k])){//le azioni addizioni possono essere solo 1
-					bonus=bonus.substring(0,bonus.length()-(bonusArray[k].length()+2));
-					bonus+="1AdditionalAction,";
+					bonus=bonus.substring(0,bonus.length()-(bonusArray[k].length()+2));//tolgo il bonus aggiunto
+					bonus+="1AdditionalAction,";//aggiungo il bonus azione aggiuntiva da 1
 				}
 			}
 		}while(!differentTokenizer(bonus));//controllo che i bonus siano diversi uno dall'altro
@@ -123,9 +123,9 @@ public class RandomCostruction {
 	 */
 	public boolean different(String nome){
 		String name=nome.toLowerCase();//uniformo tutti i caratteri
-		for(int i=0; i<name.length(); i++){
+		for(int i=0; i<name.length(); i++){//due cili che scorrono le lettere del nome
 			for(int k=i+1; k<name.length(); k++){
-				if(name.charAt(i)==name.charAt(k))
+				if(name.charAt(i)==name.charAt(k))//controlle che le lettere siano uguali
 					return false;
 			}
 		}
