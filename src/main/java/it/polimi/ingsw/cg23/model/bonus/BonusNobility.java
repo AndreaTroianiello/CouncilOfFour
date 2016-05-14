@@ -15,13 +15,20 @@ public class BonusNobility implements Bonus {
 	
 	private final int steps;
 	private final Board board;
-	
+	private final String name="BonusNobility";
 
 	public BonusNobility(int steps, Board board) {
 		this.steps = steps;
 		this.board = board;
 	}
 
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return steps+name;
+	}
 	
 	/**
 	 * @return the board

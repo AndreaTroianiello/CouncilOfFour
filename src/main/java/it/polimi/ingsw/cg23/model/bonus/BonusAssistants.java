@@ -6,7 +6,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 public class BonusAssistants implements Bonus {
 	
 	private final int assistants;				//the amount of assistants given by the bonus
-	
+	private final String name="Assistants";
 	
 	
 	public BonusAssistants(int assistants) {
@@ -37,7 +37,14 @@ public class BonusAssistants implements Bonus {
 		}
 
 	}
-
+	
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return assistants+name;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -46,7 +53,5 @@ public class BonusAssistants implements Bonus {
 	public String toString() {
 		return "BonusAssistants [assistants=" + assistants + "]";
 	}
-	
-	
 
 }

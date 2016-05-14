@@ -13,7 +13,8 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 public class BonusCoin implements Bonus {
 	
 	private final int coin;						//the amount of coin given by the bonus
-
+	private final String name="Coin";
+	
 	/* (non-Javadoc)
 	 * @see it.polimi.ingsw.cg23.model.bonus.Bonus#esegui(it.polimi.ingsw.cg23.model.Player)
 	 */
@@ -21,7 +22,14 @@ public class BonusCoin implements Bonus {
 		this.coin = coin;
 	}
 
-
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return coin+name;
+	}
+	
 	/**
 	 * @return the coin
 	 */

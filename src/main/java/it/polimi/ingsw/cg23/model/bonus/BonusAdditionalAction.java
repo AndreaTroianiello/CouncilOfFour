@@ -3,7 +3,9 @@ package it.polimi.ingsw.cg23.model.bonus;
 import it.polimi.ingsw.cg23.model.Player;
 
 public class BonusAdditionalAction implements Bonus {
-
+	
+	final String name="AdditionalAction";
+	
 	/**
 	 * if the player have the addictional action set to false,
 	 * it switches it
@@ -16,7 +18,15 @@ public class BonusAdditionalAction implements Bonus {
 			player.switchAdditionalAction();
 
 	}
-
+	
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return name;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -24,6 +34,5 @@ public class BonusAdditionalAction implements Bonus {
 	public String toString() {
 		return "BonusAdditionalAction []";
 	}
-	
-	
+
 }

@@ -112,7 +112,7 @@ public class City {
 	public List<String> getToken() {
 		List<String> token=new ArrayList<>();
 		for(Bonus bonus: this.token)
-			token.add(bonus.toString());
+			token.add(bonus.getName());
 		return token;
 	}
 	

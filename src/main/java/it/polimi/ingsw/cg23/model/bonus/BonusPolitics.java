@@ -8,6 +8,7 @@ public class BonusPolitics implements Bonus {
 	
 	private final int cardNumber;
 	private final Board board;
+	private final String name="Politics";
 	
 	
 	public BonusPolitics(int cardNumber, Board board) {
@@ -15,7 +16,14 @@ public class BonusPolitics implements Bonus {
 		this.board = board;
 	}
 
-
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return cardNumber+name;
+	}
+	
 	/**
 	 * @return the board
 	 */

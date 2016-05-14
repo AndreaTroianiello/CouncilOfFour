@@ -9,10 +9,12 @@ import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 public class BonusTileBonus implements Bonus {
 	
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
-	
+	private final String name="TileBonus";
+	private final int number;
 
-	public BonusTileBonus() {
+	public BonusTileBonus(int number) {
 		this.businessPermitTiles = new ArrayList<>();
+		this.number=number;
 	}
 
 
@@ -22,7 +24,14 @@ public class BonusTileBonus implements Bonus {
 	public List<BusinessPermitTile> getBusinessPermitTiles() {
 		return businessPermitTiles;
 	}
-
+	
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return number+name;
+	}
 
 	/**
 	 * for each businessPermitTile in the List give 

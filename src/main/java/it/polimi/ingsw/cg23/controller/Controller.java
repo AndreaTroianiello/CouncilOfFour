@@ -170,7 +170,7 @@ public class Controller {
 		//bonusList.add(new BonusGetPermitTile(0,0,null));//verificare
 		bonusList.add(new BonusNobility(0,null));
 		bonusList.add(new BonusPolitics(0,null));
-		bonusList.add(new BonusTileBonus());
+		bonusList.add(new BonusTileBonus(0));
 		bonusList.add(new BonusVictoryPoints(0));
 		return bonusList;
 	}

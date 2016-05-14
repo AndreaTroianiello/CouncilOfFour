@@ -12,7 +12,7 @@ public class BonusCityToken implements Bonus {
 	private final int number;				//how many times the player can run the bonus
 	private final List<City> city;			//the city the player chooses to run the bonus from
 	private final boolean[] runnable;		//a list of boolean that show if the bonus in the city are runnable 
-
+	private final String name="CityToken";
 		
 	
 
@@ -31,7 +31,13 @@ public class BonusCityToken implements Bonus {
 		return number;
 	}
 
-
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return name;
+	}
 
 	/**
 	 * @return the city

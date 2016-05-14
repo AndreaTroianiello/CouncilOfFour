@@ -9,7 +9,7 @@ public class BonusGetPermitTile implements Bonus {
 	private final int region;				//wich region the player want to get the PermitTitle from
 	private final int card; 				//wich PermitTitle the player choose from the showed ones 
 	private final Board board;
-	
+	private final String name="GetPermitTile";
 	
  
 	public BonusGetPermitTile(int region, int card, Board board) {
@@ -17,7 +17,15 @@ public class BonusGetPermitTile implements Bonus {
 		this.card = card;
 		this.board = board;
 	}
-
+	
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	@Override
+	public String getName(){
+		return name;
+	}
+	
 	/**
 	 * @return the board
 	 */

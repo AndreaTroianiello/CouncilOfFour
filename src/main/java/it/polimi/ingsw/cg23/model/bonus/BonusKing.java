@@ -6,6 +6,7 @@ import it.polimi.ingsw.cg23.model.Player;
 public class BonusKing {
 	private int index;								//The current bonus king.
 	private List<Integer> bonus;					//Set of all bonus king.
+	private String name="King";
 	
 	public BonusKing(List<Integer> bonus){
 		this.index=0;
@@ -19,6 +20,13 @@ public class BonusKing {
 	 */
 	public int getCurrentBonusKing() {
 		return bonus.get(index);
+	}
+	
+	/**
+	 * return the bonus name and the number(if exist)
+	 */
+	public String getName(){
+		return name;
 	}
 	
 	/**
