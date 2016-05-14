@@ -5,6 +5,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.King;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class PrintMap {
 	CliInterface cl=new CliInterface();
@@ -134,7 +135,7 @@ public class PrintMap {
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
 			percorsi+=addSpace(giocatori.get(i).getUser(),space)+addSpace(giocatori.get(i).getCoins(),space);
 			percorsi+=addSpace(giocatori.get(i).getVictoryPoints(),space)+addSpace(giocatori.get(i).getNobilityBoxPosition(),space);
-			//percorsi+=addSpace(giocatori.get(i).getAssistants(), space);//VERIFICARE
+			percorsi+=addSpace(giocatori.get(i).getAssistants(), space);//VERIFICARE
 			percorsi+="\n";
 		}
 		return percorsi;
@@ -185,7 +186,7 @@ public class PrintMap {
 			return 1;
 		if(num<0)//se il numero e' minore di 0 lo modulizzo
 			num=Math.abs(num);
-		while(number>0){
+		while(num>0){
 			num/=10;
 			count++; 
 		}
