@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.util.Random;
+import java.util.StringTokenizer;
 
 public class RandomCostruction {
 	Random rnd = new Random();
@@ -98,7 +99,8 @@ public class RandomCostruction {
 		bonusArray[6]="TileBonus";
 		bonusArray[7]="VictoryPoints";
 		bonusArray[8]="Coin";	
-
+		
+		do{
 			bonus="";//annullo i bonus
 			for(int i=0; i<rnd.nextInt(3)+1; i++){//viene scelto a caso il numero di bonus (1,2)
 				int k=rnd.nextInt(9);
@@ -109,6 +111,8 @@ public class RandomCostruction {
 					bonus+="1AdditionalAction,";
 				}
 			}
+		}while(!differentTokenizer(bonus));//controllo che i bonus siano diversi uno dall'altro
+		
 		return bonus.substring(0, bonus.length()-1);//tolgo l'ultima virgola
 	}
 
@@ -126,5 +130,35 @@ public class RandomCostruction {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * controll if in a string there is the same substring (separated by a ,)
+	 * @param nome, the string you want to analyze
+	 * @return true if the substring are all different, false if otherwise
+	 */
+	public boolean differentTokenizer(String nome){
+		System.out.println("ciao");
+		String name=nome.toLowerCase();//uniformo tutti i caratteri
+		StringTokenizer st = new StringTokenizer(name);
+		String a=st.nextToken(",");//primo token
+		String[]token= new String[st.countTokens()+1];//array con i token
+
+		token[0]=a.substring(1, a.length());//assegno il primo token all'array
+		int i=1;
+		while(st.hasMoreTokens()){//ciclo finche' ci sono token
+			String toke=st.nextToken(",");//aggiungo all'array il nuovo token
+			token[i]=toke.substring(1,toke.length());//tolo il primo caratterre perche' e' il numero
+			i++;
+		}
+		
+		for(int j=0; j<token.length; j++){
+			for(int k=j+1; k<token.length; k++){
+				if(token[j].equals(token[k]))//controllo se nell'array ci sono delle parole uguali
+					
+					return false;
+			}
+		}
+	return true;
 	}
 }

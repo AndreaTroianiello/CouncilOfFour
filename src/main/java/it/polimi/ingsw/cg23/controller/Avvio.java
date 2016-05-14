@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
@@ -34,7 +33,6 @@ public class Avvio {
 	Board board;
 
 	public Avvio(){
-		this.giocatori=new ArrayList<>();
 		this.board=null;
 	}
 	
@@ -52,13 +50,16 @@ public class Avvio {
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 		
+		//----------bonus----------
+		bonusList=c.bonusList();//recupero la lista con tutti i bonus
+		cl.print("", "-Creo i bonus");
+	
 		//----------regioni e citta'----------
 		setGiocatori(c.getGiocatori());//recupero la lista dei giocatori dal controller
-		bonusList=c.bonusList();//recupero la lista con tutti i bonus
-		c.createRegions();//crea le regioni e le citta'
+		c.createRegions();//crea le regioni
 		setRegioni(c.getRegioni());//recupero la lista delle regioni dal controller
 		s.cityList(regions);//setta i vicini delle citta
-		setCitta(c.getCitta());
+		setCitta(c.getCitta());//recupero la lista delle citta'
 		cl.print("", "-Creo le regioni e le citta'");
 		
 		//----------carte politiche----------
@@ -66,7 +67,7 @@ public class Avvio {
 		cl.print("", "-Creo le carte politiche");
 		
 		//----------king----------
-		King k=s.king(citta);//creato il re
+		King king=s.king(citta);//creato il re
 		cl.print("", "-Creo il re");
 		
 		//----------deck----------
@@ -74,7 +75,7 @@ public class Avvio {
 		cl.print("", "-Creo il deck");
 		
 		//----------board----------
-		Board bord=new Board(dec, regions, new NobilityTrack(20), k);//creata la board
+		Board bord=new Board(dec, regions, new NobilityTrack(20), king);//creata la board
 		cl.print("", "-Creo la board");
 		
 		//----------carte permesso di costruzione----------
@@ -83,12 +84,11 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione\n");
 		
 		//------------------------------------------------------------------
-		//BONUS E CARTE COSTRUZIONE parziale (i bonus devono accettare tutti gli stessi parametri)
+		//BONUS E CARTE COSTRUZIONE parziale (i bonus devono avere un metodo set(int))
 		// DA FARE creazione elementi di gioco (balconi, azioni)
 
 		new Turn(giocatori,bord);//creato il turno
-		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
-
+		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
 		}
 	
 	/**

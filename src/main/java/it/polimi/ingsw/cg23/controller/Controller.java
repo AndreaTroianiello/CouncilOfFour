@@ -160,14 +160,14 @@ public class Controller {
 
 	/**
 	 * @return a bonus list with all the type of bonus
-	 * I BONUS DEVONO ACCETTARE TUTTI GLI STESSI PARAMETRI!
+	 * I BONUS DEVONO Avere un metodo set(int)
 	 */
-	public List<Bonus> bonusList(){//differenza bonusgetpermittile vs bonustilebonus??
+	public List<Bonus> bonusList(){
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants(0));
 		bonusList.add(new BonusCityToken(0,null));
 		bonusList.add(new BonusCoin(0));
-		//bonusList.add(new BonusGetPermitTile(0,0,null));//verificare
+		bonusList.add(new BonusGetPermitTile(0,0,null));
 		bonusList.add(new BonusNobility(0,null));
 		bonusList.add(new BonusPolitics(0,null));
 		bonusList.add(new BonusTileBonus(0));

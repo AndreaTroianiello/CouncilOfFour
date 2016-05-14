@@ -54,7 +54,7 @@ public class BonusTileBonus implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusTileBonus [businessPermitTiles=" + businessPermitTiles + "]";
+		return "BonusTileBonus [businessPermitCard=" + businessPermitTiles + "]";
 	}
 	
 	

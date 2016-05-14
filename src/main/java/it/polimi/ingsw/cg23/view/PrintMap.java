@@ -5,7 +5,6 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.King;
-import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class PrintMap {
 	CliInterface cl=new CliInterface();
