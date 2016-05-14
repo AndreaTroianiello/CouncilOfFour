@@ -41,7 +41,7 @@ public class PrintMap {
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
 				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+")";//recupero le informazioni dall'array
 				
-				String citybonus=(cityBonus(city.get(kk)));//bonus della citta'
+				String citybonus=cityBonus(city.get(kk));//bonus della citta'
 
 				newcity+="("+citybonus+")";//aggiungo alla nuova citta' i suoi bonus
 				
@@ -128,11 +128,13 @@ public class PrintMap {
 	public String createPlayerInfo(List<Player>giocatori){
 		int space=20;//spazi da mettere per rendere il testo ordinato
 		String percorsi="";
-		percorsi+=addSpace("Player", space)+addSpace("Richness(coin)", space)+addSpace("Victory", space)+addSpace("Nobility", space);
+		percorsi+=addSpace("Player", space)+addSpace("Richness(coin)", space);
+		percorsi+=addSpace("Victory", space)+addSpace("Nobility", space)+addSpace("Assistants", space);
 		percorsi+="\n";
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getUser(),space)+addSpace(giocatori.get(i).getCoins(),space)
-					+addSpace(giocatori.get(i).getVictoryPoints(),space)+addSpace(giocatori.get(i).getNobilityBoxPosition(),space);
+			percorsi+=addSpace(giocatori.get(i).getUser(),space)+addSpace(giocatori.get(i).getCoins(),space);
+			percorsi+=addSpace(giocatori.get(i).getVictoryPoints(),space)+addSpace(giocatori.get(i).getNobilityBoxPosition(),space);
+			//percorsi+=addSpace(giocatori.get(i).getAssistants(), space);//VERIFICARE
 			percorsi+="\n";
 		}
 		return percorsi;
