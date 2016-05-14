@@ -86,7 +86,7 @@ public class Avvio {
 		//BONUS E CARTE COSTRUZIONE parziale (i bonus devono accettare tutti gli stessi parametri)
 		// DA FARE creazione elementi di gioco (balconi, azioni)
 
-		new Turn(bord);//creato il turno
+		new Turn(giocatori,bord);//creato il turno
 		cl.createMap(citta, giocatori,k);//stampa la plancia di gioco dalla lista
 
 		}
