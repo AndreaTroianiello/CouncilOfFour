@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.CliInterface;
@@ -22,7 +24,7 @@ public class Setting {
 	public List<PoliticCard> politicList(int numberColor, int jolly){
 		List<PoliticCard> politics= new ArrayList<>();//lista della carte politiche
 		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte nere
-			politics.add(new PoliticCard(Color.BLACK,false));
+			politics.add(new PoliticCard(Color.BLACK,false));				
 		}
 		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte rosa
 			politics.add(new PoliticCard(Color.PINK,false));
@@ -44,6 +46,14 @@ public class Setting {
 			politics.add(new PoliticCard(null,true));
 		}
 		return politics;
+	}
+	
+	public void CreateCouncillor(int numberCouncillor, int color, Board b){
+		for(int i=0; i<color; i++){
+			for(int k=0; k<color; k++){
+				
+			}
+		}
 	}
 	
 	/**

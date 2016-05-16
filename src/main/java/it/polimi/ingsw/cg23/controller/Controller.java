@@ -137,7 +137,7 @@ public class Controller {
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
 					c.addBonus(bonusList.get(j));
-					//c.addBonus(bonusList.get(j).set(number));//bosogna passare ai bonus il numero
+					//c.addBonus(bonusList.get(j).setParameters(number));//bosogna passare ai bonus il numero
 				}
 			}
 		}
@@ -164,7 +164,7 @@ public class Controller {
 	 */
 	public List<Bonus> bonusList(){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
-		bonusList.add(new BonusAssistants(0));
+		bonusList.add(new BonusAssistants());
 		bonusList.add(new BonusCityToken(0,null));
 		bonusList.add(new BonusCoin(0));
 		bonusList.add(new BonusGetPermitTile(0,0,null));

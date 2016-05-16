@@ -84,6 +84,7 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//------------------------------------------------------------------
+		
 		// BONUS E CARTE COSTRUZIONE parziale (i bonus devono avere un metodo set(int))-->modifica controller
 		// DA FARE creazione elementi di gioco (balconi(consiglieri), azioni)
 
