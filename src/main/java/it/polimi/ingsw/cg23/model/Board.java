@@ -65,6 +65,10 @@ public class Board {
 	public List<Councillor> getCouncillorPool() {
 		return councillorPool;
 	}
+	
+	public void setCouncillor(Councillor councillor){
+		councillorPool.add(councillor);
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

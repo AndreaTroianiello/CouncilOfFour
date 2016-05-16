@@ -11,6 +11,7 @@ public class Turn {
 	private int finalPlayer;													//the player who has built all emporiums available first.
 	private Action action;
 	private final Board board;
+	private int mainIndex;
 	private boolean mainAction;
 	private boolean secondAction;
 	
@@ -21,6 +22,7 @@ public class Turn {
 		this.currentPlayer=0;
 		this.finalPlayer=-1;
 		this.action=null;
+		this.mainIndex=1;
 		this.mainAction=true;
 		this.secondAction=true;
 	}
@@ -42,6 +44,8 @@ public class Turn {
 	public boolean changePlayer() {
 		if((currentPlayer+1)%players.size()!=finalPlayer){
 			currentPlayer=(currentPlayer+1)%players.size();
+			this.mainAction=true;
+			this.secondAction=true;
 			return false;
 		}
 		return true;
@@ -74,11 +78,27 @@ public class Turn {
 	}
 	
 	/**
+	 * 
+	 */
+	public void controlAction(){
+		if(action.isMain() && mainAction){
+			--mainIndex;
+			if(mainIndex==0)
+				mainAction=false;
+		}
+		if(!action.isMain() && secondAction)
+			secondAction=false;
+	}
+	
+	/**
 	 * Runs the the action and control if the player has.
 	 */
 	public void runAction(){
 		Player player=players.get(currentPlayer);
-		action.runAction(player, board);
+		if((action.isMain() && mainAction)||(!action.isMain() && secondAction)){
+			action.runAction(player, board);
+			controlAction();
+		}
 		if(finalPlayer==-1 && player.isAvailableEmporiumEmpty()){
 			finalPlayer=currentPlayer;
 			player.setVictoryPoints(player.getVictoryPoints()+3);
