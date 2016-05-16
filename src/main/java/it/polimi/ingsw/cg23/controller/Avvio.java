@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.view.AutoCostruction;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -83,17 +84,19 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------
-		s.CreateCouncillor(4, board);
+	/*	s.CreateCouncillor(4, board);
 		for(int i=0; i<regions.size(); i++){
 			s.setBalconi(board, regions.get(i));
 		}
 		s.setBalconi(board, king);
-		cl.print("", "-Creo i consiglieri");
+		cl.print("", "-Creo i consiglieri");*/
 		
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
 		PrintAll();
+		AutoCostruction ac=new AutoCostruction();
+		ac.createIdCity(citta, "costa");
 		}
 	
 	/**

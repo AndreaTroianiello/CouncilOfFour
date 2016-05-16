@@ -8,6 +8,6 @@ public class Main {
 	public static void main(String[] args) {
 		Partita game=new Partita();
 		game.start();
-
+		
 	}
 }

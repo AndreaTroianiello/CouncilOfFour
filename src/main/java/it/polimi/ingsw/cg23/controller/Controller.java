@@ -91,8 +91,9 @@ public class Controller {
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
-			//regioni.add(new Region(cityInfo[i*c][5],null,new RegionDeck(2)));//creata una nuova regione e aggiunta alla lista
-			createCities(i);//create the city
+			Region r=new Region(cityInfo[i*c][5],null,new RegionDeck(2),null);
+			regioni.add(r);//creata una nuova regione e aggiunta alla lista
+			createCities(i,r);//create the city
 		}
 	}
 
@@ -100,7 +101,7 @@ public class Controller {
 	 * create the cities object and add at the citta list
 	 * @param j, the number of the region
 	 */
-	public void createCities(int j){
+	public void createCities(int j, Region r){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int ii=0;
 		int i=0;
@@ -112,7 +113,7 @@ public class Controller {
 			ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
 
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
-			//City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], cityInfo[ii][1], regioni.get(j));
+			//City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], null, r);
 			//getCityBonus(ii,c);//aggiungo i bonus alle citta'
 			//citta.add(c);//aggiungo la citta' alla lista
 			//regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
