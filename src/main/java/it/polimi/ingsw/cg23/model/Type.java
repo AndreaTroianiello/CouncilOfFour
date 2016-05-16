@@ -3,18 +3,21 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.bonus.BonusKing;
 
 public class Type {
 
 
-	private final String name;													//the name of the region.
-	private final Bonus bonus;													//the bonus of the type.
-	private final List<City> cities;											//the list of cities contained.
-	private boolean bonusAvailable;												//status of the bonus.
+	private final String name;													//The name of the region.
+	private final Bonus bonus;													//The bonus of the type.
+	private final BonusKing bonusKing;											//The bonus king
+	private final List<City> cities;											//The list of cities contained.
+	private boolean bonusAvailable;												//Status of the bonus.
 	
-	public Type(String name, Bonus bonus) {
+	public Type(String name, Bonus bonus, BonusKing bonusKing) {
 		this.name = name;
 		this.bonus = bonus;
+		this.bonusKing=bonusKing;
 		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
 	}
@@ -94,8 +97,9 @@ public class Type {
 	 */
 	public void runBonusRegion(Player player){
 		if(bonusAvailable && completedType(player)){					//Excute the bonus if it's available and the player has emporiums in all cities.
-			bonus.giveBonus(player);									//Run the bonus.
+			bonus.giveBonus(player);									//Run the type's bonus.
 			setBonusUnavailable();										//Set unavailable the bonus.
+			bonusKing.runBonusKing(player);								//Run the bonus king.
 		}
 	}
 

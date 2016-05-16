@@ -6,14 +6,14 @@ import it.polimi.ingsw.cg23.model.action.Action;
 import it.polimi.ingsw.cg23.model.components.Deck;
 
 public class Turn {
-	private final List<Player> players;											// the players of the game.
-	private int currentPlayer;												//the current player.
-	private int finalPlayer;													//the player who has built all emporiums available first.
-	private Action action;
+	private final List<Player> players;								//The players of the game.
+	private int currentPlayer;										//The current player.
+	private int finalPlayer;										//The player who has built all emporiums available first.
+	private Action action;											//The action of the turn.
 	private final Board board;
-	private int mainIndex;
-	private boolean mainAction;
-	private boolean secondAction;
+	private int mainIndex;											//Main action's counter.
+	private boolean mainAction;										//Authorization of the main action.
+	private boolean secondAction;									//Authorization of the second action
 	
 	
 	public Turn(List<Player> players,Board board){
@@ -42,10 +42,11 @@ public class Turn {
 	 * @return If true the game is finished and the first player of the list has built all emporiums available.
 	 */
 	public boolean changePlayer() {
-		if((currentPlayer+1)%players.size()!=finalPlayer){
+		if((currentPlayer+1)%players.size()!=finalPlayer){     //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
 			this.mainAction=true;
 			this.secondAction=true;
+			this.mainIndex=1;
 			return false;
 		}
 		return true;
@@ -63,7 +64,7 @@ public class Turn {
 	 * 
 	 * return finalTurn. It is true if a players has completed the emporiums.
 	 */
-	 public boolean isFinalTurn(){
+	 public boolean isFinalTurn(){									//Return true if a player has built all emporiums.
 		 return finalPlayer>=0;
 	 }
 	
@@ -81,13 +82,19 @@ public class Turn {
 	 * Sets the action variables at false.
 	 */
 	public void controlAction(){
-		if(action.isMain() && mainAction){
-			--mainIndex;
+		if(action.isMain() && mainAction){							//Control if the action is a main action and it's authorized.
+			--mainIndex;											//Decrement the main action's counter.
 			if(mainIndex==0)
 				mainAction=false;
 		}
-		if(!action.isMain() && secondAction)
+		if(!action.isMain() && secondAction)						//Control if the action is not a main action and it's authorized.
 			secondAction=false;
+		if(players.get(currentPlayer).isAdditionalAction()){		//Control if the second action has enabled a new main action.
+			mainIndex++;
+			mainAction=true;
+			players.get(currentPlayer).switchAdditionalAction();
+		}
+			
 	}
 	
 	/**
@@ -95,11 +102,11 @@ public class Turn {
 	 */
 	public void runAction(){
 		Player player=players.get(currentPlayer);
-		if((action.isMain() && mainAction)||(!action.isMain() && secondAction)){
-			action.runAction(player, board);
-			controlAction();
+		if((action.isMain() && mainAction)||(!action.isMain() && secondAction)){		//Control if the action is authorized
+			action.runAction(player, board);											//Run the action.
+			controlAction();															//Control the authorization.
 		}
-		if(finalPlayer==-1 && player.isAvailableEmporiumEmpty()){
+		if(finalPlayer==-1 && player.isAvailableEmporiumEmpty()){						//If the current player has been the first to build all emporiums.
 			finalPlayer=currentPlayer;
 			player.setVictoryPoints(player.getVictoryPoints()+3);
 		}

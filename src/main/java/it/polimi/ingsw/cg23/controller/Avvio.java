@@ -74,7 +74,7 @@ public class Avvio {
 		cl.print("", "-Creo il deck");
 		
 		//----------board----------
-		board=new Board(dec, regions, new NobilityTrack(20), king);//creata la board
+		//board=new Board(dec, regions, new NobilityTrack(20), king);//creata la board
 		cl.print("", "-Creo la board");
 		
 		//----------carte permesso di costruzione----------

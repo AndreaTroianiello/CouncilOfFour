@@ -3,26 +3,30 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.bonus.BonusKing;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 
 public class Region {
 
 
-	private final String name;													//the name of the region.
-	private final Bonus bonus;													//the bonus of the region.
-	private final List<City> cities;											//the list of cities contained.
-	private boolean bonusAvailable;												//status of the bonus.
-	private final Council council;												//the council of the region.
-	private final RegionDeck deck;												//the deck of business permit tiles.
+	private final String name;													//The name of the region.
+	private final Bonus bonus;													//The bonus of the region.
+	private final List<City> cities;											//The list of cities contained.
+	private boolean bonusAvailable;												//Status of the bonus.
+	private final Council council;												//The council of the region.
+	private final RegionDeck deck;												//The deck of business permit tiles.
+	private final BonusKing bonusKing;											//The bonus king
 	
-	public Region(String name, Bonus bonus, RegionDeck deck) {
+	
+	public Region(String name, Bonus bonus, RegionDeck deck, BonusKing bonusKing) {
 		this.name = name;
 		this.bonus = bonus;
 		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
 		this.council=new Council();
 		this.deck=deck;
+		this.bonusKing=bonusKing;
 	}
 
 	/**
@@ -134,6 +138,7 @@ public class Region {
 		if(bonusAvailable && completedRegion(player)){					//Excute the bonus if it's available and the player has emporiums in all cities.
 			bonus.giveBonus(player);									//Run the bonus.
 			setBonusUnavailable();										//Set unavailable the bonus.
+			bonusKing.runBonusKing(player);								//Run bonus king.
 		}
 	}
 

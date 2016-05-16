@@ -11,24 +11,22 @@ public class City {
 	private final char id;									//The identifier of the city
 	private final String name;								//The name of the city, the first char is the id.
 	private final List<Bonus> token;						//The list of city's bonus.
-	private final String type;								//The city's type.
+	private final Type type;								//The city's type.
 	private final Region region;							//The city's region.
 	private final List<City> neighbors;						//The list of nearly cities.
 	private final List<Emporium> emporiums;					//The list of emporiums builded in the city.
 	
-	private ObserverBonus observerBonus;
 	
-	
-	public City(char id, String name, String type, Region region){
+	public City(char id, String name, Type type, Region region){
 		this.id=id;
 		this.name=name;		
 		this.token=new ArrayList<>();
 		this.type=type;
 		this.region=region;
+		this.type.addCity(this);						//Add this city at the type's list.
+		this.region.addCity(this);						//Add this city at the region's list.
 		this.neighbors=new ArrayList<>();
 		this.emporiums=new ArrayList<>();
-		
-		this.observerBonus=null;
 	}
 	
 	/**
@@ -57,7 +55,7 @@ public class City {
 	 * @return the type of city.
 	 */
 	public String getType() {
-		return type;
+		return type.getName();
 	}
 	
 	
@@ -215,9 +213,5 @@ public class City {
 	public String toString() {
 		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type +", neighbors=" +neighbors.size()+"]";
 		return city;
-	}
-	
-	public void setObserverBonus(ObserverBonus observerBonus){
-		this.observerBonus=observerBonus;
 	}
 }
