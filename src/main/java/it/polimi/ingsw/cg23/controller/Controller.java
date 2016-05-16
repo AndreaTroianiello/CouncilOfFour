@@ -10,6 +10,7 @@ import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.bonus.*;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Controller {
@@ -90,7 +91,7 @@ public class Controller {
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
-			regioni.add(new Region(cityInfo[i*c][5],null,null));//creata una nuova regione e aggiunta alla lista
+			regioni.add(new Region(cityInfo[i*c][5],null,new RegionDeck(2)));//creata una nuova regione e aggiunta alla lista
 			createCities(i);//create the city
 		}
 	}
