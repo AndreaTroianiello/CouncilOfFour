@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.view;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+
 public class RandomCostruction {
 	Random rnd = new Random();
 
@@ -82,7 +83,7 @@ public class RandomCostruction {
 		}while(!different(idCity));//vengono ristampati gli id delle citta' finche' non sono diversi 
 		return idCity;
 	}
-
+	
 	/**
 	 * create random bonus
 	 * @return a string with the bonuses
