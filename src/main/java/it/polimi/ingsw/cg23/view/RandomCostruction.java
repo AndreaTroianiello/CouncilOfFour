@@ -87,7 +87,7 @@ public class RandomCostruction {
 	 * create random bonus
 	 * @return a string with the bonuses
 	 */
-	public String randomBonus(){//ERRORE I BONUS SI RIPETONO!
+	public String randomBonus(){
 		String bonus;
 		String[]bonusArray=new String[9];//contiene i possibili bonus assegnabili alle carte permesso
 		bonusArray[0]="AdditionalAction";

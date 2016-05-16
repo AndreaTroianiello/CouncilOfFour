@@ -15,6 +15,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Setting {
 	CliInterface cl=new CliInterface();
+	List<Councillor> consiglieri=new ArrayList<>();
 
 	/**
 	 * create the politic cards
@@ -24,55 +25,55 @@ public class Setting {
 	 */
 	public List<PoliticCard> politicList(int numberColor, int jolly){
 		List<PoliticCard> politics= new ArrayList<>();//lista della carte politiche
-		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte nere
-			politics.add(new PoliticCard(Color.BLACK,false));				
-		}
-		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte rosa
-			politics.add(new PoliticCard(Color.PINK,false));
-		}
-		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte arancioni
-			politics.add(new PoliticCard(Color.ORANGE,false));
-		}
-		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte blu
-			politics.add(new PoliticCard(Color.BLUE,false));
-		}
-		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte bianche
-			politics.add(new PoliticCard(Color.WHITE,false));
-		}
-		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte rosse (non ci sono viola)
-			politics.add(new PoliticCard(Color.RED,false));
+		Color[] arrayColori=color();//recupero un array di Color con i possibili colori
+		for(int k=0; k<arrayColori.length; k++){//ciclo che scorre i colori
+			for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte nere
+				politics.add(new PoliticCard(arrayColori[k],false));//creo una nuova carta polita e la aggiungo alla lista
+			}
 		}
 		for(int i=0;i<jolly; i++){//aggiungo alla lista le carte jolly
-			politics.add(new PoliticCard(null,true));
+			politics.add(new PoliticCard(null,true));//creo una nuova carta politica jolly e la laggiungo alla lista
 		}
 		return politics;
 	}
 
 	/**
+	 * the Color array contains alla the possibitly colors
+	 * @return a Color array
+	 */
+	public Color[] color(){
+		Color[] arrayColori=new Color[6];//array di Color con i possibili colori
+		arrayColori[0]=Color.BLACK;
+		arrayColori[1]=Color.RED;
+		arrayColori[2]=Color.WHITE;
+		arrayColori[3]=Color.BLUE;
+		arrayColori[4]=Color.ORANGE;
+		arrayColori[5]=Color.PINK;
+		return arrayColori;
+	}
+
+	/**
 	 * the function create the counsillor
-	 * @param numberCouncillor, number of consullors per color to create
-	 * @param numberColour, number of colours (6)
+	 * @param numberCouncillor, number of councillors per color to create
 	 * @param b, the board
 	 */
-	public void CreateCouncillor(int numberCouncillor, int numberColour, Board b){
-		Color color = null;
-		for(int i=0; i<numberColour; i++){//ciclo che scorre i colori
-			if(i==0)
-				color=Color.BLACK;
-			if(i==1)
-				color=Color.PINK;
-			if(i==2)
-				color=Color.ORANGE;
-			if(i==3)
-				color=Color.BLUE;
-			if(i==4)
-				color=Color.WHITE;
-			if(i==5)
-				color=Color.RED;
+	public void CreateCouncillor(int numberCouncillor, Board b){
+		Color[] arrayColori=color();//recupero un array di Color con i possibili colori
+		for(int i=0; i<arrayColori.length; i++){//ciclo che scorre i colori
 			for(int k=0; k<numberCouncillor; k++){//ciclo che scorre il numero di consiglieri per colore
-				b.setCouncillor(new Councillor(color));//creo un nuovo consigliere e lo aggiungo alla board
+				Councillor c= new Councillor(arrayColori[i]);//creo un nuovo consigliere
+				consiglieri.add(c);//aggiungo il consigliere alla lista
+				b.setCouncillor(c);//aggiungo il consigliere alla board
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * @return a list with the Councillors
+	 */
+	public List<Councillor> getConsiglieri(){
+		return consiglieri;
 	}
 
 	/**

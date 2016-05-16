@@ -83,7 +83,7 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------
-		s.CreateCouncillor(4, 6, board);
+		s.CreateCouncillor(4, board);
 		for(int i=0; i<regions.size(); i++){
 			s.setBalconi(board, regions.get(i));
 		}
@@ -107,6 +107,7 @@ public class Avvio {
 		c.printList(giocatori);
 		c.printList(politcards);
 		c.printList(costructionCard);
+		c.printList(s.getConsiglieri());
 	}
 	
 	public Board getBoard(){
