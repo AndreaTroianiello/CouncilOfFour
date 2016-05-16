@@ -127,16 +127,16 @@ public class CliInterface {
 	/**
 	 * stampa una qualunque cosa gli viene passata e ritorna il valore letto dalla cl
 	 * @param testo, what you want to show on the cl
-	 * @param ogg, the object yu want to show with the test on the cl (null if none)
+	 * @param ogg, the object you want to show with the test on the cl (null if none)
 	 * @return what the user write on the cl
 	 */
 	public Object writeReturnValue(String testo, Object ogg){
 		@SuppressWarnings("resource")
 		Scanner scan=new Scanner(System.in);//creo uno scanner per leggere l'input da cl
-		if(ogg!=null)//se l'oggetto passato e' nullo stampo solo il testo
+		if(ogg==null)//se l'oggetto passato e' nullo stampo solo il testo
 			print("",testo);
 		else
-			print("",testo);
+			print(ogg, testo);
 		return scan.nextLine();//ritorno il valore letto dalla cl
 	}
 

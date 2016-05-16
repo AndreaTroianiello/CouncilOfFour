@@ -78,7 +78,7 @@ public class Turn {
 	}
 	
 	/**
-	 * 
+	 * Sets the action variables at false.
 	 */
 	public void controlAction(){
 		if(action.isMain() && mainAction){

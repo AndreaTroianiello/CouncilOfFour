@@ -38,5 +38,15 @@ public class Emporium {
 	public Player getPlayer() {
 		return player;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Emporium [city=" + city.getName() + "]";
+	}
+	
+	
 	
 }
