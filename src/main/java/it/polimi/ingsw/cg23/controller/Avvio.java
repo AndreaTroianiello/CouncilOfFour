@@ -75,7 +75,7 @@ public class Avvio {
 		cl.print("", "-Creo il deck");
 		
 		//----------board----------
-		//board=new Board(dec, regions, new NobilityTrack(20), king);//creata la board
+		board=new Board(dec, regions,null, new NobilityTrack(20), king);//creata la board
 		cl.print("", "-Creo la board");
 		
 		//----------carte permesso di costruzione----------
@@ -84,12 +84,12 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------
-	/*	s.CreateCouncillor(4, board);
+		s.CreateCouncillor(4, board);
 		for(int i=0; i<regions.size(); i++){
 			s.setBalconi(board, regions.get(i));
 		}
 		s.setBalconi(board, king);
-		cl.print("", "-Creo i consiglieri");*/
+		cl.print("", "-Creo i consiglieri");
 		
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
