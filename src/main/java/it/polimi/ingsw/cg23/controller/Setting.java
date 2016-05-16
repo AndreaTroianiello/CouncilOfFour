@@ -15,7 +15,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Setting {
 	CliInterface cl=new CliInterface();
-	
+
 	/**
 	 * create the politic cards
 	 * @param numberColor, the number of cards for each color
@@ -47,10 +47,16 @@ public class Setting {
 		}
 		return politics;
 	}
-	
+
+	/**
+	 * the function create the counsillor
+	 * @param numberCouncillor, number of consullors per color to create
+	 * @param numberColour, number of colours (6)
+	 * @param b, the board
+	 */
 	public void CreateCouncillor(int numberCouncillor, int numberColour, Board b){
 		Color color = null;
-		for(int i=0; i<numberColour; i++){
+		for(int i=0; i<numberColour; i++){//ciclo che scorre i colori
 			if(i==0)
 				color=Color.BLACK;
 			if(i==1)
@@ -63,36 +69,46 @@ public class Setting {
 				color=Color.WHITE;
 			if(i==5)
 				color=Color.RED;
-			for(int k=0; k<numberCouncillor; k++){
-				b.setCouncillor(new Councillor(color));
+			for(int k=0; k<numberCouncillor; k++){//ciclo che scorre il numero di consiglieri per colore
+				b.setCouncillor(new Councillor(color));//creo un nuovo consigliere e lo aggiungo alla board
 			}
 		}
 	}
-		
-	public void setBalconi(Board b, Region reg){
-		List<Councillor> consiglieri=b.getCouncillorPool();//lista dei consiglieri
-		Random rnd =new Random();
-		List<Councillor> nuoviConsiglieri = new ArrayList<>();
-		for(int i=0; i<4; i++){
-			int randomNumber=rnd.nextInt(consiglieri.size());
-			nuoviConsiglieri.add(consiglieri.get(randomNumber));
-			consiglieri.remove(randomNumber);
-			//nuoviConsiglieri.
-		}
-		reg.getCouncil().getCouncillors().addAll(nuoviConsiglieri);
-	}
-	
-	public void setBalconi(Board b, King k){
-		List<Councillor> consiglieri=b.getCouncillorPool();//lista dei consiglieri
-		Random rnd =new Random();
-		List<Councillor> nuoviConsiglieri = new ArrayList<>();
-		int randomNumber=rnd.nextInt(consiglieri.size());
-			nuoviConsiglieri.add(consiglieri.get(randomNumber));
-			consiglieri.remove(randomNumber);
 
-		k.getCouncil().getCouncillors().addAll(nuoviConsiglieri);
+	/**
+	 * create the balconi region
+	 * @param b, the board
+	 * @param reg, the region
+	 */
+	public void setBalconi(Board b, Region reg){
+		List<Councillor> consiglieri=b.getCouncillorPool();//lista di tutti i consiglieri
+		Random rnd = new Random();
+		List<Councillor> nuoviConsiglieri = new ArrayList<>();//consiglieri della regione
+		for(int i=0; i<4; i++){//ciclo che scorre i consiglieri (4 per regione)
+			int randomNumber=rnd.nextInt(consiglieri.size());//numero random per recuperrare a caso i consiglieri
+			nuoviConsiglieri.add(consiglieri.get(randomNumber));//aggiungo i consiglieri alla nuova lista
+			consiglieri.remove(randomNumber);//rimuovo i consiglieri dalla vecchia lista
+		}
+		reg.getCouncil().getCouncillors().addAll(nuoviConsiglieri);//aggiungo la nuova lista alla regione
 	}
-	
+
+	/**
+	 * create the balconi king
+	 * @param b, the board
+	 * @param k, the king
+	 */
+	public void setBalconi(Board b, King k){
+		List<Councillor> consiglieri=b.getCouncillorPool();//lista di tutti consiglieri
+		Random rnd = new Random();
+		List<Councillor> nuoviConsiglieri = new ArrayList<>();//lista dei consiglieri del re
+		for(int i=0; i<4; i++){//ciclo che scorre i consiglieri (4 per il balcone del re)
+			int randomNumber=rnd.nextInt(consiglieri.size());//numero casuale per trovare i consiglieri
+			nuoviConsiglieri.add(consiglieri.get(randomNumber));//aggiungo il consigliere random alla lista dei consiglieri del re
+			consiglieri.remove(randomNumber);//cancello il consigliere aggiunto dalla lista dei consiglieri disponibili
+		}
+		k.getCouncil().getCouncillors().addAll(nuoviConsiglieri);//aggiungo la lista dei 4 consiglieri al re
+	}
+
 	/**
 	 * find the king's city
 	 * @param citta, a list with all the cities
@@ -106,7 +122,7 @@ public class Setting {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * create a list of the city from the regions list and add the neighbors
 	 * @param regioni, a list with the regions
@@ -118,7 +134,7 @@ public class Setting {
 		}
 		addNeighbors(citta);//aggiungo i vicini alle citta'
 	}
-	
+
 	/**
 	 * add at a city their neighbors
 	 * @param citta a list with all the cities
@@ -133,7 +149,7 @@ public class Setting {
 			}
 		}
 	}
-	
+
 	/**
 	 * find and return the neighbors city
 	 * @param citta, a list with all the cities

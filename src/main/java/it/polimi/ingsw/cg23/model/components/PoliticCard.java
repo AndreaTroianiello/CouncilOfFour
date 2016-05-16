@@ -35,6 +35,6 @@ public class PoliticCard {
 	 */
 	@Override
 	public String toString() {
-		return "PoliticCard [color=" + color+ ", jolly=" + jolly + "] \n";
+		return "PoliticCard [color=" + color+ ", jolly=" + jolly + "]";
 	}
 }

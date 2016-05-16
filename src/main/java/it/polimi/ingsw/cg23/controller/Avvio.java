@@ -6,7 +6,6 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Deck;
@@ -75,7 +74,7 @@ public class Avvio {
 		cl.print("", "-Creo il deck");
 		
 		//----------board----------
-		Board bord=new Board(dec, regions, new NobilityTrack(20), king);//creata la board
+		board=new Board(dec, regions, new NobilityTrack(20), king);//creata la board
 		cl.print("", "-Creo la board");
 		
 		//----------carte permesso di costruzione----------
@@ -84,23 +83,35 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------
-		s.CreateCouncillor(4, 6, bord);
+		s.CreateCouncillor(4, 6, board);
 		for(int i=0; i<regions.size(); i++){
-			s.setBalconi(bord, regions.get(i));
+			s.setBalconi(board, regions.get(i));
 		}
-		s.setBalconi(bord, king);
+		s.setBalconi(board, king);
 		cl.print("", "-Creo i consiglieri");
 		
-		
-		//------------------------------------------------------------------------------
-		// DA FARE creazione elementi di gioco (balconi(consiglieri), azioni)
-
-		new Turn(giocatori, bord);//creato il turno
+		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		//c.printList(regions.get(1).getCouncil());
-		//System.out.println(regions.get(1).getCouncil().toString());
+		PrintAll();
 		}
+	
+	/**
+	 * print all the list
+	 */
+	public void PrintAll(){
+		cl.print("", "STAMPO TUTTO");
+		c.printList(bonusList);
+		c.printList(regions);
+		c.printList(citta);
+		c.printList(giocatori);
+		c.printList(politcards);
+		c.printList(costructionCard);
+	}
+	
+	public Board getBoard(){
+		return board;
+	}
 	
 	/**
 	 * 

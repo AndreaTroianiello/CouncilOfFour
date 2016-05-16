@@ -127,7 +127,6 @@ public class Controller {
 	public void getCityBonus(int i, City c){
 		if("purple".equals(c.getType()))//la citta' del re non ha bonus
 			return;
-
 		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);//string tokenizer del nome dei bonus
 		while(st.hasMoreTokens()){
