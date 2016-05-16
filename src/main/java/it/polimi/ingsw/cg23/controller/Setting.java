@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.controller;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
@@ -32,7 +33,6 @@ public class Setting {
 		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte arancioni
 			politics.add(new PoliticCard(Color.ORANGE,false));
 		}
-		
 		for(int i=0;i<numberColor; i++){//aggiungo alla lista le carte blu
 			politics.add(new PoliticCard(Color.BLUE,false));
 		}
@@ -48,12 +48,49 @@ public class Setting {
 		return politics;
 	}
 	
-	public void CreateCouncillor(int numberCouncillor, int color, Board b){
-		for(int i=0; i<color; i++){
-			for(int k=0; k<color; k++){
-				
+	public void CreateCouncillor(int numberCouncillor, int numberColour, Board b){
+		Color color = null;
+		for(int i=0; i<numberColour; i++){
+			if(i==0)
+				color=Color.BLACK;
+			if(i==1)
+				color=Color.PINK;
+			if(i==2)
+				color=Color.ORANGE;
+			if(i==3)
+				color=Color.BLUE;
+			if(i==4)
+				color=Color.WHITE;
+			if(i==5)
+				color=Color.RED;
+			for(int k=0; k<numberCouncillor; k++){
+				b.setCouncillor(new Councillor(color));
 			}
 		}
+	}
+		
+	public void setBalconi(Board b, Region reg){
+		List<Councillor> consiglieri=b.getCouncillorPool();//lista dei consiglieri
+		Random rnd =new Random();
+		List<Councillor> nuoviConsiglieri = new ArrayList<>();
+		for(int i=0; i<4; i++){
+			int randomNumber=rnd.nextInt(consiglieri.size());
+			nuoviConsiglieri.add(consiglieri.get(randomNumber));
+			consiglieri.remove(randomNumber);
+			//nuoviConsiglieri.
+		}
+		reg.getCouncil().getCouncillors().addAll(nuoviConsiglieri);
+	}
+	
+	public void setBalconi(Board b, King k){
+		List<Councillor> consiglieri=b.getCouncillorPool();//lista dei consiglieri
+		Random rnd =new Random();
+		List<Councillor> nuoviConsiglieri = new ArrayList<>();
+		int randomNumber=rnd.nextInt(consiglieri.size());
+			nuoviConsiglieri.add(consiglieri.get(randomNumber));
+			consiglieri.remove(randomNumber);
+
+		k.getCouncil().getCouncillors().addAll(nuoviConsiglieri);
 	}
 	
 	/**

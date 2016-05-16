@@ -83,14 +83,22 @@ public class Avvio {
 		costructionCard=c.getCostructionCard();//recupero la liste di carte costruzione
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
-		//------------------------------------------------------------------
+		//----------consiglieri e balconi----------
+		s.CreateCouncillor(4, 6, bord);
+		for(int i=0; i<regions.size(); i++){
+			s.setBalconi(bord, regions.get(i));
+		}
+		s.setBalconi(bord, king);
+		cl.print("", "-Creo i consiglieri");
 		
-		// BONUS E CARTE COSTRUZIONE parziale (i bonus devono avere un metodo set(int))-->modifica controller
+		//------------------------------------------------------------------------------
 		// DA FARE creazione elementi di gioco (balconi(consiglieri), azioni)
 
 		new Turn(giocatori, bord);//creato il turno
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
+		//c.printList(regions.get(1).getCouncil());
+		//System.out.println(regions.get(1).getCouncil().toString());
 		}
 	
 	/**

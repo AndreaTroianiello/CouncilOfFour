@@ -132,12 +132,12 @@ public class Controller {
 		while(st.hasMoreTokens()){
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
-			//int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
+			int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
 
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
 					c.addBonus(bonusList.get(j));
-					//c.addBonus(bonusList.get(j).setParameters(number));//bosogna passare ai bonus il numero
+					bonusList.get(j).setNumber(number);//setta il numero di bonus
 				}
 			}
 		}
@@ -203,12 +203,12 @@ public class Controller {
 		while(st.hasMoreTokens()){//ciclo finche' ci sono token
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
-			//int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
+			int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
 
 			for(int j=0; j<bonusList.size(); j++){//scorro la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//cerco il bonus nella lista dei bonus
 					bpt.addBonus(bonusList.get(j));//aggiungo alla carta costruzione i suoi bonus
-					//bpt.addBonus(bonusList.get(j).set(number));//bosogna passare ai bonus il numero
+					bonusList.get(j).setNumber(number);//setto il numero di bonus
 				}
 			}
 		}
