@@ -166,7 +166,7 @@ public class Controller {
 	public List<Bonus> bonusList(){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants());
-		bonusList.add(new BonusCityToken(0,null));
+		bonusList.add(new BonusCityToken(0,null, null));
 		bonusList.add(new BonusCoin(0));
 		bonusList.add(new BonusGetPermitTile(0,0,null));
 		bonusList.add(new BonusNobility(0,null));

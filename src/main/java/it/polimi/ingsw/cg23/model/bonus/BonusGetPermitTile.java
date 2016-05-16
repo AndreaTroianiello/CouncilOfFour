@@ -3,19 +3,21 @@ package it.polimi.ingsw.cg23.model.bonus;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.view.CliInterface;
  
 public class BonusGetPermitTile implements Bonus {
 	
-	private final int region;				//wich region the player want to get the PermitTitle from
-	private final int card; 				//wich PermitTitle the player choose from the showed ones 
 	private final Board board;
 	private final String name="GetPermitTile";
 	
+	private final CliInterface cl;
+	
  
-	public BonusGetPermitTile(int region, int card, Board board) {
-		this.region = region;
-		this.card = card;
+	public BonusGetPermitTile(int i, int a, Board board) {
+		
 		this.board = board;
+		
+		this.cl = new CliInterface();
 	}
 	
 	/**
@@ -34,21 +36,6 @@ public class BonusGetPermitTile implements Bonus {
 	}
 
 
-
-	/**
-	 * @return the region
-	 */
-	public int getRegion() {
-		return region;
-	}
-	
-
-	/**
-	 * @return the card
-	 */
-	public int getCard() {
-		return card;
-	}
 	
 	public void setNumber(int number){}
 
@@ -60,6 +47,9 @@ public class BonusGetPermitTile implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
+		int region =(int)cl.writeReturnValue("Inserisci valore della regione", null);
+		int card = (int)cl.writeReturnValue("Inserisci valore della carta scelta", null);
+		
 		BusinessPermitTile bonusPermit=this.board.getRegions().get(region).getDeck().getShowedDeck().get(card);		//give to a variable the chosen card
 		player.getAvailableBusinessPermits().add(bonusPermit);   					//add the chosen PermitTitle to the player collection
 		this.board.getRegions().get(region).getDeck().changeShowedDeck(); 			//replace the PermitTitle chosen with the one in top of the deck
@@ -75,8 +65,9 @@ public class BonusGetPermitTile implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusGetPermitTile [deck=" + region + ", card=" + card + "]";
+		return "BonusGetPermitTile [board=" + board + ", name=" + name + ", cl=" + cl + "]";
 	}
+
 	
 	
 }
