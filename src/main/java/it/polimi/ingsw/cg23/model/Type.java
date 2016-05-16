@@ -96,7 +96,7 @@ public class Type {
 	 *  @param player the player that takes the bonus of the region. 
 	 */
 	public void runBonusRegion(Player player){
-		if(bonusAvailable && completedType(player)){					//Excute the bonus if it's available and the player has emporiums in all cities.
+		if(bonusAvailable && completedType(player) && bonus!=null){		//Excute the bonus if it's available and the player has emporiums in all cities.
 			bonus.giveBonus(player);									//Run the type's bonus.
 			setBonusUnavailable();										//Set unavailable the bonus.
 			bonusKing.runBonusKing(player);								//Run the bonus king.
