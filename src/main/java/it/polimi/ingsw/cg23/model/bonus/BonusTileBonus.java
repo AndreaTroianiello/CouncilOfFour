@@ -47,6 +47,11 @@ public class BonusTileBonus implements Bonus {
 		}
 
 	}
+	
+	
+	public void setParameters(){
+		
+	}
 
 
 	/* (non-Javadoc)

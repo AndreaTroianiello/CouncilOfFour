@@ -7,4 +7,6 @@ public interface Bonus {
 	
 	public void giveBonus(Player player);
 	public String getName();
+	public void setParameters();
+
 }

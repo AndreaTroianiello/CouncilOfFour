@@ -5,19 +5,30 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class ElectCouncillor extends PrimaryAction implements Action{
+public class ElectCouncillor implements Action{
 	
 	private final Councillor councillor;
 	private final int region; 											//wich region the player choose 
 	private final boolean king;
+	private final boolean main;
 	
 	
 	public ElectCouncillor(Councillor councillor, int region, boolean king) {
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
+		this.main = true;
 	}
 	
+	
+
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
+	}
+
 
 
 	/**

@@ -4,14 +4,27 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class ChangeBusinessPermit extends SecondaryAction implements Action {
+public class ChangeBusinessPermit implements Action {
 	
 	private final int region;
+	private final boolean main;
 	
 
 	public ChangeBusinessPermit(int region) {
 		this.region = region;
+		this.main = false;
 	}
+	
+	
+
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
+	}
+
+
 
 	/**
 	 * @return the region

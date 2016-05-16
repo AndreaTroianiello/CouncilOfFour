@@ -3,8 +3,28 @@ package it.polimi.ingsw.cg23.model.action;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 
-public class AdditionalAction extends SecondaryAction implements Action {
+public class AdditionalAction implements Action {
 	
+	private final boolean main;
+	
+	
+	
+	public AdditionalAction() {
+		this.main = false;
+	}
+	
+
+
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
+	}
+
+
+
+
 	/**
 	 * switch addictionalAction in true 
 	 * @param player

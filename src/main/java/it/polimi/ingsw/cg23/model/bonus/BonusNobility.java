@@ -60,6 +60,11 @@ public class BonusNobility implements Bonus {
 			b.giveBonus(player);
 		}
 	}
+	
+	
+	public void setParameters(){
+		
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

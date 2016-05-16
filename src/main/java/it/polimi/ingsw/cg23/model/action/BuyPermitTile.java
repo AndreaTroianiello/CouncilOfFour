@@ -8,18 +8,39 @@ import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class BuyPermitTile extends PrimaryAction implements Action {
+public class BuyPermitTile implements Action {
 	
 	private final List<PoliticCard> cards;
 	private final int region;
 	private final int chosenTile;									//wich tile the player chose from the showed ones
-	
+	private final boolean main;
 	
 	public BuyPermitTile(List<PoliticCard> cards, int region, int choosenTile) {
 		this.cards = cards;
 		this.region = region;
 		this.chosenTile = choosenTile;
+		this.main = true;
 	}
+
+	
+	/**
+	 * @return the chosenTile
+	 */
+	public int getChosenTile() {
+		return chosenTile;
+	}
+
+
+
+
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
+	}
+
+
 
 
 	/**

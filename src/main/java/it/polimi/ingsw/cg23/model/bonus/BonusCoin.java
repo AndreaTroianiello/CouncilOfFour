@@ -53,6 +53,11 @@ public class BonusCoin implements Bonus {
 			System.out.println("The bonus makes the player have negative coins");
 		}
 	}
+	
+	
+	public void setParameters(){
+		
+	}
 
 
 	/* (non-Javadoc)

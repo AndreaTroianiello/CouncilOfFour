@@ -37,6 +37,11 @@ public class BonusVictoryPoints implements Bonus {
 		playerPoints = playerPoints + this.points;
 		player.setVictoryPoints(playerPoints);
 	}
+	
+	
+	public void setParameters(){
+		
+	}
 
 
 	/* (non-Javadoc)

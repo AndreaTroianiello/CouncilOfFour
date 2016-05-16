@@ -7,14 +7,25 @@ import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class BuildEmporiumTile extends PrimaryAction implements Action {
+public class BuildEmporiumTile implements Action {
 	
 	private final BusinessPermitTile card;
 	private final int cityID; 						//wich city the player choose from the ones on the card
+	private final boolean main;
 	
 	public BuildEmporiumTile(BusinessPermitTile card, int cityID) {
 		this.card = card;
 		this.cityID = cityID;
+		this.main = true;
+	}
+	
+
+
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
 	}
 
 

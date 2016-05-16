@@ -4,8 +4,25 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class HireAssistant extends SecondaryAction implements Action {
+public class HireAssistant implements Action {
 	
+	private final boolean main;
+	
+	
+	
+	public HireAssistant(boolean main) {
+		this.main = false;
+	}
+
+	
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
+	}
+
+
 	/**
 	 * give the player an assistant and take
 	 * from him 3 coins

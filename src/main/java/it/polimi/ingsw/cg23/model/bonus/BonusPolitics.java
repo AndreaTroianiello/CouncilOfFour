@@ -51,6 +51,11 @@ public class BonusPolitics implements Bonus {
 			player.addPoliticCard(this.board.getDeck().draw());			//draw a card from the politic's deck
 
 	}
+	
+	
+	public void setParameters(){
+		
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

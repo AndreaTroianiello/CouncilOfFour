@@ -16,7 +16,10 @@ public class BonusAdditionalAction implements Bonus {
 	public void giveBonus(Player player) {
 		if(!player.isAdditionalAction())
 			player.switchAdditionalAction();
-
+	}
+	
+	public void setParameters(){
+		
 	}
 	
 	/**

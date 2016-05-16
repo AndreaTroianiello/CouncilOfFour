@@ -38,6 +38,10 @@ public class BonusAssistants implements Bonus {
 
 	}
 	
+	public void setParameters(){
+		
+	}
+	
 	/**
 	 * return the bonus name and the number(if exist)
 	 */

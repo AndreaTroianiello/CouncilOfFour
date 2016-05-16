@@ -10,18 +10,30 @@ import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class BuildEmporiumKing extends PrimaryAction implements Action {
+public class BuildEmporiumKing implements Action {
 	
 	private final List<PoliticCard> cards;
 	private final City destination;
+	private final boolean main;
 		
 	
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
 		this.cards = cards;
 		this.destination = destination;
+		this.main = true;
 	}
 	
 	
+	
+	/**
+	 * @return the main
+	 */
+	public boolean isMain() {
+		return main;
+	}
+
+
+
 	/**
 	 * @return the cards
 	 */
