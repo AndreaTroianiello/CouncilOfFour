@@ -91,6 +91,7 @@ public class Avvio {
 		s.setBalconi(bord, king);
 		cl.print("", "-Creo i consiglieri");
 		
+		
 		//------------------------------------------------------------------------------
 		// DA FARE creazione elementi di gioco (balconi(consiglieri), azioni)
 
