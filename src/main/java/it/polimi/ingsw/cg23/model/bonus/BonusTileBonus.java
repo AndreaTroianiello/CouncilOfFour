@@ -10,11 +10,9 @@ public class BonusTileBonus implements Bonus {
 	
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
 	private final String name="TileBonus";
-	private final int number;
 
 	public BonusTileBonus(int number) {
 		this.businessPermitTiles = new ArrayList<>();
-		this.number=number;
 	}
 
 
@@ -30,7 +28,7 @@ public class BonusTileBonus implements Bonus {
 	 */
 	@Override
 	public String getName(){
-		return number+name;
+		return name;
 	}
 
 	/**
@@ -48,6 +46,7 @@ public class BonusTileBonus implements Bonus {
 
 	}
 	
+	public void setNumber(int number){}
 	
 	public void setParameters(){
 		

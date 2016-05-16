@@ -12,7 +12,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class BonusCoin implements Bonus {
 	
-	private final int coin;						//the amount of coin given by the bonus
+	private int coin;						//the amount of coin given by the bonus
 	private final String name="Coin";
 	
 	/* (non-Javadoc)
@@ -42,6 +42,10 @@ public class BonusCoin implements Bonus {
 	 * 
 	 * @param player
 	 */
+	
+	public void setNumber(int number){
+		this.coin = number;
+	}
 	
 	@Override
 	public void giveBonus(Player player) {

@@ -49,6 +49,8 @@ public class BonusGetPermitTile implements Bonus {
 	public int getCard() {
 		return card;
 	}
+	
+	public void setNumber(int number){}
 
 	/**
 	 * give to the player the PermitTitle chosen and replace it 

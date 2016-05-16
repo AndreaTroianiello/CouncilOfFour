@@ -6,7 +6,7 @@ import it.polimi.ingsw.cg23.model.Player;
 
 public class BonusPolitics implements Bonus {
 	
-	private final int cardNumber;
+	private int cardNumber;
 	private final Board board;
 	private final String name="Politics";
 	
@@ -37,6 +37,14 @@ public class BonusPolitics implements Bonus {
 	 */
 	public int getCardNumber() {
 		return cardNumber;
+	}
+	
+
+	/**
+	 * @param cardNumber the cardNumber to set
+	 */
+	public void setNumber(int number) {
+		this.cardNumber = number;
 	}
 
 	/**

@@ -13,7 +13,7 @@ import it.polimi.ingsw.cg23.model.components.NobilityBox;
  */
 public class BonusNobility implements Bonus {
 	
-	private final int steps;
+	private int steps;
 	private final Board board;
 	private final String name="BonusNobility";
 
@@ -46,6 +46,14 @@ public class BonusNobility implements Bonus {
 		return steps;
 	}
 	
+	
+
+	/**
+	 * @param steps the steps to set
+	 */
+	public void setNumber(int number) {
+		this.steps = number;
+	}
 
 	/*
 	 * @see it.polimi.ingsw.cg23.model.bonus.Bonus#giveBonus(it.polimi.ingsw.cg23.model.Player)

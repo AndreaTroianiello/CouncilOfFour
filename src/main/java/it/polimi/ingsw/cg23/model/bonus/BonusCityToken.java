@@ -9,7 +9,7 @@ import it.polimi.ingsw.cg23.model.Player;
 
 public class BonusCityToken implements Bonus {
 	
-	private final int number;				//how many times the player can run the bonus
+	private int number;				//how many times the player can run the bonus
 	private final List<City> city;			//the city the player chooses to run the bonus from
 	private final boolean[] runnable;		//a list of boolean that show if the bonus in the city are runnable 
 	private final String name="CityToken";
@@ -29,6 +29,22 @@ public class BonusCityToken implements Bonus {
 	 */
 	public int getNumber() {
 		return number;
+	}
+	
+	
+
+	/**
+	 * @return the runnable
+	 */
+	public boolean[] getRunnable() {
+		return runnable;
+	}
+
+	/**
+	 * @param number the number to set
+	 */
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	/**

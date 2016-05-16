@@ -5,12 +5,12 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class BonusAssistants implements Bonus {
 	
-	private final int assistants;				//the amount of assistants given by the bonus
+	private int assistants;				//the amount of assistants given by the bonus
 	private final String name="Assistants";
 	
 	
-	public BonusAssistants(int assistants) {
-		this.assistants = assistants;
+	public BonusAssistants() {
+		this.assistants = 0;
 	}
 	
 
@@ -19,6 +19,10 @@ public class BonusAssistants implements Bonus {
 	 */
 	public int getAssistants() {
 		return assistants;
+	}
+	
+	public void setNumber(int number){
+		this.assistants = number;
 	}
 
 	/**

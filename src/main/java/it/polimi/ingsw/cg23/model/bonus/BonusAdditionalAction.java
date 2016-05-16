@@ -22,6 +22,10 @@ public class BonusAdditionalAction implements Bonus {
 		
 	}
 	
+	public void setNumber(int number){
+		
+	}
+	
 	/**
 	 * return the bonus name and the number(if exist)
 	 */
