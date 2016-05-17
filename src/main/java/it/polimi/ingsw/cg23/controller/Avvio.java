@@ -103,6 +103,8 @@ public class Avvio {
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
 		PrintAll();
+		
+		//TEMPORANY
 		//AutoCostruction ac=new AutoCostruction();
 		//ac.createIdCity(citta, "costa");
 		}
