@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.view.AutoCostruction;
 //import it.polimi.ingsw.cg23.view.AutoCostruction;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
