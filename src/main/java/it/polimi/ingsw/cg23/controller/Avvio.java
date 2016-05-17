@@ -1,18 +1,19 @@
 package it.polimi.ingsw.cg23.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.view.AutoCostruction;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -30,6 +31,7 @@ public class Avvio {
 	List <PoliticCard> politcards;//lista giocatori
 	List <Bonus> bonusList;//lista dei bonus
 	List <BusinessPermitTile> costructionCard;//lista dei bonus
+	List <Type> tipi;//lista dei bonus
 	Board board;
 
 	public Avvio(){
@@ -42,6 +44,10 @@ public class Avvio {
 	public void startPartita(){//metodo per avviare la partita
 		cl.print("", "Benvenuti a cof!");
 		
+		//----------creo i type----------
+		tipi=c.createType();//creo i type (colori( delle citta'
+		cl.print("", "-Creo i type");
+		
 		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
@@ -50,8 +56,12 @@ public class Avvio {
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 		
+		//----------board creazione----------
+		board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
+		cl.print("", "-Creo la board");
+		
 		//----------bonus----------
-		bonusList=c.bonusList();//recupero la lista con tutti i bonus
+		bonusList=c.bonusList(board);//recupero la lista con tutti i bonus
 		cl.print("", "-Creo i bonus");
 	
 		//----------regioni e citta'----------
@@ -72,11 +82,15 @@ public class Avvio {
 		
 		//----------deck----------
 		Deck dec=new Deck(politcards);//creato il deck
+		s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
 		cl.print("", "-Creo il deck");
 		
-		//----------board----------
-		board=new Board(dec, regions,null, new NobilityTrack(20), king);//creata la board
-		cl.print("", "-Creo la board");
+		//----------board settaggio----------
+		board.setDeck(dec);
+		board.setKing(king);
+		board.setRegions(regions);
+		board.setTypes(tipi);
+		cl.print("", "-Setto la board");
 		
 		//----------carte permesso di costruzione----------
 		c.createCardCostruction();//crea le carte costruzione
@@ -84,7 +98,7 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------
-		s.CreateCouncillor(4, board);
+		s.createCouncillor(4, board);
 		for(int i=0; i<regions.size(); i++){
 			s.setBalconi(board, regions.get(i));
 		}
@@ -94,15 +108,13 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		PrintAll();
-		AutoCostruction ac=new AutoCostruction();
-		ac.createIdCity(citta, "costa");
+		//printAll();
 		}
 	
 	/**
 	 * print all the list
 	 */
-	public void PrintAll(){
+	public void printAll(){
 		cl.print("", "STAMPO TUTTO");
 		c.printList(bonusList);
 		c.printList(regions);
@@ -110,7 +122,7 @@ public class Avvio {
 		c.printList(giocatori);
 		c.printList(politcards);
 		c.printList(costructionCard);
-		c.printList(s.getConsiglieri());
+		c.printList(tipi);
 	}
 	
 	public Board getBoard(){

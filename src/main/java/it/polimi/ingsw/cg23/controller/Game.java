@@ -12,7 +12,7 @@ public class Game {
 	
 	public Game(){
 		this.board=null; //richiamo metodo per creare la board
-		this.players=new ArrayList<Player>();//creo i player
+		this.players=new ArrayList<>();//creo i player
 		this.turn=new Turn(players,board);//creo il turn
 	}
 	//metodi per cambiare i giocatori
@@ -38,7 +38,8 @@ public class Game {
                 	}
                 		
             }
-            if(!flag) return; //Se flag=false allora vuol dire che nell' ultima iterazione non ci sono stati scambi, quindi il metodo può terminare
+            if(!flag)
+            	return; //Se flag=false allora vuol dire che nell' ultima iterazione non ci sono stati scambi, quindi il metodo può terminare
         }
 
 	}

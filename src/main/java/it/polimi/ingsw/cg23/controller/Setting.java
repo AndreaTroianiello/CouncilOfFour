@@ -7,15 +7,16 @@ import java.util.Random;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
+import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.Councillor;
+import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Setting {
 	CliInterface cl=new CliInterface();
-	List<Councillor> consiglieri=new ArrayList<>();
 
 	/**
 	 * create the politic cards
@@ -57,8 +58,9 @@ public class Setting {
 	 * @param numberCouncillor, number of councillors per color to create
 	 * @param b, the board
 	 */
-	public void CreateCouncillor(int numberCouncillor, Board b){
+	public List<Councillor>  createCouncillor(int numberCouncillor, Board b){
 		Color[] arrayColori=color();//recupero un array di Color con i possibili colori
+		List<Councillor> consiglieri=new ArrayList<>();
 		for(int i=0; i<arrayColori.length; i++){//ciclo che scorre i colori
 			for(int k=0; k<numberCouncillor; k++){//ciclo che scorre il numero di consiglieri per colore
 				Councillor c= new Councillor(arrayColori[i]);//creo un nuovo consigliere
@@ -66,13 +68,6 @@ public class Setting {
 				b.setCouncillor(c);//aggiungo il consigliere alla board
 			}
 		}
-	}
-
-	/**
-	 * 
-	 * @return a list with the Councillors
-	 */
-	public List<Councillor> getConsiglieri(){
 		return consiglieri;
 	}
 
@@ -109,7 +104,22 @@ public class Setting {
 		}
 		k.getCouncil().getCouncillors().addAll(nuoviConsiglieri);//aggiungo la lista dei 4 consiglieri al re
 	}
-
+	
+	/**
+	 * 
+	 * @param dec, the deck
+	 * @param giocatori, a list with the players
+	 * @param cardsNumber, the number of cards to drow for each player
+	 */
+	public void pesca(Deck dec, List<Player> giocatori, int cardsNumber){
+		for(int i=0; i<giocatori.size(); i++){//ciclo che scorre i giocatori
+			for(int k=0; k<cardsNumber; k++){//ciclo che scorre il numero di carte
+			giocatori.get(i).addPoliticCard(dec.draw());
+			}
+		}
+		
+	}
+	
 	/**
 	 * find the king's city
 	 * @param citta, a list with all the cities

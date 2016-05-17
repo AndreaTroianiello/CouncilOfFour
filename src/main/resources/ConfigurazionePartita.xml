@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map>
+	<type>
+		<colors>
+			<namec>iron</namec>
+			<value>5</value>
+		</colors>
+		<colors>
+			<namec>purple</namec>
+			<value>0</value>
+		</colors>
+		<colors>
+			<namec>gold</namec>
+			<value>15</value>
+		</colors>
+		<colors>
+			<namec>silver</namec>
+			<value>10</value>
+		</colors>
+		<colors>
+			<namec>bronze</namec>
+			<value>7</value>
+		</colors>
+	</type>
 	<zone>
 		<namez>costa</namez>
 		<cities>

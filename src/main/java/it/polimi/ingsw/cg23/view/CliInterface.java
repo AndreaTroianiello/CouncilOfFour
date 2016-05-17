@@ -199,5 +199,14 @@ public class CliInterface {
 	public int regionsNumber(String[][] nome){
 		return scrittureXml.regionNumber(nome);
 	}
+	
+	/**
+	 * find the type(color) of the city
+	 * @param endPath, the name of the file with the .xml
+	 * @return a bidimensional array with the type(color)
+	 */
+	public String[][] getType(String endPath){
+		return lettureXml.getType(endPath);
+	}
 
 }

@@ -16,7 +16,6 @@ public class City {
 	private final List<City> neighbors;						//The list of nearly cities.
 	private final List<Emporium> emporiums;					//The list of emporiums builded in the city.
 	
-	
 	public City(char id, String name, Type type, Region region){
 		this.id=id;
 		this.name=name;		
@@ -102,6 +101,7 @@ public class City {
 	public void addBonus(Bonus bonus){
 		this.token.add(bonus);
 	}
+	
 	/**
 	 * Returns the list of the bonus.
 	 * 
@@ -120,7 +120,7 @@ public class City {
 	 * @param player the player to control.
 	 * @return if this city contains the emporium returns true, otherwise false.
 	 */
-	public boolean containsEmporium(Player player ){
+	public boolean containsEmporium(Player player){
 		//Control if the city contains a player's emporium
 		for(Emporium emporium: emporiums){							//Extract the emporium.
 			Player emporiumPlayer=emporium.getPlayer();				//Get the player of the emporium.
@@ -211,7 +211,6 @@ public class City {
 	 */
 	@Override
 	public String toString() {
-		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type.getName() +", neighbors=" +neighbors.size()+"]";
-		return city;
+		return "City [id=" + id + ", name=" + name + ", region="+ region.getName()+", bonus=" + token.toString() + ", type=" + type.getName() +", neighbors=" +neighbors.size()+"]";
 	}
 }

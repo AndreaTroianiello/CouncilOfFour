@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -20,6 +21,7 @@ public class Controller {
 	List <City> citta = new ArrayList<>();//lista citta
 	List <Bonus> bonusList=new ArrayList<>();//lista di bonus
 	List <BusinessPermitTile> costructionCard=new ArrayList<>();//lista di carte costruzione
+	List <Type> typeList=new ArrayList<>();//lista di type
 
 	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
@@ -34,7 +36,7 @@ public class Controller {
 		Player p=new Player(name, assistant+10, 0, nT);//creo i giocatori
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}
-	
+
 	/**
 	 * 
 	 * @return the player list
@@ -50,7 +52,7 @@ public class Controller {
 	public List<Region> getRegioni(){
 		return regioni;
 	}
-	
+
 	/**
 	 * 
 	 * @return the cities list
@@ -58,7 +60,7 @@ public class Controller {
 	public List<City> getCitta(){
 		return citta;
 	}
-	
+
 	/**
 	 * 
 	 * @return the costruction card list
@@ -66,7 +68,7 @@ public class Controller {
 	public List<BusinessPermitTile> getCostructionCard(){
 		return costructionCard;
 	}
-	
+
 	/**
 	 * return the number of player in the list
 	 * @return the number of player
@@ -92,7 +94,7 @@ public class Controller {
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
-			Region r=new Region(cityInfo[i*c][5],null,new RegionDeck(2),null);
+			Region r=new Region(cityInfo[i*c][5],0,new RegionDeck(2),null);
 			regioni.add(r);//creata una nuova regione e aggiunta alla lista
 			createCities(i,r);//create the city
 		}
@@ -114,10 +116,13 @@ public class Controller {
 			ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
 
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
-			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], new Type(cityInfo[ii][1],null,null), r);
-			getCityBonus(ii,c);//aggiungo i bonus alle citta'
-			citta.add(c);//aggiungo la citta' alla lista
-			//regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
+			for(Type t:typeList){
+				if(cityInfo[ii][1].equals(t.getName())){
+					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], t, r);//creo la citta'
+					getCityBonus(ii,c);//aggiungo i bonus alle citta'
+					citta.add(c);//aggiungo la citta' alla lista delle citta'
+				}
+			}
 		}
 	}
 
@@ -138,15 +143,15 @@ public class Controller {
 
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
-					c.addBonus(bonusList.get(j));
-					bonusList.get(j).setNumber(number);//setta il numero di bonus
+					Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
+					c.addBonus(bo);//aggiungo il bonus alla citta'
+					bo.setNumber(number);//setta il numero di bonus
 				}
 			}
 		}
 	}
 
 	/**
-	 * 
 	 * @param nome, the string you want to search on
 	 * @param c, what you want to find
 	 * @return, a int with the coccurences
@@ -162,19 +167,48 @@ public class Controller {
 
 	/**
 	 * @return a bonus list with all the type of bonus
-	 * I BONUS DEVONO Avere un metodo set(int)
 	 */
-	public List<Bonus> bonusList(){//creo e aggiungo i bonus alla lista bonus
+	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants());
-		bonusList.add(new BonusCityToken(0,null, null));
+		bonusList.add(new BonusCityToken(0, null, board));
 		bonusList.add(new BonusCoin(0));
-		bonusList.add(new BonusGetPermitTile(0,0,null));
-		bonusList.add(new BonusNobility(0,null));
-		bonusList.add(new BonusPolitics(0,null));
+		bonusList.add(new BonusGetPermitTile(0,0,board));
+		bonusList.add(new BonusNobility(0,board));
+		bonusList.add(new BonusPolitics(0,board));
 		bonusList.add(new BonusTileBonus(0));
 		bonusList.add(new BonusVictoryPoints(0));
+		bonusList.add(new BonusKing(bonusKing()));
 		return bonusList;
+	}
+	
+	/**
+	 * 
+	 * @return a list with the king bonus
+	 */
+	public List<Integer> bonusKing(){
+		List<Integer> kingList=new ArrayList<>();//creo la lista con i bonus del re
+		kingList.add(25);
+		kingList.add(18);
+		kingList.add(12);
+		kingList.add(7);
+		kingList.add(3);
+		kingList.add(0);//una lista di interi con i passi di avanzamento del percorso vittoria
+		return kingList;
+	}
+
+	/**
+	 * create the type(color) of the city
+	 * @return a list with all the types
+	 */
+	public List<Type> createType(){
+		String[][] array=cl.getType("ConfigurazionePartita.xml");//recupero i type dall'xml
+		for(int i=0; i<array.length; i++){
+			int number=Integer.parseInt(array[i][1]);
+			Type t=new Type(array[i][0], number, null);
+			typeList.add(t);
+		}
+		return typeList;
 	}
 
 	/**
@@ -192,7 +226,7 @@ public class Controller {
 			costructionCard.add(bpt);//aggiungo la nuova carta costruzione alla lista
 		}
 	}
-	
+
 	/**
 	 * aggiunta di bonus alla carta costruzione
 	 * @param i, to define the actual city (where find bonus in the array
@@ -209,8 +243,9 @@ public class Controller {
 
 			for(int j=0; j<bonusList.size(); j++){//scorro la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//cerco il bonus nella lista dei bonus
-					bpt.addBonus(bonusList.get(j));//aggiungo alla carta costruzione i suoi bonus
-					bonusList.get(j).setNumber(number);//setto il numero di bonus
+					Bonus bo=bonusList.get(j).clone();
+					bpt.addBonus(bo);//aggiungo alla carta costruzione i suoi bonus
+					bo.setNumber(number);//setto il numero di bonus
 				}
 			}
 		}

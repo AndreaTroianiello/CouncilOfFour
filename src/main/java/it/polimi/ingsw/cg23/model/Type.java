@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.bonus.BonusKing;
+import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 
 public class Type {
 
@@ -14,9 +15,9 @@ public class Type {
 	private final List<City> cities;											//The list of cities contained.
 	private boolean bonusAvailable;												//Status of the bonus.
 	
-	public Type(String name, Bonus bonus, BonusKing bonusKing) {
+	public Type(String name, int points, BonusKing bonusKing) {
 		this.name = name;
-		this.bonus = bonus;
+		this.bonus = new BonusVictoryPoints(points);
 		this.bonusKing=bonusKing;
 		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
@@ -108,7 +109,7 @@ public class Type {
 	 */
 	@Override
 	public String toString() {
-		return "Type [name=" + name + ", bonus=" + bonus + ", cities=" + cities + ", bonusAvailable=" + bonusAvailable
+		return "Type [name=" + name + ", bonus=" + bonus + ", bonusAvailable=" + bonusAvailable
 				+ "]";
 	}
 }
