@@ -9,5 +9,6 @@ public interface Bonus{
 	public String getName();
 	public void setParameters();
 	public void setNumber(int number);
+	public Bonus clone();
 
 }

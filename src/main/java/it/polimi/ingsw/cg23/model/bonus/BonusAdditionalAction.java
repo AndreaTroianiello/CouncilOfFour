@@ -2,7 +2,7 @@ package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Player;
 
-public class BonusAdditionalAction implements Bonus, Cloneable {
+public class BonusAdditionalAction implements Bonus {
 	
 	final String name="AdditionalAction";
 	
@@ -43,10 +43,6 @@ public class BonusAdditionalAction implements Bonus, Cloneable {
 	}
 
 	public Bonus clone() {
-		try {
-			return (BonusAdditionalAction) super.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new RuntimeException(e);
-		}
+		return new BonusAdditionalAction(); 
 	}	
 }

@@ -5,7 +5,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.view.CliInterface;
  
-public class BonusGetPermitTile implements Bonus, Cloneable {
+public class BonusGetPermitTile implements Bonus {
 	
 	private final Board board;
 	private final String name="GetPermitTile";
@@ -69,11 +69,7 @@ public class BonusGetPermitTile implements Bonus, Cloneable {
 	}
 
 	public Bonus clone() {
-		try {
-			return (BonusGetPermitTile) super.clone();
-		} catch (CloneNotSupportedException e) {
-			throw new RuntimeException(e);
-		}
+		return new BonusGetPermitTile(0, 0, null); 
 	}	
 	
 }
