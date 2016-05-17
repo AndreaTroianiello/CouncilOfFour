@@ -78,6 +78,13 @@ public class BonusTileBonus implements Bonus, Cloneable {
 		return "BonusTileBonus [businessPermitCard=" + businessPermitTiles + "]";
 	}
 	
+	public Bonus clone() {
+		try {
+			return (BonusTileBonus) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 	
 
 }

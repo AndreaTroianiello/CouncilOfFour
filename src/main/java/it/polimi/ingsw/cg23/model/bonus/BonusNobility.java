@@ -86,5 +86,12 @@ public class BonusNobility implements Bonus, Cloneable {
 		return "BonusNobility";
 	}
 	
+	public Bonus clone() {
+		try {
+			return (BonusNobility) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 
 }

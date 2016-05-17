@@ -61,5 +61,13 @@ public class BonusAssistants implements Bonus, Cloneable {
 	public String toString() {
 		return "BonusAssistants [assistants=" + assistants + "]";
 	}
+	
+	public Bonus clone() {
+		try {
+			return (BonusAssistants) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 
 }

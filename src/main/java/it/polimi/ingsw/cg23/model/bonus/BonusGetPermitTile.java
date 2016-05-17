@@ -65,9 +65,15 @@ public class BonusGetPermitTile implements Bonus, Cloneable {
 	 */
 	@Override
 	public String toString() {
-		return "BonusGetPermitTile [board=" + board + ", name=" + name + ", cl=" + cl + "]";
+		return "BonusGetPermitTile [board=" + board + ", name=" + name + "]";
 	}
 
-	
+	public Bonus clone() {
+		try {
+			return (BonusGetPermitTile) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 	
 }

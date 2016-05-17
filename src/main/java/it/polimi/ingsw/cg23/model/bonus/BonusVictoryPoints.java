@@ -56,6 +56,12 @@ public class BonusVictoryPoints implements Bonus, Cloneable {
 		return "BonusVictoryPoints [points=" + points + "]";
 	}
 	
-	
+	public Bonus clone() {
+		try {
+			return (BonusVictoryPoints) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 
 }

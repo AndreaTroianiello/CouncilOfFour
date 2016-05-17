@@ -42,4 +42,11 @@ public class BonusAdditionalAction implements Bonus, Cloneable {
 		return "BonusAdditionalAction []";
 	}
 
+	public Bonus clone() {
+		try {
+			return (BonusAdditionalAction) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 }

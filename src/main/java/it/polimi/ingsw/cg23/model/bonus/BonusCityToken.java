@@ -113,6 +113,12 @@ public class BonusCityToken implements Bonus, Cloneable{
 				+ Arrays.toString(runnable) + "]";
 	}
 
-
+	public Bonus clone() {
+		try {
+			return (BonusCityToken) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 	
 }

@@ -72,6 +72,12 @@ public class BonusCoin implements Bonus, Cloneable {
 		return "BonusCoin [coin=" + coin + "]";
 	}
 	
-	
+	public Bonus clone() {
+		try {
+			return (BonusCoin) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 
 }

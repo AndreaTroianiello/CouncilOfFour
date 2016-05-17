@@ -73,5 +73,12 @@ public class BonusPolitics implements Bonus, Cloneable {
 		return "BonusPolitics [cardNumber=" + cardNumber + "]";
 	}
 
+	public Bonus clone() {
+		try {
+			return (BonusPolitics) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}	
 	
 }
