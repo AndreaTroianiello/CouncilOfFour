@@ -65,7 +65,7 @@ public class BonusGetPermitTile implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusGetPermitTile [board=" + board + ", name=" + name + "]";
+		return "BonusGetPermitTile [board=" + board + "]";
 	}
 
 	public Bonus clone() {
