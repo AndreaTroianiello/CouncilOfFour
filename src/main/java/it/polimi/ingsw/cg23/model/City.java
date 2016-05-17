@@ -15,7 +15,7 @@ public class City {
 	private final Region region;							//The city's region.
 	private final List<City> neighbors;						//The list of nearly cities.
 	private final List<Emporium> emporiums;					//The list of emporiums builded in the city.
-	
+	private Type1 objectType;
 	
 	public City(char id, String name, Type type, Region region){
 		this.id=id;
@@ -23,10 +23,11 @@ public class City {
 		this.token=new ArrayList<>();
 		this.type=type;
 		this.region=region;
-		this.type.addCity(this);						//Add this city at the type's list.
+		//this.type.addCity(this);						//Add this city at the type's list.
 		this.region.addCity(this);						//Add this city at the region's list.
 		this.neighbors=new ArrayList<>();
 		this.emporiums=new ArrayList<>();
+		this.objectType=null;
 	}
 	
 	/**
@@ -102,6 +103,7 @@ public class City {
 	public void addBonus(Bonus bonus){
 		this.token.add(bonus);
 	}
+	
 	/**
 	 * Returns the list of the bonus.
 	 * 
@@ -120,7 +122,7 @@ public class City {
 	 * @param player the player to control.
 	 * @return if this city contains the emporium returns true, otherwise false.
 	 */
-	public boolean containsEmporium(Player player ){
+	public boolean containsEmporium(Player player){
 		//Control if the city contains a player's emporium
 		for(Emporium emporium: emporiums){							//Extract the emporium.
 			Player emporiumPlayer=emporium.getPlayer();				//Get the player of the emporium.
@@ -206,12 +208,16 @@ public class City {
 		}
 	}
 	
+	public void setObjectType(Type1 objectType) {
+		this.objectType = objectType;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type.getName() +", neighbors=" +neighbors.size()+"]";
+		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type +", neighbors=" +neighbors.size()+"]";
 		return city;
 	}
 }

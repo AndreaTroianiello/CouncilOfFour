@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.bonus.BonusKing;
+import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 
@@ -19,9 +20,9 @@ public class Region {
 	private final BonusKing bonusKing;											//The bonus king
 	
 	
-	public Region(String name, Bonus bonus, RegionDeck deck, BonusKing bonusKing) {
+	public Region(String name,int points, RegionDeck deck, BonusKing bonusKing) {
 		this.name = name;
-		this.bonus = bonus;
+		this.bonus = new BonusVictoryPoints(points);
 		this.cities = new ArrayList<>();
 		this.bonusAvailable = true;
 		this.council=new Council();
