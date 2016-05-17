@@ -32,9 +32,8 @@ public class ReadCittaXml {
 		final int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
 		final int citynum=cityNumber(endPath);//numero di citta'
 		String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
-		path+=endPath;//percorso completo del file da leggere
 		try {
-			File inputFile = new File(path);//creato nuovo file
+			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file

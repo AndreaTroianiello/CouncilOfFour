@@ -121,10 +121,6 @@ public class Controller {
 			citta.add(c);//aggiungo la citta' alla lista
 		}
 	}
-
-	/*	public List<Type> createType(){
-			Type t=new Type();
-		}*/
 		
 	/**
 	 * aggiunta di bonus alla citta'
@@ -179,6 +175,13 @@ public class Controller {
 		bonusList.add(new BonusTileBonus(0));
 		bonusList.add(new BonusVictoryPoints(0));
 		return bonusList;
+	}
+	
+	public void createType(){
+		String[][] array=cl.getType("ConfigurazionePartita.xml");//recupero i type dall'xml
+		for(int i=0; i<array.length; i++){
+			Type t=new Type(array[i][0], array[i][1], null);
+		}
 	}
 
 	/**

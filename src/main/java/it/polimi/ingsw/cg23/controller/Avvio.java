@@ -43,6 +43,11 @@ public class Avvio {
 	public void startPartita(){//metodo per avviare la partita
 		cl.print("", "Benvenuti a cof!");
 		
+		//----------creo i type----------
+		//board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
+		c.createType();
+		cl.print("", "-Creo i type");
+		
 		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
@@ -51,7 +56,7 @@ public class Avvio {
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 		
-		///----------board creazione----------
+		//----------board creazione----------
 		board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
 		cl.print("", "-Creo la board");
 		
