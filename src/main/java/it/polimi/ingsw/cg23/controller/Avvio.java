@@ -96,7 +96,7 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------
-		s.CreateCouncillor(4, board);
+		s.createCouncillor(4, board);
 		for(int i=0; i<regions.size(); i++){
 			s.setBalconi(board, regions.get(i));
 		}
@@ -106,7 +106,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		PrintAll();
+		printAll();
 		
 		//TEMPORANY
 		//AutoCostruction ac=new AutoCostruction();
@@ -116,7 +116,7 @@ public class Avvio {
 	/**
 	 * print all the list
 	 */
-	public void PrintAll(){
+	public void printAll(){
 		cl.print("", "STAMPO TUTTO");
 		c.printList(bonusList);
 		c.printList(regions);

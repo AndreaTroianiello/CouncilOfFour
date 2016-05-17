@@ -211,7 +211,6 @@ public class City {
 	 */
 	@Override
 	public String toString() {
-		String city= "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type.getName() +", neighbors=" +neighbors.size()+"]";
-		return city;
+		return "City [id=" + id + ", name=" + name + ", bonus=" + token.toString() + ", type=" + type.getName() +", neighbors=" +neighbors.size()+"]";
 	}
 }

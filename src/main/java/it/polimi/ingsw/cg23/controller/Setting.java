@@ -57,7 +57,7 @@ public class Setting {
 	 * @param numberCouncillor, number of councillors per color to create
 	 * @param b, the board
 	 */
-	public void CreateCouncillor(int numberCouncillor, Board b){
+	public void createCouncillor(int numberCouncillor, Board b){
 		Color[] arrayColori=color();//recupero un array di Color con i possibili colori
 		for(int i=0; i<arrayColori.length; i++){//ciclo che scorre i colori
 			for(int k=0; k<numberCouncillor; k++){//ciclo che scorre il numero di consiglieri per colore

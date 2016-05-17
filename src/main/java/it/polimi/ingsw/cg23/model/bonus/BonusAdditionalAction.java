@@ -3,9 +3,7 @@ package it.polimi.ingsw.cg23.model.bonus;
 import it.polimi.ingsw.cg23.model.Player;
 
 public class BonusAdditionalAction implements Bonus {
-	
 	final String name="AdditionalAction";
-	
 	/**
 	 * if the player have the addictional action set to false,
 	 * it switches it

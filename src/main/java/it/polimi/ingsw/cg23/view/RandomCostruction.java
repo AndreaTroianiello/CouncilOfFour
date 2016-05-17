@@ -139,7 +139,6 @@ public class RandomCostruction {
 	 * @return true if the substring are all different, false if otherwise
 	 */
 	public boolean differentTokenizer(String nome){
-		System.out.println("ciao");
 		String name=nome.toLowerCase();//uniformo tutti i caratteri
 		StringTokenizer st = new StringTokenizer(name);
 		String a=st.nextToken(",");//primo token
