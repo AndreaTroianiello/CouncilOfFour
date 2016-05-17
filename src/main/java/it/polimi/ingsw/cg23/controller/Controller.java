@@ -36,7 +36,7 @@ public class Controller {
 		Player p=new Player(name, assistant+10, 0, nT);//creo i giocatori
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}
-	
+
 	/**
 	 * 
 	 * @return the player list
@@ -52,7 +52,7 @@ public class Controller {
 	public List<Region> getRegioni(){
 		return regioni;
 	}
-	
+
 	/**
 	 * 
 	 * @return the cities list
@@ -60,7 +60,7 @@ public class Controller {
 	public List<City> getCitta(){
 		return citta;
 	}
-	
+
 	/**
 	 * 
 	 * @return the costruction card list
@@ -68,7 +68,7 @@ public class Controller {
 	public List<BusinessPermitTile> getCostructionCard(){
 		return costructionCard;
 	}
-	
+
 	/**
 	 * return the number of player in the list
 	 * @return the number of player
@@ -116,12 +116,16 @@ public class Controller {
 			ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
 
 		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
-			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], new Type(cityInfo[ii][1],0,null), r);
-			getCityBonus(ii,c);//aggiungo i bonus alle citta'
-			citta.add(c);//aggiungo la citta' alla lista
+			for(Type t:typeList){
+				if(cityInfo[ii][1].equals(t.getName())){
+					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], t, r);//creo la citta'
+					getCityBonus(ii,c);//aggiungo i bonus alle citta'
+					citta.add(c);//aggiungo la citta' alla lista delle citta'
+				}
+			}
 		}
 	}
-		
+
 	/**
 	 * aggiunta di bonus alla citta'
 	 * @param i, to define the actual city (where find bonus in the array)
@@ -176,12 +180,15 @@ public class Controller {
 		bonusList.add(new BonusVictoryPoints(0));
 		return bonusList;
 	}
-	
-	public void createType(){
+
+	public List<Type> createType(){
 		String[][] array=cl.getType("ConfigurazionePartita.xml");//recupero i type dall'xml
 		for(int i=0; i<array.length; i++){
-			Type t=new Type(array[i][0], array[i][1], null);
+			int number=Integer.parseInt(array[i][1]);
+			Type t=new Type(array[i][0], number, null);
+			typeList.add(t);
 		}
+		return typeList;
 	}
 
 	/**
@@ -199,7 +206,7 @@ public class Controller {
 			costructionCard.add(bpt);//aggiungo la nuova carta costruzione alla lista
 		}
 	}
-	
+
 	/**
 	 * aggiunta di bonus alla carta costruzione
 	 * @param i, to define the actual city (where find bonus in the array

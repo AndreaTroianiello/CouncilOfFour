@@ -44,8 +44,7 @@ public class Avvio {
 		cl.print("", "Benvenuti a cof!");
 		
 		//----------creo i type----------
-		//board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
-		c.createType();
+		c.createType();//creo i type (colori( delle citta'
 		cl.print("", "-Creo i type");
 		
 		//----------giocatori----------
