@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.City;
 
-public class AutoCostruction {//CLASSE PR GENERARE TESSERE COSTRUZIONE GENERICHE
+public class AutoCostruction {//CLASSE PeR GENERARE TESSERE COSTRUZIONE GENERICHE
 	
 	public void createIdCity(List<City> citta, String region){
 		int regNum=regionsNumber(citta);//numero di regioni

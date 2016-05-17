@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
@@ -12,7 +13,7 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.view.AutoCostruction;
+//import it.polimi.ingsw.cg23.view.AutoCostruction;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -50,8 +51,12 @@ public class Avvio {
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 		
+		///----------board creazione----------
+		board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
+		cl.print("", "-Creo la board");
+		
 		//----------bonus----------
-		bonusList=c.bonusList();//recupero la lista con tutti i bonus
+		bonusList=c.bonusList(board);//recupero la lista con tutti i bonus
 		cl.print("", "-Creo i bonus");
 	
 		//----------regioni e citta'----------
@@ -74,9 +79,12 @@ public class Avvio {
 		Deck dec=new Deck(politcards);//creato il deck
 		cl.print("", "-Creo il deck");
 		
-		//----------board----------
-		board=new Board(dec, regions,null, new NobilityTrack(20), king);//creata la board
-		cl.print("", "-Creo la board");
+		//----------board settaggio----------
+		board.setDeck(dec);
+		board.setKing(king);
+		board.setRegions(regions);
+		//board.setTypes(types);
+		cl.print("", "-Setto la board");
 		
 		//----------carte permesso di costruzione----------
 		c.createCardCostruction();//crea le carte costruzione
@@ -95,8 +103,8 @@ public class Avvio {
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
 		PrintAll();
-		AutoCostruction ac=new AutoCostruction();
-		ac.createIdCity(citta, "costa");
+		//AutoCostruction ac=new AutoCostruction();
+		//ac.createIdCity(citta, "costa");
 		}
 	
 	/**

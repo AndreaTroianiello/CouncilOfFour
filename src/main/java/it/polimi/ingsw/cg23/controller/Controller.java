@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -20,6 +21,7 @@ public class Controller {
 	List <City> citta = new ArrayList<>();//lista citta
 	List <Bonus> bonusList=new ArrayList<>();//lista di bonus
 	List <BusinessPermitTile> costructionCard=new ArrayList<>();//lista di carte costruzione
+	List <Type> typeList=new ArrayList<>();//lista di type
 
 	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
@@ -117,10 +119,13 @@ public class Controller {
 			City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], new Type(cityInfo[ii][1],null,null), r);
 			getCityBonus(ii,c);//aggiungo i bonus alle citta'
 			citta.add(c);//aggiungo la citta' alla lista
-			//regioni.get(j).addCity(c);//aggiungo alla regione le sue citta'
 		}
 	}
 
+	/*	public List<Type> createType(){
+			Type t=new Type();
+		}*/
+		
 	/**
 	 * aggiunta di bonus alla citta'
 	 * @param i, to define the actual city (where find bonus in the array)
@@ -138,15 +143,15 @@ public class Controller {
 
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
-					c.addBonus(bonusList.get(j));
-					bonusList.get(j).setNumber(number);//setta il numero di bonus
+					Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
+					c.addBonus(bo);//aggiungo il bonus alla citta'
+					bo.setNumber(number);//setta il numero di bonus
 				}
 			}
 		}
 	}
 
 	/**
-	 * 
 	 * @param nome, the string you want to search on
 	 * @param c, what you want to find
 	 * @return, a int with the coccurences
@@ -162,16 +167,15 @@ public class Controller {
 
 	/**
 	 * @return a bonus list with all the type of bonus
-	 * I BONUS DEVONO Avere un metodo set(int)
 	 */
-	public List<Bonus> bonusList(){//creo e aggiungo i bonus alla lista bonus
+	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants());
-		bonusList.add(new BonusCityToken(0,null, null));
+		bonusList.add(new BonusCityToken(0,null, board));
 		bonusList.add(new BonusCoin(0));
-		bonusList.add(new BonusGetPermitTile(0,0,null));
-		bonusList.add(new BonusNobility(0,null));
-		bonusList.add(new BonusPolitics(0,null));
+		bonusList.add(new BonusGetPermitTile(0,0,board));
+		bonusList.add(new BonusNobility(0,board));
+		bonusList.add(new BonusPolitics(0,board));
 		bonusList.add(new BonusTileBonus(0));
 		bonusList.add(new BonusVictoryPoints(0));
 		return bonusList;
@@ -209,8 +213,9 @@ public class Controller {
 
 			for(int j=0; j<bonusList.size(); j++){//scorro la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//cerco il bonus nella lista dei bonus
-					bpt.addBonus(bonusList.get(j));//aggiungo alla carta costruzione i suoi bonus
-					bonusList.get(j).setNumber(number);//setto il numero di bonus
+					Bonus bo=bonusList.get(j).clone();
+					bpt.addBonus(bo);//aggiungo alla carta costruzione i suoi bonus
+					bo.setNumber(number);//setto il numero di bonus
 				}
 			}
 		}
