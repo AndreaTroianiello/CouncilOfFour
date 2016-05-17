@@ -44,8 +44,7 @@ public class ChangeBusinessPermit implements Action {
 		try {
 			player.setAssistants(assistants);
 		} catch (NegativeNumberException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return;
 		}
 		
 		board.getRegions().get(region).getDeck().changeShowedDeck();

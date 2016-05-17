@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import java.awt.Color;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.Councillor;
@@ -7,13 +9,13 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class ElectCouncillorAssistant implements Action {
 
-	private final Councillor councillor;
+	private final Color councillor;
 	private final int region; 											//wich region the player choose 
 	private final boolean king;
 	private final boolean main;
 	
 	
-	public ElectCouncillorAssistant(Councillor councillor, int region, boolean king) {
+	public ElectCouncillorAssistant(Color councillor, int region, boolean king) {
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
@@ -51,7 +53,7 @@ public class ElectCouncillorAssistant implements Action {
 	/**
 	 * @return the councillor
 	 */
-	public Councillor getCouncillor() {
+	public Color getCouncillor() {
 		return councillor;
 	}
 
@@ -63,13 +65,16 @@ public class ElectCouncillorAssistant implements Action {
 	 */
 	@Override
 	public void runAction(Player player, Board board){
+		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(!this.king){
-			board.getRegions().get(this.region).getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-			board.getRegions().get(this.region).getCouncil().getCouncillors().add(this.councillor);		//append the chosen councillor in the same council
+			Councillor oldCouncillor=board.getRegions().get(this.region).getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+			board.setCouncillor(oldCouncillor);
+			board.getRegions().get(this.region).getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
 		}
 		else{
-			board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-			board.getKing().getCouncil().getCouncillors().add(this.councillor);		//append the chosen councillor in the same council
+			Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+			board.setCouncillor(oldCouncillor);
+			board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
 		}
 		
 		int assistants = player.getAssistants();

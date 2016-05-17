@@ -111,4 +111,15 @@ public class Turn {
 			player.setVictoryPoints(player.getVictoryPoints()+3);
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Turn [currentPlayer=" + currentPlayer + ", finalPlayer=" + finalPlayer + ", mainIndex=" + mainIndex
+				+ ", mainAction=" + mainAction + ", secondAction=" + secondAction + "]";
+	}
+	
+	
 }

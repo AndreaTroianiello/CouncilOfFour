@@ -10,7 +10,7 @@ public class HireAssistant implements Action {
 	
 	
 	
-	public HireAssistant(boolean main) {
+	public HireAssistant() {
 		this.main = false;
 	}
 
@@ -36,16 +36,14 @@ public class HireAssistant implements Action {
 		try {
 			player.setCoins(coin);
 		} catch (NegativeNumberException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return;
 		}
 		
 		assistants = assistants + 1;
 		try {
 			player.setAssistants(assistants);
 		} catch (NegativeNumberException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return;
 		}
 
 	}
