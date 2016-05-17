@@ -3,9 +3,11 @@ package it.polimi.ingsw.cg23.model.bonus;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.Player;
 
-public class BonusKing {
+public class BonusKing implements Bonus{
 	private int index;								//The current bonus king.
 	private List<Integer> bonus;					//Set of all bonus king.
+
+
 	private String name="King";
 	
 	public BonusKing(List<Integer> bonus){
@@ -56,5 +58,36 @@ public class BonusKing {
 		bonusKing.giveBonus(player);
 		increasePosition();
 	}
+
+	@Override
+	public void giveBonus(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setParameters() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setNumber(int number) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Bonus clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BonusKing [index=" + index + ", bonus=" + bonus + "]";
+	}
 }

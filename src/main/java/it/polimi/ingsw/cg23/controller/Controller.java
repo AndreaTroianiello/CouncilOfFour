@@ -171,16 +171,36 @@ public class Controller {
 	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants());
-		bonusList.add(new BonusCityToken(0,null, board));
+		bonusList.add(new BonusCityToken(0, null, board));
 		bonusList.add(new BonusCoin(0));
 		bonusList.add(new BonusGetPermitTile(0,0,board));
 		bonusList.add(new BonusNobility(0,board));
 		bonusList.add(new BonusPolitics(0,board));
 		bonusList.add(new BonusTileBonus(0));
 		bonusList.add(new BonusVictoryPoints(0));
+		bonusList.add(new BonusKing(bonusKing()));
 		return bonusList;
 	}
+	
+	/**
+	 * 
+	 * @return a list with the king bonus
+	 */
+	public List<Integer> bonusKing(){
+		List<Integer> kingList=new ArrayList<>();//creo la lista con i bonus del re
+		kingList.add(25);
+		kingList.add(18);
+		kingList.add(12);
+		kingList.add(7);
+		kingList.add(3);
+		kingList.add(0);//una lista di interi con i passi di avanzamento del percorso vittoria
+		return kingList;
+	}
 
+	/**
+	 * create the type(color) of the city
+	 * @return a list with all the types
+	 */
 	public List<Type> createType(){
 		String[][] array=cl.getType("ConfigurazionePartita.xml");//recupero i type dall'xml
 		for(int i=0; i<array.length; i++){
