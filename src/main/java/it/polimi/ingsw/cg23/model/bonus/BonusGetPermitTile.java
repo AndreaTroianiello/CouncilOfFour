@@ -8,15 +8,14 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class BonusGetPermitTile implements Bonus {
 	
 	private final Board board;
-	private final String name="GetPermitTile";
-	
+	private final String name;
 	private final CliInterface cl;
 	
  
 	public BonusGetPermitTile(int i, int a, Board board) {
 		
 		this.board = board;
-		
+		this.name="GetPermitTile";
 		this.cl = new CliInterface();
 	}
 	
@@ -69,7 +68,7 @@ public class BonusGetPermitTile implements Bonus {
 	}
 
 	public Bonus clone() {
-		return new BonusGetPermitTile(0, 0, null); 
+		return new BonusGetPermitTile(0, 0, board); 
 	}	
 	
 }

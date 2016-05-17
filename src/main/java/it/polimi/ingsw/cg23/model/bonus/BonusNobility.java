@@ -15,11 +15,12 @@ public class BonusNobility implements Bonus {
 	
 	private int steps;
 	private final Board board;
-	private final String name="BonusNobility";
+	private final String name;
 
 	public BonusNobility(int steps, Board board) {
 		this.steps = steps;
 		this.board = board;
+		this.name="BonusNobility";
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class BonusNobility implements Bonus {
 	}
 	
 	public Bonus clone() {
-		return new BonusNobility(0, null); 
+		return new BonusNobility(0, board); 
 	}	
 
 }

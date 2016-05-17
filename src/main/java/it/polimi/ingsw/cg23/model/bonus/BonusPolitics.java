@@ -8,12 +8,13 @@ public class BonusPolitics implements Bonus {
 	
 	private int cardNumber;
 	private final Board board;
-	private final String name="Politics";
+	private final String name;
 	
 	
 	public BonusPolitics(int cardNumber, Board board) {
 		this.cardNumber = cardNumber;
 		this.board = board;
+		this.name="Politics";
 	}
 
 	/**
@@ -74,7 +75,7 @@ public class BonusPolitics implements Bonus {
 	}
 
 	public Bonus clone() {
-		return new BonusPolitics(0, null);
+		return new BonusPolitics(0, board);
 	}	
 	
 }

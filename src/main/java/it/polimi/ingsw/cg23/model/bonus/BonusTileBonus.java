@@ -10,13 +10,14 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class BonusTileBonus implements Bonus {
 	
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
-	private final String name="TileBonus";
+	private final String name;
 	
 	private final CliInterface cl;
 
 	public BonusTileBonus(int number) {
 		this.businessPermitTiles = new ArrayList<>();
 		this.cl = new CliInterface();
+		this.name="TileBonus";
 	}
 
 

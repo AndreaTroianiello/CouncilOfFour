@@ -5,10 +5,11 @@ import it.polimi.ingsw.cg23.model.Player;
 public class BonusVictoryPoints implements Bonus {
 	
 	private int points;					//the amount of points given by the bonus
-	private final String name="VictoryPoints";
+	private final String name;
 	
 	public BonusVictoryPoints(int points) {
 		this.points = points;
+		this.name="VictoryPoints";
 	}
 	
 	/**

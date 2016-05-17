@@ -15,7 +15,7 @@ public class BonusCityToken implements Bonus {
 	private int number;						//how many times the player can run the bonus
 	private final List<City> city;			//the city the player chooses to run the bonus from
 	private final boolean[] runnable;		//a list of boolean that show if the bonus in the city are runnable 
-	private final String name="CityToken";
+	private final String name;
 		
 	private final Board board;
 	private CliInterface cl;
@@ -31,6 +31,7 @@ public class BonusCityToken implements Bonus {
 		
 		this.board = board;
 		this.cl = new CliInterface();
+		this.name="CityToken";
 	}
 	
 	
@@ -114,7 +115,7 @@ public class BonusCityToken implements Bonus {
 	}
 
 	public Bonus clone() {
-		return new BonusCityToken(0, null, null); 
+		return new BonusCityToken(0, null, board); 
 	}	
 	
 }
