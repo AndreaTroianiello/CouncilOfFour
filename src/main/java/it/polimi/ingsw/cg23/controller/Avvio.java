@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Deck;
@@ -14,7 +15,6 @@ import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.AutoCostruction;
-//import it.polimi.ingsw.cg23.view.AutoCostruction;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -32,6 +32,7 @@ public class Avvio {
 	List <PoliticCard> politcards;//lista giocatori
 	List <Bonus> bonusList;//lista dei bonus
 	List <BusinessPermitTile> costructionCard;//lista dei bonus
+	List <Type> tipi;//lista dei bonus
 	Board board;
 
 	public Avvio(){
@@ -45,7 +46,7 @@ public class Avvio {
 		cl.print("", "Benvenuti a cof!");
 		
 		//----------creo i type----------
-		c.createType();//creo i type (colori( delle citta'
+		tipi=c.createType();//creo i type (colori( delle citta'
 		cl.print("", "-Creo i type");
 		
 		//----------giocatori----------
@@ -82,13 +83,14 @@ public class Avvio {
 		
 		//----------deck----------
 		Deck dec=new Deck(politcards);//creato il deck
+		s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
 		cl.print("", "-Creo il deck");
 		
 		//----------board settaggio----------
 		board.setDeck(dec);
 		board.setKing(king);
 		board.setRegions(regions);
-		//board.setTypes(types);
+		board.setTypes(tipi);
 		cl.print("", "-Setto la board");
 		
 		//----------carte permesso di costruzione----------
@@ -106,12 +108,13 @@ public class Avvio {
 		
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
-		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		printAll();
+		//cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
+		//printAll();
 		
 		//TEMPORANY
-		//AutoCostruction ac=new AutoCostruction();
-		//ac.createIdCity(citta, "costa");
+		AutoCostruction ac=new AutoCostruction();
+		//c.printList(citta);
+		cl.printArray(ac.createIdCity(citta, 5,15));
 		}
 	
 	/**
@@ -125,7 +128,7 @@ public class Avvio {
 		c.printList(giocatori);
 		c.printList(politcards);
 		c.printList(costructionCard);
-		c.printList(s.getConsiglieri());
+		c.printList(tipi);
 	}
 	
 	public Board getBoard(){

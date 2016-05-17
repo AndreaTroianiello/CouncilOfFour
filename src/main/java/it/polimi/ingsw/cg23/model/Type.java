@@ -109,7 +109,7 @@ public class Type {
 	 */
 	@Override
 	public String toString() {
-		return "Type [name=" + name + ", bonus=" + bonus + ", cities=" + cities + ", bonusAvailable=" + bonusAvailable
+		return "Type [name=" + name + ", bonus=" + bonus + ", bonusAvailable=" + bonusAvailable
 				+ "]";
 	}
 }
