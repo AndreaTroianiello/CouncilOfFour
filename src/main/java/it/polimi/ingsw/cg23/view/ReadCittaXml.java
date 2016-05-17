@@ -41,7 +41,7 @@ public class ReadCittaXml {
 			
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			NodeList zoneName=doc.getElementsByTagName("namez");//lista dei nodi che cntengono "namez" (nome della zona)
-
+			
 			for (int i=0; i<citynum; i++){//scorre le citta' presenti nel file xml
 				
 				Node actualNode=citylist.item(i);//nodo attualmente in uso
@@ -49,7 +49,7 @@ public class ReadCittaXml {
 
 				city[i][0]=actualElement.getElementsByTagName("name").item(0).getTextContent();//recupera il nome della città
 				city[i][1]=actualElement.getElementsByTagName("color").item(0).getTextContent();//recupera il colore della città
-
+				
 				String nome=actualElement.getElementsByTagName("link").item(0).getTextContent();//recupera i link della città (id delle citta' vicine)
 				int idnum=actualElement.getElementsByTagName("link").item(0).getChildNodes().getLength();//numero dei tag filgi di link + il tag di chiusura di link
 				idnum=(idnum-1)/2;//numero degli id (numero delle citta' vicine)
@@ -60,7 +60,6 @@ public class ReadCittaXml {
 				Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, montagna)
 			}
-			
 			return city;
 		} catch (Exception e) {//se ci sono dei problemi ritorna l'array null
 			for(int i=0;i<city.length;i++){//cicli per annullare l'array (richiesto da sonar)
@@ -92,7 +91,7 @@ public class ReadCittaXml {
 	 * @return the number of cities in the xml file
 	 */
 	public int cityNumber(String endPath){
-		try {	
+		try {
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
@@ -116,13 +115,39 @@ public class ReadCittaXml {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 			Node rootnode = doc.getFirstChild();//recupera il primo nodo dell'xml (map)
-			Node zone = rootnode.getChildNodes().item(1);//primo elemento dei figli di map = secondo nodo xml (zone)
+			Node zone = rootnode.getChildNodes().item(3);//primo elemento dei figli di map = secondo nodo xml (zone)
 			Node cities= zone.getChildNodes().item(3);//terzo elemento dei figli di zone = quarto nodo xml (cities)
 			Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = qunto nodo xml (city)
 			return (citty.getChildNodes().getLength()-1)/2+1; //numero di nodi di city, +1 perchè c'è da aggiungere zona
 		}
 		catch(Exception e) {
 			return 0;
+		}
+	}
+	
+	/**
+	 * find the type of city
+	 * @param endPath, the name of the file with .xml
+	 * @return a bidimensional array with the type of city
+	 */
+	public String[][] getType(String endPath){
+		try {
+			File inputFile = new File(path+endPath);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
+			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
+
+			NodeList color=doc.getElementsByTagName("colors");//lista dei nodi che contengono "color"
+			int typeNum=color.getLength();
+			String[][] type=new String[typeNum][2];
+			for(int i=0; i<typeNum; i++){
+				type[i][0]=color.item(i).getChildNodes().item(1).getTextContent();//recupero il nome del colore
+				type[i][1]=color.item(i).getChildNodes().item(3).getTextContent();//recupero i punti del colore
+			}
+			return type;
+		}
+		catch(Exception e) {
+			return null;
 		}
 	}
 }

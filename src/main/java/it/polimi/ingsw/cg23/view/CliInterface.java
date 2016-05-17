@@ -199,5 +199,9 @@ public class CliInterface {
 	public int regionsNumber(String[][] nome){
 		return scrittureXml.regionNumber(nome);
 	}
+	
+	public String[][] getType(String endPath){
+		return lettureXml.getType(endPath);
+	}
 
 }
