@@ -14,7 +14,6 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.view.AutoCostruction;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -108,13 +107,8 @@ public class Avvio {
 		
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
-		//cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
+		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
 		//printAll();
-		
-		//TEMPORANY
-		AutoCostruction ac=new AutoCostruction();
-		//c.printList(citta);
-		cl.printArray(ac.createIdCity(citta, 5,15));
 		}
 	
 	/**
