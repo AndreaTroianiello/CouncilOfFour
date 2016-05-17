@@ -4,7 +4,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 
 
-public class BonusPolitics implements Bonus {
+public class BonusPolitics implements Bonus, Cloneable {
 	
 	private int cardNumber;
 	private final Board board;

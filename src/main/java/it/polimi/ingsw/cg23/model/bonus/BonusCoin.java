@@ -10,7 +10,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  * @author utente
  *
  */
-public class BonusCoin implements Bonus {
+public class BonusCoin implements Bonus, Cloneable {
 	
 	private int coin;						//the amount of coin given by the bonus
 	private final String name="Coin";

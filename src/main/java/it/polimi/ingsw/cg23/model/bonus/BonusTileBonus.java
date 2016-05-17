@@ -7,7 +7,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
-public class BonusTileBonus implements Bonus {
+public class BonusTileBonus implements Bonus, Cloneable {
 	
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
 	private final String name="TileBonus";

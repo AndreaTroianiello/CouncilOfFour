@@ -11,7 +11,7 @@ import it.polimi.ingsw.cg23.model.components.NobilityBox;
  * @author utente
  *
  */
-public class BonusNobility implements Bonus {
+public class BonusNobility implements Bonus, Cloneable {
 	
 	private int steps;
 	private final Board board;

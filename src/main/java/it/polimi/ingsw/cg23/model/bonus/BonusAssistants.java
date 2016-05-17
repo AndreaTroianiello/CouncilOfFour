@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg23.model.bonus;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class BonusAssistants implements Bonus {
+public class BonusAssistants implements Bonus, Cloneable {
 	
 	private int assistants;				//the amount of assistants given by the bonus
 	private final String name="Assistants";

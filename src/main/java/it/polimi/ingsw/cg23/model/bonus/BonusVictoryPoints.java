@@ -2,7 +2,7 @@ package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Player;
 
-public class BonusVictoryPoints implements Bonus {
+public class BonusVictoryPoints implements Bonus, Cloneable {
 	
 	private int points;					//the amount of points given by the bonus
 	private final String name="VictoryPoints";

@@ -10,7 +10,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
-public class BonusCityToken implements Bonus {
+public class BonusCityToken implements Bonus, Cloneable{
 	
 	private int number;						//how many times the player can run the bonus
 	private final List<City> city;			//the city the player chooses to run the bonus from
