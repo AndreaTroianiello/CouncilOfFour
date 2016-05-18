@@ -27,24 +27,30 @@ public class AutoCostruction {
 		return card;
 	}
 
-
-	public String randomCity(String region, int cityPerReg,List<City> citta){
+	/**
+	 * create the city random
+	 * @param region, the reagion of the city to create it
+	 * @param cityPerReg, number od city to create for each region
+	 * @param citta, the city list
+	 * @return
+	 */
+	public String randomCity(String region, int cityPerReg, List<City> citta){
 		String idCity;//stringa con gli id della citta'
 		String[]city=new String[cityPerReg];//array che contiene gli id delle possibili citta'
 
 		if("costa".equals(region)){//id delle citta' della costa
 			for(int i=0; i<cityPerReg; i++){
-				city[i]=""+citta.get(i).getId();
+				city[i]=Character.toString(citta.get(i).getId());
 			}
 		}
 		if("collina".equals(region)){//id delle citta' della collina
 			for(int i=0; i<cityPerReg; i++){
-				city[i]=""+citta.get(i+cityPerReg).getId();
+				city[i]=Character.toString(citta.get(i+cityPerReg).getId());
 			}
 		}
 		if("montagna".equals(region)){//id delle citta' della montagna
 			for(int i=0; i<cityPerReg; i++){
-				city[i]=""+citta.get(i+cityPerReg*2).getId();
+				city[i]=Character.toString(citta.get(i+cityPerReg*2).getId());
 			}
 		}
 		int n=rnd.nextInt(3);//numero di citta' da stampare al massimo sulla carta permesso (1,2,3)
@@ -78,8 +84,9 @@ public class AutoCostruction {
 	 * @return a string with the bonuses
 	 */
 	public String randomBonus(){
-		String bonus;
+		String bonusname;
 		String[]bonusArray=new String[9];//contiene i possibili bonus assegnabili alle carte permesso
+		
 		bonusArray[0]="AdditionalAction";
 		bonusArray[1]="Assistants";
 		bonusArray[2]="CityToken";
@@ -91,19 +98,19 @@ public class AutoCostruction {
 		bonusArray[8]="Coin";	
 
 		do{
-			bonus="";//annullo i bonus
+			bonusname="";//annullo i bonus
 			for(int i=0; i<rnd.nextInt(3)+1; i++){//viene scelto a caso il numero di bonus (1,2)
-				int k=rnd.nextInt(9);//recupero un numero random da 0 a 8
-				bonus+=(rnd.nextInt(4)+1)+bonusArray[k]+",";//i bonus sono aggiunti alla stringa
+				int k=rnd.nextInt(bonusArray.length);//recupero un numero random da 0 a 8
+				bonusname+=(rnd.nextInt(4)+1)+bonusArray[k]+",";//i bonus sono aggiunti alla stringa
 
 				if("AdditionalAction".equals(bonusArray[k])){//le azioni addizioni possono essere solo 1
-					bonus=bonus.substring(0,bonus.length()-(bonusArray[k].length()+2));//tolgo il bonus aggiunto
-					bonus+="1AdditionalAction,";//aggiungo il bonus azione aggiuntiva da 1
+					bonusname=bonusname.substring(0,bonusname.length()-(bonusArray[k].length()+2));//tolgo il bonus aggiunto
+					bonusname+="1AdditionalAction,";//aggiungo il bonus azione aggiuntiva da 1
 				}
 			}
-		}while(!differentTokenizer(bonus));//controllo che i bonus siano diversi uno dall'altro
+		}while(!differentTok(bonusname));//controllo che i bonus siano diversi uno dall'altro
 
-		return bonus.substring(0, bonus.length()-1);//tolgo l'ultima virgola
+		return bonusname.substring(0, bonusname.length()-1);//tolgo l'ultima virgola
 	}
 
 	public int numberCityReg(List<City> citta, String region){//ritorna il numero di citta' per una data regione
@@ -120,16 +127,16 @@ public class AutoCostruction {
 	 * @param nome, the string you want to analyze
 	 * @return true if the substring are all different, false if otherwise
 	 */
-	public boolean differentTokenizer(String nome){
+	public boolean differentTok(String nome){
 		String name=nome.toLowerCase();//uniformo tutti i caratteri
-		StringTokenizer st = new StringTokenizer(name);
-		String a=st.nextToken(",");//primo token
-		String[]token= new String[st.countTokens()+1];//array con i token
+		StringTokenizer stok = new StringTokenizer(name);
+		String a=stok.nextToken(",");//primo token
+		String[]token= new String[stok.countTokens()+1];//array con i token
 
 		token[0]=a.substring(1, a.length());//assegno il primo token all'array
 		int i=1;
-		while(st.hasMoreTokens()){//ciclo finche' ci sono token
-			String toke=st.nextToken(",");//aggiungo all'array il nuovo token
+		while(stok.hasMoreTokens()){//ciclo finche' ci sono token
+			String toke=stok.nextToken(",");//aggiungo all'array il nuovo token
 			token[i]=toke.substring(1,toke.length());//tolo il primo caratterre perche' e' il numero
 			i++;
 		}
