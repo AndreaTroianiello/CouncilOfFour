@@ -35,6 +35,13 @@ public class PoliticCard {
 	 */
 	@Override
 	public String toString() {
-		return "PoliticCard [color=" + color+ ", jolly=" + jolly + "]";
+		/*String string= "PoliticCard [color=";
+		if(color==null)
+				string+=" ";
+		else
+			string+=color.getClass().getEnumConstants().toString();
+		string+=", jolly=" + jolly + "]";
+		return string;*/
+		return "PoliticCard [color="+ color +", jolly="+ jolly+"]";
 	}
 }

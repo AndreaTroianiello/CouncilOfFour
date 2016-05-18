@@ -148,7 +148,7 @@ public class Region {
 	 */
 	@Override
 	public String toString() {
-		return "Region [name=" + name + ", bonus=" + bonus + ", cities=" + cities + ", bonusAvailable=" + bonusAvailable
+		return "Region [name=" + name + ", bonus=" + bonus.getName() + ", cities=" + cities.size() + ", bonusAvailable=" + bonusAvailable
 				+ "]";
 	}
 }
