@@ -224,6 +224,7 @@ public class Controller {
 			BusinessPermitTile bpt=new BusinessPermitTile(citiesId, array[i][0]);//creo una nuova carta costruzione
 			getCostructorBonus(bpt, array[i][2]);//aggiungo i bonus alla carta costruzione
 			costructionCard.add(bpt);//aggiungo la nuova carta costruzione alla lista
+		
 		}
 	}
 
