@@ -114,10 +114,36 @@ public class Controller {
 					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], t, r);//creo la citta'
 					getCityBonus(ii,c);//aggiungo i bonus alle citta'
 					citta.add(c);//aggiungo la citta' alla lista delle citta'
+
 				}
 			}
 		}
+		/*for(int k=0; k<citta.size(); k++){//scorro le citta' per settare i vicini
+			addNeighbors(citta.get(k));
+		}*/
 		return citta;
+	}
+
+	/**
+	 * FUNZIONA MA E' BRUTTO -->rifare
+	 * set the neighbors of a city
+	 * @param c a city
+	 */
+	public void addNeighbors(){
+		for(int h=0; h<citta.size(); h++){//scorre le citta' a cui aggiungere i vicini
+			for(int i=0; i<cityInfo.length; i++){//scorre le citta' prese dall'xml
+				if(cityInfo[i][0].equals(citta.get(h).getName())){//cerco la citta' attuale da quelle dell'xml
+					for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
+						char link=cityInfo[i][2].charAt(k);
+						for(int j=0; j<citta.size(); j++){//scorro le citta'
+							if(link==citta.get(j).getId()){
+								citta.get(h).addNeighbor(citta.get(j));//aggiungo alla citta' il vicino trovato
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**

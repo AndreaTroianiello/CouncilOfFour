@@ -73,6 +73,7 @@ public class Avvio {
 		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
 			citta=c.createCities(i, regions.get(i));//recupero le citta' della regione
 		}
+		c.addNeighbors();//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
 		
 		//----------king----------
