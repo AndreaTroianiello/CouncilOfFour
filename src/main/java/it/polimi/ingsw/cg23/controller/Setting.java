@@ -138,7 +138,7 @@ public class Setting {
 	 * create a list of the city from the regions list and add the neighbors
 	 * @param regioni, a list with the regions
 	 */
-	public void cityList(List<Region>regioni){
+	public void cityList(List<Region> regioni){
 		List<City>citta=new ArrayList<>(); //lista delle citta'
 		for(int i=0; i<regioni.size(); i++){//ciclo che scorre le regioni
 			citta.addAll(regioni.get(i).getCities());//recupero le citta' di di tutte le regioni e le aggiungo alla lista		

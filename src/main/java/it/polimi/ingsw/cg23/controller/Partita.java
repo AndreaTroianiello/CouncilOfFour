@@ -18,6 +18,7 @@ public class Partita {
 		via.startPartita();	
 		List<Player> giocatori=via.getGiocatori();
 		Board b=via.getBoard();
+		
 		Turn t=new Turn(giocatori, b);//creato il turno
 		//----------turno----------
 		for(int i=0; i<1; i++){

@@ -49,7 +49,7 @@ public class Controller {
 	 * 
 	 * @return the regions list
 	 */
-	public List<Region> getRegioni(){
+	/*public List<Region> getRegioni(){
 		return regioni;
 	}
 
@@ -57,10 +57,9 @@ public class Controller {
 	 * 
 	 * @return the cities list
 	 */
-	public List<City> getCitta(){
+	/*public List<City> getCitta(){
 		return citta;
 	}
-
 
 	/**
 	 * return the number of player in the list
@@ -77,28 +76,28 @@ public class Controller {
 		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
 			cl.print("",lista.get(i).toString());
 		}
-
 	}
 
 	/**
 	 * create the regions object and add at the regions list
 	 */
-	public void createRegions(){
+	public List<Region> createRegions(){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			RegionDeck rd=new RegionDeck(2);
 			Region r=new Region(cityInfo[i*c][5],0,rd,null);
 			regioni.add(r);//creata una nuova regione e aggiunta alla lista
-			createCities(i,r);//create the city
+			//createCities(i,r);//create the city
 		}
+		return regioni;
 	}
 
 	/**
 	 * create the cities object and add at the citta list
 	 * @param j, the number of the region
 	 */
-	public void createCities(int j, Region r){
+	public List<City> createCities(int j, Region r){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int ii=0;
 		int i=0;
@@ -118,6 +117,7 @@ public class Controller {
 				}
 			}
 		}
+		return citta;
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class Controller {
 		bonusList.add(new BonusKing(bonusKing()));
 		return bonusList;
 	}
-	
+
 	/**
 	 * 
 	 * @return a list with the king bonus
@@ -210,10 +210,10 @@ public class Controller {
 	 */
 	public List<BusinessPermitTile> createCardCostruction(){
 		String[][] array=cl.getCostruction("CostructionCard.xml");//informazioni sulle carte costruzione
-		
+
 		for(int i=0; i<array.length; i++){//ciclo che scorre tutte le carte costruzione
 			List<Character> citiesId=new ArrayList<>();//lista di id delle citta'
-			
+
 			for(int j=0; j<array[i][1].length(); j++){//ciclo che scorre il numero di citta' della carta costruzione
 				citiesId.add(array[i][1].charAt(j));//aggiungo l'id della citta' alla lista
 			}
@@ -221,25 +221,24 @@ public class Controller {
 			getCostructorBonus(bpt, array[i][2]);//aggiungo i bonus alla carta costruzione
 			costructionCard.add(bpt);//aggiungo la nuova carta costruzione alla lista			
 		}
-		createRegionDeck("costa");
-		createRegionDeck("collina");
-		createRegionDeck("montagna");
 		return costructionCard;
 	}
 
-	
-	public void createRegionDeck(String region){
+	/**
+	 * fill the regiondeck with the costruction card
+	 * @param region, the regions list
+	 */
+	public void createRegionDeck(List<Region> region){
 		List<BusinessPermitTile> costructionRegionlist=new ArrayList<>();
-		for(int i=0; i<costructionCard.size(); i++){//ciclo che scorre le carte costruzione
-			if(region.equals(costructionCard.get(i).getZone())){
-				costructionRegionlist.add(costructionCard.get(i));
+		for(int k=0; k<region.size(); k++){//scorre le regioni
+			for(int i=0; i<costructionCard.size(); i++){//scorre le carte costruzione
+				if(region.get(k).getName().equals(costructionCard.get(i).getZone()))
+					costructionRegionlist.add(costructionCard.get(i));
 			}
+			region.get(k).getDeck().setBusinessPermitTiles(costructionRegionlist);
 		}
-		RegionDeck rd=new RegionDeck(2);
-		rd.setBusinessPermitTiles(costructionRegionlist);
-		//return rd;
 	}
-	
+
 	/**
 	 * aggiunta di bonus alla carta costruzione
 	 * @param i, to define the actual city (where find bonus in the array
