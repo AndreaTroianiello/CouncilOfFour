@@ -93,8 +93,7 @@ public class Avvio {
 		cl.print("", "-Setto la board");
 		
 		//----------carte permesso di costruzione----------
-		c.createCardCostruction();//crea le carte costruzione
-		costructionCard=c.getCostructionCard();//recupero la liste di carte costruzione
+		costructionCard=c.createCardCostruction();//crea le carte costruzione e le metto nella lista
 		cl.print("", "-Creo le carte permesso di costruzione");
 		
 		//----------consiglieri e balconi----------

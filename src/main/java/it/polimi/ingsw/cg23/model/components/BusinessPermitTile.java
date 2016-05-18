@@ -34,6 +34,14 @@ public class BusinessPermitTile {
 		return bonusTile;
 	}
 	
+	
+	/**
+	 * @return the zone
+	 */
+	public String getZone() {
+		return zone;
+	}
+
 	/**
 	 * Adds a bonus in the tile.
 	 * 

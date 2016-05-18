@@ -1,11 +1,14 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
@@ -37,6 +40,7 @@ public class ReadCittaXml {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
+		
 			
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
 			NodeList zoneName=doc.getElementsByTagName("namez");//lista dei nodi che cntengono "namez" (nome della zona)
@@ -60,12 +64,20 @@ public class ReadCittaXml {
 				city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, montagna)
 			}
 			return city;
-		} catch (Exception e) {//se ci sono dei problemi ritorna l'array null
+		} catch (ArrayIndexOutOfBoundsException e) {//se ci sono dei problemi ritorna l'array null
 			for(int i=0;i<city.length;i++){//cicli per annullare l'array (richiesto da sonar)
 				for(int k=0; k<city[0].length; k++){
 					city[i][k]=null;
 				}
 			}
+			return city;
+		}
+		catch (ParserConfigurationException e) {
+			e.printStackTrace();
+			return city;
+		}
+		catch (SAXException | IOException e) {
+			e.printStackTrace();
 			return city;
 		}
 	}
