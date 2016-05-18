@@ -87,7 +87,8 @@ public class Controller {
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
-			Region r=new Region(cityInfo[i*c][5],0,new RegionDeck(2),null);
+			RegionDeck rd=new RegionDeck(2);
+			Region r=new Region(cityInfo[i*c][5],0,rd,null);
 			regioni.add(r);//creata una nuova regione e aggiunta alla lista
 			createCities(i,r);//create the city
 		}
@@ -225,6 +226,7 @@ public class Controller {
 		createRegionDeck("montagna");
 		return costructionCard;
 	}
+
 	
 	public void createRegionDeck(String region){
 		List<BusinessPermitTile> costructionRegionlist=new ArrayList<>();
@@ -235,6 +237,7 @@ public class Controller {
 		}
 		RegionDeck rd=new RegionDeck(2);
 		rd.setBusinessPermitTiles(costructionRegionlist);
+		//return rd;
 	}
 	
 	/**

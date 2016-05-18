@@ -56,6 +56,8 @@ public class Avvio {
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 		
+
+		
 		//----------board creazione----------
 		board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
 		cl.print("", "-Creo la board");
@@ -72,13 +74,16 @@ public class Avvio {
 		setCitta(c.getCitta());//recupero la lista delle citta'
 		cl.print("", "-Creo le regioni e le citta'");
 		
-		//----------carte politiche----------
-		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
-		cl.print("", "-Creo le carte politiche");
-		
 		//----------king----------
 		King king=s.king(citta);//creato il re
 		cl.print("", "-Creo il re");
+		
+
+		
+		//----------carte politiche----------
+		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
+
+		cl.print("", "-Creo le carte politiche"); 
 		
 		//----------deck----------
 		Deck dec=new Deck(politcards);//creato il deck
