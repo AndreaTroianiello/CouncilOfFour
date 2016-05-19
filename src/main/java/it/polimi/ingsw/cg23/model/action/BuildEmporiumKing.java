@@ -62,46 +62,46 @@ public class BuildEmporiumKing implements Action {
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
 		int steps = (int) destination.minimumDistance(board.getKing().getCity(), new ArrayList<City>());					//set steps as the length of the list, and cast it to int
 		int coin = player.getRichness().getCoins();						//set coin as the current money of the player
-		
+
 		if(moneyPaid!=-1){
-		try {
-			coin = coin - steps*2 - jolly;									
-			player.getRichness().setCoins(coin);										//take from the player two coin for each steps the king moved
-		} catch (NegativeNumberException e) {
-			System.out.println("The player doesn't have enough money");
 			try {
-				player.getRichness().setCoins(coin+moneyPaid);						//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
-			} catch (NegativeNumberException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
-		}
-		if(player.getAvailableEmporium() != null){					//if the player has available emporiums, build one in the city
-			try {
-				this.destination.buildEmporium(player.getAvailableEmporium());
+				coin = coin - steps*2 - jolly;									
+				player.getRichness().setCoins(coin);										//take from the player two coin for each steps the king moved
 			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have available emporiums");
-				int currentCoin = player.getRichness().getCoins();
+				System.out.println("The player doesn't have enough money");
 				try {
-					player.getRichness().setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
+					player.getRichness().setCoins(coin+moneyPaid);						//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
 				} catch (NegativeNumberException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				e.printStackTrace();					
-			}
-			
-		}
-		
-		else{															//if the path isn't correct, give back the player the money previously paid
-			try {
-				player.getRichness().setCoins(player.getRichness().getCoins()+moneyPaid);
-			} catch (NegativeNumberException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+			if(player.getAvailableEmporium() != null){					//if the player has available emporiums, build one in the city
+				try {
+					this.destination.buildEmporium(player.getAvailableEmporium());
+				} catch (NegativeNumberException e) {
+					System.out.println("The player doesn't have available emporiums");
+					int currentCoin = player.getRichness().getCoins();
+					try {
+						player.getRichness().setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
+					} catch (NegativeNumberException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					e.printStackTrace();					
+				}
+
+			}
+
+			else{															//if the path isn't correct, give back the player the money previously paid
+				try {
+					player.getRichness().setCoins(player.getRichness().getCoins()+moneyPaid);
+				} catch (NegativeNumberException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}

@@ -51,6 +51,8 @@ public class BuildEmporiumTile implements Action {
 			if(player.getAvailableEmporium() != null && city != null){
 				try {
 					city.buildEmporium(player.getAvailableEmporium());
+					player.getAvailableBusinessPermits().remove(card);
+					player.setUsedBusinessPermit(card);
 				} catch (NegativeNumberException e) {
 					System.out.println("The player doesn't have available emporiums");
 					e.printStackTrace();					
