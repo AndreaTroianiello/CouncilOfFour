@@ -7,6 +7,8 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.model.action.*;
+import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Partita {
@@ -26,17 +28,20 @@ public class Partita {
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", t.getCurrentPlayer().getHand().toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
-			cl.print("", b.getRegions().get(1).getDeck().getShowedDeck().toString());
-			
-			
-			t.setAction(new AdditionalAction());
+			cl.print("", "PR A "+b.getRegions().get(1).getDeck().getShowedDeck().toString());
+			cl.print("", "C R "+b.getRegions().get(1).getCouncil().toString());
+			t.getCurrentPlayer().addAvailableBusinessPermit(b.getRegions().get(1).getDeck().getShowedDeck().get(0));
+			b.getRegions().get(1).getDeck().changeShowedDeck();
+			t.setAction(new BuildEmporiumTile(t.getCurrentPlayer().getAvailableBusinessPermits().get(0), 0));
 			t.runAction();
 			t.runAction();
-			cl.print("", t.getCurrentPlayer().getAvailableBusinessPermits().toString());
-			cl.print("", t.getCurrentPlayer().getUsedBusinessPermit().toString());
-			cl.print("", b.getRegions().get(1).getDeck().getShowedDeck().toString());
+			cl.print("", "C R "+b.getRegions().get(1).getCouncil().toString());
+			cl.print("", "AP "+t.getCurrentPlayer().getAvailableBusinessPermits().toString());
+			cl.print("", "UP "+t.getCurrentPlayer().getUsedBusinessPermit().toString());
+			cl.print("", "PR A "+b.getRegions().get(1).getDeck().getShowedDeck().toString());
+			cl.print("", t.getCurrentPlayer().getHand().toString());
+			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
 			cl.print("", t.getCurrentPlayer().toString());
-
 			cl.print(t,"");
 			t.changePlayer();
 		}
