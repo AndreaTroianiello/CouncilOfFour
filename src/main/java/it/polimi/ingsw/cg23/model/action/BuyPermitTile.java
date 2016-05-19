@@ -79,7 +79,7 @@ public class BuyPermitTile implements Action {
 		try {
 			coins = coins - jolly;
 			player.getRichness().setCoins(coins);
-			player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+			player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().remove(chosenTile));
 			board.getRegions().get(region).getDeck().changeShowedDeck();
 		} catch (NegativeNumberException e) {
 			try {
