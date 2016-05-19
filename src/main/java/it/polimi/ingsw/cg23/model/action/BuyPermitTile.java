@@ -76,6 +76,7 @@ public class BuyPermitTile implements Action {
 		int moneyPaid = payCoins(match, player);
 		int coins = player.getRichness().getCoins();
 		
+		if(moneyPaid != -1){
 		try {
 			coins = coins - jolly;
 			player.getRichness().setCoins(coins);
@@ -89,6 +90,7 @@ public class BuyPermitTile implements Action {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+		}
 		}
 		
 		
@@ -117,11 +119,11 @@ public class BuyPermitTile implements Action {
 			if(card.isJolly()){										//and control if there are jolly
 				cardNumber = cardNumber + 1;						//update the card counter
 				jollyNumber = jollyNumber + 1;						//update the jolly counter
-				this.cards.remove(card);							//remove the jolly from the list
 				discardedCards.add(card);
 			}
+			
 		}
-		
+		cards.removeAll(discardedCards);
 		for(int i=0; i<councilLenght; i++){							//iterate the council
 			for(PoliticCard card : this.cards){						//iterate the cards
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){		
@@ -155,19 +157,22 @@ public class BuyPermitTile implements Action {
 		int coins = player.getRichness().getCoins();
 		switch(cardNumber){
 		case 1: 
-			tryPayment(player, coins, 10);
-			return 10;
+			if(tryPayment(player, coins, 10)!= -1)
+				return 10;
+			return -1;			
 		case 2:
-			tryPayment(player, coins, 7);
-			return 7;
+			if(tryPayment(player, coins, 7)!=-1)
+				return 7;
+			return -1;
 		case 3:
-			tryPayment(player, coins, 4);
-			return 4;
+			if(tryPayment(player, coins, 4)!=-1)
+				return 4;
+			return -1;
 		case 4: 
 			return 0;
 			
 		default: System.out.println("Your cards don't match any councillor");
-			return 0;
+			return -1;
 			}
 		 
 		}
@@ -181,13 +186,14 @@ public class BuyPermitTile implements Action {
 	 * @param coin
 	 * @param payment
 	 */
-	public void tryPayment(Player player,int coin, int payment){
+	public int tryPayment(Player player,int coin, int payment){
 		try {
 			coin = coin - payment;
 			player.getRichness().setCoins(coin);
+			return 0;
 		} catch (NegativeNumberException e) {
-			System.out.println("The player doesn't have enough money");
-			e.printStackTrace();
+			System.out.println("The player doesn't have enough money!");
+			return -1;
 		}
 	}
 
