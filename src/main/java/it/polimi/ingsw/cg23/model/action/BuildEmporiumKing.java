@@ -62,6 +62,8 @@ public class BuildEmporiumKing implements Action {
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
 		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
 		int coin = player.getRichness().getCoins();						//set coin as the current money of the player
+		
+		if(moneyPaid!=-1){
 		try {
 			coin = coin - steps*2 - jolly;									
 			player.getRichness().setCoins(coin);										//take from the player two coin for each steps the king moved
@@ -100,6 +102,7 @@ public class BuildEmporiumKing implements Action {
 				e.printStackTrace();
 			}
 		}
+		}
 
 	}
 	
@@ -116,19 +119,23 @@ public class BuildEmporiumKing implements Action {
 		int coin = player.getRichness().getCoins();
 		switch(cardNumber){
 		case 1: 
-			tryPayment(player, coin, 10);
-			return 10;
+			if(tryPayment(player, coin, 10)!=-1)
+				return 10;
+			return -1;
 		case 2:
-			tryPayment(player, coin, 7);
-			return 7;
+			if(tryPayment(player, coin, 7)!=-1)
+				return 7;
+			return -1;
 		case 3:
-			tryPayment(player, coin, 4);
-			return 4;
+			if(tryPayment(player, coin, 4)!=-1)
+				return 4;
+			return -1;
 		case 4: 
 			return 0;
 			
-		default: System.out.println("Your cards don't match any councillor");
-			return 0;
+		default: 
+			System.out.println("Your cards don't match any councillor");
+			return -1;
 			}
 		 
 		}
@@ -141,13 +148,14 @@ public class BuildEmporiumKing implements Action {
 	 * @param coin
 	 * @param payment
 	 */
-	public void tryPayment(Player player,int coin, int payment){
+	public int tryPayment(Player player,int coin, int payment){
 		try {
 			coin = coin - payment;
 			player.getRichness().setCoins(coin);
+			return 0;
 		} catch (NegativeNumberException e) {
 			System.out.println("The player doesn't have enough money");
-			e.printStackTrace();
+			return -1;
 		}
 	}
 	
