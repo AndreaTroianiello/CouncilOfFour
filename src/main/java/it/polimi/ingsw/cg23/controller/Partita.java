@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.controller;
 
-import java.awt.Color;
+
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;

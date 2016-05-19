@@ -22,7 +22,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  */
 public class Avvio {
 	CliInterface cl=new CliInterface();
-	Controller c=new Controller();
+	//Setting c=new Setting();
 	Setting s=new Setting();
 
 	List <Player> giocatori;//lista giocatori
@@ -44,36 +44,36 @@ public class Avvio {
 	public void startPartita(){//metodo per avviare la partita
 		cl.print("", "Benvenuti a cof!");
 
-		//----------creo i type----------
-		tipi=c.createType();//creo i type (colori) delle citta'
-		cl.print("", "-Creo i type");
-
 		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
-			c.createPlayer();//creo i giocatori
+			s.createPlayer();//creo i giocatori
 		}
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
+		//----------creo i type----------
+		tipi=s.createType();//creo i type (colori) delle citta'
+		cl.print("", "-Creo i type");
+		
 		//----------board creazione----------
 		board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
 		cl.print("", "-Creo la board");
 
 		//----------bonus----------
-		bonusList=c.bonusList(board);//recupero la lista con tutti i bonus
+		bonusList=s.bonusList(board);//recupero la lista con tutti i bonus
 		cl.print("", "-Creo i bonus");
 
 		//----------regioni----------
-		giocatori=c.getGiocatori();//recupero la lista dei giocatori dal controller
-		regions=c.createRegions();//crea le regioni e ne ritorna la lista
+		giocatori=s.getGiocatori();//recupero la lista dei giocatori dal controller
+		regions=s.createRegions();//crea le regioni e ne ritorna la lista
 		cl.print("", "-Creo le regioni");
 
 		//----------citta'----------
 		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
-			citta=c.createCities(i, regions.get(i));//recupero le citta' della regione
+			citta=s.createCities(i, regions.get(i));//recupero le citta' della regione
 		}
-		c.addNeighbors();//aggiungo i vicini alle citta'
+		s.addNeighbors();//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
 		
 		//----------king----------
@@ -97,8 +97,8 @@ public class Avvio {
 		cl.print("", "-Setto la board");
 
 		//----------carte permesso di costruzione----------
-		costructionCard=c.createCardCostruction();//crea le carte costruzione e le metto nella lista
-		c.createRegionDeck(regions);//riempie i regiondeck delle regioni
+		costructionCard=s.createCardCostruction();//crea le carte costruzione e le metto nella lista
+		s.createRegionDeck(regions);//riempie i regiondeck delle regioni
 		cl.print("", "-Creo le carte permesso di costruzione");
 
 		//----------consiglieri e balconi----------
@@ -112,7 +112,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
+		//printAll();//stampa tutte le liste
 	}
 
 	/**
@@ -120,13 +120,13 @@ public class Avvio {
 	 */
 	public void printAll(){
 		cl.print("", "STAMPO TUTTO");
-		c.printList(bonusList);
-		c.printList(regions);
-		c.printList(citta);
-		c.printList(giocatori);
-		c.printList(politcards);
-		c.printList(costructionCard);
-		c.printList(tipi);
+		s.printList(bonusList);
+		s.printList(regions);
+		s.printList(citta);
+		s.printList(giocatori);
+		s.printList(politcards);
+		s.printList(costructionCard);
+		s.printList(tipi);
 	}
 
 	public Board getBoard(){
