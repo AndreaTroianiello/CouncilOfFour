@@ -70,10 +70,28 @@ public class BuyPermitTile implements Action {
 	@Override
 	public void runAction(Player player, Board board) {
 		Council council = board.getRegions().get(this.region).getCouncil();
-		int cardNumber = howManyMatch(council);
-		player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
-		board.getRegions().get(region).getDeck().changeShowedDeck();
-		payCoins(cardNumber, player);
+		int match = howManyMatch(council, player)[0];
+		int jolly = howManyMatch(council, player)[1];
+		int moneyPaid = payCoins(match, player);
+		int coins = player.getRichness().getCoins();
+		
+		try {
+			coins = coins - jolly;
+			player.getRichness().setCoins(coins);
+			player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().get(chosenTile));
+			board.getRegions().get(region).getDeck().changeShowedDeck();
+		} catch (NegativeNumberException e) {
+			try {
+				player.getRichness().setCoins(coins+moneyPaid);
+			} catch (NegativeNumberException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 	}
 	
@@ -82,12 +100,24 @@ public class BuyPermitTile implements Action {
 	 * and return how many match are there 
 	 * @param council
 	 * @return cardNumber
+	 * @throws NegativeNumberException 
 	 */
-	public int howManyMatch(Council council){
+	public int[] howManyMatch(Council council, Player player){
 		
-		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the choosen region's council
+		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the chosen region's council
+		int jollyNumber = 0;										//the number of the jolly in the list
 		int cardNumber = 0;											//the number of cards that the color match with the councillor's colors
 		boolean match = false;										//control if there is a match
+		int[] result;												//an array with the card and the jolly number
+		result = new int[2];
+		
+		for(PoliticCard card: this.cards){							//iterate the card
+			if(card.isJolly()){										//and control if there are jolly
+				cardNumber = cardNumber + 1;						//update the card counter
+				jollyNumber = jollyNumber + 1;						//update the jolly counter
+				this.cards.remove(card);							//remove the jolly from the list
+			}
+		}
 		
 		for(int i=0; i<councilLenght; i++){							//iterate the council
 			for(PoliticCard card : this.cards){						//iterate the cards
@@ -102,7 +132,10 @@ public class BuyPermitTile implements Action {
 			}
 		}
 		
-		return cardNumber;
+		result[0] = cardNumber;
+		result[1] = jollyNumber;
+		
+		return result;
 	}
 
 	
@@ -111,44 +144,45 @@ public class BuyPermitTile implements Action {
 	 * @param cardNumber
 	 * @param player
 	 */
-	public void payCoins(int cardNumber, Player player){
-		int coin = player.getRichness().getCoins();
+	public int payCoins(int cardNumber, Player player){
+		int coins = player.getRichness().getCoins();
 		switch(cardNumber){
 		case 1: 
-			try {
-				coin = coin -10;
-				player.getRichness().setCoins(coin);
-			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
-				e.printStackTrace();
-			}
-			break;
+			tryPayment(player, coins, 10);
+			return 10;
 		case 2:
-			try {
-				coin = coin - 7;
-				player.getRichness().setCoins(coin);
-			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
-				e.printStackTrace();
-			}
-			break;
+			tryPayment(player, coins, 7);
+			return 7;
 		case 3:
-			try {
-				coin = coin - 4;
-				player.getRichness().setCoins(coin);
-			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money");
-				e.printStackTrace();
-			}
-			break;
+			tryPayment(player, coins, 4);
+			return 4;
 		case 4: 
-			break;
+			return 0;
 			
 		default: System.out.println("Your cards don't match any councillor");
-			break;
+			return 0;
 			}
 		 
 		}
+	
+	
+	/**
+	 * try to make the payment, and catch the exception if the 
+	 * player doesn't have enough money
+	 * 
+	 * @param player
+	 * @param coin
+	 * @param payment
+	 */
+	public void tryPayment(Player player,int coin, int payment){
+		try {
+			coin = coin - payment;
+			player.getRichness().setCoins(coin);
+		} catch (NegativeNumberException e) {
+			System.out.println("The player doesn't have enough money");
+			e.printStackTrace();
+		}
+	}
 
 
 	/* (non-Javadoc)

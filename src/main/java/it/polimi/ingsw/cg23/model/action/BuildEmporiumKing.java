@@ -57,12 +57,13 @@ public class BuildEmporiumKing implements Action {
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int match = howManyMatch(board.getKing().getCouncil());			//control how many match between cards and councillors there are
+		int match = howManyMatch(board.getKing().getCouncil(), player)[0];			//control how many match between cards and councillors there are
+		int jolly = howManyMatch(board.getKing().getCouncil(), player)[1];
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
 		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
-		int coin = player.getRichness().getCoins();									//set coin as the current money of the player
+		int coin = player.getRichness().getCoins();						//set coin as the current money of the player
 		try {
-			coin = coin - steps*2;									
+			coin = coin - steps*2 - jolly;									
 			player.getRichness().setCoins(coin);										//take from the player two coin for each steps the king moved
 		} catch (NegativeNumberException e) {
 			System.out.println("The player doesn't have enough money");
@@ -155,12 +156,24 @@ public class BuildEmporiumKing implements Action {
 	 * and return how many match are there 
 	 * @param council
 	 * @return cardNumber
+	 * @throws NegativeNumberException 
 	 */
-	public int howManyMatch(Council council){
+	public int[] howManyMatch(Council council, Player player){
 		
-		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the king's council
+		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the chosen region's council
+		int jollyNumber = 0;										//the number of the jolly in the list
 		int cardNumber = 0;											//the number of cards that the color match with the councillor's colors
 		boolean match = false;										//control if there is a match
+		int[] result;												//an array with the card and the jolly number
+		result = new int[2];
+		
+		for(PoliticCard card: this.cards){							//iterate the card
+			if(card.isJolly()){										//and control if there are jolly
+				cardNumber = cardNumber + 1;						//update the card counter
+				jollyNumber = jollyNumber + 1;						//update the jolly counter
+				this.cards.remove(card);							//remove the jolly from the list
+			}
+		}
 		
 		for(int i=0; i<councilLenght; i++){							//iterate the council
 			for(PoliticCard card : this.cards){						//iterate the cards
@@ -175,7 +188,10 @@ public class BuildEmporiumKing implements Action {
 			}
 		}
 		
-		return cardNumber;
+		result[0] = cardNumber;
+		result[1] = jollyNumber;
+		
+		return result;
 	}
 
 
