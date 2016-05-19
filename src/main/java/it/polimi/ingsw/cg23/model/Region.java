@@ -3,8 +3,8 @@ package it.polimi.ingsw.cg23.model;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
-import it.polimi.ingsw.cg23.model.bonus.BonusKing;
 import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 

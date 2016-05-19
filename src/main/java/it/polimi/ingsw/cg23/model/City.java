@@ -108,10 +108,10 @@ public class City {
 	 * @return the token.
 	 */
 	public List<String> getToken() {
-		List<String> token=new ArrayList<>();
+		List<String> tokenNames=new ArrayList<>();
 		for(Bonus bonus: this.token)
-			token.add(bonus.getName());
-		return token;
+			tokenNames.add(bonus.getName());
+		return tokenNames;
 	}
 	
 	/**
@@ -170,7 +170,7 @@ public class City {
 		boolean containsEmporium=containsEmporium(player);					//Control if this city contains a player's emporium.
 		
 		//Execute if the city is just not visited and doesn't contain a player's emporium
-		if(!citiesVisited.contains(name) && containsEmporium){
+		if(!citiesVisited.contains(this) && containsEmporium){
 			runBonusCity(player);											//Run the bonus
 			citiesVisited.add(this);										//Add this city at the list of city at citiesVisited
 			for(City neighbor: neighbors){									//Visit the neighbors
@@ -191,12 +191,12 @@ public class City {
 		if(this.equals(target))														//If this city is the target returns 0.
 			return 0;
 		else{
-			ArrayList<City> neighbors=new ArrayList<>();							//Creates a new list for the neighbors.
-			neighbors.addAll(0, this.neighbors);									//Copies the original list of neighbors.
-			neighbors.removeAll(path);												//Removes all cities already visited from neighbors' list
+			ArrayList<City> neighborsList=new ArrayList<>();							//Creates a new list for the neighbors.
+			neighborsList.addAll(0, this.neighbors);									//Copies the original list of neighbors.
+			neighborsList.removeAll(path);												//Removes all cities already visited from neighbors' list
 			path.add(this);															//Adds this city at the list of cities already visited.
 			double minDistance=Double.POSITIVE_INFINITY;							//The minimum default distance has infinite value.
-			for (City neighbor : neighbors)											//Explores the neighbors' list.
+			for (City neighbor : neighborsList)											//Explores the neighbors' list.
 			{
 				double distanceThroughSource=neighbor.minimumDistance(target,path);	//Gets the minimum distance of the neighbor.
 				if (distanceThroughSource < minDistance)							//Compares the distance.

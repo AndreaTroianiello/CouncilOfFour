@@ -1,14 +1,13 @@
-package it.polimi.ingsw.cg23.model.bonus;
+package it.polimi.ingsw.cg23.model.components;
 
 import java.util.List;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 
-public class BonusKing implements Bonus{
+public class BonusKing {
 	private int index;								//The current bonus king.
 	private List<Integer> bonus;					//Set of all bonus king.
-
-
-	private String name="King";
 	
 	public BonusKing(List<Integer> bonus){
 		this.index=0;
@@ -22,13 +21,6 @@ public class BonusKing implements Bonus{
 	 */
 	public int getCurrentBonusKing() {
 		return bonus.get(index);
-	}
-	
-	/**
-	 * return the bonus name and the number(if exist)
-	 */
-	public String getName(){
-		return name;
 	}
 	
 	/**
@@ -57,30 +49,6 @@ public class BonusKing implements Bonus{
 		Bonus bonusKing=new BonusVictoryPoints(bonus.get(index));
 		bonusKing.giveBonus(player);
 		increasePosition();
-	}
-
-	@Override
-	public void giveBonus(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setParameters() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setNumber(int number) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Bonus clone() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	/* (non-Javadoc)
