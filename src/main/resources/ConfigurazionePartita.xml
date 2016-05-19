@@ -76,6 +76,7 @@
 				<bonus>1Assistant,1Politics</bonus>
 			</city>
 		</cities>
+		<coin>13</coin>
 	</zone>
 	<zone>
 		<namez>collina</namez>
@@ -130,6 +131,7 @@
 				<bonus></bonus>
 			</city>
 		</cities>
+		<coin>5</coin>
 	</zone>
 	<zone>
 		<namez>montagna</namez>
@@ -185,5 +187,6 @@
 				<bonus>1PermitTile,1VictoryPoints</bonus>
 			</city>
 		</cities>
+		<coin>24</coin>
 	</zone>
 </map>

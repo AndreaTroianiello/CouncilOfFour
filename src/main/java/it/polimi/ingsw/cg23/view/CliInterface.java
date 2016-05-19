@@ -58,6 +58,15 @@ public class CliInterface {
 	}
 	
 	/**
+	 * read the bonus region from the xml file
+	 * @param endPath, the name of the file with .xml
+	 * @return a bidimensional array with the region name and bonus region
+	 */
+	public String[][] getBonusRegion(String endPath){
+		 return lettureXml.getBonusRegion(endPath);
+	}
+	
+	/**
 	 * 
 	 * @param endPath, the final part of the xml file path (name+extension)
 	 * @return a bidimensional array with the costruction cards info

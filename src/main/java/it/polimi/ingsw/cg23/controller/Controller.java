@@ -46,22 +46,6 @@ public class Controller {
 	}
 
 	/**
-	 * 
-	 * @return the regions list
-	 */
-	/*public List<Region> getRegioni(){
-		return regioni;
-	}
-
-	/**
-	 * 
-	 * @return the cities list
-	 */
-	/*public List<City> getCitta(){
-		return citta;
-	}
-
-	/**
 	 * return the number of player in the list
 	 * @return the number of player
 	 */
@@ -84,11 +68,13 @@ public class Controller {
 	public List<Region> createRegions(){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
+		String[][] regionBonus=cl.getBonusRegion("ConfigurazionePartita.xml");
+		
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
-			RegionDeck rd=new RegionDeck(2);
-			Region r=new Region(cityInfo[i*c][5],0,rd,null);
+			RegionDeck rd=new RegionDeck(2);//creo il regiondeck
+			int regBonus=Integer.parseInt(regionBonus[i][1]);//trasformo i bonus regione in interi
+			Region r=new Region(cityInfo[i*c][5],regBonus,rd,bonusKing());//creo la regione
 			regioni.add(r);//creata una nuova regione e aggiunta alla lista
-			//createCities(i,r);//create the city
 		}
 		return regioni;
 	}
@@ -118,9 +104,6 @@ public class Controller {
 				}
 			}
 		}
-		/*for(int k=0; k<citta.size(); k++){//scorro le citta' per settare i vicini
-			addNeighbors(citta.get(k));
-		}*/
 		return citta;
 	}
 
@@ -198,7 +181,6 @@ public class Controller {
 		bonusList.add(new BonusPolitics(0,board));
 		bonusList.add(new BonusTileBonus(0));
 		bonusList.add(new BonusVictoryPoints(0));
-		bonusList.add(new BonusKing(bonusKing()));
 		return bonusList;
 	}
 
@@ -206,7 +188,7 @@ public class Controller {
 	 * 
 	 * @return a list with the king bonus
 	 */
-	public List<Integer> bonusKing(){
+	public BonusKing bonusKing(){
 		List<Integer> kingList=new ArrayList<>();//creo la lista con i bonus del re
 		kingList.add(25);
 		kingList.add(18);
@@ -214,7 +196,9 @@ public class Controller {
 		kingList.add(7);
 		kingList.add(3);
 		kingList.add(0);//una lista di interi con i passi di avanzamento del percorso vittoria
-		return kingList;
+		//return kingList;
+		BonusKing bk=new BonusKing(kingList);
+		return bk;
 	}
 
 	/**
