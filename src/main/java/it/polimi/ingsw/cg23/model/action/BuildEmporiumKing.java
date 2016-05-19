@@ -57,8 +57,8 @@ public class BuildEmporiumKing implements Action {
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int match = howManyMatch(board.getKing().getCouncil(), player)[0];			//control how many match between cards and councillors there are
-		int jolly = howManyMatch(board.getKing().getCouncil(), player)[1];
+		int match = howManyMatch(board.getKing().getCouncil(), player, board)[0];			//control how many match between cards and councillors there are
+		int jolly = howManyMatch(board.getKing().getCouncil(), player, board)[1];
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
 		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
 		int coin = player.getRichness().getCoins();						//set coin as the current money of the player
@@ -158,7 +158,7 @@ public class BuildEmporiumKing implements Action {
 	 * @return cardNumber
 	 * @throws NegativeNumberException 
 	 */
-	public int[] howManyMatch(Council council, Player player){
+	public int[] howManyMatch(Council council, Player player, Board board){
 		
 		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the chosen region's council
 		int jollyNumber = 0;										//the number of the jolly in the list
@@ -166,12 +166,14 @@ public class BuildEmporiumKing implements Action {
 		boolean match = false;										//control if there is a match
 		int[] result;												//an array with the card and the jolly number
 		result = new int[2];
+		List<PoliticCard> discardedCards = new ArrayList<>();
 		
 		for(PoliticCard card: this.cards){							//iterate the card
 			if(card.isJolly()){										//and control if there are jolly
 				cardNumber = cardNumber + 1;						//update the card counter
 				jollyNumber = jollyNumber + 1;						//update the jolly counter
 				this.cards.remove(card);							//remove the jolly from the list
+				discardedCards.add(card);
 			}
 		}
 		
@@ -180,6 +182,7 @@ public class BuildEmporiumKing implements Action {
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){		
 					match = true;									//if there is a match set the boolean true 
 					this.cards.remove(card);						//and remove the card from the list
+					discardedCards.add(card);
 				}   
 				if(match){											//if the match is true 
 					cardNumber = cardNumber + 1;					//update the counter
@@ -188,6 +191,8 @@ public class BuildEmporiumKing implements Action {
 				}
 			}
 		}
+		
+		board.getDeck().discardCars(discardedCards);
 		
 		result[0] = cardNumber;
 		result[1] = jollyNumber;
