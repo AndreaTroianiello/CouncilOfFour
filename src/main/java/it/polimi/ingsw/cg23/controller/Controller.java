@@ -69,7 +69,7 @@ public class Controller {
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		String[][] regionBonus=cl.getBonusRegion("ConfigurazionePartita.xml");
-		
+
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			RegionDeck rd=new RegionDeck(2);//creo il regiondeck
 			int regBonus=Integer.parseInt(regionBonus[i][1]);//trasformo i bonus regione in interi
@@ -108,7 +108,6 @@ public class Controller {
 	}
 
 	/**
-	 * FUNZIONA MA E' BRUTTO -->rifare
 	 * set the neighbors of a city
 	 * @param c a city
 	 */
@@ -116,18 +115,23 @@ public class Controller {
 		for(int h=0; h<citta.size(); h++){//scorre le citta' a cui aggiungere i vicini
 			for(int i=0; i<cityInfo.length; i++){//scorre le citta' prese dall'xml
 				if(cityInfo[i][0].equals(citta.get(h).getName())){//cerco la citta' attuale da quelle dell'xml
-					for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
-						char link=cityInfo[i][2].charAt(k);
-						for(int j=0; j<citta.size(); j++){//scorro le citta'
-							if(link==citta.get(j).getId()){
-								citta.get(h).addNeighbor(citta.get(j));//aggiungo alla citta' il vicino trovato
-							}
-						}
-					}
+					nearVicini(i,h);
 				}
 			}
 		}
 	}
+
+	public void nearVicini(int i, int h){//rompe la funzione addNeighbors che aveva troppi innesti
+		for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
+			char link=cityInfo[i][2].charAt(k);
+			for(int j=0; j<citta.size(); j++){//scorro le citta'
+				if(link==citta.get(j).getId()){
+					citta.get(h).addNeighbor(citta.get(j));//aggiungo alla citta' il vicino trovato
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * aggiunta di bonus alla citta'
