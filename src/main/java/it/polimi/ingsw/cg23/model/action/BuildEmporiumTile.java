@@ -48,7 +48,7 @@ public class BuildEmporiumTile implements Action {
 	public void runAction(Player player, Board board) {
 		for(Region region : board.getRegions()){
 			City city = region.searchCityById(this.card.getCitiesId().get(this.cityID));
-			if(player.getAvailableEmporium() != null){
+			if(player.getAvailableEmporium() != null && city != null){
 				try {
 					city.buildEmporium(player.getAvailableEmporium());
 				} catch (NegativeNumberException e) {
