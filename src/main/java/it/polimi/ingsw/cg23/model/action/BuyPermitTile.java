@@ -131,6 +131,7 @@ public class BuyPermitTile implements Action {
 				}   
 				if(match){											//if the match is true 
 					cardNumber = cardNumber + 1;					//update the counter
+					match = false;
 					break;											//and break the second for cycle
 				}
 			}
