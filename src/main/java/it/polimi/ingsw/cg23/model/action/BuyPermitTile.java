@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
@@ -70,8 +71,8 @@ public class BuyPermitTile implements Action {
 	@Override
 	public void runAction(Player player, Board board) {
 		Council council = board.getRegions().get(this.region).getCouncil();
-		int match = howManyMatch(council, player)[0];
-		int jolly = howManyMatch(council, player)[1];
+		int match = howManyMatch(council, player, board)[0];
+		int jolly = howManyMatch(council, player, board)[1];
 		int moneyPaid = payCoins(match, player);
 		int coins = player.getRichness().getCoins();
 		
@@ -102,7 +103,7 @@ public class BuyPermitTile implements Action {
 	 * @return cardNumber
 	 * @throws NegativeNumberException 
 	 */
-	public int[] howManyMatch(Council council, Player player){
+	public int[] howManyMatch(Council council, Player player, Board board){
 		
 		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the chosen region's council
 		int jollyNumber = 0;										//the number of the jolly in the list
@@ -110,12 +111,14 @@ public class BuyPermitTile implements Action {
 		boolean match = false;										//control if there is a match
 		int[] result;												//an array with the card and the jolly number
 		result = new int[2];
+		List<PoliticCard> discardedCards= new ArrayList<>();
 		
 		for(PoliticCard card: this.cards){							//iterate the card
 			if(card.isJolly()){										//and control if there are jolly
 				cardNumber = cardNumber + 1;						//update the card counter
 				jollyNumber = jollyNumber + 1;						//update the jolly counter
 				this.cards.remove(card);							//remove the jolly from the list
+				discardedCards.add(card);
 			}
 		}
 		
@@ -124,6 +127,7 @@ public class BuyPermitTile implements Action {
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){		
 					match = true;									//if there is a match set the boolean true 
 					this.cards.remove(card);						//and remove the card from the list
+					discardedCards.add(card);
 				}   
 				if(match){											//if the match is true 
 					cardNumber = cardNumber + 1;					//update the counter
@@ -131,6 +135,8 @@ public class BuyPermitTile implements Action {
 				}
 			}
 		}
+		
+		board.getDeck().discardCars(discardedCards);
 		
 		result[0] = cardNumber;
 		result[1] = jollyNumber;
