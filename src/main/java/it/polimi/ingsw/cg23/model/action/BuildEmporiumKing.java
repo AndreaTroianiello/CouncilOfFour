@@ -60,7 +60,7 @@ public class BuildEmporiumKing implements Action {
 		int match = howManyMatch(board.getKing().getCouncil(), player, board)[0];			//control how many match between cards and councillors there are
 		int jolly = howManyMatch(board.getKing().getCouncil(), player, board)[1];
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
-		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
+		int steps = (int) destination.minimumDistance(board.getKing().getCity(), new ArrayList<City>());					//set steps as the length of the list, and cast it to int
 		int coin = player.getRichness().getCoins();						//set coin as the current money of the player
 		
 		if(moneyPaid!=-1){
