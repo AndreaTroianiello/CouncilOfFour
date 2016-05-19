@@ -141,10 +141,11 @@ public class City {
 		Player player=emporium.getPlayer();
 		int assistantsPlayer=player.getAssistantsPool().getAssistants();
 		assistantsPlayer=assistantsPlayer-emporiums.size();						
-		player.getAssistantsPool().setAssistants(assistantsPlayer);										//If sets a negative number throws a NegativeNumberException. 
-		runBonusCityAndNeighbors(player , new ArrayList<String>());					//Runs the bonus of the city and visits the neighbors.
+		player.getAssistantsPool().setAssistants(assistantsPlayer);					//If sets a negative number throws a NegativeNumberException.
 		emporium.setCity(this);														//Sets this city in the available emporium.
-		this.emporiums.add(emporium);												//Adds the emporiums.
+		this.emporiums.add(emporium);												//Adds the emporium at the city.
+		runBonusCityAndNeighbors(player , new ArrayList<City>());					//Runs the bonus of the city and visits the neighbors.
+		player.setEmporium(emporium);												//Adds the emporium at the player's list.
 	}
 	
 	/**
@@ -165,15 +166,15 @@ public class City {
 	 *  @param player the player who is to receive the bonus.
 	 *  @param citiesVisited the list of the cities already visited.
 	 */
-	public void runBonusCityAndNeighbors(Player player, List<String> citiesVisited){
+	public void runBonusCityAndNeighbors(Player player, List<City> citiesVisited){
 		boolean containsEmporium=containsEmporium(player);					//Control if this city contains a player's emporium.
 		
 		//Execute if the city is just not visited and doesn't contain a player's emporium
-		if(!citiesVisited.contains(name) && !containsEmporium){
+		if(!citiesVisited.contains(name) && containsEmporium){
 			runBonusCity(player);											//Run the bonus
+			citiesVisited.add(this);										//Add this city at the list of city at citiesVisited
 			for(City neighbor: neighbors){									//Visit the neighbors
 				neighbor.runBonusCityAndNeighbors(player, citiesVisited);	//Visit the neighbor and run the bonus
-				citiesVisited.add(name);									//Add the name of city at citiesVisited
 			}
 		}
 	}
