@@ -1,9 +1,11 @@
 package it.polimi.ingsw.cg23.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
+import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.model.action.*;
@@ -25,20 +27,23 @@ public class Partita {
 		//----------turno----------
 		for(int i=0; i<1; i++){
 			cl.print("", "-Creo il turno " + i + " :\n");
+			try {
+				t.getCurrentPlayer().getRichness().setCoins(100);
+			} catch (NegativeNumberException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", t.getCurrentPlayer().getHand().toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
-			cl.print("", "PR A "+b.getRegions().get(1).getDeck().getShowedDeck().toString());
-			cl.print("", "C R "+b.getRegions().get(1).getCouncil().toString());
-			t.getCurrentPlayer().addAvailableBusinessPermit(b.getRegions().get(1).getDeck().getShowedDeck().get(0));
-			b.getRegions().get(1).getDeck().changeShowedDeck();
-			t.setAction(new BuildEmporiumTile(t.getCurrentPlayer().getAvailableBusinessPermits().get(0), 0));
+			cl.print("", "C K "+b.getKing().getCouncil().toString());
+			City destination=b.getRegions().get(0).searchCityById('A');
+			cl.print("",b.getKing().getCity().toString());
+			cl.print("",""+b.getKing().getCity().minimumDistance(destination, new ArrayList<City>()));
+			t.setAction(new BuildEmporiumKing(t.getCurrentPlayer().getHand(), destination));
 			t.runAction();
 			t.runAction();
-			cl.print("", "C R "+b.getRegions().get(1).getCouncil().toString());
-			cl.print("", "AP "+t.getCurrentPlayer().getAvailableBusinessPermits().toString());
-			cl.print("", "UP "+t.getCurrentPlayer().getUsedBusinessPermit().toString());
-			cl.print("", "PR A "+b.getRegions().get(1).getDeck().getShowedDeck().toString());
+			cl.print("",b.getKing().getCity().toString());
 			cl.print("", t.getCurrentPlayer().getHand().toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
 			cl.print("", t.getCurrentPlayer().toString());

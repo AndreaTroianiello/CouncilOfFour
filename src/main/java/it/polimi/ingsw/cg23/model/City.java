@@ -193,7 +193,7 @@ public class City {
 		else{
 			ArrayList<City> neighbors=new ArrayList<>();							//Creates a new list for the neighbors.
 			neighbors.addAll(0, this.neighbors);									//Copies the original list of neighbors.
-			System.out.println(neighbors.removeAll(path));							//Removes all cities already visited from neighbors' list
+			neighbors.removeAll(path);												//Removes all cities already visited from neighbors' list
 			path.add(this);															//Adds this city at the list of cities already visited.
 			double minDistance=Double.POSITIVE_INFINITY;							//The minimum default distance has infinite value.
 			for (City neighbor : neighbors)											//Explores the neighbors' list.
