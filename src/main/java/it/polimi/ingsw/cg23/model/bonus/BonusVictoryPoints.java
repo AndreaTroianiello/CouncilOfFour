@@ -17,7 +17,7 @@ public class BonusVictoryPoints implements Bonus {
 	 */
 	@Override
 	public String getName(){
-		return points+name;
+		return points+" "+name;
 	}
 
 	/**

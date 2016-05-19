@@ -29,7 +29,7 @@ public class Partita {
 			cl.print("", b.getRegions().get(1).getDeck().getShowedDeck().toString());
 			
 			
-			//t.setAction(new BuyPermitTile());
+			t.setAction(new AdditionalAction());
 			t.runAction();
 			t.runAction();
 			cl.print("", t.getCurrentPlayer().getAvailableBusinessPermits().toString());
