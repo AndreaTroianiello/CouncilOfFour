@@ -39,10 +39,10 @@ public class ChangeBusinessPermit implements Action {
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int assistants = player.getAssistants();
+		int assistants = player.getAssistantsPool().getAssistants();
 		assistants = assistants -1;
 		try {
-			player.setAssistants(assistants);
+			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
 			return;
 		}

@@ -33,10 +33,10 @@ public class BonusAssistants implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		int playerAssistants = player.getAssistants();				//set in a variable the amount of assistants of the player		
-		playerAssistants = playerAssistants + this.assistants;		//add to the variable the assistants given by the bonus
+		int playerAssistants = player.getAssistantsPool().getAssistants();				//set in a variable the amount of assistants of the player		
+		playerAssistants = playerAssistants + this.assistants;							//add to the variable the assistants given by the bonus
 		try {
-			player.setAssistants(playerAssistants);					//set the player's pool and throw an exception
+			player.getAssistantsPool().setAssistants(playerAssistants);					//set the player's pool and throw an exception
 		} catch (NegativeNumberException e) {
 			System.out.println("The bonus makes the player have negative assistants");
 		}

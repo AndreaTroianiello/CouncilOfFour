@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23;
 import org.junit.Before;
 
 import it.polimi.ingsw.cg23.model.components.Richness;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -21,7 +22,7 @@ public class RichnessTest extends TestCase{
 		r2=new Richness(10);
 	}
 	
-	public void testGetCoins(){
+	public void testGetCoins() throws NegativeNumberException{
     	assertEquals(0,r1.getCoins());
     	assertNotSame(0,r2.getCoins());
     	assertNotNull(r2.getCoins());

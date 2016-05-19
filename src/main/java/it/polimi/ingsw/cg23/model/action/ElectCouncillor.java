@@ -76,10 +76,10 @@ public class ElectCouncillor implements Action{
 			board.setCouncillor(oldCouncillor);
 			board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
 		}
-		int coins = player.getCoins();
+		int coins = player.getRichness().getCoins();
 		coins = coins +4;
 		try{
-			player.setCoins(coins);
+			player.getRichness().setCoins(coins);
 		} catch(NegativeNumberException e){
 			System.out.println("The bonus makes the player have negative coins");
 		}		

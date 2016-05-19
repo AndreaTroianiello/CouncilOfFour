@@ -139,9 +139,9 @@ public class City {
 	 */
 	public void buildEmporium(Emporium emporium) throws NegativeNumberException{
 		Player player=emporium.getPlayer();
-		int assistantsPlayer=player.getAssistants();
+		int assistantsPlayer=player.getAssistantsPool().getAssistants();
 		assistantsPlayer=assistantsPlayer-emporiums.size();						
-		player.setAssistants(assistantsPlayer);										//If sets a negative number throws a NegativeNumberException. 
+		player.getAssistantsPool().setAssistants(assistantsPlayer);										//If sets a negative number throws a NegativeNumberException. 
 		runBonusCityAndNeighbors(player , new ArrayList<String>());					//Runs the bonus of the city and visits the neighbors.
 		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporiums.

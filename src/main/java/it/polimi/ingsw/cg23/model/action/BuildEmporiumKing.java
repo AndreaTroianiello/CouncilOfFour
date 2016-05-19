@@ -60,14 +60,14 @@ public class BuildEmporiumKing implements Action {
 		int match = howManyMatch(board.getKing().getCouncil());			//control how many match between cards and councillors there are
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
 		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
-		int coin = player.getCoins();									//set coin as the current money of the player
+		int coin = player.getRichness().getCoins();									//set coin as the current money of the player
 		try {
 			coin = coin - steps*2;									
-			player.setCoins(coin);										//take from the player two coin for each steps the king moved
+			player.getRichness().setCoins(coin);										//take from the player two coin for each steps the king moved
 		} catch (NegativeNumberException e) {
 			System.out.println("The player doesn't have enough money");
 			try {
-				player.setCoins(coin+moneyPaid);						//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
+				player.getRichness().setCoins(coin+moneyPaid);						//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
 			} catch (NegativeNumberException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -79,9 +79,9 @@ public class BuildEmporiumKing implements Action {
 				this.destination.buildEmporium(player.getAvailableEmporium());
 			} catch (NegativeNumberException e) {
 				System.out.println("The player doesn't have available emporiums");
-				int currentCoin = player.getCoins();
+				int currentCoin = player.getRichness().getCoins();
 				try {
-					player.setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
+					player.getRichness().setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
 				} catch (NegativeNumberException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -93,7 +93,7 @@ public class BuildEmporiumKing implements Action {
 		
 		else{															//if the path isn't correct, give back the player the money previously paid
 			try {
-				player.setCoins(player.getCoins()+moneyPaid);
+				player.getRichness().setCoins(player.getRichness().getCoins()+moneyPaid);
 			} catch (NegativeNumberException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -112,7 +112,7 @@ public class BuildEmporiumKing implements Action {
 	 * @param board
 	 */
 	public int payCoins(int cardNumber, Player player){
-		int coin = player.getCoins();
+		int coin = player.getRichness().getCoins();
 		switch(cardNumber){
 		case 1: 
 			tryPayment(player, coin, 10);
@@ -143,7 +143,7 @@ public class BuildEmporiumKing implements Action {
 	public void tryPayment(Player player,int coin, int payment){
 		try {
 			coin = coin - payment;
-			player.setCoins(coin);
+			player.getRichness().setCoins(coin);
 		} catch (NegativeNumberException e) {
 			System.out.println("The player doesn't have enough money");
 			e.printStackTrace();

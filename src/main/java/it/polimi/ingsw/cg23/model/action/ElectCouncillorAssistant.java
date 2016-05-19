@@ -77,10 +77,10 @@ public class ElectCouncillorAssistant implements Action {
 			board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
 		}
 		
-		int assistants = player.getAssistants();
+		int assistants = player.getAssistantsPool().getAssistants();
 		assistants = assistants - 1;
 		try {
-			player.setAssistants(assistants);
+			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
 			System.out.println("The player doesn't have enough assistants");
 			e.printStackTrace();

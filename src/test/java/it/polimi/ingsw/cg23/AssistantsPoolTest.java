@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23;
 import org.junit.Before;
 
 import it.polimi.ingsw.cg23.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -21,7 +22,7 @@ public class AssistantsPoolTest extends TestCase{
 		p2=new AssistantsPool(10);
 	}
 	
-	public void testGetAssistants(){
+	public void testGetAssistants() throws NegativeNumberException{
     	assertEquals(0,p1.getAssistants());
     	assertNotSame(0,p2.getAssistants());
     	assertNotNull(p2.getAssistants());

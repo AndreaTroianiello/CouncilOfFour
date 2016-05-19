@@ -25,14 +25,15 @@ public class Game {
             for(int j = 0; j < players.size()-1; j++) {
 
                 //Se il punteggio è minore del successivo allora scambiamo i valori
-                if(players.get(j).getVictoryPoints()<players.get(j+1).getVictoryPoints()) {
+                if(players.get(j).getVictoryTrack().getVictoryPoints()<players.get(j+1).getVictoryTrack().getVictoryPoints()) {
                     players.add(j,players.get(j+1));
                     flag=true; //Lo setto a true per indicare che é avvenuto uno scambio
                 }
                 else
                 	//se hanno lo stesso puntaggio guardo gli aiutanti e le carte politiche
-                	if(players.get(j).getVictoryPoints()==players.get(j+1).getVictoryPoints()
-                		&& players.get(j).getAssistants()+players.get(j).getHand().size()<players.get(j+1).getAssistants()+players.get(j+1).getHand().size()){
+                	if(players.get(j).getVictoryTrack().getVictoryPoints()==players.get(j+1).getVictoryTrack().getVictoryPoints()
+                		&& players.get(j).getAssistantsPool().getAssistants()+players.get(j).getHand().size()<
+                		players.get(j+1).getAssistantsPool().getAssistants()+players.get(j+1).getHand().size()){
                 		players.add(j,players.get(j+1));
                         flag=true; //Lo setto a true per indicare che é avvenuto uno scambio
                 	}

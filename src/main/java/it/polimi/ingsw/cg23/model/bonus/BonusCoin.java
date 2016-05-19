@@ -50,10 +50,10 @@ public class BonusCoin implements Bonus {
 	
 	@Override
 	public void giveBonus(Player player) {
-		int playerCoins=player.getCoins();				//set a variable at the amount of coins of the player
+		int playerCoins=player.getRichness().getCoins();				//set a variable at the amount of coins of the player
 		playerCoins=playerCoins+this.coins;				//add to the variable the coins given by the bonus
 		try {
-			player.setCoins(playerCoins);				//set the player's coins at the updated value and throw an exception
+			player.getRichness().setCoins(playerCoins);				//set the player's coins at the updated value and throw an exception
 		} catch (NegativeNumberException e) {
 			System.out.println("The bonus makes the player have negative coins");
 		}

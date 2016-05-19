@@ -29,19 +29,19 @@ public class HireAssistant implements Action {
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int coin = player.getCoins();
-		int assistants = player.getAssistants();
+		int coin = player.getRichness().getCoins();
+		int assistants = player.getAssistantsPool().getAssistants();
 		
 		coin = coin - 3;
 		try {
-			player.setCoins(coin);
+			player.getRichness().setCoins(coin);
 		} catch (NegativeNumberException e) {
 			return;
 		}
 		
 		assistants = assistants + 1;
 		try {
-			player.setAssistants(assistants);
+			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
 			return;
 		}

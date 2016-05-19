@@ -38,9 +38,9 @@ public class BonusVictoryPoints implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		int playerPoints = player.getVictoryPoints();
+		int playerPoints = player.getVictoryTrack().getVictoryPoints();
 		playerPoints = playerPoints + this.points;
-		player.setVictoryPoints(playerPoints);
+		player.getVictoryTrack().setVictoryPoints(playerPoints);
 	}
 	
 	

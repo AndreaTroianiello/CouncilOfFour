@@ -132,9 +132,9 @@ public class PrintMap {
 		percorsi+=addSpace("Victory", space)+addSpace("Nobility", space)+addSpace("Assistants", space);
 		percorsi+="\n";
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getUser(),space)+addSpace(giocatori.get(i).getCoins(),space);
-			percorsi+=addSpace(giocatori.get(i).getVictoryPoints(),space)+addSpace(giocatori.get(i).getNobilityBoxPosition(),space);
-			percorsi+=addSpace(giocatori.get(i).getAssistants(), space);//VERIFICARE
+			percorsi+=addSpace(giocatori.get(i).getUser(),space)+addSpace(giocatori.get(i).getRichness().getCoins(),space);
+			percorsi+=addSpace(giocatori.get(i).getVictoryTrack().getVictoryPoints(),space)+addSpace(giocatori.get(i).getNobilityBoxPosition(),space);
+			percorsi+=addSpace(giocatori.get(i).getAssistantsPool().getAssistants(), space);//VERIFICARE
 			percorsi+="\n";
 		}
 		return percorsi;

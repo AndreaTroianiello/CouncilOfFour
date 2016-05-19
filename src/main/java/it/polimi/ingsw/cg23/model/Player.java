@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.components.*;
-import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class Player {
 	private final String user;									//name of the player
@@ -112,43 +111,18 @@ public class Player {
 	 * 
 	 * @return the assistants of the player
 	 */
-	public int getAssistants() {
-		return assistantsPool.getAssistants();
+	public AssistantsPool getAssistantsPool() {
+		return assistantsPool;
 	}
 
-	/**
-	 * Modify the player's assistants.
-	 * 
-	 * @param assistants the assistants to set.
-	 * @throws NegativeNumberException the number of assistants must be positive.
-	 */
-	public void setAssistants(int assistants) throws NegativeNumberException {
-		if (assistants>=0)
-			assistantsPool.setAssistants(assistants);
-		else
-			throw new NegativeNumberException("The number of assistants can't be negative.");
-	}
 	
 	/**
 	 * Returns the richness of the player.
 	 * 
 	 * @return the coins of the player
 	 */
-	public int getCoins() {
-		return richness.getCoins();
-	}
-
-	/**
-	 * Modify the player's richness.
-	 * 
-	 * @param coins the coins to set.
-	 * @throws NegativeNumberException the number of coins must be positive.
-	 */
-	public void setCoins(int coins) throws NegativeNumberException {
-		if(coins>=0)
-			richness.setCoins(coins);
-		else
-			throw new NegativeNumberException("The number of coins can't be negative.");
+	public Richness getRichness() {
+		return richness;
 	}
 	
 	/**
@@ -156,17 +130,8 @@ public class Player {
 	 * 
 	 * @return the victory points of the player.
 	 */
-	public int getVictoryPoints() {
-		return victoryTrack.getVictoryPoints();
-	}
-	
-	/**
-	 * Modify the player's victory points.
-	 * 
-	 * @param points the victory points to set.
-	 */
-	public void setVictoryPoints(int points) {
-		victoryTrack.setVictoryPoints(points);
+	public VictoryTrack getVictoryTrack() {
+		return this.victoryTrack;
 	}
 	
 	/**
@@ -259,7 +224,8 @@ public class Player {
 	 */
 	@Override
 	public String toString() {
-		return "-User: " + user + "\n-Assistants: " + getAssistants() + "\n-Coins: "+ getCoins() + "\n-Victory points: " + getVictoryPoints() ;
+		return "-User: " + user + "\n-Assistants: " + this.assistantsPool.getAssistants() + 
+				"\n-Coins: "+ this.richness.getCoins() + "\n-Victory points: " + this.victoryTrack.getVictoryPoints() ;
 	}
 	
 }

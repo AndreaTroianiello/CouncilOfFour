@@ -108,7 +108,7 @@ public class Turn {
 		}
 		if(finalPlayer==-1 && player.isAvailableEmporiumEmpty()){						//If the current player has been the first to build all emporiums.
 			finalPlayer=currentPlayer;
-			player.setVictoryPoints(player.getVictoryPoints()+3);
+			player.getVictoryTrack().setVictoryPoints(player.getVictoryTrack().getVictoryPoints()+3);
 		}
 	}
 

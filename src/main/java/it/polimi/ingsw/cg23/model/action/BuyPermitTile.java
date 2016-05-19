@@ -112,12 +112,12 @@ public class BuyPermitTile implements Action {
 	 * @param player
 	 */
 	public void payCoins(int cardNumber, Player player){
-		int coin = player.getCoins();
+		int coin = player.getRichness().getCoins();
 		switch(cardNumber){
 		case 1: 
 			try {
 				coin = coin -10;
-				player.setCoins(coin);
+				player.getRichness().setCoins(coin);
 			} catch (NegativeNumberException e) {
 				System.out.println("The player doesn't have enough money");
 				e.printStackTrace();
@@ -126,7 +126,7 @@ public class BuyPermitTile implements Action {
 		case 2:
 			try {
 				coin = coin - 7;
-				player.setCoins(coin);
+				player.getRichness().setCoins(coin);
 			} catch (NegativeNumberException e) {
 				System.out.println("The player doesn't have enough money");
 				e.printStackTrace();
@@ -135,7 +135,7 @@ public class BuyPermitTile implements Action {
 		case 3:
 			try {
 				coin = coin - 4;
-				player.setCoins(coin);
+				player.getRichness().setCoins(coin);
 			} catch (NegativeNumberException e) {
 				System.out.println("The player doesn't have enough money");
 				e.printStackTrace();
