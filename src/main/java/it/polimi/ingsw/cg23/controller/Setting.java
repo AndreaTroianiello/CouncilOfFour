@@ -41,7 +41,8 @@ public class Setting {
 
 	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
-	String[][] cityInfo=cl.leggiXml("ConfigurazionePartita.xml");//array con le informazioni delle citta'
+	String endpath="ConfigurazionePartita.xml";
+	String[][] cityInfo=cl.leggiXml(endpath);//array con le informazioni delle citta'
 
 	/**
 	 * create and add a player to the list
@@ -215,9 +216,7 @@ public class Setting {
 		kingList.add(7);
 		kingList.add(3);
 		kingList.add(0);//una lista di interi con i passi di avanzamento del percorso vittoria
-		//return kingList;
-		BonusKing bk=new BonusKing(kingList);
-		return bk;
+		return new BonusKing(kingList);
 	}
 
 	/**
@@ -225,7 +224,7 @@ public class Setting {
 	 * @return a list with all the types
 	 */
 	public List<Type> createType(){
-		String[][] array=cl.getType("ConfigurazionePartita.xml");//recupero i type dall'xml
+		String[][] array=cl.getType(endpath);//recupero i type dall'xml
 		for(int i=0; i<array.length; i++){
 			int number=Integer.parseInt(array[i][1]);
 			Type t=new Type(array[i][0], number, null);
@@ -425,7 +424,7 @@ public class Setting {
 	 * @param citta a list with all the cities
 	 */
 	public void addNeighbors(List<City>citta){
-		String[][]cityInfo=cl.leggiXml("ConfigurazionePartita.xml");//recupero le informazioni delle citta' dall'xml
+		String[][]cityInfo=cl.leggiXml(endpath);//recupero le informazioni delle citta' dall'xml
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
 			for(int i=0; i<cityInfo[j][2].length(); i++){//ciclo che scorre i vicini delle citta
 				String id=cityInfo[j][2].substring(i, i+1);//id della citta' vicina

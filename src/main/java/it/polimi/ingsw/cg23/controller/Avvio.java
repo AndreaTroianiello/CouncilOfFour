@@ -22,7 +22,6 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  */
 public class Avvio {
 	CliInterface cl=new CliInterface();
-	//Setting c=new Setting();
 	Setting s=new Setting();
 
 	List <Player> giocatori;//lista giocatori
@@ -156,46 +155,4 @@ public class Avvio {
 	public List<Player> getGiocatori() {
 		return giocatori;
 	}
-
-	/**
-	 * @return the regioni
-	 */
-	/*public List<Region> getRegioni() {
-		return regions;
-	}
-
-	/**
-	 * @param giocatori the giocatori to set
-	 */
-	/*public void setGiocatori(List<Player> giocatori) {
-		this.giocatori = giocatori;
-	}
-
-	/**
-	 * @param cittas the city to set
-	 */
-	/*public void setCitta(List<City> cittas) {
-		this.citta = cittas;
-	}
-
-	/**
-	 * @return the bo
-	 */
-	/*public Board getBo() {
-		return board;
-	}
-
-	/**
-	 * @param bo the board to set
-	 */
-	/*public void setBo(Board bo) {
-		this.board = bo;
-	}
-
-	/**
-	 * @param region the region to set
-	 */
-	/*public void setRegioni(List<Region> region) {
-		this.regions = region;
-	}*/
 }

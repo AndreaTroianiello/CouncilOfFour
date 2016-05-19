@@ -36,7 +36,8 @@ public class Partita {
 			cl.print("", t.getCurrentPlayer().getUsedBusinessPermit().toString());
 			cl.print("", b.getRegions().get(1).getDeck().getShowedDeck().toString());
 			cl.print("", t.getCurrentPlayer().toString());
-			System.out.println(t+"\n");
+
+			cl.print(t,"");
 			t.changePlayer();
 		}
 
