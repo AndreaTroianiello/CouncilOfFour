@@ -195,6 +195,7 @@ public class BuyPermitTile implements Action {
 			player.getRichness().setCoins(coin);
 			return 0;
 		} catch (NegativeNumberException e) {
+			this.cards.addAll(discardedCards);
 			System.out.println("The player doesn't have enough money!");
 			return -1;
 		}

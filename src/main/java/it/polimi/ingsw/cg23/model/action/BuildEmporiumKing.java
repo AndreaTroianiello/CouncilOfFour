@@ -58,8 +58,9 @@ public class BuildEmporiumKing implements Action {
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int match = howManyMatch(board.getKing().getCouncil(), player, board)[0];			//control how many match between cards and councillors there are
-		int jolly = howManyMatch(board.getKing().getCouncil(), player, board)[1];
+		int[] howMany =  howManyMatch(board.getKing().getCouncil(), player, board);
+		int match = howMany[0];			//control how many match between cards and councillors there are
+		int jolly = howMany[1];
 		int moneyPaid = payCoins(match, player);						//make the player pay the relative amount of money
 		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());					//set steps as the length of the list, and cast it to int
 		int coin = player.getRichness().getCoins();						//set coin as the current money of the player
@@ -159,6 +160,7 @@ public class BuildEmporiumKing implements Action {
 			player.getRichness().setCoins(coin);
 			return 0;
 		} catch (NegativeNumberException e) {
+			this.cards.addAll(discardedCards);
 			System.out.println("The player doesn't have enough money");
 			return -1;
 		}
