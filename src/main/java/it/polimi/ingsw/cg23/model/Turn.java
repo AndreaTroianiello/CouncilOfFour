@@ -2,10 +2,13 @@ package it.polimi.ingsw.cg23.model;
 
 import java.util.List;
 
+import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.action.Action;
 import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.observer.Observable;
 
-public class Turn {
+public class Turn extends Observable <Change> {
+	
 	private final List<Player> players;								//The players of the game.
 	private int currentPlayer;										//The current player.
 	private int finalPlayer;										//The player who has built all emporiums available first.

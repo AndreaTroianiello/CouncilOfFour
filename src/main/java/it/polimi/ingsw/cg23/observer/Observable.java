@@ -3,26 +3,26 @@ package it.polimi.ingsw.cg23.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Observable {
-	private List<Observer> observers;
+public abstract class Observable<C> {
 
+	private List<Observer<C>> observers;
+	
 	public Observable(){
-		observers=new ArrayList<Observer>();
+		this.observers=new ArrayList<Observer<C>>();
 	}
-	public void registerObserver(Observer o){
-		observers.add(o);
+	
+	public void registerObserver(Observer<C> o){
+		this.observers.add(o);
 	}
-	public void unregisterObserver(Observer o){
+	public void unregisterObserver(Observer<C> o){
 		this.observers.remove(o);
 	}
-	public void notifyObservers(){
-		for(Observer o: this.observers){
-			o.update();
-		}
-	}
-	public <C> void notifyObservers(C c){
-		for(Observer o: this.observers){
+	
+	public void notifyObserver(C c){
+		System.out.println("I am the "+this.getClass().getSimpleName());
+		for(Observer<C> o: this.observers){
 			o.update(c);
 		}
-	}
+	} 
 }
+	
