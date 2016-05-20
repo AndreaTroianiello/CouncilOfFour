@@ -86,7 +86,7 @@ public class CliInterface {
 	 * @param bidimensional array with city info
 	 * @return an error if there is some errors
 	 */
-	public String savePartita(String [][] cityInfo, String endPath) throws Exception{
+	public String savePartita(String [][] cityInfo, String endPath){
 		String err=scrittureXml.writeXmlFile(cityInfo, endPath);
 		print("", err);//stampa il valore di eventuali errori
 		return err;
@@ -122,16 +122,6 @@ public class CliInterface {
 			stampa+="\n";//alla fine di una riga si va a capo
 		}
 		print("", stampa);//stampo l'array
-	}
-
-	/**
-	 * ritorna il valore letto dalla cl
-	 * @return an object of the readed value from the command line
-	 */
-	public Object returnValue(){
-		@SuppressWarnings("resource")
-		Scanner scan=new Scanner(System.in);//creo uno scanner per leggere l'input da cl
-		return scan.nextLine();
 	}
 
 	/**
@@ -225,7 +215,7 @@ public class CliInterface {
 	 * @return the lenght of the nobility track
 	 */
 	public int getNobilityTrackLenght(String endPath){
-		return nt.NobilityTrackLenght(endPath);
+		return nt.nobilityTrackLenght(endPath);
 	}
 
 	/**
@@ -234,6 +224,6 @@ public class CliInterface {
 	 * @return a bidimensional array with the nobility track info
 	 */
 	public String[][] getNobilityTrackBonus(String endPath){
-		return nt.NobilityTrackBonus(endPath);
+		return nt.nobilityTrackBonus(endPath);
 	}
 }

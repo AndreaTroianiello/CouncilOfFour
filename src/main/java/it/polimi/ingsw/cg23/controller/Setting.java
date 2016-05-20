@@ -179,14 +179,14 @@ public class Setting {
 	 * @param c, what you want to find
 	 * @return, a int with the coccurences
 	 */
-	public int occorrenze(String nome, char c){//calcola il numero di volte che compare il carattere nella stringa
+	/*public int occorrenze(String nome, char c){//calcola il numero di volte che compare il carattere nella stringa
 		int n=0;
 		for(int i=0; i<nome.length(); i++){//scorro la lunghezza del nome
 			if(nome.charAt(i)==c)//cerco la lettera nella stringa
 				n++;
 		}
 		return n;
-	}
+	}*/
 
 	/**
 	 * @return a bonus list with all the type of bonus
@@ -411,7 +411,7 @@ public class Setting {
 	 * create a list of the city from the regions list and add the neighbors
 	 * @param regioni, a list with the regions
 	 */
-	public void cityList(List<Region> regioni){
+	/*public void cityList(List<Region> regioni){
 		List<City>citta=new ArrayList<>(); //lista delle citta'
 		for(int i=0; i<regioni.size(); i++){//ciclo che scorre le regioni
 			citta.addAll(regioni.get(i).getCities());//recupero le citta' di di tutte le regioni e le aggiungo alla lista		
@@ -423,8 +423,7 @@ public class Setting {
 	 * add at a city their neighbors
 	 * @param citta a list with all the cities
 	 */
-	public void addNeighbors(List<City>citta){
-		String[][]cityInfo=cl.leggiXml(endpath);//recupero le informazioni delle citta' dall'xml
+	/*public void addNeighbors(List<City>citta){
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
 			for(int i=0; i<cityInfo[j][2].length(); i++){//ciclo che scorre i vicini delle citta
 				String id=cityInfo[j][2].substring(i, i+1);//id della citta' vicina
@@ -440,12 +439,12 @@ public class Setting {
 	 * @param id, the id of a neighbors city
 	 * @return the neighbors city
 	 */
-	public City getVicina(List<City>citta, String id){
+	/*public City getVicina(List<City>citta, String id){
 		for(int i=0; i<citta.size(); i++){//ciclo che scorre le citta'
 			if(citta.get(i).getId()==id.charAt(0)){//trovo la citta' con l'id desiderato
 				return citta.get(i);//ritorno la citta' trovata
 			}
 		}
 		return null;
-	}
+	}*/
 }

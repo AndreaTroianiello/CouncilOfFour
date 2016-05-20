@@ -1,14 +1,11 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
@@ -57,13 +54,8 @@ public class ReadCittaXml {
 			}
 			return city;
 		}
-		catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			return city;
-		}
-		catch (SAXException | IOException e) {
-			e.printStackTrace();
-			return city;
+		catch (Exception e) {
+			return new String[0][0];
 		}
 	}
 
@@ -164,7 +156,7 @@ public class ReadCittaXml {
 			return type;
 		}
 		catch(Exception e) {
-			return null;
+			return new String[0][0];
 		}
 	}
 
@@ -186,7 +178,7 @@ public class ReadCittaXml {
 			return regionBonus;
 		}
 		catch(Exception e) {
-			return null;
+			return new String[0][0];
 		}
 	}
 }

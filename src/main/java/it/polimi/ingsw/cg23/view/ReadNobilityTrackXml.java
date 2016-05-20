@@ -1,15 +1,12 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
  * class to read the nobility track from xml
@@ -23,7 +20,7 @@ public class ReadNobilityTrackXml {
 	 * @param endPath, the name of the xml file with .xml
 	 * @return an int with the lenght of the nobility track
 	 */
-	public int NobilityTrackLenght(String endPath){
+	public int nobilityTrackLenght(String endPath){
 
 		try {
 			File inputFile = new File(path+endPath);//creato nuovo file
@@ -34,12 +31,7 @@ public class ReadNobilityTrackXml {
 			NodeList lenght=doc.getElementsByTagName("lenght");//lista dei nodi che contengono "lenght"
 			return Integer.parseInt(lenght.item(0).getTextContent());//ritorno la lunghezza del nobility track
 		} 
-		catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			return 0;
-		}
-		catch (SAXException | IOException e) {
-			e.printStackTrace();
+		catch (Exception e) {
 			return 0;
 		}
 	}
@@ -49,7 +41,7 @@ public class ReadNobilityTrackXml {
 	 * @param endPath, the name of the xml file with .xml
 	 * @return a bidimensional array with the nobility track info
 	 */
-	public String[][] NobilityTrackBonus(String endPath){
+	public String[][] nobilityTrackBonus(String endPath){
 		try {
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -64,17 +56,9 @@ public class ReadNobilityTrackXml {
 			}
 			return nobilityBonus;//ritorno l'array con le informzioni dell'xml
 			
-		}catch (ArrayIndexOutOfBoundsException e) {//se ci sono dei problemi ritorna l'array null
-			return null;
-		}catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			return null;
-		}catch (SAXException | IOException e) {
-			e.printStackTrace();
-			return null;
+		}catch (Exception e) {//se ci sono dei problemi ritorna l'array null
+			return new String[0][0];
 		}
-
-
 	}
 
 }
