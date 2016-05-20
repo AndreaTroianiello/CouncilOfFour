@@ -46,8 +46,8 @@ public class BonusGetPermitTile implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		int region =(int)cl.writeReturnValue("Inserisci valore della regione", null);
-		int card = (int)cl.writeReturnValue("Inserisci valore della carta scelta", null);
+		int region =Integer.parseInt(cl.writeReturnValue("Inserisci valore della regione", null).toString());
+		int card = Integer.parseInt(cl.writeReturnValue("Inserisci valore della carta scelta", null).toString());
 		
 		BusinessPermitTile bonusPermit=this.board.getRegions().get(region).getDeck().getShowedDeck().get(card);		//give to a variable the chosen card
 		player.getAvailableBusinessPermits().add(bonusPermit);   					//add the chosen PermitTitle to the player collection

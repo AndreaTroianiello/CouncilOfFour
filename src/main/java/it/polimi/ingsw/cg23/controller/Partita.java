@@ -26,23 +26,25 @@ public class Partita {
 		//----------turno----------
 		for(int i=0; i<1; i++){
 			cl.print("", "-Creo il turno " + i + " :\n");
-			try {
+			/*try {
 				t.getCurrentPlayer().getRichness().setCoins(100);
 			} catch (NegativeNumberException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", t.getCurrentPlayer().getHand().toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
 			cl.print("", "C K "+b.getKing().getCouncil().toString());
-			City destination=b.getRegions().get(0).searchCityById('A');
+			City destination=b.getRegions().get(2).searchCityById('O');
 			cl.print("",b.getKing().getCity().toString());
+			cl.print("!!",b.getRegions().get(0).getDeck().getShowedDeck().toString());
 			cl.print("",""+b.getKing().getCity().minimumDistance(destination, new ArrayList<City>()));
 			t.setAction(new BuildEmporiumKing(t.getCurrentPlayer().getHand(), destination));
 			t.runAction();
 			t.runAction();
 			cl.print("",b.getKing().getCity().toString());
+			cl.print("",t.getCurrentPlayer().getAvailableBusinessPermits().toString());
 			cl.print("", t.getCurrentPlayer().getHand().toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
 			cl.print("", t.getCurrentPlayer().toString());
