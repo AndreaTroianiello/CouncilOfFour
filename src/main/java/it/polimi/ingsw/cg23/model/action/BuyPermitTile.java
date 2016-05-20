@@ -15,6 +15,7 @@ public class BuyPermitTile implements Action {
 	private final int region;
 	private final int chosenTile;									//wich tile the player chose from the showed ones
 	private final boolean main;
+	List<PoliticCard> discardedCards= new ArrayList<>();
 	
 	public BuyPermitTile(List<PoliticCard> cards, int region, int choosenTile) {
 		this.cards = cards;
@@ -81,10 +82,12 @@ public class BuyPermitTile implements Action {
 			coins = coins - jolly;
 			player.getRichness().setCoins(coins);
 			player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().remove(chosenTile));
+			board.getDeck().discardCars(discardedCards);
 			board.getRegions().get(region).getDeck().changeShowedDeck();
 		} catch (NegativeNumberException e) {
 			try {
 				player.getRichness().setCoins(coins+moneyPaid);
+				this.cards.addAll(discardedCards);
 			} catch (NegativeNumberException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -113,7 +116,7 @@ public class BuyPermitTile implements Action {
 		boolean match = false;										//control if there is a match
 		int[] result;												//an array with the card and the jolly number
 		result = new int[2];
-		List<PoliticCard> discardedCards= new ArrayList<>();
+		
 		
 		for(PoliticCard card: this.cards){							//iterate the card
 			if(card.isJolly()){										//and control if there are jolly
@@ -138,7 +141,7 @@ public class BuyPermitTile implements Action {
 				}
 			}
 		}
-		
+		cards.removeAll(discardedCards);
 		board.getDeck().discardCars(discardedCards);
 		
 		result[0] = cardNumber;
