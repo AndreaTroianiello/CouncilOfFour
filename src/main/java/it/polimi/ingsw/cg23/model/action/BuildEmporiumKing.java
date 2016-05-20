@@ -182,16 +182,15 @@ public class BuildEmporiumKing implements Action {
 			if(card.isJolly()){										//and control if there are jolly
 				cardNumber = cardNumber + 1;						//update the card counter
 				jollyNumber = jollyNumber + 1;						//update the jolly counter
-				this.cards.remove(card);							//remove the jolly from the list
 				discardedCards.add(card);
 			}
 		}
+		cards.removeAll(discardedCards);
 		
 		for(int i=0; i<councilLenght; i++){							//iterate the council
 			for(PoliticCard card : this.cards){						//iterate the cards
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){		
 					match = true;									//if there is a match set the boolean true 
-					this.cards.remove(card);						//and remove the card from the list
 					discardedCards.add(card);
 				}   
 				if(match){											//if the match is true 
@@ -201,6 +200,7 @@ public class BuildEmporiumKing implements Action {
 				}
 			}
 		}
+		cards.removeAll(discardedCards);
 		
 		board.getDeck().discardCars(discardedCards);
 		
