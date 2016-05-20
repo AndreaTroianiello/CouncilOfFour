@@ -108,10 +108,15 @@ public class Avvio {
 		s.setBalconi(board, king);//crea il balcone del re
 		cl.print("", "-Creo i consiglieri");
 
+		//----------nobility track----------
+		s.nobilityTrackFill();
+		cl.print("", "-Setto il Nobility track");
+		
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
+		//printAll();//stampa tutte le liste
+		
 	}
 
 	/**

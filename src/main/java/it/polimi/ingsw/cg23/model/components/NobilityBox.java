@@ -6,13 +6,12 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 
 public class NobilityBox {
-	private final List<Bonus> bonus;
 	
+	private final List<Bonus> bonus;
 
 	public NobilityBox() {
 		this.bonus = new ArrayList<>();
 	}
-
 
 	/**
 	 * @return the bonus
@@ -30,6 +29,9 @@ public class NobilityBox {
 		this.bonus.add(bonus);	
 	}
 
-
+	@Override
+	public String toString() {
+		return "NobilityBox [bonus=" + bonus + "]";
+	}
 
 }

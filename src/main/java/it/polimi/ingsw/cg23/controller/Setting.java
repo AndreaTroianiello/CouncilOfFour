@@ -26,6 +26,7 @@ import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
+import it.polimi.ingsw.cg23.model.components.NobilityBox;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
@@ -169,6 +170,34 @@ public class Setting {
 					Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
 					c.addBonus(bo);//aggiungo il bonus alla citta'
 					bo.setNumber(number);//setta il numero di bonus
+				}
+			}
+		}
+	}
+
+	/**
+	 * refill the nobility track with the info find in the xml file
+	 */
+	public void nobilityTrackFill(){
+		String[][]nobilityInfo=cl.getNobilityTrackBonus("NobilityTrack.xml");//informazioni recuperate dall'xml
+		List<NobilityBox> boxList=nT.getNobilityBoxes();//lista delle caselle del nobility track
+
+		for(int i=0; i<nobilityInfo.length; i++){//ciclo che scorre il numero di caselle presenti nel file xml
+			String b;//contiene il nome del bonus
+			StringTokenizer st = new StringTokenizer(nobilityInfo[i][1]);//string tokenizer del nome dei bonus
+			while(st.hasMoreTokens()){
+				String name=st.nextToken(",");//estrae la sottostring fino alla virgola
+				b=name.substring(1, name.length());//isolo il nome del bonus
+				int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
+
+				for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
+					if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
+						Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
+
+						bo.setNumber(number);//setta il numero di bonus
+						int boxNum=Integer.parseInt(nobilityInfo[i][0]);//numero della casella del nobility track
+						boxList.get(boxNum-1).addBonus(bo);//aggiungo alla casella del nobility track il bonus corretto
+					}
 				}
 			}
 		}
@@ -377,7 +406,7 @@ public class Setting {
 		}
 		k.getCouncil().getCouncillors().addAll(nuoviConsiglieri);//aggiungo la lista dei 4 consiglieri al re
 	}
-	
+
 	/**
 	 * 
 	 * @param dec, the deck
@@ -387,12 +416,12 @@ public class Setting {
 	public void pesca(Deck dec, List<Player> giocatori, int cardsNumber){
 		for(int i=0; i<giocatori.size(); i++){//ciclo che scorre i giocatori
 			for(int k=0; k<cardsNumber; k++){//ciclo che scorre il numero di carte
-			giocatori.get(i).addPoliticCard(dec.draw());
+				giocatori.get(i).addPoliticCard(dec.draw());
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * find the king's city
 	 * @param citta, a list with all the cities

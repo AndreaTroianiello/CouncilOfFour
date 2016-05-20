@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <noblitytrack>
-	<lenght>30</lenght>
+	<lenght>20</lenght>
 	<box>
 		<number>2</number>
 		<bonus>2Nobility,2Coin</bonus>
@@ -11,7 +11,7 @@
 	</box>
 	<box>
 		<number>6</number>
-		<bonus>1Addictional</bonus>
+		<bonus>1Additional</bonus>
 	</box>
 	<box>
 		<number>8</number>
