@@ -21,6 +21,7 @@ public class CliInterface {
 	WriteXml scrittureXml=new WriteXml();//classe per scrivre l'xml
 	RandomCity randomC=new RandomCity();//classe che crea le citta' random
 	RandomCostruction cosRnd=new RandomCostruction();//classe che crea le carte politiche random
+	ReadNobilityTrackXml nt=new ReadNobilityTrackXml();
 	
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	final int citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");//numero di citta'
@@ -217,5 +218,22 @@ public class CliInterface {
 	public String[][] getType(String endPath){
 		return lettureXml.getType(endPath);
 	}
+	
+	/**
+	 * find the lenght of the nobility track
+	 * @param endPath, the name of the file with the .xml
+	 * @return the lenght of the nobility track
+	 */
+	public int getNobilityTrackLenght(String endPath){
+		return nt.NobilityTrackLenght(endPath);
+	}
 
+	/**
+	 * return the info of nobility track
+	 * @param endPath, the name of the file with the .xml
+	 * @return a bidimensional array with the nobility track info
+	 */
+	public String[][] getNobilityTrackBonus(String endPath){
+		return nt.NobilityTrackBonus(endPath);
+	}
 }

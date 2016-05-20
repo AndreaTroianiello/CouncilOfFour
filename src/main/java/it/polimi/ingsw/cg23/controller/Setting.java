@@ -39,9 +39,9 @@ public class Setting {
 	List <BusinessPermitTile> costructionCard=new ArrayList<>();//lista di carte costruzione
 	List <Type> typeList=new ArrayList<>();//lista di type
 
-	NobilityTrack nT=new NobilityTrack(20);//20 numero di caselle del percorso nobilta'
 	CliInterface cl=new CliInterface();
-	String endpath="ConfigurazionePartita.xml";
+	NobilityTrack nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
+	String endpath="ConfigurazionePartita.xml";//nome del file che contine le info della citta'
 	String[][] cityInfo=cl.leggiXml(endpath);//array con le informazioni delle citta'
 
 	/**

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <noblitytrack>
-	<lenght>20</lenght>
+	<lenght>30</lenght>
 	<box>
 		<number>2</number>
 		<bonus>2Nobility,2Coin</bonus>
 	</box>
 	<box>
 		<number>4</number>
-		<bonus>CityToken</bonus>
+		<bonus>1CityToken</bonus>
 	</box>
 	<box>
 		<number>6</number>
-		<bonus>Addictional</bonus>
+		<bonus>1Addictional</bonus>
 	</box>
 	<box>
 		<number>8</number>
@@ -23,7 +23,7 @@
 	</box>
 	<box>
 		<number>10</number>
-		<bonus>GetPermitTile</bonus>
+		<bonus>1PermitTile</bonus>
 	</box>
 	<box>
 		<number>12</number>
@@ -31,11 +31,11 @@
 	</box>
 	<box>
 		<number>14</number>
-		<bonus>TileBonus</bonus>
+		<bonus>1TileBonus</bonus>
 	</box>
 	<box>
 		<number>16</number>
-		<bonus>CityToken</bonus>
+		<bonus>1CityToken</bonus>
 	</box>
 	<box>
 		<number>18</number>
