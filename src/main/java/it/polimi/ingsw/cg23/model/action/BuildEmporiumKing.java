@@ -15,6 +15,7 @@ public class BuildEmporiumKing implements Action {
 	private final List<PoliticCard> cards;
 	private final City destination;
 	private final boolean main;
+	List<PoliticCard> discardedCards = new ArrayList<>();
 		
 	
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
@@ -73,7 +74,7 @@ public class BuildEmporiumKing implements Action {
 					player.getRichness().setCoins(coin+moneyPaid);						//if the player doesn't have enough money for the steps' payment, give him back the money previously paid 
 					return;
 				} catch (NegativeNumberException e1) {
-					// TODO Auto-generated catch block
+					this.cards.addAll(discardedCards);
 					e1.printStackTrace();
 				}
 				e.printStackTrace();
@@ -82,9 +83,11 @@ public class BuildEmporiumKing implements Action {
 				try {
 					this.destination.buildEmporium(player.getAvailableEmporium());
 					board.getKing().setCity(destination);
+					board.getDeck().discardCars(discardedCards);
 				} catch (NegativeNumberException e) {
 					System.out.println("The player doesn't have available emporiums");
 					int currentCoin = player.getRichness().getCoins();
+					this.cards.addAll(discardedCards);
 					try {
 						player.getRichness().setCoins(currentCoin+steps*2+moneyPaid);	//if the player doesn't have available emporiums, give back the money previously paid
 					} catch (NegativeNumberException e1) {
@@ -176,7 +179,7 @@ public class BuildEmporiumKing implements Action {
 		boolean match = false;										//control if there is a match
 		int[] result;												//an array with the card and the jolly number
 		result = new int[2];
-		List<PoliticCard> discardedCards = new ArrayList<>();
+		
 		
 		for(PoliticCard card: this.cards){							//iterate the card
 			if(card.isJolly()){										//and control if there are jolly
@@ -202,7 +205,6 @@ public class BuildEmporiumKing implements Action {
 		}
 		cards.removeAll(discardedCards);
 		
-		board.getDeck().discardCars(discardedCards);
 		
 		result[0] = cardNumber;
 		result[1] = jollyNumber;
