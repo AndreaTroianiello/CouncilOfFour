@@ -55,16 +55,18 @@ public class BuildEmporiumKing implements Action {
 			if(player.getAvailableEmporium() != null){
 				buildEmporiumK(player, board, steps, jolly, payMatch);
 			}
-		}
-		
-		else{															//if the path isn't correct, give back the player the money previously paid
-			try {
-				player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
-			} catch (NegativeNumberException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
+			else{															//if the path isn't correct, give back the player the money previously paid
+				try {
+					player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
+				} catch (NegativeNumberException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
+		
+
 		
 	}
 
@@ -84,6 +86,7 @@ public class BuildEmporiumKing implements Action {
 				this.discardedCards.add(card);			//and add the card to the discardedCards
 			}
 		this.cards.removeAll(discardedCards);			//remove all the jolly from the politic cards
+		board.getDeck().discardCars(discardedCards);
 		
 		return jolly;
 	}
@@ -103,7 +106,7 @@ public class BuildEmporiumKing implements Action {
 		
 		for(int i=0; i<councilLenght; i++){									//iterate the council
 			for(PoliticCard card: cards){									//iterate the politic cards
-				if(card.getColor().toString().equals(council.getCouncillors().get(i).toString())){
+				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){
 					match = match + 1;										//if there is a match update the counter
 					this.discardedCards.add(card);							//add the card to the discarded cards
 					this.cards.remove(card);								//remove the card from the politic cards
@@ -111,6 +114,8 @@ public class BuildEmporiumKing implements Action {
 				}
 			}
 		}
+		cards.removeAll(discardedCards);
+		board.getDeck().discardCars(discardedCards);
 		
 		return match;
 	}
