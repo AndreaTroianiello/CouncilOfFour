@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.components.*;
-
+/**
+ * The class of the player. The player is characterized by a username and contains a list of his emporiums (used and available), a richness,
+ * a victory track, a list of politic cards and a nobility position.
+ * 
+ * @author Andrea
+ *
+ */
 public class Player {
 	private final String user;									//name of the player
 	private List<Emporium> availableEmporiums;					//the emporiums that are available to place
@@ -16,9 +22,16 @@ public class Player {
 	private List<PoliticCard> politicsCards;					//the player's hand
 	private List<BusinessPermitTile> availableBusinesPermits;
 	private List<BusinessPermitTile> usedBusinessPermits;
-	private final NobilityTrack playerNobilityTrack;			//the nobility track
+	private final NobilityTrack nobilityTrack;					//the nobility track
 	private int nobilityBoxPosition;							//the position of the player
 	
+	/**
+	 * The class' constructor. Initializes the player with default stats.
+	 * @param user The username of the player.
+	 * @param assistants The initial number of player's assistants.
+	 * @param coins The initial number of player's coins.
+	 * @param nobilityTrack The nobility track of the game.
+	 */
 	public Player(String user, int assistants, int coins, NobilityTrack nobilityTrack) { 
 		this.user = user;
 		this.additionalAction = false;
@@ -31,7 +44,7 @@ public class Player {
 		this.availableBusinesPermits=new ArrayList<>();
 		this.usedBusinessPermits=new ArrayList<>();
 		this.nobilityBoxPosition=0; 
-		this.playerNobilityTrack= nobilityTrack;
+		this.nobilityTrack= nobilityTrack;
 		initializeAvailableEmporium();
 	}
 
@@ -41,7 +54,7 @@ public class Player {
 	 * @return the user
 	 */
 	public String getUser() {
-		return user;
+		return this.user;
 	}
 
 	/**
@@ -126,9 +139,9 @@ public class Player {
 	}
 	
 	/**
-	 * Returns the vitcory points of the player.
+	 * Returns the victory track of the player.
 	 * 
-	 * @return the victory points of the player.
+	 * @return the victory track of the player.
 	 */
 	public VictoryTrack getVictoryTrack() {
 		return this.victoryTrack;
@@ -212,8 +225,8 @@ public class Player {
 	 * 
 	 * @return the playerNobilityTrack
 	 */
-	public NobilityTrack getPlayerNobilityTrack() {
-		return playerNobilityTrack;
+	public NobilityTrack getNobilityTrack() {
+		return nobilityTrack;
 	}
 	
 	/**

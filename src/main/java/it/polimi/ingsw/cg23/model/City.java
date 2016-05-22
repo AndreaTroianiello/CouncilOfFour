@@ -6,6 +6,13 @@ import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.Emporium;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * The city's class. The city is characterized by an id and a name. It contais a list of nearly cities and a list of builded emporiums.
+ * The city has a region and a type.
+ * 
+ * @author Andrea
+ *
+ */
 public class City {
 
 	private final char id;									//The identifier of the city
@@ -16,6 +23,14 @@ public class City {
 	private final List<City> neighbors;						//The list of nearly cities.
 	private final List<Emporium> emporiums;					//The list of emporiums builded in the city.
 	
+	/**
+	 * The class's constructor. Initializes the city.
+	 * 
+	 * @param id The id of the city. It's the first character of the name.
+	 * @param name The name of the city.
+	 * @param type The type of the city.
+	 * @param region The region that contains the city.
+	 */
 	public City(char id, String name, Type type, Region region){
 		this.id=id;
 		this.name=name;		
