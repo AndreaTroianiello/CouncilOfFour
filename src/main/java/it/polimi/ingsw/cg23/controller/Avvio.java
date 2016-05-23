@@ -90,7 +90,7 @@ public class Avvio {
 		//----------carte politiche----------
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
 		cl.print("", "-Creo le carte politiche"); 
-
+		
 		//----------deck----------
 		Deck dec=new Deck(politcards);//creato il deck
 		s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
@@ -123,16 +123,9 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
-		System.out.println(citta.size());
-		System.out.println(regions.size());
-		System.out.println(bonusList.size());
-		System.out.println(giocatori.size());
-		System.out.println(politcards.size());
-		System.out.println(costructionCard.size());
-		System.out.println(tipi.size());
+		//printAll();//stampa tutte le liste
 	}
-
+	
 	/**
 	 * print all the list
 	 */

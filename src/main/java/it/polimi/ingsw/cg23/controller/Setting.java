@@ -18,11 +18,8 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Setting {
 
-
 	List <Bonus> bonusList=new ArrayList<>();//lista di bonus
-
 	List <Type> typeList=new ArrayList<>();//lista di type
-
 	CliInterface cl=new CliInterface();
 
 	String endpath="ConfigurazionePartita.xml";//nome del file che contine le info della citta'
@@ -39,12 +36,6 @@ public class Setting {
 			cl.print("",lista.get(i).toString());
 		}
 	}
-
-	/*public List <Type> getTypeList(){
-		return typeList;
-	}*/
-
-
 
 	/**
 	 * refill the nobility track with the info find in the xml file
@@ -79,15 +70,6 @@ public class Setting {
 	 * @param c, what you want to find
 	 * @return, a int with the coccurences
 	 */
-	/*public int occorrenze(String nome, char c){//calcola il numero di volte che compare il carattere nella stringa
-		int n=0;
-		for(int i=0; i<nome.length(); i++){//scorro la lunghezza del nome
-			if(nome.charAt(i)==c)//cerco la lettera nella stringa
-				n++;
-		}
-		return n;
-	}*/
-
 
 	/**
 	 * create the type(color) of the city
@@ -102,10 +84,6 @@ public class Setting {
 		}
 		return typeList;
 	}
-
-
-
-
 
 	/**
 	 * create the politic cards
