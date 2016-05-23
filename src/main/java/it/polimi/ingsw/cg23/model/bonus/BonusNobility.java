@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Board;
@@ -8,7 +5,10 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.NobilityBox;
 
 /**
- * @author utente
+ * the class of the bonus that allows the player to step forward in the nobility track. It contains the
+ * number of steps given by the bonus, the board and the name.
+ * 
+ * @author Vincenzo
  *
  */
 public class BonusNobility implements Bonus {
@@ -17,6 +17,12 @@ public class BonusNobility implements Bonus {
 	private final Board board;
 	private final String name;
 
+	/**
+	 * the constructor set the name as the name of the bonus, and the other variables as the 
+	 * parameter given to the method
+	 * @param steps
+	 * @param board
+	 */
 	public BonusNobility(int steps, Board board) {
 		this.steps = steps;
 		this.board = board;
@@ -56,10 +62,11 @@ public class BonusNobility implements Bonus {
 		this.steps = number;
 	}
 
-	/*
-	 * @see it.polimi.ingsw.cg23.model.bonus.Bonus#giveBonus(it.polimi.ingsw.cg23.model.Player)
-	 */ 
-	/** make the player advance tot steps in the nobility track 
+	
+	/** 
+	 * make the player advance tot steps in the nobility track
+	 * 
+	 * @param player
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -75,18 +82,24 @@ public class BonusNobility implements Bonus {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name of the class as string
 	 */
 	@Override
 	public String toString() {
 		return "BonusNobility [steps=" + steps + "]";
 	}
 
+	/**
+	 * @return the name of the bonus
+	 */
 	public String toStringName(){
 		return "BonusNobility";
 	}
-	
+
+	/**
+	 * @return a new BonusNobility
+	 */
 	public Bonus clone() {
 		return new BonusNobility(0, board); 
 	}	

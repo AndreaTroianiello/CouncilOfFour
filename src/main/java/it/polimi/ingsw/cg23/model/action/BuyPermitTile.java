@@ -5,19 +5,38 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * the class of the action that allows to buy a permit tile from the chosen region if your politic cards match
+ * some of the councillors of that region. It contains a boolean that specifies if it is a main action, 
+ * which region and which tile the player chooses, a list of the politic cards of the player, and 
+ * another list where the used cards go
+ *
+ * @author Vincenzo
+ */
 public class BuyPermitTile implements Action {
 	
 	private final List<PoliticCard> cards;
-	private final int region;
-	private final int chosenTile;									//wich tile the player chose from the showed ones
+	private final Region region;
+	private final BusinessPermitTile chosenTile;									//wich tile the player chose from the showed ones
 	private final boolean main;
-	List<PoliticCard> discardedCards= new ArrayList<>();
+	private List<PoliticCard> discardedCards= new ArrayList<>();
 	
-	public BuyPermitTile(List<PoliticCard> cards, int region, int choosenTile) {
+	
+	/** 
+	 * the constructor set the variable of the class: main i set to true, cards, region, and chosenTile 
+	 * are set as the parameter given to the method
+	 * 
+	 * @param cards
+	 * @param region
+	 * @param choosenTile
+	 */
+	public BuyPermitTile(List<PoliticCard> cards, Region region, BusinessPermitTile choosenTile) {
 		this.cards = cards;
 		this.region = region;
 		this.chosenTile = choosenTile;
@@ -28,7 +47,7 @@ public class BuyPermitTile implements Action {
 	/**
 	 * @return the chosenTile
 	 */
-	public int getChosenTile() {
+	public BusinessPermitTile getChosenTile() {
 		return chosenTile;
 	}
 
@@ -57,7 +76,7 @@ public class BuyPermitTile implements Action {
 	/**
 	 * @return the region
 	 */
-	public int getRegion() {
+	public Region getRegion() {
 		return region;
 	}
 
@@ -66,12 +85,13 @@ public class BuyPermitTile implements Action {
 	 * if there is one or more the player take the card he chooses from the region he chooses
 	 * and the relative amount of money is taken from him
 	 * then it show another PermitTile form the hidden deck
+	 * 
 	 * @param player
 	 * @param board
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		Council council = board.getRegions().get(this.region).getCouncil();
+		Council council = this.region.getCouncil();
 		int match = howManyMatch(council, player, board)[0];
 		int jolly = howManyMatch(council, player, board)[1];
 		int moneyPaid = payCoins(match, player);
@@ -81,9 +101,9 @@ public class BuyPermitTile implements Action {
 		try {
 			coins = coins - jolly;
 			player.getRichness().setCoins(coins);
-			player.addAvailableBusinessPermit(board.getRegions().get(this.region).getDeck().getShowedDeck().remove(chosenTile));
+			player.addAvailableBusinessPermit(chosenTile);
 			board.getDeck().discardCars(discardedCards);
-			board.getRegions().get(region).getDeck().changeShowedDeck();
+			this.region.getDeck().changeShowedDeck();
 		} catch (NegativeNumberException e) {
 			try {
 				player.getRichness().setCoins(coins+moneyPaid);
@@ -104,6 +124,7 @@ public class BuyPermitTile implements Action {
 	/**
 	 * the method confront the color of the cards with the color of the councillors in the council
 	 * and return how many match are there 
+	 * 
 	 * @param council
 	 * @return cardNumber
 	 * @throws NegativeNumberException 
@@ -153,6 +174,7 @@ public class BuyPermitTile implements Action {
 	
 	/**
 	 * take the relative amount of money based on the number of match
+	 * 
 	 * @param cardNumber
 	 * @param player
 	 */
@@ -202,8 +224,8 @@ public class BuyPermitTile implements Action {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name and the variables of the class in string
 	 */
 	@Override
 	public String toString() {

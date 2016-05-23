@@ -10,6 +10,14 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
+/**
+ * the class of the bonus that allows to run a bonus from a city where the player builds an emporium. It contains 
+ * the number of times the bonus can be run, a list of the city where the player wants to take the bonus
+ * from, an array that shows if the bonuses in the chosen cities are runnable, a string of the name, the board 
+ * and the CliInterface 
+ * @author Vincenzo
+ *
+ */
 public class BonusCityToken implements Bonus {
 	
 	private int number;						//how many times the player can run the bonus
@@ -21,7 +29,14 @@ public class BonusCityToken implements Bonus {
 	private CliInterface cl;
 	
 	
-
+	/**
+	 * the constructor set the number and the board as the paramater given to the method, the city as a new 
+	 * arraylist, every elements of runnbale as true, cl as a new cliinterface and the name as the name
+	 * of the bonus
+	 * @param number
+	 * @param city
+	 * @param board
+	 */
 	public BonusCityToken(int number, City[] city, Board board) {
 		this.number = number;
 		this.city = new ArrayList<>();
@@ -105,8 +120,8 @@ public class BonusCityToken implements Bonus {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 *  @return the name and the variables of the class in string
 	 */
 	@Override
 	public String toString() {
@@ -114,6 +129,9 @@ public class BonusCityToken implements Bonus {
 				+ Arrays.toString(runnable) + "]";
 	}
 
+	/**
+	 * @return a new BonusCityToken
+	 */
 	public Bonus clone() {
 		return new BonusCityToken(0, null, board); 
 	}	

@@ -4,12 +4,24 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * the class of the action that allows to change the showed business permit tile in one region which the
+ * firsts cards in the hidden deck
+ *
+ * @author Vincenzo
+ */
 public class ChangeBusinessPermit implements Action {
 	
 	private final int region;
 	private final boolean main;
 	
 
+	/**
+	 * the constructor set the variables of the class: main is set to false, and region is set as 
+	 * the parameter given to the method
+	 * 
+	 * @param region
+	 */
 	public ChangeBusinessPermit(int region) {
 		this.region = region;
 		this.main = false;
@@ -51,8 +63,8 @@ public class ChangeBusinessPermit implements Action {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/** 
+	 * @return the name and the variables of the class in string
 	 */
 	@Override
 	public String toString() {

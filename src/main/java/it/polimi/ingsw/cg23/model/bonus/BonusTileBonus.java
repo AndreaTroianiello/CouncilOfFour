@@ -7,6 +7,13 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
+/**
+ * the class of the bonus that allows to run the bonus from a tile the player is in possession. It contains 
+ * the tile the player wants to run the bonus from, the name and the cliinterface
+ *  
+ * @author Vincenzo
+ *
+ */
 public class BonusTileBonus implements Bonus {
 	
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
@@ -14,6 +21,11 @@ public class BonusTileBonus implements Bonus {
 	
 	private final CliInterface cl;
 
+	/**
+	 * the constructor set the tile as a new arraylist, the cli as a new cliinterface and the name as 
+	 * the name of the bonus
+	 * @param number
+	 */
 	public BonusTileBonus(int number) {
 		this.businessPermitTiles = new ArrayList<>();
 		this.cl = new CliInterface();
@@ -71,14 +83,17 @@ public class BonusTileBonus implements Bonus {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name of the class as string
 	 */
 	@Override
 	public String toString() {
 		return "BonusTileBonus [businessPermitCard=" + businessPermitTiles + "]";
 	}
 	
+	/**
+	 * @return a new BonusTileBonus
+	 */
 	public Bonus clone() {
 		return new BonusTileBonus(0); 
 	}	

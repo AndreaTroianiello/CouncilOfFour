@@ -5,6 +5,12 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.view.CliInterface;
  
+/**
+ * the class of the bonus that allows to get a permit tile from a region. It contains the board, the name and the CliInterface
+ * 
+ * @author Vincenzo
+ *
+ */
 public class BonusGetPermitTile implements Bonus {
 	
 	private final Board board;
@@ -12,6 +18,13 @@ public class BonusGetPermitTile implements Bonus {
 	private final CliInterface cl;
 	
  
+	/**
+	 * the constructor set the board as the parameter given to the method, cl as a new cliinterface 
+	 * and the name as the name of the bonus
+	 * @param i
+	 * @param a
+	 * @param board
+	 */
 	public BonusGetPermitTile(int i, int a, Board board) {
 		
 		this.board = board;
@@ -59,14 +72,17 @@ public class BonusGetPermitTile implements Bonus {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name of the class as string 
 	 */
 	@Override
 	public String toString() {
 		return "BonusGetPermitTile";
 	}
 
+	/**
+	 * @return a new BonusGetPermitTile
+	 */
 	public Bonus clone() {
 		return new BonusGetPermitTile(0, 0, board); 
 	}	

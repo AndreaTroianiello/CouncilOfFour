@@ -109,7 +109,7 @@ public class Avvio {
 		cl.print("", "-Creo i consiglieri");
 
 		//----------nobility track----------
-		s.nobilityTrackFill();
+		s.nobilityTrackFill();//riempio il nobility track
 		cl.print("", "-Setto il Nobility track");
 		
 		//----------plancia----------
