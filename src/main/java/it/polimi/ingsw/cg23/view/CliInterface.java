@@ -85,8 +85,9 @@ public class CliInterface {
 	 * salva le informazioni della partita in un file xml
 	 * @param bidimensional array with city info
 	 * @return an error if there is some errors
+	 * @throws Exception
 	 */
-	public String savePartita(String [][] cityInfo, String endPath){
+	public String savePartita(String [][] cityInfo, String endPath) throws Exception{
 		String err=scrittureXml.writeXmlFile(cityInfo, endPath);
 		print("", err);//stampa il valore di eventuali errori
 		return err;

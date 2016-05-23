@@ -59,9 +59,11 @@ public class RandomCity {//PROTOTIPO
 		String name="";
 		try{//puo' esserci un errore nell'esecuzione della substring
 			name=alfabeth.substring(realN, realN+1);//la prima lettera del nome e' in ordine alfabetico
+		
 		}catch(ArrayIndexOutOfBoundsException e){
-			return "Errore nella creazione del nome della citta'";
+			throw new ArrayIndexOutOfBoundsException("Errore nella creazione del nome della citta'");
 		}
+		
 		for(int i=0; i<7; i++){//8 lunghezza massima nome della citta'
 			if(i%2!=0)//alterna una vocale e una consonate
 				//aggiunta di consonanti al nome della citta'

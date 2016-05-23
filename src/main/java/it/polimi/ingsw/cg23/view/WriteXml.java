@@ -24,8 +24,9 @@ public class WriteXml {
 	 * @param cityInfo, a bidimensional array with the cityInfo
 	 * @param endPath, the name of file to write on (with the extension ".xml")
 	 * @return if array columns is less then 6 or there are some problems
+	 * @throws Exception 
 	 */
-	public String writeXmlFile(String[][] cityInfo, String endPath){
+	public String writeXmlFile(String[][] cityInfo, String endPath) throws Exception{
 		path+=endPath;//percorso completo del file
 		/* array cityInfo prototype require
 		 * coloumn 0: name of the city
@@ -86,8 +87,9 @@ public class WriteXml {
 			StreamResult result = new StreamResult(xmlFile);
 			transformer.transform(source, result);
 			return "";
+			
 		} catch (Exception e) {
-			return e.toString();
+			throw new Exception("errore");
 		}
 	}
 
