@@ -7,8 +7,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.cg23.controller.Controller;
+import it.polimi.ingsw.cg23.controller.Turn;
 import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.view.ServerSocketView;
 
 public class Server {
