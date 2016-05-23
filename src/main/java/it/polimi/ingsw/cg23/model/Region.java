@@ -7,9 +7,13 @@ import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
-
+/**
+ * The Region's class. The region is characterized by a name and contains a list of city, a council and a deck of tiles.
+ * 
+ * @author Andrea
+ *
+ */
 public class Region {
-
 
 	private final String name;													//The name of the region.
 	private final Bonus bonus;													//The bonus of the region.
@@ -19,7 +23,13 @@ public class Region {
 	private final RegionDeck deck;												//The deck of business permit tiles.
 	private final BonusKing bonusKing;											//The bonus king
 	
-	
+	/**
+	 * The class' constructor. Initializes  of region.
+	 * @param name The region's name.
+	 * @param points The victory points which the bonus of region gives.
+	 * @param deck Region's deck. This deck contains business permit tiles.
+	 * @param bonusKing	The bonus king.
+	 */
 	public Region(String name,int points, RegionDeck deck, BonusKing bonusKing) {
 		this.name = name;
 		this.bonus = new BonusVictoryPoints(points);
