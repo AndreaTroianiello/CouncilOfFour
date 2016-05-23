@@ -3,14 +3,26 @@ package it.polimi.ingsw.cg23.model.bonus;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 
-
+/**
+ * the class of the bonus that allows to draw a politic card from the deck. It contains the number of card to 
+ * be drawn, the board and the name.
+ * 
+ * @author Vincenzo
+ *
+ */
 public class BonusPolitics implements Bonus {
 	
 	private int cardNumber;
 	private final Board board;
 	private final String name;
 	
-	
+	/**
+	 * the constructor set the name as the name of the bonus, and the other variables as the parameters
+	 * given to the method
+	 * 
+	 * @param cardNumber
+	 * @param board
+	 */
 	public BonusPolitics(int cardNumber, Board board) {
 		this.cardNumber = cardNumber;
 		this.board = board;
@@ -18,7 +30,7 @@ public class BonusPolitics implements Bonus {
 	}
 
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){
@@ -42,6 +54,8 @@ public class BonusPolitics implements Bonus {
 	
 
 	/**
+	 * set the numebr of the card to be drawn
+	 * 
 	 * @param cardNumber the cardNumber to set
 	 */
 	public void setNumber(int number) {
@@ -49,7 +63,7 @@ public class BonusPolitics implements Bonus {
 	}
 
 	/**
-	 * add cardNumber politic's cards to the player's hand
+	 * add cardNumber politic cards to the player's hand
 	 * 
 	 *  @param player
 	 *  @param board
@@ -66,14 +80,17 @@ public class BonusPolitics implements Bonus {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name of the class as string
 	 */
 	@Override
 	public String toString() {
 		return "BonusPolitics [cardNumber=" + cardNumber + "]";
 	}
 
+	/**
+	 * @return a new BonusPolitics
+	 */
 	public Bonus clone() {
 		return new BonusPolitics(0, board);
 	}	

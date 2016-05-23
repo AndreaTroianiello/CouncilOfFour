@@ -1,19 +1,32 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
+
 import it.polimi.ingsw.cg23.model.Player;
 
+/**
+ * the class of the bonus that allows to give the player some victory points. It contains the number of points
+ * to be given to the player and the name of the bonus
+ * @author utente
+ *
+ */
 public class BonusVictoryPoints implements Bonus {
 	
 	private int points;					//the amount of points given by the bonus
 	private final String name;
 	
+	/**
+	 * the constructor set the name as the name of the bonus and the points as the paramater given to the 
+	 * method
+	 * 
+	 * @param points
+	 */
 	public BonusVictoryPoints(int points) {
 		this.points = points;
 		this.name="VictoryPoints";
 	}
 	
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){
@@ -27,12 +40,16 @@ public class BonusVictoryPoints implements Bonus {
 		return points;
 	}
 	
+	/**
+	 * set the number of points given by the bonus
+	 */
 	public void setNumber(int number){
 		this.points = number;
 	}
 
 
-	/**give to the player the amount of victory points of the bonus
+	/**
+	 * give to the player the amount of victory points of the bonus
 	 * 
 	 * @param player
 	 */
@@ -49,14 +66,17 @@ public class BonusVictoryPoints implements Bonus {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name of the class as string
 	 */
 	@Override
 	public String toString() {
 		return "BonusVictoryPoints [points=" + points + "]";
 	}
 	
+	/**
+	 * @return a new BonusVictoryPoints
+	 */
 	public Bonus clone() {
 		return new BonusVictoryPoints(0);
 	}	

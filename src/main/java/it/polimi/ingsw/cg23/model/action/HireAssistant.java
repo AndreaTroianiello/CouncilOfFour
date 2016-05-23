@@ -4,12 +4,20 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * the class of the action that allows to hire an assistants by paying 3 coins. It contains a boolean
+ * that shows if it is a main action or not.
+ *
+ *@author Vincenzo
+ */
 public class HireAssistant implements Action {
 	
 	private final boolean main;
 	
 	
-	
+	/**
+	 * the constructor set the variables of the class: the boolean main is set to false
+	 */
 	public HireAssistant() {
 		this.main = false;
 	}
@@ -26,6 +34,9 @@ public class HireAssistant implements Action {
 	/**
 	 * give the player an assistant and take
 	 * from him 3 coins
+	 * 
+	 * @param palyer
+	 * @param board
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
@@ -48,8 +59,8 @@ public class HireAssistant implements Action {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name and the variables of the class in string
 	 */
 	@Override
 	public String toString() {

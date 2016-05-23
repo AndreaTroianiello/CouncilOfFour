@@ -2,17 +2,26 @@ package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Player;
 
+/**
+ * the class of the bonus that allows to have another main action. It contains the string of the name
+ * 
+ * @author Vincenzo
+ *
+ */
 public class BonusAdditionalAction implements Bonus {
 
 	
 	private final String name;
 	
+	/**
+	 * the constructor set the name of the bonus
+	 */
 	public BonusAdditionalAction(){
 		this.name="AdditionalAction";
 	}
 	
 	/**
-	 * if the player have the addictional action set to false,
+	 * if the player have the additional action set to false,
 	 * it switches it
 	 * 
 	 * @param player
@@ -22,6 +31,7 @@ public class BonusAdditionalAction implements Bonus {
 		if(!player.isAdditionalAction())
 			player.switchAdditionalAction();
 	}
+	
 	
 	public void setParameters(){
 		
@@ -39,14 +49,17 @@ public class BonusAdditionalAction implements Bonus {
 		return name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the name of the bonus in string
 	 */
 	@Override
 	public String toString() {
 		return "BonusAdditionalAction []";
 	}
 
+	/**
+	 * @return a new BonusAdditionalAction
+	 */
 	public Bonus clone() {
 		return new BonusAdditionalAction(); 
 	}	

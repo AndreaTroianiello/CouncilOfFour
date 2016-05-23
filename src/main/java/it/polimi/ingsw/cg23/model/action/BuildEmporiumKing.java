@@ -10,6 +10,13 @@ import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * the class of the action that allows to build an emporium by the help of the king. It contains a boolean 
+ * that show if it is a main action, a list of politic cards, a list of discarded cards where are added the 
+ * used politic cards, and the final destination of the king
+ * 
+ * @author Vincenzo
+ */
 public class BuildEmporiumKing implements Action {
 	
 	private final boolean main;
@@ -18,7 +25,13 @@ public class BuildEmporiumKing implements Action {
 	private final City destination;
 	
 	
-
+/**
+ * the constructor set the variable of the class: main is set to true, cards and destination are
+ * set as the parameter given to the method
+ * 
+ * @param cards
+ * @param destination
+ */
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
 		this.main = true;
 		this.cards = cards;
@@ -30,6 +43,14 @@ public class BuildEmporiumKing implements Action {
 		return main;
 	}
 
+	/**
+	 * runAction control how many match there are between cards and councillors, how many jolly there are
+	 * in the politic cards, and it take the corresponding amount of money from the player. Then it move 
+	 * the king in the final destination and take two coins for each step from the player.
+	 * 
+	 * @param player 
+	 * @param board
+	 */
 	@Override
 	public void runAction(Player player, Board board) {
 		int jolly = howManyJolly(board);															//control how many jolly there are
