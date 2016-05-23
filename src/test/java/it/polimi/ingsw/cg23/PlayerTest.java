@@ -52,6 +52,7 @@ public class PlayerTest {
 	/**
 	 * Tests the username of the player.
 	 */
+	@Test
 	public void testUser(){
 		assertNotNull(p.getUser());
 		assertNotEquals(p.getUser(),"");

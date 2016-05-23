@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23;
 
 import static org.junit.Assert.*;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +16,13 @@ import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.model.components.Council;
+import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
-public class RegionTest {
+public class MapTest {
 	private List<Region> regions;
 	private Player p,p2;
 	private Type type1,type2;
@@ -28,6 +31,10 @@ public class RegionTest {
 	private List<City> cities1;
 	private List<City> cities2;
 	
+	/**
+	 * The set up of the tests.
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		p=new Player("player1",10,100,new NobilityTrack(3));
@@ -39,15 +46,23 @@ public class RegionTest {
 			ids.add('A');
 			tiles.add(new BusinessPermitTile(ids,null));
 		}
+		
+		//Set up the bonus king
 		bonuses=new ArrayList<>();
 		bonuses.add(10);
 		bonuses.add(3);
 		bonuses.add(0);
 		BonusKing bonusKing=new BonusKing(bonuses);
+		
+		
 		cities1=new ArrayList<>();
 		cities2=new ArrayList<>();
+		
+		//Set up the types.
 		type1=new Type("Gold",10,bonusKing);
 		type2=new Type("Silver",10,bonusKing);
+		
+		//Set up the regions and cities
 		regions.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
 		regions.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
 		cities1.add(new City('A', "Aosta", type1 , regions.get(0)));
@@ -55,11 +70,16 @@ public class RegionTest {
 		cities1.add(new City('C', "Crotone", type1 , regions.get(0)));
 		cities2.add(new City('R', "Roma", type1 , regions.get(1)));
 		cities2.add(new City('P', "Palermo", type2 , regions.get(1)));
+		
+		
+		//Set up the bonuses of the cities
 		cities1.get(0).addBonus(new BonusVictoryPoints(1));
 		cities1.get(1).addBonus(new BonusVictoryPoints(1));
 		cities1.get(2).addBonus(new BonusVictoryPoints(1));
 		cities2.get(0).addBonus(new BonusVictoryPoints(1));
 		cities2.get(1).addBonus(new BonusVictoryPoints(1));
+		
+		//Set up the neighbors of the cities.
 		cities1.get(0).addNeighbor(cities1.get(1));						//A near B
 		cities1.get(1).addNeighbor(cities1.get(0));						//B near A
 		cities1.get(0).addNeighbor(cities1.get(2));						//A near C
@@ -86,7 +106,6 @@ public class RegionTest {
 	/**
 	 * Tests cities' methods.
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testCities() {
 		assertEquals(regions.get(0).getCities().size(),3);
@@ -99,8 +118,7 @@ public class RegionTest {
 		assertNull(c3);
 		assertEquals(c2.size(),1);
 		assertEquals(c4.size(),0);
-		//System.out.println(c1.minimumDistance(c2.get(0), new ArrayList<City>()));
-		//assertEquals(c1.minimumDistance(c2.get(0), new ArrayList<City>()),1);
+		assertEquals((int) c1.minimumDistance(c2.get(0), new ArrayList<City>()),1);
 	}
 	
 	/**
@@ -152,6 +170,20 @@ public class RegionTest {
 		rd.setBusinessPermitTiles(tiles);
 		assertEquals(rd.getShowedDeck().size(),2);
 		assertEquals(rd.getHiddenDeckSize(),8);
+	}
+	
+	/**
+	 * Tests region's council.
+	 */
+	@Test
+	public void testCouncil() {
+		Council c=regions.get(0).getCouncil();
+		assertNotNull(c);
+		assertEquals(c.getCouncillors().size(),0);
+		Councillor co=new Councillor(Color.BLACK);
+		c.getCouncillors().add(co);
+		assertEquals(co.getColor(),Color.BLACK);
+		assertEquals(c.getCouncillors().size(),1);
 	}
 	
 
