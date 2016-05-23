@@ -10,12 +10,29 @@ import it.polimi.ingsw.cg23.model.action.*;
 
 public class Controller implements Observer<Action>{
 	
-	private final Turn turn;
+	private final NewTurn turn;
 	private final List<Player> players;
 	
-	public Controller(Turn turn,List<Player> players){
+	public Controller(NewTurn turn,List<Player> players){
 		this.turn=turn;
 		this.players=players;
+	}
+	
+	/**
+	 * Sets the player that will play.
+	 * 
+	 * @return If true the game is finished and the first player of the list has built all emporiums available.
+	 */
+	public boolean changePlayer() {
+		if()
+		if((currentPlayer+1)%players.size()!=finalPlayer){     //Control if the next player wasn't the first to build all emporiums.
+			currentPlayer=(currentPlayer+1)%players.size();
+			this.mainAction=true;
+			this.secondAction=true;
+			this.mainIndex=1;
+			return false;
+		}
+		return true;
 	}
 	
 	@Override
