@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.cg23.controller.Controller;
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Turn;
 import it.polimi.ingsw.cg23.view.ServerSocketView;
 
@@ -20,6 +21,8 @@ public class Server {
 		ExecutorService executor=Executors.newCachedThreadPool();
 		ServerSocket serverSocket=new ServerSocket(PORT);
 		System.out.println("SERVER SOCKET, PORT:" + PORT);
+		
+		//turn=new Turn();
 		while(true){
 			Socket socket=serverSocket.accept();
 			ServerSocketView view=new ServerSocketView(socket,turn);
