@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
@@ -29,8 +30,6 @@ public class Partita {
 			try {
 				t.getCurrentPlayer().getRichness().setCoins(100);
 			} catch (NegativeNumberException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", t.getCurrentPlayer().getHand().toString());

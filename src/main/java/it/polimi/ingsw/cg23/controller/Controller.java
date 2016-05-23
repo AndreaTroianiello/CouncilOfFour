@@ -25,8 +25,7 @@ public class Controller implements Observer<Action>{
 	 * @return If true the game is finished and the first player of the list has built all emporiums available.
 	 */
 	/*public boolean changePlayer() {
-		if()
-		if((currentPlayer+1)%players.size()!=finalPlayer){     //Control if the next player wasn't the first to build all emporiums.
+		if((players.indexOf(turn.getCurrentPlayer)+1)%players.size()!=finalPlayer){     //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
 			this.mainAction=true;
 			this.secondAction=true;
