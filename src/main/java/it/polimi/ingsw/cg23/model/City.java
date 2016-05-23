@@ -160,6 +160,8 @@ public class City {
 		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporium at the city.
 		runBonusCityAndNeighbors(player , new ArrayList<City>());					//Runs the bonus of the city and visits the neighbors.
+		type.runBonusRegion(player);												//Calls the bonus of the region.
+		region.runBonusRegion(player);												//Calls the bonus of the type.
 		player.setEmporium(emporium);												//Adds the emporium at the player's list.
 	}
 	
@@ -209,8 +211,8 @@ public class City {
 			ArrayList<City> neighborsList=new ArrayList<>();							//Creates a new list for the neighbors.
 			neighborsList.addAll(0, this.neighbors);									//Copies the original list of neighbors.
 			neighborsList.removeAll(path);												//Removes all cities already visited from neighbors' list
-			path.add(this);															//Adds this city at the list of cities already visited.
-			double minDistance=Double.POSITIVE_INFINITY;							//The minimum default distance has infinite value.
+			path.add(this);																//Adds this city at the list of cities already visited.
+			double minDistance=Double.POSITIVE_INFINITY;								//The minimum default distance has infinite value.
 			for (City neighbor : neighborsList)											//Explores the neighbors' list.
 			{
 				double distanceThroughSource=neighbor.minimumDistance(target,path);	//Gets the minimum distance of the neighbor.

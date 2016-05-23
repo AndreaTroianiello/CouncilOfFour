@@ -114,11 +114,11 @@ public class Region {
 	}
 	
 	/**
-	 * Returns to the city of a specific type.
+	 * Returns the cities' list of a specific type.
 	 * 
 	 * @param type the specific type.
 	 */
-	public List<City> searchCityByType(String type){
+	public List<City> searchCitiesByType(String type){
 		List<City> citiesType= new ArrayList<>();				//Create the list of cities.
 		for(City city: cities)									//Explore the city.
 			if(type.equals(city.getType()))						//Control if the city has the same type.

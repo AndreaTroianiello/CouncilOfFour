@@ -1,0 +1,159 @@
+package it.polimi.ingsw.cg23;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import it.polimi.ingsw.cg23.model.City;
+import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.model.components.RegionDeck;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
+
+public class RegionTest {
+	private List<Region> regions;
+	private Player p,p2;
+	private Type type1,type2;
+	private List<BusinessPermitTile> tiles;
+	private List<Integer> bonuses;
+	private List<City> cities1;
+	private List<City> cities2;
+	
+	@Before
+	public void setUp() throws Exception {
+		p=new Player("player1",10,100,new NobilityTrack(3));
+		p2=new Player("player2", 10, 10,new NobilityTrack(3));
+		tiles=new ArrayList<>();
+		regions=new ArrayList<>();
+		for(int i=0;i<10;++i){
+			List<Character> ids=new ArrayList<>();
+			ids.add('A');
+			tiles.add(new BusinessPermitTile(ids,null));
+		}
+		bonuses=new ArrayList<>();
+		bonuses.add(10);
+		bonuses.add(3);
+		bonuses.add(0);
+		BonusKing bonusKing=new BonusKing(bonuses);
+		cities1=new ArrayList<>();
+		cities2=new ArrayList<>();
+		type1=new Type("Gold",10,bonusKing);
+		type2=new Type("Silver",10,bonusKing);
+		regions.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
+		regions.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
+		cities1.add(new City('A', "Aosta", type1 , regions.get(0)));
+		cities1.add(new City('B', "Bari", type2 , regions.get(0)));
+		cities1.add(new City('C', "Crotone", type1 , regions.get(0)));
+		cities2.add(new City('R', "Roma", type1 , regions.get(1)));
+		cities2.add(new City('P', "Palermo", type2 , regions.get(1)));
+		cities1.get(0).addBonus(new BonusVictoryPoints(1));
+		cities1.get(1).addBonus(new BonusVictoryPoints(1));
+		cities1.get(2).addBonus(new BonusVictoryPoints(1));
+		cities2.get(0).addBonus(new BonusVictoryPoints(1));
+		cities2.get(1).addBonus(new BonusVictoryPoints(1));
+		cities1.get(0).addNeighbor(cities1.get(1));						//A near B
+		cities1.get(1).addNeighbor(cities1.get(0));						//B near A
+		cities1.get(0).addNeighbor(cities1.get(2));						//A near C
+		cities1.get(2).addNeighbor(cities1.get(0));						//C near A
+		cities1.get(0).addNeighbor(cities2.get(1));						//A near P
+		cities2.get(1).addNeighbor(cities1.get(0));						//P near A
+		cities2.get(0).addNeighbor(cities2.get(1));						//R near P
+		cities2.get(1).addNeighbor(cities2.get(0));						//P near R
+	}
+	
+	/**
+	 * Tests the creation of the region.
+	 */
+	@Test
+	public void testRegion() {
+		Region r=regions.get(0);
+		assertEquals(r.getName(),"Region0");
+		assertNotNull(r.getCities());
+		assertNotEquals(r.getCities().size(),0);
+		assertNotNull(r.getCouncil());
+		assertTrue(r.isBonusAvailable());
+	}
+	
+	/**
+	 * Tests cities' methods.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCities() {
+		assertEquals(regions.get(0).getCities().size(),3);
+		assertNotEquals(regions.get(1).getCities().size(),0);
+		City c1=regions.get(0).searchCityById('A');
+		List<City> c2=regions.get(1).searchCitiesByType("Silver");
+		City c3=regions.get(0).searchCityById('R');
+		List<City> c4=regions.get(1).searchCitiesByType("Bronze");
+		assertNotNull(c1);
+		assertNull(c3);
+		assertEquals(c2.size(),1);
+		assertEquals(c4.size(),0);
+		//System.out.println(c1.minimumDistance(c2.get(0), new ArrayList<City>()));
+		//assertEquals(c1.minimumDistance(c2.get(0), new ArrayList<City>()),1);
+	}
+	
+	/**
+	 * Tests bonuses' methods.
+	 */
+	@Test
+	public void testBonus() {
+		for(City city: regions.get(0).getCities())
+			try {
+				int points=p.getVictoryTrack().getVictoryPoints();
+				city.buildEmporium(p.getAvailableEmporium());
+				assertNotEquals(p.getVictoryTrack().getVictoryPoints(),points);
+			} catch (NegativeNumberException e) {
+				assertEquals(p.getAssistantsPool().getAssistants(),10);
+			}
+		assertTrue(regions.get(0).completedRegion(p));
+		assertFalse(regions.get(0).isBonusAvailable());
+		for(City city: regions.get(0).getCities())
+			try {
+				int points=p2.getVictoryTrack().getVictoryPoints();
+				city.buildEmporium(p2.getAvailableEmporium());
+				assertNotEquals(p2.getVictoryTrack().getVictoryPoints(),points);
+			} catch (NegativeNumberException e) {
+				assertEquals(p2.getAssistantsPool().getAssistants(),10);
+			}
+		assertTrue(regions.get(0).completedRegion(p2));
+		assertFalse(regions.get(1).completedRegion(p));
+		assertFalse(type1.completedType(p));
+		assertTrue(type1.isBonusAvailable());
+		for(City city: regions.get(1).getCities())
+			try {
+				int points=p.getVictoryTrack().getVictoryPoints();
+				city.buildEmporium(p.getAvailableEmporium());
+				assertNotEquals(p.getVictoryTrack().getVictoryPoints(),points);
+			} catch (NegativeNumberException e) {
+				assertEquals(p.getAssistantsPool().getAssistants(),10);
+			}
+		assertTrue(type1.completedType(p));
+		assertFalse(type1.isBonusAvailable());
+	}
+	
+	/**
+	 * Tests deck's methods.
+	 */
+	@Test
+	public void testDeck() {
+		RegionDeck rd=regions.get(0).getDeck();
+		assertNotNull(rd);
+		rd.setBusinessPermitTiles(tiles);
+		assertEquals(rd.getShowedDeck().size(),2);
+		assertEquals(rd.getHiddenDeckSize(),8);
+	}
+	
+
+	
+}

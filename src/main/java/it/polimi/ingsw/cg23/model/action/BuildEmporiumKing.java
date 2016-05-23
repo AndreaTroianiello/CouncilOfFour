@@ -132,7 +132,7 @@ public class BuildEmporiumKing implements Action {
 	public int payCoins(int match, Player player){
 		int coin = player.getRichness().getCoins();
 		switch(match){
-		case 1: 
+		case 1:
 			if(tryPayment(player, coin, 10)!=-1)
 				return 10;
 			return -1;
