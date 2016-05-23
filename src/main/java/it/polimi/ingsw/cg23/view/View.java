@@ -8,7 +8,6 @@ import it.polimi.ingsw.cg23.controller.change.Change;
 public abstract class View extends Observable<Action> implements Observer<Change>{
 
 	public View() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

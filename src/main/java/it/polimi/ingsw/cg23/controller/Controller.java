@@ -26,12 +26,12 @@ public class Controller implements Observer<Action>{
 			turn.setAction(action);
 			turn.runAction();
 		}
+		
 			
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 	
