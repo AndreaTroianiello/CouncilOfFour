@@ -178,29 +178,22 @@ public class BuyPermitTile implements Action {
 	 * @param cardNumber
 	 * @param player
 	 */
-	public int payCoins(int cardNumber, Player player){
-		int coins = player.getRichness().getCoins();
-		switch(cardNumber){
-		case 1: 
-			if(tryPayment(player, coins, 10)!= -1)
-				return 10;
-			return -1;			
-		case 2:
-			if(tryPayment(player, coins, 7)!=-1)
-				return 7;
+	public int payCoins(int match, Player player){
+		int coin = player.getRichness().getCoins();
+		int payment = (4-match)*3+1;
+		if(match == 0){
+			System.out.println("Your cards don't match any councillor");
 			return -1;
-		case 3:
-			if(tryPayment(player, coins, 4)!=-1)
-				return 4;
-			return -1;
-		case 4: 
-			return 0;
-			
-		default: System.out.println("Your cards don't match any councillor");
-			return -1;
-			}
-		 
 		}
+		if(match == 4){
+			return 0;
+		}
+		else{
+			if(tryPayment(player, coin, payment)!=-1)
+				return payment;
+			return -1;
+		}
+	}
 	
 	
 	/**

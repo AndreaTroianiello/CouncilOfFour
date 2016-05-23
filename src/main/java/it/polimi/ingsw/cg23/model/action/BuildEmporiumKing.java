@@ -152,27 +152,20 @@ public class BuildEmporiumKing implements Action {
  */
 	public int payCoins(int match, Player player){
 		int coin = player.getRichness().getCoins();
-		switch(match){
-		case 1:
-			if(tryPayment(player, coin, 10)!=-1)
-				return 10;
-			return -1;
-		case 2:
-			if(tryPayment(player, coin, 7)!=-1)
-				return 7;
-			return -1;
-		case 3:
-			if(tryPayment(player, coin, 4)!=-1)
-				return 4;
-			return -1;
-		case 4: 
-			return 0;
-		
-		default: 
+		int payment = (4-match)*3+1;
+		if(match == 0){
 			System.out.println("Your cards don't match any councillor");
 			return -1;
-			}
-	 }
+		}
+		if(match == 4){
+			return 0;
+		}
+		else{
+			if(tryPayment(player, coin, payment)!=-1)
+				return payment;
+			return -1;
+		}
+	}
 
 	
 	
