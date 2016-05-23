@@ -79,6 +79,9 @@ public class Avvio {
 			citta=crc.createCities(i, regions.get(i));//recupero le citta' della regione
 			
 		}
+		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
+			cb.getCityBonus(j, citta.get(j));//aggiungo alla citta' i bonus
+		}
 		crc.addNeighbors();//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
 		

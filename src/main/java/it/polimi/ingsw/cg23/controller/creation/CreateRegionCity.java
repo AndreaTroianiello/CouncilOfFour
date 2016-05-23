@@ -15,7 +15,6 @@ public class CreateRegionCity {
 	List <City> citta = new ArrayList<>();//lista citta
 	CliInterface cl=new CliInterface();
 	Setting s=new Setting();
-
 	CreateBonus cb=new CreateBonus();
 	
 	String endpath="ConfigurazionePartita.xml";//nome del file che contine le info della citta'
@@ -60,7 +59,6 @@ public class CreateRegionCity {
 				if(cityInfo[ii][1].equals(typeList.get(k).getName())){
 					
 					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], typeList.get(k), r);//creo la citta'
-					cb.getCityBonus(ii,c);//aggiungo i bonus alle citta'
 					citta.add(c);//aggiungo la citta' alla lista delle citta'
 					break;
 				}

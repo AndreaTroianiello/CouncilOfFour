@@ -32,6 +32,7 @@ public class CreateBonus {
 	 * @param c, the actual city
 	 */
 	public void getCityBonus(int i, City c){
+		
 		if("purple".equals(c.getType()))//la citta' del re non ha bonus
 			return;
 		String b;//contiene il nome del bonus
@@ -40,7 +41,8 @@ public class CreateBonus {
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
 			int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
-
+			System.out.println(bonusList.size());
+			
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
 					Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
