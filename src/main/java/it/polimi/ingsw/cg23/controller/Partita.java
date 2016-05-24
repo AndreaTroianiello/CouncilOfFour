@@ -10,6 +10,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.action.*;
+import it.polimi.ingsw.cg23.model.components.Emporium;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.view.CliInterface;
@@ -36,8 +37,11 @@ public class Partita {
 				t.getCurrentPlayer().getRichness().setCoins(100);
 			} catch (NegativeNumberException e) {
 			}
-			//b.getRegions().get(1).searchCityById('J').getEmporiums().add(t.getCurrentPlayer().getAvailableEmporium());
-			//b.getTypes().get(1).runBonusRegion(t.getCurrentPlayer());
+			Emporium e=t.getCurrentPlayer().getAvailableEmporium();
+			e.setCity(b.getRegions().get(1).searchCityById('J'));
+			b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
+			b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
+			b.getTypes().get(1).runBonusRegion(t.getCurrentPlayer());
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", cards.toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
