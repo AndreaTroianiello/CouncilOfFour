@@ -63,14 +63,14 @@
 			<city>
 				<id>D</id>
 			</city>
-			<bonus>7VicotryPoints</bonus>
+			<bonus>7VictoryPoints</bonus>
 		</card>
 		<card>
 			<city>
 				<id>D</id>
 				<id>E</id>
 			</city>
-			<bonus>1Assistants,3VictoryPoints </bonus>
+			<bonus>1Assistants,3VictoryPoints</bonus>
 		</card>
 		<card>
 			<city>

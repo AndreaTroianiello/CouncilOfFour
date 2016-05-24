@@ -28,7 +28,7 @@ public class Avvio {
 	CreateCostruction cc=new CreateCostruction();
 	CreateCouncillor cco=new CreateCouncillor();
 	CreatePlayer cp=new CreatePlayer();
-	CreateRegionCity crc=new CreateRegionCity();
+	CreateRegionCity crc=new CreateRegionCity("ConfigurazionePartita.xml");
 
 	private List <Player> giocatori;//lista giocatori
 	private List <City> citta;//lista giocatori
@@ -125,7 +125,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
+		//printAll();//stampa tutte le liste
 	}
 	
 	/**

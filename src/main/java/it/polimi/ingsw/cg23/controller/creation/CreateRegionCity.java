@@ -20,8 +20,9 @@ public class CreateRegionCity {
 	private String endpath;//nome del file che contine le info della citta'
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	
-	public CreateRegionCity(){
-		endpath="ConfigurazionePartita.xml";
+	public CreateRegionCity(String endpath){
+		//endpath="ConfigurazionePartita.xml";
+		this.endpath=endpath;
 		cityInfo=cl.leggiXml(endpath);
 	}
 	
@@ -31,7 +32,7 @@ public class CreateRegionCity {
 	public List<Region> createRegions(){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
-		String[][] regionBonus=cl.getBonusRegion("ConfigurazionePartita.xml");
+		String[][] regionBonus=cl.getBonusRegion(endpath);
 
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			RegionDeck rd=new RegionDeck(2);//creo il regiondeck
