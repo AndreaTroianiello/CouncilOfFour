@@ -24,6 +24,15 @@ public class BonusKing {
 	}
 	
 	/**
+	 * Sets the values of bonus king.
+	 * 
+	 * @param bonusValues the all values of the bonus king.
+	 */
+	public void setCurrentBonusKing(List<Integer> bonusValues) {
+		this.bonus=bonusValues;
+	}
+	
+	/**
 	 * Returns the index of current bonus king.
 	 * 
 	 * @return the index

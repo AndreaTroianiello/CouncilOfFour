@@ -36,6 +36,8 @@ public class Partita {
 				t.getCurrentPlayer().getRichness().setCoins(100);
 			} catch (NegativeNumberException e) {
 			}
+			b.getRegions().get(1).searchCityById('J').getEmporiums().add(t.getCurrentPlayer().getAvailableEmporium());
+			b.getTypes().get(1).runBonusRegion(t.getCurrentPlayer());
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", cards.toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
