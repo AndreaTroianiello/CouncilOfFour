@@ -88,6 +88,8 @@ public class CreateBonus {
 	 * @param c, the actual city
 	 */
 	public void getCostructorBonus(BusinessPermitTile bpt, String bonusTotali){
+		
+		bonusList=bonusList(null);
 		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(bonusTotali);//string tokenizer del nome dei bonus
 
@@ -101,6 +103,7 @@ public class CreateBonus {
 					Bonus bo=bonusList.get(j).clone();
 					bpt.addBonus(bo);//aggiungo alla carta costruzione i suoi bonus
 					bo.setNumber(number);//setto il numero di bonus
+					break;
 				}
 			}
 		}
