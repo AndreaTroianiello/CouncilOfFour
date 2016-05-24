@@ -4,18 +4,21 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.observer.Observable;
 
-public class Board {
+public class Board extends Observable<Change>{
 	private Deck deck;
 	private List<Region> regions;
 	private List<Type> types;
 	private NobilityTrack nobilityTrack;
 	private King king;
 	private final List<Councillor> councillorPool;
+	private final List<Player> players;
 	
 	public Board(Deck deck, List<Region> regions, List<Type> types, NobilityTrack nobilityTrack, King king) {
 		this.deck = deck;
@@ -24,6 +27,7 @@ public class Board {
 		this.nobilityTrack = nobilityTrack;
 		this.king = king;
 		this.councillorPool=new ArrayList<>();
+		this.players=new ArrayList<>();
 	}
 
 	/**
@@ -132,6 +136,22 @@ public class Board {
 	 */
 	public void setCouncillor(Councillor councillor){
 		councillorPool.add(councillor);
+	}
+	
+	/**
+	 * Gets the list of the players.
+	 * @return players 
+	 */
+	public List<Player> getPlayers(){
+		return this.players;
+	}
+	
+	/**
+	 * Adds the player at the list.
+	 * @param player The player to add.
+	 */
+	public void addPlayer(Player player){
+		this.players.add(player);
 	}
 	
 	/**

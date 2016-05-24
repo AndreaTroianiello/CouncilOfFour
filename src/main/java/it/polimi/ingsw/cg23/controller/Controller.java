@@ -13,7 +13,7 @@ public class Controller implements Observer<Action>{
 	
 	public Controller(Board model){
 		this.model=model;
-		this.turn=new Turn(null,model);
+		this.turn=new Turn(model.getPlayers(),model);
 	}
 	
 	@Override

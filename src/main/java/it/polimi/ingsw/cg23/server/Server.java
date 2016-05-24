@@ -14,19 +14,18 @@ import it.polimi.ingsw.cg23.view.ServerSocketView;
 public class Server {
 	private final static int PORT=29999;
 	
-	private Turn turn;
+	private Board model;
 	private Controller controller;
 	
 	private void startSocket() throws IOException{
 		ExecutorService executor=Executors.newCachedThreadPool();
 		ServerSocket serverSocket=new ServerSocket(PORT);
 		System.out.println("SERVER SOCKET, PORT:" + PORT);
-		
-		//turn=new Turn();
+		//model=new Board();
 		while(true){
 			Socket socket=serverSocket.accept();
-			ServerSocketView view=new ServerSocketView(socket,turn);
-			this.turn.registerObserver(view);
+			ServerSocketView view=new ServerSocketView(socket,model);
+			this.model.registerObserver(view);
 			view.registerObserver(this.controller);
 			executor.submit(view);
 		}

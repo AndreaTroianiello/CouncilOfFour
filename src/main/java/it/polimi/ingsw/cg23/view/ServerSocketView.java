@@ -5,8 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import it.polimi.ingsw.cg23.controller.Turn;
 import it.polimi.ingsw.cg23.controller.change.Change;
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.action.Action;
 
 
@@ -15,13 +15,13 @@ public class ServerSocketView extends View implements Runnable {
 	private Socket socket;
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
-	private Turn turn;
+	private Board model;
 
-	public ServerSocketView(Socket socket, Turn turn) throws IOException {
+	public ServerSocketView(Socket socket, Board model) throws IOException {
 		this.socket = socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
-		this.turn=turn;
+		this.model=model;
 	}
 
 	@Override

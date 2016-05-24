@@ -2,14 +2,12 @@ package it.polimi.ingsw.cg23.controller;
 
 import java.util.List;
 
-import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.action.Action;
 import it.polimi.ingsw.cg23.model.components.Deck;
-import it.polimi.ingsw.cg23.observer.Observable;
 
-public class Turn extends Observable <Change> {
+public class Turn {
 	
 	private final List<Player> players;								//The players of the game.
 	private int currentPlayer;										//The current player.
