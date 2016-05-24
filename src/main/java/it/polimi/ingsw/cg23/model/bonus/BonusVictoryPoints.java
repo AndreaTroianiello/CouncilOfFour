@@ -30,7 +30,7 @@ public class BonusVictoryPoints implements Bonus {
 	 */
 	@Override
 	public String getName(){
-		return points+" "+name;
+		return points+name;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class BonusVictoryPoints implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusVictoryPoints [points=" + points + "]";
+		return "BonusVictoryPoints[points=" + points + "]";
 	}
 	
 	/**

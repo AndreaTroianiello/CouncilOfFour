@@ -18,7 +18,7 @@ public class PrintMap {
 	 */
 	public void createMap(List<City> city, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 		String plancia="";//la stringa che stampa la plancia di gioco
-		int space=50;//spazio da mettere tra una regione e l'altra
+		int space=60;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
 		plancia+=addSpace("COLLINA", space);
 		plancia+=addSpace("MONTAGNA", space);
