@@ -40,7 +40,7 @@ public class PrintMap {
 					kk=c;//assegno a kk il valore della zona "collina" in base a k
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
-				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")("+city.get(kk).getEmporiums()+")";//recupero le informazioni dall'array
+				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")"+city.get(kk).getEmporiums()+"";//recupero le informazioni dall'array
 				
 				String citybonus=cityBonus(city.get(kk));//bonus della citta'
 
@@ -48,7 +48,7 @@ public class PrintMap {
 				
 				String kingCity=king.getCity().getName();//nome della citta' del re
 				if(kingCity.equals(city.get(kk).getName())){//se la città e' quella che sta ciclando la segno
-					newcity=newcity.substring(0,newcity.length()-6)+"KING";//la citta del re non ha bonus
+					newcity=newcity.substring(0,newcity.length()-2)+"KING";//la citta del re non ha bonus
 					plancia+=addSpace(newcity, space);
 				}else
 					plancia+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
