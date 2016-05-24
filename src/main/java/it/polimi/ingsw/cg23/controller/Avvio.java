@@ -85,7 +85,6 @@ public class Avvio {
 		crc.addNeighbors();//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
 		
-		
 		//----------king----------
 		King king=s.king(citta);//creato il re
 		cl.print("", "-Creo il re");
@@ -126,7 +125,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco\n");
 		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
-		//printAll();//stampa tutte le liste
+		printAll();//stampa tutte le liste
 	}
 	
 	/**
@@ -134,12 +133,19 @@ public class Avvio {
 	 */
 	public void printAll(){
 		cl.print("", "STAMPO TUTTO");
+		cl.print(bonusList.size(),"");
 		s.printList(bonusList);
+		cl.print(regions.size(),"");
 		s.printList(regions);
+		cl.print(citta.size(),"");
 		s.printList(citta);
+		cl.print(giocatori.size(),"");
 		s.printList(giocatori);
+		cl.print(politcards.size(),"");
 		s.printList(politcards);
+		cl.print(costructionCard.size(),"");
 		s.printList(costructionCard);
+		cl.print(tipi.size(),"");
 		s.printList(tipi);
 	}
 
