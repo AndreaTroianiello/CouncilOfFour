@@ -30,7 +30,7 @@ public class MapTest {
 	private List<Integer> bonuses;
 	private List<City> cities1;
 	private List<City> cities2;
-	
+
 	/**
 	 * The set up of the tests.
 	 * @throws Exception
@@ -46,22 +46,22 @@ public class MapTest {
 			ids.add('A');
 			tiles.add(new BusinessPermitTile(ids,null));
 		}
-		
+
 		//Set up the bonus king
 		bonuses=new ArrayList<>();
 		bonuses.add(10);
 		bonuses.add(3);
 		bonuses.add(0);
 		BonusKing bonusKing=new BonusKing(bonuses);
-		
-		
+
+
 		cities1=new ArrayList<>();
 		cities2=new ArrayList<>();
-		
+
 		//Set up the types.
 		type1=new Type("Gold",10,bonusKing);
 		type2=new Type("Silver",10,bonusKing);
-		
+
 		//Set up the regions and cities
 		regions.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
 		regions.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
@@ -70,15 +70,15 @@ public class MapTest {
 		cities1.add(new City('C', "Crotone", type1 , regions.get(0)));
 		cities2.add(new City('R', "Roma", type1 , regions.get(1)));
 		cities2.add(new City('P', "Palermo", type2 , regions.get(1)));
-		
-		
+
+
 		//Set up the bonuses of the cities
 		cities1.get(0).addBonus(new BonusVictoryPoints(1));
 		cities1.get(1).addBonus(new BonusVictoryPoints(1));
 		cities1.get(2).addBonus(new BonusVictoryPoints(1));
 		cities2.get(0).addBonus(new BonusVictoryPoints(1));
 		cities2.get(1).addBonus(new BonusVictoryPoints(1));
-		
+
 		//Set up the neighbors of the cities.
 		cities1.get(0).addNeighbor(cities1.get(1));						//A near B
 		cities1.get(1).addNeighbor(cities1.get(0));						//B near A
@@ -89,7 +89,7 @@ public class MapTest {
 		cities2.get(0).addNeighbor(cities2.get(1));						//R near P
 		cities2.get(1).addNeighbor(cities2.get(0));						//P near R
 	}
-	
+
 	/**
 	 * Tests the creation of the region.
 	 */
@@ -102,7 +102,7 @@ public class MapTest {
 		assertNotNull(r.getCouncil());
 		assertTrue(r.isBonusAvailable());
 	}
-	
+
 	/**
 	 * Tests cities' methods.
 	 */
@@ -120,7 +120,7 @@ public class MapTest {
 		assertEquals(c4.size(),0);
 		assertEquals((int) c1.minimumDistance(c2.get(0), new ArrayList<City>()),1);
 	}
-	
+
 	/**
 	 * Tests bonuses' methods.
 	 */
@@ -159,7 +159,7 @@ public class MapTest {
 		assertTrue(type1.completedType(p));
 		assertFalse(type1.isBonusAvailable());
 	}
-	
+
 	/**
 	 * Tests deck's methods.
 	 */
@@ -171,7 +171,7 @@ public class MapTest {
 		assertEquals(rd.getShowedDeck().size(),2);
 		assertEquals(rd.getHiddenDeckSize(),8);
 	}
-	
+
 	/**
 	 * Tests region's council.
 	 */
@@ -185,7 +185,7 @@ public class MapTest {
 		assertEquals(co.getColor(),Color.BLACK);
 		assertEquals(c.getCouncillors().size(),1);
 	}
-	
 
-	
+
+
 }

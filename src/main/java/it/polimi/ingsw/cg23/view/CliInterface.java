@@ -19,6 +19,9 @@ public class CliInterface {
 	private ReadCittaXml lettureXml;//classe che legge l'xml delle citta'
 	private ReadCostructionXml costructionXml;//classe che legge l'xml delle carte costruzione
 	private ReadNobilityTrackXml nt;
+
+	Logger logger=Logger.getLogger("my logger");//logger
+	ConsoleHandler handler = new ConsoleHandler();
 	
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	private final int citynum;//numero di citta'
@@ -34,18 +37,7 @@ public class CliInterface {
 		this.cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");
 		this.cityInfo=new String[citynum][cityNodeNumber];
 	}
-	
-	/**
-	 * code to use the logger (request by sonar)
-	 */
-	public void logging(){
-		Logger logger=Logger.getLogger("my logger");
-		ConsoleHandler handler = new ConsoleHandler();
-		logger.setLevel(Level.ALL);
-		handler.setFormatter(new SimpleFormatter());
-		logger.addHandler(handler);
-		handler.setLevel(Level.ALL);
-	}
+
 
 	/**
 	 * carica il file xml con le infromazioni della partita
@@ -128,6 +120,10 @@ public class CliInterface {
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
+		logger.setLevel(Level.ALL);
+		handler.setFormatter(new SimpleFormatter());
+		logger.addHandler(handler);
+		handler.setLevel(Level.ALL);
 		System.out.println(testo+" "+ogg);
 
 	}

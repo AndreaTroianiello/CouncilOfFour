@@ -45,7 +45,6 @@ public class PrintMap {
 				String citybonus=cityBonus(city.get(kk));//bonus della citta'
 
 				newcity+="("+citybonus+")";//aggiungo alla nuova citta' i suoi bonus
-				
 				String kingCity=king.getCity().getName();//nome della citta' del re
 				if(kingCity.equals(city.get(kk).getName())){//se la città e' quella che sta ciclando la segno
 					newcity=newcity.substring(0,newcity.length()-2)+"KING";//la citta del re non ha bonus
@@ -57,6 +56,7 @@ public class PrintMap {
 		}
 		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		cl.print("",plancia);//stampo la plancia di gioco
+		//mapDraw(city);
 	}
 	
 	/**
@@ -147,5 +147,23 @@ public class PrintMap {
 			count++; 
 		}
 		return count;
+	}
+	
+	/**
+	 * create the card draw
+	 * @param citta, the city list
+	 */
+	public void mapDraw(List<City>citta){
+		int space=30;
+		for(int i=0; i<citta.size(); i++){
+		String carta="";
+		String riga1="-------------------------------\n";//copertura
+		String riga2=addSpace("|"+citta.get(i).getName(),space)+"|\n";//nome citta'
+		String riga3=addSpace("|"+citta.get(i).getType(),space)+"|\n";//tipo citta'
+		String riga4=addSpace("|"+cityBonus(citta.get(i)),space)+"|\n";//bonus citta'
+		String riga5="-------------------------------";
+		carta=riga1+riga2+riga3+riga4+riga5+"\n";
+		//System.out.print(carta);
+		}
 	}
 }
