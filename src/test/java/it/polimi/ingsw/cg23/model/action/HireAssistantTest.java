@@ -8,6 +8,7 @@ import org.junit.Test;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class HireAssistantTest {
 	
@@ -21,22 +22,30 @@ public class HireAssistantTest {
 	}
 
 	@Test
-	public void ifThePlayerHas10AssistantAnd100CoinsThemShouldBeChangesTo11And97() {
+	public void ifThePlayerHas10AssistantAnd100CoinsThemShouldBeChangesTo11And97() throws NegativeNumberException {
 		HireAssistant action = new HireAssistant();
-		action.runAction(player, board);
+		player.getRichness().setCoins(100);
+		action.runAction(player, board);		
 		int coin = player.getRichness().getCoins();
 		int assistants = player.getAssistantsPool().getAssistants();
 		assertEquals(coin, 97);
 		assertEquals(assistants, 11);
 	}
+
 	
 	@Test
-	public void isMainSouldReturnTheMain(){
+	public void ifThePlayerDoesntHaveEnoughMoneyItShouldntChangeAnithing() throws NegativeNumberException {
 		HireAssistant action = new HireAssistant();
-		boolean main = action.isMain();
-		assertEquals(main, action.isMain());
+		player.getAssistantsPool().setAssistants(10);
+		player.getRichness().setCoins(0);
+		action.runAction(player, board);
+		int coin = player.getRichness().getCoins();
+		int assistants = player.getAssistantsPool().getAssistants();
+		assertEquals(coin, 0);
+		assertEquals(assistants, 10);
 	}
 	
+		
 	@Test
 	public void toStringShouldReturnTheNameOfTheClass(){
 		HireAssistant action = new HireAssistant();

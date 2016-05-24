@@ -38,13 +38,7 @@ public class AdditionalActionTest {
 		assertEquals(true, player.isAdditionalAction());
 	}
 	
-	@Test
-	public void isMainSouldReturnTheMain(){
-		AdditionalAction action = new AdditionalAction();
-		boolean main = action.isMain();
-		assertEquals(main, action.isMain());
-	}
-	
+
 	@Test
 	public void toStringShouldReturnTheNameOfTheClass(){
 		AdditionalAction action = new AdditionalAction();
