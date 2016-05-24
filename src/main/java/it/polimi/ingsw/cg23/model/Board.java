@@ -11,6 +11,11 @@ import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.observer.Observable;
 
+/**
+ * The board contains all objects of the game, this is the application's model.
+ * @author Andrea
+ *
+ */
 public class Board extends Observable<Change>{
 	private Deck deck;
 	private List<Region> regions;
@@ -20,6 +25,14 @@ public class Board extends Observable<Change>{
 	private final List<Councillor> councillorPool;
 	private final List<Player> players;
 	
+	/**
+	 * The constructor of the board.
+	 * @param deck The deck of politic cards.
+	 * @param regions The list of regions.
+	 * @param types The list of type.
+	 * @param nobilityTrack  The nobility track.
+	 * @param king The king pawn.
+	 */
 	public Board(Deck deck, List<Region> regions, List<Type> types, NobilityTrack nobilityTrack, King king) {
 		this.deck = deck;
 		this.regions = regions;

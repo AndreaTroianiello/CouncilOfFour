@@ -5,13 +5,23 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 
+/**
+ * The bonus king is common to Region and Type. This is invoked when a bonus is give.
+ * 
+ * @author Andrea
+ */
 public class BonusKing {
 	private int index;								//The current bonus king.
-	private List<Integer> bonus;					//Set of all bonus king.
+	private List<Integer> bonusValues;				//Set of all bonus king.
 	
-	public BonusKing(List<Integer> bonus){
+	/**
+	 * The constructor of the bonus king.
+	 * 
+	 * @param bonusValues A list of integer, these are the values of victory points that bonus king gives.
+	 */
+	public BonusKing(List<Integer> bonusValues){
 		this.index=0;
-		this.bonus=bonus;
+		this.bonusValues=bonusValues;
 	}
 	
 	/**
@@ -20,7 +30,7 @@ public class BonusKing {
 	 * @return the bonusKing
 	 */
 	public int getCurrentBonusKing() {
-		return bonus.get(index);
+		return bonusValues.get(index);
 	}
 	
 	/**
@@ -29,7 +39,7 @@ public class BonusKing {
 	 * @param bonusValues the all values of the bonus king.
 	 */
 	public void setCurrentBonusKing(List<Integer> bonusValues) {
-		this.bonus=bonusValues;
+		this.bonusValues=bonusValues;
 	}
 	
 	/**
@@ -45,7 +55,7 @@ public class BonusKing {
 	 * Increases of one position the index of current bonus. 
 	 */
 	public void increasePosition(){
-		if(index<bonus.size()-1)					//The index can be at most the size of the set minus 1.
+		if(index<bonusValues.size()-1)					//The index can be at most the size of the set minus 1.
 			this.index++;
 	}
 	
@@ -55,7 +65,7 @@ public class BonusKing {
 	 * @param player
 	 */
 	public void runBonusKing(Player player){
-		Bonus bonusKing=new BonusVictoryPoints(bonus.get(index));
+		Bonus bonusKing=new BonusVictoryPoints(bonusValues.get(index));
 		bonusKing.giveBonus(player);
 		increasePosition();
 	}
@@ -65,6 +75,6 @@ public class BonusKing {
 	 */
 	@Override
 	public String toString() {
-		return "BonusKing [index=" + index + ", bonus=" + bonus + "]";
+		return "BonusKing [index=" + index + ", bonus=" + bonusValues + "]";
 	}
 }

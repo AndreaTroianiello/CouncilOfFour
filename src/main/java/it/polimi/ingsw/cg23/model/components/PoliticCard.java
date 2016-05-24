@@ -2,11 +2,21 @@ package it.polimi.ingsw.cg23.model.components;
 
 import java.awt.Color;
 
+/**
+ * The councillor can be used to build a emporium and can be matched a councillor of the same color.
+ * @author Andrea
+ *
+ */
 public class PoliticCard {
 
 	private final Color color;											//The color of the card.
 	private final boolean jolly;										//It indicates whether the card is multicolored. Yes is true, no is false.
 
+	/**
+	 * The constructor of politic card.
+	 * @param color The color of the politic card. It can be null if this card is a jolly.
+	 * @param jolly If is true, the card is a jolly.
+	 */
 	public PoliticCard(Color color, boolean jolly) {
 		this.color = color;
 		this.jolly=jolly;

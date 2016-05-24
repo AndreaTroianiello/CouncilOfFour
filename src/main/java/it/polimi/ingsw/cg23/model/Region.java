@@ -8,7 +8,7 @@ import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 /**
- * The Region's class. The region is characterized by a name and contains a list of city, a council and a deck of tiles.
+ * The Region's class. The region is characterized by a name, a bonus and contains a list of city, a council and a deck of tiles.
  * 
  * @author Andrea
  *

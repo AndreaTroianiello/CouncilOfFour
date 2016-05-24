@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * The RegionDeck is specific to a Region contains its business permit tiles.
+ * @author Andrea
+ *
+ */
 public class RegionDeck {
 	private final int maxTilesShowed;			
 	private final List<BusinessPermitTile> hiddenDeck;
 	private final List<BusinessPermitTile> showedDeck;
 	
+	/**
+	 * The constructor of Region Deck.
+	 * @param maxTilesShowed The number of tiles to show.
+	 */
 	public RegionDeck(int maxTilesShowed){
 		this.maxTilesShowed=maxTilesShowed;
 		hiddenDeck=new ArrayList<>();
@@ -17,6 +25,7 @@ public class RegionDeck {
 	}
 
 	/**
+	 * Returns the number of hidden tiles.
 	 * @return the size of hidden deck.
 	 */
 	public int getHiddenDeckSize() {
@@ -24,6 +33,7 @@ public class RegionDeck {
 	}
 
 	/**
+	 * Returns the list of showed tiles.
 	 * @return the showed deck.
 	 */
 	public List<BusinessPermitTile> getShowedDeck() {
