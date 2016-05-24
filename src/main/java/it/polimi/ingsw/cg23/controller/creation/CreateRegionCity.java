@@ -17,8 +17,13 @@ public class CreateRegionCity {
 	Setting s=new Setting();
 	CreateBonus cb=new CreateBonus();
 	
-	String endpath="ConfigurazionePartita.xml";//nome del file che contine le info della citta'
-	String[][] cityInfo=cl.leggiXml(endpath);//array con le informazioni delle citta'
+	private String endpath;//nome del file che contine le info della citta'
+	private String[][] cityInfo;//array con le informazioni delle citta'
+	
+	public CreateRegionCity(){
+		endpath="ConfigurazionePartita.xml";
+		cityInfo=cl.leggiXml(endpath);
+	}
 	
 	/**
 	 * create the regions object and add at the regions list

@@ -16,15 +16,25 @@ import it.polimi.ingsw.cg23.model.components.King;
  * classe per stampare le info sulla cl
  */
 public class CliInterface {
-	ReadCittaXml lettureXml=new ReadCittaXml();//classe che legge l'xml delle citta'
-	ReadCostructionXml costructionXml=new ReadCostructionXml();//classe che legge l'xml delle carte costruzione
-	ReadNobilityTrackXml nt=new ReadNobilityTrackXml();
+	private ReadCittaXml lettureXml;//classe che legge l'xml delle citta'
+	private ReadCostructionXml costructionXml;//classe che legge l'xml delle carte costruzione
+	private ReadNobilityTrackXml nt;
 	
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
-	final int citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");//numero di citta'
-	final int cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");//numero di attributi delle citta'
-	String[][] cityInfo=new String[citynum][cityNodeNumber];//array multidim con city name, color, link, id, bonus, zone
-
+	private final int citynum;//numero di citta'
+	private final int cityNodeNumber;//numero di attributi delle citta'
+	private String[][] cityInfo;//array multidim con city name, color, link, id, bonus, zone
+	
+	public CliInterface(){
+		lettureXml=new ReadCittaXml();
+		costructionXml=new ReadCostructionXml();
+		nt=new ReadNobilityTrackXml();
+		
+		citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");
+		cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");
+		cityInfo=new String[citynum][cityNodeNumber];
+	}
+	
 	/**
 	 * code to use the logger (request by sonar)
 	 */
@@ -146,17 +156,9 @@ public class CliInterface {
 		new PrintMap().createMap(city, giocatori, k);
 	}
 	
-	/**
-	 * calculate the number of regions
-	 * @param nome bidimensional array with the city infos
-	 * @return the number of the region
-	 */
-	/*public int regionsNumber(String[][] nome){
-		return scrittureXml.regionNumber(nome);
-	}
 	
 	/**
-	 * calcola il numero di regioni
+	 * calculate the number of regions
 	 * @return the number of regions
 	 */
 	public int regionsNumber(String[][] cityInfo){

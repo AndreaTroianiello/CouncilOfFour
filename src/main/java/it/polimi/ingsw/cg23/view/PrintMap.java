@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.model.components.King;
 
 public class PrintMap {
 	CliInterface cl=new CliInterface();
+	
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void

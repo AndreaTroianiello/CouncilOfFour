@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
  *
  */
 public class ReadNobilityTrackXml {
-	String path="src/main/resources/";//file location
+	private String path="src/main/resources/";//file location
 
 	/**
 	 * read the lenght of the nobility track in the xml file

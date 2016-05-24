@@ -19,18 +19,20 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Setting {
 
-	
-	List <Type> typeList=new ArrayList<>();//lista di type
 	CliInterface cl=new CliInterface();
 	CreateBonus cb=new CreateBonus();
 	
-	List <Bonus> bonusList=cb.bonusList(null);//lista di bonus
+	private List <Bonus> bonusList;//lista di bonus
+	private String endpath;//nome del file che contine le info della citta'
+	private NobilityTrack nT;//recupero la lunghezza dall'xm
+	private List <Type> typeList;//lista di type
 	
-	String endpath="ConfigurazionePartita.xml";//nome del file che contine le info della citta'
-	String[][] cityInfo=cl.leggiXml(endpath);//array con le informazioni delle citta'
-
-	NobilityTrack nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xm
-
+	public Setting(){
+		bonusList=cb.bonusList(null);
+		nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));
+		endpath="ConfigurazionePartita.xml";
+		typeList=new ArrayList<>();
+	}
 
 	/**
 	 * 	print all the element of a list

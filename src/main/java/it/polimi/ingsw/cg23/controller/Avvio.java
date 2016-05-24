@@ -30,14 +30,14 @@ public class Avvio {
 	CreatePlayer cp=new CreatePlayer();
 	CreateRegionCity crc=new CreateRegionCity();
 
-	List <Player> giocatori;//lista giocatori
-	List <City> citta;//lista giocatori
-	List <Region> regions;//lista giocatori
-	List <PoliticCard> politcards;//lista giocatori
-	List <Bonus> bonusList;//lista dei bonus
-	List <BusinessPermitTile> costructionCard;//lista dei bonus
-	List <Type> tipi;//lista dei bonus
-	Board board;
+	private List <Player> giocatori;//lista giocatori
+	private List <City> citta;//lista giocatori
+	private List <Region> regions;//lista giocatori
+	private List <PoliticCard> politcards;//lista giocatori
+	private List <Bonus> bonusList;//lista dei bonus
+	private List <BusinessPermitTile> costructionCard;//lista dei bonus
+	private List <Type> tipi;//lista dei bonus
+	private Board board;
 
 	public Avvio(){
 		this.board=null;

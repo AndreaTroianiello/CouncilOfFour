@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
  *
  */
 public class ReadCostructionXml {
-	String path="src/main/resources/";//file location
+	private String path="src/main/resources/";//file location
 	
 	/**
 	 * legge il file xml

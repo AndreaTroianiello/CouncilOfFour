@@ -9,9 +9,13 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreateCostruction {
 
-	CreateBonus cb=new CreateBonus();
-	CliInterface cl=new CliInterface();
-	List <BusinessPermitTile> costructionCard=new ArrayList<>();//lista di carte costruzione
+	private CreateBonus cb=new CreateBonus();
+	private CliInterface cl=new CliInterface();
+	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
+	
+	public CreateCostruction(){
+		costructionCard=new ArrayList<>();
+	}
 	
 	/**
 	 * create and add at the list the costruction cards
