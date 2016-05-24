@@ -38,7 +38,7 @@ public class BonusKing {
 	 * 
 	 * @param bonusValues the all values of the bonus king.
 	 */
-	public void setCurrentBonusKing(List<Integer> bonusValues) {
+	public void setBonusValues(List<Integer> bonusValues) {
 		this.bonusValues=bonusValues;
 	}
 	

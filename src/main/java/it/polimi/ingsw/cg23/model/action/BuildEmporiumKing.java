@@ -101,7 +101,7 @@ public class BuildEmporiumKing extends GameAction {
 				this.discardedCards.add(card);			//and add the card to the discardedCards
 			}
 		this.cards.removeAll(discardedCards);			//remove all the jolly from the politic cards
-		board.getDeck().discardCars(discardedCards);
+		board.getDeck().discardCards(discardedCards);
 		
 		return jolly;
 	}
@@ -130,7 +130,7 @@ public class BuildEmporiumKing extends GameAction {
 			}
 		}
 		cards.removeAll(discardedCards);
-		board.getDeck().discardCars(discardedCards);
+		board.getDeck().discardCards(discardedCards);
 		
 		return match;
 	}
@@ -195,7 +195,7 @@ public class BuildEmporiumKing extends GameAction {
 		try {
 			this.destination.buildEmporium(player.getAvailableEmporium());
 			board.getKing().setCity(destination);
-			board.getDeck().discardCars(discardedCards);
+			board.getDeck().discardCards(discardedCards);
 		} catch (NegativeNumberException e) {
 			System.out.println("The player doesn't have available emporiums");
 			int currentCoin = player.getRichness().getCoins();

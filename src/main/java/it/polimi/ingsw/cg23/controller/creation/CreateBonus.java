@@ -88,7 +88,7 @@ public class CreateBonus {
 		kingList.add(7);
 		kingList.add(3);
 		kingList.add(0);//una lista di interi con i passi di avanzamento del percorso vittoria
-		bk.setCurrentBonusKing(kingList);
+		bk.setBonusValues(kingList);
 		return bk;
 	}
 	

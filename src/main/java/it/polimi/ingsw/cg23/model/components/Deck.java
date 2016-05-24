@@ -41,7 +41,7 @@ public class Deck {
 	 * 
 	 * @param cards the list of cards to discard.
 	 */
-	public void discardCars(List<PoliticCard> cards){
+	public void discardCards(List<PoliticCard> cards){
 		discardedCards.addAll(cards);
 	}
 	
