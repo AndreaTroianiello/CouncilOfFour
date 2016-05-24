@@ -25,7 +25,7 @@ public class BonusGetPermitTile implements Bonus {
 	 * @param a
 	 * @param board
 	 */
-	public BonusGetPermitTile(int i, int a, Board board) {
+	public BonusGetPermitTile(int a, Board board) {
 		
 		this.board = board;
 		this.name="GetPermitTile";
@@ -48,7 +48,7 @@ public class BonusGetPermitTile implements Bonus {
 	}
 
 
-	
+	@Override
 	public void setNumber(int number){}
 
 	/**
@@ -67,7 +67,7 @@ public class BonusGetPermitTile implements Bonus {
 		this.board.getRegions().get(region).getDeck().changeShowedDeck(); 			//replace the PermitTitle chosen with the one in top of the deck
 	}
 
-
+	@Override
 	public void setParameters(){
 		
 	}
@@ -83,8 +83,9 @@ public class BonusGetPermitTile implements Bonus {
 	/**
 	 * @return a new BonusGetPermitTile
 	 */
+	@Override
 	public Bonus clone() {
-		return new BonusGetPermitTile(0, 0, board); 
+		return new BonusGetPermitTile(0, board); 
 	}	
 	
 }

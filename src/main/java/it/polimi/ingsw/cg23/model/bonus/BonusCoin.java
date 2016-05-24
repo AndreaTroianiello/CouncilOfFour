@@ -46,6 +46,7 @@ public class BonusCoin implements Bonus {
 	/**
 	 * set the number of the coins given by the bonus
 	 */
+	@Override
 	public void setNumber(int number){
 		this.coins = number;
 	}
@@ -66,7 +67,7 @@ public class BonusCoin implements Bonus {
 		}
 	}
 	
-	
+	@Override
 	public void setParameters(){
 		
 	}
@@ -83,6 +84,7 @@ public class BonusCoin implements Bonus {
 	/**
 	 * @return a new BonusCoin
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusCoin(0); 
 	}	

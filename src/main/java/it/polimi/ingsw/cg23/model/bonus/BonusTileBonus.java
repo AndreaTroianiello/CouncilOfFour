@@ -76,8 +76,10 @@ public class BonusTileBonus implements Bonus {
 
 	}
 	
+	@Override
 	public void setNumber(int number){}
 	
+	@Override
 	public void setParameters(){
 		
 	}
@@ -94,6 +96,7 @@ public class BonusTileBonus implements Bonus {
 	/**
 	 * @return a new BonusTileBonus
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusTileBonus(0); 
 	}	

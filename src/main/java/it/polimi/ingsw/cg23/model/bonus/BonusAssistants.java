@@ -34,6 +34,7 @@ public class BonusAssistants implements Bonus {
 	/**
 	 * it sets the number of the assistants that the bonus gives
 	 */
+	@Override
 	public void setNumber(int number){
 		this.assistants = number;
 	}
@@ -55,6 +56,7 @@ public class BonusAssistants implements Bonus {
 
 	}
 	
+	@Override
 	public void setParameters(){
 		
 	}
@@ -78,6 +80,7 @@ public class BonusAssistants implements Bonus {
 	/**
 	 * @return a new BonusAssistants
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusAssistants(); 
 	}	

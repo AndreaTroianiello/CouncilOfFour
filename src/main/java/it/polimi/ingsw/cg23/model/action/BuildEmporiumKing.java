@@ -177,10 +177,10 @@ public class BuildEmporiumKing implements Action {
 	 * @param coin
 	 * @param payment
 	 */
-	public int tryPayment(Player player,int coin, int payment){
+	public int tryPayment(Player player,int richness, int payment){
 		try {
-			coin = coin - payment;
-			player.getRichness().setCoins(coin);
+			richness = richness - payment;
+			player.getRichness().setCoins(richness);
 			return 0;
 		} catch (NegativeNumberException e) {
 			this.cards.addAll(discardedCards);

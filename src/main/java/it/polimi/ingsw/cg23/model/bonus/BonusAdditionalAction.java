@@ -32,11 +32,12 @@ public class BonusAdditionalAction implements Bonus {
 			player.switchAdditionalAction();
 	}
 	
-	
+	@Override
 	public void setParameters(){
 		
 	}
 	
+	@Override
 	public void setNumber(int number){
 		
 	}
@@ -60,6 +61,7 @@ public class BonusAdditionalAction implements Bonus {
 	/**
 	 * @return a new BonusAdditionalAction
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusAdditionalAction(); 
 	}	

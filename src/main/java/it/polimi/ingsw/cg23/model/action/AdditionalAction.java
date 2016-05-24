@@ -26,6 +26,7 @@ public class AdditionalAction implements Action {
 	/**
 	 * @return the main
 	 */
+	@Override
 	public boolean isMain() {
 		return main;
 	}

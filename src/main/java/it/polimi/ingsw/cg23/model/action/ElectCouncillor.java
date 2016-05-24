@@ -42,6 +42,7 @@ public class ElectCouncillor implements Action{
 	/**
 	 * @return the main
 	 */
+	@Override
 	public boolean isMain() {
 		return main;
 	}

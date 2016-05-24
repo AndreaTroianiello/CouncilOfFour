@@ -43,6 +43,7 @@ public class BonusVictoryPoints implements Bonus {
 	/**
 	 * set the number of points given by the bonus
 	 */
+	@Override
 	public void setNumber(int number){
 		this.points = number;
 	}
@@ -60,7 +61,7 @@ public class BonusVictoryPoints implements Bonus {
 		player.getVictoryTrack().setVictoryPoints(playerPoints);
 	}
 	
-	
+	@Override
 	public void setParameters(){
 		
 	}
@@ -77,6 +78,7 @@ public class BonusVictoryPoints implements Bonus {
 	/**
 	 * @return a new BonusVictoryPoints
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusVictoryPoints(0);
 	}	

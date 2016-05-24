@@ -58,6 +58,7 @@ public class BonusPolitics implements Bonus {
 	 * 
 	 * @param cardNumber the cardNumber to set
 	 */
+	@Override
 	public void setNumber(int number) {
 		this.cardNumber = number;
 	}
@@ -75,7 +76,7 @@ public class BonusPolitics implements Bonus {
 
 	}
 	
-	
+	@Override
 	public void setParameters(){
 		
 	}
@@ -91,6 +92,7 @@ public class BonusPolitics implements Bonus {
 	/**
 	 * @return a new BonusPolitics
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusPolitics(0, board);
 	}	

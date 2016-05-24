@@ -72,6 +72,7 @@ public class BonusCityToken implements Bonus {
 	/**
 	 * @param number the number to set
 	 */
+	@Override
 	public void setNumber(int number) {
 		this.number = number;
 	}
@@ -116,6 +117,7 @@ public class BonusCityToken implements Bonus {
 		}
 	}
 
+	@Override
 	public void setParameters(){
 		
 	}
@@ -132,6 +134,7 @@ public class BonusCityToken implements Bonus {
 	/**
 	 * @return a new BonusCityToken
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusCityToken(0, null, board); 
 	}	

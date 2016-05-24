@@ -58,6 +58,7 @@ public class BonusNobility implements Bonus {
 	/**
 	 * @param steps the steps to set
 	 */
+	@Override
 	public void setNumber(int number) {
 		this.steps = number;
 	}
@@ -77,7 +78,7 @@ public class BonusNobility implements Bonus {
 		}
 	}
 	
-	
+	@Override
 	public void setParameters(){
 		
 	}
@@ -90,16 +91,12 @@ public class BonusNobility implements Bonus {
 		return "BonusNobility [steps=" + steps + "]";
 	}
 
-	/**
-	 * @return the name of the bonus
-	 */
-	public String toStringName(){
-		return "BonusNobility";
-	}
+	
 
 	/**
 	 * @return a new BonusNobility
 	 */
+	@Override
 	public Bonus clone() {
 		return new BonusNobility(0, board); 
 	}	
