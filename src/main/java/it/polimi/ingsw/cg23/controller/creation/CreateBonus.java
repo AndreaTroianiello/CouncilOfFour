@@ -23,13 +23,14 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class CreateBonus {
 	
 	CliInterface cl=new CliInterface();
-	
+	BonusKing bk;
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	private List <Bonus> bonusList;//lista di bonus
 	
 	public CreateBonus(String endpath){
 		this.cityInfo=cl.leggiXml(endpath);
 		this.bonusList=new ArrayList<>();
+		bk=new BonusKing(null);
 	}
 	
 	/**
@@ -41,6 +42,7 @@ public class CreateBonus {
 		
 		if("purple".equals(c.getType()))//la citta' del re non ha bonus
 			return;
+		
 		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);//string tokenizer del nome dei bonus
 		while(st.hasMoreTokens()){
@@ -57,6 +59,7 @@ public class CreateBonus {
 			}
 		}
 	}
+	
 	/**
 	 * @return a bonus list with all the type of bonus
 	 */
@@ -85,7 +88,8 @@ public class CreateBonus {
 		kingList.add(7);
 		kingList.add(3);
 		kingList.add(0);//una lista di interi con i passi di avanzamento del percorso vittoria
-		return new BonusKing(kingList);
+		bk.setCurrentBonusKing(kingList);
+		return bk;
 	}
 	
 	/**

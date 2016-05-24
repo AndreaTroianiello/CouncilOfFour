@@ -44,9 +44,7 @@ public class Emporium {
 	 */
 	@Override
 	public String toString() {
-		return "Emporium [city=" + city.getName() + "]";
+		return "Emporium [city=" + city.getId() + "]";
 	}
-	
-	
 	
 }

@@ -44,6 +44,6 @@ public class King {
 	 */
 	@Override
 	public String toString() {
-		return "King [city=" + city + "]";
+		return "King [city=" + city + "]"+council;
 	}
 }

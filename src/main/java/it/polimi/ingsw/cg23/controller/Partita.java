@@ -36,8 +36,8 @@ public class Partita {
 				t.getCurrentPlayer().getRichness().setCoins(100);
 			} catch (NegativeNumberException e) {
 			}
-			b.getRegions().get(1).searchCityById('J').getEmporiums().add(t.getCurrentPlayer().getAvailableEmporium());
-			b.getTypes().get(1).runBonusRegion(t.getCurrentPlayer());
+			//b.getRegions().get(1).searchCityById('J').getEmporiums().add(t.getCurrentPlayer().getAvailableEmporium());
+			//b.getTypes().get(1).runBonusRegion(t.getCurrentPlayer());
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", cards.toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
@@ -61,6 +61,11 @@ public class Partita {
 			cl.print(t,"");
 			t.changePlayer();
 		}
-
+		
+		//print the map
+		List<City> citta=b.getRegions().get(0).getCities();
+		citta.addAll(b.getRegions().get(1).getCities());
+		citta.addAll(b.getRegions().get(2).getCities());
+		cl.createMap(citta, giocatori, b.getKing());
 	}
 }

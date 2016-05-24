@@ -90,7 +90,7 @@ public class Setting {
 		String[][] array=cl.getType(endpath);//recupero i type dall'xml
 		for(int i=0; i<array.length; i++){
 			int number=Integer.parseInt(array[i][1]);
-			Type t=new Type(array[i][0], number, null);
+			Type t=new Type(array[i][0], number, cb.bonusKing());
 			typeList.add(t);
 		}
 		return typeList;
