@@ -9,8 +9,8 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 
-public class AdditionalActionTest {
-
+public class HireAssistantTest {
+	
 	private Player player;
 	private Board board;
 	
@@ -21,35 +21,27 @@ public class AdditionalActionTest {
 	}
 
 	@Test
-	public void ifAdditionalActionIsFalseItShouldBeChangedToTrue() {
-		if(this.player.isAdditionalAction())
-			this.player.switchAdditionalAction();
-		AdditionalAction action = new AdditionalAction();
+	public void ifThePlayerHas10AssistantAnd100CoinsThemShouldBeChangesTo11And97() {
+		HireAssistant action = new HireAssistant();
 		action.runAction(player, board);
-		assertEquals(true, player.isAdditionalAction());
-	}
-	
-	@Test
-	public void ifAdditionalActionIsTrueItShouldntBeChanged() {
-		if(!this.player.isAdditionalAction())
-			this.player.switchAdditionalAction();
-		AdditionalAction action = new AdditionalAction();
-		action.runAction(player, board);
-		assertEquals(true, player.isAdditionalAction());
+		int coin = player.getRichness().getCoins();
+		int assistants = player.getAssistantsPool().getAssistants();
+		assertEquals(coin, 97);
+		assertEquals(assistants, 11);
 	}
 	
 	@Test
 	public void isMainSouldReturnTheMain(){
-		AdditionalAction action = new AdditionalAction();
+		HireAssistant action = new HireAssistant();
 		boolean main = action.isMain();
 		assertEquals(main, action.isMain());
 	}
 	
 	@Test
 	public void toStringShouldReturnTheNameOfTheClass(){
-		AdditionalAction action = new AdditionalAction();
+		HireAssistant action = new HireAssistant();
 		String name = action.toString();
-		assertEquals(name, "AdditionalAction []");
+		assertEquals(name, "HireAssistant []");
 	}
 
 }
