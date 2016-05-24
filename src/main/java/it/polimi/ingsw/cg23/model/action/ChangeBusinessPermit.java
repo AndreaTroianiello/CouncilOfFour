@@ -10,10 +10,9 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  * @author Vincenzo
  */
-public class ChangeBusinessPermit implements Action {
+public class ChangeBusinessPermit extends GameAction {
 	
 	private final int region;
-	private final boolean main;
 	
 
 	/**
@@ -23,21 +22,9 @@ public class ChangeBusinessPermit implements Action {
 	 * @param region
 	 */
 	public ChangeBusinessPermit(int region) {
+		super(false);
 		this.region = region;
-		this.main = false;
 	}
-	
-	
-
-	/**
-	 * @return the main
-	 */
-	@Override
-	public boolean isMain() {
-		return main;
-	}
-
-
 
 	/**
 	 * @return the region

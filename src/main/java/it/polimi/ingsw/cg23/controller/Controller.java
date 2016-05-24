@@ -20,8 +20,8 @@ public class Controller implements Observer<Action>{
 	public void update(Action action){
 		System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
 		Observer.super.update(action);
-		if(action instanceof Action){
-			turn.setAction(action);
+		if(action instanceof GameAction){
+			turn.setAction((GameAction) action);
 			turn.runAction();
 		}
 		

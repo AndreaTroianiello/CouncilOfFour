@@ -10,27 +10,14 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  *@author Vincenzo
  */
-public class HireAssistant implements Action {
-	
-	private final boolean main;
-	
+public class HireAssistant extends GameAction {
 	
 	/**
 	 * the constructor set the variables of the class: the boolean main is set to false
 	 */
 	public HireAssistant() {
-		this.main = false;
+		super(false);
 	}
-
-	
-	/**
-	 * @return the main
-	 */
-	@Override
-	public boolean isMain() {
-		return main;
-	}
-
 
 	/**
 	 * give the player an assistant and take

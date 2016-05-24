@@ -5,6 +5,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.action.Action;
+import it.polimi.ingsw.cg23.model.action.GameAction;
 import it.polimi.ingsw.cg23.model.components.Deck;
 
 public class Turn {
@@ -12,7 +13,7 @@ public class Turn {
 	private final List<Player> players;								//The players of the game.
 	private int currentPlayer;										//The current player.
 	private int finalPlayer;										//The player who has built all emporiums available first.
-	private Action action;											//The action of the turn.
+	private GameAction action;											//The action of the turn.
 	private final Board board;
 	private int mainIndex;											//Main action's counter.
 	private boolean mainAction;										//Authorization of the main action.
@@ -58,7 +59,7 @@ public class Turn {
 	/**
 	 * Sets the action to do.
 	 */
-	public void setAction(Action action){
+	public void setAction(GameAction action){
 		this.action=action;
 	}
 	

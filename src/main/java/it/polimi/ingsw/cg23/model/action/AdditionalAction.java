@@ -9,30 +9,15 @@ import it.polimi.ingsw.cg23.model.Player;
  *
  * @author Vincenzo
  */
-public class AdditionalAction implements Action {
-	
-	private final boolean main;
+public class AdditionalAction extends GameAction {
 	
 	
 	/**
 	 * the constructor set the boolean main to false
 	 */
 	public AdditionalAction() {
-		this.main = false;
+		super(false);
 	}
-	
-
-
-	/**
-	 * @return the main
-	 */
-	@Override
-	public boolean isMain() {
-		return main;
-	}
-
-
-
 
 	/**
 	 * switch addictionalAction in true 

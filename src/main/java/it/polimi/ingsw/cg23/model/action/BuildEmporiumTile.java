@@ -13,11 +13,10 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  * @author Vicnenzo
  */
-public class BuildEmporiumTile implements Action {
+public class BuildEmporiumTile extends GameAction {
 	
 	private final BusinessPermitTile card;
 	private final int cityID; 						//wich city the player choose from the ones on the card
-	private final boolean main;
 
 	
 	/**
@@ -28,22 +27,11 @@ public class BuildEmporiumTile implements Action {
 	 * @param cityID
 	 */
 	public BuildEmporiumTile(BusinessPermitTile card, int cityID) {
+		super(true);
 		this.card = card;
 		this.cityID = cityID;
-		this.main = true;
 	}
 	
-
-
-	/**
-	 * @return the main
-	 */
-	@Override
-	public boolean isMain() {
-		return main;
-	}
-
-
 	/**
 	 * @return the city
 	 */

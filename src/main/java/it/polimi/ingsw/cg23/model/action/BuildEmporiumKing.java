@@ -17,31 +17,25 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  * 
  * @author Vincenzo
  */
-public class BuildEmporiumKing implements Action {
+public class BuildEmporiumKing extends GameAction {
 	
-	private final boolean main;
 	private final List<PoliticCard> cards;
 	private List<PoliticCard> discardedCards = new ArrayList<>();
 	private final City destination;
-	
-	
-/**
- * the constructor set the variable of the class: main is set to true, cards and destination are
- * set as the parameter given to the method
- * 
- * @param cards
- * @param destination
- */
+
+	/**
+	 * the constructor set the variable of the class: main is set to true, cards and destination are
+	 * set as the parameter given to the method
+	 * 
+	 * @param cards
+	 * @param destination
+	 */
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
-		this.main = true;
+		super(true);
 		this.cards = cards;
 		this.destination = destination;
 	}
-	
-	@Override
-	public boolean isMain() {
-		return main;
-	}
+
 
 	/**
 	 * runAction control how many match there are between cards and councillors, how many jolly there are

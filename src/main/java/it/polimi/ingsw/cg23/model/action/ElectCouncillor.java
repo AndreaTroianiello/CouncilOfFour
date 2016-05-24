@@ -15,12 +15,11 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  *@author Vincenzo
  */
-public class ElectCouncillor implements Action{
+public class ElectCouncillor extends GameAction{
 	
 	private final Color councillor;
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
-	private final boolean main;
 	
 	/**
 	 * the constructor set the variables of the class: it set the main to true, and the other 
@@ -31,24 +30,12 @@ public class ElectCouncillor implements Action{
 	 * @param king
 	 */
 	public ElectCouncillor(Color councillor, Region region, boolean king) {
+		super(false);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
-		this.main = true;
 	}
 	
-	
-
-	/**
-	 * @return the main
-	 */
-	@Override
-	public boolean isMain() {
-		return main;
-	}
-
-
-
 	/**
 	 * @return the king
 	 */
