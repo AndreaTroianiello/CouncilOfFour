@@ -26,13 +26,13 @@ public class CliInterface {
 	private String[][] cityInfo;//array multidim con city name, color, link, id, bonus, zone
 	
 	public CliInterface(){
-		lettureXml=new ReadCittaXml();
-		costructionXml=new ReadCostructionXml();
-		nt=new ReadNobilityTrackXml();
+		this.lettureXml=new ReadCittaXml();
+		this.costructionXml=new ReadCostructionXml();
+		this.nt=new ReadNobilityTrackXml();
 		
-		citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");
-		cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");
-		cityInfo=new String[citynum][cityNodeNumber];
+		this.citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");
+		this.cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");
+		this.cityInfo=new String[citynum][cityNodeNumber];
 	}
 	
 	/**

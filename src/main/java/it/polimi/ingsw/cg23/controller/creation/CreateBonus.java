@@ -21,10 +21,16 @@ import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreateBonus {
-	List <Bonus> bonusList=new ArrayList<>();//lista di bonus
+	
 	CliInterface cl=new CliInterface();
-	String endpath="ConfigurazionePartita.xml";//nome del file che contine le info della citta'
-	String[][] cityInfo=cl.leggiXml(endpath);//array con le informazioni delle citta'
+	
+	private String[][] cityInfo;//array con le informazioni delle citta'
+	private List <Bonus> bonusList;//lista di bonus
+	
+	public CreateBonus(String endpath){
+		this.cityInfo=cl.leggiXml(endpath);
+		this.bonusList=new ArrayList<>();
+	}
 	
 	/**
 	 * aggiunta di bonus alla citta'

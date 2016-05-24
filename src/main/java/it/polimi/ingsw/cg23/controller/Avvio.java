@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 public class Avvio {
 	CliInterface cl=new CliInterface();
 	Setting s=new Setting();
-	CreateBonus cb=new CreateBonus();
+	CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
 	CreateCostruction cc=new CreateCostruction();
 	CreateCouncillor cco=new CreateCouncillor();
 	CreatePlayer cp=new CreatePlayer();
@@ -149,6 +149,10 @@ public class Avvio {
 		s.printList(tipi);
 	}
 
+	/**
+	 * 
+	 * @return the board
+	 */
 	public Board getBoard(){
 		return board;
 	}

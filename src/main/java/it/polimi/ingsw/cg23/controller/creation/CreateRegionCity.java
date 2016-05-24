@@ -11,19 +11,20 @@ import it.polimi.ingsw.cg23.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreateRegionCity {
-	List <Region> regioni = new ArrayList<>();//lista regioni
-	List <City> citta = new ArrayList<>();//lista citta
 	CliInterface cl=new CliInterface();
 	Setting s=new Setting();
-	CreateBonus cb=new CreateBonus();
+	CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
 	
+	private List <Region> regioni;//lista regioni
+	private List <City> citta;//lista citta
 	private String endpath;//nome del file che contine le info della citta'
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	
 	public CreateRegionCity(String endpath){
-		//endpath="ConfigurazionePartita.xml";
-		this.endpath=endpath;
-		cityInfo=cl.leggiXml(endpath);
+		this.citta = new ArrayList<>();
+		this.regioni = new ArrayList<>();
+		this.endpath=endpath;//endpath e' il nome del file xml da leggere
+		this.cityInfo=cl.leggiXml(endpath);
 	}
 	
 	/**

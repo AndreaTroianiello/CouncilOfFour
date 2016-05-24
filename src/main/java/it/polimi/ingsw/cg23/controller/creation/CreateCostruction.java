@@ -9,7 +9,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreateCostruction {
 
-	private CreateBonus cb=new CreateBonus();
+	private CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
 	private CliInterface cl=new CliInterface();
 	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
 	
