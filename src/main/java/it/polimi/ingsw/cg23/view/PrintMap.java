@@ -8,7 +8,7 @@ import it.polimi.ingsw.cg23.model.components.King;
 
 public class PrintMap {
 	CliInterface cl=new CliInterface();
-	
+
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
@@ -41,11 +41,12 @@ public class PrintMap {
 				else if(k==2)
 					kk=m;//assegno a kk il valore della zona "montagna" in base a k
 				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")"+city.get(kk).getEmporiums()+"";//recupero le informazioni dall'array
-				
+
 				String citybonus=cityBonus(city.get(kk));//bonus della citta'
 
 				newcity+="("+citybonus+")";//aggiungo alla nuova citta' i suoi bonus
 				String kingCity=king.getCity().getName();//nome della citta' del re
+
 				if(kingCity.equals(city.get(kk).getName())){//se la città e' quella che sta ciclando la segno
 					newcity=newcity.substring(0,newcity.length()-2)+"KING";//la citta del re non ha bonus
 					plancia+=addSpace(newcity, space);
@@ -58,7 +59,7 @@ public class PrintMap {
 		cl.print("",plancia);//stampo la plancia di gioco
 		//mapDraw(city);
 	}
-	
+
 	/**
 	 * convert all the city bonus to a string
 	 * @param city, the city you want to have the bonus
@@ -66,7 +67,7 @@ public class PrintMap {
 	 */
 	public String cityBonus(City city){
 		String bonus="";
-		
+
 		for(int i=0; i<city.getToken().size(); i++){//ciclo che scorre i bonus di una citta'
 			bonus+=city.getToken().get(i);//ritorna il nome del bonus
 			bonus+=", ";
@@ -96,7 +97,7 @@ public class PrintMap {
 		}
 		return percorsi;
 	}
-	
+
 	/**
 	 * @param nome the String you want to extend
 	 * @param totalSpace the total length you need (string + space)
@@ -129,7 +130,7 @@ public class PrintMap {
 		}
 		return numberExtended;
 	}
-	
+
 	/**
 	 * calculate the number of digits in a number
 	 * @param number, the number you want to calculate the digits
@@ -148,22 +149,111 @@ public class PrintMap {
 		}
 		return count;
 	}
-	
-	/**
-	 * create the card draw
-	 * @param citta, the city list
-	 */
-	public void mapDraw(List<City>citta){
-		int space=30;
-		for(int i=0; i<citta.size(); i++){
-		String carta="";
-		String riga1="-------------------------------\n";//copertura
-		String riga2=addSpace("|"+citta.get(i).getName(),space)+"|\n";//nome citta'
-		String riga3=addSpace("|"+citta.get(i).getType(),space)+"|\n";//tipo citta'
-		String riga4=addSpace("|"+cityBonus(citta.get(i)),space)+"|\n";//bonus citta'
-		String riga5="-------------------------------";
-		carta=riga1+riga2+riga3+riga4+riga5+"\n";
-		//System.out.print(carta);
+
+
+	public void createMapDraw(List<City> city, List<Player> giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
+		String plancia="\n";//la stringa che stampa la plancia di gioco
+		int space=50;//spazio da mettere tra una regione e l'altra
+		plancia+=addSpace("COSTA", space);//nomi delle regioni
+		plancia+=addSpace("COLLINA", space);
+		plancia+=addSpace("MONTAGNA", space);
+		plancia+="\n";
+		int i;
+		int regionNumber=cl.regionNumber(city);//recupera il numero di regioni
+		int c=city.size()/regionNumber;
+		int m=city.size()/regionNumber*2;//posizioni delle zone nella lista 
+		for(i=0; i<city.size()/regionNumber; i++,c++,m++){//ciclo che scorre le citta' per regione da stampare 5
+			/* i posizione citta' costa
+			 * c posizione citta' collina
+			 * m posizione citta' montagna
+			 */
+			int minus=40;
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
+				plancia+=addSpace(addMinus(minus), space);
+			}
+			plancia+="\n";
+
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge la il nome della citta'
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String name;
+				if(king.getCity().getName().equals(city.get(kk).getName())){
+					name=addSpace("|"+city.get(kk).getName()+" - "+city.get(kk).getId(), minus-1)+"|";
+					name=name.substring(0, name.length()-10);
+					name+="KING     |";
+				}
+				else
+					name=addSpace("|"+city.get(kk).getName()+" - "+city.get(kk).getId(), minus-1)+"|";
+
+				plancia=plancia+addSpace(name, space);
+			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge il tipo(colore) della citta'
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String tipo=addSpace("|"+city.get(kk).getType(), minus-1)+"|";
+				plancia=plancia+addSpace(tipo, space);
+			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i bonus
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String bonus=addSpace("|"+cityBonus(city.get(kk)), minus-1)+"|";
+				plancia=plancia+addSpace(bonus, space);
+			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge gli empori
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String bonus=addSpace("|Empori:"+city.get(kk).getEmporiums(), minus-1)+"|";
+				plancia=plancia+addSpace(bonus, space);
+			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
+				plancia+=addSpace(addMinus(minus), space);
+			}
+			plancia+="\n";
+
 		}
+		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		cl.print("",plancia);//stampo la plancia di gioco
 	}
+
+	/**
+	 * return a string with the specified number of minus -
+	 * @param number, the number of minus you want
+	 * @return a string with minus
+	 */
+	public String addMinus(int number){
+		String minus="";
+		for(int i=0; i<number; i++){
+			minus+="-";
+		}
+		return minus;
+	}
+
 }

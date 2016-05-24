@@ -149,7 +149,7 @@ public class CliInterface {
 	 * @param k, the king
 	 */
 	public void createMap(List<City>city, List<Player>giocatori, King k){
-		new PrintMap().createMap(city, giocatori, k);
+		new PrintMap().createMapDraw(city, giocatori, k);
 	}
 	
 	

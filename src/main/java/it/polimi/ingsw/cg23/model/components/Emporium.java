@@ -44,7 +44,7 @@ public class Emporium {
 	 */
 	@Override
 	public String toString() {
-		return "Emporium [Player=" + player.getUser() + "]";
+		return player.getUser();
 	}
 	
 }

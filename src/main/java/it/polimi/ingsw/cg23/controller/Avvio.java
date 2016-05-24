@@ -123,8 +123,8 @@ public class Avvio {
 		cl.print("", "-Setto il Nobility track");
 		
 		//----------plancia----------
-		cl.print("", "-Creo la plancia di gioco\n");
-		cl.createMap(citta, giocatori,king);//stampa la plancia di gioco dalla lista
+		cl.print("", "-Creo la plancia di gioco");
+		cl.createMap(citta, giocatori, king);//stampa la plancia di gioco dalla lista
 		//printAll();//stampa tutte le liste
 	}
 	
