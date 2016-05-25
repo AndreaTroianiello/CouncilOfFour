@@ -57,7 +57,6 @@ public class PrintMap {
 		}
 		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		cl.print("",plancia);//stampo la plancia di gioco
-		//mapDraw(city);
 	}
 
 	/**
@@ -150,7 +149,12 @@ public class PrintMap {
 		return count;
 	}
 
-
+	/**
+	 * create the map with draw card
+	 * @param city, the city list
+	 * @param giocatori, the player list
+	 * @param king, the king
+	 */
 	public void createMapDraw(List<City> city, List<Player> giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 		String plancia="\n";//la stringa che stampa la plancia di gioco
 		int space=40;//spazio da mettere tra una regione e l'altra
@@ -220,6 +224,19 @@ public class PrintMap {
 			}
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
+			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i vicini della citta'
+				int kk=0;//salvo il valore di k
+				if(k==0)
+					kk=i;//assegno a kk il valore della zona "costa" in base a k
+				else if(k==1)
+					kk=c;//assegno a kk il valore della zona "collina" in base a k
+				else if(k==2)
+					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				String tipo=addSpace("|"+getNeighbourID(city.get(kk)), minus-1)+"|";
+				plancia=plancia+addSpace(tipo, space);
+			}
+			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
+			
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge gli empori
 				int kk=0;//salvo il valore di k
 				if(k==0)
@@ -234,7 +251,7 @@ public class PrintMap {
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
-				plancia+=addSpace(addMinus(minus), space);
+				plancia+=addSpace("|"+addMinus(minus-2)+"|", space);
 			}
 			plancia+="\n";
 
@@ -242,7 +259,22 @@ public class PrintMap {
 		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		cl.print("",plancia);//stampo la plancia di gioco
 	}
-
+	
+	/**
+	 * trasmor a list of city in a string of the city id
+	 * @param c, the city
+	 * @return a string with the id of the city
+	 */
+	public String getNeighbourID(City c){
+		List<City> vicini=c.getNeighbors();
+		String viciniId="Vicini: ";
+		for(int i=0; i<vicini.size(); i++){
+			viciniId+=Character.toString(vicini.get(i).getId());
+			viciniId+=", ";
+		}
+		return viciniId.substring(0, viciniId.length()-2);
+	}
+	
 	/**
 	 * return a string with the specified number of minus -
 	 * @param number, the number of minus you want
@@ -251,9 +283,8 @@ public class PrintMap {
 	public String addMinus(int number){
 		String minus="";
 		for(int i=0; i<number; i++){
-			minus+="-";
+			minus+="_";
 		}
 		return minus;
 	}
-
 }
