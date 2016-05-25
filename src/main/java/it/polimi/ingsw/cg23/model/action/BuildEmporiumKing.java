@@ -62,6 +62,7 @@ public class BuildEmporiumKing extends GameAction {
 				try {
 					player.getRichness().setCoins(coin+payMatch);
 					this.cards.addAll(discardedCards);
+					return;
 				} catch (NegativeNumberException e1) {
 					e1.printStackTrace();
 				}

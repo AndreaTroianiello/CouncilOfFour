@@ -20,6 +20,7 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class BuildEmporiumKingTest {
 	
@@ -37,7 +38,9 @@ public class BuildEmporiumKingTest {
 
 
 
-
+	/**
+	 * it tests if HowManyJolly() returns the number of jolly  
+	 */
 	@Test
 	public void testHowManyJollyShouldReturn1IfIHave1Jolly() { 
 		PoliticCard card1 = new PoliticCard(null, true);
@@ -51,6 +54,9 @@ public class BuildEmporiumKingTest {
 		assertEquals(jolly, 1);
 	}
 	
+	/**
+	 * it tests if HowManyMatch() returns the number of match
+	 */
 	@Test
 	public void testHowManyMatchShouldReturn1IfIHave1Match() { 
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
@@ -69,6 +75,9 @@ public class BuildEmporiumKingTest {
 		assertEquals(match, 1);
 	}
 	
+	/**
+	 * it tests if it returns 0 when the payment is successful 
+	 */
 	@Test
 	public void testTryPaymentShouldReturn0IfNotNegative(){
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
@@ -76,6 +85,9 @@ public class BuildEmporiumKingTest {
 		assertEquals(number, 0);
 	}
 	
+	/**
+	 * it tests if it returns -1 when the payment isn't successful 
+	 */
 	@Test
 	public void testTryPaymentShouldReturnMinus1IfItIsNegative(){
 		this.cards = new ArrayList<>();
@@ -85,6 +97,52 @@ public class BuildEmporiumKingTest {
 		discardedCards.add(new PoliticCard(null, true));
 		int number = action.tryPayment(player, 6, 7);
 		assertEquals(number, -1);
+	}
+	
+	/**
+	 * it tests if payCoins() works properly when there are 0 or 4 match
+	 */
+	@Test
+	public void testPayCoinsShouldReturn0IfMatchIs4AndMinus1IfMatchIs0(){
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		int payment = action.payCoins(0, player);
+		assertEquals(payment, -1);
+		payment = action.payCoins(4, player);
+		assertEquals(payment, 0);
+	}
+	
+	/**
+	 * it tests if payCoins() works properly when there are from 1 to 3 match
+	 */
+	@Test
+	public void testPayCoinsShouldReturn7IfThereAre2Match(){
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		int payment = action.payCoins(2, player);
+		assertEquals(payment, 7);
+	}
+	
+	/**
+	 * it tests if payCoins() works properly when the palyer doesn't have enough money
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney() throws NegativeNumberException{
+		this.cards = new ArrayList<>();
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		this.player.getRichness().setCoins(0);
+		int payment = action.payCoins(1, player);
+		assertEquals(payment, -1);
+	}
+	
+	@Test
+	public void testRunActionShouldChangeTheKingCityToDestinationIfAllIsFine(){
+		player = new Player("player 1", 10, 100, new NobilityTrack(3));
+		this.destination = new City('I', "Iuvenar", new Type(null, 0, null), new Region(null, 0, null, null));
+		this.cards = new ArrayList<>();
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
+		action.runAction(player, board);
+		City city = board.getKing().getCity();
+		assertEquals(city, destination);
 	}
 
 }
