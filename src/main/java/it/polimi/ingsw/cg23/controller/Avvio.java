@@ -10,6 +10,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
@@ -38,9 +39,11 @@ public class Avvio {
 	private List <BusinessPermitTile> costructionCard;//lista dei bonus
 	private List <Type> tipi;//lista dei bonus
 	private Board board;
+	private BonusKing bk;
 
 	public Avvio(){
 		this.board=null;
+		this.bk=cb.bonusKing();
 	}
 
 	/**
@@ -58,7 +61,7 @@ public class Avvio {
 		cl.print("", "-Creo i giocatori");
 
 		//----------creo i type----------
-		tipi=s.createType();//creo i type (colori) delle citta'
+		tipi=s.createType(bk);//creo i type (colori) delle citta'
 		cl.print("", "-Creo i type");
 		
 		//----------board creazione----------
@@ -71,13 +74,12 @@ public class Avvio {
 
 		//----------regioni----------
 		giocatori=cp.getGiocatori();//recupero la lista dei giocatori dal controller
-		regions=crc.createRegions();//crea le regioni e ne ritorna la lista
+		regions=crc.createRegions(bk);//crea le regioni e ne ritorna la lista
 		cl.print("", "-Creo le regioni");
 		
 		//----------citta'----------
 		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
-			citta=crc.createCities(i, regions.get(i));//recupero le citta' della regione
-			
+			citta=crc.createCities(i, regions.get(i), bk);//recupero le citta' della regione
 		}
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
 			cb.getCityBonus(j, citta.get(j));//aggiungo alla citta' i bonus
@@ -147,6 +149,7 @@ public class Avvio {
 		s.printList(costructionCard);
 		cl.print(tipi.size(),"");
 		s.printList(tipi);
+		cl.print(bk.toString(), "");
 	}
 
 	/**

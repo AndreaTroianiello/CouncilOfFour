@@ -4,14 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * The Deck contains the all politic cards of the game. If you discard a card, it is put in this object.
+ * @author Andrea
+ *
+ */
 public class Deck {
-
-
 
 	private final List<PoliticCard> politicCards ;								//Main deck.
 	private final List<PoliticCard> discardedCards;
 
+	/**
+	 * The constructor of Deck. Initializes the principal list of politic cards and the list of discarded cards
+	 * Also shuffles the principal list.
+	 * @param politicCards
+	 */
 	public Deck(List<PoliticCard> politicCards){
 		this.politicCards=politicCards;
 		this.discardedCards=new ArrayList<>();
@@ -34,7 +41,7 @@ public class Deck {
 	 * 
 	 * @param cards the list of cards to discard.
 	 */
-	public void discardCars(List<PoliticCard> cards){
+	public void discardCards(List<PoliticCard> cards){
 		discardedCards.addAll(cards);
 	}
 	

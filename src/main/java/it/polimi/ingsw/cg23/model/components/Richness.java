@@ -2,9 +2,18 @@ package it.polimi.ingsw.cg23.model.components;
 
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * The Richness contains the coins of the player.
+ * @author Andrea
+ *
+ */
 public class Richness {
 	private int coins;
 
+	/**
+	 * The constructor of richness.
+	 * @param coins The initial coins of the player.
+	 */
 	public Richness(int coins) {
 		this.coins = coins;
 	}

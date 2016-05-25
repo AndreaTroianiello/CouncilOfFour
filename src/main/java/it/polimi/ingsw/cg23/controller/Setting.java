@@ -10,6 +10,7 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityBox;
@@ -86,11 +87,11 @@ public class Setting {
 	 * create the type(color) of the city
 	 * @return a list with all the types
 	 */
-	public List<Type> createType(){
+	public List<Type> createType(BonusKing bk){
 		String[][] array=cl.getType(endpath);//recupero i type dall'xml
 		for(int i=0; i<array.length; i++){
 			int number=Integer.parseInt(array[i][1]);
-			Type t=new Type(array[i][0], number, cb.bonusKing());
+			Type t=new Type(array[i][0], number, bk);
 			typeList.add(t);
 		}
 		return typeList;

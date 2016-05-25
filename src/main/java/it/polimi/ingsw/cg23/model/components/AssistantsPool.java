@@ -2,9 +2,18 @@ package it.polimi.ingsw.cg23.model.components;
 
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
+/**
+ * The assistants pool contains the player's assistants.
+ * @author Andrea
+ *
+ */
 public class AssistantsPool {
 	private int assistants;
 
+	/**
+	 * The constructor of assistants pool.
+	 * @param assistants The initial number of assistants.
+	 */
 	public AssistantsPool(int assistants) {
 		this.assistants = assistants;
 	}

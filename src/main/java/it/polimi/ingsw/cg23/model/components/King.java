@@ -2,10 +2,19 @@ package it.polimi.ingsw.cg23.model.components;
 
 import it.polimi.ingsw.cg23.model.City;
 
+/**
+ * The pawn king is used to build a emporium in the king's city.
+ * @author Andrea
+ *
+ */
 public class King {
 	private City city;
 	private final Council council;
 	
+	/**
+	 * The constructor of the pawn King.
+	 * @param city The initial city of the king.
+	 */
 	public King(City city){
 		this.city=city;
 		this.council= new Council();

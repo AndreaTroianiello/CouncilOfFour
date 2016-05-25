@@ -88,7 +88,7 @@ public class BuyPermitTile extends GameAction {
 			coins = coins - jolly;
 			player.getRichness().setCoins(coins);
 			player.addAvailableBusinessPermit(chosenTile);
-			board.getDeck().discardCars(discardedCards);
+			board.getDeck().discardCards(discardedCards);
 			this.region.getDeck().changeShowedDeck();
 		} catch (NegativeNumberException e) {
 			try {
@@ -149,7 +149,7 @@ public class BuyPermitTile extends GameAction {
 			}
 		}
 		cards.removeAll(discardedCards);
-		board.getDeck().discardCars(discardedCards);
+		board.getDeck().discardCards(discardedCards);
 		
 		result[0] = cardNumber;
 		result[1] = jollyNumber;

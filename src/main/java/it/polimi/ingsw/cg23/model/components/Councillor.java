@@ -2,9 +2,19 @@ package it.polimi.ingsw.cg23.model.components;
 
 import java.awt.Color;
 
+/**
+ * The councillor can be used in a council and can be matched a politic card of the same color.
+ * @author Andrea
+ *
+ */
 public class Councillor {
 	private final Color color;
 	
+	/**
+	 * The constructor of councillor.
+	 * 
+	 * @param color The color of councillor.
+	 */
 	public Councillor(Color color){
 		this.color=color;
 	}

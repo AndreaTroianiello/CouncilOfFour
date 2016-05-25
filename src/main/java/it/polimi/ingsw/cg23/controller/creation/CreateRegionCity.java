@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.controller.Setting;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
@@ -29,8 +30,9 @@ public class CreateRegionCity {
 	
 	/**
 	 * create the regions object and add at the regions list
+	 * @param bk, the bonus king
 	 */
-	public List<Region> createRegions(){
+	public List<Region> createRegions(BonusKing bk){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
 		String[][] regionBonus=cl.getBonusRegion(endpath);
@@ -38,7 +40,7 @@ public class CreateRegionCity {
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			RegionDeck rd=new RegionDeck(2);//creo il regiondeck
 			int regBonus=Integer.parseInt(regionBonus[i][1]);//trasformo i bonus regione in interi
-			Region r=new Region(cityInfo[i*c][5],regBonus,rd,cb.bonusKing());//creo la regione
+			Region r=new Region(cityInfo[i*c][5],regBonus,rd,bk);//creo la regione
 			regioni.add(r);//creata una nuova regione e aggiunta alla lista
 		}
 		return regioni;
@@ -47,24 +49,18 @@ public class CreateRegionCity {
 	/**
 	 * create the cities object and add at the citta list
 	 * @param j, the number of the region
+	 * @param r, the region
+	 * @param bk, the bonus king
 	 */
-	public List<City> createCities(int j, Region r){
+	public List<City> createCities(int j, Region r, BonusKing bk){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
-		int ii=0;
-		int i=0;
-		if(j==0)
-			ii=i;//se e' la prima regione le citta' partono da 0
-		if(j==1)
-			ii=cityInfo.length/regionNumber;//se e' la seconda regione le citta' partono da 5(si autoregolano)
-		if(j==2)
-			ii=cityInfo.length/regionNumber*2;//se e' la terza regione le citta' partono da 10(si autoregolano)
-
-		for(i=0; i<cityInfo.length/regionNumber; i++, ii++){//ciclo che scorre le citta' di una regione
-			List<Type> typeList=s.createType();
+		
+		for(int i=0; i<cityInfo.length/regionNumber; i++){//ciclo che scorre le citta' di una regione
+			int ii=j*cityInfo.length/regionNumber+i;
+			List<Type> typeList=s.createType(bk);//lista dei tipi(colori) delle citta'
 			
 			for(int k=0; k<typeList.size(); k++){
 				if(cityInfo[ii][1].equals(typeList.get(k).getName())){
-					
 					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], typeList.get(k), r);//creo la citta'
 					citta.add(c);//aggiungo la citta' alla lista delle citta'
 					break;
@@ -76,7 +72,6 @@ public class CreateRegionCity {
 
 	/**
 	 * set the neighbors of a city
-	 * @param c a city
 	 */
 	public void addNeighbors(){
 		for(int h=0; h<citta.size(); h++){//scorre le citta' a cui aggiungere i vicini
@@ -88,6 +83,11 @@ public class CreateRegionCity {
 		}
 	}
 
+	/**
+	 * broken the addNeighbors() function that there was 4 innest
+	 * @param i, the xml city
+	 * @param h, the city to add neighbors
+	 */
 	public void nearVicini(int i, int h){//rompe la funzione addNeighbors che aveva troppi innesti
 		for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
 			char link=cityInfo[i][2].charAt(k);

@@ -7,6 +7,11 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.action.GameAction;
 import it.polimi.ingsw.cg23.model.components.Deck;
 
+/**
+ * The turn governs the actions of a player set.
+ * @author Andrea
+ *
+ */
 public class Turn {
 	
 	private final List<Player> players;								//The players of the game.
@@ -18,7 +23,11 @@ public class Turn {
 	private boolean mainAction;										//Authorization of the main action.
 	private boolean secondAction;									//Authorization of the second action
 	
-	
+	/**
+	 * The constructor of Turn.
+	 * @param players The list of game's players.
+	 * @param board The game's board.
+	 */
 	public Turn(List<Player> players,Board board){
 		this.players=players;
 		this.board=board;

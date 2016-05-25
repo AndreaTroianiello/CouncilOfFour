@@ -6,6 +6,13 @@ import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
 
+/**
+ * Type is the color of a city. Many cities have in common the same type's object.
+ * A type is characterized by a name, a bonus and contains a list of city.
+ * 
+ * @author Andrea
+ *
+ */
 public class Type {
 
 
@@ -15,6 +22,12 @@ public class Type {
 	private final List<City> cities;											//The list of cities contained.
 	private boolean bonusAvailable;												//Status of the bonus.
 	
+	/**
+	 * The constructor of type. Initializes the type's variables.
+	 * @param name The name/color of type.
+	 * @param points The number of victory points that the type's bonus gives.
+	 * @param bonusKing The bonus king.
+	 */
 	public Type(String name, int points, BonusKing bonusKing) {
 		this.name = name;
 		this.bonus = new BonusVictoryPoints(points);

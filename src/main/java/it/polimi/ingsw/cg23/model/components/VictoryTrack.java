@@ -1,8 +1,16 @@
 package it.polimi.ingsw.cg23.model.components;
 
+/**
+ * The victory track contains the victory points of the player.
+ * @author Andrea
+ *
+ */
 public class VictoryTrack {
 	private int victoryPoints;
 
+	/**
+	 * The constructot of VictoryTrack. The victory points are default to zero.
+	 */
 	public VictoryTrack() {
 		this.victoryPoints = 0;
 	}
