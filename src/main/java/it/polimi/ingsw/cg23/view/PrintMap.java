@@ -153,7 +153,7 @@ public class PrintMap {
 
 	public void createMapDraw(List<City> city, List<Player> giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 		String plancia="\n";//la stringa che stampa la plancia di gioco
-		int space=50;//spazio da mettere tra una regione e l'altra
+		int space=40;//spazio da mettere tra una regione e l'altra
 		plancia+=addSpace("COSTA", space);//nomi delle regioni
 		plancia+=addSpace("COLLINA", space);
 		plancia+=addSpace("MONTAGNA", space);
@@ -167,7 +167,7 @@ public class PrintMap {
 			 * c posizione citta' collina
 			 * m posizione citta' montagna
 			 */
-			int minus=40;
+			int minus=32;
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
 				plancia+=addSpace(addMinus(minus), space);
 			}
@@ -184,8 +184,8 @@ public class PrintMap {
 				String name;
 				if(king.getCity().getName().equals(city.get(kk).getName())){
 					name=addSpace("|"+city.get(kk).getName()+" - "+city.get(kk).getId(), minus-1)+"|";
-					name=name.substring(0, name.length()-10);
-					name+="KING     |";
+					name=name.substring(0, name.length()-7);
+					name+="KING  |";
 				}
 				else
 					name=addSpace("|"+city.get(kk).getName()+" - "+city.get(kk).getId(), minus-1)+"|";
