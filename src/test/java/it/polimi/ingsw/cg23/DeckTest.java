@@ -28,6 +28,7 @@ public class DeckTest {
 		for(int index=0;index<10;++index)
 			deck.draw();
 		assertTrue(deck.deckIsEmpty());
+		assertNull(deck.draw());
 	}
 	
 	@Test
@@ -39,6 +40,10 @@ public class DeckTest {
 		deck.discardCards(discardedCards);
 		deck.draw();
 		assertFalse(deck.deckIsEmpty());
+		for(int index=0;index<10;++index)
+			deck.draw();
+		assertTrue(deck.deckIsEmpty());
+		assertNull(deck.draw());
 	}
 
 }

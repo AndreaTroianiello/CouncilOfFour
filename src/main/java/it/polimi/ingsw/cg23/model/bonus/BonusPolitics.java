@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.model.bonus;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.components.PoliticCard;
 
 /**
  * the class of the bonus that allows to draw a politic card from the deck. It contains the number of card to 
@@ -71,9 +72,11 @@ public class BonusPolitics implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		for(int i=0; i<cardNumber; i++)
-			player.addPoliticCard(this.board.getDeck().draw());			//draw a card from the politic's deck
-
+		for(int i=0; i<cardNumber; i++){
+			PoliticCard card=this.board.getDeck().draw();
+			if(card!=null)
+				player.addPoliticCard(card);			//draw a card from the politic's deck
+		}
 	}
 	
 	@Override

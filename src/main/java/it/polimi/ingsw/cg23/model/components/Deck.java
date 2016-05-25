@@ -33,6 +33,8 @@ public class Deck {
 	public PoliticCard draw(){
 		if(deckIsEmpty())
 			changeDeck();
+		if(discardedCards.isEmpty()&& deckIsEmpty())
+			return null;
 		return politicCards.remove(0);
 	}
 	

@@ -6,6 +6,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.action.GameAction;
 import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.PoliticCard;
 
 /**
  * The turn governs the actions of a player set.
@@ -81,13 +82,13 @@ public class Turn {
 	 }
 	
 	/**
-	 * The player draws a politic card. If the deck is empty, the turn changes it.
+	 * The player draws a politic card.
 	 */
 	public void draw (){
 		Deck deck=board.getDeck();
-		if(deck.deckIsEmpty())
-			deck.changeDeck();
-		players.get(currentPlayer).addPoliticCard(deck.draw());
+		PoliticCard card=deck.draw();
+		if(card!=null)
+			players.get(currentPlayer).addPoliticCard(deck.draw());
 	}
 	
 	/**
