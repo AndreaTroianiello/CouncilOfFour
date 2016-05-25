@@ -30,7 +30,7 @@ public class Setting {
 	
 	public Setting(){
 		this.bonusList=cb.bonusList(null);
-		this.nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));
+		this.nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//configurazione bovility track
 		this.endpath="ConfigurazionePartita.xml";
 		this.typeList=new ArrayList<>();
 	}
@@ -40,7 +40,7 @@ public class Setting {
 	 */
 	public void printList(List<?>lista){
 		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
-			cl.print("",lista.get(i).toString());
+			cl.print("",lista.get(i).toString());//stampa la lista
 		}
 	}
 
@@ -53,12 +53,12 @@ public class Setting {
 		for(int i=0; i<nobilityInfo.length; i++){//ciclo che scorre il numero di caselle presenti nel file xml
 			String b;//contiene il nome del bonus
 			StringTokenizer st = new StringTokenizer(nobilityInfo[i][1]);//string tokenizer del nome dei bonus
-			while(st.hasMoreTokens()){
+			while(st.hasMoreTokens()){//ciclo finche' ci sono token
 				String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 				b=name.substring(1, name.length());//isolo il nome del bonus
 				int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
 
-				nobilityBonus(b, number, nobilityInfo[i][0]);
+				nobilityBonus(b, number, nobilityInfo[i][0]);//riempie il nobility track con i bonus
 			}
 		}
 	}
@@ -89,12 +89,12 @@ public class Setting {
 	 */
 	public List<Type> createType(BonusKing bk){
 		String[][] array=cl.getType(endpath);//recupero i type dall'xml
-		for(int i=0; i<array.length; i++){
-			int number=Integer.parseInt(array[i][1]);
-			Type t=new Type(array[i][0], number, bk);
-			typeList.add(t);
+		for(int i=0; i<array.length; i++){//scorre i type che ci sono nell'xml
+			int number=Integer.parseInt(array[i][1]);//numero di victory points che da il tipo
+			Type t=new Type(array[i][0], number, bk);//crea un nuovo tipo
+			typeList.add(t);//aggiungo il tipo alla lista dei tipi
 		}
-		return typeList;
+		return typeList;//ritorna la lista dei tipi
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class Setting {
 			politics.add(new PoliticCard(null,true));//creo una nuova carta politica jolly e la laggiungo alla lista
 		
 		}
-		return politics;
+		return politics;//ritorna la lista dei tipi
 	}
 
 	/**
@@ -132,12 +132,11 @@ public class Setting {
 		arrayColori[3]=Color.BLUE;
 		arrayColori[4]=Color.ORANGE;
 		arrayColori[5]=Color.PINK;
-		return arrayColori;
+		return arrayColori;//ritorna un array con i possibili colori
 	}
 
 
 	/**
-	 * 
 	 * @param dec, the deck
 	 * @param giocatori, a list with the players
 	 * @param cardsNumber, the number of cards to drow for each player
@@ -145,10 +144,9 @@ public class Setting {
 	public void pesca(Deck dec, List<Player> giocatori, int cardsNumber){
 		for(int i=0; i<giocatori.size(); i++){//ciclo che scorre i giocatori
 			for(int k=0; k<cardsNumber; k++){//ciclo che scorre il numero di carte
-				giocatori.get(i).addPoliticCard(dec.draw());
+				giocatori.get(i).addPoliticCard(dec.draw());//aggiungo la carta politica al giocatore
 			}
 		}
-
 	}
 
 	/**
@@ -159,7 +157,6 @@ public class Setting {
 	public King king(List<City>citta){
 		for(int i=0; i<citta.size(); i++){//scorre le citta' per cercare quella del re
 			if("purple".equals(citta.get(i).getType())){//la citta' del re e' di colore purple
-				
 				return new King(citta.get(i));//ritorno il re con la citta' trovata
 			}
 		}

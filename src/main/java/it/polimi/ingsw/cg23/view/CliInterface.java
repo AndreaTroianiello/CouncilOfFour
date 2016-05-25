@@ -18,7 +18,7 @@ import it.polimi.ingsw.cg23.model.components.King;
 public class CliInterface {
 	private ReadCittaXml lettureXml;//classe che legge l'xml delle citta'
 	private ReadCostructionXml costructionXml;//classe che legge l'xml delle carte costruzione
-	private ReadNobilityTrackXml nt;
+	private ReadNobilityTrackXml nt;//classe che si occupa di leggere il nobility track dall'xml
 
 	Logger logger=Logger.getLogger("my logger");//logger
 	ConsoleHandler handler = new ConsoleHandler();
@@ -32,7 +32,6 @@ public class CliInterface {
 		this.lettureXml=new ReadCittaXml();
 		this.costructionXml=new ReadCostructionXml();
 		this.nt=new ReadNobilityTrackXml();
-		
 		this.citynum=lettureXml.cityNumber("ConfigurazionePartita.xml");
 		this.cityNodeNumber=lettureXml.cityNodeNumber("ConfigurazionePartita.xml");
 		this.cityInfo=new String[citynum][cityNodeNumber];
@@ -54,7 +53,7 @@ public class CliInterface {
 		 * coloumn 4: bonus of the city
 		 * coloumn 5: region of the city
 		 */
-		return cityInfo;
+		return cityInfo;//ritorna l'array con le informazioni delle citta'
 	}
 	
 	/**
@@ -63,7 +62,7 @@ public class CliInterface {
 	 * @return a bidimensional array with the region name and bonus region
 	 */
 	public String[][] getBonusRegion(String endPath){
-		 return lettureXml.getBonusRegion(endPath);
+		 return lettureXml.getBonusRegion(endPath);//ritorna un array con i bonus della regione
 	}
 	
 	/**
@@ -124,8 +123,8 @@ public class CliInterface {
 		handler.setFormatter(new SimpleFormatter());
 		logger.addHandler(handler);
 		handler.setLevel(Level.ALL);
+		
 		System.out.println(testo+" "+ogg);
-
 	}
 
 	/**
@@ -135,11 +134,11 @@ public class CliInterface {
 	 */
 	public int regionNumber(List<City> citta){
 		int regionNumber=0;
-		for(int i=0; i<citta.size()-1; i++){
-			if(citta.get(i).getRegion()!=citta.get(i+1).getRegion())
-				regionNumber++;
+		for(int i=0; i<citta.size()-1; i++){//scorre la lista delle citta'
+			if(citta.get(i).getRegion()!=citta.get(i+1).getRegion())//controlla se le regioni sono uguali
+				regionNumber++;//incrementa il numero di regioni
 		}
-		return regionNumber+1;
+		return regionNumber+1;//ritorna il numero di regioni +1 perchè la prima regione
 	}
 	
 	/**

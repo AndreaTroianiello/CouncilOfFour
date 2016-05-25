@@ -23,23 +23,13 @@ public class PrintMap {
 		gamemap+=addSpace("COLLINA", space);
 		gamemap+=addSpace("MONTAGNA", space);
 		gamemap+="\n";
-		int i;
+		
 		int regionNumber=cl.regionNumber(city);//recupera il numero di regioni
-		int c=city.size()/regionNumber;
-		int m=city.size()/regionNumber*2;//posizioni delle zone nella lista 
-		for(i=0; i<city.size()/regionNumber; i++,c++,m++){//ciclo che scorre le citta' per regione da stampare 5
-			/* i posizione citta' costa
-			 * c posizione citta' collina
-			 * m posizione citta' montagna
-			 */
+		for(int i=0; i<city.size()/regionNumber; i++){//ciclo che scorre le citta' per regione da stampare 5
+
 			for(int k=0; k<regionNumber; k++){//aggiunge le 3 citta', una per ogni regione
-				int kk=0;//salvo il valore di k
-				if(k==0)
-					kk=i;//assegno a kk il valore della zona "costa" in base a k
-				else if(k==1)
-					kk=c;//assegno a kk il valore della zona "collina" in base a k
-				else if(k==2)
-					kk=m;//assegno a kk il valore della zona "montagna" in base a k
+				int kk=i+(city.size()/regionNumber)*k;//salvo il valore di k
+
 				String newcity=city.get(kk).getName()+"("+city.get(kk).getType()+")"+city.get(kk).getEmporiums()+"";//recupero le informazioni dall'array
 
 				String citybonus=cityBonus(city.get(kk));//bonus della citta'
@@ -227,13 +217,13 @@ public class PrintMap {
 	 * @return a string with the id of the city
 	 */
 	public String getNeighbourID(City c){
-		List<City> vicini=c.getNeighbors();
-		String viciniId="Vicini: ";
-		for(int i=0; i<vicini.size(); i++){
-			viciniId+=Character.toString(vicini.get(i).getId());
+		List<City> vicini=c.getNeighbors();//recupero la lista dei vicini della citta'
+		String viciniId="Vicini: ";//stringa che contiene i vicini della citta'
+		for(int i=0; i<vicini.size(); i++){//scorre il numero di vicini della citta'
+			viciniId+=Character.toString(vicini.get(i).getId());//aggiunge alla stringa l'id della citta' vicina
 			viciniId+=", ";
 		}
-		return viciniId.substring(0, viciniId.length()-2);
+		return viciniId.substring(0, viciniId.length()-2);//tolgo gli ultimi due caratteri (virgola e spazio)
 	}
 	
 	/**
@@ -243,8 +233,8 @@ public class PrintMap {
 	 */
 	public String addMinus(int number){
 		String minus="";
-		for(int i=0; i<number; i++){
-			minus+="_";
+		for(int i=0; i<number; i++){//ciclo che scorre la quantita' di meno da aggiungere
+			minus+="_";//aggiungo un meno
 		}
 		return minus;
 	}
