@@ -14,9 +14,11 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.Emporium;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
@@ -29,11 +31,19 @@ public class BuildEmporiumKingTest {
 	private List<PoliticCard> cards;
 	private List<PoliticCard> discardedCards;
 	private City destination;
+	List<Integer> bonusKing = new ArrayList<>();
+	
+	Type type = new Type("purple", 5, new BonusKing(bonusKing));
 
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("player 1", 10, 100, new NobilityTrack(3));
-		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, null, null, new King(null));
+		int n = 5;
+		bonusKing.add(n);	
+		List<Type> types = new ArrayList<>();
+		types.add(type);
+		King king = new King(new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing))));
+		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, types, null, king);
 	}
 
 
@@ -133,16 +143,90 @@ public class BuildEmporiumKingTest {
 		int payment = action.payCoins(1, player);
 		assertEquals(payment, -1);
 	}
-	
+	/**
+	 * it tests if runAction() works properly when all is fine
+	 * @throws NegativeNumberException
+	 */
 	@Test
-	public void testRunActionShouldChangeTheKingCityToDestinationIfAllIsFine(){
-		player = new Player("player 1", 10, 100, new NobilityTrack(3));
-		this.destination = new City('I', "Iuvenar", new Type(null, 0, null), new Region(null, 0, null, null));
+	public void testRunActionShouldChangeTheKingCityToDestinationIfAllIsFine() throws NegativeNumberException{
+		System.out.println("I'M RUNNING THE TEST");
+		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
+		Council council = board.getKing().getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
+		System.out.println(this.board.getKing().getCouncil().toString());
 		this.cards = new ArrayList<>();
+		this.cards.add(card1);
+		this.cards.add(card2);
+		this.player.getRichness().setCoins(100);
+		this.player.setEmporium(new Emporium(this.player));
+		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.board.getKing().getCity().addNeighbor(destination);
+		destination.addNeighbor(this.board.getKing().getCity());
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
 		action.runAction(player, board);
 		City city = board.getKing().getCity();
-		assertEquals(city, destination);
+		assertEquals(destination, city);
+	}
+	
+	/**
+	 * it tests if runAction() works properly when the player doesn't have enough money
+	 */
+	@Test
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney() throws NegativeNumberException{
+		System.out.println("I'M RUNNING THE TEST");
+		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
+		Council council = board.getKing().getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
+		System.out.println(this.board.getKing().getCouncil().toString());
+		this.cards = new ArrayList<>();
+		this.cards.add(card1);
+		this.cards.add(card2);
+		this.player.getRichness().setCoins(0);
+		this.player.setEmporium(new Emporium(this.player));
+		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.board.getKing().getCity().addNeighbor(destination);
+		destination.addNeighbor(this.board.getKing().getCity());
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
+		action.runAction(player, board);
+		City city = board.getKing().getCity();
+		assertEquals(board.getKing().getCity(), city);
+	}
+	
+	
+	/**
+	 * it tests if runAction() works properly when the player doesn't have enough money for the steps
+	 */
+	@Test
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoneyForTheSteps() throws NegativeNumberException{
+		System.out.println("I'M RUNNING THE TEST");
+		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
+		Council council = board.getKing().getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
+		System.out.println(this.board.getKing().getCouncil().toString());
+		this.cards = new ArrayList<>();
+		this.cards.add(card1);
+		this.cards.add(card2);
+		this.player.getRichness().setCoins(10);
+		this.player.setEmporium(new Emporium(this.player));
+		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.board.getKing().getCity().addNeighbor(destination);
+		destination.addNeighbor(this.board.getKing().getCity());
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
+		action.runAction(player, board);
+		City city = board.getKing().getCity();
+		assertEquals(board.getKing().getCity(), city);
 	}
 
 }

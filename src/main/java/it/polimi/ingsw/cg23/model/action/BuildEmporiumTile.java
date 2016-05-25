@@ -11,7 +11,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  * the class of the action that allows to build an emporium by using a permitTile. I contains the BusinessPermitTile
  * that the player chooses, the city-id chosen in the tile and a boolean that show if it is a main action or not.
  *
- * @author Vicnenzo
+ * @author Vincenzo
  */
 public class BuildEmporiumTile extends GameAction {
 	
