@@ -28,7 +28,7 @@ public class Deck {
 	/**
 	 * Draws a politic cards from the main deck.
 	 * 
-	 * @return the first politic card of the main deck (remove it).
+	 * @return the first politic card of the main deck (remove it).Returns null if Deck doesn't contain politic cards.
 	 */
 	public PoliticCard draw(){
 		if(deckIsEmpty())

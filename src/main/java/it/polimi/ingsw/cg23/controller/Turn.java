@@ -18,7 +18,7 @@ public class Turn {
 	private final List<Player> players;								//The players of the game.
 	private int currentPlayer;										//The current player.
 	private int finalPlayer;										//The player who has built all emporiums available first.
-	private GameAction action;											//The action of the turn.
+	private GameAction action;										//The action of the turn.
 	private final Board board; 
 	private int mainIndex;											//Main action's counter.
 	private boolean mainAction;										//Authorization of the main action.

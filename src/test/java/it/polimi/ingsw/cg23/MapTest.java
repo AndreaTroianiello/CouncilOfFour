@@ -111,13 +111,20 @@ public class MapTest {
 		assertEquals(regions.get(0).getCities().size(),3);
 		assertNotEquals(regions.get(1).getCities().size(),0);
 		City c1=regions.get(0).searchCityById('A');
-		List<City> c2=regions.get(1).searchCitiesByType("Silver");
-		City c3=regions.get(0).searchCityById('R');
-		List<City> c4=regions.get(1).searchCitiesByType("Bronze");
 		assertNotNull(c1);
-		assertNull(c3);
+		List<City> c2=regions.get(1).searchCitiesByType("Silver");
 		assertEquals(c2.size(),1);
+		City c3=regions.get(0).searchCityById('R');
+		assertNull(c3);
+		List<City> c4=regions.get(1).searchCitiesByType("Bronze");
 		assertEquals(c4.size(),0);
+		List<City> c5=type1.getCities();
+		assertEquals(c5.size(),3);
+		City c6=type1.searchCityById('B');
+		assertNull(c6);
+		City c7=type1.searchCityById('A');
+		assertEquals(c7.getId(),'A');
+		
 		assertEquals((int) c1.minimumDistance(c2.get(0), new ArrayList<City>()),1);
 	}
 

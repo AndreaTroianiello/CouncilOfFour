@@ -4,7 +4,6 @@ package it.polimi.ingsw.cg23.controller;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;

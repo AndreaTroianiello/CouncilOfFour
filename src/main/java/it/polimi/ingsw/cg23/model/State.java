@@ -9,16 +9,18 @@ package it.polimi.ingsw.cg23.model;
 public class State {
 
 	private String status;
-	private Player player;
+	private Player finalPlayer;
+	private Player currentPlayer;
 	
 	/**
 	 * The constructor of the class. 
 	 * 
 	 * @param status The initial status.
 	 */
-	public State(String status,Player player) {
+	public State(String status) {
 		this.status=status;
-		this.player=player;
+		this.currentPlayer=null;
+		this.finalPlayer=null;
 	}
 
 	/**
@@ -40,12 +42,30 @@ public class State {
 	}
 
 	/**
+	 * Returns the current player of the turn.
+	 * 
+	 * @return the currentPlayer
+	 */
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	/**
+	 * Sets the current player of the turn.
+	 * 
+	 * @param currentPlayer the currentPlayer to set
+	 */
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
+	/**
 	 * Returns the player who has built all emporiums available first.
 	 * 
 	 * @return the player
 	 */
-	public Player getPlayer() {
-		return player;
+	public Player getFinalPlayer() {
+		return finalPlayer;
 	}
 
 	/**
@@ -53,7 +73,23 @@ public class State {
 	 * 
 	 * @param player the player to set
 	 */
-	public void setPlayer(Player player) {
-		this.player = player;
+	public void setFinalPlayer(Player player) {
+		this.finalPlayer = player;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String state= "State [status=" + status;
+		if(currentPlayer!=null)
+			state+=", current player=" + currentPlayer.getUser();
+		if(finalPlayer!=null)
+			state+=", final player=" + finalPlayer.getUser();
+		state+="]";
+		return state;
+	}
+	
+	
 }

@@ -22,10 +22,10 @@ public class Market {
 	/**
 	 * Returns the list of items to sell.
 	 * 
-	 * @param item
+	 * @param newItem  a new item to sell.
 	 */
-	public void addItemToSell(Item item){
-		this.itemsToSell.add(item);
+	public void addItemToSell(Item newItem){
+		this.itemsToSell.add(newItem);
 	}
 	
 	/**

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.controller.change.Change;
+import it.polimi.ingsw.cg23.controller.change.StateChange;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
@@ -24,6 +25,7 @@ public class Board extends Observable<Change>{
 	private King king;
 	private final List<Councillor> councillorPool;
 	private final List<Player> players;
+	private State status;
 	
 	/**
 	 * The constructor of the board.
@@ -41,6 +43,7 @@ public class Board extends Observable<Change>{
 		this.king = king;
 		this.councillorPool=new ArrayList<>();
 		this.players=new ArrayList<>();
+		this.status=new State("TURN");
 	}
 
 	/**
@@ -174,11 +177,41 @@ public class Board extends Observable<Change>{
 	 * @return the councillor.
 	 */
 	public Councillor getCouncillor(Color color){
-		for(Councillor councillor: councillorPool){
-			if(color.equals(councillor.getColor()))
-				return councillor;
+		for(int index=0;index<councillorPool.size();index++){
+			if(color.equals(councillorPool.get(index).getColor()))
+				 return councillorPool.remove(index);
 		}
 		return null;
+	}
+
+	/**
+	 * Returns the status of the model.
+	 * 
+	 * @return the status
+	 */
+	public State getStatus() {
+		return status;
+	}
+	
+	/**
+	 * Changes the status of the model.
+	 */
+	public void changeStatus() {
+		String statusString=status.getStatus();
+		
+		if("TURN".equals(statusString))
+			status.setStatus("MARKET: SELLING");
+		
+		if("MARKET: SELLING".equals(statusString))
+			status.setStatus("MARKET: BUYING");
+		
+		if("MARKET: BUYING".equals(statusString))
+			status.setStatus("TURN");
+		
+		if(status.getFinalPlayer()!=null && !"FINAL TURN".equals(statusString))
+			status.setStatus("FINAL TURN");
+		
+		this.notifyObserver(new StateChange(status));			//When the state is changed notify the observer.
 	}
 
 	/* (non-Javadoc)

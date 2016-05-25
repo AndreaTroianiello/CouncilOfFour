@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.observer;
 
+@FunctionalInterface
 public interface Observer<C> {
 
 	public default void update(C o) {

@@ -11,18 +11,18 @@ import it.polimi.ingsw.cg23.model.Player;
 public class Item {
 	
 	private int coins;
-	private Object item;
+	private Object itemToSell;
 	private Player player;
 
 	/**
 	 * The constructor of the item to sell.
 	 * 
-	 * @param item the real object to sell.
+	 * @param itemToSell the real object to sell.
 	 * @param player the owner of the item.
 	 * @param coins the price of the item.
 	 */
-	public Item(Object item,Player player,int coins) {
-		this.item=item;
+	public Item(Object itemToSell,Player player,int coins) {
+		this.itemToSell=itemToSell;
 		this.player=player;
 		this.coins=coins;
 	}
@@ -42,7 +42,7 @@ public class Item {
 	 * @return the item 
 	 */
 	public Object getItem() {
-		return item;
+		return itemToSell;
 	}
 
 	/**
