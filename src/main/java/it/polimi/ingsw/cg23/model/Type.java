@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
@@ -13,9 +14,9 @@ import it.polimi.ingsw.cg23.model.components.BonusKing;
  * @author Andrea
  *
  */
-public class Type {
+public class Type implements Serializable {
 
-
+	private static final long serialVersionUID = -6707285349370676070L;
 	private final String name;													//The name of the region.
 	private final Bonus bonus;													//The bonus of the type.
 	private final BonusKing bonusKing;											//The bonus king

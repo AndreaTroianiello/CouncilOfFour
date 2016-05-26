@@ -11,6 +11,7 @@ import it.polimi.ingsw.cg23.model.Player;
  */
 public class BonusVictoryPoints implements Bonus {
 	
+	private static final long serialVersionUID = 5512599104155333825L;
 	private int points;					//the amount of points given by the bonus
 	private final String name;
 	

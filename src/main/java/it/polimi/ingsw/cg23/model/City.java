@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
@@ -13,8 +14,9 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  * @author Andrea
  *
  */
-public class City {
+public class City implements Serializable{
 
+	private static final long serialVersionUID = -4255235122016695954L;
 	private final char id;									//The identifier of the city
 	private final String name;								//The name of the city, the first char is the id.
 	private final List<Bonus> token;						//The list of city's bonus.

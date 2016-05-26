@@ -12,6 +12,8 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class HireAssistant extends GameAction {
 	
+	private static final long serialVersionUID = 157988041663947858L;
+
 	/**
 	 * the constructor set the variables of the class: the boolean main is set to false
 	 */

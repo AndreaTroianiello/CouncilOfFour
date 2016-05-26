@@ -21,6 +21,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class BuyPermitTile extends GameAction {
 	
+	private static final long serialVersionUID = 2974062894189424346L;
 	private final List<PoliticCard> cards;
 	private final Region region;
 	private final BusinessPermitTile chosenTile;									//wich tile the player chose from the showed ones

@@ -15,6 +15,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class BonusCoin implements Bonus {
 	
+	private static final long serialVersionUID = 5361184315271238556L;
 	private int coins;						//the amount of coin given by the bonus
 	private final String name;
 	

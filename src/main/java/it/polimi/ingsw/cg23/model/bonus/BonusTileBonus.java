@@ -16,6 +16,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  */
 public class BonusTileBonus implements Bonus {
 	
+	private static final long serialVersionUID = -5750535311281465339L;
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
 	private final String name;
 	

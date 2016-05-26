@@ -1,13 +1,15 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.model.Player;
 
 /**
  * the bonus interface
  *
  */
-public interface Bonus{
+public interface Bonus extends Serializable{
 	
 	/**
 	 * it allows to give the bonus to the player

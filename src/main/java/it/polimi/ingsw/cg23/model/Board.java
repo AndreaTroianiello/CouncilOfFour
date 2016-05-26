@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import it.polimi.ingsw.cg23.observer.Observable;
  * @author Andrea
  *
  */
-public class Board extends Observable<Change>{
+public class Board extends Observable<Change> implements Serializable{
+
+	private static final long serialVersionUID = 4584086280841338196L;
 	private Deck deck;
 	private List<Region> regions;
 	private List<Type> types;

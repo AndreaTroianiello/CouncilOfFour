@@ -1,16 +1,20 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.controller.action.Action;
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.observer.Observable;
 /**
- * The game action is used to modify the game's model.
+ * The game action is used to modify the game's mode
  * @author Andrea
  *
  */
-public abstract class GameAction extends Observable<Change> implements Action {
+public abstract class GameAction extends Observable<Change> implements Action,Serializable{
+	
+	private static final long serialVersionUID = -2996870548641018764L;
 	private boolean main;
 	private Player player;
 	
@@ -27,6 +31,7 @@ public abstract class GameAction extends Observable<Change> implements Action {
 	 * Sets the player of the action.
 	 * @param player the owner of the action.
 	 */
+	@Override
 	public void setPlayer(Player player){
 		this.player=player;
 	}
@@ -35,6 +40,7 @@ public abstract class GameAction extends Observable<Change> implements Action {
 	 * Return the player of the action.
 	 * @return the owner of the action.
 	 */
+	@Override
 	public Player getPlayer(){
 		return player;
 	}

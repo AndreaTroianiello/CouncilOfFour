@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.model.components.PoliticCard;
  */
 public class BonusPolitics implements Bonus {
 	
+	private static final long serialVersionUID = -7063039174134594293L;
 	private int cardNumber;
 	private final Board board;
 	private final String name;

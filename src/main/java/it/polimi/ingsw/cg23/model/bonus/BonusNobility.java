@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.model.components.NobilityBox;
  */
 public class BonusNobility implements Bonus {
 	
+	private static final long serialVersionUID = 5191094826225138720L;
 	private int steps;
 	private final Board board;
 	private final String name;

@@ -9,6 +9,7 @@ import it.polimi.ingsw.cg23.model.City;
  */
 public class CityChange implements Change {
 
+	private static final long serialVersionUID = 675216218423747479L;
 	private final City newCity;
 	
 	/**

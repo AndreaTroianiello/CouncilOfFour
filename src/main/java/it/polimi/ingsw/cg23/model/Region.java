@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
@@ -13,8 +14,9 @@ import it.polimi.ingsw.cg23.model.components.RegionDeck;
  * @author Andrea
  *
  */
-public class Region {
+public class Region implements Serializable {
 
+	private static final long serialVersionUID = 65091222421530741L;
 	private final String name;													//The name of the region.
 	private final Bonus bonus;													//The bonus of the region.
 	private final List<City> cities;											//The list of cities contained.

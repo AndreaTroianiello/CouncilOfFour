@@ -20,6 +20,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  */
 public class BonusCityToken implements Bonus {
 	
+	private static final long serialVersionUID = -8457638846172650018L;
 	private int number;						//how many times the player can run the bonus
 	private final List<City> city;			//the city the player chooses to run the bonus from
 	private final boolean[] runnable;		//a list of boolean that show if the bonus in the city are runnable 

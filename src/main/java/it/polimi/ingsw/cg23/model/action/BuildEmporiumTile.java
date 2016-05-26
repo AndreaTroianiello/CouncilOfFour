@@ -15,6 +15,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class BuildEmporiumTile extends GameAction {
 	
+	private static final long serialVersionUID = -5184613644917685573L;
 	private final BusinessPermitTile card;
 	private final int cityID; 						//wich city the player choose from the ones on the card
 

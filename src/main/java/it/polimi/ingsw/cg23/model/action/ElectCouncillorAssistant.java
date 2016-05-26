@@ -17,6 +17,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class ElectCouncillorAssistant extends GameAction {
 
+	private static final long serialVersionUID = -8838134392923545287L;
 	private final Color councillor;
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;

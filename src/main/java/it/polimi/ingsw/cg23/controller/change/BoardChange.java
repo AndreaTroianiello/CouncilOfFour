@@ -9,6 +9,7 @@ import it.polimi.ingsw.cg23.model.Board;
  */
 public class BoardChange implements Change {
 
+	private static final long serialVersionUID = 8956768514612147676L;
 	private final Board newBoard;
 	
 	/**

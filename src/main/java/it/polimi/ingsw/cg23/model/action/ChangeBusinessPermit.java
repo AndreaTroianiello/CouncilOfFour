@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class ChangeBusinessPermit extends GameAction {
 	
+	private static final long serialVersionUID = -2799809256014430924L;
 	private final int region;
 	
 

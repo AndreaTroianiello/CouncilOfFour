@@ -9,6 +9,7 @@ import it.polimi.ingsw.cg23.model.Player;
  */
 public class PlayerChange implements Change {
 
+	private static final long serialVersionUID = -1986727673842582938L;
 	private final Player newPlayer;
 	
 	/**

@@ -1,13 +1,16 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.io.Serializable;
+
 /**
  * The state of the model.
  * 
  * @author Andrea
  *
  */
-public class State {
+public class State implements Serializable{
 
+	private static final long serialVersionUID = 5440571559577905431L;
 	private String status;
 	private Player finalPlayer;
 	private Player currentPlayer;

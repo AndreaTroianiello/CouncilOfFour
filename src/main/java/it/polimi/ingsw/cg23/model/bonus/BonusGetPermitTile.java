@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  */
 public class BonusGetPermitTile implements Bonus {
 	
+	private static final long serialVersionUID = 5218205311068329970L;
 	private final Board board;
 	private final String name;
 	private final CliInterface cl;

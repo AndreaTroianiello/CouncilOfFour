@@ -29,6 +29,7 @@ public class EndTurn extends Observable<Change> implements Action {
 	 * Sets the player of the action.
 	 * @param player the owner of the action.
 	 */
+	@Override
 	public void setPlayer(Player player){
 		this.player=player;
 	}
@@ -37,6 +38,7 @@ public class EndTurn extends Observable<Change> implements Action {
 	 * Return the player of the action.
 	 * @return the owner of the action.
 	 */
+	@Override
 	public Player getPlayer(){
 		return player;
 	}

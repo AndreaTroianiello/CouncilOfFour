@@ -10,7 +10,7 @@ import it.polimi.ingsw.cg23.model.Player;
  */
 public class BonusAdditionalAction implements Bonus {
 
-	
+	private static final long serialVersionUID = -7894718147717452032L;
 	private final String name;
 	
 	/**

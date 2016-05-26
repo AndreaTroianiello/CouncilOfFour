@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import it.polimi.ingsw.cg23.model.components.*;
  * @author Andrea
  *
  */
-public class Player {
+public class Player implements Serializable {
+
+	private static final long serialVersionUID = 3461638919381415919L;
 	private final String user;									//name of the player
 	private List<Emporium> availableEmporiums;					//the emporiums that are available to place
 	private List<Emporium> usedEmporiums;						//the emporiums that are already placed

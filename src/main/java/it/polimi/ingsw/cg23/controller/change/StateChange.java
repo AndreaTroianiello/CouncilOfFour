@@ -9,6 +9,7 @@ import it.polimi.ingsw.cg23.model.State;
  */
 public class StateChange implements Change {
 
+	private static final long serialVersionUID = 5908064198661444659L;
 	private final State newState;
 	
 	/**

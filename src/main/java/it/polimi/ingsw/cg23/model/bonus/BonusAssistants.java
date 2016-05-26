@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  */
 public class BonusAssistants implements Bonus {
 	
+	private static final long serialVersionUID = -5759832124873766927L;
 	private int assistants;				//the amount of assistants given by the bonus
 	private final String name;
 	
