@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.controller;
 
 import it.polimi.ingsw.cg23.observer.*;
 import it.polimi.ingsw.cg23.controller.action.Action;
+import it.polimi.ingsw.cg23.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.action.*;
 
@@ -22,6 +23,9 @@ public class Controller implements Observer<Action>{
 		if(action instanceof GameAction){
 			turn.setAction((GameAction) action);
 			turn.runAction();
+		}
+		if(action instanceof EndTurn){
+			((EndTurn) action).runAction(turn);
 		}
 		
 			

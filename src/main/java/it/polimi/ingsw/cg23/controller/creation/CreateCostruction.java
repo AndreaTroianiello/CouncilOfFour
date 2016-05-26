@@ -29,6 +29,7 @@ public class CreateCostruction {
 			for(int j=0; j<array[i][1].length(); j++){//ciclo che scorre il numero di citta' della carta costruzione
 				citiesId.add(array[i][1].charAt(j));//aggiungo l'id della citta' alla lista
 			}
+			
 			BusinessPermitTile bpt=new BusinessPermitTile(citiesId, array[i][0]);//creo una nuova carta costruzione
 			cb.getCostructorBonus(bpt, array[i][2]);//aggiungo i bonus alla carta costruzione
 			costructionCard.add(bpt);//aggiungo la nuova carta costruzione alla lista			

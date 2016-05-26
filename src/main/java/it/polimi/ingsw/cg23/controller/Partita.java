@@ -40,7 +40,7 @@ public class Partita {
 			e.setCity(b.getRegions().get(1).searchCityById('J'));
 			b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
 			b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
-			b.getTypes().get(1).runBonusRegion(t.getCurrentPlayer());
+			b.getTypes().get(1).runBonusType(t.getCurrentPlayer());
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", cards.toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
