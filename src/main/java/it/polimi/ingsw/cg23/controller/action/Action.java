@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.model.action;
+package it.polimi.ingsw.cg23.controller.action;
 
 /**
  * the action's interface

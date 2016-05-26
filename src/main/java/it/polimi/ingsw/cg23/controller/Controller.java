@@ -1,8 +1,7 @@
 package it.polimi.ingsw.cg23.controller;
 
 import it.polimi.ingsw.cg23.observer.*;
-
-
+import it.polimi.ingsw.cg23.controller.action.Action;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.action.*;
 

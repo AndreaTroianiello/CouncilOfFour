@@ -82,6 +82,8 @@ public class Player {
 	 * @return an available emporium or null (if the list in is empty).
 	 */
 	public Emporium getAvailableEmporium() {
+		if(isAvailableEmporiumEmpty())
+			return null;
 		return availableEmporiums.remove(0);
 	}
 	
