@@ -5,9 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import it.polimi.ingsw.cg23.controller.action.Action;
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.action.Action;
 
 
 public class ServerSocketView extends View implements Runnable {
