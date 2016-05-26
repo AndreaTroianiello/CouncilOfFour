@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-import it.polimi.ingsw.cg23.model.action.Action;
+import it.polimi.ingsw.cg23.model.action.GameAction;
 
 
 public class ClientOutHandler implements Runnable {
@@ -25,7 +25,7 @@ public class ClientOutHandler implements Runnable {
 
 			String inputLine = stdIn.nextLine();
 
-			Action action;
+			GameAction action;
 			switch (inputLine) {
 			//DA FARE GLI INPUT DA INSERIRE PER OGNI AZIONE
 			default:

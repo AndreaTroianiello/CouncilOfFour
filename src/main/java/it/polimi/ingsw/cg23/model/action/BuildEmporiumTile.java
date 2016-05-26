@@ -64,7 +64,7 @@ public class BuildEmporiumTile extends GameAction {
 					player.getAvailableBusinessPermits().remove(card);
 					player.setUsedBusinessPermit(card);
 				} catch (NegativeNumberException e) {
-					System.out.println("The player doesn't have available emporiums");
+					System.out.println("The player doesn't have enough assistants");
 					e.printStackTrace();					
 				}
 				

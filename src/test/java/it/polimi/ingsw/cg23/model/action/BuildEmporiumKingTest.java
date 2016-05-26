@@ -32,6 +32,7 @@ public class BuildEmporiumKingTest {
 	private List<PoliticCard> discardedCards;
 	private City destination;
 	List<Integer> bonusKing = new ArrayList<>();
+	City kingCity;
 	
 	Type type = new Type("purple", 5, new BonusKing(bonusKing));
 
@@ -42,7 +43,8 @@ public class BuildEmporiumKingTest {
 		bonusKing.add(n);	
 		List<Type> types = new ArrayList<>();
 		types.add(type);
-		King king = new King(new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing))));
+		kingCity = new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		King king = new King(kingCity);
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, types, null, king);
 	}
 
@@ -143,6 +145,7 @@ public class BuildEmporiumKingTest {
 		int payment = action.payCoins(1, player);
 		assertEquals(payment, -1);
 	}
+	
 	/**
 	 * it tests if runAction() works properly when all is fine
 	 * @throws NegativeNumberException
@@ -227,6 +230,36 @@ public class BuildEmporiumKingTest {
 		action.runAction(player, board);
 		City city = board.getKing().getCity();
 		assertEquals(board.getKing().getCity(), city);
+	}
+	
+	/**
+	 * it tests if runAction() works properly when all is fine
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants() throws NegativeNumberException{
+		System.out.println("I'M RUNNING THE TEST");
+		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
+		Council council = board.getKing().getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
+		System.out.println(this.board.getKing().getCouncil().toString());
+		this.cards = new ArrayList<>();
+		this.cards.add(card1);
+		this.cards.add(card2);
+		Player player2 = new Player("player 1", 0, 100, new NobilityTrack(3));
+		this.player.setEmporium(new Emporium(this.player));
+		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.destination.getEmporiums().add(new Emporium(player));
+		this.board.getKing().getCity().addNeighbor(destination);
+		destination.addNeighbor(this.board.getKing().getCity());
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
+		action.runAction(player2, board);
+		City city = board.getKing().getCity();
+		assertEquals(kingCity, city);
 	}
 
 }

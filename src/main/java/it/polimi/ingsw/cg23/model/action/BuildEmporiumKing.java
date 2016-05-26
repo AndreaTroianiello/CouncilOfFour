@@ -198,7 +198,7 @@ public class BuildEmporiumKing extends GameAction {
 			board.getKing().setCity(destination);
 			board.getDeck().discardCards(discardedCards);
 		} catch (NegativeNumberException e) {
-			System.out.println("The player doesn't have available emporiums");
+			System.out.println("The player doesn't have enough assistants");
 			int currentCoin = player.getRichness().getCoins();
 			this.cards.addAll(discardedCards);
 			try {

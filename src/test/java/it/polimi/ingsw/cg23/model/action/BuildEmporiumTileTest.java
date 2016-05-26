@@ -13,14 +13,23 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.Emporium;
+import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.model.components.PoliticCard;
 
 public class BuildEmporiumTileTest {
 	
 	BusinessPermitTile card;
 	Player player;
 	Board board;
+	City city;
+	List<Integer> bonusKing = new ArrayList<>();
+	Type type = new Type("purple", 5, new BonusKing(bonusKing));
+
 
 	@Before
 	public void setUp() throws Exception {
@@ -28,11 +37,17 @@ public class BuildEmporiumTileTest {
 		cityIDs.add('I');
 		card = new BusinessPermitTile(cityIDs, null);
 		player = new Player("player1", 10, 100, new NobilityTrack(3));
+		int n = 5;
+		bonusKing.add(n);	
+		List<Type> types = new ArrayList<>();
+		types.add(type);
+		King king = new King(new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing))));
 		List<Region> regions = new ArrayList<>();
-		Region region = new Region("regione", 0, null, null);
+		Region region = new Region("regione", 0, null, new BonusKing(bonusKing));
 		regions.add(region);
-		region.addCity(new City('I', "Ioio", new Type(null, 0, null), region));
-		board = new Board(null, regions, null, null, null);
+		city = new City('I', "Ioio", new Type(null, 0, new BonusKing(bonusKing)), region);
+		region.addCity(city);
+		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, null, king);
 	}
 
 	
@@ -64,11 +79,25 @@ public class BuildEmporiumTileTest {
 		assertEquals("BuildEmporiumTile [card=null, cityID=1]", action.toString());
 	}
 	
-	/*
+	/**
+	 * it tests if runAction() works properly when it's all fine
+	 */
 	@Test
-	public void testRunAction(){
+	public void testRunActionShouldBuildAnEmporiumIfItsAllFine(){
 		BuildEmporiumTile action = new BuildEmporiumTile(card, 0);
 		action.runAction(player, board);
-	}*/
+		assertEquals(true, this.city.containsEmporium(player));
+	}
 
+	/**
+	 * it tests if runAction() works properly when the player doesn't have assistants
+	 */
+	@Test
+	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(){
+		Player player2 = new Player("player2", 0, 100, new NobilityTrack(3));
+		BuildEmporiumTile action = new BuildEmporiumTile(card, 0);
+		this.city.getEmporiums().add(new Emporium(player));
+		action.runAction(player2, board);
+		assertEquals(false, this.city.containsEmporium(player2));
+	}
 }
