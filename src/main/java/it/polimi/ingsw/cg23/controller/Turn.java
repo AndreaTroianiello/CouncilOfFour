@@ -72,6 +72,10 @@ public class Turn {
 		this.action=action;
 	}
 	
+	/**
+	 * Returns the game board.
+	 * @return board.
+	 */
 	public Board getBoard(){
 		return board;
 	}
