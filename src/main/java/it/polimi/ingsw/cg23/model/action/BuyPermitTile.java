@@ -78,8 +78,8 @@ public class BuyPermitTile extends GameAction {
 	@Override
 	public void runAction(Player player, Board board) {
 		Council council = this.region.getCouncil();
-		int match = howManyMatch(council, player, board)[0];
-		int jolly = howManyMatch(council, player, board)[1];
+		int jolly = howManyJolly(board);
+		int match = jolly + howManyMatch(board, council);
 		int moneyPaid = payCoins(match, player);
 		int coins = player.getRichness().getCoins();
 		
@@ -108,53 +108,51 @@ public class BuyPermitTile extends GameAction {
 	}
 	
 	/**
-	 * the method confront the color of the cards with the color of the councillors in the council
-	 * and return how many match are there 
+	 * control how many match between are there between 
+	 * the councillors and the politic cards
 	 * 
+	 * @param board
 	 * @param council
-	 * @return cardNumber
-	 * @throws NegativeNumberException 
+	 * @return match
 	 */
-	public int[] howManyMatch(Council council, Player player, Board board){
+	public int howManyMatch(Board board, Council council){
+		int match = 0;
+		int councilLenght = council.getCouncillors().size();
 		
-		int councilLenght = council.getCouncillors().size();		//assign to councilLenght the value of the size of the chosen region's council
-		int jollyNumber = 0;										//the number of the jolly in the list
-		int cardNumber = 0;											//the number of cards that the color match with the councillor's colors
-		boolean match = false;										//control if there is a match
-		int[] result;												//an array with the card and the jolly number
-		result = new int[2];
-		
-		
-		for(PoliticCard card: this.cards){							//iterate the card
-			if(card.isJolly()){										//and control if there are jolly
-				cardNumber = cardNumber + 1;						//update the card counter
-				jollyNumber = jollyNumber + 1;						//update the jolly counter
-				discardedCards.add(card);
-			}
-			
-		}
-		cards.removeAll(discardedCards);
-		for(int i=0; i<councilLenght; i++){							//iterate the council
-			for(PoliticCard card : this.cards){						//iterate the cards
-				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){		
-					match = true;									//if there is a match set the boolean true 
-					this.cards.remove(card);						//and remove the card from the list
-					discardedCards.add(card);
-				}   
-				if(match){											//if the match is true 
-					cardNumber = cardNumber + 1;					//update the counter
-					match = false;
-					break;											//and break the second for cycle
+		for(int i=0; i<councilLenght; i++){									//iterate the council
+			for(PoliticCard card: cards){									//iterate the politic cards
+				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){
+					match = match + 1;										//if there is a match update the counter
+					this.discardedCards.add(card);							//add the card to the discarded cards
+					this.cards.remove(card);								//remove the card from the politic cards
+					break;													//and break the cycle
 				}
 			}
 		}
 		cards.removeAll(discardedCards);
 		board.getDeck().discardCards(discardedCards);
 		
-		result[0] = cardNumber;
-		result[1] = jollyNumber;
+		return match;
+	}
+	
+	/**
+	 * control how many jolly are there in the chosen politic cards
+	 * 
+	 * @param board
+	 * @return jolly
+	 */
+	public int howManyJolly(Board board){
+		int jolly = 0;
 		
-		return result;
+		for(PoliticCard card: cards)					//iterate the politic cards
+			if(card.isJolly()){							//if the card is a jolly
+				jolly = jolly + 1;						//update the counter
+				this.discardedCards.add(card);			//and add the card to the discardedCards
+			}
+		this.cards.removeAll(discardedCards);			//remove all the jolly from the politic cards
+		board.getDeck().discardCards(discardedCards);
+		
+		return jolly;
 	}
 
 	

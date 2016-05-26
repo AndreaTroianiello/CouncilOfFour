@@ -14,10 +14,12 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Council;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.Emporium;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
@@ -40,7 +42,7 @@ public class BuyPermitTileTest {
 		player = new Player("player 1", 10, 100, new NobilityTrack(3));
 		citiesId.add('J');
 		choosenTile = new BusinessPermitTile(citiesId, null);
-		cards.add(new PoliticCard(null, true));
+		cards.add(new PoliticCard(Color.BLUE, false));
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, null, null, null);
 		choosenTile = new BusinessPermitTile(citiesId, null);
 		RegionDeck deck = new RegionDeck(2);
@@ -105,7 +107,7 @@ public class BuyPermitTileTest {
 		this.cards.add(card1);
 		this.cards.add(card2);
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
-		int jolly = action.howManyMatch(council, player, board)[1];
+		int jolly = action.howManyJolly(board);
 		assertEquals(jolly, 1);
 	}
 	
@@ -125,7 +127,7 @@ public class BuyPermitTileTest {
 		this.cards.add(card1);
 		this.cards.add(card2);
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
-		int match = action.howManyMatch(council, player, board)[0];
+		int match = action.howManyMatch(board, council);
 		assertEquals(match, 1);
 	}
 
@@ -134,7 +136,7 @@ public class BuyPermitTileTest {
 	 */
 	@Test
 	public void testTryPaymentShouldReturn0IfNotNegative(){
-		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		int number = action.tryPayment(player, 10, 7);
 		assertEquals(number, 0);
 	}
@@ -145,7 +147,7 @@ public class BuyPermitTileTest {
 	@Test
 	public void testTryPaymentShouldReturnMinus1IfItIsNegative(){
 		this.cards = new ArrayList<>();
-		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		cards.add(new PoliticCard(null, true));
 		this.discardedCards = new ArrayList<>();
 		discardedCards.add(new PoliticCard(null, true));
@@ -158,7 +160,7 @@ public class BuyPermitTileTest {
 	 */
 	@Test
 	public void testPayCoinsShouldReturn0IfMatchIs4AndMinus1IfMatchIs0(){
-		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		int payment = action.payCoins(0, player);
 		assertEquals(payment, -1);
 		payment = action.payCoins(4, player);
@@ -170,7 +172,7 @@ public class BuyPermitTileTest {
 	 */
 	@Test
 	public void testPayCoinsShouldReturn7IfThereAre2Match(){
-		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
+		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		int payment = action.payCoins(2, player);
 		assertEquals(payment, 7);
 	}
@@ -188,6 +190,7 @@ public class BuyPermitTileTest {
 		assertEquals(payment, -1);
 	}
 
+
 	/**
 	 * tests if toString() works properly
 	 */
@@ -195,6 +198,28 @@ public class BuyPermitTileTest {
 	public void testToString() {
 		BuyPermitTile action = new BuyPermitTile(null, null, null);
 		assertEquals("BuyPermitTile [cards=null, region=null, chosenTile=null]", action.toString());
+	}
+	
+	/**
+	 * it tests if runAction() works properly when the player doesn't have enough money
+	 */
+	@Test
+	public void testRunActionShouldntDoAnythingIfThePlayerDoesntHaveMoney() throws NegativeNumberException{
+		System.out.println("I'M RUNNING THE TEST");
+		PoliticCard card1 = new PoliticCard(null, true);
+		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
+		this.cards = new ArrayList<>();
+		this.cards.add(card1);
+		this.cards.add(card2);
+		this.player.getRichness().setCoins(7);
+		System.out.println(player.getRichness().getCoins());
+		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
+		action.runAction(player, board);
+		System.out.println(player.getRichness().getCoins());
+		List<BusinessPermitTile> card = player.getAvailableBusinessPermits();
+		List<BusinessPermitTile> expected = new ArrayList<>();
+		System.out.println("FINITO TEST");
+		assertEquals(expected, card);
 	}
 
 }

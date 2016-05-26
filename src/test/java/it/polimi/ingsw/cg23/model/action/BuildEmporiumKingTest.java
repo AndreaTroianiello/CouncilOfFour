@@ -181,7 +181,7 @@ public class BuildEmporiumKingTest {
 	@Test
 	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney() throws NegativeNumberException{
 		System.out.println("I'M RUNNING THE TEST");
-		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		Council council = board.getKing().getCouncil();
 		council.getCouncillors().add(new Councillor(Color.BLUE));
@@ -210,7 +210,7 @@ public class BuildEmporiumKingTest {
 	@Test
 	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoneyForTheSteps() throws NegativeNumberException{
 		System.out.println("I'M RUNNING THE TEST");
-		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		Council council = board.getKing().getCouncil();
 		council.getCouncillors().add(new Councillor(Color.BLUE));
