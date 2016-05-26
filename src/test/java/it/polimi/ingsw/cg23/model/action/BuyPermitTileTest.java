@@ -20,6 +20,7 @@ import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class BuyPermitTileTest {
@@ -31,18 +32,41 @@ public class BuyPermitTileTest {
 	Board board;
 	private List<PoliticCard> cards = new ArrayList<>();
 	private List<Character> citiesId = new ArrayList<>();
+	Council council;
 	
 
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("player 1", 10, 100, new NobilityTrack(3));
 		citiesId.add('J');
+		choosenTile = new BusinessPermitTile(citiesId, null);
 		cards.add(new PoliticCard(null, true));
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, null, null, null);
 		choosenTile = new BusinessPermitTile(citiesId, null);
+		RegionDeck deck = new RegionDeck(2);
+		deck.getShowedDeck().add(choosenTile);
+		region = new Region("si", 5,deck , null);
+		council = region.getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
 	}
 
+	/**
+	 * tests if the chosenTile is added to the player's permit tile
+	 */
+	@Test
+	public void testRunAction(){
+		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
+		action.runAction(player, board);
+		BusinessPermitTile card = player.getAvailableBusinessPermits().get(0);
+		assertEquals(choosenTile, card);
+	}
 
+	/**
+	 * it tests if getChosenTile works properly
+	 */
 	@Test
 	public void testGetChosenTile() {
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
@@ -50,13 +74,19 @@ public class BuyPermitTileTest {
 		assertEquals(choosenTile, tile);
 	}
 
+	/**
+	 * it tests if getCards works properly
+	 */
 	@Test
 	public void testGetCards() {
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		List<PoliticCard> politics = action.getCards();
 		assertEquals(cards, politics);
 	}
-
+	
+	/**
+	* it tests if getRegion works properly
+	*/
 	@Test
 	public void testGetRegion() {
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
@@ -71,11 +101,6 @@ public class BuyPermitTileTest {
 	public void testHowManyMatchShouldReturn1JollyIfIHave1Jolly() {
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
-		Council council = new Council();
-		council.getCouncillors().add(new Councillor(Color.BLUE));
-		council.getCouncillors().add(new Councillor(Color.BLACK));
-		council.getCouncillors().add(new Councillor(Color.RED));
-		council.getCouncillors().add(new Councillor(Color.WHITE));
 		this.cards = new ArrayList<>();
 		this.cards.add(card1);
 		this.cards.add(card2);
