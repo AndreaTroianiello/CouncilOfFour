@@ -90,9 +90,16 @@ public class Setting {
 	public List<Type> createType(BonusKing bk){
 		String[][] array=cl.getType(endpath);//recupero i type dall'xml
 		for(int i=0; i<array.length; i++){//scorre i type che ci sono nell'xml
+			if("purple".equals(array[i][0])){
+				Type t=new Type(array[i][0], Integer.parseInt(array[i][1]), null);//crea un nuovo tipo
+				typeList.add(t);//aggiungo il tipo alla lista dei tipi
+			}
+			else{
 			int number=Integer.parseInt(array[i][1]);//numero di victory points che da il tipo
 			Type t=new Type(array[i][0], number, bk);//crea un nuovo tipo
+			
 			typeList.add(t);//aggiungo il tipo alla lista dei tipi
+			}
 		}
 		return typeList;//ritorna la lista dei tipi
 	}
