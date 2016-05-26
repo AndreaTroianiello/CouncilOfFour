@@ -1,15 +1,15 @@
 package it.polimi.ingsw.cg23.model.components;
 
-import java.io.Serializable;
 
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.model.marketplace.CanBeSold;
 
 /**
  * The assistants pool contains the player's assistants.
  * @author Andrea
  *
  */
-public class AssistantsPool implements Serializable{
+public class AssistantsPool implements CanBeSold{
 	
 	private static final long serialVersionUID = -8746286160268047774L;
 	private int assistants;

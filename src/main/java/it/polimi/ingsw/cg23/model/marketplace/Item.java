@@ -14,7 +14,7 @@ public class Item implements Serializable {
 	
 	private static final long serialVersionUID = -4640335373820355916L;
 	private int coins;
-	private Object itemToSell;
+	private CanBeSold itemToSell;
 	private Player player;
 
 	/**
@@ -24,7 +24,7 @@ public class Item implements Serializable {
 	 * @param player the owner of the item.
 	 * @param coins the price of the item.
 	 */
-	public Item(Object itemToSell,Player player,int coins) {
+	public Item(CanBeSold itemToSell,Player player,int coins) {
 		this.itemToSell=itemToSell;
 		this.player=player;
 		this.coins=coins;
@@ -44,7 +44,7 @@ public class Item implements Serializable {
 	 * 
 	 * @return the item 
 	 */
-	public Object getItem() {
+	public CanBeSold getItem() {
 		return itemToSell;
 	}
 

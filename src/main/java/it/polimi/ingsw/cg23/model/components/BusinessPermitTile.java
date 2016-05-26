@@ -1,15 +1,16 @@
 package it.polimi.ingsw.cg23.model.components;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.marketplace.CanBeSold;
 /**
  * The business permit tile gives bonuses and allows you to build in certain cities.
  * @author Andrea
  *
  */
-public class BusinessPermitTile implements Serializable {
+public class BusinessPermitTile implements CanBeSold {
 	
 	private static final long serialVersionUID = -3360173408293385934L;
 	private final List<Character> citiesId;

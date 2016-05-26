@@ -1,14 +1,15 @@
 package it.polimi.ingsw.cg23.model.components;
 
 import java.awt.Color;
-import java.io.Serializable;
+
+import it.polimi.ingsw.cg23.model.marketplace.CanBeSold;
 
 /**
  * The councillor can be used to build a emporium and can be matched a councillor of the same color.
  * @author Andrea
  *
  */
-public class PoliticCard implements Serializable {
+public class PoliticCard implements CanBeSold {
 
 	private static final long serialVersionUID = -7590165146098861475L;
 	private final Color color;											//The color of the card.
