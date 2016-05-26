@@ -1,10 +1,12 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NobilityTrack {
+public class NobilityTrack implements Serializable {
 	
+	private static final long serialVersionUID = 4192304981537277832L;
 	private final List<NobilityBox> nobilityBoxes;
 	
 	/**

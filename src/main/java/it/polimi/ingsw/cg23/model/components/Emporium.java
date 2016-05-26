@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 
@@ -8,7 +10,9 @@ import it.polimi.ingsw.cg23.model.Player;
  * @author Andrea
  *
  */
-public class Emporium {
+public class Emporium implements Serializable {
+	
+	private static final long serialVersionUID = -2660058974560248850L;
 	private final Player player;
 	private City city;
 	

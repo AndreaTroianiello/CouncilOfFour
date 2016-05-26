@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.model.City;
 
 /**
@@ -7,7 +9,9 @@ import it.polimi.ingsw.cg23.model.City;
  * @author Andrea
  *
  */
-public class King {
+public class King implements Serializable{
+	
+	private static final long serialVersionUID = -2378038028693192360L;
 	private City city;
 	private final Council council;
 	

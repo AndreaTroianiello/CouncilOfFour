@@ -1,13 +1,16 @@
 package it.polimi.ingsw.cg23.model.components;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * The councillor can be used in a council and can be matched a politic card of the same color.
  * @author Andrea
  *
  */
-public class Councillor {
+public class Councillor implements Serializable {
+	
+	private static final long serialVersionUID = -4682589451268368747L;
 	private final Color color;
 	
 	/**

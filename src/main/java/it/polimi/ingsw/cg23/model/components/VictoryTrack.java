@@ -1,11 +1,15 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
+
 /**
  * The victory track contains the victory points of the player.
  * @author Andrea
  *
  */
-public class VictoryTrack {
+public class VictoryTrack implements Serializable {
+	
+	private static final long serialVersionUID = 394372805913576038L;
 	private int victoryPoints;
 
 	/**

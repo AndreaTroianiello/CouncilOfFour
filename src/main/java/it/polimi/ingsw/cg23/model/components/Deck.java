@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,8 +10,9 @@ import java.util.Random;
  * @author Andrea
  *
  */
-public class Deck {
+public class Deck implements Serializable {
 
+	private static final long serialVersionUID = 1343800378842862258L;
 	private final List<PoliticCard> politicCards ;								//Main deck.
 	private final List<PoliticCard> discardedCards;
 

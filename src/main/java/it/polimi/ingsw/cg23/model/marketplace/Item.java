@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.marketplace;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.model.Player;
 
 /**
@@ -8,8 +10,9 @@ import it.polimi.ingsw.cg23.model.Player;
  * @author Andrea
  *
  */
-public class Item {
+public class Item implements Serializable {
 	
+	private static final long serialVersionUID = -4640335373820355916L;
 	private int coins;
 	private Object itemToSell;
 	private Player player;

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.marketplace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,9 @@ import java.util.List;
  * @author Andrea
  *
  */
-public class Market {
-	
+public class Market implements Serializable{
+
+	private static final long serialVersionUID = 1070392830721899258L;
 	private final List<Item> itemsToSell;
 
 	/**

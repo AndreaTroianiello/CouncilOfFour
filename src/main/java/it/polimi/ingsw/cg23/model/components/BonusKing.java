@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
@@ -10,7 +11,9 @@ import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
  * 
  * @author Andrea
  */
-public class BonusKing {
+public class BonusKing implements Serializable{
+	
+	private static final long serialVersionUID = -6662021675560087243L;
 	private int index;								//The current bonus king.
 	private List<Integer> bonusValues;				//Set of all bonus king.
 	

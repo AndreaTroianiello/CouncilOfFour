@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 /**
@@ -7,7 +9,9 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  * @author Andrea
  *
  */
-public class Richness {
+public class Richness implements Serializable{
+	
+	private static final long serialVersionUID = -3088246797738991332L;
 	private int coins;
 
 	/**

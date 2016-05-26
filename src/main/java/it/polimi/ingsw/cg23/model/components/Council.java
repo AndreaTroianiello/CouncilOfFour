@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,9 @@ import java.util.List;
  * @author Andrea
  *
  */
-public class Council {
+public class Council implements Serializable{
+	
+	private static final long serialVersionUID = -6561964067553960969L;
 	private final List<Councillor> councillors;
 	
 	/**

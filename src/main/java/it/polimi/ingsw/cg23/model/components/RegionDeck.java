@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +10,9 @@ import java.util.Random;
  * @author Andrea
  *
  */
-public class RegionDeck {
+public class RegionDeck implements Serializable {
+	
+	private static final long serialVersionUID = -6229199735767763627L;
 	private final int maxTilesShowed;			
 	private final List<BusinessPermitTile> hiddenDeck;
 	private final List<BusinessPermitTile> showedDeck;

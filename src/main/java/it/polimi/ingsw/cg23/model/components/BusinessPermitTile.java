@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
@@ -8,8 +9,9 @@ import it.polimi.ingsw.cg23.model.bonus.Bonus;
  * @author Andrea
  *
  */
-public class BusinessPermitTile {
+public class BusinessPermitTile implements Serializable {
 	
+	private static final long serialVersionUID = -3360173408293385934L;
 	private final List<Character> citiesId;
 	private final List<Bonus> bonusTile;
 	private final String zone;
