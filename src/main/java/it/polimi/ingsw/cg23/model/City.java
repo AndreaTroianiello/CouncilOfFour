@@ -160,7 +160,7 @@ public class City {
 		emporium.setCity(this);														//Sets this city in the available emporium.
 		this.emporiums.add(emporium);												//Adds the emporium at the city.
 		runBonusCityAndNeighbors(player , new ArrayList<City>());					//Runs the bonus of the city and visits the neighbors.
-		type.runBonusRegion(player);												//Calls the bonus of the region.
+		type.runBonusType(player);												//Calls the bonus of the region.
 		region.runBonusRegion(player);												//Calls the bonus of the type.
 		player.setEmporium(emporium);												//Adds the emporium at the player's list.
 	}

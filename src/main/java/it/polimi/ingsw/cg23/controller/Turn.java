@@ -72,6 +72,9 @@ public class Turn {
 		this.action=action;
 	}
 	
+	public Board getBoard(){
+		return board;
+	}
 	/**
 	 * It indicates whether a player has used all available emporiums.
 	 * 
