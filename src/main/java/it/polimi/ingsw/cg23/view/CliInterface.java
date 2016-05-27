@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.King;
 
 /**
@@ -147,8 +148,8 @@ public class CliInterface {
 	 * @param giocatori, a list with the players
 	 * @param k, the king
 	 */
-	public void createMap(List<City>city, List<Player>giocatori, King k){
-		new PrintMap().createMapDraw(city, giocatori, k);
+	public void createMap(List<Region>reg, List<Player>giocatori, King k){
+		new PrintMap().createMapDraw(reg, giocatori, k);
 	}
 	
 	

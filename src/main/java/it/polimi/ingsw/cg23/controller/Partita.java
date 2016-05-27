@@ -66,9 +66,6 @@ public class Partita {
 		}
 		
 		//print the map
-		List<City> citta=b.getRegions().get(0).getCities();
-		citta.addAll(b.getRegions().get(1).getCities());
-		citta.addAll(b.getRegions().get(2).getCities());
-		cl.createMap(citta, giocatori, b.getKing());
+		cl.createMap(b.getRegions(), giocatori, b.getKing());
 	}
 }

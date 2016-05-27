@@ -1,9 +1,13 @@
 package it.polimi.ingsw.cg23.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.King;
 
 public class PrintMap {
@@ -16,14 +20,18 @@ public class PrintMap {
 	 * @param city, a city list with city info
 	 * @param giocatori, a list with the players
 	 */
-	public void createMap(List<City> city, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
+	public void createMap(List<Region> reg, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
+
+		List<City> city=getCityfromRegion(reg);
+
+
 		String gamemap="";//la stringa che stampa la plancia di gioco
 		int space=60;//spazio da mettere tra una regione e l'altra
 		gamemap+=addSpace("COSTA", space);//nomi delle regioni
 		gamemap+=addSpace("COLLINA", space);
 		gamemap+=addSpace("MONTAGNA", space);
 		gamemap+="\n";
-		
+
 		int regionNumber=cl.regionNumber(city);//recupera il numero di regioni
 		for(int i=0; i<city.size()/regionNumber; i++){//ciclo che scorre le citta' per regione da stampare 5
 
@@ -47,6 +55,14 @@ public class PrintMap {
 		}
 		gamemap+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		cl.print("",gamemap);//stampo la plancia di gioco
+	}
+
+	public List<City> getCityfromRegion(List<Region> regions){
+		List<City> city = new ArrayList<>();
+		for(int i=0; i<regions.size(); i++){
+			city.addAll(regions.get(i).getCities());
+		}
+		return city;
 	}
 
 	/**
@@ -145,17 +161,19 @@ public class PrintMap {
 	 * @param giocatori, the player list
 	 * @param king, the king
 	 */
-	public void createMapDraw(List<City> city, List<Player> giocatori, King king){
-		String plancia="\n";//la stringa che stampa la plancia di gioco
-		int space=40;//spazio da mettere tra una regione e l'altra
+	public void createMapDraw(List<Region> reg, List<Player> giocatori, King king){
+		List<City> city=getCityfromRegion(reg);
+
+		String plancia="\nPlancia di gioco\n";//la stringa che stampa la plancia di gioco
+		int space=50;//spazio da mettere tra una regione e l'altra
 		int regionNumber=cl.regionNumber(city);//recupera il numero di regioni
 		int citypReg=city.size()/regionNumber;
-		
-		plancia+=addSpace("COSTA", space);//nomi delle regioni
-		plancia+=addSpace("COLLINA", space);
-		plancia+=addSpace("MONTAGNA", space);
+
+		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
+			plancia+=addSpace(reg.get(j).getName().toUpperCase(), space);//nomi delle regioni
+		}
 		plancia+="\n";
-		
+
 		for(int i=0; i<citypReg; i++){//ciclo che scorre le citta' per regione da stampare 5
 			int minus=32;
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
@@ -167,8 +185,8 @@ public class PrintMap {
 				String name;
 				if(king.getCity().getName().equals(city.get(i+citypReg*k).getName())){
 					name=addSpace("|"+city.get(i+citypReg*k).getName()+" - "+city.get(i+citypReg*k).getId(), minus-1)+"|";
-					name=name.substring(0, name.length()-7);
-					name+="KING  |";
+					name=name.substring(0, name.length()-7);//faccio spazio per aggiungere king
+					name+="KING  |";//aggiungo king alla citta' del re
 				}
 				else
 					name=addSpace("|"+city.get(i+citypReg*k).getName()+" - "+city.get(i+citypReg*k).getId(), minus-1)+"|";
@@ -194,7 +212,7 @@ public class PrintMap {
 				plancia=plancia+addSpace(tipo, space);
 			}
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
-			
+
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge gli empori
 				String bonus=addSpace("|Empori:"+city.get(i+citypReg*k).getEmporiums(), minus-1)+"|";
 				plancia=plancia+addSpace(bonus, space);
@@ -202,15 +220,94 @@ public class PrintMap {
 			plancia+="\n";//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
-				plancia+=addSpace("|"+addMinus(minus-2)+"|", space);
+				plancia+=addSpace(addMinus(minus), space);
 			}
 			plancia+="\n";
 
 		}
-		plancia+="\n"+createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
+		plancia+="\n";
+		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 		cl.print("",plancia);//stampo la plancia di gioco
 	}
-	
+
+	/**
+	 * creathe the costruction card to print
+	 * @param region, the region
+	 * @param space, half of the space
+	 * @return a string with the costruction card
+	 */
+	public String createCostructionShowed(List<Region> region, int space){
+		String cardShowed="";//plancia delle carte costrucione
+		int regSize=region.size();//numero di regioni
+		List<BusinessPermitTile> costruction=new ArrayList<>();//lista delle carte costruzione viste di una regione
+		
+		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
+			cardShowed+=addSpace("Carte Costruzione "+region.get(j).getName()+":", space*2);//carte costruzione
+			costruction=region.get(j).getDeck().getShowedDeck();
+		}
+		cardShowed+="\n";
+
+		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
+			String mino="";
+			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
+				mino+=addSpace(addMinus(space-5), space);//aggiungo i -
+			}
+			cardShowed+=mino;//aggiungo il tutto alla string finale
+		}
+		cardShowed+="\n";
+
+		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
+			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
+				String card="";//stringa con gli id delle citta'
+				card+=addSpace("|"+costruction.get(i).getCitiesId().toString(), space-6);//aggiungo gli id delle citta'
+				card+="|";
+				card=addSpace(card, space);
+				cardShowed+=card;//aggiungo il tutto alla string finale
+			}
+		}
+		cardShowed+="\n";
+
+		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
+			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
+				String bon="";//stringa con i bonus 1
+				List<Bonus> bo=costruction.get(i).getBonusTile();//lista dei bonus delle carte costruzione
+				bon+=addSpace("|"+bo.get(0).getName(), space-6);//aggiungo il bonus 1
+				bon+="|";
+				bon=addSpace(bon, space);//aggiungo lo spazio
+				cardShowed+=bon;//aggiungo il tutto alla string finale
+			}
+		}
+		cardShowed+="\n";
+
+		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
+			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
+				String bon="";//stringa che contiene i bonus
+				List<Bonus> bo=costruction.get(i).getBonusTile();//lista con i bonus
+				if(bo.size()>1){//il secondo bonus può non esserci
+					bon+=addSpace("|"+bo.get(1).getName(), space-6);
+				}else{
+					bon+=addSpace("|",space-6);//nel caso non ci sia il secondo bonus
+				}
+				bon+="|";
+				bon=addSpace(bon, space);//aggiungo gli spazi
+				cardShowed+=bon;//aggiungo il tutto alla string finale
+			}
+		}
+		cardShowed+="\n";
+
+		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
+			String mino="";
+			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
+				mino+=addSpace(addMinus(space-5), space);
+			}
+			cardShowed+=mino;//aggiungo il tutto alla string finale
+		}
+		cardShowed+="\n";
+
+		return cardShowed;
+	}
+
 	/**
 	 * trasmor a list of city in a string of the city id
 	 * @param c, the city
@@ -225,7 +322,7 @@ public class PrintMap {
 		}
 		return viciniId.substring(0, viciniId.length()-2);//tolgo gli ultimi due caratteri (virgola e spazio)
 	}
-	
+
 	/**
 	 * return a string with the specified number of minus -
 	 * @param number, the number of minus you want
@@ -234,7 +331,7 @@ public class PrintMap {
 	public String addMinus(int number){
 		String minus="";
 		for(int i=0; i<number; i++){//ciclo che scorre la quantita' di meno da aggiungere
-			minus+="_";//aggiungo un meno
+			minus+="-";//aggiungo un meno
 		}
 		return minus;
 	}
