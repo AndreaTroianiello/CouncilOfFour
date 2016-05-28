@@ -46,7 +46,7 @@ public class Partita {
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
 			//cl.print("", "C R "+b.getRegions().get(0).getCouncil().toString());
 			cl.print("", "C K "+b.getKing().getCouncil().toString());
-			City destination=b.getRegions().get(1).searchCityById('O');
+			City destination=b.getRegions().get(1).searchCityById('F');
 			cl.print("",destination.toString());
 			cl.print("",b.getKing().getCity().toString());
 			cl.print("!!",b.getRegions().get(0).getDeck().getShowedDeck().toString());
