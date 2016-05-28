@@ -70,23 +70,24 @@ public class ElectCouncillor extends GameAction{
 	@Override
 	public void runAction(Player player, Board board){
 		Councillor newCouncillor=board.getCouncillor(councillor);
-		if(!this.king){
-			Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-			board.setCouncillor(oldCouncillor);
-			this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+			if(newCouncillor!=null){
+				if(!this.king){
+					Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+					board.setCouncillor(oldCouncillor);
+					this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+				}
+				else{
+					Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+					board.setCouncillor(oldCouncillor);
+					board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+				}
+				int coins = player.getRichness().getCoins();
+				coins = coins +4;
+				try{
+					player.getRichness().setCoins(coins);
+				} catch(NegativeNumberException e){
+				}		
 		}
-		else{
-			Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-			board.setCouncillor(oldCouncillor);
-			board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-		}
-		int coins = player.getRichness().getCoins();
-		coins = coins +4;
-		try{
-			player.getRichness().setCoins(coins);
-		} catch(NegativeNumberException e){
-			System.out.println("The bonus makes the player have negative coins");
-		}		
 	}
 
 	/**
