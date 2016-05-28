@@ -6,6 +6,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.State;
 import it.polimi.ingsw.cg23.model.action.GameAction;
+import it.polimi.ingsw.cg23.model.action.MarketAction;
 import it.polimi.ingsw.cg23.model.action.MarketSell;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
@@ -161,10 +162,10 @@ public class Turn {
 	 * Controls if the action is a normal action or a market's action and runs it.
 	 */
 	public void runAction(){
-		if(action instanceof GameAction)
-			runActionNormal();
-		else
+		if(action instanceof MarketAction)
 			runActionMarket();
+		else
+			runActionNormal();
 	}
 
 	/* (non-Javadoc)
