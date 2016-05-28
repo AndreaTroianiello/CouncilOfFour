@@ -49,12 +49,13 @@ public class BonusAssistants implements Bonus {
 	public void giveBonus(Player player) {
 		int playerAssistants = player.getAssistantsPool().getAssistants();				//set in a variable the amount of assistants of the player		
 		playerAssistants = playerAssistants + this.assistants;							//add to the variable the assistants given by the bonus
-		try {
-			player.getAssistantsPool().setAssistants(playerAssistants);					//set the player's pool and throw an exception
-		} catch (NegativeNumberException e) {
-			System.out.println("The bonus makes the player have negative assistants");
+		if(this.assistants>0){
+			try {
+				player.getAssistantsPool().setAssistants(playerAssistants);					//set the player's pool and throw an exception
+			} catch (NegativeNumberException e) {
+				System.out.println("The bonus makes the player have negative assistants");
+			}
 		}
-
 	}
 	
 	@Override

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,9 +37,9 @@ public class BonusCityToken implements Bonus {
 	 * @param city
 	 * @param board
 	 */
-	public BonusCityToken(int number, City[] city, Board board) {
+	public BonusCityToken(int number, List<City> city, Board board) {
 		this.number = number;
-		this.city = new ArrayList<>();
+		this.city = city;
 		this.runnable = new boolean[this.city.size()];
 		for(int i=0; i<this.runnable.length; i++)			//set all the array's elements at false
 			this.runnable[i] = true;
