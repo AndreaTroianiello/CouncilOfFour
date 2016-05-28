@@ -36,17 +36,17 @@ public class Partita {
 				t.getCurrentPlayer().getRichness().setCoins(100);
 			} catch (NegativeNumberException e) {
 			}
-			Emporium e=t.getCurrentPlayer().getAvailableEmporium();
-			e.setCity(b.getRegions().get(1).searchCityById('J'));
-			b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
-			b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
+			//Emporium e=t.getCurrentPlayer().getAvailableEmporium();
+			//e.setCity(b.getRegions().get(1).searchCityById('J'));
+			//b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
+			//b.getRegions().get(1).searchCityById('J').getEmporiums().add(e);
 			b.getTypes().get(1).runBonusType(t.getCurrentPlayer());
 			cl.print("", t.getCurrentPlayer().toString());
 			cl.print("", cards.toString());
 			cl.print("", t.getCurrentPlayer().getEmporiums().toString());
 			//cl.print("", "C R "+b.getRegions().get(0).getCouncil().toString());
 			cl.print("", "C K "+b.getKing().getCouncil().toString());
-			City destination=b.getRegions().get(1).searchCityById('J');
+			City destination=b.getRegions().get(1).searchCityById('O');
 			cl.print("",destination.toString());
 			cl.print("",b.getKing().getCity().toString());
 			cl.print("!!",b.getRegions().get(0).getDeck().getShowedDeck().toString());

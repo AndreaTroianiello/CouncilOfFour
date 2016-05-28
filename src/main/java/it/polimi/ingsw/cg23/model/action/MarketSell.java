@@ -11,7 +11,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.model.marketplace.CanBeSold;
 import it.polimi.ingsw.cg23.model.marketplace.Item;
 
-public class MarketSell extends GameAction {
+public class MarketSell extends GameAction implements MarketAction {
 
 	private static final long serialVersionUID = 7634075876339346475L;
 	private CanBeSold item;
