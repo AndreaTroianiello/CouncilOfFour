@@ -22,6 +22,13 @@ public class Market implements Serializable{
 	}
 	
 	/**
+	 * Returns the list of all items to sell.	
+	 * @return
+	 */
+	public List<Item> getItems(){
+		return itemsToSell;
+	}
+	/**
 	 * Returns the list of items to sell.
 	 * 
 	 * @param newItem  a new item to sell.

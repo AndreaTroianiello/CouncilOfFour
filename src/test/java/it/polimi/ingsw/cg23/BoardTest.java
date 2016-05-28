@@ -117,5 +117,12 @@ public class BoardTest {
 		assertEquals(board.getStatus().getStatus(),"FINAL TURN");
 		
 	}
+	
+	@Test
+	public void testMarket() {
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		assertNotNull(board.getMarket());
+		
+	}
 
 }
