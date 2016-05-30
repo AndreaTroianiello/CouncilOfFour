@@ -55,7 +55,7 @@ public class Avvio {
 		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
-			cp.createPlayer();//creo i giocatori
+			cp.createPlayer(null);//creo i giocatori
 		}
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
@@ -108,7 +108,8 @@ public class Avvio {
 		cl.print("", "-Setto la board");
 
 		//----------carte permesso di costruzione----------
-		costructionCard=cc.createCardCostruction();//crea le carte costruzione e le metto nella lista
+		//cb.bonusList(board);
+		costructionCard=cc.createCardCostruction(board);//crea le carte costruzione e le metto nella lista
 		cc.createRegionDeck(regions);//riempie i regiondeck delle regioni
 		cl.print("", "-Creo le carte permesso di costruzione");
 
@@ -127,7 +128,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
 		cl.createMap(regions, giocatori, king);//stampa la plancia di gioco dalla lista
-		//printAll();//stampa tutte le liste
+		printAll();//stampa tutte le liste
 	}
 	
 	/**

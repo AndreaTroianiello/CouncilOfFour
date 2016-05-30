@@ -44,4 +44,10 @@ public class CittaXmlTest {
 		assertEquals(rcx.idConversion("      A      B",2),"AB");
 	}
 	
+	@Test
+	public void ReadFileXxmlTest(){
+		assertEquals(rcx.readFileXml("ConfigurazionePartita.xml").length, 15);
+		assertNotEquals(rcx.readFileXml("ConfigurazionePartitas.xml").length, 15);//file inesistente
+	}
+	
 }

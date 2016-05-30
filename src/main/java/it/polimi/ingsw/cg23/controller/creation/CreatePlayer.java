@@ -14,10 +14,15 @@ public class CreatePlayer {
 	
 	/**
 	 * create and add a player to the list
+	 * @param n , the name of player, if null the name is ask from the cl
 	 */
-	public void createPlayer(){
+	public void createPlayer(String n){
 		int assistant=playerNumber();//numero di giocatori gia' presenti nella lista
-		String name=cl.writeReturnValue("Come ti chiami giocatore?",null).toString();//recupero il nome del giocatore
+		String name;
+		if(n==null)
+			name=cl.writeReturnValue("Come ti chiami giocatore?",null).toString();//recupero il nome del giocatore
+		else
+			name=n;
 		Player p=new Player(name, assistant+10, 0, nT);//creo i giocatori
 		giocatori.add(p);//aggiunge un giocatore alla lista
 	}

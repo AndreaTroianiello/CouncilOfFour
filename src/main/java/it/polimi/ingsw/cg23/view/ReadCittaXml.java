@@ -46,15 +46,7 @@ public class ReadCittaXml {
 				city=createArray(i, citylist, zoneName, city, citynum);//recupero le informazioni della citta'
 			}
 			return city;
-		} catch (ArrayIndexOutOfBoundsException e) {//se ci sono dei problemi ritorna l'array null
-			for(int i=0;i<city.length;i++){//cicli per annullare l'array (richiesto da sonar)
-				for(int k=0; k<city[0].length; k++){
-					city[i][k]=null;
-				}
-			}
-			return city;
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			return new String[0][0];
 		}
 	}

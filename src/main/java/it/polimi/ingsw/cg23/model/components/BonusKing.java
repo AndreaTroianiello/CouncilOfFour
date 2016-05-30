@@ -45,6 +45,10 @@ public class BonusKing implements Serializable{
 		this.bonusValues=bonusValues;
 	}
 	
+	public List<Integer> getBonusValues() {
+		return bonusValues;
+	}
+
 	/**
 	 * Returns the index of current bonus king.
 	 * 
