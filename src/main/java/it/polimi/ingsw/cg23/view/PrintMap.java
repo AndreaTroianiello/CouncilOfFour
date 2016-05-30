@@ -60,6 +60,11 @@ public class PrintMap {
 		cl.print("",gamemap);//stampo la plancia di gioco
 	}
 
+	/**
+	 * find the city from the regions
+	 * @param regions, the regions
+	 * @return teh city list
+	 */
 	public List<City> getCityfromRegion(List<Region> regions){
 		List<City> city = new ArrayList<>();
 		for(int i=0; i<regions.size(); i++){
