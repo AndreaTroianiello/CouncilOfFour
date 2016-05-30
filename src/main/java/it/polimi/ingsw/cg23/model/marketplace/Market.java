@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Random;
 
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 /**
  * The market's class. The market allows a player to sell to other players
@@ -41,9 +45,50 @@ public class Market implements Serializable{
 	}
 	
 	/**
+	 * Adds the business permit tile for sale to the player indicated
+	 * @param item The business permit tile for sale.
+	 * @param player The player indicated.
+	 */
+	public void removeBusinessPermitTile(BusinessPermitTile item,Player player){
+		player.addAvailableBusinessPermit(item);
+	}
+
+	/**
+	 * Adds the politic card for sale to the player indicated
+	 * @param item The politic card for sale.
+	 * @param player The player indicated.
+	 */
+	public void removePoliticCard(PoliticCard item,Player player){
+		player.addPoliticCard(item);
+	}
+	
+	/**
+	 * Adds assistants for sale to the player indicated
+	 * @param item The assistants pool for sale.
+	 * @param player The player indicated.
+	 */
+	public void removeAssistants(AssistantsPool item,Player player){
+		int assistants=item.getAssistants();
+		assistants+=player.getAssistantsPool().getAssistants();
+		try {
+			player.getAssistantsPool().setAssistants(assistants);
+		} catch (NegativeNumberException e) {
+		}
+	}
+	
+	/**
 	 * Removes all items from the list.
 	 */
 	public void resetItems(){
+		for(Item item:itemsToSell){
+			Player player=item.getPlayer();
+			if(item.getItem() instanceof BusinessPermitTile)
+				removeBusinessPermitTile((BusinessPermitTile)item.getItem(),player);
+			if(item.getItem() instanceof PoliticCard)
+				removePoliticCard((PoliticCard)item.getItem(),player);
+			if(item.getItem() instanceof AssistantsPool)
+				removeAssistants((AssistantsPool)item.getItem(),player);
+		}
 		this.itemsToSell.clear();
 	}
 
