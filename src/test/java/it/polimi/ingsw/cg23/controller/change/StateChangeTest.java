@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.control.change;
+package it.polimi.ingsw.cg23.controller.change;
 
 import static org.junit.Assert.*;
 

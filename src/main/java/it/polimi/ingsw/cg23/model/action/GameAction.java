@@ -50,7 +50,8 @@ public abstract class GameAction extends Observable<Change> implements Action,Se
 	 * @param player The current player of the turn.
 	 * @param board The model of the game.
 	 */
-	public void runAction(Player player, Board board){}
+	public void runAction(Player player, Board board) {
+	}
 
 	/**
 	 * Returns the indicator that shows if the action is primary or secondary.
