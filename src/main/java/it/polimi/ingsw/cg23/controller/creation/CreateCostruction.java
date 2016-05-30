@@ -45,6 +45,7 @@ public class CreateCostruction {
 	 */
 	public void createRegionDeck(List<Region> region){
 		List<BusinessPermitTile> costructionRegionlist=new ArrayList<>();
+		
 		for(int k=0; k<region.size(); k++){//scorre le regioni
 			for(int i=0; i<costructionCard.size(); i++){//scorre le carte costruzione
 				if(region.get(k).getName().equals(costructionCard.get(i).getZone()))

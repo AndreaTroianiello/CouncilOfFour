@@ -108,7 +108,6 @@ public class Avvio {
 		cl.print("", "-Setto la board");
 
 		//----------carte permesso di costruzione----------
-		//cb.bonusList(board);
 		costructionCard=cc.createCardCostruction(board);//crea le carte costruzione e le metto nella lista
 		cc.createRegionDeck(regions);//riempie i regiondeck delle regioni
 		cl.print("", "-Creo le carte permesso di costruzione");
@@ -128,7 +127,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
 		cl.createMap(regions, giocatori, king);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
+		//printAll();//stampa tutte le liste
 	}
 	
 	/**
