@@ -50,13 +50,12 @@ public class King implements Serializable{
 	public Council getCouncil() {
 		return council;
 	}
-	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "King [city=" + city + "]"+council;
+		return "King [city=" + city.getId() + ", council=" + council.getCouncillors().size() + "]";
 	}
 }

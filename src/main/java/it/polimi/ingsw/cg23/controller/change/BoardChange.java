@@ -25,7 +25,7 @@ public class BoardChange implements Change {
 	 */
 	@Override
 	public String toString() {
-		return "StateChange [newState=" + newBoard + "]";
+		return "BoardChange [newBoard=" + newBoard + "]";
 	}
 
 }

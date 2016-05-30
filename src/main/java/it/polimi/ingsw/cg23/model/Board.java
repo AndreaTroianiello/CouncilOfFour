@@ -233,8 +233,8 @@ public class Board extends Observable<Change> implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "Board [deck=" + deck + ", regions=" + regions + ", nobilityTrack=" + nobilityTrack + ", king=" + king
-				+ "]";
+		return "Board [deck=" + deck.deckIsEmpty() + ", regions=" + regions.size()
+				+", types="+types.size()+", nobilityTrack=" + nobilityTrack.getNobilityBoxes().size()+ ", king=" + king + "]";
 	}
 	
 	

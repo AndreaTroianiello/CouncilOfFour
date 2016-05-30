@@ -25,7 +25,7 @@ public class PlayerChange implements Change {
 	 */
 	@Override
 	public String toString() {
-		return "StateChange [newState=" + newPlayer + "]";
+		return "PlayerChange [newPlayer=" + newPlayer + "]";
 	}
 
 }

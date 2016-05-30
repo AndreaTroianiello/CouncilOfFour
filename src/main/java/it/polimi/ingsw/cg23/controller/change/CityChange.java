@@ -25,7 +25,7 @@ public class CityChange implements Change {
 	 */
 	@Override
 	public String toString() {
-		return "StateChange [newState=" + newCity + "]";
+		return "CityChange [newCity=" + newCity + "]";
 	}
 
 }

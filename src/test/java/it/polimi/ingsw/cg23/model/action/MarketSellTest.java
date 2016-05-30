@@ -52,6 +52,8 @@ public class MarketSellTest {
 		new MarketSell(cards.get(3), 10).runAction(player, board);
 		new MarketSell(cards.get(3), 10).runAction(player, board);
 		new MarketSell(cards.get(1), 10).runAction(player, board);
+		new MarketSell(new PoliticCard(Color.BLUE,false),2).runAction(player, board);
+		new MarketSell(assistants, 10).runAction(player, board);
 		new MarketSell(assistants, 10).runAction(player, board);
 		assertEquals(board.getMarket().getItems().size(), 5);
 		assertEquals(player.getAvailableBusinessPermits().size(), 4);
