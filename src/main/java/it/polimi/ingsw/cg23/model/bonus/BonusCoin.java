@@ -9,6 +9,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 /**
  * the class of the bonus that allows the player to increase his richness. It contains the number of coins given
  * byt the bonus to the player and the string of the name
+ *
  * 
  * @author utente
  *
@@ -22,6 +23,8 @@ public class BonusCoin implements Bonus {
 	/**
 	 * the constructor set the coins as the parameter given to the method and the name as the name
 	 * of the bonus
+	 * 
+	 * @param coin, can't be negative
 	 */
 	public BonusCoin(int coin) {
 		this.coins = coin;
