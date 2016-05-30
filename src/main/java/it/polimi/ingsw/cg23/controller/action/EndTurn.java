@@ -2,9 +2,12 @@ package it.polimi.ingsw.cg23.controller.action;
 
 
 
+import java.util.List;
+
 import it.polimi.ingsw.cg23.controller.Turn;
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.controller.change.StateChange;
+import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.State;
 import it.polimi.ingsw.cg23.observer.Observable;
@@ -49,13 +52,20 @@ public class EndTurn extends Observable<Change> implements Action {
 	 * @param turn The turn manager.
 	 */
 	public void runAction(Turn turn){
+		Board board=turn.getBoard();
 		if(turn.changePlayer()){
-			State status=turn.getBoard().getStatus();
+			State status=board.getStatus();
 			status.setStatus("FINISH");
 			this.notifyObserver(new StateChange(status));
 		}
 		else{
-			turn.getBoard().changeStatus();
+			board.changeStatus();
+			List<Player> players=board.getPlayers();
+			State status=turn.getBoard().getStatus();
+			if("MARKET: BUYING".equals(status.getStatus()))
+				turn.setPlayers(board.getMarket().generatePlayersList(players));
+			else
+				turn.setPlayers(players);
 		}
 	}
 

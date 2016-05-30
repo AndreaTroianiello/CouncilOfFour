@@ -11,6 +11,7 @@ import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.model.marketplace.Market;
 import it.polimi.ingsw.cg23.observer.Observable;
 
 /**
@@ -29,6 +30,7 @@ public class Board extends Observable<Change> implements Serializable{
 	private final List<Councillor> councillorPool;
 	private final List<Player> players;
 	private State status;
+	private final Market market;
 	
 	/**
 	 * The constructor of the board.
@@ -47,6 +49,7 @@ public class Board extends Observable<Change> implements Serializable{
 		this.councillorPool=new ArrayList<>();
 		this.players=new ArrayList<>();
 		this.status=new State("TURN");
+		this.market=new Market();
 	}
 
 	/**
@@ -210,11 +213,19 @@ public class Board extends Observable<Change> implements Serializable{
 		
 		if("MARKET: BUYING".equals(statusString))
 			status.setStatus("TURN");
-		
+
 		if(status.getFinalPlayer()!=null && !"FINAL TURN".equals(statusString))
 			status.setStatus("FINAL TURN");
 		
 		this.notifyObserver(new StateChange(status));			//When the state is changed notify the observer.
+	}
+	
+	/**
+	 * Returns the market of the game.
+	 * @return market
+	 */
+	public Market getMarket(){
+		return market;
 	}
 
 	/* (non-Javadoc)

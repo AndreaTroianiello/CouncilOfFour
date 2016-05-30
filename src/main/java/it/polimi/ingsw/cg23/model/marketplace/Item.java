@@ -56,4 +56,14 @@ public class Item implements Serializable {
 		return player;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Item [coins=" + coins + ", itemToSell=" + itemToSell + ", player=" + player.getUser() + "]";
+	}
+	
+	
+
 }

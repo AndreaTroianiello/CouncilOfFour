@@ -233,7 +233,7 @@ public class Player implements Serializable {
 	public NobilityTrack getNobilityTrack() {
 		return nobilityTrack;
 	}
-	
+
 	/**
 	 * Returns all stats of the player.
 	 */
@@ -242,8 +242,9 @@ public class Player implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "-User: " + user + "\n-Assistants: " + this.assistantsPool.getAssistants() + 
-				"\n-Coins: "+ this.richness.getCoins() + "\n-Victory points: " + this.victoryTrack.getVictoryPoints() ;
+		return "Player [user=" + user + ", additionalAction=" + additionalAction + ", assistantsPool=" + assistantsPool.getAssistants()
+				+ ", richness=" + richness.getCoins() + ", victoryTrack=" + victoryTrack.getVictoryPoints() + ", nobilityBoxPosition="
+				+ nobilityBoxPosition + "]";
 	}
 	
 }

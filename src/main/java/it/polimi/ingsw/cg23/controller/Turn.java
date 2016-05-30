@@ -4,7 +4,10 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.State;
 import it.polimi.ingsw.cg23.model.action.GameAction;
+import it.polimi.ingsw.cg23.model.action.MarketAction;
+import it.polimi.ingsw.cg23.model.action.MarketSell;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 
@@ -15,9 +18,8 @@ import it.polimi.ingsw.cg23.model.components.PoliticCard;
  */
 public class Turn {
 	
-	private final List<Player> players;								//The players of the game.
+	private List<Player> players;									//The players of the game.
 	private int currentPlayer;										//The current player.
-	private int finalPlayer;										//The player who has built all emporiums available first.
 	private GameAction action;										//The action of the turn.
 	private final Board board; 
 	private int mainIndex;											//Main action's counter.
@@ -33,7 +35,6 @@ public class Turn {
 		this.players=players;
 		this.board=board;
 		this.currentPlayer=0;
-		this.finalPlayer=-1;
 		this.action=null;
 		this.mainIndex=1;
 		this.mainAction=true;
@@ -55,7 +56,8 @@ public class Turn {
 	 * @return If true the game is finished and the first player of the list has built all emporiums available.
 	 */
 	public boolean changePlayer() {
-		if((currentPlayer+1)%players.size()!=finalPlayer){     //Control if the next player wasn't the first to build all emporiums.
+		State status=board.getStatus();
+		if(players.get((currentPlayer+1)%players.size())!=status.getFinalPlayer()){     //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
 			this.mainAction=true;
 			this.secondAction=true;
@@ -79,13 +81,22 @@ public class Turn {
 	public Board getBoard(){
 		return board;
 	}
+	
+	/**
+	 * Sets the players of the game.
+	 * @param players a list of the players.
+	 */
+	 public void setPlayers(List<Player> players){
+		 this.players=players;
+	 }
+	 
 	/**
 	 * It indicates whether a player has used all available emporiums.
 	 * 
 	 * return finalTurn. It is true if a players has completed the emporiums.
 	 */
 	 public boolean isFinalTurn(){									//Return true if a player has built all emporiums.
-		 return finalPlayer>=0;
+		 return board.getStatus().getFinalPlayer()!=null;
 	 }
 	
 	/**
@@ -95,7 +106,7 @@ public class Turn {
 		Deck deck=board.getDeck();
 		PoliticCard card=deck.draw();
 		if(card!=null)
-			players.get(currentPlayer).addPoliticCard(deck.draw());
+			getCurrentPlayer().addPoliticCard(deck.draw());
 	}
 	
 	/**
@@ -109,27 +120,52 @@ public class Turn {
 		}
 		if(!action.isMain() && secondAction)						//Control if the action is not a main action and it's authorized.
 			secondAction=false;
-		if(players.get(currentPlayer).isAdditionalAction()){		//Control if the second action has enabled a new main action.
+		if(getCurrentPlayer().isAdditionalAction()){				//Control if the second action has enabled a new main action.
 			mainIndex++;
 			mainAction=true;
-			players.get(currentPlayer).switchAdditionalAction();
+			getCurrentPlayer().switchAdditionalAction();
 		}
 			
 	}
 	
 	/**
-	 * Runs the the action and control if the player has.
+	 * Runs the the normal action.
 	 */
-	public void runAction(){
-		Player player=players.get(currentPlayer);
+	public void runActionNormal(){
+		Player player=getCurrentPlayer();
+		State status=board.getStatus();
 		if((action.isMain() && mainAction)||(!action.isMain() && secondAction)){		//Control if the action is authorized
 			action.runAction(player, board);											//Run the action.
 			controlAction();															//Control the authorization.
 		}
-		if(finalPlayer==-1 && player.isAvailableEmporiumEmpty()){						//If the current player has been the first to build all emporiums.
-			finalPlayer=currentPlayer;
+		
+		if(status.getFinalPlayer()==null && player.isAvailableEmporiumEmpty()){						//If the current player has been the first to build all emporiums.
+			status.setFinalPlayer(getCurrentPlayer());
 			player.getVictoryTrack().setVictoryPoints(player.getVictoryTrack().getVictoryPoints()+3);
 		}
+	}
+	
+	/**
+	 * Runs the the market's action.
+	 */
+	public void runActionMarket(){
+		Player player=getCurrentPlayer();
+		State status=board.getStatus();
+		if(action instanceof MarketSell 
+			&& "MARKET: SELLING".equals(status.getStatus())){			//Control if the action permits to sell a item.
+			action.runAction(player, board);							//Run the action.															//Control the authorization.
+		}
+		
+	}
+	
+	/**
+	 * Controls if the action is a normal action or a market's action and runs it.
+	 */
+	public void runAction(){
+		if(action instanceof MarketAction)
+			runActionMarket();
+		else
+			runActionNormal();
 	}
 
 	/* (non-Javadoc)
@@ -137,7 +173,7 @@ public class Turn {
 	 */
 	@Override
 	public String toString() {
-		return "Turn [currentPlayer=" + currentPlayer + ", finalPlayer=" + finalPlayer + ", mainIndex=" + mainIndex
+		return "Turn [currentPlayer=" + getCurrentPlayer().getUser() + ", mainIndex=" + mainIndex
 				+ ", mainAction=" + mainAction + ", secondAction=" + secondAction + "]";
 	}
 	
