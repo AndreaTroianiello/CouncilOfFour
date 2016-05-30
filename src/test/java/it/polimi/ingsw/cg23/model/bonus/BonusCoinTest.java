@@ -23,6 +23,8 @@ public class BonusCoinTest {
 	@Test
 	public void testGetName() {
 		BonusCoin bonus = new BonusCoin(2);
+		bonus.setNumber(2);
+		bonus.setParameters();
 		assertEquals("2Coin", bonus.getName());
 	}
 

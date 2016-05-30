@@ -21,7 +21,7 @@ public class BonusNobility implements Bonus {
 	/**
 	 * the constructor set the name as the name of the bonus, and the other variables as the 
 	 * parameter given to the method
-	 * @param steps
+	 * @param steps (can't be negative)
 	 * @param board
 	 */
 	public BonusNobility(int steps, Board board) {

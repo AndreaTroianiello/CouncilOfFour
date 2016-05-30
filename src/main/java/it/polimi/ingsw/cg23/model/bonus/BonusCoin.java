@@ -24,7 +24,7 @@ public class BonusCoin implements Bonus {
 	 * the constructor set the coins as the parameter given to the method and the name as the name
 	 * of the bonus
 	 * 
-	 * @param coin, can't be negative
+	 * @param coin  (can't be negative)
 	 */
 	public BonusCoin(int coin) {
 		this.coins = coin;
