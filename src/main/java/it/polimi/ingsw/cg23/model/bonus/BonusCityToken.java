@@ -136,7 +136,7 @@ public class BonusCityToken implements Bonus {
 	 */
 	@Override
 	public Bonus clone() {
-		return new BonusCityToken(0, null, board); 
+		return new BonusCityToken(0, city, board); 
 	}	
 	
 }
