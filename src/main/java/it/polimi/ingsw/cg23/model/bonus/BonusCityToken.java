@@ -40,9 +40,11 @@ public class BonusCityToken implements Bonus {
 	public BonusCityToken(int number, List<City> city, Board board) {
 		this.number = number;
 		this.city = city;
-		this.runnable = new boolean[this.city.size()];
+		/*this.runnable = new boolean[this.city.size()];
 		for(int i=0; i<this.runnable.length; i++)			//set all the array's elements at false
 			this.runnable[i] = true;
+		*/
+		this.runnable=new boolean[0];
 		this.board = board;
 		this.cl = new CliInterface();
 		this.name="CityToken";

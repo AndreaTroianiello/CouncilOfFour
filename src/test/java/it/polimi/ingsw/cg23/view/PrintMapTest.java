@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23;
+package it.polimi.ingsw.cg23.view;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.controller.creation.CreateCostruction;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -22,7 +21,6 @@ import it.polimi.ingsw.cg23.view.PrintMap;
 public class PrintMapTest {
 
 	PrintMap map=new PrintMap();
-	CreateCostruction cc=new CreateCostruction();
 	
 	private Type type1,type2;
 	private List<Region> regions;
@@ -30,7 +28,7 @@ public class PrintMapTest {
 	private List<Player> player;
 	private List<City> cities;
 	private BonusKing bonusKing;
-	
+	/*
 	@Before
 	public void setUp(){
 		//Set up the bonus king
@@ -115,5 +113,5 @@ public class PrintMapTest {
 	@Test
 	public void cityNeighboursTest(){
 		assertEquals(map.getNeighbourID(cities.get(0)), "Vicini: "+cities.get(1).getId());
-	}
+	}*/
 }

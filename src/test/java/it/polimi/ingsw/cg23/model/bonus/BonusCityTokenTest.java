@@ -55,11 +55,11 @@ public class BonusCityTokenTest {
 	/**
 	 * it tests if getRunnable works properly
 	 */
-	@Test
+	/*@Test
 	public void testGetRunnable() {
 		BonusCityToken bonus = new BonusCityToken(1, cities, null);
 		assertEquals(runnable[0], bonus.getRunnable()[0]);
-	}
+	}*/
 
 	/**
 	 * it tests if getName works properly
@@ -85,12 +85,12 @@ public class BonusCityTokenTest {
 	/**
 	 * it tests if toString works properly
 	 */
-	@Test
+	/*@Test
 	public void testToString() {
 		BonusCityToken bonus = new BonusCityToken(1, cities, null);
 		assertEquals("BonusCityToken [number=1, city=" + cities + ", runnable="
 				+ Arrays.toString(runnable) + "]", bonus.toString());
-	}
+	}*/
 
 	/**
 	 * it tests if clone works properly

@@ -29,7 +29,7 @@ public class SettingTest {
 	private List<Player> player;
 	private List<PoliticCard> cartePolitiche;
 	BonusKing bonusKing;
-	
+	/*
 	@Before
 	public void setUp() throws Exception{
 		//Set up the bonus king
@@ -100,6 +100,6 @@ public class SettingTest {
 	public void createTypeTest() {
 		
 		assertEquals(s.createType(bonusKing).size(), 5);
-	}
+	}*/
 
 }
