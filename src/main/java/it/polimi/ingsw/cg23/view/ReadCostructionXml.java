@@ -26,6 +26,7 @@ public class ReadCostructionXml {
 		final int cardNode=cardNodeNumber(endPath);//numero di nodi figli di card nell'xml +1
 		String[][]card=new String[cardNumber][cardNode];//array che contiene le info delle carte costruzione
 		path+=endPath;
+		
 		try{
 			File inputFile = new File(path);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -53,18 +54,14 @@ public class ReadCostructionXml {
 
 			return card;
 		} catch(Exception e) {//se ci sono dei problemi ritorna l'array null
-			for(int i=0;i<card.length;i++){//cicli per annullare l'array (richiesto da sonar)
-				for(int k=0; k<card[0].length; k++){
-					card[i][k]=null;
-				}
-			}
+
 			return card;
 		}
 	}
 
 	/**
 	 * strasforma la stringa che contiene le città in una piu' leggibile
-	 * @param nome, the string to executhe the substring (the string contain the city id)
+	 * @param nome, the string to execute the substring (the string contain the city id)
 	 * @param idnum, the number of the city link
 	 * @return a string with the city link easily to know 
 	 */
@@ -111,7 +108,7 @@ public class ReadCostructionXml {
 			Node region = rootnode.getChildNodes().item(1);//primo elemento dei figli di costruction = secondo nodo xml (region)
 			Node card= region.getChildNodes().item(3);//terzo elemento dei figli di region = quarto nodo xml (card)
 
-			return (card.getChildNodes().getLength()-1)/2+1;
+			return (card.getChildNodes().getLength()-1)/2+1;//più 1 per la regione
 		}
 		catch(Exception e) {
 			return 0;
