@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.view;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -12,8 +13,11 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.bonus.BonusAssistants;
 import it.polimi.ingsw.cg23.model.bonus.BonusCoin;
+import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.view.PrintMap;
@@ -50,6 +54,7 @@ PrintMap map=new PrintMap();
 		//Set up the regions and cities
 		regions.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
 		regions.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
+		
 		cities.add(new City('A', "Aosta", type1 , regions.get(0)));
 		cities.add(new City('B', "Bari", type2 , regions.get(0)));
 		cities.add(new City('C', "Crotone", type1 , regions.get(0)));
@@ -61,6 +66,33 @@ PrintMap map=new PrintMap();
 		player.add(new Player("player1",10,100,new NobilityTrack(3)));
 		player.add(new Player("player2", 10, 10,new NobilityTrack(3)));
 		
+		//Set up the bonuses of the cities
+		cities.get(0).addBonus(new BonusVictoryPoints(1));
+		cities.get(1).addBonus(new BonusCoin(10));
+		cities.get(2).addBonus(new BonusVictoryPoints(1));
+		cities.get(3).addBonus(new BonusAssistants());
+		
+		List<Character> c1=Arrays.asList('A','B');
+		List<Character> c2=Arrays.asList('C');
+		List<Character> c3=Arrays.asList('N','O','P');
+		
+		//creo le carte permesso di costruzione
+		BusinessPermitTile bpt1=new BusinessPermitTile(c1,regions.get(0).getName());
+		BusinessPermitTile bpt2=new BusinessPermitTile(c2, regions.get(0).getName());
+		BusinessPermitTile bpt3=new BusinessPermitTile(c3, regions.get(1).getName());
+		
+		//setto i bonus delle carte permesso
+		bpt1.addBonus(new BonusCoin(10));
+		bpt2.addBonus(new BonusVictoryPoints(1));
+		bpt3.addBonus(new BonusAssistants());
+		
+		List<BusinessPermitTile> b1=Arrays.asList(bpt1,bpt2,bpt3);
+		List<BusinessPermitTile> b2=Arrays.asList(bpt3,bpt2,bpt1);
+		
+		
+		//regions.get(0).getDeck().setBusinessPermitTiles(b1);
+		//regions.get(1).getDeck().setBusinessPermitTiles(b2);
+		
 	}
 	
 	@Test
@@ -71,9 +103,8 @@ PrintMap map=new PrintMap();
 	
 	@Test
 	public void cityBonusTest() {
-		cities.get(0).addBonus(new BonusCoin(10));//aggiungo il bonus alla citta'
-		assertEquals(map.cityBonus(cities.get(0)), "10Coin");
-		assertEquals(map.cityBonus(cities.get(1)), "");
+		assertEquals(map.cityBonus(cities.get(0)), "1VictoryPoints");
+		assertEquals(map.cityBonus(cities.get(4)), "");
 	}
 	
 	@Test
@@ -114,6 +145,12 @@ PrintMap map=new PrintMap();
 	@Test
 	public void cityNeighboursTest(){
 		assertEquals(map.getNeighbourID(cities.get(0)), "Vicini: "+cities.get(1).getId());
+	}
+	
+	@Test
+	public void bonusCostructorTest(){
+		map.getBonusCostructor(regions, 50, 0);
+		
 	}
 
 }
