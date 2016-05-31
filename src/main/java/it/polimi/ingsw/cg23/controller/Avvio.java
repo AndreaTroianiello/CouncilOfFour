@@ -44,6 +44,7 @@ public class Avvio {
 	public Avvio(){
 		this.board=null;
 		this.bk=cb.bonusKing();
+		this.citta=new ArrayList<>();
 	}
 
 	/**
@@ -55,7 +56,7 @@ public class Avvio {
 		//----------giocatori----------
 		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
-			cp.createPlayer(null);//creo i giocatori
+			cp.createPlayer();//creo i giocatori
 		}
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
@@ -79,12 +80,13 @@ public class Avvio {
 		
 		//----------citta'----------
 		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
-			citta=crc.createCities(i, regions.get(i), bk);//recupero le citta' della regione
+			citta.addAll(crc.createCities(i, regions.get(i), bk));//recupero le citta' della regione
 		}
+		
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
 			cb.getCityBonus(j, citta.get(j));//aggiungo alla citta' i bonus
 		}
-		crc.addNeighbors();//aggiungo i vicini alle citta'
+		crc.addNeighbors(citta);//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
 		
 		//----------king----------
@@ -136,19 +138,19 @@ public class Avvio {
 	public void printAll(){
 		cl.print("", "STAMPO TUTTO");
 		cl.print(bonusList.size(),"");
-		s.printList(bonusList);
+		cl.printList(bonusList);
 		cl.print(regions.size(),"");
-		s.printList(regions);
+		cl.printList(regions);
 		cl.print(citta.size(),"");
-		s.printList(citta);
+		cl.printList(citta);
 		cl.print(giocatori.size(),"");
-		s.printList(giocatori);
+		cl.printList(giocatori);
 		cl.print(politcards.size(),"");
-		s.printList(politcards);
+		cl.printList(politcards);
 		cl.print(costructionCard.size(),"");
-		s.printList(costructionCard);
+		cl.printList(costructionCard);
 		cl.print(tipi.size(),"");
-		s.printList(tipi);
+		cl.printList(tipi);
 		cl.print(bk.toString(), "");
 	}
 

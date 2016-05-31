@@ -17,12 +17,11 @@ public class CreateRegionCity {
 	CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
 	
 	private List <Region> regioni;//lista regioni
-	private List <City> citta;//lista citta
+	
 	private String endpath;//nome del file che contine le info della citta'
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	
 	public CreateRegionCity(String endpath){
-		this.citta = new ArrayList<>();
 		this.regioni = new ArrayList<>();
 		this.endpath=endpath;//endpath e' il nome del file xml da leggere
 		this.cityInfo=cl.leggiXml(endpath);
@@ -54,16 +53,18 @@ public class CreateRegionCity {
 	 */
 	public List<City> createCities(int j, Region r, BonusKing bk){
 		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
+		List <City> citta=new ArrayList<>();//lista citta
+		List <Type> typeList=new ArrayList<>();
+		typeList.clear();
+		typeList=s.createType(bk);//lista dei tipi(colori) delle citta'
 		
 		for(int i=0; i<cityInfo.length/regionNumber; i++){//ciclo che scorre le citta' di una regione
 			int ii=j*cityInfo.length/regionNumber+i;
-			List<Type> typeList=s.createType(bk);//lista dei tipi(colori) delle citta'
 			
 			for(int k=0; k<typeList.size(); k++){
 				if(cityInfo[ii][1].equals(typeList.get(k).getName())){
 					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], typeList.get(k), r);//creo la citta'
 					citta.add(c);//aggiungo la citta' alla lista delle citta'
-					break;
 				}
 			}
 		}
@@ -73,11 +74,11 @@ public class CreateRegionCity {
 	/**
 	 * set the neighbors of a city
 	 */
-	public void addNeighbors(){
+	public void addNeighbors(List<City> citta){
 		for(int h=0; h<citta.size(); h++){//scorre le citta' a cui aggiungere i vicini
 			for(int i=0; i<cityInfo.length; i++){//scorre le citta' prese dall'xml
 				if(cityInfo[i][0].equals(citta.get(h).getName())){//cerco la citta' attuale da quelle dell'xml
-					nearVicini(i,h);
+					nearVicini(i,h, citta);
 				}
 			}
 		}
@@ -88,7 +89,7 @@ public class CreateRegionCity {
 	 * @param i, the xml city
 	 * @param h, the city to add neighbors
 	 */
-	public void nearVicini(int i, int h){//rompe la funzione addNeighbors che aveva troppi innesti
+	public void nearVicini(int i, int h, List<City> citta){//rompe la funzione addNeighbors che aveva troppi innesti
 		for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
 			char link=cityInfo[i][2].charAt(k);
 			for(int j=0; j<citta.size(); j++){//scorro le citta'

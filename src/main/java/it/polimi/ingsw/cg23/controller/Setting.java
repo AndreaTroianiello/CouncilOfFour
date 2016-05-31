@@ -26,28 +26,19 @@ public class Setting {
 	private List <Bonus> bonusList;//lista di bonus
 	private String endpath;//nome del file che contine le info della citta'
 	private NobilityTrack nT;//recupero la lunghezza dall'xm
-	private List <Type> typeList;//lista di type
+	
 	
 	public Setting(){
 		this.bonusList=cb.bonusList(null);
 		this.nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//configurazione bovility track
 		this.endpath="ConfigurazionePartita.xml";
-		this.typeList=new ArrayList<>();
-	}
-
-	/**
-	 * 	print all the element of a list
-	 */
-	public void printList(List<?>lista){
-		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
-			cl.print("",lista.get(i).toString());//stampa la lista
-		}
+		
 	}
 
 	/**
 	 * refill the nobility track with the info find in the xml file
 	 */
-	public void nobilityTrackFill(){
+	public NobilityTrack nobilityTrackFill(){
 		String[][]nobilityInfo=cl.getNobilityTrackBonus("NobilityTrack.xml");//informazioni recuperate dall'xml
 		
 		for(int i=0; i<nobilityInfo.length; i++){//ciclo che scorre il numero di caselle presenti nel file xml
@@ -61,6 +52,7 @@ public class Setting {
 				nobilityBonus(b, number, nobilityInfo[i][0]);//riempie il nobility track con i bonus
 			}
 		}
+		return nT;
 	}
 	
 	/**
@@ -78,7 +70,7 @@ public class Setting {
 				
 				bo.setNumber(number);//setta il numero di bonus
 				int boxNum=Integer.parseInt(nobinfo);//numero della casella del nobility track
-				boxList.get(boxNum-1).addBonus(bo);//aggiungo alla casella del nobility track il bonus corretto
+				boxList.get(boxNum).addBonus(bo);//aggiungo alla casella del nobility track il bonus corretto
 			}
 		}
 	}
@@ -89,6 +81,8 @@ public class Setting {
 	 */
 	public List<Type> createType(BonusKing bk){
 		String[][] array=cl.getType(endpath);//recupero i type dall'xml
+		List <Type> typeList=new ArrayList<>();;//lista di type
+		
 		for(int i=0; i<array.length; i++){//scorre i type che ci sono nell'xml
 			if("purple".equals(array[i][0])){
 				Type t=new Type(array[i][0], Integer.parseInt(array[i][1]), null);//crea un nuovo tipo

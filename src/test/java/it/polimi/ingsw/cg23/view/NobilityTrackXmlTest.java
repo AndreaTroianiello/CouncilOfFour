@@ -15,15 +15,15 @@ public class NobilityTrackXmlTest {
 	}
 	
 	@Test
-	public void NobilityLenghttest() {
-		assertEquals(ntx.nobilityTrackLenght("NobilityTrack.xml"), 20);
-		assertNotEquals(ntx.nobilityTrackLenght("NobilityTracks.xml"), 20);//file inesistente
+	public void NobilityLenghtTest() {
+		assertEquals(ntx.nobilityTrackLenght("NobilityTrack.xml"), 21);
+		assertNotEquals(ntx.nobilityTrackLenght("NobilityTracks.xml"), 21);//file inesistente
 	}
 	
 	@Test
-	public void Nobilitytest() {
+	public void NobilityTest() {
 		assertEquals(ntx.nobilityTrackBonus("NobilityTrack.xml").length, 11);
-		assertNotEquals(ntx.nobilityTrackBonus("NobilityTracks.xml"), 20);//file inesistente
+		assertNotEquals(ntx.nobilityTrackBonus("NobilityTracks.xml"), 21);//file inesistente
 	}
 
 }

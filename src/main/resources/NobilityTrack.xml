@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <noblitytrack>
-	<lenght>20</lenght>
+	<lenght>21</lenght>
 	<box>
 		<number>2</number>
 		<bonus>2VictoryPoints,2Coin</bonus>

@@ -38,6 +38,14 @@ public class CliInterface {
 		this.cityInfo=new String[citynum][cityNodeNumber];
 	}
 
+	/**
+	 * 	print all the element of a list
+	 */
+	public void printList(List<?>lista){
+		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
+			print("",lista.get(i).toString());//stampa la lista
+		}
+	}
 
 	/**
 	 * carica il file xml con le infromazioni della partita
