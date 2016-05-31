@@ -1,8 +1,10 @@
 package it.polimi.ingsw.cg23.model.bonus;
  
+import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.view.CliInterface;
  
 /**
@@ -11,7 +13,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  * @author Vincenzo
  *
  */
-public class BonusGetPermitTile implements Bonus {
+public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = 5218205311068329970L;
 	private final Board board;

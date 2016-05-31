@@ -3,8 +3,10 @@ package it.polimi.ingsw.cg23.model.bonus;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -14,7 +16,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  * @author Vincenzo
  *
  */
-public class BonusTileBonus implements Bonus {
+public class BonusTileBonus extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -5750535311281465339L;
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from

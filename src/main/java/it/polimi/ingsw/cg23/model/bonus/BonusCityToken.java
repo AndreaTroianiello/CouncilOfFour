@@ -3,10 +3,12 @@ package it.polimi.ingsw.cg23.model.bonus;
 import java.util.Arrays;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
+import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 /**
@@ -17,7 +19,7 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  * @author Vincenzo
  *
  */
-public class BonusCityToken implements Bonus {
+public class BonusCityToken extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -8457638846172650018L;
 	private int number;						//how many times the player can run the bonus
