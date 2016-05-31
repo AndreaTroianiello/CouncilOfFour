@@ -32,7 +32,7 @@ public class BoardChangeTest {
 	}
 
 	@Test
-	public void testCityChange() {
+	public void testBoardChange() {
 		BoardChange change=new BoardChange(board);
 		assertEquals(change.toString(),"BoardChange [newBoard=Board [deck=true, regions=3, types=2, nobilityTrack=10, king=King [city=A, council=0]]]");
 	}

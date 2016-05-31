@@ -5,7 +5,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.observer.Observable;
 
 /**
- * the action's interface
+ * The action of the application.
  * @author Vincenzo
  */
 public abstract class Action extends Observable<Change>{
@@ -14,8 +14,7 @@ public abstract class Action extends Observable<Change>{
 	private Player player;
 	
 	/**
-	 * The constructor of the GameAction.
-	 * @param main It indicates whether the action is primary or secondary.
+	 * The constructor of the Action.
 	 */
 	public Action() {
 		this.player=null;
