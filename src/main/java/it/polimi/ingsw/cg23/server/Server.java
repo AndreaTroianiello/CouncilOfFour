@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 import it.polimi.ingsw.cg23.controller.Controller;
 import it.polimi.ingsw.cg23.controller.Turn;
 import it.polimi.ingsw.cg23.model.Board;
+import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.view.ServerSocketView;
 
 public class Server {
@@ -17,11 +18,14 @@ public class Server {
 	private Board model;
 	private Controller controller;
 	
+	
 	private void startSocket() throws IOException{
 		ExecutorService executor=Executors.newCachedThreadPool();
 		ServerSocket serverSocket=new ServerSocket(PORT);
 		System.out.println("SERVER SOCKET, PORT:" + PORT);
-		//model=new Board();
+		model=new Board(null, null, null, null, null);
+		model.addPlayer(new Player("player1", 10, 100, null));
+		this.controller = new Controller(model);
 		while(true){
 			Socket socket=serverSocket.accept();
 			ServerSocketView view=new ServerSocketView(socket,model);

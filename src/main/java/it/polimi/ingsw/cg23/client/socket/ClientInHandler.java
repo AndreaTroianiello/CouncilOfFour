@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.client.socket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import it.polimi.ingsw.cg23.controller.change.Change;
+
 
 public class ClientInHandler implements Runnable {
 	
@@ -17,7 +19,7 @@ public class ClientInHandler implements Runnable {
 		while(true){
 			
 			try {
-				Object object=socketIn.readObject();
+				Change object=(Change) socketIn.readObject();
 				System.out.println(object);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

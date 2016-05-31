@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import it.polimi.ingsw.cg23.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 
@@ -31,6 +32,7 @@ public class AdditionalAction extends GameAction {
 		if(!addictionalAction){
 			player.switchAdditionalAction();
 		}
+		this.notifyObserver(new PlayerChange(player));
 	}
 
 	
