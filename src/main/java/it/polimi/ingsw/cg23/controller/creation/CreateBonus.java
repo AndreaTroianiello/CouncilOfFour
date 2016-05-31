@@ -21,38 +21,40 @@ import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreateBonus {
-	
-	CliInterface cl=new CliInterface();
-	BonusKing bk;
+
+	private CliInterface cl;
+	private BonusKing bk;
 	private String[][] cityInfo;//array con le informazioni delle citta'
-	private List <Bonus> bonusList=new ArrayList<>();;//lista di bonus
-	
+	private List <Bonus> bonusList;//lista di bonus
+
 	public CreateBonus(String endpath){
+		this.bonusList=new ArrayList<>();
+		this.cl=new CliInterface();
 		this.cityInfo=cl.leggiXml(endpath);
-		bk=new BonusKing(null);
+		this.bk=new BonusKing(null);
 	}
-	
+
 	/**
 	 * aggiunta di bonus alla citta'
 	 * @param i, to define the actual city (where find bonus in the array)
 	 * @param c, the actual city
 	 */
 	public void getCityBonus(int i, City c){
-		
+
 		if("purple".equals(c.getType())){//la citta' del re non ha bonus
 			return;
 		}
 		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);//string tokenizer del nome dei bonus
-		
+
 		while(st.hasMoreTokens()){
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
 			int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
-			
+
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
-					
+
 					Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
 					c.addBonus(bo);//aggiungo il bonus alla citta'
 					bo.setNumber(number);//setta il numero di bonus
@@ -60,7 +62,7 @@ public class CreateBonus {
 			}
 		}
 	}
-	
+
 	/**
 	 * @return a bonus list with all the type of bonus
 	 */
@@ -92,14 +94,14 @@ public class CreateBonus {
 		bk.setBonusValues(kingList);
 		return bk;
 	}
-	
+
 	/**
 	 * aggiunta di bonus alla carta costruzione
 	 * @param bpt, the business permit tile
 	 * @param bonusTotali, a string with alla bonuses
 	 */
 	public void getCostructorBonus(BusinessPermitTile bpt, String bonusTotali){
-		
+
 		String b;//contiene il nome del bonus
 		StringTokenizer st = new StringTokenizer(bonusTotali);//string tokenizer del nome dei bonus
 

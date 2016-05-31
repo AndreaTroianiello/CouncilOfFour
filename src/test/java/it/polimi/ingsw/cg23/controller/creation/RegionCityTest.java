@@ -14,29 +14,30 @@ import it.polimi.ingsw.cg23.model.components.BonusKing;
 
 public class RegionCityTest {
 
-	CreateRegionCity crc;
-	List<Region> regions;
-	List<City> citta1, citta2, citta3;
+	private CreateRegionCity crc;
+
+	private List<Region> regions;
+	private List<City> citta1, citta2, citta3;
 	private List<Integer> bonuses;
-	BonusKing bonusKing;
-	
+	private BonusKing bonusKing;
+
 	@Before
 	public void setUp(){
-		
+
 		//Set up the bonus king
 		bonuses=new ArrayList<>();
 		bonuses.add(10);
 		bonuses.add(3);
 		bonuses.add(0);
 		bonusKing=new BonusKing(bonuses);
-		
+
 		crc=new CreateRegionCity("ConfigurazionePartita.xml");
 		regions=new ArrayList<>();
 		citta1=new ArrayList<>();
 		citta2=new ArrayList<>();
 		citta3=new ArrayList<>();
 	}
-	
+
 	@Test
 	public void regionTest() {
 		regions=crc.createRegions(bonusKing);
@@ -62,13 +63,13 @@ public class RegionCityTest {
 			assertNotNull(citta1.get(i));
 		}
 	}
-	
+
 	@Test
 	public void neighbourTest() {
 		regions=crc.createRegions(bonusKing);//regioni
 		citta1=crc.createCities(0, regions.get(0), bonusKing);//citta'
 		crc.addNeighbors(citta1);
 		assertEquals(citta1.get(1).getNeighbors().get(0).getId(), 'A');
-		
+
 	}
 }

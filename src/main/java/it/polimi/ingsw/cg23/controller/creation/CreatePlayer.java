@@ -8,9 +8,15 @@ import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreatePlayer {
-	List <Player> giocatori = new ArrayList<>();//lista giocatori
-	CliInterface cl=new CliInterface();
-	NobilityTrack nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
+	private List <Player> giocatori;
+	private CliInterface cl;
+	private NobilityTrack nT;
+	
+	public CreatePlayer(){
+		this.giocatori = new ArrayList<>();//lista giocatori
+		this.cl=new CliInterface();
+		nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
+	}
 	
 	/**
 	 * create and add a player to the list

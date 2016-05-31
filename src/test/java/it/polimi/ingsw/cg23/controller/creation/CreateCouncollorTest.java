@@ -21,20 +21,21 @@ import it.polimi.ingsw.cg23.model.components.RegionDeck;
 
 public class CreateCouncollorTest {
 
-	CreateCouncillor cc;
-	King k;
-	Board b;
+	private CreateCouncillor cc;
+	private King k;
+	private Board b;
+
 	private List<Region> regions;
 	private Type type1,type2;
 	private List<Integer> bonuses;
 	private List<Type> tipes;
 	private List<City> cities;
-	
+
 	@Before
 	public void setUp(){
 		cc=new CreateCouncillor();
 		Deck dec=new Deck(new Setting().politicList(5, 10));//creato il deck
-		
+
 
 		//Set up the bonus king
 		bonuses=new ArrayList<>();
@@ -57,17 +58,17 @@ public class CreateCouncollorTest {
 		//Set up the regions and cities
 		regions.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
 		regions.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
-		
+
 		cities.add(new City('A', "Aosta", type1 , regions.get(0)));
 		cities.add(new City('B', "Bari", type2 , regions.get(0)));
 		cities.add(new City('C', "Crotone", type1 , regions.get(0)));
 		cities.add(new City('R', "Roma", type1 , regions.get(1)));
-		
+
 		k=new King(cities.get(1));
 		b=new Board(dec, regions, tipes, new NobilityTrack(20), k);
 	}
 
-	
+
 	@Test
 	public void createCouncillorTest() {
 		int i=10;
@@ -76,7 +77,7 @@ public class CreateCouncollorTest {
 		assertEquals(b.getCouncillorPool().size(), i*6);//6 è il numero di colori
 	}
 
-	
+
 	@Test
 	public void balconiKingtest() {
 		cc.createCouncillor(10, b);//creo i consiglieri
@@ -84,7 +85,7 @@ public class CreateCouncollorTest {
 		assertNotNull(k.getCouncil().getCouncillors());
 		assertEquals(k.getCouncil().getCouncillors().size(), 4);//controllo che il balcone del re abbia 4 consiglieri
 	}
-	
+
 	@Test
 	public void balconiRegionTest() {
 		cc.createCouncillor(10, b);//creo i consiglieri

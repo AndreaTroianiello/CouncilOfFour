@@ -20,19 +20,20 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Setting {
 
-	CliInterface cl=new CliInterface();
-	CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
+	private CliInterface cl;
+	private CreateBonus cb;
 	
 	private List <Bonus> bonusList;//lista di bonus
 	private String endpath;//nome del file che contine le info della citta'
 	private NobilityTrack nT;//recupero la lunghezza dall'xm
 	
-	
 	public Setting(){
+		this.cl=new CliInterface();
+		this.cb=new CreateBonus("ConfigurazionePartita.xml");
+		
 		this.bonusList=cb.bonusList(null);
 		this.nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//configurazione bovility track
 		this.endpath="ConfigurazionePartita.xml";
-		
 	}
 
 	/**

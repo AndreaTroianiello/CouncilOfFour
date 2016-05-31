@@ -10,11 +10,13 @@ import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class CreateCostruction {
 
-	private CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
-	private CliInterface cl=new CliInterface();
+	private CreateBonus cb;
+	private CliInterface cl;
 	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
 	
 	public CreateCostruction(){
+		this.cb=new CreateBonus("ConfigurazionePartita.xml");
+		this.cl=new CliInterface();
 		costructionCard=new ArrayList<>();
 	}
 	

@@ -12,7 +12,11 @@ import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.King;
 
 public class CreateCouncillor {
-	Setting s=new Setting();
+	Setting s;
+	
+	public CreateCouncillor(){
+		this.s=new Setting();
+	}
 	
 	/**
 	 * the function create the counsillor
