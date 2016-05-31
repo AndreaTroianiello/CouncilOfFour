@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.control.creation;
+package it.polimi.ingsw.cg23.controller.creation;
 
 import static org.junit.Assert.*;
 
