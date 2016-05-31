@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.model.marketplace.CanBeSold;
 import it.polimi.ingsw.cg23.model.marketplace.Item;
 import it.polimi.ingsw.cg23.model.marketplace.Market;
@@ -108,6 +109,16 @@ public class MarketBuy extends GameAction implements MarketAction {
 	}
 	
 	/**
+	 * Searches the item in the list of items for sale.
+	 * 
+	 * @param board the game's board.
+	 * @return the item for sale from the market's list. If the item wasn't found returns null.
+	 */
+	public void addItem(Player player){
+	 
+	}
+	
+	/**
 	 * It allows to run the action.
 	 * @param player The current player of the turn.
 	 * @param board The model of the game.
@@ -116,7 +127,12 @@ public class MarketBuy extends GameAction implements MarketAction {
 	public void runAction(Player player,Board board){
 		Item realItem=searchItem(board);
 		if(realItem!=null){
-			
+			int coins=player.getRichness().getCoins();
+			try {
+				player.getRichness().setCoins(coins-realItem.getCoins());
+				
+			} catch (NegativeNumberException e) {
+			}
 		}
 		
 	}
