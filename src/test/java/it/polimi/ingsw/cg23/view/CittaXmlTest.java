@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.polimi.ingsw.cg23.model.exception.XmlException;
+
 public class CittaXmlTest {
 	
 	ReadCittaXml rcx;
@@ -44,8 +46,8 @@ public class CittaXmlTest {
 		assertEquals(rcx.idConversion("      A      B",2),"AB");
 	}
 	
-	@Test
-	public void ReadFileXxmlTest(){
+	@Test(expected=XmlException.class)
+	public void ReadFileXxmlTest() throws XmlException{
 		assertEquals(rcx.readFileXml("ConfigurazionePartita.xml").length, 15);
 		assertNotEquals(rcx.readFileXml("ConfigurazionePartitas.xml").length, 15);//file inesistente
 	}

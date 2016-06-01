@@ -1,11 +1,17 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import it.polimi.ingsw.cg23.model.exception.XmlException;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
@@ -27,8 +33,9 @@ public class ReadCittaXml {
 	 * legge il file xml
 	 * @param endpath, the name of file (with the extension ".xml")
 	 * @return bidimensional array with city info, null array if there is some problems
+	 * @throws XmlException 
 	 */
-	public String[][] readFileXml(String endPath){
+	public String[][] readFileXml(String endPath) throws XmlException{
 		final int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
 		final int citynum=cityNumber(endPath);//numero di citta'
 		String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
@@ -46,8 +53,8 @@ public class ReadCittaXml {
 				city=createArray(i, citylist, zoneName, city, citynum);//recupero le informazioni della citta'
 			}
 			return city;
-		}catch (Exception e) {
-			return new String[0][0];
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 

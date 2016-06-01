@@ -11,6 +11,7 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.King;
+import it.polimi.ingsw.cg23.model.exception.XmlException;
 
 /**
  * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
@@ -53,7 +54,12 @@ public class CliInterface {
 	 * @param endPath, the name of the file to read
 	 */
 	public String[][] leggiXml(String endPath){
-		cityInfo=lettureXml.readFileXml(endPath);
+		
+			try {
+				cityInfo=lettureXml.readFileXml(endPath);
+			} catch (XmlException e) {
+				logger.log(Level.ALL, e.toString());
+			}
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city

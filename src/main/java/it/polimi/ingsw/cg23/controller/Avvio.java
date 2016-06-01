@@ -23,9 +23,9 @@ import it.polimi.ingsw.cg23.view.CliInterface;
  *
  */
 public class Avvio {
-	CliInterface cl=new CliInterface();
-	Setting s=new Setting();
-	CreateBonus cb=new CreateBonus("ConfigurazionePartita.xml");
+	CliInterface cl;
+	Setting s;
+	CreateBonus cb;
 	CreateCostruction cc=new CreateCostruction();
 	CreateCouncillor cco=new CreateCouncillor();
 	CreatePlayer cp=new CreatePlayer();
@@ -42,6 +42,9 @@ public class Avvio {
 	private BonusKing bk;
 
 	public Avvio(){
+		cl=new CliInterface();
+		s=new Setting();
+		cb=new CreateBonus("ConfigurazionePartita.xml");
 		this.board=null;
 		this.bk=cb.bonusKing();
 		this.citta=new ArrayList<>();

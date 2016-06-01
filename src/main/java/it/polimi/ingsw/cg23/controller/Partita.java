@@ -14,11 +14,19 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.view.CliInterface;
 
 public class Partita {
-
+	Avvio via;
+	CliInterface cl;
+	
+	public Partita(){
+		via=new Avvio();
+		cl=new CliInterface();
+	}
+	
 	public void start(){
-		Avvio via=new Avvio();
-		CliInterface cl=new CliInterface();
+		
+		
 
+		
 		via.startPartita();	
 		List<Player> giocatori=via.getGiocatori();
 		List<PoliticCard> cards = new ArrayList<>();
