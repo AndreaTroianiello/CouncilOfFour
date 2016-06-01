@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.model.bonus.BonusAdditionalAction;
 import it.polimi.ingsw.cg23.model.bonus.BonusAssistants;
 import it.polimi.ingsw.cg23.model.bonus.BonusCoin;
 import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
@@ -77,21 +78,27 @@ PrintMap map=new PrintMap();
 		List<Character> c3=Arrays.asList('N','O','P');
 		
 		//creo le carte permesso di costruzione
-		BusinessPermitTile bpt1=new BusinessPermitTile(c1,regions.get(0).getName());
+		BusinessPermitTile bpt1=new BusinessPermitTile(c1, regions.get(0).getName());
 		BusinessPermitTile bpt2=new BusinessPermitTile(c2, regions.get(0).getName());
 		BusinessPermitTile bpt3=new BusinessPermitTile(c3, regions.get(1).getName());
 		
 		//setto i bonus delle carte permesso
 		bpt1.addBonus(new BonusCoin(10));
+		bpt1.addBonus(new BonusAdditionalAction());
 		bpt2.addBonus(new BonusVictoryPoints(1));
 		bpt3.addBonus(new BonusAssistants());
 		
-		List<BusinessPermitTile> b1=Arrays.asList(bpt1,bpt2,bpt3);
-		List<BusinessPermitTile> b2=Arrays.asList(bpt3,bpt2,bpt1);
+		List<BusinessPermitTile> b1=new ArrayList<>();
+		b1.add(bpt1);
+		b1.add(bpt2);
+		b1.add(bpt3);
+		List<BusinessPermitTile> b2=new ArrayList<>();
+		b2.add(bpt3);
+		b2.add(bpt2);
+		b2.add(bpt1);
 		
-		
-		//regions.get(0).getDeck().setBusinessPermitTiles(b1);
-		//regions.get(1).getDeck().setBusinessPermitTiles(b2);
+		regions.get(0).getDeck().setBusinessPermitTiles(b1);
+		regions.get(1).getDeck().setBusinessPermitTiles(b2);
 		
 	}
 	
@@ -149,7 +156,11 @@ PrintMap map=new PrintMap();
 	
 	@Test
 	public void bonusCostructorTest(){
-		map.getBonusCostructor(regions, 50, 0);
+		int space=50;
+		String n1=map.getBonusCostructor(regions, space, 0);
+		assertEquals(n1.length(), 200);
+		String n2=map.getBonusCostructor(regions, space, 1);
+		assertEquals(n2.length(), 200);
 		
 	}
 
