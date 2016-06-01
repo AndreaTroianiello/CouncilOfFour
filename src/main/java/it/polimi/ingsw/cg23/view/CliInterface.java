@@ -21,13 +21,14 @@ public class CliInterface {
 	private ReadCostructionXml costructionXml;//classe che legge l'xml delle carte costruzione
 	private ReadNobilityTrackXml nt;//classe che si occupa di leggere il nobility track dall'xml
 
+	//logger
 	private static Logger logger = LoggerFactory.getLogger(CliInterface.class);
-	
+
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	private final int citynum;//numero di citta'
 	private final int cityNodeNumber;//numero di attributi delle citta'
 	private String[][] cityInfo;//array multidim con city name, color, link, id, bonus, zone
-	
+
 	public CliInterface(){
 		this.lettureXml=new ReadCittaXml();
 		this.costructionXml=new ReadCostructionXml();
@@ -52,12 +53,12 @@ public class CliInterface {
 	 * @param endPath, the name of the file to read
 	 */
 	public String[][] leggiXml(String endPath){
-		
-			try {
-				cityInfo=lettureXml.readFileXml(endPath);
-			} catch (XmlException e) {
-				logger.info(e.toString());
-			}
+
+		try {//provo a leggere il file xml
+			cityInfo=lettureXml.readFileXml(endPath);
+		} catch (XmlException e) {
+			logger.error("Errore nella lettura del file xml",e);
+		}
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city
@@ -68,16 +69,16 @@ public class CliInterface {
 		 */
 		return cityInfo;//ritorna l'array con le informazioni delle citta'
 	}
-	
+
 	/**
 	 * read the bonus region from the xml file
 	 * @param endPath, the name of the file with .xml
 	 * @return a bidimensional array with the region name and bonus region
 	 */
 	public String[][] getBonusRegion(String endPath){
-		 return lettureXml.getBonusRegion(endPath);//ritorna un array con i bonus della regione
+		return lettureXml.getBonusRegion(endPath);//ritorna un array con i bonus della regione
 	}
-	
+
 	/**
 	 * 
 	 * @param endPath, the final part of the xml file path (name+extension)
@@ -148,7 +149,7 @@ public class CliInterface {
 		}
 		return regionNumber+1;//ritorna il numero di regioni +1 perchè la prima regione
 	}
-	
+
 	/**
 	 * call the class PrintMap to create the game map
 	 * @param city, a list with the city
@@ -158,8 +159,8 @@ public class CliInterface {
 	public void createMap(List<Region>reg, List<Player>giocatori, King k){
 		new PrintMap().createMapDraw(reg, giocatori, k);
 	}
-	
-	
+
+
 	/**
 	 * calculate the number of regions
 	 * @return the number of regions
@@ -186,7 +187,7 @@ public class CliInterface {
 	public String[][] getType(String endPath){
 		return lettureXml.getType(endPath);
 	}
-	
+
 	/**
 	 * find the lenght of the nobility track
 	 * @param endPath, the name of the file with the .xml
