@@ -18,7 +18,8 @@ import it.polimi.ingsw.cg23.model.marketplace.Market;
  *
  */
 public class MarketBuy extends GameAction implements MarketAction {
-	
+
+	private static final long serialVersionUID = 8054678210620423871L;
 	private Item item;
 	
 	/**
@@ -39,8 +40,8 @@ public class MarketBuy extends GameAction implements MarketAction {
 	public boolean compareAssistants(AssistantsPool itemToCompare){
 		int refenceAssistants=((AssistantsPool) item.getItem()).getAssistants();
 		int assistantsToCompare= itemToCompare.getAssistants();
-		if(refenceAssistants==assistantsToCompare){
-		}
+		if(refenceAssistants==assistantsToCompare)
+			return true;
 		return false;
 	}
 	
@@ -109,13 +110,23 @@ public class MarketBuy extends GameAction implements MarketAction {
 	}
 	
 	/**
-	 * Searches the item in the list of items for sale.
+	 * Adds the item at the buyer.
 	 * 
-	 * @param board the game's board.
-	 * @return the item for sale from the market's list. If the item wasn't found returns null.
+	 * @param player The buyer of the item.
+	 * @param realItem The item to buy.
+	 * @throws NegativeNumberException Throws if the player has negative number of assistants. 
 	 */
-	public void addItem(Player player){
-	 
+	public void addItem(Player player,Item realItem) throws NegativeNumberException{
+		CanBeSold itemToBuy=realItem.getItem();
+		if(itemToBuy instanceof BusinessPermitTile)
+			player.addAvailableBusinessPermit((BusinessPermitTile)itemToBuy);
+		if(itemToBuy instanceof PoliticCard)
+			player.addPoliticCard((PoliticCard)itemToBuy);
+		if(itemToBuy instanceof AssistantsPool){
+			int assistants=((AssistantsPool) itemToBuy).getAssistants()+player.getAssistantsPool().getAssistants();
+			player.getAssistantsPool().setAssistants(assistants);
+		}
+		
 	}
 	
 	/**
@@ -127,10 +138,13 @@ public class MarketBuy extends GameAction implements MarketAction {
 	public void runAction(Player player,Board board){
 		Item realItem=searchItem(board);
 		if(realItem!=null){
-			int coins=player.getRichness().getCoins();
+			int coinsBuyer=player.getRichness().getCoins();
+			int coinsSeller=realItem.getPlayer().getRichness().getCoins();
 			try {
-				player.getRichness().setCoins(coins-realItem.getCoins());
-				
+				player.getRichness().setCoins(coinsBuyer-realItem.getCoins());
+				realItem.getPlayer().getRichness().setCoins(coinsSeller+realItem.getCoins());
+				addItem(player,realItem);	
+				board.getMarket().getItems().remove(realItem);
 			} catch (NegativeNumberException e) {
 			}
 		}
