@@ -1,13 +1,19 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
+import java.io.IOException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import it.polimi.ingsw.cg23.model.exception.XmlException;
 
 /**
  * the class read the xml who contains the costruction cards
@@ -20,8 +26,9 @@ public class ReadCostructionXml {
 	 * legge il file xml
 	 * @param endpath, the name of file (with the extension ".xml")
 	 * @return bidimensional array with cotructionCard info, null array if there is some problems
+	 * @throws XmlException 
 	 */
-	public String[][] readCardXml(String endPath){
+	public String[][] readCardXml(String endPath) throws XmlException{
 		final int cardNumber=cardNumber(endPath);//numero di carte costruzione nell'xml
 		final int cardNode=cardNodeNumber(endPath);//numero di nodi figli di card nell'xml +1
 		String[][]card=new String[cardNumber][cardNode];//array che contiene le info delle carte costruzione
@@ -53,9 +60,9 @@ public class ReadCostructionXml {
 			}
 
 			return card;
-		} catch(Exception e) {//se ci sono dei problemi ritorna l'array null
-
-			return card;
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 
@@ -77,8 +84,9 @@ public class ReadCostructionXml {
 	/**
 	 * calcola il numero di carte nel file xml
 	 * @return the number of carts in the xml file
+	 * @throws XmlException 
 	 */
-	public int cardNumber(String endPath){
+	public int cardNumber(String endPath) throws XmlException{
 		try {	
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -86,18 +94,20 @@ public class ReadCostructionXml {
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 			
 			NodeList citylist=doc.getElementsByTagName("card");//lista dei nodi che contengono "city"
+			
 			return citylist.getLength();//numero di citta'
-		}
-		catch(Exception e){
-			return 0;
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 
 	/**
 	 * calcola il numero di nodi di card
 	 * @return the number of card nodes, 0 if no card or error
+	 * @throws XmlException 
 	 */
-	public int cardNodeNumber(String endPath){
+	public int cardNodeNumber(String endPath) throws XmlException{
 		try {	
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -109,9 +119,9 @@ public class ReadCostructionXml {
 			Node card= region.getChildNodes().item(3);//terzo elemento dei figli di region = quarto nodo xml (card)
 
 			return (card.getChildNodes().getLength()-1)/2+1;//più 1 per la regione
-		}
-		catch(Exception e) {
-			return 0;
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 }

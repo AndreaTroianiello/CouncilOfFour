@@ -97,26 +97,29 @@ public class ReadCittaXml {
 	/**
 	 * calcola il numero di citta' nel file xml
 	 * @return the number of cities in the xml file
+	 * @throws XmlException 
 	 */
-	public int cityNumber(String endPath){
+	public int cityNumber(String endPath) throws XmlException{
 		try {
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
+			
 			return citylist.getLength();//numero di citta'
-		}
-		catch(Exception e){
-			return 0;
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 
 	/**
 	 * calcola il numero di nodi di citta'
 	 * @return the number of city nodes, 0 if no city or error
+	 * @throws XmlException 
 	 */
-	public int cityNodeNumber(String endPath){
+	public int cityNodeNumber(String endPath) throws XmlException{
 		try {	
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -126,10 +129,11 @@ public class ReadCittaXml {
 			Node zone = rootnode.getChildNodes().item(3);//primo elemento dei figli di map = secondo nodo xml (zone)
 			Node cities= zone.getChildNodes().item(3);//terzo elemento dei figli di zone = quarto nodo xml (cities)
 			Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = qunto nodo xml (city)
+			
 			return (citty.getChildNodes().getLength()-1)/2+1; //numero di nodi di city, +1 perchè c'è da aggiungere zona
-		}
-		catch(Exception e) {
-			return 0;
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 
@@ -137,8 +141,9 @@ public class ReadCittaXml {
 	 * find the type of city
 	 * @param endPath, the name of the file with .xml
 	 * @return a bidimensional array with the type of city
+	 * @throws XmlException 
 	 */
-	public String[][] getType(String endPath){
+	public String[][] getType(String endPath) throws XmlException{
 		try {
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -153,13 +158,13 @@ public class ReadCittaXml {
 				type[i][1]=color.item(i).getChildNodes().item(3).getTextContent();//recupero i punti del colore
 			}
 			return type;
-		}
-		catch(Exception e) {
-			return new String[0][0];
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 
-	public String[][] getBonusRegion(String endPath){
+	public String[][] getBonusRegion(String endPath) throws XmlException{
 		
 		try {
 			File inputFile = new File(path+endPath);
@@ -170,14 +175,16 @@ public class ReadCittaXml {
 			NodeList coin=doc.getElementsByTagName("coin");//lista dei nodi che contengono "color"
 			NodeList namez=doc.getElementsByTagName("namez");//lista dei nodi che contengono "color"
 			String[][] regionBonus=new String[namez.getLength()][2];
+			
 			for(int i=0; i<namez.getLength(); i++){
 				regionBonus[i][0]=namez.item(i).getTextContent();
 				regionBonus[i][1]=coin.item(i).getTextContent();
 			}
+			
 			return regionBonus;
-		}
-		catch(Exception e) {
-			return new String[0][0];
+			
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 }

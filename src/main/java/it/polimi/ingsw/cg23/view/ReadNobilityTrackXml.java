@@ -1,12 +1,17 @@
 package it.polimi.ingsw.cg23.view;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import it.polimi.ingsw.cg23.model.exception.XmlException;
 
 /**
  * class to read the nobility track from xml
@@ -19,8 +24,9 @@ public class ReadNobilityTrackXml {
 	 * read the lenght of the nobility track in the xml file
 	 * @param endPath, the name of the xml file with .xml
 	 * @return an int with the lenght of the nobility track
+	 * @throws XmlException 
 	 */
-	public int nobilityTrackLenght(String endPath){
+	public int nobilityTrackLenght(String endPath) throws XmlException{
 
 		try {
 			File inputFile = new File(path+endPath);//creato nuovo file
@@ -29,10 +35,11 @@ public class ReadNobilityTrackXml {
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 
 			NodeList lenght=doc.getElementsByTagName("lenght");//lista dei nodi che contengono "lenght"
+			
 			return Integer.parseInt(lenght.item(0).getTextContent());//ritorno la lunghezza del nobility track
-		} 
-		catch (Exception e) {
-			return 0;
+		
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 
@@ -40,8 +47,9 @@ public class ReadNobilityTrackXml {
 	 * create a bidimensional array with the nobility track info
 	 * @param endPath, the name of the xml file with .xml
 	 * @return a bidimensional array with the nobility track info
+	 * @throws XmlException 
 	 */
-	public String[][] nobilityTrackBonus(String endPath){
+	public String[][] nobilityTrackBonus(String endPath) throws XmlException{
 		try {
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -54,10 +62,11 @@ public class ReadNobilityTrackXml {
 				nobilityBonus[i][0]=doc.getElementsByTagName("number").item(i).getTextContent();
 				nobilityBonus[i][1]=doc.getElementsByTagName("bonus").item(i).getTextContent();
 			}
+			
 			return nobilityBonus;//ritorno l'array con le informzioni dell'xml
 			
-		}catch (Exception e) {//se ci sono dei problemi ritorna l'array null
-			return new String[0][0];
+		}catch (IOException | ParserConfigurationException | SAXException  e) {
+			throw new XmlException(e);
 		}
 	}
 

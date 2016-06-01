@@ -44,8 +44,6 @@ public class CreateCostructionTest {
 
 	@Test
 	public void createCostructionTest() {
-		cc.createCardCostruction(null);
-		assertNotNull(cc.createCardCostruction(null));
 		assertEquals(cc.createCardCostruction(null).size(), 45);
 	}
 

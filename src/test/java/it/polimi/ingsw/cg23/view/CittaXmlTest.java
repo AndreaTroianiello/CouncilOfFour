@@ -10,31 +10,32 @@ import it.polimi.ingsw.cg23.model.exception.XmlException;
 public class CittaXmlTest {
 	
 	ReadCittaXml rcx;
+	
 	@Before
 	public void setUp(){
 		rcx=new ReadCittaXml();
 	}
 	
-	@Test
-	public void bonusRegionTest() {
+	@Test(expected=XmlException.class)
+	public void bonusRegionTest() throws XmlException {
 		assertEquals(rcx.getBonusRegion("ConfigurazionePartita.xml").length, 3);
 		assertNotEquals(rcx.getBonusRegion("ConfigurazionePartitas.xml").length, 3);//file inesistente
 	}
 
-	@Test
-	public void typeTest() {
+	@Test(expected=XmlException.class)
+	public void typeTest() throws XmlException {
 		assertEquals(rcx.getType("ConfigurazionePartita.xml").length, 5);
 		assertNotEquals(rcx.getType("ConfigurazionePartitas.xml").length, 5);//file inesistente
 	}
 	
-	@Test
-	public void cityNodeNumberTest() {
+	@Test(expected=XmlException.class)
+	public void cityNodeNumberTest() throws XmlException {
 		assertEquals(rcx.cityNodeNumber("ConfigurazionePartita.xml"), 6);
 		assertNotEquals(rcx.cityNodeNumber("ConfigurazionePartitas.xml"), 6);//file inesistente
 	}
 	
-	@Test
-	public void cityNumberTest() {
+	@Test(expected=XmlException.class)
+	public void cityNumberTest() throws XmlException {
 		assertEquals(rcx.cityNumber("ConfigurazionePartita.xml"), 15);
 		assertNotEquals(rcx.cityNumber("ConfigurazionePartitas.xml"), 15);//file inesistente
 	}

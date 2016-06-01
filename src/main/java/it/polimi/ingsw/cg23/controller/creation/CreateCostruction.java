@@ -26,7 +26,7 @@ public class CreateCostruction {
 	public List<BusinessPermitTile> createCardCostruction(Board b){
 		cb.bonusList(b);
 		String[][] array=cl.getCostruction("CostructionCard.xml");//informazioni sulle carte costruzione
-
+		
 		for(int i=0; i<array.length; i++){//ciclo che scorre tutte le carte costruzione
 			List<Character> citiesId=new ArrayList<>();//lista di id delle citta'
 

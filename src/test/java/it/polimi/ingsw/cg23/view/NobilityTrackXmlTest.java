@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.polimi.ingsw.cg23.model.exception.XmlException;
+
 public class NobilityTrackXmlTest {
 	
 	ReadNobilityTrackXml ntx;
@@ -14,14 +16,14 @@ public class NobilityTrackXmlTest {
 		ntx=new ReadNobilityTrackXml();
 	}
 	
-	@Test
-	public void NobilityLenghtTest() {
+	@Test(expected=XmlException.class)
+	public void NobilityLenghtTest() throws XmlException {
 		assertEquals(ntx.nobilityTrackLenght("NobilityTrack.xml"), 21);
 		assertNotEquals(ntx.nobilityTrackLenght("NobilityTracks.xml"), 21);//file inesistente
 	}
 	
-	@Test
-	public void NobilityTest() {
+	@Test(expected=XmlException.class)
+	public void NobilityTest() throws XmlException {
 		assertEquals(ntx.nobilityTrackBonus("NobilityTrack.xml").length, 11);
 		assertNotEquals(ntx.nobilityTrackBonus("NobilityTracks.xml"), 21);//file inesistente
 	}
