@@ -2,10 +2,9 @@ package it.polimi.ingsw.cg23.view;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
@@ -22,8 +21,7 @@ public class CliInterface {
 	private ReadCostructionXml costructionXml;//classe che legge l'xml delle carte costruzione
 	private ReadNobilityTrackXml nt;//classe che si occupa di leggere il nobility track dall'xml
 
-	Logger logger=Logger.getLogger("my logger");//logger
-	ConsoleHandler handler = new ConsoleHandler();
+	private static Logger logger = LoggerFactory.getLogger(CliInterface.class);
 	
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	private final int citynum;//numero di citta'
@@ -58,7 +56,7 @@ public class CliInterface {
 			try {
 				cityInfo=lettureXml.readFileXml(endPath);
 			} catch (XmlException e) {
-				logger.log(Level.ALL, e.toString());
+				logger.info(e.toString());
 			}
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
@@ -134,11 +132,6 @@ public class CliInterface {
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-		logger.setLevel(Level.ALL);
-		handler.setFormatter(new SimpleFormatter());
-		logger.addHandler(handler);
-		handler.setLevel(Level.ALL);
-		
 		System.out.println(testo+" "+ogg);
 	}
 
