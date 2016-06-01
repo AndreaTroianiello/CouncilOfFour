@@ -53,9 +53,10 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 */
 	public boolean comparePoliticCard(PoliticCard itemToCompare){
 		PoliticCard refenceItem=(PoliticCard) item.getItem();
-		if(itemToCompare.getColor()!=null)
+		if(itemToCompare.getColor()!=null){
 			if(itemToCompare.getColor().equals(refenceItem.getColor()))
 				return true;
+		}
 		else
 			if(itemToCompare.isJolly()==refenceItem.isJolly())
 				return true;
@@ -87,7 +88,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 		if(itemToCompare instanceof PoliticCard && item.getItem() instanceof PoliticCard)
 			return comparePoliticCard((PoliticCard) itemToCompare);	
 		if(itemToCompare instanceof AssistantsPool && item.getItem() instanceof AssistantsPool)
-			return true;
+			return compareAssistants((AssistantsPool) itemToCompare);
 		return false;
 	}
 	
@@ -101,10 +102,9 @@ public class MarketBuy extends GameAction implements MarketAction {
 		Market market=board.getMarket();
 		List<Item> items=market.getItems();
 		for(Item i: items){
-			if(item.getPlayer().getUser().equals(i.getPlayer().getUser())){
-				if(compareItems(item.getItem()))
-					return i;	
-			}
+			if(item.getPlayer().getUser().equals(i.getPlayer().getUser())
+					&&(compareItems(item.getItem())&&(compareItems(i.getItem()))))
+					return i;
 		}
 		return null;
 	}
