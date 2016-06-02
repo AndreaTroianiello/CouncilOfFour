@@ -75,7 +75,7 @@ public class Print {
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-		logger.error(testo+" "+ogg);
+		logger.info(testo+" "+ogg);
 		
 	}
 
