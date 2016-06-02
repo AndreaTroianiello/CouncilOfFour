@@ -180,6 +180,7 @@ public class Avvio {
 		while(playerNumber==0){//si continua a ciclare finche' non e' stato inserito un numero valido
 			try{//provo a recuperare il numero di giocatori
 				playerNumber=Integer.parseInt(cl.writeReturnValue("Quanti giocatori siete?", null).toString());
+				
 			}catch(NumberFormatException e){
 				cl.print(null, "devi inserire un numero");
 				playerNumber=0;

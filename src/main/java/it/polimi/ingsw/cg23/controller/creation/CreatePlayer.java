@@ -27,7 +27,8 @@ public class CreatePlayer {
 	 */
 	public void createPlayer(){
 		int assistant=playerNumber();//numero di giocatori gia' presenti nella lista
-		String name;
+		
+		String name="player";
 			name=p.writeReturnValue("Come ti chiami giocatore?",null).toString();//recupero il nome del giocatore
 		Player p=new Player(name, assistant+10, 0, nT);//creo i giocatori
 		giocatori.add(p);//aggiunge un giocatore alla lista
