@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.model.action.BuildEmporiumKing;
 import it.polimi.ingsw.cg23.model.action.BuildEmporiumTile;
@@ -18,8 +20,11 @@ import it.polimi.ingsw.cg23.model.action.HireAssistant;
 public class ClientOutHandler implements Runnable {
 
 	private ObjectOutputStream socketOut;
+	
+	private static Logger logger;
 
 	public ClientOutHandler(ObjectOutputStream socketOut) {
+		ClientOutHandler.logger = Logger.getLogger(ClientOutHandler.class);
 		this.socketOut = socketOut;
 	}
 
@@ -81,8 +86,7 @@ public class ClientOutHandler implements Runnable {
 					break;
 				}
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				logger.error(e1);
 			}
 
 		}

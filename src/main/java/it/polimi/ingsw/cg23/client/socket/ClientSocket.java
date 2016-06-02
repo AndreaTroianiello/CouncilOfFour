@@ -8,16 +8,20 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.log4j.Logger;
+
 public class ClientSocket {
 
 	private final static int PORT = 29999;
 	private final static String IP = "127.0.0.1";
+	
+	private static Logger logger = Logger.getLogger(ClientSocket.class);
 
 	public void startClient() throws UnknownHostException, IOException {
 
 		Socket socket = new Socket(IP, PORT);
 
-		System.out.println("Connection created");
+		logger.error("Connection created");
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 

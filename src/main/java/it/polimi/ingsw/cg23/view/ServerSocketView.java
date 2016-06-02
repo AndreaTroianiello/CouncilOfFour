@@ -65,9 +65,7 @@ public class ServerSocketView extends View implements Runnable {
 					this.socketOut.flush();
 				}*/
 
-			} catch (ClassNotFoundException e) {
-				logger.error(e);
-			} catch (IOException e) {
+			} catch (ClassNotFoundException | IOException e) {
 				logger.error(e);
 			}
 		}
