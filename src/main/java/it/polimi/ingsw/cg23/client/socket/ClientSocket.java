@@ -15,7 +15,11 @@ public class ClientSocket {
 	private final static int PORT = 29999;
 	private final static String IP = "127.0.0.1";
 	
-	private static Logger logger = Logger.getLogger(ClientSocket.class);
+	private static Logger logger;
+	
+	public ClientSocket(){
+		ClientSocket.logger = Logger.getLogger(ClientSocket.class);
+	}
 
 	public void startClient() throws UnknownHostException, IOException {
 
