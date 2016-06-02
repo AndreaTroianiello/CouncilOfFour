@@ -41,6 +41,7 @@ public class ServerSocketView extends View implements Runnable {
 		try {
 			this.socketOut.writeObject(o);
 			this.socketOut.flush();
+			this.socketOut.reset();
 
 		} catch (IOException e) {
 			logger.error(e);
