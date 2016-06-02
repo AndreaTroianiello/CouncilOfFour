@@ -5,7 +5,7 @@ import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.observer.Observable;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.Print;
  
 /**
  * the class of the bonus that allows to get a permit tile from a region. It contains the board, the name and the CliInterface
@@ -18,7 +18,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	private static final long serialVersionUID = 5218205311068329970L;
 	private final Board board;
 	private final String name;
-	private final CliInterface cl;
+	private final Print cl;
 	
  
 	/**
@@ -32,7 +32,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 		
 		this.board = board;
 		this.name="GetPermitTile";
-		this.cl = new CliInterface();
+		this.cl = new Print();
 	}
 	
 	/**

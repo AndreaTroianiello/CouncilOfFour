@@ -9,24 +9,27 @@ import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.Print;
+import it.polimi.ingsw.cg23.view.XmlInterface;
 
 public class CreateRegionCity {
 	
-	private CliInterface cl;
+	private Print p;
 	private Setting s;
+	private XmlInterface leggiXml;
 	
 	private List <Region> regioni;//lista regioni
-	private String endpath;//nome del file che contine le info della citta'
+	private String endPath;//nome del file che contine le info della citta'
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	
-	public CreateRegionCity(String endpath){
+	public CreateRegionCity(String endPath){
 		this.s=new Setting();
-		this.cl=new CliInterface();
+		this.p=new Print();
+		this.leggiXml=new XmlInterface();
 		
 		this.regioni = new ArrayList<>();
-		this.endpath=endpath;//endpath e' il nome del file xml da leggere
-		this.cityInfo=cl.leggiXml(endpath);
+		this.endPath=endPath;//endpath e' il nome del file xml da leggere
+		this.cityInfo=leggiXml.cittaXml(endPath);
 	}
 	
 	/**
@@ -34,9 +37,9 @@ public class CreateRegionCity {
 	 * @param bk, the bonus king
 	 */
 	public List<Region> createRegions(BonusKing bk){
-		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
+		int regionNumber=p.regionsNumber(cityInfo);//numero di regioni
 		int c=cityInfo.length/regionNumber;//numero di citta' per regione
-		String[][] regionBonus=cl.getBonusRegion(endpath);
+		String[][] regionBonus=leggiXml.getBonusRegion(endPath);
 
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			RegionDeck rd=new RegionDeck(2);//creo il regiondeck
@@ -54,7 +57,7 @@ public class CreateRegionCity {
 	 * @param bk, the bonus king
 	 */
 	public List<City> createCities(int j, Region r, BonusKing bk){
-		int regionNumber=cl.regionsNumber(cityInfo);//numero di regioni
+		int regionNumber=p.regionsNumber(cityInfo);//numero di regioni
 		List <City> citta=new ArrayList<>();//lista citta
 		List <Type> typeList=new ArrayList<>();
 		typeList.clear();

@@ -14,11 +14,11 @@ import it.polimi.ingsw.cg23.model.components.King;
  * print the game map
  *
  */
-public class PrintMap {
-	CliInterface cl;
+public class CreateMap {
+	Print cl;
 
-	public PrintMap(){
-		this.cl=new CliInterface();
+	public CreateMap(){
+		this.cl=new Print();
 	}
 	
 	/**

@@ -16,11 +16,11 @@ import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityBox;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.XmlInterface;
 
 public class Setting {
 
-	private CliInterface cl;
+	private XmlInterface leggiXml;
 	private CreateBonus cb;
 	
 	private List <Bonus> bonusList;//lista di bonus
@@ -28,11 +28,11 @@ public class Setting {
 	private NobilityTrack nT;//recupero la lunghezza dall'xm
 	
 	public Setting(){
-		this.cl=new CliInterface();
+		this.leggiXml=new XmlInterface();
 		this.cb=new CreateBonus("ConfigurazionePartita.xml");
 		
 		this.bonusList=cb.bonusList(null);
-		this.nT=new NobilityTrack(cl.getNobilityTrackLenght("NobilityTrack.xml"));//configurazione bovility track
+		this.nT=new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//configurazione bovility track
 		this.endpath="ConfigurazionePartita.xml";
 	}
 
@@ -40,7 +40,7 @@ public class Setting {
 	 * refill the nobility track with the info find in the xml file
 	 */
 	public NobilityTrack nobilityTrackFill(){
-		String[][]nobilityInfo=cl.getNobilityTrackBonus("NobilityTrack.xml");//informazioni recuperate dall'xml
+		String[][]nobilityInfo=leggiXml.getNobilityTrackBonus("NobilityTrack.xml");//informazioni recuperate dall'xml
 		
 		for(int i=0; i<nobilityInfo.length; i++){//ciclo che scorre il numero di caselle presenti nel file xml
 			String b;//contiene il nome del bonus
@@ -81,7 +81,7 @@ public class Setting {
 	 * @return a list with all the types
 	 */
 	public List<Type> createType(BonusKing bk){
-		String[][] array=cl.getType(endpath);//recupero i type dall'xml
+		String[][] array=leggiXml.getType(endpath);//recupero i type dall'xml
 		List <Type> typeList=new ArrayList<>();;//lista di type
 		
 		for(int i=0; i<array.length; i++){//scorre i type che ci sono nell'xml

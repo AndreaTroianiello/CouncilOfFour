@@ -16,14 +16,14 @@ import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.Print;
 
 /**
  * class that start the game
  *
  */
 public class Avvio {
-	CliInterface cl;
+	Print cl;
 	Setting s;
 	CreateBonus cb;
 	CreateCostruction cc;
@@ -47,7 +47,7 @@ public class Avvio {
 		cco=new CreateCouncillor();
 		cp=new CreatePlayer();
 		crc=new CreateRegionCity("ConfigurazionePartita.xml");
-		cl=new CliInterface();
+		cl=new Print();
 		s=new Setting();
 		cb=new CreateBonus("ConfigurazionePartita.xml");
 		

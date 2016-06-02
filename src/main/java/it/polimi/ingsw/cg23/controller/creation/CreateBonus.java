@@ -18,19 +18,19 @@ import it.polimi.ingsw.cg23.model.bonus.BonusTileBonus;
 import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.XmlInterface;
 
 public class CreateBonus {
 
-	private CliInterface cl;
+	private XmlInterface leggiXml;
 	private BonusKing bk;
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	private List <Bonus> bonusList;//lista di bonus
 
 	public CreateBonus(String endpath){
 		this.bonusList=new ArrayList<>();
-		this.cl=new CliInterface();
-		this.cityInfo=cl.leggiXml(endpath);
+		this.leggiXml=new XmlInterface();
+		this.cityInfo=leggiXml.cittaXml(endpath);
 		this.bk=new BonusKing(null);
 	}
 

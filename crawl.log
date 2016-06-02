@@ -1823,3 +1823,1831 @@ it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assi
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 ERROR	2016-06-02 12:43:09,173	163	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 13:37:42,462	1	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuildEmporiumKingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,467	6	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:61)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney(BuildEmporiumKingTest.java:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,469	8	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuildEmporiumKingTest.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,470	9	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 13:37:42,471	10	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.buildEmporiumK(BuildEmporiumKing.java:203)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:81)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants(BuildEmporiumKingTest.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,475	14	it.polimi.ingsw.cg23.model.action.BuildEmporiumTile	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTile.runAction(BuildEmporiumTile.java:68)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTileTest.testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(BuildEmporiumTileTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,482	21	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuyPermitTileTest.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,484	23	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 13:37:42,485	24	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.payCoins(BuyPermitTile.java:181)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuyPermitTileTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,486	25	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 13:37:42,488	27	it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+ERROR	2016-06-02 13:37:42,495	34	it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant.runAction(ElectCouncillorAssistant.java:92)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistantTest.testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant(ElectCouncillorAssistantTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 13:37:42,500	39	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 13:37:51,657	0	it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant.runAction(ElectCouncillorAssistant.java:92)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistantTest.testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant(ElectCouncillorAssistantTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:51,784	127	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 13:37:51,788	131	it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+ERROR	2016-06-02 13:37:51,792	135	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuyPermitTileTest.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:51,795	138	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 13:37:51,796	139	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.payCoins(BuyPermitTile.java:181)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuyPermitTileTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:51,797	140	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 13:37:51,963	306	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuildEmporiumKingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:51,964	307	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:61)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney(BuildEmporiumKingTest.java:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:51,966	309	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuildEmporiumKingTest.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:51,973	316	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 13:37:51,981	324	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.buildEmporiumK(BuildEmporiumKing.java:203)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:81)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants(BuildEmporiumKingTest.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:37:52,069	412	it.polimi.ingsw.cg23.model.action.BuildEmporiumTile	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTile.runAction(BuildEmporiumTile.java:68)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTileTest.testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(BuildEmporiumTileTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 13:44:52,460	0	it.polimi.ingsw.cg23.view.CliInterface	[main]	Benvenuti a cof! 
+ERROR	2016-06-02 13:44:52,471	11	it.polimi.ingsw.cg23.view.CliInterface	[main]	Quanti giocatori siete? 
+ERROR	2016-06-02 13:44:55,827	3367	it.polimi.ingsw.cg23.view.CliInterface	[main]	Come ti chiami giocatore? 
+ERROR	2016-06-02 13:44:56,150	3690	it.polimi.ingsw.cg23.view.CliInterface	[main]	
+Creo gli elementi di gioco: 
+ERROR	2016-06-02 13:44:56,150	3690	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo i giocatori 
+ERROR	2016-06-02 13:44:56,152	3692	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo i type 
+ERROR	2016-06-02 13:44:56,154	3694	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo la board 
+ERROR	2016-06-02 13:44:56,159	3699	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo i bonus 
+ERROR	2016-06-02 13:44:56,162	3702	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo le regioni 
+ERROR	2016-06-02 13:44:56,169	3709	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo le citta' 
+ERROR	2016-06-02 13:44:56,170	3710	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo il re 
+ERROR	2016-06-02 13:44:56,212	3752	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo le carte politiche 
+ERROR	2016-06-02 13:44:56,213	3753	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo il deck 
+ERROR	2016-06-02 13:44:56,213	3753	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Setto la board 
+ERROR	2016-06-02 13:44:56,224	3764	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo le carte permesso di costruzione 
+ERROR	2016-06-02 13:44:56,225	3765	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo i consiglieri 
+ERROR	2016-06-02 13:44:56,233	3773	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Setto il Nobility track 
+ERROR	2016-06-02 13:44:56,233	3773	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo la plancia di gioco 
+ERROR	2016-06-02 13:44:56,242	3782	it.polimi.ingsw.cg23.view.CliInterface	[main]	
+Plancia di gioco
+COSTA                                             COLLINA                                           MONTAGNA                                          
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Arkon - A                     |                  |Framek - F                    |                  |Kultos - K                    |                  
+|gold                          |                  |bronze                        |                  |silver                        |                  
+|1BonusNobility                |                  |2Coin                         |                  |GetPermitTile                 |                  
+|Vicini: C, B                  |                  |Vicini: C, I                  |                  |Vicini: I, N                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Burgen - B                    |                  |Graden - G                    |                  |Luvram - L                    |                  
+|iron                          |                  |iron                          |                  |iron                          |                  
+|2Assistants                   |                  |3VictoryPoints                |                  |2VictoryPoints                |                  
+|Vicini: A, D                  |                  |Vicini: D, J                  |                  |Vicini: J, O, K               |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Castrum - C                   |                  |Hellar - H                    |                  |Merkatim - M                  |                  
+|silver                        |                  |gold                          |                  |silver                        |                  
+|1Assistants                   |                  |1Assistants, 1Coin, 4Politics |                  |3Coin                         |                  
+|Vicini: A, F                  |                  |Vicini: E, J                  |                  |Vicini: H, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Dorful - D                    |                  |Indur - I                     |                  |Naris - N                     |                  
+|bronze                        |                  |iron                          |                  |bronze                        |                  
+|1Coin                         |                  |1VictoryPoints                |                  |1BonusNobility                |                  
+|Vicini: B, G                  |                  |Vicini: K                     |                  |Vicini: K, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Esti - E                      |                  |Juvelar - J             KING  |                  |Osium - O                     |                  
+|silver                        |                  |purple                        |                  |gold                          |                  
+|1Assistants, 1Politics        |                  |                              |                  |GetPermitTile, 1VictoryPoints |                  
+|Vicini: B, H                  |                  |Vicini: H, L                  |                  |Vicini: N                     |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+Carte Costruzione costa:                          Carte Costruzione collina:                        Carte Costruzione montagna:                       
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+|[B, C]            |     |[D, E]            |     |[H, I]            |     |[J]               |     |[K, N, O]         |     |[O]               |     
+|3VictoryPoints    |     |1Assistants       |     |5VictoryPoints    |     |AdditionalAction  |     |1Politics         |     |3Politics         |     
+|3Coin             |     |3VictoryPoints    |     |                  |     |2VictoryPoints    |     |1VictoryPoints    |     |1BonusNobility    |     
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+
+Player              Richness(coin)      Victory             Nobility            Assistants          Carte politiche     
+qw                  0                   0                   0                   10                  4                   
+ 
+ERROR	2016-06-02 13:44:56,243	3783	it.polimi.ingsw.cg23.view.CliInterface	[main]	-Creo il turno 0 :
+ 
+ERROR	2016-06-02 13:44:56,243	3783	it.polimi.ingsw.cg23.view.CliInterface	[main]	Player [user=qw, additionalAction=false, assistantsPool=10, richness=100, victoryTrack=0, nobilityBoxPosition=0] 
+ERROR	2016-06-02 13:44:56,243	3783	it.polimi.ingsw.cg23.view.CliInterface	[main]	[PoliticCard [color=java.awt.Color[r=0,g=0,b=0], jolly=false], PoliticCard [color=java.awt.Color[r=0,g=0,b=255], jolly=false], PoliticCard [color=null, jolly=true]] 
+ERROR	2016-06-02 13:44:56,243	3783	it.polimi.ingsw.cg23.view.CliInterface	[main]	[] 
+ERROR	2016-06-02 13:44:56,243	3783	it.polimi.ingsw.cg23.view.CliInterface	[main]	C K Council [councillors=[Councillor [color=java.awt.Color[r=255,g=255,b=255]], Councillor [color=java.awt.Color[r=255,g=0,b=0]], Councillor [color=java.awt.Color[r=255,g=0,b=0]], Councillor [color=java.awt.Color[r=255,g=255,b=255]]]] 
+ERROR	2016-06-02 13:44:56,243	3783	it.polimi.ingsw.cg23.view.CliInterface	[main]	City [id=F, name=Framek, region=collina, bonus=[BonusCoin [coin=2]], type=bronze, neighbors=2] 
+ERROR	2016-06-02 13:44:56,244	3784	it.polimi.ingsw.cg23.view.CliInterface	[main]	City [id=J, name=Juvelar, region=collina, bonus=[], type=purple, neighbors=2] 
+ERROR	2016-06-02 13:44:56,244	3784	it.polimi.ingsw.cg23.view.CliInterface	[main]	[BusinessPermitTile [citiesId=[B, C], bonusTile=[BonusVictoryPoints[points=3], BonusCoin [coin=3]] zone=costa], BusinessPermitTile [citiesId=[D, E], bonusTile=[BonusAssistants [assistants=1], BonusVictoryPoints[points=3]] zone=costa]] !!
+ERROR	2016-06-02 13:44:56,245	3785	it.polimi.ingsw.cg23.view.CliInterface	[main]	6.0 
+ERROR	2016-06-02 13:44:56,246	3786	it.polimi.ingsw.cg23.view.CliInterface	[main]	City [id=F, name=Framek, region=collina, bonus=[BonusCoin [coin=2]], type=bronze, neighbors=2] 
+ERROR	2016-06-02 13:44:56,246	3786	it.polimi.ingsw.cg23.view.CliInterface	[main]	[] 
+ERROR	2016-06-02 13:44:56,246	3786	it.polimi.ingsw.cg23.view.CliInterface	[main]	[PoliticCard [color=java.awt.Color[r=0,g=0,b=0], jolly=false], PoliticCard [color=java.awt.Color[r=0,g=0,b=255], jolly=false]] 
+ERROR	2016-06-02 13:44:56,246	3786	it.polimi.ingsw.cg23.view.CliInterface	[main]	[qw] 
+ERROR	2016-06-02 13:44:56,246	3786	it.polimi.ingsw.cg23.view.CliInterface	[main]	Player [user=qw, additionalAction=false, assistantsPool=10, richness=79, victoryTrack=32, nobilityBoxPosition=0] 
+ERROR	2016-06-02 13:44:56,246	3786	it.polimi.ingsw.cg23.view.CliInterface	[main]	 Turn [currentPlayer=qw, mainIndex=0, mainAction=false, secondAction=true]
+ERROR	2016-06-02 13:44:56,254	3794	it.polimi.ingsw.cg23.view.CliInterface	[main]	
+Plancia di gioco
+COSTA                                             COLLINA                                           MONTAGNA                                          
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Arkon - A                     |                  |Framek - F              KING  |                  |Kultos - K                    |                  
+|gold                          |                  |bronze                        |                  |silver                        |                  
+|1BonusNobility                |                  |2Coin                         |                  |GetPermitTile                 |                  
+|Vicini: C, B                  |                  |Vicini: C, I                  |                  |Vicini: I, N                  |                  
+|Empori:[]                     |                  |Empori:[qw]                   |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Burgen - B                    |                  |Graden - G                    |                  |Luvram - L                    |                  
+|iron                          |                  |iron                          |                  |iron                          |                  
+|2Assistants                   |                  |3VictoryPoints                |                  |2VictoryPoints                |                  
+|Vicini: A, D                  |                  |Vicini: D, J                  |                  |Vicini: J, O, K               |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Castrum - C                   |                  |Hellar - H                    |                  |Merkatim - M                  |                  
+|silver                        |                  |gold                          |                  |silver                        |                  
+|1Assistants                   |                  |1Assistants, 1Coin, 4Politics |                  |3Coin                         |                  
+|Vicini: A, F                  |                  |Vicini: E, J                  |                  |Vicini: H, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Dorful - D                    |                  |Indur - I                     |                  |Naris - N                     |                  
+|bronze                        |                  |iron                          |                  |bronze                        |                  
+|1Coin                         |                  |1VictoryPoints                |                  |1BonusNobility                |                  
+|Vicini: B, G                  |                  |Vicini: K                     |                  |Vicini: K, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Esti - E                      |                  |Juvelar - J                   |                  |Osium - O                     |                  
+|silver                        |                  |purple                        |                  |gold                          |                  
+|1Assistants, 1Politics        |                  |                              |                  |GetPermitTile, 1VictoryPoints |                  
+|Vicini: B, H                  |                  |Vicini: H, L                  |                  |Vicini: N                     |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+Carte Costruzione costa:                          Carte Costruzione collina:                        Carte Costruzione montagna:                       
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+|[B, C]            |     |[D, E]            |     |[H, I]            |     |[J]               |     |[K, N, O]         |     |[O]               |     
+|3VictoryPoints    |     |1Assistants       |     |5VictoryPoints    |     |AdditionalAction  |     |1Politics         |     |3Politics         |     
+|3Coin             |     |3VictoryPoints    |     |                  |     |2VictoryPoints    |     |1VictoryPoints    |     |1BonusNobility    |     
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+
+Player              Richness(coin)      Victory             Nobility            Assistants          Carte politiche     
+qw                  79                  32                  0                   10                  4                   
+ 
+ERROR	2016-06-02 14:01:46,844	0	it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant.runAction(ElectCouncillorAssistant.java:92)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistantTest.testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant(ElectCouncillorAssistantTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,882	38	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:01:46,884	40	it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+ERROR	2016-06-02 14:01:46,886	42	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuyPermitTileTest.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,888	44	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:01:46,888	44	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.payCoins(BuyPermitTile.java:181)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuyPermitTileTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,889	45	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:01:46,911	67	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuildEmporiumKingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,912	68	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:61)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney(BuildEmporiumKingTest.java:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,913	69	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuildEmporiumKingTest.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,913	69	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:01:46,913	69	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.buildEmporiumK(BuildEmporiumKing.java:203)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:81)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants(BuildEmporiumKingTest.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:01:46,947	103	it.polimi.ingsw.cg23.model.action.BuildEmporiumTile	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTile.runAction(BuildEmporiumTile.java:68)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTileTest.testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(BuildEmporiumTileTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,003	0	it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant.runAction(ElectCouncillorAssistant.java:92)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistantTest.testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant(ElectCouncillorAssistantTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,026	23	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:06:04,027	24	it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+ERROR	2016-06-02 14:06:04,029	26	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuyPermitTileTest.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,030	27	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:06:04,031	28	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.payCoins(BuyPermitTile.java:181)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuyPermitTileTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,031	28	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:06:04,073	70	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuildEmporiumKingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,074	71	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:61)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney(BuildEmporiumKingTest.java:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,076	73	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuildEmporiumKingTest.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,076	73	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:06:04,077	74	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.buildEmporiumK(BuildEmporiumKing.java:203)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:81)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants(BuildEmporiumKingTest.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:06:04,102	99	it.polimi.ingsw.cg23.model.action.BuildEmporiumTile	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTile.runAction(BuildEmporiumTile.java:68)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTileTest.testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(BuildEmporiumTileTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:12:34,612	0	it.polimi.ingsw.cg23.view.Print	[main]	Benvenuti a cof! 
+ERROR	2016-06-02 14:12:34,623	11	it.polimi.ingsw.cg23.view.Print	[main]	Quanti giocatori siete? 
+ERROR	2016-06-02 14:18:09,597	0	it.polimi.ingsw.cg23.view.Print	[main]	Benvenuti a cof! 
+ERROR	2016-06-02 14:18:09,606	9	it.polimi.ingsw.cg23.view.Print	[main]	Quanti giocatori siete? 
+ERROR	2016-06-02 14:18:34,792	0	it.polimi.ingsw.cg23.view.Print	[main]	Benvenuti a cof! 
+ERROR	2016-06-02 14:18:34,802	10	it.polimi.ingsw.cg23.view.Print	[main]	Quanti giocatori siete? 
+ERROR	2016-06-02 14:19:20,063	0	it.polimi.ingsw.cg23.view.Print	[main]	Benvenuti a cof! 
+ERROR	2016-06-02 14:19:20,073	10	it.polimi.ingsw.cg23.view.Print	[main]	Quanti giocatori siete? 
+ERROR	2016-06-02 14:19:21,957	1894	it.polimi.ingsw.cg23.view.Print	[main]	Come ti chiami giocatore? 
+ERROR	2016-06-02 14:19:22,585	2522	it.polimi.ingsw.cg23.view.Print	[main]	
+Creo gli elementi di gioco: 
+ERROR	2016-06-02 14:19:22,585	2522	it.polimi.ingsw.cg23.view.Print	[main]	-Creo i giocatori 
+ERROR	2016-06-02 14:19:22,587	2524	it.polimi.ingsw.cg23.view.Print	[main]	-Creo i type 
+ERROR	2016-06-02 14:19:22,588	2525	it.polimi.ingsw.cg23.view.Print	[main]	-Creo la board 
+ERROR	2016-06-02 14:19:22,594	2531	it.polimi.ingsw.cg23.view.Print	[main]	-Creo i bonus 
+ERROR	2016-06-02 14:19:22,596	2533	it.polimi.ingsw.cg23.view.Print	[main]	-Creo le regioni 
+ERROR	2016-06-02 14:19:22,606	2543	it.polimi.ingsw.cg23.view.Print	[main]	-Creo le citta' 
+ERROR	2016-06-02 14:19:22,607	2544	it.polimi.ingsw.cg23.view.Print	[main]	-Creo il re 
+ERROR	2016-06-02 14:19:22,649	2586	it.polimi.ingsw.cg23.view.Print	[main]	-Creo le carte politiche 
+ERROR	2016-06-02 14:19:22,650	2587	it.polimi.ingsw.cg23.view.Print	[main]	-Creo il deck 
+ERROR	2016-06-02 14:19:22,650	2587	it.polimi.ingsw.cg23.view.Print	[main]	-Setto la board 
+ERROR	2016-06-02 14:19:22,662	2599	it.polimi.ingsw.cg23.view.Print	[main]	-Creo le carte permesso di costruzione 
+ERROR	2016-06-02 14:19:22,662	2599	it.polimi.ingsw.cg23.view.Print	[main]	-Creo i consiglieri 
+ERROR	2016-06-02 14:19:22,670	2607	it.polimi.ingsw.cg23.view.Print	[main]	-Setto il Nobility track 
+ERROR	2016-06-02 14:19:22,670	2607	it.polimi.ingsw.cg23.view.Print	[main]	-Creo la plancia di gioco 
+ERROR	2016-06-02 14:19:22,677	2614	it.polimi.ingsw.cg23.view.Print	[main]	
+Plancia di gioco
+COSTA                                             COLLINA                                           MONTAGNA                                          
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Arkon - A                     |                  |Framek - F                    |                  |Kultos - K                    |                  
+|gold                          |                  |bronze                        |                  |silver                        |                  
+|1BonusNobility                |                  |2Coin                         |                  |GetPermitTile                 |                  
+|Vicini: C, B                  |                  |Vicini: C, I                  |                  |Vicini: I, N                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Burgen - B                    |                  |Graden - G                    |                  |Luvram - L                    |                  
+|iron                          |                  |iron                          |                  |iron                          |                  
+|2Assistants                   |                  |3VictoryPoints                |                  |2VictoryPoints                |                  
+|Vicini: A, D                  |                  |Vicini: D, J                  |                  |Vicini: J, O, K               |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Castrum - C                   |                  |Hellar - H                    |                  |Merkatim - M                  |                  
+|silver                        |                  |gold                          |                  |silver                        |                  
+|1Assistants                   |                  |1Assistants, 1Coin, 4Politics |                  |3Coin                         |                  
+|Vicini: A, F                  |                  |Vicini: E, J                  |                  |Vicini: H, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Dorful - D                    |                  |Indur - I                     |                  |Naris - N                     |                  
+|bronze                        |                  |iron                          |                  |bronze                        |                  
+|1Coin                         |                  |1VictoryPoints                |                  |1BonusNobility                |                  
+|Vicini: B, G                  |                  |Vicini: K                     |                  |Vicini: K, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Esti - E                      |                  |Juvelar - J             KING  |                  |Osium - O                     |                  
+|silver                        |                  |purple                        |                  |gold                          |                  
+|1Assistants, 1Politics        |                  |                              |                  |GetPermitTile, 1VictoryPoints |                  
+|Vicini: B, H                  |                  |Vicini: H, L                  |                  |Vicini: N                     |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+Carte Costruzione costa:                          Carte Costruzione collina:                        Carte Costruzione montagna:                       
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+|[A]               |     |[B]               |     |[H]               |     |[F, G, H]         |     |[N]               |     |[K]               |     
+|4VictoryPoints    |     |3Politics         |     |4Assistants       |     |1BonusNobility    |     |7Coin             |     |4Politics         |     
+|3Coin             |     |1Assistants       |     |                  |     |1Coin             |     |                  |     |                  |     
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+
+Player              Richness(coin)      Victory             Nobility            Assistants          Carte politiche     
+qw                  0                   0                   0                   10                  4                   
+ 
+ERROR	2016-06-02 14:19:22,678	2615	it.polimi.ingsw.cg23.view.Print	[main]	-Creo il turno 0 :
+ 
+ERROR	2016-06-02 14:19:22,678	2615	it.polimi.ingsw.cg23.view.Print	[main]	Player [user=qw, additionalAction=false, assistantsPool=10, richness=100, victoryTrack=0, nobilityBoxPosition=0] 
+ERROR	2016-06-02 14:19:22,679	2616	it.polimi.ingsw.cg23.view.Print	[main]	[PoliticCard [color=java.awt.Color[r=0,g=0,b=0], jolly=false], PoliticCard [color=java.awt.Color[r=0,g=0,b=255], jolly=false], PoliticCard [color=null, jolly=true]] 
+ERROR	2016-06-02 14:19:22,679	2616	it.polimi.ingsw.cg23.view.Print	[main]	[] 
+ERROR	2016-06-02 14:19:22,679	2616	it.polimi.ingsw.cg23.view.Print	[main]	C K Council [councillors=[Councillor [color=java.awt.Color[r=255,g=175,b=175]], Councillor [color=java.awt.Color[r=0,g=0,b=255]], Councillor [color=java.awt.Color[r=0,g=0,b=0]], Councillor [color=java.awt.Color[r=255,g=255,b=255]]]] 
+ERROR	2016-06-02 14:19:22,679	2616	it.polimi.ingsw.cg23.view.Print	[main]	City [id=F, name=Framek, region=collina, bonus=[BonusCoin [coin=2]], type=bronze, neighbors=2] 
+ERROR	2016-06-02 14:19:22,679	2616	it.polimi.ingsw.cg23.view.Print	[main]	City [id=J, name=Juvelar, region=collina, bonus=[], type=purple, neighbors=2] 
+ERROR	2016-06-02 14:19:22,679	2616	it.polimi.ingsw.cg23.view.Print	[main]	[BusinessPermitTile [citiesId=[A], bonusTile=[BonusVictoryPoints[points=4], BonusCoin [coin=3]] zone=costa], BusinessPermitTile [citiesId=[B], bonusTile=[BonusPolitics [cardNumber=3], BonusAssistants [assistants=1]] zone=costa]] !!
+ERROR	2016-06-02 14:19:22,681	2618	it.polimi.ingsw.cg23.view.Print	[main]	6.0 
+ERROR	2016-06-02 14:19:22,682	2619	it.polimi.ingsw.cg23.view.Print	[main]	City [id=F, name=Framek, region=collina, bonus=[BonusCoin [coin=2]], type=bronze, neighbors=2] 
+ERROR	2016-06-02 14:19:22,682	2619	it.polimi.ingsw.cg23.view.Print	[main]	[] 
+ERROR	2016-06-02 14:19:22,682	2619	it.polimi.ingsw.cg23.view.Print	[main]	[] 
+ERROR	2016-06-02 14:19:22,682	2619	it.polimi.ingsw.cg23.view.Print	[main]	[qw] 
+ERROR	2016-06-02 14:19:22,682	2619	it.polimi.ingsw.cg23.view.Print	[main]	Player [user=qw, additionalAction=false, assistantsPool=10, richness=85, victoryTrack=32, nobilityBoxPosition=0] 
+ERROR	2016-06-02 14:19:22,682	2619	it.polimi.ingsw.cg23.view.Print	[main]	 Turn [currentPlayer=qw, mainIndex=0, mainAction=false, secondAction=true]
+ERROR	2016-06-02 14:19:22,688	2625	it.polimi.ingsw.cg23.view.Print	[main]	
+Plancia di gioco
+COSTA                                             COLLINA                                           MONTAGNA                                          
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Arkon - A                     |                  |Framek - F              KING  |                  |Kultos - K                    |                  
+|gold                          |                  |bronze                        |                  |silver                        |                  
+|1BonusNobility                |                  |2Coin                         |                  |GetPermitTile                 |                  
+|Vicini: C, B                  |                  |Vicini: C, I                  |                  |Vicini: I, N                  |                  
+|Empori:[]                     |                  |Empori:[qw]                   |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Burgen - B                    |                  |Graden - G                    |                  |Luvram - L                    |                  
+|iron                          |                  |iron                          |                  |iron                          |                  
+|2Assistants                   |                  |3VictoryPoints                |                  |2VictoryPoints                |                  
+|Vicini: A, D                  |                  |Vicini: D, J                  |                  |Vicini: J, O, K               |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Castrum - C                   |                  |Hellar - H                    |                  |Merkatim - M                  |                  
+|silver                        |                  |gold                          |                  |silver                        |                  
+|1Assistants                   |                  |1Assistants, 1Coin, 4Politics |                  |3Coin                         |                  
+|Vicini: A, F                  |                  |Vicini: E, J                  |                  |Vicini: H, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Dorful - D                    |                  |Indur - I                     |                  |Naris - N                     |                  
+|bronze                        |                  |iron                          |                  |bronze                        |                  
+|1Coin                         |                  |1VictoryPoints                |                  |1BonusNobility                |                  
+|Vicini: B, G                  |                  |Vicini: K                     |                  |Vicini: K, O                  |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+|Esti - E                      |                  |Juvelar - J                   |                  |Osium - O                     |                  
+|silver                        |                  |purple                        |                  |gold                          |                  
+|1Assistants, 1Politics        |                  |                              |                  |GetPermitTile, 1VictoryPoints |                  
+|Vicini: B, H                  |                  |Vicini: H, L                  |                  |Vicini: N                     |                  
+|Empori:[]                     |                  |Empori:[]                     |                  |Empori:[]                     |                  
+--------------------------------                  --------------------------------                  --------------------------------                  
+Carte Costruzione costa:                          Carte Costruzione collina:                        Carte Costruzione montagna:                       
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+|[A]               |     |[B]               |     |[H]               |     |[F, G, H]         |     |[N]               |     |[K]               |     
+|4VictoryPoints    |     |3Politics         |     |4Assistants       |     |1BonusNobility    |     |7Coin             |     |4Politics         |     
+|3Coin             |     |1Assistants       |     |                  |     |1Coin             |     |                  |     |                  |     
+--------------------     --------------------     --------------------     --------------------     --------------------     --------------------     
+
+Player              Richness(coin)      Victory             Nobility            Assistants          Carte politiche     
+qw                  85                  32                  0                   10                  4                   
+ 
+ERROR	2016-06-02 14:19:40,214	0	it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant.runAction(ElectCouncillorAssistant.java:92)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistantTest.testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant(ElectCouncillorAssistantTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,238	24	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:19:40,240	26	it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+ERROR	2016-06-02 14:19:40,241	27	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuyPermitTileTest.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,243	29	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:19:40,243	29	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.payCoins(BuyPermitTile.java:181)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuyPermitTileTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,243	29	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:19:40,297	83	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuildEmporiumKingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,298	84	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:61)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney(BuildEmporiumKingTest.java:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,298	84	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuildEmporiumKingTest.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,299	85	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:19:40,299	85	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.buildEmporiumK(BuildEmporiumKing.java:203)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:81)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants(BuildEmporiumKingTest.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:19:40,322	108	it.polimi.ingsw.cg23.model.action.BuildEmporiumTile	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTile.runAction(BuildEmporiumTile.java:68)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTileTest.testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(BuildEmporiumTileTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+ERROR	2016-06-02 14:20:38,926	1	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuildEmporiumKingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,932	7	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:61)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney(BuildEmporiumKingTest.java:201)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,934	9	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough money
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.tryPayment(BuildEmporiumKing.java:184)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.payCoins(BuildEmporiumKing.java:165)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuildEmporiumKingTest.java:145)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,936	11	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:20:38,937	12	it.polimi.ingsw.cg23.model.action.BuildEmporiumKing	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.buildEmporiumK(BuildEmporiumKing.java:203)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKing.runAction(BuildEmporiumKing.java:81)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumKingTest.testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants(BuildEmporiumKingTest.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,942	17	it.polimi.ingsw.cg23.model.action.BuildEmporiumTile	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.City.buildEmporium(City.java:161)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTile.runAction(BuildEmporiumTile.java:68)
+	at it.polimi.ingsw.cg23.model.action.BuildEmporiumTileTest.testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(BuildEmporiumTileTest.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,948	23	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testTryPaymentShouldReturnMinus1IfItIsNegative(BuyPermitTileTest.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,951	26	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+ERROR	2016-06-02 14:20:38,952	27	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	The player doesn't have enough money!
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.
+	at it.polimi.ingsw.cg23.model.components.Richness.setCoins(Richness.java:44)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.tryPayment(BuyPermitTile.java:199)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTile.payCoins(BuyPermitTile.java:181)
+	at it.polimi.ingsw.cg23.model.action.BuyPermitTileTest.testPayCoinsShoulReturnMinus1IfThePlayerDoesntHaveEnoughMoney(BuyPermitTileTest.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,954	29	it.polimi.ingsw.cg23.model.action.BuyPermitTile	[main]	Your cards don't match any councillor
+ERROR	2016-06-02 14:20:38,957	32	it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+ERROR	2016-06-02 14:20:38,964	39	it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant	[main]	The player doesn't have enough assistants
+it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of assistants can't be negative.
+	at it.polimi.ingsw.cg23.model.components.AssistantsPool.setAssistants(AssistantsPool.java:44)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant.runAction(ElectCouncillorAssistant.java:92)
+	at it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistantTest.testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant(ElectCouncillorAssistantTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+ERROR	2016-06-02 14:20:38,971	46	it.polimi.ingsw.cg23.model.action.HireAssistant	[main]	it.polimi.ingsw.cg23.model.exception.NegativeNumberException: The number of coins can't be negative.

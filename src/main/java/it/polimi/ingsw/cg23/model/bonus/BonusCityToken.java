@@ -9,7 +9,7 @@ import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.observer.Observable;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.Print;
 
 /**
  * the class of the bonus that allows to run a bonus from a city where the player builds an emporium. It contains 
@@ -28,7 +28,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	private final String name;
 		
 	private final Board board;
-	private CliInterface cl;
+	private Print cl;
 	
 	
 	/**
@@ -48,7 +48,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 		*/
 		this.runnable=new boolean[0];
 		this.board = board;
-		this.cl = new CliInterface();
+		this.cl = new Print();
 		this.name="CityToken";
 	}
 	

@@ -6,17 +6,17 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.XmlInterface;
 
 public class CreateCostruction {
 
 	private CreateBonus cb;
-	private CliInterface cl;
+	private XmlInterface leggiXml;
 	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
 	
 	public CreateCostruction(){
 		this.cb=new CreateBonus("ConfigurazionePartita.xml");
-		this.cl=new CliInterface();
+		this.leggiXml=new XmlInterface();
 		costructionCard=new ArrayList<>();
 	}
 	
@@ -25,7 +25,7 @@ public class CreateCostruction {
 	 */
 	public List<BusinessPermitTile> createCardCostruction(Board b){
 		cb.bonusList(b);
-		String[][] array=cl.getCostruction("CostructionCard.xml");//informazioni sulle carte costruzione
+		String[][] array=leggiXml.costructionCard("CostructionCard.xml");//informazioni sulle carte costruzione
 		
 		for(int i=0; i<array.length; i++){//ciclo che scorre tutte le carte costruzione
 			List<Character> citiesId=new ArrayList<>();//lista di id delle citta'

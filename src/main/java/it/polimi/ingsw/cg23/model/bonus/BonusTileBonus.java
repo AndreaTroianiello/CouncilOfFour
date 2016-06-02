@@ -9,7 +9,7 @@ import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.observer.Observable;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.Print;
 
 /**
  * the class of the bonus that allows to run the bonus from a tile the player is in possession. It contains 
@@ -24,7 +24,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	private final List<BusinessPermitTile> businessPermitTiles;	//the list of PerimtTile the player choose to have the bonuses from
 	private final String name;
 	
-	private final CliInterface cl;
+	private final Print cl;
 	
 	private static Logger logger;
 
@@ -36,7 +36,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	public BonusTileBonus(int number) {
 		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
 		this.businessPermitTiles = new ArrayList<>();
-		this.cl = new CliInterface();
+		this.cl = new Print();
 		this.name="TileBonus";
 	}
 

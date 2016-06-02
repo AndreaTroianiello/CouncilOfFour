@@ -21,12 +21,12 @@ import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
-import it.polimi.ingsw.cg23.view.PrintMap;
+import it.polimi.ingsw.cg23.view.CreateMap;
 
 
 public class PrintMapTest {
 
-PrintMap map=new PrintMap();
+CreateMap map=new CreateMap();
 	
 	private Type type1,type2;
 	private List<Region> regions;

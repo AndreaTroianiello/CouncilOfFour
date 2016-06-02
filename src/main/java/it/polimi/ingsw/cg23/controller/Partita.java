@@ -11,15 +11,15 @@ import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.action.*;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.view.CliInterface;
+import it.polimi.ingsw.cg23.view.Print;
 
 public class Partita {
 	Avvio via;
-	CliInterface cl;
+	Print cl;
 	
 	public Partita(){
 		via=new Avvio();
-		cl=new CliInterface();
+		cl=new Print();
 	}
 	
 	public void start(){
