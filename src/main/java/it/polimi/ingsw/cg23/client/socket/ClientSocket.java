@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class ClientSocket {
 
@@ -20,7 +21,7 @@ public class ClientSocket {
 	public void startClient() throws UnknownHostException, IOException {
 
 		Socket socket = new Socket(IP, PORT);
-
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		logger.error("Connection created");
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);

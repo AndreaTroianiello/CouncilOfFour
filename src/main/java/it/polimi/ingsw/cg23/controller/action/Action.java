@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.controller.action;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.observer.Observable;
@@ -8,9 +10,9 @@ import it.polimi.ingsw.cg23.observer.Observable;
  * The action of the application.
  * @author Vincenzo
  */
-public abstract class Action extends Observable<Change>{
+public abstract class Action extends Observable<Change> implements Serializable{
 
-
+	private static final long serialVersionUID = -818604974357806991L;
 	private Player player;
 	
 	/**

@@ -1,7 +1,5 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import java.io.Serializable;
-
 import it.polimi.ingsw.cg23.controller.action.Action;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
@@ -10,7 +8,7 @@ import it.polimi.ingsw.cg23.model.Player;
  * @author Andrea
  *
  */
-public abstract class GameAction extends Action implements Serializable{
+public abstract class GameAction extends Action{
 	
 	private static final long serialVersionUID = -2996870548641018764L;
 	private boolean main;
