@@ -49,46 +49,55 @@ public class ClientOutHandler implements Runnable {
 					action = new AdditionalAction();
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "BUILDKING":
 					action = new BuildEmporiumKing(null, null);
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "BUILDTILE":
 					action = new BuildEmporiumTile(null, 0);
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "BUYTILE":
 					action = new BuyPermitTile(null, null, null);
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "CHANGE":
 					action = new ChangeBusinessPermit(0);
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "ELECT":
 					action = new ElectCouncillor(null, null, true);
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "ELECTASSISTANT":
 					action = new ElectCouncillorAssistant(null, null, true);
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "HIRE":
 					action = new HireAssistant();
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				case "ENDTURN":
 					action = new EndTurn();
 					socketOut.writeObject(action);
 					socketOut.flush();
+					socketOut.reset();
 					break;
 				default:
 					break;
