@@ -50,7 +50,8 @@ public class ServerSocketView extends View implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		boolean run=true;
+		while (run) {
 
 			try {
 
@@ -68,8 +69,11 @@ public class ServerSocketView extends View implements Runnable {
 					this.socketOut.flush();
 				}*/
 
-			} catch (ClassNotFoundException | IOException e) {
+			} catch (ClassNotFoundException e){
 				logger.error(e);
+			} catch (IOException e) {
+				logger.error(e);
+				run=false;
 			}
 		}
 	}

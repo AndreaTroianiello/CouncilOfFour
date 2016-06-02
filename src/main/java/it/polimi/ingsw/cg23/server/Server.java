@@ -6,6 +6,9 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import it.polimi.ingsw.cg23.controller.Controller;
 import it.polimi.ingsw.cg23.controller.Turn;
 import it.polimi.ingsw.cg23.model.Board;
@@ -14,10 +17,16 @@ import it.polimi.ingsw.cg23.view.ServerSocketView;
 
 public class Server {
 	private final static int PORT=29999;
+
+	private static Logger logger;
 	
 	private Board model;
 	private Controller controller;
 	
+	public Server(){
+		logger = Logger.getLogger(ServerSocketView.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
+	}
 	
 	private void startSocket() throws IOException{
 		ExecutorService executor=Executors.newCachedThreadPool();
@@ -35,8 +44,12 @@ public class Server {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args)  {
 		Server server=new Server();
-		server.startSocket();
+		try {
+			server.startSocket();
+		} catch (IOException e) {
+			logger.error(e);
+		}
 	}	
 }

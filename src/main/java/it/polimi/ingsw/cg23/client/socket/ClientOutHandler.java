@@ -33,11 +33,12 @@ public class ClientOutHandler implements Runnable {
 
 	@Override
 	public void run() {
-
+		boolean run=true;
+		
 		System.out.println("RUNNING");
 		Scanner stdIn = new Scanner(System.in);
-
-		while (true) {
+		
+		while (run) {
 
 			String inputLine = stdIn.nextLine();
 
@@ -102,8 +103,9 @@ public class ClientOutHandler implements Runnable {
 				default:
 					break;
 				}
-			} catch (IOException e1) {
-				logger.error(e1);
+			} catch (IOException e) {
+				logger.error(e);
+				run=false;
 			}
 
 		}

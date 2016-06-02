@@ -23,13 +23,16 @@ public class ClientInHandler implements Runnable {
 
 	@Override
 	public void run() {
-		while(true){
-			
+		boolean run=true;
+		while(run){
 			try {
 				Change object=(Change) socketIn.readObject();
 				logger.error(object);
-			} catch (ClassNotFoundException | IOException e) {
+			} catch (ClassNotFoundException e){
 				logger.error(e);
+			} catch (IOException e) {
+				logger.error(e);
+				run=false;
 			} 
 		}
 
