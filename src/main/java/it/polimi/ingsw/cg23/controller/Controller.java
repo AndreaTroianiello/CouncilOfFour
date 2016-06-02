@@ -20,10 +20,14 @@ public class Controller implements Observer<Action>{
 	public void update(Action action){
 		System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
 		Observer.super.update(action);
-		if(action instanceof GameAction){
+		if(action instanceof GameAction && "TURN".equals(model.getStatus().getStatus())){
 			turn.setAction((GameAction) action);
 			turn.runAction();
 		}
+		/*if(action instanceof MarketAction && model.getStatus().getStatus().contains("MARKET")){
+			turn.setAction((GameAction) action);
+			turn.runAction();
+		}*/
 		if(action instanceof EndTurn){
 			((EndTurn) action).runAction(turn);
 		}

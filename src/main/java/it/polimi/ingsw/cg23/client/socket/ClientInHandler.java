@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.controller.change.Change;
 
@@ -15,7 +16,8 @@ public class ClientInHandler implements Runnable {
 	private static Logger logger;
 	
 	public ClientInHandler(ObjectInputStream socketIn) {
-		ClientInHandler.logger = Logger.getLogger(ClientInHandler.class);
+		logger = Logger.getLogger(ClientInHandler.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.socketIn=socketIn;
 	}
 

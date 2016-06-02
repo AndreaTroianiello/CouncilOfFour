@@ -5,7 +5,10 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.controller.action.Action;
+import it.polimi.ingsw.cg23.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.model.action.BuildEmporiumKing;
 import it.polimi.ingsw.cg23.model.action.BuildEmporiumTile;
@@ -13,7 +16,6 @@ import it.polimi.ingsw.cg23.model.action.BuyPermitTile;
 import it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit;
 import it.polimi.ingsw.cg23.model.action.ElectCouncillor;
 import it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant;
-import it.polimi.ingsw.cg23.model.action.GameAction;
 import it.polimi.ingsw.cg23.model.action.HireAssistant;
 
 
@@ -24,7 +26,8 @@ public class ClientOutHandler implements Runnable {
 	private static Logger logger;
 
 	public ClientOutHandler(ObjectOutputStream socketOut) {
-		ClientOutHandler.logger = Logger.getLogger(ClientOutHandler.class);
+		logger = Logger.getLogger(ClientOutHandler.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.socketOut = socketOut;
 	}
 
@@ -38,7 +41,7 @@ public class ClientOutHandler implements Runnable {
 
 			String inputLine = stdIn.nextLine();
 
-			GameAction action;
+			Action action;
 			try{
 				//DA COMPLETARE GLI ARGOMENTI PASSATI ALLE AZIONI
 				switch (inputLine) {
@@ -79,6 +82,11 @@ public class ClientOutHandler implements Runnable {
 					break;
 				case "HIRE":
 					action = new HireAssistant();
+					socketOut.writeObject(action);
+					socketOut.flush();
+					break;
+				case "ENDTURN":
+					action = new EndTurn();
 					socketOut.writeObject(action);
 					socketOut.flush();
 					break;

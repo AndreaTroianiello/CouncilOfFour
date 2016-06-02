@@ -15,6 +15,8 @@ import it.polimi.ingsw.cg23.model.State;
  */
 public class EndTurn extends Action {
 	
+	private static final long serialVersionUID = 8980874164357261363L;
+
 	/**
 	 * The constructor of EndTurn.
 	 */

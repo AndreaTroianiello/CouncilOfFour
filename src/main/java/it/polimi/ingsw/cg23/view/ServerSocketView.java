@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.controller.action.Action;
 import it.polimi.ingsw.cg23.controller.change.Change;
@@ -22,7 +23,8 @@ public class ServerSocketView extends View implements Runnable {
 	private static Logger logger;
 
 	public ServerSocketView(Socket socket, Board model) throws IOException {
-		this.logger = Logger.getLogger(ServerSocketView.class);
+		logger = Logger.getLogger(ServerSocketView.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.socket = socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
