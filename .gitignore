@@ -14,4 +14,4 @@ target/
 # ignore DS_Store and files starting with ._ (for Mac)
 .DS_
 # ignore all log files
-*.log
+.log
