@@ -77,8 +77,9 @@ public class BonusKing implements Serializable{
 		increasePosition();
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the BonusKing.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

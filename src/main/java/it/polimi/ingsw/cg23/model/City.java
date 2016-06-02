@@ -125,6 +125,7 @@ public class City implements Serializable{
 	 * @return the token.
 	 */
 	public List<String> getToken() {
+		//return token;
 		List<String> tokenNames=new ArrayList<>();
 		for(Bonus bonus: this.token)
 			tokenNames.add(bonus.getName());
@@ -226,8 +227,9 @@ public class City implements Serializable{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the City.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

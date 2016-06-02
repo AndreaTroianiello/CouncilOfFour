@@ -43,8 +43,9 @@ public class PoliticCard implements CanBeSold {
 		return jolly;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the PoliticCard.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

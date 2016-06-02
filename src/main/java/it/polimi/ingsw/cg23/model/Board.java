@@ -228,8 +228,9 @@ public class Board extends Observable<Change> implements Serializable{
 		return market;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Board.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

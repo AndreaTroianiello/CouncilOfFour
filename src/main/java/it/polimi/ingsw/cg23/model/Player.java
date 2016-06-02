@@ -235,10 +235,8 @@ public class Player implements Serializable {
 	}
 
 	/**
-	 * Returns all stats of the player.
-	 */
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	 * It generates a string formed by the most significant statistics of the Player.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

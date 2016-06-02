@@ -31,6 +31,10 @@ public class NobilityBox implements Serializable{
 		this.bonus.add(bonus);	
 	}
 
+	/**
+	 * It generates a string formed by the most significant statistics of the NobilityBox.
+	 * @return string
+	 */
 	@Override
 	public String toString() {
 		return "NobilityBox [bonus=" + bonus + "]";

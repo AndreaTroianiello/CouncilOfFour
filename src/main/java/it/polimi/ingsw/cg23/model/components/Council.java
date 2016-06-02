@@ -30,8 +30,9 @@ public class Council implements Serializable{
 		return councillors;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Council.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

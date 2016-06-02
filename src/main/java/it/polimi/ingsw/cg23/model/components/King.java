@@ -51,8 +51,9 @@ public class King implements Serializable{
 		return council;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the King.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

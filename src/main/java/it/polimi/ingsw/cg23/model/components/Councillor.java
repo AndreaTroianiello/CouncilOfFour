@@ -31,8 +31,9 @@ public class Councillor implements Serializable {
 		return color;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Councillor.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

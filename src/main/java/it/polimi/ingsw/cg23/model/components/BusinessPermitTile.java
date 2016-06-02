@@ -63,8 +63,9 @@ public class BusinessPermitTile implements CanBeSold {
 		this.bonusTile.add(bonus);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Business Permit Tile.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

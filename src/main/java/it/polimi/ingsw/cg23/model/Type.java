@@ -118,8 +118,9 @@ public class Type implements Serializable {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Type.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

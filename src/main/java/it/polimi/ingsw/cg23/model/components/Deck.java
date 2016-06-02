@@ -83,8 +83,9 @@ public class Deck implements Serializable {
 		}
 	}
 	
-	/** (Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Deck.
+	 * @return string
 	 */
 	@Override
 	public String toString() {
