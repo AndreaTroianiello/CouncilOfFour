@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.controller.action.Action;
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Board;
@@ -16,8 +18,11 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
 	private Board model;
+	
+	private static Logger logger;
 
 	public ServerSocketView(Socket socket, Board model) throws IOException {
+		this.logger = Logger.getLogger(ServerSocketView.class);
 		this.socket = socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
@@ -30,13 +35,13 @@ public class ServerSocketView extends View implements Runnable {
 
 	@Override
 	public void update(Change o) {
-		System.out.println("Sending to the client " + o);
+		logger.error("Sending to the client " + o);
 		try {
 			this.socketOut.writeObject(o);
 			this.socketOut.flush();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
@@ -49,7 +54,8 @@ public class ServerSocketView extends View implements Runnable {
 				Object object = socketIn.readObject();
 				if (object instanceof Action) {
 					Action action = (Action) object;
-					System.out.println("VIEW: received the action " + action);
+					logger.error("VIEW: received the action " + action);
+					action.registerObserver(this);
 					this.notifyObserver(action);
 				}
 				/*if(object instanceof Query){
@@ -60,9 +66,9 @@ public class ServerSocketView extends View implements Runnable {
 				}*/
 
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e);
 			}
 		}
 	}

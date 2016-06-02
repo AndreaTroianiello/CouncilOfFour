@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
@@ -13,12 +15,15 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 public class HireAssistant extends GameAction {
 	
 	private static final long serialVersionUID = 157988041663947858L;
+	
+	private static Logger logger;
 
 	/**
 	 * the constructor set the variables of the class: the boolean main is set to false
 	 */
 	public HireAssistant() {
 		super(false);
+		this.logger = Logger.getLogger(HireAssistant.class);
 	}
 
 	/**
@@ -37,6 +42,7 @@ public class HireAssistant extends GameAction {
 		try {
 			player.getRichness().setCoins(coin);
 		} catch (NegativeNumberException e) {
+			logger.error(e);
 			return;
 		}
 		
@@ -44,6 +50,7 @@ public class HireAssistant extends GameAction {
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
+			logger.error(e);
 			return;
 		}
 

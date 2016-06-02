@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
@@ -19,6 +21,7 @@ public class BuildEmporiumTile extends GameAction {
 	private final BusinessPermitTile card;
 	private final int cityID; 						//wich city the player choose from the ones on the card
 
+	private static Logger logger;
 	
 	/**
 	 * the constructor set the variable of the class: the boolean main is set to true, the city and the cityId
@@ -29,6 +32,7 @@ public class BuildEmporiumTile extends GameAction {
 	 */
 	public BuildEmporiumTile(BusinessPermitTile card, int cityID) {
 		super(true);
+		logger = Logger.getLogger(BuildEmporiumTile.class);
 		this.card = card;
 		this.cityID = cityID;
 	}
@@ -65,8 +69,8 @@ public class BuildEmporiumTile extends GameAction {
 					player.getAvailableBusinessPermits().remove(card);
 					player.setUsedBusinessPermit(card);
 				} catch (NegativeNumberException e) {
-					System.out.println("The player doesn't have enough assistants");
-					e.printStackTrace();					
+					logger.error("The player doesn't have enough assistants", e);
+										
 				}
 				
 			}

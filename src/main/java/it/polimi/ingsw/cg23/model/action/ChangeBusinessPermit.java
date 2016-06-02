@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
@@ -15,6 +17,8 @@ public class ChangeBusinessPermit extends GameAction {
 	private static final long serialVersionUID = -2799809256014430924L;
 	private final int region;
 	
+	private static Logger logger;
+	
 
 	/**
 	 * the constructor set the variables of the class: main is set to false, and region is set as 
@@ -24,6 +28,7 @@ public class ChangeBusinessPermit extends GameAction {
 	 */
 	public ChangeBusinessPermit(int region) {
 		super(false);
+		logger = Logger.getLogger(ChangeBusinessPermit.class);
 		this.region = region;
 	}
 
@@ -45,6 +50,7 @@ public class ChangeBusinessPermit extends GameAction {
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
+			logger.error(e);
 			return;
 		}
 		

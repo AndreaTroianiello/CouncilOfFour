@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -27,6 +29,8 @@ public class BuyPermitTile extends GameAction {
 	private final BusinessPermitTile chosenTile;									//wich tile the player chose from the showed ones
 	private List<PoliticCard> discardedCards= new ArrayList<>();
 	
+	private static Logger logger;
+	
 	
 	/** 
 	 * the constructor set the variable of the class: main i set to true, cards, region, and chosenTile 
@@ -38,6 +42,7 @@ public class BuyPermitTile extends GameAction {
 	 */
 	public BuyPermitTile(List<PoliticCard> cards, Region region, BusinessPermitTile choosenTile) {
 		super(true);
+		logger = Logger.getLogger(BuyPermitTile.class);
 		this.cards = cards;
 		this.region = region;
 		this.chosenTile = choosenTile;
@@ -96,10 +101,9 @@ public class BuyPermitTile extends GameAction {
 				player.getRichness().setCoins(coins+moneyPaid);
 				this.cards.addAll(discardedCards);
 			} catch (NegativeNumberException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				logger.error(e1);
 			}
-			e.printStackTrace();
+			logger.error(e);
 		}
 		}
 		
@@ -167,7 +171,7 @@ public class BuyPermitTile extends GameAction {
 		int coin = player.getRichness().getCoins();
 		int payment = (4-match)*3+1;
 		if(match == 0){
-			System.out.println("Your cards don't match any councillor");
+			logger.error("Your cards don't match any councillor");
 			return -1;
 		}
 		if(match == 4){
@@ -186,17 +190,17 @@ public class BuyPermitTile extends GameAction {
 	 * player doesn't have enough money
 	 * 
 	 * @param player
-	 * @param coin
+	 * @param money
 	 * @param payment
 	 */
-	public int tryPayment(Player player,int coin, int payment){
+	public int tryPayment(Player player,int money, int payment){
 		try {
-			coin = coin - payment;
-			player.getRichness().setCoins(coin);
+			money = money - payment;
+			player.getRichness().setCoins(money);
 			return 0;
 		} catch (NegativeNumberException e) {
 			this.cards.addAll(discardedCards);
-			System.out.println("The player doesn't have enough money!");
+			logger.error("The player doesn't have enough money!", e);
 			return -1;
 		}
 	}

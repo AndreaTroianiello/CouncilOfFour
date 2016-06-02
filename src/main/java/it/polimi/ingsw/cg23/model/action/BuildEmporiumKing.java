@@ -3,6 +3,10 @@ package it.polimi.ingsw.cg23.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+import it.polimi.ingsw.cg23.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
@@ -23,6 +27,9 @@ public class BuildEmporiumKing extends GameAction {
 	private final List<PoliticCard> cards;
 	private List<PoliticCard> discardedCards = new ArrayList<>();
 	private final City destination;
+	
+	//logger
+	private static Logger logger;
 
 	/**
 	 * the constructor set the variable of the class: main is set to true, cards and destination are
@@ -33,6 +40,7 @@ public class BuildEmporiumKing extends GameAction {
 	 */
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
 		super(true);
+		logger = Logger.getLogger(BuildEmporiumKing.class);
 		this.cards = cards;
 		this.destination = destination;
 	}
@@ -59,13 +67,13 @@ public class BuildEmporiumKing extends GameAction {
 				coin = coin - steps*2 - jolly;
 				player.getRichness().setCoins(coin);
 			} catch (NegativeNumberException e) {
-				System.out.println("The player doesn't have enough money!");
+				logger.error("The player doesn't have enough money!", e);
 				try {
 					player.getRichness().setCoins(coin+payMatch);
 					this.cards.addAll(discardedCards);
 					return;
 				} catch (NegativeNumberException e1) {
-					e1.printStackTrace();
+					logger.error(e1);
 				}
 			}
 			
@@ -77,14 +85,11 @@ public class BuildEmporiumKing extends GameAction {
 				try {
 					player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
 				} catch (NegativeNumberException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 			}
 		}
-		
-
-		
+				
 	}
 
 	
@@ -150,7 +155,7 @@ public class BuildEmporiumKing extends GameAction {
 		int coin = player.getRichness().getCoins();
 		int payment = (4-match)*3+1;
 		if(match == 0){
-			System.out.println("Your cards don't match any councillor");
+			logger.error("Your cards don't match any councillor");
 			return -1;
 		}
 		if(match == 4){
@@ -170,17 +175,17 @@ public class BuildEmporiumKing extends GameAction {
 	 * player doesn't have enough money
 	 * 
 	 * @param player
-	 * @param coin
+	 * @param money
 	 * @param payment
 	 */
-	public int tryPayment(Player player,int richness, int payment){
+	public int tryPayment(Player player,int money, int payment){
 		try {
-			richness = richness - payment;
-			player.getRichness().setCoins(richness);
+			money = money - payment;
+			player.getRichness().setCoins(money);
 			return 0;
 		} catch (NegativeNumberException e) {
 			this.cards.addAll(discardedCards);
-			System.out.println("The player doesn't have enough money");
+			logger.error("The player doesn't have enough money", e);
 			return -1;
 		}
 	}
@@ -199,16 +204,14 @@ public class BuildEmporiumKing extends GameAction {
 			board.getKing().setCity(destination);
 			board.getDeck().discardCards(discardedCards);
 		} catch (NegativeNumberException e) {
-			System.out.println("The player doesn't have enough assistants");
+			logger.error("The player doesn't have enough assistants", e);
 			int currentCoin = player.getRichness().getCoins();
 			this.cards.addAll(discardedCards);
 			try {
 				player.getRichness().setCoins(currentCoin+steps*2+jolly+payMatch);	//if the player doesn't have available emporiums, give back the money previously paid
 			} catch (NegativeNumberException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			e.printStackTrace();					
+				logger.error(e1);
+			}					
 		}
 	}
 }

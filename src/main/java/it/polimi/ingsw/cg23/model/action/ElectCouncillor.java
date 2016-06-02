@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.model.action;
 
 import java.awt.Color;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -22,6 +24,8 @@ public class ElectCouncillor extends GameAction{
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
 	
+	private static Logger logger;
+	
 	/**
 	 * the constructor set the variables of the class: it set the main to true, and the other 
 	 * variables as the paramater given to the method
@@ -32,6 +36,7 @@ public class ElectCouncillor extends GameAction{
 	 */
 	public ElectCouncillor(Color councillor, Region region, boolean king) {
 		super(false);
+		this.logger = Logger.getLogger(ElectCouncillor.class);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
@@ -86,6 +91,7 @@ public class ElectCouncillor extends GameAction{
 				try{
 					player.getRichness().setCoins(coins);
 				} catch(NegativeNumberException e){
+					logger.error(e);
 				}		
 		}
 	}

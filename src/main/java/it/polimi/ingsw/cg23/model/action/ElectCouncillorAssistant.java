@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.model.action;
 
 import java.awt.Color;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -22,6 +24,8 @@ public class ElectCouncillorAssistant extends GameAction {
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
 	
+	private static Logger logger;
+	
 	/**
 	 * the constructor set the variables of the class: main is set to false, and the other variables are set
 	 * as the parameter given to the method
@@ -32,6 +36,7 @@ public class ElectCouncillorAssistant extends GameAction {
 	 */
 	public ElectCouncillorAssistant(Color councillor, Region region, boolean king) {
 		super(false);
+		this.logger = Logger.getLogger(ElectCouncillorAssistant.class);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
@@ -86,8 +91,7 @@ public class ElectCouncillorAssistant extends GameAction {
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
-			System.out.println("The player doesn't have enough assistants");
-			e.printStackTrace();
+			logger.error("The player doesn't have enough assistants", e);
 		}
 		
 	}
