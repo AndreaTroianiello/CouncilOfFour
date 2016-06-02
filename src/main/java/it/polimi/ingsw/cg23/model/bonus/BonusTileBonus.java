@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.model.bonus;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
@@ -23,6 +25,8 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	private final String name;
 	
 	private final CliInterface cl;
+	
+	private static Logger logger;
 
 	/**
 	 * the constructor set the tile as a new arraylist, the cli as a new cliinterface and the name as 
@@ -30,6 +34,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 * @param number
 	 */
 	public BonusTileBonus(int number) {
+		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
 		this.businessPermitTiles = new ArrayList<>();
 		this.cl = new CliInterface();
 		this.name="TileBonus";
@@ -67,7 +72,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 			this.businessPermitTiles.add(player.getAvailableBusinessPermits().get(card));
 		}
 		else{
-			System.out.println("La stringa immessa è incorretta");
+			logger.error("La stringa immessa è incorretta");
 		}
 		
 		for(BusinessPermitTile bPT: this.businessPermitTiles){		//iterate the PermitsTile the player want to pick the bonuses from

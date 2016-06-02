@@ -3,6 +3,8 @@
  */
 package it.polimi.ingsw.cg23.model.bonus;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
@@ -20,6 +22,8 @@ public class BonusCoin implements Bonus {
 	private int coins;						//the amount of coin given by the bonus
 	private final String name;
 	
+	private static Logger logger;
+	
 	/**
 	 * the constructor set the coins as the parameter given to the method and the name as the name
 	 * of the bonus
@@ -27,6 +31,7 @@ public class BonusCoin implements Bonus {
 	 * @param coin  (can't be negative)
 	 */
 	public BonusCoin(int coin) {
+		BonusCoin.logger = Logger.getLogger(BonusCoin.class);
 		this.coins = coin;
 		this.name="Coin";
 	}
@@ -67,7 +72,7 @@ public class BonusCoin implements Bonus {
 		try {
 			player.getRichness().setCoins(playerCoins);				//set the player's coins at the updated value and throw an exception
 		} catch (NegativeNumberException e) {
-			System.out.println("The bonus makes the player have negative coins");
+			logger.error("The bonus makes the player have negative coins", e);
 		}
 	}
 	

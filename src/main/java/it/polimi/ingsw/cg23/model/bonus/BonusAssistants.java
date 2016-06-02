@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
+import org.apache.log4j.Logger;
+
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
@@ -16,10 +18,13 @@ public class BonusAssistants implements Bonus {
 	private int assistants;				//the amount of assistants given by the bonus
 	private final String name;
 	
+	private static Logger logger;
+	
 	/**
 	 * the construcotor set the name of the bonus and the assistants to 0
 	 */
 	public BonusAssistants() {
+		BonusAssistants.logger = Logger.getLogger(BonusAssistants.class);
 		this.assistants = 0;
 		this.name="Assistants";
 	}
@@ -53,7 +58,7 @@ public class BonusAssistants implements Bonus {
 			try {
 				player.getAssistantsPool().setAssistants(playerAssistants);					//set the player's pool and throw an exception
 			} catch (NegativeNumberException e) {
-				System.out.println("The bonus makes the player have negative assistants");
+				logger.error("The bonus makes the player have negative assistants", e);
 			}
 		}
 	}
