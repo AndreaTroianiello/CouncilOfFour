@@ -2,9 +2,8 @@ package it.polimi.ingsw.cg23.view;
 
 import java.util.List;
 import java.util.Scanner;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
@@ -22,23 +21,30 @@ public class CliInterface {
 	private ReadNobilityTrackXml nt;//classe che si occupa di leggere il nobility track dall'xml
 
 	//logger
-	private static Logger logger = LoggerFactory.getLogger(CliInterface.class);
+	private static Logger logger;
 
 	//il file xml da cui comincia la partita è "ConfigurazionePartita.xml"
 	private final int citynum;//numero di citta'
 	private final int cityNodeNumber;//numero di attributi delle citta'
 	private String[][] cityInfo;//array multidim con city name, color, link, id, bonus, zone
 
+	//variabile err nel caso di errore nella lettura del file xml
+	String err="ERROR! Errore nella lettura del file xml: ";
+
 	public CliInterface(){
+		logger = Logger.getLogger(CliInterface.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+
 		this.lettureXml=new ReadCittaXml();
 		this.costructionXml=new ReadCostructionXml();
 		this.nt=new ReadNobilityTrackXml();
 		this.citynum=cityNum("ConfigurazionePartita.xml");
 		this.cityNodeNumber=cityNodeNumber("ConfigurazionePartita.xml");
-		
+
 		this.cityInfo=new String[citynum][cityNodeNumber];//array con le informazioni delle citta'
+
 	}
-	
+
 	/**
 	 * 
 	 * @param endpath the name of xml file with .xml
@@ -49,12 +55,12 @@ public class CliInterface {
 		try {//provo a leggere il file xml
 			numeroCitta=lettureXml.cityNumber(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return numeroCitta;
 	}
-	
+
 	/**
 	 * 
 	 * @param endpath the name of xml file with .xml
@@ -65,12 +71,12 @@ public class CliInterface {
 		try {//provo a leggere il file xml
 			nodeNumber=lettureXml.cityNodeNumber(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return nodeNumber;
 	}
-	
+
 	/**
 	 * 	print all the element of a list
 	 */
@@ -90,7 +96,7 @@ public class CliInterface {
 		try {//provo a leggere il file xml
 			cityInfo=lettureXml.readFileXml(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
@@ -110,13 +116,13 @@ public class CliInterface {
 	 */
 	public String[][] getBonusRegion(String endPath){
 		String[][] bonusRegion = null;
-		
+
 		try {//provo a leggere il file xml
 			bonusRegion=lettureXml.getBonusRegion(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return bonusRegion;//ritorna un array con i bonus della regione
 	}
 
@@ -127,13 +133,13 @@ public class CliInterface {
 	 */
 	public String[][]getCostruction(String endPath){
 		String[][] costructionCard=null;
-		
+
 		try {//provo a leggere il file xml
 			costructionCard=costructionXml.readCardXml(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return costructionCard;
 		/* array CostructionCard prototype require
 		 * coloumn 0: region
@@ -149,7 +155,7 @@ public class CliInterface {
 	 */
 	public void printArray(String[][] array){
 		String stampa="";
-		
+
 		for(int i=0;i<array.length;i++){//ciclo che scorre le righe
 			for(int k=0; k<array[0].length; k++){//ciclo che scorre le colonne
 				stampa+=array[i][k]+"      ";
@@ -168,24 +174,24 @@ public class CliInterface {
 	public Object writeReturnValue(String testo, Object ogg){
 		@SuppressWarnings("resource")
 		Scanner scan=new Scanner(System.in);//creo uno scanner per leggere l'input da cl
-		
+
 		if(ogg==null)//se l'oggetto passato e' nullo stampo solo il testo
 			print("",testo);
 		else
 			print(ogg, testo);
-		
+
 		return scan.nextLine();//ritorno il valore letto dalla cl
 	}
 
 	/**
 	 * stampa una qualunque cosa gli viene passata
-	 * it is the ONLY method to use the system.out.println
 	 * @return void
 	 * @param object (something to print, must be "" is there isn't)
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
-		System.out.println(testo+" "+ogg);
+		logger.error(testo+" "+ogg);
+		
 	}
 
 	/**
@@ -195,12 +201,12 @@ public class CliInterface {
 	 */
 	public int regionNumber(List<City> citta){
 		int regionNumber=0;
-		
+
 		for(int i=0; i<citta.size()-1; i++){//scorre la lista delle citta'
 			if(citta.get(i).getRegion()!=citta.get(i+1).getRegion())//controlla se le regioni sono uguali
 				regionNumber++;//incrementa il numero di regioni
 		}
-		
+
 		return regionNumber+1;//ritorna il numero di regioni +1 perchè la prima regione
 	}
 
@@ -221,7 +227,7 @@ public class CliInterface {
 	 */
 	public int regionsNumber(String[][] cityInfo){
 		int n=0;
-		
+
 		for(int i=0; i<cityInfo.length; i++){
 			int k;//usata per evitare di eccedere i limiti dell'array
 			if(i>0)
@@ -231,7 +237,7 @@ public class CliInterface {
 			if(cityInfo[i][5]!=cityInfo[k][5])//conta le variazioni delle regioni
 				n++;
 		}
-		
+
 		return n+1;//aggiunge 1 per contare la prima regione
 	}
 
@@ -242,13 +248,13 @@ public class CliInterface {
 	 */
 	public String[][] getType(String endPath){
 		String[][] type=null;
-		
+
 		try {//provo a leggere il file xml
 			type=lettureXml.getType(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return type;
 	}
 
@@ -259,13 +265,13 @@ public class CliInterface {
 	 */
 	public int getNobilityTrackLenght(String endPath){
 		int nobilityTrackLenght=0;
-		
+
 		try {//provo a leggere il file xml
 			nobilityTrackLenght=nt.nobilityTrackLenght(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return nobilityTrackLenght;
 	}
 
@@ -276,13 +282,13 @@ public class CliInterface {
 	 */
 	public String[][] getNobilityTrackBonus(String endPath){
 		String[][] nobilityTrackBonus=null;
-		
+
 		try {//provo a leggere il file xml
 			nobilityTrackBonus=nt.nobilityTrackBonus(endPath);
 		} catch (XmlException e) {
-			logger.error("Errore nella lettura del file xml "+ endPath, e);
+			logger.error(err + endPath, e);
 		}
-		
+
 		return nobilityTrackBonus;
 	}
 }

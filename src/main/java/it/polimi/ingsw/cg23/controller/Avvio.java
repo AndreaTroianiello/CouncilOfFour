@@ -26,10 +26,10 @@ public class Avvio {
 	CliInterface cl;
 	Setting s;
 	CreateBonus cb;
-	CreateCostruction cc=new CreateCostruction();
-	CreateCouncillor cco=new CreateCouncillor();
-	CreatePlayer cp=new CreatePlayer();
-	CreateRegionCity crc=new CreateRegionCity("ConfigurazionePartita.xml");
+	CreateCostruction cc;
+	CreateCouncillor cco;
+	CreatePlayer cp;
+	CreateRegionCity crc;
 
 	private List <Player> giocatori;//lista giocatori
 	private List <City> citta;//lista giocatori
@@ -38,13 +38,19 @@ public class Avvio {
 	private List <Bonus> bonusList;//lista dei bonus
 	private List <BusinessPermitTile> costructionCard;//lista dei bonus
 	private List <Type> tipi;//lista dei bonus
+	
 	private Board board;
 	private BonusKing bk;
 
 	public Avvio(){
+		cc=new CreateCostruction();
+		cco=new CreateCouncillor();
+		cp=new CreatePlayer();
+		crc=new CreateRegionCity("ConfigurazionePartita.xml");
 		cl=new CliInterface();
 		s=new Setting();
 		cb=new CreateBonus("ConfigurazionePartita.xml");
+		
 		this.board=null;
 		this.bk=cb.bonusKing();
 		this.citta=new ArrayList<>();

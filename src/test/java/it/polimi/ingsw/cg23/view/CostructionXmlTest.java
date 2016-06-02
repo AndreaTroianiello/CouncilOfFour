@@ -36,13 +36,14 @@ public class CostructionXmlTest {
 		assertEquals(rcx.idConversion(idcity, n).length(), n);//numero di carte costruzione
 	}
 	
+	@Test
+	public void readCostructionTestTrue() throws XmlException {
+		assertEquals(rcx.readCardXml("CostructionCard.xml").length, 45);//numero di carte costruzione
+	}
+	
+	
 	@Test(expected=XmlException.class)
-	public void readCostructionTest() throws XmlException {
-		
-		String[][] array1=rcx.readCardXml("CostructionCard.xml");
-		assertEquals(array1.length, 45);//numero di carte costruzione
-		
-		String[][] array2=rcx.readCardXml("CostructionCards.xml");
-		assertNotEquals(array2.length, 45);//file inesistente
+	public void readCostructionTestFalse() throws XmlException {
+		assertEquals(rcx.readCardXml("CostructionCards.xml").length, 45);//file inesistente
 	}
 }
