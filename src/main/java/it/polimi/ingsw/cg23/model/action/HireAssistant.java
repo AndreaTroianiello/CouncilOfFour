@@ -23,7 +23,7 @@ public class HireAssistant extends GameAction {
 	 */
 	public HireAssistant() {
 		super(false);
-		this.logger = Logger.getLogger(HireAssistant.class);
+		logger = Logger.getLogger(HireAssistant.class);
 	}
 
 	/**

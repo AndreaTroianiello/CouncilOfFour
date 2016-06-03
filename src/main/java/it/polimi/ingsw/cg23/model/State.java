@@ -20,8 +20,8 @@ public class State implements Serializable{
 	 * 
 	 * @param status The initial status.
 	 */
-	public State(String status) {
-		this.status=status;
+	public State() {
+		this.status="INITIALIZATION";
 		this.currentPlayer=null;
 		this.finalPlayer=null;
 	}

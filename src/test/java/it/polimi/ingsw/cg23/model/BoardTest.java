@@ -105,6 +105,8 @@ public class BoardTest {
 	@Test
 	public void testGetStatus() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		assertEquals(board.getStatus().getStatus(),"INITIALIZATION");
+		board.changeStatus();
 		assertEquals(board.getStatus().getStatus(),"TURN");
 		board.changeStatus();
 		assertEquals(board.getStatus().getStatus(),"MARKET: SELLING");

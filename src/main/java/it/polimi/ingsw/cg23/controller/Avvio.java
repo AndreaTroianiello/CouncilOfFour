@@ -63,10 +63,10 @@ public class Avvio {
 		cl.print("", "Benvenuti a cof!");
 
 		//----------giocatori----------
-		int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
+		/*int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 			cp.createPlayer();//creo i giocatori
-		}
+		}*/
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 

@@ -34,7 +34,7 @@ public class Turn {
 	public Turn(List<Player> players,Board board){
 		this.players=players;
 		this.board=board;
-		this.currentPlayer=0;
+		this.currentPlayer=-1;
 		this.action=null;
 		this.mainIndex=1;
 		this.mainAction=true;
@@ -59,6 +59,7 @@ public class Turn {
 		State status=board.getStatus();
 		if(players.get((currentPlayer+1)%players.size())!=status.getFinalPlayer()){     //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
+			status.setCurrentPlayer(players.get(currentPlayer));
 			this.mainAction=true;
 			this.secondAction=true;
 			this.mainIndex=1;

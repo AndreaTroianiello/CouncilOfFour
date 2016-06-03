@@ -36,7 +36,7 @@ public class ElectCouncillorAssistant extends GameAction {
 	 */
 	public ElectCouncillorAssistant(Color councillor, Region region, boolean king) {
 		super(false);
-		this.logger = Logger.getLogger(ElectCouncillorAssistant.class);
+		logger = Logger.getLogger(ElectCouncillorAssistant.class);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;

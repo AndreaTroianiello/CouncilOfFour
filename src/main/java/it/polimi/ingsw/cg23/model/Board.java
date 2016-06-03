@@ -48,7 +48,7 @@ public class Board extends Observable<Change> implements Serializable{
 		this.king = king;
 		this.councillorPool=new ArrayList<>();
 		this.players=new ArrayList<>();
-		this.status=new State("TURN");
+		this.status=new State();
 		this.market=new Market();
 	}
 
@@ -211,7 +211,7 @@ public class Board extends Observable<Change> implements Serializable{
 		if("MARKET: SELLING".equals(statusString))
 			status.setStatus("MARKET: BUYING");
 		
-		if("MARKET: BUYING".equals(statusString))
+		if("MARKET: BUYING".equals(statusString) || "INITIALIZATION".equals(statusString))
 			status.setStatus("TURN");
 
 		if(status.getFinalPlayer()!=null && !"FINAL TURN".equals(statusString))

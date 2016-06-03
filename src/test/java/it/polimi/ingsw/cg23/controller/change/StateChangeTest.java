@@ -11,9 +11,9 @@ public class StateChangeTest {
 
 	@Test
 	public void testStateChange() {
-		State newState=new State("OK");
+		State newState=new State();
 		StateChange change=new StateChange(newState);
-		assertEquals(change.toString(),"StateChange [newState=State [status=OK]]");
+		assertEquals(change.toString(),"StateChange [newState=State [status=INITIALIZATION]]");
 	}
 
 }
