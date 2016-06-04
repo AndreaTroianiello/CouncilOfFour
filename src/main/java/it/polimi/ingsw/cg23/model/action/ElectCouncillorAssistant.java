@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.controller.change.CouncilChange;
+import it.polimi.ingsw.cg23.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -79,17 +81,20 @@ public class ElectCouncillorAssistant extends GameAction {
 			Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
 			board.setCouncillor(oldCouncillor);
 			this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+			this.notifyObserver(new CouncilChange(this.region.getCouncil()));
 		}
 		else{
 			Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
 			board.setCouncillor(oldCouncillor);
 			board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+			this.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
 		}
 		
 		int assistants = player.getAssistantsPool().getAssistants();
 		assistants = assistants - 1;
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
+			this.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
 			logger.error("The player doesn't have enough assistants", e);
 		}

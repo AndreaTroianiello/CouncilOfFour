@@ -6,6 +6,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.controller.change.BoardChange;
+import it.polimi.ingsw.cg23.controller.change.EmporiumsChange;
+import it.polimi.ingsw.cg23.controller.change.ErrorChange;
 import it.polimi.ingsw.cg23.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
@@ -78,7 +81,11 @@ public class BuildEmporiumKing extends GameAction {
 			}
 			
 			if(player.getAvailableEmporium() != null){
-				buildEmporiumK(player, board, steps, jolly, payMatch);
+				try {
+					buildEmporiumK(player, board, steps, jolly, payMatch);
+				} catch (NegativeNumberException e) {
+					this.notifyObserver(new ErrorChange(e.getMessage()));
+				}
 			}
 			
 			else{															//if the path isn't correct, give back the player the money previously paid
@@ -89,6 +96,9 @@ public class BuildEmporiumKing extends GameAction {
 				}
 			}
 		}
+		
+		this.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
+		this.notifyObserver(new BoardChange(board));
 				
 	}
 
@@ -197,8 +207,9 @@ public class BuildEmporiumKing extends GameAction {
 	 * @param board
 	 * @param steps
 	 * @param payMatch
+	 * @throws NegativeNumberException 
 	 */
-	public void buildEmporiumK(Player player, Board board, int steps, int jolly, int payMatch){
+	public void buildEmporiumK(Player player, Board board, int steps, int jolly, int payMatch) throws NegativeNumberException{
 		try {
 			this.destination.buildEmporium(player.getAvailableEmporium());
 			board.getKing().setCity(destination);
@@ -207,11 +218,8 @@ public class BuildEmporiumKing extends GameAction {
 			logger.error("The player doesn't have enough assistants", e);
 			int currentCoin = player.getRichness().getCoins();
 			this.cards.addAll(discardedCards);
-			try {
-				player.getRichness().setCoins(currentCoin+steps*2+jolly+payMatch);	//if the player doesn't have available emporiums, give back the money previously paid
-			} catch (NegativeNumberException e1) {
-				logger.error(e1);
-			}					
+			player.getRichness().setCoins(currentCoin+steps*2+jolly+payMatch);	//if the player doesn't have available emporiums, give back the money previously paid
+				
 		}
 	}
 }

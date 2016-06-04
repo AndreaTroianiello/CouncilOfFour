@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -75,24 +76,26 @@ public class ElectCouncillor extends GameAction{
 	@Override
 	public void runAction(Player player, Board board){
 		Councillor newCouncillor=board.getCouncillor(councillor);
-			if(newCouncillor!=null){
-				if(!this.king){
-					Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-					board.setCouncillor(oldCouncillor);
-					this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-				}
-				else{
-					Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-					board.setCouncillor(oldCouncillor);
-					board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-				}
-				int coins = player.getRichness().getCoins();
-				coins = coins +4;
-				try{
-					player.getRichness().setCoins(coins);
-				} catch(NegativeNumberException e){
-					logger.error(e);
-				}		
+		if(newCouncillor!=null){
+			if(!this.king){
+				Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+				board.setCouncillor(oldCouncillor);
+				this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+				this.notifyObserver(new CouncilChange(this.region.getCouncil()));
+			}
+			else{
+				Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);			//remove the first councillor in the chosen council
+				board.setCouncillor(oldCouncillor);
+				board.getKing().getCouncil().getCouncillors().add(newCouncillor);							//append the chosen councillor in the same council
+				this.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
+			}
+			int coins = player.getRichness().getCoins();
+			coins = coins +4;
+			try{
+				player.getRichness().setCoins(coins);
+			} catch(NegativeNumberException e){
+				logger.error(e);
+			}			
 		}
 	}
 

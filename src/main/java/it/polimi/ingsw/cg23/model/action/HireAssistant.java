@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.model.action;
 
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
@@ -49,6 +50,7 @@ public class HireAssistant extends GameAction {
 		assistants = assistants + 1;
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
+			this.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
 			logger.error(e);
 			return;

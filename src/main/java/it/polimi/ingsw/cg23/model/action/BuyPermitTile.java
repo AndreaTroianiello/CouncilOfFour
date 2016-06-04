@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.controller.change.BoardChange;
+import it.polimi.ingsw.cg23.controller.change.BusinessPermitTileChange;
+import it.polimi.ingsw.cg23.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.Region;
@@ -90,26 +93,25 @@ public class BuyPermitTile extends GameAction {
 		int coins = player.getRichness().getCoins();
 		
 		if(moneyPaid != -1){
-		try {
-			coins = coins - jolly;
-			player.getRichness().setCoins(coins);
-			player.addAvailableBusinessPermit(chosenTile);
-			board.getDeck().discardCards(discardedCards);
-			this.region.getDeck().changeShowedDeck();
-		} catch (NegativeNumberException e) {
 			try {
-				player.getRichness().setCoins(coins+moneyPaid);
-				this.cards.addAll(discardedCards);
-			} catch (NegativeNumberException e1) {
-				logger.error(e1);
+				coins = coins - jolly;
+				player.getRichness().setCoins(coins);
+				player.addAvailableBusinessPermit(chosenTile);
+				board.getDeck().discardCards(discardedCards);
+				this.region.getDeck().changeShowedDeck();
+			} catch (NegativeNumberException e) {
+				try {
+					player.getRichness().setCoins(coins+moneyPaid);
+					this.cards.addAll(discardedCards);
+				} catch (NegativeNumberException e1) {
+					logger.error(e1);
+				}
+				logger.error(e);
 			}
-			logger.error(e);
-		}
 		}
 		
-		
-		
-		
+		List<BusinessPermitTile> changedDeck = this.region.getDeck().getShowedDeck();
+		this.notifyObserver(new BusinessPermitTileChange(changedDeck.get(changedDeck.size()-1)));
 	}
 	
 	/**

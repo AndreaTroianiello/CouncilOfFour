@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.model.action;
 
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.controller.change.EmporiumsChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Player;
@@ -74,9 +75,8 @@ public class BuildEmporiumTile extends GameAction {
 				}
 				
 			}
-			
+			this.notifyObserver(new EmporiumsChange(city.getEmporiums()));
 		}
-		
 	}
 
 

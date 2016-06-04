@@ -1,9 +1,13 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 /**
@@ -50,11 +54,16 @@ public class ChangeBusinessPermit extends GameAction {
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
-			logger.error(e);
+			logger.error("The player doesn't have enough assistants!", e);
 			return;
 		}
 		
 		board.getRegions().get(region).getDeck().changeShowedDeck();
+		
+		//notify the change
+		for(BusinessPermitTile bpt : board.getRegions().get(region).getDeck().getShowedDeck()){
+			this.notifyObserver(new BusinessPermitTileChange(bpt));
+		}
 
 	}
 
