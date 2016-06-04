@@ -37,18 +37,14 @@ public class Server {
 		Avvio avvio=new Avvio();
 		avvio.startPartita();
 		model=avvio.getBoard();
-		model.addPlayer(new Player("player1", 10, 100, null));
+		//model.addPlayer(new Player("player1", 10, 100, null));
 		this.controller = new Controller(model);
-		
 		while(run){
 			Socket socket=serverSocket.accept();
 			ServerSocketView view=new ServerSocketView(socket,model);
 			this.model.registerObserver(view);
 			view.registerObserver(this.controller);
 			executor.submit(view);
-			
-
-			this.model.changeStatus();
 		}
 		
 		serverSocket.close();
