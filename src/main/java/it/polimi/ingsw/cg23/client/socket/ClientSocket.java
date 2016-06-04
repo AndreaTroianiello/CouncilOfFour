@@ -18,12 +18,13 @@ public class ClientSocket {
 	
 	private static Logger logger = Logger.getLogger(ClientSocket.class);
 
-
+	public ClientSocket(){
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
+		logger.error("Connection created");
+	}
 	public void startClient() throws UnknownHostException, IOException {
 
 		Socket socket = new Socket(IP, PORT);
-		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		logger.error("Connection created");
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
@@ -34,8 +35,12 @@ public class ClientSocket {
 				new ObjectInputStream(socket.getInputStream())));
 	}
 	
-	public static void main(String[] args) throws UnknownHostException, IOException{
+	public static void main(String[] args){
 		ClientSocket client=new ClientSocket();
-		client.startClient();
+		try {
+			client.startClient();
+		} catch (IOException e) {
+			logger.error(e);
+		}
 	}
 }

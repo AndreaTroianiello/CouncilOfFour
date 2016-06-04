@@ -16,13 +16,12 @@ import it.polimi.ingsw.cg23.model.action.*;
 public class Controller implements Observer<Action>{
 	
 	private final Board model;
-	private final Turn turn;
+	private Turn turn;
 	private final Map<SocketAddress,Player> sockets;
 	
 	public Controller(Board model){
 		this.model=model;
-		this.turn=new Turn(model.getPlayers(),model);
-		this.turn.changePlayer();
+		this.turn=null;
 		sockets=new HashMap<>();
 	}
 	
@@ -31,12 +30,12 @@ public class Controller implements Observer<Action>{
 	public void update(Action action){
 		System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
 		
-		/*if(action instanceof MarketAction && model.getStatus().getStatus().contains("MARKET")){
-			turn.setAction((GameAction) action);
-			turn.runAction();
-		}*/
-		if(action instanceof CreationPlayer){
-			((CreationPlayer) action).runAction(this, model);
+		
+		if("INITIALIZATION".equals(model.getStatus().getStatus())){
+			if(action instanceof CreationPlayer)
+				((CreationPlayer) action).runAction(this, model);
+			else	
+				return;
 		}
 		if(sockets.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			(action instanceof GameAction && "TURN".equals(model.getStatus().getStatus())||
@@ -45,9 +44,11 @@ public class Controller implements Observer<Action>{
 		   )){
 			turn.setAction((GameAction) action);
 			turn.runAction();
+			return;
 		}
 		if(action instanceof EndTurn && sockets.get(action.getPlayer())==turn.getCurrentPlayer()){
 			((EndTurn) action).runAction(turn);
+			return;
 		}
 		
 			
@@ -62,5 +63,15 @@ public class Controller implements Observer<Action>{
 		this.sockets.put(socketAddress, player);
 		this.model.addPlayer(player);
 		
+	}
+	
+	public int getPlayersNumber(){
+		return model.getPlayers().size();
+	}
+	
+	public void startGame(){
+		this.turn=new Turn(model.getPlayers(),model);
+		this.turn.changePlayer();
+		this.model.changeStatus();
 	}
 }

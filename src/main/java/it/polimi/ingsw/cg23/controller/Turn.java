@@ -169,8 +169,9 @@ public class Turn {
 			runActionNormal();
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the Turn.
+	 * @return string
 	 */
 	@Override
 	public String toString() {
