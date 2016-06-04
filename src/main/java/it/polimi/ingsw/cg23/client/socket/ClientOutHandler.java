@@ -3,11 +3,13 @@ package it.polimi.ingsw.cg23.client.socket;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.controller.action.Action;
+import it.polimi.ingsw.cg23.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.model.action.BuildEmporiumKing;
@@ -40,12 +42,19 @@ public class ClientOutHandler implements Runnable {
 		
 		while (run) {
 
-			String inputLine = stdIn.nextLine();
+			StringTokenizer tokenizer = new StringTokenizer(stdIn.nextLine(), " ");
+			String inputLine = tokenizer.nextToken();
 
 			Action action;
 			try{
 				//DA COMPLETARE GLI ARGOMENTI PASSATI ALLE AZIONI!!
 				switch (inputLine) {
+				case "CREATION":
+					action = new CreationPlayer(tokenizer.nextToken());
+					socketOut.writeObject(action);
+					socketOut.flush();
+					socketOut.reset();
+					break;
 				case "ADDITIONAL":
 					action = new AdditionalAction();
 					socketOut.writeObject(action);
