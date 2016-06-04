@@ -50,6 +50,9 @@ public class Turn {
 		return players.get(currentPlayer);
 	}
 
+	public boolean isChangeState(){
+		return currentPlayer==0 && !"FINAL TURN".equals(board.getStatus().getStatus()) ;
+	}
 	/**
 	 * Sets the player that will play.
 	 * 

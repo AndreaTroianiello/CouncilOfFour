@@ -33,9 +33,8 @@ public class Controller implements Observer<Action>{
 		
 		if("INITIALIZATION".equals(model.getStatus().getStatus())){
 			if(action instanceof CreationPlayer)
-				((CreationPlayer) action).runAction(this, model);
-			else	
-				return;
+				((CreationPlayer) action).runAction(this, model);	
+			return;
 		}
 		if(sockets.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			(action instanceof GameAction && "TURN".equals(model.getStatus().getStatus())||

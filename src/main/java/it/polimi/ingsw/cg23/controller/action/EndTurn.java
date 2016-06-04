@@ -35,8 +35,9 @@ public class EndTurn extends Action {
 			State status=board.getStatus();
 			status.setStatus("FINISH");
 			this.notifyObserver(new StateChange(status));
+			return;
 		}
-		else{
+		if(turn.isChangeState()){
 			board.changeStatus();
 			List<Player> players=board.getPlayers();
 			State status=turn.getBoard().getStatus();
@@ -45,6 +46,8 @@ public class EndTurn extends Action {
 			else
 				turn.setPlayers(players);
 		}
+		else
+			board.notifyObserver(new StateChange(board.getStatus()));
 	}
 
 }
