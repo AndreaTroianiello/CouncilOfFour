@@ -2,11 +2,10 @@ package it.polimi.ingsw.cg23.controller.action;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.SocketAddress;
 
 import it.polimi.ingsw.cg23.controller.change.Change;
-//import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.observer.Observable;
+import it.polimi.ingsw.cg23.view.View;
 
 /**
  * The action of the application.
@@ -15,7 +14,7 @@ import it.polimi.ingsw.cg23.observer.Observable;
 public abstract class Action extends Observable<Change> implements Serializable{
 
 	private static final long serialVersionUID = -818604974357806991L;
-	private SocketAddress player;
+	private View player;
 	
 	/**
 	 * The constructor of the Action.
@@ -29,7 +28,7 @@ public abstract class Action extends Observable<Change> implements Serializable{
 	 * Sets the player of the action.
 	 * @param player the owner of the action.
 	 */
-	public void setPlayer(SocketAddress player){
+	public void setPlayer(View player){
 		this.player=player;
 	}
 	
@@ -37,7 +36,7 @@ public abstract class Action extends Observable<Change> implements Serializable{
 	 * Return the player of the action.
 	 * @return the owner of the action.
 	 */
-	public SocketAddress getPlayer(){
+	public View getPlayer(){
 		return player;
 	}
 	

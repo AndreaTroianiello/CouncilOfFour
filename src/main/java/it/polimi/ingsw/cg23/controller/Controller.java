@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.controller;
 
 import it.polimi.ingsw.cg23.observer.*;
+import it.polimi.ingsw.cg23.view.View;
 
 import java.net.SocketAddress;
 import java.util.HashMap;
@@ -17,12 +18,12 @@ public class Controller implements Observer<Action>{
 	
 	private final Board model;
 	private Turn turn;
-	private final Map<SocketAddress,Player> sockets;
+	private final Map<View,Player> interconnections;
 	
 	public Controller(Board model){
 		this.model=model;
 		this.turn=null;
-		sockets=new HashMap<>();
+		interconnections=new HashMap<>();
 	}
 	
 	
@@ -36,7 +37,7 @@ public class Controller implements Observer<Action>{
 				((CreationPlayer) action).runAction(this, model);	
 			return;
 		}
-		if(sockets.get(action.getPlayer())==turn.getCurrentPlayer() &&
+		if(interconnections.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			(action instanceof GameAction && "TURN".equals(model.getStatus().getStatus())||
 			 action instanceof MarketSell && "MARKET: SELLING".equals(model.getStatus().getStatus())||
 		     action instanceof MarketBuy && "MARKET: BUYING".equals(model.getStatus().getStatus())
@@ -45,7 +46,7 @@ public class Controller implements Observer<Action>{
 			turn.runAction();
 			return;
 		}
-		if(action instanceof EndTurn && sockets.get(action.getPlayer())==turn.getCurrentPlayer()){
+		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){
 			((EndTurn) action).runAction(turn);
 			return;
 		}
@@ -58,8 +59,8 @@ public class Controller implements Observer<Action>{
 		
 	}
 	
-	public void putSocketPlayer(SocketAddress socketAddress,Player player){
-		this.sockets.put(socketAddress, player);
+	public void putSocketPlayer(View view,Player player){
+		this.interconnections.put(view, player);
 		this.model.addPlayer(player);
 		
 	}

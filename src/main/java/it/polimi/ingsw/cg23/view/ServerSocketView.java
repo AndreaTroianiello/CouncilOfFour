@@ -58,7 +58,7 @@ public class ServerSocketView extends View implements Runnable {
 				Object object = socketIn.readObject();
 				if (object instanceof Action) {
 					Action action = (Action) object;
-					action.setPlayer(socket.getRemoteSocketAddress());
+					action.setPlayer(this);
 					logger.error("VIEW: received the action " + action);
 					action.registerObserver(this);
 					this.notifyObserver(action);
