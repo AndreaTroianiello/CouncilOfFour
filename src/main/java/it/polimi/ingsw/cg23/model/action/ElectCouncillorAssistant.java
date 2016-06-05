@@ -19,7 +19,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  *@author Vincenzo
  */
-public class ElectCouncillorAssistant extends GameAction {
+public class ElectCouncillorAssistant extends GameAction implements StandardAction{
 
 	private static final long serialVersionUID = -8838134392923545287L;
 	private final Color councillor;

@@ -28,11 +28,10 @@ public class Turn {
 	
 	/**
 	 * The constructor of Turn.
-	 * @param players The list of game's players.
 	 * @param board The game's board.
 	 */
-	public Turn(List<Player> players,Board board){
-		this.players=players;
+	public Turn(Board board){
+		this.players=board.getPlayers();
 		this.board=board;
 		this.currentPlayer=-1;
 		this.action=null;

@@ -16,7 +16,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  * @author Vincenzo
  */
-public class BuildEmporiumTile extends GameAction {
+public class BuildEmporiumTile extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = -5184613644917685573L;
 	private final BusinessPermitTile card;

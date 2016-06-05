@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  * 
  * @author Vincenzo
  */
-public class BuildEmporiumKing extends GameAction {
+public class BuildEmporiumKing extends GameAction implements StandardAction{
 
 	private static final long serialVersionUID = -4377073782074773902L;
 	private final List<PoliticCard> cards;

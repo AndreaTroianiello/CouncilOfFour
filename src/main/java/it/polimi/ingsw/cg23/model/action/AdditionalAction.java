@@ -10,7 +10,7 @@ import it.polimi.ingsw.cg23.model.Player;
  *
  * @author Vincenzo
  */
-public class AdditionalAction extends GameAction {
+public class AdditionalAction extends GameAction implements StandardAction {
 
 	private static final long serialVersionUID = -1876787306172166338L;
 

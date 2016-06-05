@@ -5,12 +5,22 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.view.ServerSocketView;
 
+/**
+ * PlayersControl controls if the all game'players are created and starts the game.
+ * @author Andrea
+ *
+ */
 public class PlayersControl implements Runnable {
 
 	private int index;
 	private Controller controller;
 	private static Logger logger;
 
+	/**
+	 * The constructor of PlayersControl.
+	 * @param index The number of all views.
+	 * @param controller The game's controller.
+	 */
 	public PlayersControl(int index,Controller controller) {
 		this.index=index;
 		this.controller=controller;
@@ -18,6 +28,9 @@ public class PlayersControl implements Runnable {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
+	/**
+	 * The method performed by the thread. It controls if the number of players is equals than the number of views.
+	 */
 	@Override
 	public void run() {
 		boolean run=true;

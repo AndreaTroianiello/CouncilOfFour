@@ -14,7 +14,7 @@ import it.polimi.ingsw.cg23.view.View;
 public abstract class Action extends Observable<Change> implements Serializable{
 
 	private static final long serialVersionUID = -818604974357806991L;
-	private View player;
+	private transient View player;
 	
 	/**
 	 * The constructor of the Action.

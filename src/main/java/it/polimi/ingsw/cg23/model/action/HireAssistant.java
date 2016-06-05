@@ -1,6 +1,9 @@
 package it.polimi.ingsw.cg23.model.action;
 
+import it.polimi.ingsw.cg23.controller.change.ErrorChange;
+
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.model.Board;
@@ -13,7 +16,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  *@author Vincenzo
  */
-public class HireAssistant extends GameAction {
+public class HireAssistant extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = 157988041663947858L;
 	
@@ -25,6 +28,7 @@ public class HireAssistant extends GameAction {
 	public HireAssistant() {
 		super(false);
 		logger = Logger.getLogger(HireAssistant.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
 	/**
@@ -43,6 +47,7 @@ public class HireAssistant extends GameAction {
 		try {
 			player.getRichness().setCoins(coin);
 		} catch (NegativeNumberException e) {
+			this.notifyObserver(new ErrorChange(e.getMessage()));
 			logger.error(e);
 			return;
 		}
@@ -52,6 +57,7 @@ public class HireAssistant extends GameAction {
 			player.getAssistantsPool().setAssistants(assistants);
 			this.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
+			this.notifyObserver(new ErrorChange(e.getMessage()));
 			logger.error(e);
 			return;
 		}

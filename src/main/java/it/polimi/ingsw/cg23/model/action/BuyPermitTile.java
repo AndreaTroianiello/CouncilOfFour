@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
  *
  * @author Vincenzo
  */
-public class BuyPermitTile extends GameAction {
+public class BuyPermitTile extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = 2974062894189424346L;
 	private final List<PoliticCard> cards;

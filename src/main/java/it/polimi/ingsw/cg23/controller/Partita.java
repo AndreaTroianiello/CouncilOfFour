@@ -35,7 +35,8 @@ public class Partita {
 		cards.add(new PoliticCard(null, true));
 		Board b=via.getBoard();
 		
-		Turn t=new Turn(giocatori, b);//creato il turno
+		/*Turn t=new Turn(giocatori, b);//creato il turno*/
+		Turn t=null;
 		//----------turno----------
 		for(int i=0; i<1; i++){
 			cl.print("", "-Creo il turno " + i + " :\n");
