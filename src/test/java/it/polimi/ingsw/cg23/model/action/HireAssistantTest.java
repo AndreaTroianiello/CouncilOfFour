@@ -5,10 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.components.NobilityTrack;
-import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class HireAssistantTest {
 	

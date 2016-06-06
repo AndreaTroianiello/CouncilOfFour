@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.controller.change.CityChange;
-import it.polimi.ingsw.cg23.model.City;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.Type;
+import it.polimi.ingsw.cg23.server.controller.change.CityChange;
+import it.polimi.ingsw.cg23.server.model.City;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
 
 public class CityChangeTest {
 	private City city;

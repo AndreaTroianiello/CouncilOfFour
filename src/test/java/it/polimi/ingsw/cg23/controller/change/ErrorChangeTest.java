@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+
 public class ErrorChangeTest {
 
 

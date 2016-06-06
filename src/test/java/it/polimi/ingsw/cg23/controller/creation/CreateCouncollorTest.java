@@ -8,13 +8,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.City;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.Type;
-import it.polimi.ingsw.cg23.model.components.BonusKing;
-import it.polimi.ingsw.cg23.model.components.Councillor;
-import it.polimi.ingsw.cg23.model.components.King;
-import it.polimi.ingsw.cg23.model.components.RegionDeck;
+import it.polimi.ingsw.cg23.server.controller.creation.CreateCouncillor;
+import it.polimi.ingsw.cg23.server.model.City;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.components.Councillor;
+import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 
 public class CreateCouncollorTest {
 

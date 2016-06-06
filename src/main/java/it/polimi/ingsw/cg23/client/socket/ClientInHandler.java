@@ -6,19 +6,21 @@ import java.io.ObjectInputStream;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.controller.change.Change;
+import it.polimi.ingsw.cg23.client.ClientModel;
+import it.polimi.ingsw.cg23.server.controller.change.Change;
 
 
 public class ClientInHandler implements Runnable {
 	
 	private ObjectInputStream socketIn;
-	
+	private final ClientModel clientModel;
 	private static Logger logger;
 	
-	public ClientInHandler(ObjectInputStream socketIn) {
+	public ClientInHandler(ClientModel clientModel,ObjectInputStream socketIn) {
 		logger = Logger.getLogger(ClientInHandler.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.socketIn=socketIn;
+		this.clientModel=clientModel;
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class ClientInHandler implements Runnable {
 		while(run){
 			try {
 				Change object=(Change) socketIn.readObject();
-				logger.error(object);
+				logger.info(object);
 			} catch (ClassNotFoundException e){
 				logger.error(e);
 			} catch (IOException e) {

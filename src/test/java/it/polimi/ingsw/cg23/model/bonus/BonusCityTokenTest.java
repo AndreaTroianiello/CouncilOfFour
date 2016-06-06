@@ -11,12 +11,14 @@ import javax.swing.text.PlainDocument;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.City;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.Type;
-import it.polimi.ingsw.cg23.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.City;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusCityToken;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 
 public class BonusCityTokenTest {
 	

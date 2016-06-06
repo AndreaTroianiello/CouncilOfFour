@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.polimi.ingsw.cg23.server.model.bonus.BonusTileBonus;
+
 public class BonusTileBonusTest {
 
 	@Before

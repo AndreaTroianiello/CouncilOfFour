@@ -9,10 +9,10 @@ import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.controller.Avvio;
-import it.polimi.ingsw.cg23.controller.Controller;
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.view.ServerSocketView;
+import it.polimi.ingsw.cg23.server.controller.Avvio;
+import it.polimi.ingsw.cg23.server.controller.Controller;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.view.ServerSocketView;
 
 /**
  * The Server accepts new connections from clients.

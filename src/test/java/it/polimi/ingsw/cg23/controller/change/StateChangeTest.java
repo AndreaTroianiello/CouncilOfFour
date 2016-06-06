@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.controller.change.StateChange;
-import it.polimi.ingsw.cg23.model.State;
+import it.polimi.ingsw.cg23.server.controller.change.StateChange;
+import it.polimi.ingsw.cg23.server.model.State;
 
 public class StateChangeTest {
 

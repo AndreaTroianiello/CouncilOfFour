@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.components.Deck;
-import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.components.Deck;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class DeckTest {
 

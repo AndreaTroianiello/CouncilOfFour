@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.controller.creation.CreateCostruction;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.components.BonusKing;
-import it.polimi.ingsw.cg23.model.components.RegionDeck;
+import it.polimi.ingsw.cg23.server.controller.creation.CreateCostruction;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 
 public class CreateCostructionTest {
 
