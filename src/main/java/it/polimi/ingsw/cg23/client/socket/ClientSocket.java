@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.ClientModel;
+
 public class ClientSocket {
 
 	private final static int PORT = 29999;
@@ -25,15 +27,15 @@ public class ClientSocket {
 	
 	@SuppressWarnings("resource")
 	public void startClient() throws UnknownHostException, IOException {
-
+		ClientModel clientModel=new ClientModel();
 		Socket socket = new Socket(IP, PORT);
 
 		ExecutorService executor = Executors.newFixedThreadPool(2);
-
-		executor.submit(new ClientOutHandler(
+		
+		executor.submit(new ClientOutHandler(clientModel,
 				new ObjectOutputStream(socket.getOutputStream())));
 
-		executor.submit(new ClientInHandler(
+		executor.submit(new ClientInHandler(clientModel,
 				new ObjectInputStream(socket.getInputStream())));
 		
 		logger.info("Connection created");

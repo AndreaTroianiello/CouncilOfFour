@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
@@ -25,13 +26,14 @@ import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
 public class ClientOutHandler implements Runnable {
 
 	private ObjectOutputStream socketOut;
-	
+	private final ClientModel clientModel;
 	private static Logger logger;
 
-	public ClientOutHandler(ObjectOutputStream socketOut) {
+	public ClientOutHandler(ClientModel clientModel,ObjectOutputStream socketOut) {
 		logger = Logger.getLogger(ClientOutHandler.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.socketOut = socketOut;
+		this.clientModel=clientModel;
 	}
 
 	public void update(Action action) throws IOException{
@@ -39,14 +41,15 @@ public class ClientOutHandler implements Runnable {
 		socketOut.flush();
 		socketOut.reset();
 	}
+	
 	@SuppressWarnings("resource")
 	@Override
 	public void run() {
 		boolean run=true;
-		
+
 		logger.info("RUNNING");
 		Scanner stdIn = new Scanner(System.in);
-		
+
 		while (run) {
 
 			StringTokenizer tokenizer = new StringTokenizer(stdIn.nextLine(), " ");
@@ -69,7 +72,7 @@ public class ClientOutHandler implements Runnable {
 					socketOut.reset();
 					break;
 				case "BUILDKING":
-					action = new BuildEmporiumKing(new ArrayList<>(), null);
+					action = new BuildEmporiumKing(new ArrayList<>(), clientModel.findCity(tokenizer.nextToken()));
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();
@@ -81,7 +84,7 @@ public class ClientOutHandler implements Runnable {
 					socketOut.reset();
 					break;
 				case "BUYTILE":
-					action = new BuyPermitTile(null, null, null);
+					action = new BuyPermitTile(null, clientModel.findRegion(tokenizer.nextToken()), null);
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();
@@ -93,13 +96,17 @@ public class ClientOutHandler implements Runnable {
 					socketOut.reset();
 					break;
 				case "ELECT":
-					action = new ElectCouncillor(null, null, true);
+					action = new ElectCouncillor(null, clientModel.findRegion(tokenizer.nextToken()), true);
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();
 					break;
 				case "ELECTASSISTANT":
-					action = new ElectCouncillorAssistant(null, null, true);
+					String tok=tokenizer.nextToken();
+					if("KING".equals(tok))
+						action = new ElectCouncillorAssistant(null, null, true);
+					else
+						action = new ElectCouncillorAssistant(null, clientModel.findRegion(tok), false);
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();
