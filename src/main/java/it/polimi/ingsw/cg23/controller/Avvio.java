@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import it.polimi.ingsw.cg23.controller.creation.*;
 import it.polimi.ingsw.cg23.model.Board;
@@ -14,6 +15,7 @@ import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.Emporium;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
@@ -30,7 +32,6 @@ public class Avvio {
 	CreateBonus cb;
 	CreateCostruction cc;
 	CreateCouncillor cco;
-	CreatePlayer cp;
 	CreateRegionCity crc;
 	Deck dec;
 	King king;
@@ -52,7 +53,6 @@ public class Avvio {
 	public Avvio(){
 		cc=new CreateCostruction();
 		cco=new CreateCouncillor();
-		cp=new CreatePlayer();
 		crc=new CreateRegionCity("ConfigurazionePartita.xml");
 		cl=new Print();
 		s=new Setting();
@@ -62,6 +62,7 @@ public class Avvio {
 		this.board=null;
 		this.bk=cb.bonusKing();
 		this.citta=new ArrayList<>();
+		this.giocatori=new ArrayList<>();
 		this.consiglieri=new ArrayList<>();
 		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
 
@@ -78,7 +79,7 @@ public class Avvio {
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 			cp.createPlayer();//creo i giocatori
 		}*/
-		
+
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
@@ -95,7 +96,7 @@ public class Avvio {
 		cl.print("", "-Creo i bonus");
 
 		//----------regioni----------
-		giocatori=cp.getGiocatori();//recupero la lista dei giocatori dal controller
+		//giocatori=cp.getGiocatori();//recupero la lista dei giocatori dal controller
 		regions=crc.createRegions(bk);//crea le regioni e ne ritorna la lista
 		cl.print("", "-Creo le regioni");
 
@@ -120,7 +121,7 @@ public class Avvio {
 
 		//----------deck----------
 		dec=new Deck(politcards);//creato il deck
-		s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
+		//s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
 		cl.print("", "-Creo il deck");
 
 		//----------board settaggio----------
@@ -134,7 +135,7 @@ public class Avvio {
 
 		//----------consiglieri e balconi----------
 		consiglieri=cco.createCouncillor(4);//crea i consiglieri
-		
+
 		for(int i=0; i<regions.size(); i++){//scorro il numero di regioni
 			cco.setBalconi(regions.get(i), consiglieri);//crea i balconi delle regioni
 		}
@@ -152,7 +153,7 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
 		cl.createMap(regions, giocatori, king);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
+		//printAll();//stampa tutte le liste
 	}
 
 	/**
@@ -183,14 +184,14 @@ public class Avvio {
 	 * @param b, the board
 	 */
 	public void setBoard(Board board){
-		
+
 		board.setDeck(dec);//aggiungo il dec alla board
 		board.setKing(king);//aggiungo il re alla board
 		board.setRegions(regions);//aggiungo le regioni alla board
 		board.setTypes(tipi);//aggiungo i tipi alla board
-		for(int i=0; i<giocatori.size(); i++){
+		/*for(int i=0; i<giocatori.size(); i++){
 			board.addPlayer(giocatori.get(i));//aggiungo i gicatori alla board
-		}
+		}*/
 		for(int i=0; i<consiglieri.size(); i++){
 			board.setCouncillor(consiglieri.get(i));//aggiungo i consiglieri avanzati alla board
 		}
@@ -229,4 +230,30 @@ public class Avvio {
 	public List<Player> getGiocatori() {
 		return giocatori;
 	}
+
+	public void twoPlayers(Board b){//azioni nel caso di 2 giocatori
+		Random rnd=new Random();
+		Player player=new Player("NaN",0,0,board.getNobilityTrack());
+		List<Region>reg=b.getRegions();
+		for(Region r:reg){
+			List<Character> list=r.getDeck().getShowedDeck().get(rnd.nextInt(r.getDeck().getShowedDeck().size())).getCitiesId();
+			for(char c:list){
+				City city=r.searchCityById(c);
+				Emporium e=player.getAvailableEmporium();
+				e.setCity(city);
+				city.getEmporiums().add(e);
+			}
+			r.getDeck().changeShowedDeck();
+		}
+
+	}
+	
+	/**
+	 * 
+	 * @param player, the players list
+	 */
+	public void setGame(Board board){
+		s.pesca(board.getDeck(), board.getPlayers(), 4);//i giocatori pescano 4 carte
+	}
+
 }
