@@ -25,7 +25,6 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
 	
-	private static Logger logger;
 	
 	/**
 	 * the constructor set the variables of the class: it set the main to true, and the other 
@@ -37,7 +36,6 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 */
 	public ElectCouncillor(Color councillor, Region region, boolean king) {
 		super(false);
-		logger = Logger.getLogger(ElectCouncillor.class);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
@@ -94,7 +92,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 			try{
 				player.getRichness().setCoins(coins);
 			} catch(NegativeNumberException e){
-				logger.error(e);
+				getLogger().error(e);
 			}			
 		}
 	}

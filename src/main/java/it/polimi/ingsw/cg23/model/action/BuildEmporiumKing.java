@@ -218,7 +218,6 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			int currentCoin = player.getRichness().getCoins();
 			this.cards.addAll(discardedCards);
 			player.getRichness().setCoins(currentCoin+steps*2+jolly+payMatch);	//if the player doesn't have available emporiums, give back the money previously paid
-				
 		}
 	}
 }

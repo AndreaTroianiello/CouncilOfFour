@@ -22,7 +22,6 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	private final BusinessPermitTile card;
 	private final int cityID; 						//wich city the player choose from the ones on the card
 
-	private static Logger logger;
 	
 	/**
 	 * the constructor set the variable of the class: the boolean main is set to true, the city and the cityId
@@ -33,7 +32,6 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 */
 	public BuildEmporiumTile(BusinessPermitTile card, int cityID) {
 		super(true);
-		logger = Logger.getLogger(BuildEmporiumTile.class);
 		this.card = card;
 		this.cityID = cityID;
 	}
@@ -70,7 +68,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 					player.getAvailableBusinessPermits().remove(card);
 					player.setUsedBusinessPermit(card);
 				} catch (NegativeNumberException e) {
-					logger.error("The player doesn't have enough assistants", e);
+					getLogger().error("The player doesn't have enough assistants", e);
 										
 				}
 				

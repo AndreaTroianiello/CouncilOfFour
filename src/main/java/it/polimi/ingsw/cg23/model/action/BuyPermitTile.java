@@ -32,7 +32,6 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	private final BusinessPermitTile chosenTile;									//wich tile the player chose from the showed ones
 	private List<PoliticCard> discardedCards= new ArrayList<>();
 	
-	private static Logger logger;
 	
 	
 	/** 
@@ -45,7 +44,6 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 */
 	public BuyPermitTile(List<PoliticCard> cards, Region region, BusinessPermitTile choosenTile) {
 		super(true);
-		logger = Logger.getLogger(BuyPermitTile.class);
 		this.cards = cards;
 		this.region = region;
 		this.chosenTile = choosenTile;
@@ -104,9 +102,9 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 					player.getRichness().setCoins(coins+moneyPaid);
 					this.cards.addAll(discardedCards);
 				} catch (NegativeNumberException e1) {
-					logger.error(e1);
+					getLogger().error(e1);
 				}
-				logger.error(e);
+				getLogger().error(e);
 			}
 		}
 		
@@ -173,7 +171,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 		int coin = player.getRichness().getCoins();
 		int payment = (4-match)*3+1;
 		if(match == 0){
-			logger.error("Your cards don't match any councillor");
+			getLogger().error("Your cards don't match any councillor");
 			return -1;
 		}
 		if(match == 4){
@@ -202,7 +200,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 			return 0;
 		} catch (NegativeNumberException e) {
 			this.cards.addAll(discardedCards);
-			logger.error("The player doesn't have enough money!", e);
+			getLogger().error("The player doesn't have enough money!", e);
 			return -1;
 		}
 	}

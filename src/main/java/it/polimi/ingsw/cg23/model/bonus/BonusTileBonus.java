@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.model.Player;
@@ -35,6 +36,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 */
 	public BonusTileBonus(int number) {
 		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.businessPermitTiles = new ArrayList<>();
 		this.cl = new Print();
 		this.name="TileBonus";

@@ -26,7 +26,6 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
 	
-	private static Logger logger;
 	
 	/**
 	 * the constructor set the variables of the class: main is set to false, and the other variables are set
@@ -38,7 +37,6 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	 */
 	public ElectCouncillorAssistant(Color councillor, Region region, boolean king) {
 		super(false);
-		logger = Logger.getLogger(ElectCouncillorAssistant.class);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
@@ -96,7 +94,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 			player.getAssistantsPool().setAssistants(assistants);
 			this.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
-			logger.error("The player doesn't have enough assistants", e);
+			getLogger().error("The player doesn't have enough assistants", e);
 		}
 		
 	}

@@ -21,7 +21,6 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	private static final long serialVersionUID = -2799809256014430924L;
 	private final int region;
 	
-	private static Logger logger;
 	
 
 	/**
@@ -32,7 +31,6 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 */
 	public ChangeBusinessPermit(int region) {
 		super(false);
-		logger = Logger.getLogger(ChangeBusinessPermit.class);
 		this.region = region;
 	}
 
@@ -54,7 +52,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
 		} catch (NegativeNumberException e) {
-			logger.error("The player doesn't have enough assistants!", e);
+			getLogger().error("The player doesn't have enough assistants!", e);
 			return;
 		}
 		

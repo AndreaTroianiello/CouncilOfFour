@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
@@ -25,6 +26,7 @@ public class BonusAssistants implements Bonus {
 	 */
 	public BonusAssistants() {
 		BonusAssistants.logger = Logger.getLogger(BonusAssistants.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.assistants = 0;
 		this.name="Assistants";
 	}
