@@ -31,8 +31,6 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private List<PoliticCard> discardedCards = new ArrayList<>();
 	private final City destination;
 	
-	//logger
-	private static Logger logger;
 
 	/**
 	 * the constructor set the variable of the class: main is set to true, cards and destination are
@@ -43,7 +41,6 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 */
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
 		super(true);
-		logger = Logger.getLogger(BuildEmporiumKing.class);
 		this.cards = cards;
 		this.destination = destination;
 	}
@@ -70,13 +67,15 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 				coin = coin - steps*2 - jolly;
 				player.getRichness().setCoins(coin);
 			} catch (NegativeNumberException e) {
-				logger.error("The player doesn't have enough money!", e);
+				this.notifyObserver(new ErrorChange(e.getMessage()));
+				getLogger().error("The player doesn't have enough money!", e);
 				try {
 					player.getRichness().setCoins(coin+payMatch);
 					this.cards.addAll(discardedCards);
 					return;
 				} catch (NegativeNumberException e1) {
-					logger.error(e1);
+					this.notifyObserver(new ErrorChange(e.getMessage()));
+					getLogger().error(e1);
 				}
 			}
 			
@@ -92,7 +91,8 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 				try {
 					player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
 				} catch (NegativeNumberException e) {
-					logger.error(e);
+					this.notifyObserver(new ErrorChange(e.getMessage()));
+					getLogger().error(e);
 				}
 			}
 		}
@@ -165,7 +165,6 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		int coin = player.getRichness().getCoins();
 		int payment = (4-match)*3+1;
 		if(match == 0){
-			logger.error("Your cards don't match any councillor");
 			return -1;
 		}
 		if(match == 4){
@@ -195,7 +194,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			return 0;
 		} catch (NegativeNumberException e) {
 			this.cards.addAll(discardedCards);
-			logger.error("The player doesn't have enough money", e);
+			getLogger().error("The player doesn't have enough money", e);
 			return -1;
 		}
 	}
@@ -215,7 +214,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			board.getKing().setCity(destination);
 			board.getDeck().discardCards(discardedCards);
 		} catch (NegativeNumberException e) {
-			logger.error("The player doesn't have enough assistants", e);
+			getLogger().error("The player doesn't have enough assistants", e);
 			int currentCoin = player.getRichness().getCoins();
 			this.cards.addAll(discardedCards);
 			player.getRichness().setCoins(currentCoin+steps*2+jolly+payMatch);	//if the player doesn't have available emporiums, give back the money previously paid
