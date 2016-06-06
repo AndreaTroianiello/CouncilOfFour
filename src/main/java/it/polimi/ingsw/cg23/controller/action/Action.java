@@ -3,6 +3,9 @@ package it.polimi.ingsw.cg23.controller.action;
 import java.io.IOException;
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import it.polimi.ingsw.cg23.controller.change.Change;
 import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.view.View;
@@ -15,6 +18,7 @@ public abstract class Action extends Observable<Change> implements Serializable{
 
 	private static final long serialVersionUID = -818604974357806991L;
 	private transient View player;
+	private transient Logger logger;
 	
 	/**
 	 * The constructor of the Action.
@@ -22,6 +26,8 @@ public abstract class Action extends Observable<Change> implements Serializable{
 	 */
 	public Action(){
 		this.player=null;
+		this.logger=Logger.getLogger(Action.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
 	/**
@@ -38,6 +44,15 @@ public abstract class Action extends Observable<Change> implements Serializable{
 	 */
 	public View getPlayer(){
 		return player;
+	}
+	
+	public void setLogger(Logger logger){
+		this.logger=logger;
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
+	}
+	
+	public Logger getLogger(){
+		return logger;
 	}
 	
 }
