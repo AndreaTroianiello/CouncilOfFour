@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.view.Print;
  
@@ -17,8 +18,10 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = 5218205311068329970L;
 	private final Board board;
+	private final Region region;
 	private final String name;
-	private final Print cl;
+	private final BusinessPermitTile businessPermit;
+
 	
  
 	/**
@@ -28,11 +31,11 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 * @param a
 	 * @param board
 	 */
-	public BonusGetPermitTile(int a, Board board) {
-		
+	public BonusGetPermitTile(int a, Board board, BusinessPermitTile businessPermit, Region region) {
+		this.businessPermit = businessPermit;
+		this.region = region;
 		this.board = board;
 		this.name="GetPermitTile";
-		this.cl = new Print();
 	}
 	
 	/**
@@ -51,6 +54,20 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	}
 
 
+	/**
+	 * @return the region
+	 */
+	public Region getRegion() {
+		return region;
+	}
+
+	/**
+	 * @return the businessPermit
+	 */
+	public BusinessPermitTile getBusinessPermit() {
+		return businessPermit;
+	}
+
 	@Override
 	public void setNumber(int number){}
 
@@ -62,12 +79,8 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		int region =Integer.parseInt(cl.writeReturnValue("Inserisci valore della regione", null).toString());
-		int card = Integer.parseInt(cl.writeReturnValue("Inserisci valore della carta scelta", null).toString());
-		
-		BusinessPermitTile bonusPermit=this.board.getRegions().get(region).getDeck().getShowedDeck().get(card);		//give to a variable the chosen card
-		player.getAvailableBusinessPermits().add(bonusPermit);   					//add the chosen PermitTitle to the player collection
-		this.board.getRegions().get(region).getDeck().changeShowedDeck(); 			//replace the PermitTitle chosen with the one in top of the deck
+		player.getAvailableBusinessPermits().add(businessPermit);   					//add the chosen PermitTitle to the player collection
+		this.region.getDeck().changeShowedDeck(); 										//replace the PermitTitle chosen with the one in top of the deck
 	}
 
 	@Override
@@ -88,7 +101,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public Bonus clone() {
-		return new BonusGetPermitTile(0, board); 
+		return new BonusGetPermitTile(0, board, businessPermit, region); 
 	}	
 	
 }

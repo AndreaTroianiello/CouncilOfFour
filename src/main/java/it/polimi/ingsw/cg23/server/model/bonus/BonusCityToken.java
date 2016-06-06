@@ -22,13 +22,12 @@ import it.polimi.ingsw.cg23.server.view.Print;
 public class BonusCityToken extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -8457638846172650018L;
-	private int number;						//how many times the player can run the bonus
-	private final List<City> city;			//the city the player chooses to run the bonus from
-	private final boolean[] runnable;		//a list of boolean that show if the bonus in the city are runnable 
+	private int number;
+	private final City city;			//the city the player chooses to run the bonus from
+	private  boolean runnable;			//a boolean that show if the bonus in the city are runnable 
 	private final String name;
 		
 	private final Board board;
-	private Print cl;
 	
 	
 	/**
@@ -39,28 +38,12 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 * @param city
 	 * @param board
 	 */
-	public BonusCityToken(int number, List<City> city, Board board) {
-		this.number = number;
+	public BonusCityToken(int number, City city, Board board) {
+		this.number = 0;
 		this.city = city;
-		/*this.runnable = new boolean[this.city.size()];
-		for(int i=0; i<this.runnable.length; i++)			//set all the array's elements at false
-			this.runnable[i] = true;
-		*/
-		this.runnable=new boolean[0];
+		this.runnable=true;
 		this.board = board;
-		this.cl = new Print();
 		this.name="CityToken";
-	}
-	
-	
-
-	
-
-	/**
-	 * @return the number
-	 */
-	public int getNumber() {
-		return number;
 	}
 	
 	
@@ -68,16 +51,8 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	/**
 	 * @return the runnable
 	 */
-	public boolean[] getRunnable() {
+	public boolean getRunnable() {
 		return runnable;
-	}
-
-	/**
-	 * @param number the number to set
-	 */
-	@Override
-	public void setNumber(int number) {
-		this.number = number;
 	}
 
 	/**
@@ -91,7 +66,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	/**
 	 * @return the city
 	 */
-	public List<City> getCity() {
+	public City getCity() {
 		return city;
 	}
 
@@ -101,24 +76,16 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		char c=(char)cl.writeReturnValue("Inserisci valore", null);
-		List<Region> region = board.getRegions();  
-		for(Region r: region){
-			if(r.searchCityById(c)!=null){
-				this.city.add(r.searchCityById(c));
-			}
-		}			
+
 		
-		
-		for(int i=0; i<this.number; i++){											//iterate the city in the list
-			for(int j=0; j<this.city.get(i).getToken().size(); j++) 					//iterate the bonus in every city
-				if(this.city.get(i).getToken().get(j).contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
-					this.runnable[i]=false;										//set as true the boolean referred to that city 
-					}
-			if(this.city.get(i).containsEmporium(player) && this.runnable[i])		//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
-				(this.city.get(i)).runBonusCity(player);								//if it does, give the player the bonus
-		}
+		for(int j=0; j<this.city.getToken().size(); j++) 					//iterate the bonus in every city
+			if(this.city.getToken().get(j).contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
+				this.runnable=false;										//set as true the boolean referred to that city 
+				}
+		if(this.city.containsEmporium(player) && this.runnable)				//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
+			(this.city).runBonusCity(player);								//if it does, give the player the bonus
 	}
+	
 
 	@Override
 	public void setParameters(){
@@ -130,8 +97,8 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusCityToken [number=" + number + ", city=" + city + ", runnable="
-				+ Arrays.toString(runnable) + "]";
+		return "BonusCityToken [city=" + city + ", runnable="
+				+ runnable + "]";
 	}
 
 	/**
@@ -140,6 +107,16 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	@Override
 	public Bonus clone() {
 		return new BonusCityToken(0, city, board); 
+	}
+
+	
+	public int getNumber() {
+		return number;
+	}	
+
+	@Override
+	public void setNumber(int number) {
+		
 	}	
 	
 }

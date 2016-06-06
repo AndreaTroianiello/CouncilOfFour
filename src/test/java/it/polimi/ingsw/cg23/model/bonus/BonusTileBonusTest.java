@@ -20,10 +20,10 @@ public class BonusTileBonusTest {
 	 */
 	@Test
 	public void testGetBusinessPermitTiles() {
-		BonusTileBonus bonus = new BonusTileBonus(2);
+		BonusTileBonus bonus = new BonusTileBonus(2, null);
 		bonus.setNumber(0);
 		bonus.setParameters();
-		assertEquals(new ArrayList<>(), bonus.getBusinessPermitTiles());
+		assertEquals(null, bonus.getBusinessPermitTiles());
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class BonusTileBonusTest {
 	 */
 	@Test
 	public void testGetName() {
-		BonusTileBonus bonus = new BonusTileBonus(0);
+		BonusTileBonus bonus = new BonusTileBonus(0, null);
 		assertEquals("TileBonus", bonus.getName());
 	}
 
@@ -41,8 +41,8 @@ public class BonusTileBonusTest {
 	 */
 	@Test
 	public void testToString() {
-		BonusTileBonus bonus = new BonusTileBonus(0);
-		assertEquals("BonusTileBonus [businessPermitCard=[]]", bonus.toString());
+		BonusTileBonus bonus = new BonusTileBonus(0, null);
+		assertEquals("BonusTileBonus [businessPermitCard=null]", bonus.toString());
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class BonusTileBonusTest {
 	 */
 	@Test
 	public void testClone() {
-		BonusTileBonus bonus = new BonusTileBonus(0);
+		BonusTileBonus bonus = new BonusTileBonus(0, null);
 		BonusTileBonus newBonus = (BonusTileBonus) bonus.clone();
 		assertEquals(bonus.getName(), newBonus.getName());
 	}

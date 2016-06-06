@@ -23,8 +23,7 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 public class BonusCityTokenTest {
 	
 	private City city;
-	private List<City> cities = new ArrayList<>();
-	public boolean[] runnable;
+	public boolean runnable;
 	private Type type = new Type("blu", 0, null);
 	private Region region = new Region("regione", 0, null, null);
 	private Board board;
@@ -33,12 +32,9 @@ public class BonusCityTokenTest {
 	@Before
 	public void setUp() throws Exception {
 		city = new City('A', "Ancona", type, region);
-		cities.add(city);
 		BonusVictoryPoints bonus1 = new BonusVictoryPoints(10);
 		this.city.addBonus(bonus1);
-		this.runnable = new boolean[this.cities.size()];
-		for(int i=0; i<this.runnable.length; i++)	
-			this.runnable[i] = true;
+		this.runnable = true;
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
 		board = new Board(null, regions, null, null, null);
@@ -50,8 +46,8 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testGetNumber() {
-		BonusCityToken bonus = new BonusCityToken(1, cities, null);
-		assertEquals(1, bonus.getNumber());
+		BonusCityToken bonus = new BonusCityToken(0, city, null);
+		assertEquals(0, bonus.getNumber());
 	}
 
 	/**
@@ -68,7 +64,7 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testGetName() {
-		BonusCityToken bonus = new BonusCityToken(1, cities, null);
+		BonusCityToken bonus = new BonusCityToken(1, city, null);
 		assertEquals("CityToken", bonus.getName());
 	}
 
@@ -77,9 +73,8 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testGetCity() {
-		BonusCityToken bonus = new BonusCityToken(1, cities, null);
-		cities.add(city);
-		assertEquals(cities, bonus.getCity());
+		BonusCityToken bonus = new BonusCityToken(1, city, null);
+		assertEquals(city, bonus.getCity());
 	}
 
 
@@ -99,7 +94,7 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testClone() {
-		BonusCityToken bonus = new BonusCityToken(0, cities, null);
+		BonusCityToken bonus = new BonusCityToken(0, city, null);
 		BonusCityToken newBonus = (BonusCityToken) bonus.clone();
 		assertEquals(bonus.toString(), newBonus.toString());
 	}

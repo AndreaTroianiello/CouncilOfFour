@@ -71,10 +71,10 @@ public class CreateBonus {
 		bonusList.add(new BonusAssistants());
 		bonusList.add(new BonusCityToken(0, null, board));
 		bonusList.add(new BonusCoin(0));
-		bonusList.add(new BonusGetPermitTile(0,board));
+		bonusList.add(new BonusGetPermitTile(0,board, null, null));
 		bonusList.add(new BonusNobility(0,board));
 		bonusList.add(new BonusPolitics(0,board));
-		bonusList.add(new BonusTileBonus(0));
+		bonusList.add(new BonusTileBonus(0, null));
 		bonusList.add(new BonusVictoryPoints(0));
 		return bonusList;
 	}
