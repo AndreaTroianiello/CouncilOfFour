@@ -8,18 +8,19 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.City;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.Type;
-import it.polimi.ingsw.cg23.model.components.BonusKing;
-import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.model.components.Deck;
-import it.polimi.ingsw.cg23.model.components.Emporium;
-import it.polimi.ingsw.cg23.model.components.King;
-import it.polimi.ingsw.cg23.model.components.NobilityTrack;
-import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.City;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
+import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumTile;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.Deck;
+import it.polimi.ingsw.cg23.server.model.components.Emporium;
+import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class BuildEmporiumTileTest {
 	

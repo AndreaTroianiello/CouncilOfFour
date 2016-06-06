@@ -9,17 +9,17 @@ import java.util.StringTokenizer;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.controller.action.Action;
-import it.polimi.ingsw.cg23.controller.action.CreationPlayer;
-import it.polimi.ingsw.cg23.controller.action.EndTurn;
-import it.polimi.ingsw.cg23.model.action.AdditionalAction;
-import it.polimi.ingsw.cg23.model.action.BuildEmporiumKing;
-import it.polimi.ingsw.cg23.model.action.BuildEmporiumTile;
-import it.polimi.ingsw.cg23.model.action.BuyPermitTile;
-import it.polimi.ingsw.cg23.model.action.ChangeBusinessPermit;
-import it.polimi.ingsw.cg23.model.action.ElectCouncillor;
-import it.polimi.ingsw.cg23.model.action.ElectCouncillorAssistant;
-import it.polimi.ingsw.cg23.model.action.HireAssistant;
+import it.polimi.ingsw.cg23.server.controller.action.Action;
+import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
+import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
+import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
+import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
+import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumTile;
+import it.polimi.ingsw.cg23.server.model.action.BuyPermitTile;
+import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
+import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
 
 
 public class ClientOutHandler implements Runnable {
@@ -34,11 +34,17 @@ public class ClientOutHandler implements Runnable {
 		this.socketOut = socketOut;
 	}
 
+	public void update(Action action) throws IOException{
+		socketOut.writeObject(action);
+		socketOut.flush();
+		socketOut.reset();
+	}
+	@SuppressWarnings("resource")
 	@Override
 	public void run() {
 		boolean run=true;
 		
-		System.out.println("RUNNING");
+		logger.info("RUNNING");
 		Scanner stdIn = new Scanner(System.in);
 		
 		while (run) {

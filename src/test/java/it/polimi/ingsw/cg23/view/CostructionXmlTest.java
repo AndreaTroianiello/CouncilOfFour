@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.exception.XmlException;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
+import it.polimi.ingsw.cg23.server.view.ReadCostructionXml;
 
 public class CostructionXmlTest {
 

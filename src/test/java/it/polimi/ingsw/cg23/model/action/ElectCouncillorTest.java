@@ -9,13 +9,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.components.Council;
-import it.polimi.ingsw.cg23.model.components.Councillor;
-import it.polimi.ingsw.cg23.model.components.King;
-import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
+import it.polimi.ingsw.cg23.server.model.components.Council;
+import it.polimi.ingsw.cg23.server.model.components.Councillor;
+import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class ElectCouncillorTest {
 	

@@ -8,15 +8,16 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.model.components.Deck;
-import it.polimi.ingsw.cg23.model.components.NobilityTrack;
-import it.polimi.ingsw.cg23.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.model.components.RegionDeck;
-import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.Deck;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class ChangeBusinessPermitTest {
 

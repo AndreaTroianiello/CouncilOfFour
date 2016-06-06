@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.bonus.Bonus;
-import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
+import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
 
 public class BonusChangeTest {
 	private Bonus bonus;

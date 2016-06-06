@@ -8,8 +8,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.components.Council;
-import it.polimi.ingsw.cg23.model.components.Councillor;
+import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
+import it.polimi.ingsw.cg23.server.model.components.Council;
+import it.polimi.ingsw.cg23.server.model.components.Councillor;
 
 public class CouncilChangeTest {
 

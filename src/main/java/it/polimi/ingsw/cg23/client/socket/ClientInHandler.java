@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.controller.change.Change;
+import it.polimi.ingsw.cg23.server.controller.change.Change;
 
 
 public class ClientInHandler implements Runnable {
@@ -27,7 +27,7 @@ public class ClientInHandler implements Runnable {
 		while(run){
 			try {
 				Change object=(Change) socketIn.readObject();
-				logger.error(object);
+				logger.info(object);
 			} catch (ClassNotFoundException e){
 				logger.error(e);
 			} catch (IOException e) {

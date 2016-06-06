@@ -9,11 +9,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.Board;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.components.AssistantsPool;
-import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.action.MarketSell;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class MarketSellTest {
 

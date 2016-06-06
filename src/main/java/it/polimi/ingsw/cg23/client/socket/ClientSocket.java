@@ -16,12 +16,14 @@ public class ClientSocket {
 	private final static int PORT = 29999;
 	private final static String IP = "127.0.0.1";
 	
-	private static Logger logger = Logger.getLogger(ClientSocket.class);
+	private static Logger logger;
 
 	public ClientSocket(){
+		logger = Logger.getLogger(ClientSocket.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		logger.error("Connection created");
 	}
+	
+	@SuppressWarnings("resource")
 	public void startClient() throws UnknownHostException, IOException {
 
 		Socket socket = new Socket(IP, PORT);
@@ -33,14 +35,8 @@ public class ClientSocket {
 
 		executor.submit(new ClientInHandler(
 				new ObjectInputStream(socket.getInputStream())));
+		
+		logger.info("Connection created");
 	}
 	
-	public static void main(String[] args){
-		ClientSocket client=new ClientSocket();
-		try {
-			client.startClient();
-		} catch (IOException e) {
-			logger.error(e);
-		}
-	}
 }

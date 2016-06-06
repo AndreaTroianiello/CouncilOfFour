@@ -8,8 +8,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
-import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 public class BusinessPermitTileChangeTest {
 	private BusinessPermitTile tile;
 	@Before

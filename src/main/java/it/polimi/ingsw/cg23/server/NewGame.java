@@ -3,9 +3,9 @@ package it.polimi.ingsw.cg23.server;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.controller.Controller;
-import it.polimi.ingsw.cg23.controller.PlayersControl;
-import it.polimi.ingsw.cg23.view.ServerSocketView;
+import it.polimi.ingsw.cg23.server.controller.Controller;
+import it.polimi.ingsw.cg23.server.controller.PlayersControl;
+import it.polimi.ingsw.cg23.server.view.ServerSocketView;
 
 /**
  * NewGame checks if the game is ready to start and if it creates a new one.

@@ -9,19 +9,19 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.City;
-import it.polimi.ingsw.cg23.model.Player;
-import it.polimi.ingsw.cg23.model.Region;
-import it.polimi.ingsw.cg23.model.Type;
-import it.polimi.ingsw.cg23.model.bonus.BonusAdditionalAction;
-import it.polimi.ingsw.cg23.model.bonus.BonusAssistants;
-import it.polimi.ingsw.cg23.model.bonus.BonusCoin;
-import it.polimi.ingsw.cg23.model.bonus.BonusVictoryPoints;
-import it.polimi.ingsw.cg23.model.components.BonusKing;
-import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.model.components.NobilityTrack;
-import it.polimi.ingsw.cg23.model.components.RegionDeck;
-import it.polimi.ingsw.cg23.view.CreateMap;
+import it.polimi.ingsw.cg23.server.model.City;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusAdditionalAction;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusAssistants;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusCoin;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
+import it.polimi.ingsw.cg23.server.view.CreateMap;
 
 
 public class PrintMapTest {
