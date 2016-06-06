@@ -8,22 +8,18 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.controller.Setting;
-import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.City;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
-import it.polimi.ingsw.cg23.model.components.Deck;
+import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.King;
-import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.RegionDeck;
 
 public class CreateCouncollorTest {
 
 	private CreateCouncillor cc;
 	private King k;
-	private Board b;
 
 	private List<Region> regions;
 	private Type type1,type2;
@@ -34,7 +30,6 @@ public class CreateCouncollorTest {
 	@Before
 	public void setUp(){
 		cc=new CreateCouncillor();
-		Deck dec=new Deck(new Setting().politicList(5, 10));//creato il deck
 
 
 		//Set up the bonus king
@@ -65,31 +60,29 @@ public class CreateCouncollorTest {
 		cities.add(new City('R', "Roma", type1 , regions.get(1)));
 
 		k=new King(cities.get(1));
-		b=new Board(dec, regions, tipes, new NobilityTrack(20), k);
 	}
 
 
 	@Test
 	public void createCouncillorTest() {
 		int i=10;
-		cc.createCouncillor(i, b);//creo i consiglieri
-		assertNotNull(b.getCouncillorPool());
-		assertEquals(b.getCouncillorPool().size(), i*6);//6 è il numero di colori
+		List<Councillor> c=cc.createCouncillor(i);//creo i consiglieri
+		assertEquals(c.size(), i*6);//6 è il numero di colori
 	}
 
 
 	@Test
 	public void balconiKingtest() {
-		cc.createCouncillor(10, b);//creo i consiglieri
-		cc.setBalconi(b, k);//setto il balcone del re
+		List<Councillor> c=cc.createCouncillor(10);//creo i consiglieri
+		cc.setBalconi(k, c);//setto il balcone del re
 		assertNotNull(k.getCouncil().getCouncillors());
 		assertEquals(k.getCouncil().getCouncillors().size(), 4);//controllo che il balcone del re abbia 4 consiglieri
 	}
 
 	@Test
 	public void balconiRegionTest() {
-		cc.createCouncillor(10, b);//creo i consiglieri
-		cc.setBalconi(b, regions.get(1));//setto il balcone del re
+		List<Councillor> c=cc.createCouncillor(10);//creo i consiglieri
+		cc.setBalconi(regions.get(1), c);//setto il balcone del re
 		assertNotNull(regions.get(1).getCouncil().getCouncillors());
 		assertEquals(regions.get(1).getCouncil().getCouncillors().size(), 4);//controllo che il balcone del re abbia 4 consiglieri
 	}

@@ -12,11 +12,13 @@ import it.polimi.ingsw.cg23.model.Type;
 import it.polimi.ingsw.cg23.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.model.components.BonusKing;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.Deck;
 import it.polimi.ingsw.cg23.model.components.King;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.view.Print;
+import it.polimi.ingsw.cg23.view.XmlInterface;
 
 /**
  * class that start the game
@@ -30,6 +32,8 @@ public class Avvio {
 	CreateCouncillor cco;
 	CreatePlayer cp;
 	CreateRegionCity crc;
+	Deck dec;
+	King king;
 
 	private List <Player> giocatori;//lista giocatori
 	private List <City> citta;//lista giocatori
@@ -38,9 +42,12 @@ public class Avvio {
 	private List <Bonus> bonusList;//lista dei bonus
 	private List <BusinessPermitTile> costructionCard;//lista dei bonus
 	private List <Type> tipi;//lista dei bonus
-	
+	private List <Councillor> consiglieri;
+
 	private Board board;
 	private BonusKing bk;
+	private XmlInterface leggiXml;
+	private NobilityTrack nT;
 
 	public Avvio(){
 		cc=new CreateCostruction();
@@ -50,10 +57,14 @@ public class Avvio {
 		cl=new Print();
 		s=new Setting();
 		cb=new CreateBonus("ConfigurazionePartita.xml");
-		
+
+		this.leggiXml= new XmlInterface();
 		this.board=null;
 		this.bk=cb.bonusKing();
 		this.citta=new ArrayList<>();
+		this.consiglieri=new ArrayList<>();
+		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
+
 	}
 
 	/**
@@ -67,15 +78,16 @@ public class Avvio {
 		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
 			cp.createPlayer();//creo i giocatori
 		}*/
+		
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
 		//----------creo i type----------
 		tipi=s.createType(bk);//creo i type (colori) delle citta'
 		cl.print("", "-Creo i type");
-		
+
 		//----------board creazione----------
-		board=new Board(null, new ArrayList<>(), new ArrayList<>(), new NobilityTrack(20), null);//creata la board
+		board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);//creata la board
 		cl.print("", "-Creo la board");
 
 		//----------bonus----------
@@ -86,36 +98,33 @@ public class Avvio {
 		giocatori=cp.getGiocatori();//recupero la lista dei giocatori dal controller
 		regions=crc.createRegions(bk);//crea le regioni e ne ritorna la lista
 		cl.print("", "-Creo le regioni");
-		
+
 		//----------citta'----------
 		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
 			citta.addAll(crc.createCities(i, regions.get(i), bk));//recupero le citta' della regione
 		}
-		
+
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
 			cb.getCityBonus(j, citta.get(j));//aggiungo alla citta' i bonus
 		}
 		crc.addNeighbors(citta);//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
-		
+
 		//----------king----------
-		King king=s.king(citta);//creato il re
+		king=s.king(citta);//creato il re
 		cl.print("", "-Creo il re");
 
 		//----------carte politiche----------
 		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
 		cl.print("", "-Creo le carte politiche"); 
-		
+
 		//----------deck----------
-		Deck dec=new Deck(politcards);//creato il deck
+		dec=new Deck(politcards);//creato il deck
 		s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
 		cl.print("", "-Creo il deck");
 
 		//----------board settaggio----------
-		board.setDeck(dec);
-		board.setKing(king);
-		board.setRegions(regions);
-		board.setTypes(tipi);
+		setBoard(board);//setta la baord
 		cl.print("", "-Setto la board");
 
 		//----------carte permesso di costruzione----------
@@ -124,23 +133,28 @@ public class Avvio {
 		cl.print("", "-Creo le carte permesso di costruzione");
 
 		//----------consiglieri e balconi----------
-		cco.createCouncillor(4, board);//crea i consiglieri
+		consiglieri=cco.createCouncillor(4);//crea i consiglieri
+		
 		for(int i=0; i<regions.size(); i++){//scorro il numero di regioni
-			cco.setBalconi(board, regions.get(i));//crea i balconi delle regioni
+			cco.setBalconi(regions.get(i), consiglieri);//crea i balconi delle regioni
 		}
-		cco.setBalconi(board, king);//crea il balcone del re
+		cco.setBalconi(king, consiglieri);//crea il balcone del re
 		cl.print("", "-Creo i consiglieri");
 
 		//----------nobility track----------
 		s.nobilityTrackFill();//riempio il nobility track
 		cl.print("", "-Setto il Nobility track");
-		
+
+		//----------board settaggio----------
+		setBoard(board);//setta la baord
+		cl.print("", "-Setto la board");
+
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
 		cl.createMap(regions, giocatori, king);//stampa la plancia di gioco dalla lista
-		//printAll();//stampa tutte le liste
+		printAll();//stampa tutte le liste
 	}
-	
+
 	/**
 	 * print all the list
 	 */
@@ -161,6 +175,26 @@ public class Avvio {
 		cl.print(tipi.size(),"");
 		cl.printList(tipi);
 		cl.print(bk.toString(), "");
+		cl.print(board, "");
+	}
+
+	/**
+	 * set the board
+	 * @param b, the board
+	 */
+	public void setBoard(Board board){
+		
+		board.setDeck(dec);//aggiungo il dec alla board
+		board.setKing(king);//aggiungo il re alla board
+		board.setRegions(regions);//aggiungo le regioni alla board
+		board.setTypes(tipi);//aggiungo i tipi alla board
+		for(int i=0; i<giocatori.size(); i++){
+			board.addPlayer(giocatori.get(i));//aggiungo i gicatori alla board
+		}
+		for(int i=0; i<consiglieri.size(); i++){
+			board.setCouncillor(consiglieri.get(i));//aggiungo i consiglieri avanzati alla board
+		}
+		board.setNobilityTrack(nT);//aggiungo il nobility track alla board
 	}
 
 	/**
@@ -180,7 +214,7 @@ public class Avvio {
 		while(playerNumber==0){//si continua a ciclare finche' non e' stato inserito un numero valido
 			try{//provo a recuperare il numero di giocatori
 				playerNumber=Integer.parseInt(cl.writeReturnValue("Quanti giocatori siete?", null).toString());
-				
+
 			}catch(NumberFormatException e){
 				cl.print(null, "devi inserire un numero");
 				playerNumber=0;

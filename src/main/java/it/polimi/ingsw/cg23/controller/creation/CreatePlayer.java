@@ -6,26 +6,23 @@ import java.util.List;
 import it.polimi.ingsw.cg23.model.Player;
 import it.polimi.ingsw.cg23.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.view.Print;
-import it.polimi.ingsw.cg23.view.XmlInterface;
 
 public class CreatePlayer {
 	private List <Player> giocatori;
-	private XmlInterface leggiXml;
+	
 	private Print p;
-	private NobilityTrack nT;
+	
 	
 	public CreatePlayer(){
 		this.giocatori = new ArrayList<>();//lista giocatori
-		this.leggiXml= new XmlInterface();
 		this.p= new Print();
-		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
 	}
 	
 	/**
 	 * create and add a player to the list
 	 * @param n , the name of player, if null the name is ask from the cl
 	 */
-	public void createPlayer(){
+	public void createPlayer(NobilityTrack nT){
 		int assistant=playerNumber();//numero di giocatori gia' presenti nella lista
 		
 		String name="player";

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import it.polimi.ingsw.cg23.controller.Setting;
-import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.Councillor;
 import it.polimi.ingsw.cg23.model.components.King;
@@ -23,14 +22,13 @@ public class CreateCouncillor {
 	 * @param numberCouncillor, number of councillors per color to create
 	 * @param b, the board
 	 */
-	public List<Councillor>  createCouncillor(int numberCouncillor, Board b){
+	public List<Councillor>  createCouncillor(int numberCouncillor){
 		Color[] arrayColori=s.color();//recupero un array di Color con i possibili colori
 		List<Councillor> consiglieri=new ArrayList<>();
 		for(int i=0; i<arrayColori.length; i++){//ciclo che scorre i colori
 			for(int k=0; k<numberCouncillor; k++){//ciclo che scorre il numero di consiglieri per colore
 				Councillor c= new Councillor(arrayColori[i]);//creo un nuovo consigliere
 				consiglieri.add(c);//aggiungo il consigliere alla lista
-				b.setCouncillor(c);//aggiungo il consigliere alla board
 			}
 		}
 		return consiglieri;
@@ -41,8 +39,7 @@ public class CreateCouncillor {
 	 * @param b, the board
 	 * @param reg, the region
 	 */
-	public void setBalconi(Board b, Region reg){
-		List<Councillor> consiglieri=b.getCouncillorPool();//lista di tutti i consiglieri
+	public void setBalconi(Region reg, List<Councillor>consiglieri){
 		Random rnd = new Random();
 		List<Councillor> nuoviConsiglieri = new ArrayList<>();//consiglieri della regione
 		for(int i=0; i<4; i++){//ciclo che scorre i consiglieri (4 per regione)
@@ -58,8 +55,7 @@ public class CreateCouncillor {
 	 * @param b, the board
 	 * @param k, the king
 	 */
-	public void setBalconi(Board b, King k){
-		List<Councillor> consiglieri=b.getCouncillorPool();//lista di tutti consiglieri
+	public void setBalconi(King k, List<Councillor>consiglieri){
 		Random rnd = new Random();
 		List<Councillor> nuoviConsiglieri = new ArrayList<>();//lista dei consiglieri del re
 		for(int i=0; i<4; i++){//ciclo che scorre i consiglieri (4 per il balcone del re)
