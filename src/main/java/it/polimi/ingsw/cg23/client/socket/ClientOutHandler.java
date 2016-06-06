@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.client.socket;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -62,7 +63,7 @@ public class ClientOutHandler implements Runnable {
 					socketOut.reset();
 					break;
 				case "BUILDKING":
-					action = new BuildEmporiumKing(null, null);
+					action = new BuildEmporiumKing(new ArrayList<>(), null);
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();
