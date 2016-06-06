@@ -230,30 +230,4 @@ public class Avvio {
 	public List<Player> getGiocatori() {
 		return giocatori;
 	}
-
-	public void twoPlayers(Board b){//azioni nel caso di 2 giocatori
-		Random rnd=new Random();
-		Player player=new Player("NaN",0,0,board.getNobilityTrack());
-		List<Region>reg=b.getRegions();
-		for(Region r:reg){
-			List<Character> list=r.getDeck().getShowedDeck().get(rnd.nextInt(r.getDeck().getShowedDeck().size())).getCitiesId();
-			for(char c:list){
-				City city=r.searchCityById(c);
-				Emporium e=player.getAvailableEmporium();
-				e.setCity(city);
-				city.getEmporiums().add(e);
-			}
-			r.getDeck().changeShowedDeck();
-		}
-
-	}
-	
-	/**
-	 * 
-	 * @param player, the players list
-	 */
-	public void setGame(Board board){
-		s.pesca(board.getDeck(), board.getPlayers(), 4);//i giocatori pescano 4 carte
-	}
-
 }
