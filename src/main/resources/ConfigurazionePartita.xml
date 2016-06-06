@@ -41,6 +41,7 @@
 				<link>
 					<Id>A</Id>
 					<Id>D</Id>
+					<Id>E</Id>
 				</link>
 				<color>iron</color>
 				<bonus>2Assistants</bonus>
@@ -107,6 +108,7 @@
 				<link>
 					<Id>E</Id>
 					<Id>J</Id>
+					<Id>M</Id>
 				</link>
 				<color>gold</color>
 				<bonus>1Assistants,1Coin,4Politics</bonus>
@@ -115,7 +117,9 @@
 				<Id>I</Id>
 				<name>Indur</name>
 				<link>
+					<Id>F</Id>
 					<Id>K</Id>
+					<Id>J</Id>
 				</link>
 				<color>iron</color>
 				<bonus>1VictoryPoints</bonus>
@@ -124,7 +128,9 @@
 				<Id>J</Id>
 				<name>Juvelar</name>
 				<link>
+					<Id>G</Id>
 					<Id>H</Id>
+					<Id>I</Id>
 					<Id>L</Id>
 				</link>
 				<color>purple</color>
@@ -152,7 +158,6 @@
 				<link>
 					<Id>J</Id>
 					<Id>O</Id>
-					<Id>K</Id>
 				</link>
 				<color>iron</color>
 				<bonus>2VictoryPoints</bonus>
@@ -181,6 +186,8 @@
 				<Id>O</Id>
 				<name>Osium</name>
 				<link>
+					<Id>L</Id>
+					<Id>M</Id>
 					<Id>N</Id>
 				</link>
 				<color>gold</color>
