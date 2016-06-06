@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import it.polimi.ingsw.cg23.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.model.Board;
 import it.polimi.ingsw.cg23.model.Player;
+import it.polimi.ingsw.cg23.model.Region;
 import it.polimi.ingsw.cg23.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
@@ -19,7 +20,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = -2799809256014430924L;
-	private final int region;
+	private final Region region;
 	
 	
 
@@ -29,7 +30,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 * 
 	 * @param region
 	 */
-	public ChangeBusinessPermit(int region) {
+	public ChangeBusinessPermit(Region region) {
 		super(false);
 		this.region = region;
 	}
@@ -37,7 +38,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	/**
 	 * @return the region
 	 */
-	public int getRegion() {
+	public Region getRegion() {
 		return region;
 	}
 
@@ -56,10 +57,10 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			return;
 		}
 		
-		board.getRegions().get(region).getDeck().changeShowedDeck();
+		region.getDeck().changeShowedDeck();
 		
 		//notify the change
-		for(BusinessPermitTile bpt : board.getRegions().get(region).getDeck().getShowedDeck()){
+		for(BusinessPermitTile bpt : region.getDeck().getShowedDeck()){
 			this.notifyObserver(new BusinessPermitTileChange(bpt));
 		}
 

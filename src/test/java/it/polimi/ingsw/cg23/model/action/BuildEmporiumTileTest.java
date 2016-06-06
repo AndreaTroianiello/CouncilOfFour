@@ -56,9 +56,9 @@ public class BuildEmporiumTileTest {
 	 */
 	@Test
 	public void testGetCityIDShouldReturnTheCityID() {
-		BuildEmporiumTile action = new BuildEmporiumTile(null, 1);
-		int cityID = action.getCityID();
-		assertEquals(1, cityID);
+		BuildEmporiumTile action = new BuildEmporiumTile(null, city);
+		City city = action.getCity();
+		assertEquals(action.getCity(), city);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class BuildEmporiumTileTest {
 	 */
 	@Test
 	public void testGetCard() {
-		BuildEmporiumTile action = new BuildEmporiumTile(card, 1);
+		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
 		assertEquals(card, action.getCard());
 	}
 
@@ -75,8 +75,8 @@ public class BuildEmporiumTileTest {
 	 */
 	@Test
 	public void testToString() {
-		BuildEmporiumTile action = new BuildEmporiumTile(null, 1);
-		assertEquals("BuildEmporiumTile [card=null, cityID=1]", action.toString());
+		BuildEmporiumTile action = new BuildEmporiumTile(null, null);
+		assertEquals("BuildEmporiumTile [card=null, city=null]", action.toString());
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class BuildEmporiumTileTest {
 	 */
 	@Test
 	public void testRunActionShouldBuildAnEmporiumIfItsAllFine(){
-		BuildEmporiumTile action = new BuildEmporiumTile(card, 0);
+		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
 		action.runAction(player, board);
 		assertEquals(true, this.city.containsEmporium(player));
 	}
@@ -95,7 +95,7 @@ public class BuildEmporiumTileTest {
 	@Test
 	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(){
 		Player player2 = new Player("player2", 0, 100, new NobilityTrack(3));
-		BuildEmporiumTile action = new BuildEmporiumTile(card, 0);
+		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
 		this.city.getEmporiums().add(new Emporium(player));
 		action.runAction(player2, board);
 		assertEquals(false, this.city.containsEmporium(player2));

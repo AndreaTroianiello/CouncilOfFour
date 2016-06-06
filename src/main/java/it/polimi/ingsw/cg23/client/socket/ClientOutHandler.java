@@ -69,7 +69,7 @@ public class ClientOutHandler implements Runnable {
 					socketOut.reset();
 					break;
 				case "BUILDTILE":
-					action = new BuildEmporiumTile(null, 0);
+					action = new BuildEmporiumTile(null, null);
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();
@@ -81,7 +81,7 @@ public class ClientOutHandler implements Runnable {
 					socketOut.reset();
 					break;
 				case "CHANGE":
-					action = new ChangeBusinessPermit(0);
+					action = new ChangeBusinessPermit(null);
 					socketOut.writeObject(action);
 					socketOut.flush();
 					socketOut.reset();

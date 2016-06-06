@@ -20,7 +20,7 @@ import it.polimi.ingsw.cg23.model.exception.NegativeNumberException;
 
 public class ChangeBusinessPermitTest {
 
-	private int number;
+	private Region region;
 	private Player player;
 	private Board board;
 	private List<BusinessPermitTile> deckCards = new ArrayList<>();
@@ -38,13 +38,12 @@ public class ChangeBusinessPermitTest {
 		deckCards.add(card2);
 		deckCards.add(card3);
 		deckCards.add(card4);
-		number = 0;
 		player = new Player("player1", 10, 10, new NobilityTrack(3));
 		List<Region> regions = new ArrayList<>();
 		RegionDeck deck = new RegionDeck(2);
 		deck.setBusinessPermitTiles(deckCards);
 		showedDeck.addAll(deck.getShowedDeck());
-		Region region = new Region(null, 0, deck, null);
+		region = new Region(null, 0, deck, null);
 		regions.add(region);
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null);
 
@@ -55,9 +54,9 @@ public class ChangeBusinessPermitTest {
 	 */
 	@Test
 	public void testRunActionShouldChangeTheShowedDeckWhenTiIsAllFine() {
-		ChangeBusinessPermit action = new ChangeBusinessPermit(number);
+		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
 		action.runAction(player, board);
-		assertNotEquals(showedDeck, board.getRegions().get(0).getDeck().getShowedDeck());
+		assertNotEquals(showedDeck, region.getDeck().getShowedDeck());
 	}
 	
 	/**
@@ -66,7 +65,7 @@ public class ChangeBusinessPermitTest {
 	 */
 	@Test
 	public void testRunAction() throws NegativeNumberException {
-		ChangeBusinessPermit action = new ChangeBusinessPermit(number);
+		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
 		player.getAssistantsPool().setAssistants(0);
 		action.runAction(player, board);
 		assertEquals(showedDeck, board.getRegions().get(0).getDeck().getShowedDeck());
@@ -78,9 +77,9 @@ public class ChangeBusinessPermitTest {
 	 */
 	@Test
 	public void testGetRegion() {
-		ChangeBusinessPermit action = new ChangeBusinessPermit(number);
-		int actualRegion = action.getRegion();
-		assertEquals(number, actualRegion);
+		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
+		Region actualRegion = action.getRegion();
+		assertEquals(region, actualRegion);
 	}
 
 	/**
@@ -88,8 +87,8 @@ public class ChangeBusinessPermitTest {
 	 */
 	@Test
 	public void testToString() {
-		ChangeBusinessPermit action = new ChangeBusinessPermit(0);
-		assertEquals("ChangeBusinessPermit [region=0]", action.toString());
+		ChangeBusinessPermit action = new ChangeBusinessPermit(null);
+		assertEquals("ChangeBusinessPermit [region=null]", action.toString());
 	}
 
 }

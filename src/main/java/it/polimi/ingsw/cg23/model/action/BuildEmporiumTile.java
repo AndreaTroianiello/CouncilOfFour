@@ -20,7 +20,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = -5184613644917685573L;
 	private final BusinessPermitTile card;
-	private final int cityID; 						//wich city the player choose from the ones on the card
+	private final City city; 						//wich city the player choose from the ones on the card
 
 	
 	/**
@@ -30,17 +30,17 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 * @param card
 	 * @param cityID
 	 */
-	public BuildEmporiumTile(BusinessPermitTile card, int cityID) {
+	public BuildEmporiumTile(BusinessPermitTile card, City city) {
 		super(true);
 		this.card = card;
-		this.cityID = cityID;
+		this.city = city;
 	}
 	
 	/**
 	 * @return the city
 	 */
-	public int getCityID() {
-		return cityID;
+	public City getCity() {
+		return city;
 	}
 
 
@@ -60,21 +60,18 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		for(Region region : board.getRegions()){
-			City city = region.searchCityById(this.card.getCitiesId().get(this.cityID));
-			if(player.getAvailableEmporium() != null && city != null){
-				try {
-					city.buildEmporium(player.getAvailableEmporium());
-					player.getAvailableBusinessPermits().remove(card);
-					player.setUsedBusinessPermit(card);
-				} catch (NegativeNumberException e) {
-					getLogger().error("The player doesn't have enough assistants", e);
-										
-				}
-				
+		if(player.getAvailableEmporium() != null && city != null){
+			try {
+				city.buildEmporium(player.getAvailableEmporium());
+				player.getAvailableBusinessPermits().remove(card);
+				player.setUsedBusinessPermit(card);
+			} catch (NegativeNumberException e) {
+				getLogger().error("The player doesn't have enough assistants", e);
+									
 			}
-			this.notifyObserver(new EmporiumsChange(city.getEmporiums()));
+				
 		}
+		this.notifyObserver(new EmporiumsChange(city.getEmporiums()));
 	}
 
 
@@ -83,7 +80,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 */
 	@Override
 	public String toString() {
-		return "BuildEmporiumTile [card=" + card + ", cityID=" + cityID + "]";
+		return "BuildEmporiumTile [card=" + card + ", city=" + city + "]";
 	}
 	
 	
