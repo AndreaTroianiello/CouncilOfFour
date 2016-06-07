@@ -105,7 +105,8 @@ public class SettingTest {
 
 	@Test
 	public void nobilityTrackFillTest() {
-		/*NobilityTrack nt=s.nobilityTrackFill();
+		NobilityTrack nt=new NobilityTrack(21);
+		nt=s.nobilityTrackFill(nt);
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){
 			assertNotNull(nt.getNobilityBoxes().get(i).getBonus());
 		}
@@ -115,7 +116,7 @@ public class SettingTest {
 			if(nt.getNobilityBoxes().get(i).getBonus().size()!=0)
 				totNt++;
 		}
-		assertEquals(totNt, 11);*/
+		assertEquals(totNt, 11);
 	}
 
 
