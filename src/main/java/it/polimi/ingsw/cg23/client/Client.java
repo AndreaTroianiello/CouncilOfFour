@@ -10,29 +10,32 @@ import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 public class Client {
 
 	private static Logger logger;
-
-	public Client() {
-		logger= Logger.getLogger(Client.class);
-		PropertyConfigurator.configure("src/main/resources/logger.properties");
-	}
 	
 	@SuppressWarnings("resource")
 	public static void main(String[] args){
+		logger= Logger.getLogger(Client.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
+		boolean run=true;
+		logger.info("Welcome to Council of Four game!");
+		logger.info("Choose the type of connection. (SOCKET or RMI");
 		Scanner stdIn = new Scanner(System.in);
 		String inputLine=stdIn.nextLine();
-		switch (inputLine) {
-		case "SOCKET":
-			try {
-				ClientSocket clientSocket=new ClientSocket();
-				clientSocket.startClient();
-			} catch (IOException e) {
-				logger.error(e);
+		while(run){
+			switch (inputLine) {
+			case "SOCKET":
+				try {
+					ClientSocket clientSocket=new ClientSocket();
+					clientSocket.startClient();
+					run=false;
+				} catch (IOException e) {
+					logger.error(e);
+				}
+				break;
+			case "RMI":
+				break;
+			default:
+				break;
 			}
-			break;
-		case "RMI":
-			break;
-		default:
-			break;
 		}
 	}
 }

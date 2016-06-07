@@ -11,6 +11,7 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.*;
 import it.polimi.ingsw.cg23.server.model.components.Emporium;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.server.view.CreateMap;
 import it.polimi.ingsw.cg23.server.view.View;
 
 import java.util.HashMap;
@@ -71,10 +72,10 @@ public class Controller implements Observer<Action>{
 	public void startGame(){
 		this.turn=new Turn(model);
 		this.turn.changePlayer();
-		new Avvio().setBoard(model);
 		setPlayersHand();
 		setPlayerStats();
 		gameTwoPlayers();
+		new CreateMap().createMapDraw(model.getRegions(), model.getPlayers(), model.getKing());
 		this.model.changeStatus();
 	}
 	
