@@ -45,7 +45,9 @@ public class FrameMap extends JFrame {
 	 */
 	public FrameMap() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 800);
+		setBounds(0, 0, 1000, 1000);//dimensione finestra
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -54,9 +56,8 @@ public class FrameMap extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		//JScrollPane scrollPane = new JScrollPane();
 		
-		panel.add(setBackground());
+		contentPane.add(setBackground());//aggiunta dell'immagine di sfondo al jpanel
 		
 	}
 
@@ -66,10 +67,10 @@ public class FrameMap extends JFrame {
 		try {
 			image = ImageIO.read(new File("src/main/resources/BackgroundIMG.jpg"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-
+		
 		//Create Image Label
 		JLabel label = new JLabel(new ImageIcon(image));
 		label.setBounds(0, 0, image.getWidth(), image.getHeight());
@@ -80,11 +81,13 @@ public class FrameMap extends JFrame {
 
 
 		//Populate Layered Pane
-		layeredPane.add(label, JLayeredPane.DEFAULT_LAYER-1);
+		layeredPane.add(label, JLayeredPane.DEFAULT_LAYER);
 
 		//Create ScrollPane
 		JScrollPane scrollPanel = new JScrollPane(layeredPane);
-		scrollPanel.setVisible(true);
+		scrollPanel.getVerticalScrollBar();//barra scorrimento verticale
+		scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
+		
 		return scrollPanel;
 	}
 }
