@@ -28,7 +28,7 @@ public class BuyPermitTileTest {
 	private BusinessPermitTile choosenTile;
 	private Player player;
 	private List<PoliticCard> discardedCards;
-	Board board;
+	private Board board;
 	private List<PoliticCard> cards = new ArrayList<>();
 	private List<Character> citiesId = new ArrayList<>();
 	Council council;
@@ -40,11 +40,14 @@ public class BuyPermitTileTest {
 		citiesId.add('J');
 		choosenTile = new BusinessPermitTile(citiesId, null);
 		cards.add(new PoliticCard(Color.BLUE, false));
-		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, null, null, null);
-		choosenTile = new BusinessPermitTile(citiesId, null);
+		player.getHand().addAll(cards);
 		RegionDeck deck = new RegionDeck(2);
 		deck.getShowedDeck().add(choosenTile);
 		region = new Region("si", 5,deck , null);
+		List<Region> regions = new ArrayList<>();
+		regions.add(region);
+		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null);
+		choosenTile = new BusinessPermitTile(citiesId, null);
 		council = region.getCouncil();
 		council.getCouncillors().add(new Councillor(Color.BLUE));
 		council.getCouncillors().add(new Councillor(Color.BLACK));
