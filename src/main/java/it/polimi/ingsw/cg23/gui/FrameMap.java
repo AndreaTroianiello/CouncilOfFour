@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.image.BufferedImage;
@@ -19,21 +20,20 @@ import javax.swing.JScrollPane;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-
 public class FrameMap extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7022521494087312889L;
-	private JPanel contentPane;
+	private JLayeredPane contentPane;
 	private static Logger logger;
+	
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -57,23 +57,24 @@ public class FrameMap extends JFrame {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1000, 1000);//dimensione finestra
+		setBounds(0, 0, 1000, 800);//dimensione finestra
 
 
-		contentPane = new JPanel();
+		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-
-
-		contentPane.add(setBackground());//aggiunta dell'immagine di sfondo al jpanel
+		contentPane.add(setMapPanel(), BorderLayout.WEST);//aggiunta dell'immagine di sfondo al jpanel
+		
+		contentPane.add(setLoggerPanel(), BorderLayout.EAST);//aggiunta dell'immagine di sfondo al jpanel
 
 	}
 
-	public JScrollPane setBackground(){
+	/**
+	 * add the background image
+	 * @return scrollPanel
+	 */
+	private JScrollPane setMapPanel(){
 		//Load Image
 		BufferedImage image = null;
 		try {
@@ -88,19 +89,42 @@ public class FrameMap extends JFrame {
 		label.setBounds(0, 0, image.getWidth(), image.getHeight());
 
 		//Create Layered Pane
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
-
+		JPanel layeredPane1 = new JPanel();
+		layeredPane1.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
 
 		//Populate Layered Pane
-		layeredPane.add(label, JLayeredPane.DEFAULT_LAYER);
-
+		layeredPane1.add(label, JLayeredPane.DEFAULT_LAYER);
+		
 		//Create ScrollPane
-		JScrollPane scrollPanel = new JScrollPane(layeredPane);
+		JScrollPane scrollPanel = new JScrollPane(layeredPane1);
+		scrollPanel.setPreferredSize(new Dimension(800, 1000));
 		scrollPanel.getVerticalScrollBar();//barra scorrimento verticale
 		scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
 
 		return scrollPanel;
 	}
+	
+	private JScrollPane setLoggerPanel(){
+
+		//Create Layered Pane
+		JPanel layeredPane= new JPanel();
+
+		
+		layeredPane.setPreferredSize(new Dimension(200, 800));
+		layeredPane.setBackground(new Color(255, 120, 120));
+		JLabel label1 = new JLabel("cio");
+		layeredPane.add(label1, JLayeredPane.DEFAULT_LAYER);
+		
+		//Create ScrollPane
+		JScrollPane scrollPanel = new JScrollPane(layeredPane);
+		scrollPanel.setPreferredSize(new Dimension(200, 800));
+		scrollPanel.setAutoscrolls(true);
+		//scrollPanel.setMaximumSize(new Dimension(200, 800));
+		scrollPanel.getVerticalScrollBar();//barra scorrimento verticale
+		scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
+
+		return scrollPanel;
+	} 
+	
 }
 

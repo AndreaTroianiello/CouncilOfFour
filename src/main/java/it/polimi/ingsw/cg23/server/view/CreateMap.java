@@ -69,7 +69,7 @@ public class CreateMap {
 	 * @param regions, the regions
 	 * @return teh city list
 	 */
-	public List<City> getCityfromRegion(List<Region> regions){
+	private List<City> getCityfromRegion(List<Region> regions){
 		List<City> city = new ArrayList<>();
 		for(int i=0; i<regions.size(); i++){
 			city.addAll(regions.get(i).getCities());
@@ -82,7 +82,7 @@ public class CreateMap {
 	 * @param city, the city you want to have the bonus
 	 * @return a string with all the city bonus
 	 */
-	public String cityBonus(City city){
+	private String cityBonus(City city){
 		String bonus="";
 
 		for(int i=0; i<city.getToken().size(); i++){//ciclo che scorre i bonus di una citta'
@@ -100,7 +100,7 @@ public class CreateMap {
 	 * @param giocatori, a list with the players
 	 * @return a string to print
 	 */
-	public String createPlayerInfo(List<Player>giocatori){
+	private String createPlayerInfo(List<Player>giocatori){
 		int space=20;//spazi da mettere per rendere il testo ordinato
 		String percorsi="";
 		percorsi+=addSpace("Player", space)+addSpace("Richness(coin)", space)+addSpace("Victory", space)+
@@ -121,7 +121,7 @@ public class CreateMap {
 	 * @param totalSpace the total length you need (string + space)
 	 * @return the String extended
 	 */
-	public String addSpace(String nome, int totalSpace){//aggiunge spazi alla stringa data per raggiungere la lunghezza desiderata
+	private String addSpace(String nome, int totalSpace){//aggiunge spazi alla stringa data per raggiungere la lunghezza desiderata
 		int length=totalSpace-nome.length();//spazi da aggiungere
 		String nomeExtended=nome;
 		if(nome.length()<totalSpace){
@@ -138,7 +138,7 @@ public class CreateMap {
 	 * @param totalSpace, the number of space you want to add
 	 * @return a string with the number and the space
 	 */
-	public String addSpace(int number, int totalSpace){	
+	private String addSpace(int number, int totalSpace){	
 		String numberExtended=Integer.toString(number);
 		int length=totalSpace-digits(number);//spazi da aggiungere
 		if(digits(number)<totalSpace){
@@ -154,7 +154,7 @@ public class CreateMap {
 	 * @param number, the number you want to calculate the digits
 	 * @return the number of digits
 	 */
-	public int digits(int number){
+	private int digits(int number){
 		int count=0;
 		int num=number;//creata nuova variabile perche' richiesta da sonar
 		if(num==0)//se il numero e' 0 ha una cifra
@@ -174,7 +174,7 @@ public class CreateMap {
 	 * @param giocatori, the player list
 	 * @param king, the king
 	 */
-	public void createMapDraw(List<Region> reg, List<Player> giocatori, King king){
+	 public void createMapDraw(List<Region> reg, List<Player> giocatori, King king){
 		List<City> city=getCityfromRegion(reg);
 
 		String plancia="\nPlancia di gioco\n";//la stringa che stampa la plancia di gioco
@@ -247,7 +247,7 @@ public class CreateMap {
 	 * @param space, the space
 	 * @return, a string with the spaced name of the region
 	 */
-	public String printName(List<Region>reg, int space){
+	private String printName(List<Region>reg, int space){
 		String name="";
 		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
 			name+=addSpace(reg.get(j).getName().toUpperCase(), space);//nomi delle regioni
@@ -261,7 +261,7 @@ public class CreateMap {
 	 * @param space, half of the space
 	 * @return a string with the costruction card
 	 */
-	public String createCostructionShowed(List<Region> region, int space){
+	private String createCostructionShowed(List<Region> region, int space){
 		String cardShowed="";//plancia delle carte costrucione
 		int regSize=region.size();//numero di regioni
 		
@@ -316,7 +316,7 @@ public class CreateMap {
 	 * @param n, the numer of bonus (0,1)
 	 * @return a string with the bonus name
 	 */
-	public String getBonusCostructor(List<Region> reg, int space, int n){
+	private String getBonusCostructor(List<Region> reg, int space, int n){
 		String bonusName="";
 		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
 			List<BusinessPermitTile> costruction=reg.get(j).getDeck().getShowedDeck();//recupero la lista delle carte permesso costruzione
@@ -342,7 +342,7 @@ public class CreateMap {
 	 * @param c, the city
 	 * @return a string with the id of the city
 	 */
-	public String getNeighbourID(City c){
+	private String getNeighbourID(City c){
 		List<City> vicini=c.getNeighbors();//recupero la lista dei vicini della citta'
 		String viciniId="Vicini: ";//stringa che contiene i vicini della citta'
 		for(int i=0; i<vicini.size(); i++){//scorre il numero di vicini della citta'
@@ -357,7 +357,7 @@ public class CreateMap {
 	 * @param number, the number of minus you want
 	 * @return a string with minus
 	 */
-	public String addMinus(int number){
+	private String addMinus(int number){
 		String minus="";
 		for(int i=0; i<number; i++){//ciclo che scorre la quantita' di meno da aggiungere
 			minus+="-";//aggiungo un meno

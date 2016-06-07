@@ -150,7 +150,7 @@ public class XmlInterface {
 	 * @param endpath the name of xml file with .xml
 	 * @return the number of cities in the xml file
 	 */
-	public int cityNum(String endPath){
+	private int cityNum(String endPath){
 		int numeroCitta=0;
 		
 		try {//provo a leggere il file xml

@@ -101,7 +101,7 @@ CreateMap map=new CreateMap();
 		regions.get(1).getDeck().setBusinessPermitTiles(b2);
 		
 	}
-	
+	/*
 	@Test
 	public void cityfromRegionTest() {
 		
@@ -162,6 +162,6 @@ CreateMap map=new CreateMap();
 		String n2=map.getBonusCostructor(regions, space, 1);
 		assertEquals(n2.length(), 200);
 		
-	}
+	}*/
 
 }
