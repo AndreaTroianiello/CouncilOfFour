@@ -71,7 +71,7 @@ public class RegionDeck implements Serializable {
 	 * 
 	 * @param businessPermitTiles the tiles that need to shuffle.
 	 */
-	public void shuffleTitle(List<BusinessPermitTile> businessPermitTiles){
+	private void shuffleTitle(List<BusinessPermitTile> businessPermitTiles){
 		Random random= new Random();											//Create the random generator.
 		for(int index=businessPermitTiles.size();index>0;index--){
 			int randomIndex=random.nextInt(index);								//Gets a random index.

@@ -82,7 +82,7 @@ public class Controller implements Observer<Action>{
 	/**
 	 * Sets the initial stats of all players.
 	 */
-	public void setPlayerStats(){
+	private void setPlayerStats(){
 		List<Player> players=model.getPlayers();
 		for(int index=0;index<players.size();index++){
 			Player player=players.get(index);
@@ -98,7 +98,7 @@ public class Controller implements Observer<Action>{
 	/**
 	 * Sets the additional emporium if the players are only two.
 	 */
-	public void gameTwoPlayers(){
+	private void gameTwoPlayers(){
 		Random rnd=new Random();
 		if(model.getPlayers().size()==2){
 			Player player=new Player("NaN",0,0,model.getNobilityTrack());
@@ -119,7 +119,7 @@ public class Controller implements Observer<Action>{
 	/**
 	 * Sets the initial hand of all players.
 	 */
-	public void setPlayersHand(){
+	private void setPlayersHand(){
 		List<Player> players=model.getPlayers();
 		for(Player player:players){
 			for(int index=0;index<6;++index)

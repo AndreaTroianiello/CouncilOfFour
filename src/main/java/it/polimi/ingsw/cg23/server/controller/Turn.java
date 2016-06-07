@@ -62,6 +62,7 @@ public class Turn {
 		if(players.get((currentPlayer+1)%players.size())!=status.getFinalPlayer()){     //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
 			status.setCurrentPlayer(players.get(currentPlayer));
+			draw();
 			this.mainAction=true;
 			this.secondAction=true;
 			this.mainIndex=1;
@@ -105,7 +106,7 @@ public class Turn {
 	/**
 	 * The player draws a politic card.
 	 */
-	public void draw (){
+	private void draw (){
 		Deck deck=board.getDeck();
 		PoliticCard card=deck.draw();
 		if(card!=null)
@@ -115,7 +116,7 @@ public class Turn {
 	/**
 	 * Sets the action variables at false.
 	 */
-	public void controlAction(){
+	private void controlAction(){
 		if(action.isMain() && mainAction){							//Control if the action is a main action and it's authorized.
 			--mainIndex;											//Decrement the main action's counter.
 			if(mainIndex==0)
@@ -134,7 +135,7 @@ public class Turn {
 	/**
 	 * Runs the the normal action.
 	 */
-	public void runActionNormal(){
+	private void runActionNormal(){
 		Player player=getCurrentPlayer();
 		State status=board.getStatus();
 		if((action.isMain() && mainAction)||(!action.isMain() && secondAction)){		//Control if the action is authorized
@@ -151,7 +152,7 @@ public class Turn {
 	/**
 	 * Runs the the market's action.
 	 */
-	public void runActionMarket(){
+	private void runActionMarket(){
 		Player player=getCurrentPlayer();
 		State status=board.getStatus();
 		if(action instanceof MarketSell 

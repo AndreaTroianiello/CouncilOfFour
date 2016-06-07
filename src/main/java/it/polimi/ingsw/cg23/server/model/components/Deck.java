@@ -61,7 +61,7 @@ public class Deck implements Serializable {
 	/**
 	 * If the discarded deck is not empty changes it with the main deck and shuffles. Clears the discarded deck. 
 	 */
-	public void changeDeck(){
+	private void changeDeck(){
 		if(!discardedCards.isEmpty()){											//If the discarded deck isn't empty  do it
 			politicCards.addAll(discardedCards);
 			discardedCards.clear();
@@ -74,7 +74,7 @@ public class Deck implements Serializable {
 	 * 
 	 * @param politicCards the cards that need to shuffle.
 	 */
-	public void shuffleDeck(){
+	private void shuffleDeck(){
 		Random random= new Random();											//Create the random generator.
 		for(int index=politicCards.size();index>0;index--){
 			int randomIndex=random.nextInt(index);								//Gets a random index.
