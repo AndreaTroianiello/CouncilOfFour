@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.server.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import it.polimi.ingsw.cg23.server.controller.creation.*;
 import it.polimi.ingsw.cg23.server.model.Board;
@@ -15,7 +14,6 @@ import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
-import it.polimi.ingsw.cg23.server.model.components.Emporium;
 import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
@@ -124,10 +122,6 @@ public class Avvio {
 		//s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
 		cl.print("", "-Creo il deck");
 
-		//----------board settaggio----------
-		setBoard(board);//setta la baord
-		cl.print("", "-Setto la board");
-
 		//----------carte permesso di costruzione----------
 		costructionCard=cc.createCardCostruction(board);//crea le carte costruzione e le metto nella lista
 		cc.createRegionDeck(regions);//riempie i regiondeck delle regioni
@@ -135,7 +129,7 @@ public class Avvio {
 
 		//----------consiglieri e balconi----------
 		consiglieri=cco.createCouncillor(4);//crea i consiglieri
-
+		
 		for(int i=0; i<regions.size(); i++){//scorro il numero di regioni
 			cco.setBalconi(regions.get(i), consiglieri);//crea i balconi delle regioni
 		}
