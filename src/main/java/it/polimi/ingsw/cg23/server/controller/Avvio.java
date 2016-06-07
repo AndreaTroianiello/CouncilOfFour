@@ -25,14 +25,14 @@ import it.polimi.ingsw.cg23.server.view.XmlInterface;
  *
  */
 public class Avvio {
-	Print cl;
-	Setting s;
-	CreateBonus cb;
-	CreateCostruction cc;
-	CreateCouncillor cco;
-	CreateRegionCity crc;
-	Deck dec;
-	King king;
+	private Print cl;
+	private Setting s;
+	private CreateBonus cb;
+	private CreateCostruction cc;
+	private CreateCouncillor cco;
+	private CreateRegionCity crc;
+	private Deck dec;
+	private King king;
 
 	private List <Player> giocatori;//lista giocatori
 	private List <City> citta;//lista giocatori
@@ -50,7 +50,7 @@ public class Avvio {
 
 	/**
 	 * costructor
-	 * @param endPath, the city file name
+	 * @param endPath, the name of the xml file
 	 */
 	public Avvio(String endPath){
 		cc=new CreateCostruction(endPath);
@@ -67,7 +67,6 @@ public class Avvio {
 		this.giocatori=new ArrayList<>();
 		this.consiglieri=new ArrayList<>();
 		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
-
 	}
 
 	/**
@@ -75,7 +74,7 @@ public class Avvio {
 	 */
 	public void startPartita(){//metodo per avviare la partita
 		
-		cl.print("", "\nCreo gli elementi di gioco:");
+		cl.print("", "Creo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
 		//----------creo i type----------
@@ -143,27 +142,27 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
 		cl.createMap(regions, giocatori, king);//stampa la plancia di gioco dalla lista
-		//printAll();//stampa tutte le liste
+		printAll();//stampa tutte le liste
 	}
 
 	/**
 	 * print all the list
 	 */
-	public void printAll(){
+	private void printAll(){
 		cl.print("", "STAMPO TUTTO");
-		cl.print(bonusList.size(),"");
+		cl.print(bonusList.size(),"Numero di bonus:");
 		cl.printList(bonusList);
-		cl.print(regions.size(),"");
+		cl.print(regions.size(),"Numero di regioni:");
 		cl.printList(regions);
-		cl.print(citta.size(),"");
+		cl.print(citta.size(),"Numero di citta':");
 		cl.printList(citta);
-		cl.print(giocatori.size(),"");
+		cl.print(giocatori.size(),"Numero di giocatori:");
 		cl.printList(giocatori);
-		cl.print(politcards.size(),"");
+		cl.print(politcards.size(),"Numero di carte politiche:");
 		cl.printList(politcards);
-		cl.print(costructionCard.size(),"");
+		cl.print(costructionCard.size(),"Numero di carte costruzione:");
 		cl.printList(costructionCard);
-		cl.print(tipi.size(),"");
+		cl.print(tipi.size(),"Numero di tipi (colori):");
 		cl.printList(tipi);
 		cl.print(bk.toString(), "");
 		cl.print(board, "");

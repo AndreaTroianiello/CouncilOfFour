@@ -18,6 +18,9 @@ public class Print {
 
 	private static Logger logger;//logger
 
+	/**
+	 * costructor
+	 */
 	public Print(){
 		//configurazione logger
 		logger = Logger.getLogger(Print.class);
@@ -26,8 +29,10 @@ public class Print {
 
 	/**
 	 * 	print all the element of a list
+	 * @param lista, the list to print
 	 */
 	public void printList(List<?>lista){
+		
 		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
 			print("",lista.get(i).toString());//stampa la lista
 		}
@@ -107,6 +112,7 @@ public class Print {
 
 	/**
 	 * calculate the number of regions
+	 * @param cityInfo, the array 
 	 * @return the number of regions
 	 */
 	public int regionsNumber(String[][] cityInfo){

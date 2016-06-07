@@ -41,13 +41,6 @@ public class CittaXmlTest {
 		assertNotEquals(rcx.cityNumber("ConfigurazionePartitas.xml"), 15);//file inesistente
 	}
 	
-	@Test
-	public void idConversionTest() {
-		assertEquals(rcx.idConversion("      A      B",2).length(), 2);
-		assertNotNull(rcx.idConversion("      A      B",2).length());
-		assertEquals(rcx.idConversion("      A      B",2),"AB");
-	}
-	
 	@Test(expected=XmlException.class)
 	public void ReadFileXxmlTest() throws XmlException{
 		assertEquals(rcx.readFileXml("ConfigurazionePartita.xml").length, 15);

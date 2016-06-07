@@ -10,9 +10,15 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.King;
 
+/**
+ * create the councillors and council
+ */
 public class CreateCouncillor {
-	Setting s;
+	private Setting s;
 	
+	/**
+	 * costructor
+	 */
 	public CreateCouncillor(){
 		this.s=new Setting();
 	}
@@ -20,7 +26,6 @@ public class CreateCouncillor {
 	/**
 	 * the function create the counsillor
 	 * @param numberCouncillor, number of councillors per color to create
-	 * @param b, the board
 	 * @return the list of councillor
 	 */
 	public List<Councillor>  createCouncillor(int numberCouncillor){
@@ -36,7 +41,7 @@ public class CreateCouncillor {
 	}
 
 	/**
-	 * create the balconi region
+	 * create the regions councils
 	 * @param consiglieri, the consiglieri list
 	 * @param reg, the region
 	 */
@@ -52,7 +57,7 @@ public class CreateCouncillor {
 	}
 
 	/**
-	 * create the balconi king
+	 * create the king council
 	 * @param consiglieri, the consiglieri list
 	 * @param k, the king
 	 */

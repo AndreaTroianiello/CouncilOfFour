@@ -27,13 +27,12 @@ public class CreateRegionCity {
 	
 	/**
 	 * costructor
-	 * @param endPath
+	 * @param endPath, the name of the file xml
 	 */
 	public CreateRegionCity(String endPath){
 		this.s=new Setting();
 		this.p=new Print();
 		this.leggiXml=new XmlInterface();
-		
 		this.regioni = new ArrayList<>();
 		this.endPath=endPath;//endpath e' il nome del file xml da leggere
 		this.cityInfo=leggiXml.cittaXml(endPath);
@@ -42,6 +41,7 @@ public class CreateRegionCity {
 	/**
 	 * create the regions object and add at the regions list
 	 * @param bk, the bonus king
+	 * @return the regions list
 	 */
 	public List<Region> createRegions(BonusKing bk){
 		int regionNumber=p.regionsNumber(cityInfo);//numero di regioni
@@ -62,8 +62,9 @@ public class CreateRegionCity {
 	 * @param j, the number of the region
 	 * @param r, the region
 	 * @param bk, the bonus king
+	 * @return the city list
 	 */
-	public List<City> createCities(int j, Region r, BonusKing bk){
+	public List<City> createCities(int j, Region r, BonusKing bk){//crea le citta' della regione
 		int regionNumber=p.regionsNumber(cityInfo);//numero di regioni
 		List <City> citta=new ArrayList<>();//lista citta
 		List <Type> typeList=new ArrayList<>();
@@ -85,6 +86,7 @@ public class CreateRegionCity {
 
 	/**
 	 * set the neighbors of a city
+	 * @param citta, the list of the cities
 	 */
 	public void addNeighbors(List<City> citta){
 		for(int h=0; h<citta.size(); h++){//scorre le citta' a cui aggiungere i vicini
@@ -101,7 +103,7 @@ public class CreateRegionCity {
 	 * @param i, the xml city
 	 * @param h, the city to add neighbors
 	 */
-	public void nearVicini(int i, int h, List<City> citta){//rompe la funzione addNeighbors che aveva troppi innesti
+	private void nearVicini(int i, int h, List<City> citta){//rompe la funzione addNeighbors che aveva troppi innesti
 		for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
 			char link=cityInfo[i][2].charAt(k);
 			for(int j=0; j<citta.size(); j++){//scorro le citta'

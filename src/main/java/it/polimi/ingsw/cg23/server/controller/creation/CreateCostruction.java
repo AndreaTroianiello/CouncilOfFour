@@ -8,12 +8,19 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
+/**
+ * create the costruction card and region deck
+ */
 public class CreateCostruction {
 
 	private CreateBonus cb;
 	private XmlInterface leggiXml;
 	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
 	
+	/**
+	 * costructor
+	 * @param endPath, the name of the file xml
+	 */
 	public CreateCostruction(String endPath){
 		this.cb=new CreateBonus(endPath);
 		this.leggiXml=new XmlInterface();
@@ -22,6 +29,7 @@ public class CreateCostruction {
 	
 	/**
 	 * create and add at the list the costruction cards
+	 * @param b, the board
 	 * @return the costruction card list
 	 */
 	public List<BusinessPermitTile> createCardCostruction(Board b){

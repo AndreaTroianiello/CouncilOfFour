@@ -18,12 +18,50 @@ import java.awt.event.ActionEvent;
  */
 public class HelloFrame extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5251939376496501206L;
 	private JPanel contentPane;
 	private static Logger logger;
+	
+	/**
+	 * Create the frame.
+	 */
+	public HelloFrame() {
+		FrameMap fm=new FrameMap();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+
+		JPanel panel1 = new JPanel();//panel nord
+		contentPane.add(panel1, BorderLayout.NORTH);
+
+		JLabel lblCof = new JLabel("Cof");
+		panel1.add(lblCof);
+
+		JPanel panel2 = new JPanel();//panel centrale
+		contentPane.add(panel2, BorderLayout.CENTER);
+
+		JButton btnRmi = new JButton("RMI");//bottone rmi
+		btnRmi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fm.setVisible(true);//apro la finestra FrameMap
+				setVisible(false);//chiudo la finestra corrente
+			}
+		});
+		panel2.add(btnRmi);
+
+		JButton socket = new JButton("Socket");//bottone socket
+		socket.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fm.setVisible(true);//apro la finestra FrameMap
+				setVisible(false);//chiudo la finestra corrente
+			}
+		});
+		panel2.add(socket);
+	}
 
 	/**
 	 * Launch the application.
@@ -46,43 +84,5 @@ public class HelloFrame extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public HelloFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-
-		JPanel panel1 = new JPanel();//panel nord
-		contentPane.add(panel1, BorderLayout.NORTH);
-
-		JLabel lblCof = new JLabel("Cof");
-		panel1.add(lblCof);
-
-		JPanel panel2 = new JPanel();//panel centrale
-		contentPane.add(panel2, BorderLayout.CENTER);
-
-		JButton btnRmi = new JButton("RMI");//bottone rmi
-		btnRmi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel2.add(btnRmi);
-
-		JButton socket = new JButton("Socket");//bottone socket
-
-		socket.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel2.add(socket);
-	}
-
 }
 

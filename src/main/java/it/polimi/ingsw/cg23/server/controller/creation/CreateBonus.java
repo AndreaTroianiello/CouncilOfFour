@@ -20,6 +20,9 @@ import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
+/**
+ * create the bonus (city, king, costruction card)
+ */
 public class CreateBonus {
 
 	private XmlInterface leggiXml;
@@ -27,6 +30,10 @@ public class CreateBonus {
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	private List <Bonus> bonusList;//lista di bonus
 
+	/**
+	 * costructor
+	 * @param endpath, the name of the file xml
+	 */
 	public CreateBonus(String endpath){
 		this.bonusList=new ArrayList<>();
 		this.leggiXml=new XmlInterface();
@@ -64,6 +71,7 @@ public class CreateBonus {
 	}
 
 	/**
+	 * create the bonuses (null)
 	 * @return a bonus list with all the type of bonus
 	 */
 	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
@@ -80,7 +88,7 @@ public class CreateBonus {
 	}
 
 	/**
-	 * 
+	 * create the bonus king
 	 * @return a list with the king bonus
 	 */
 	public BonusKing bonusKing(){
@@ -96,7 +104,7 @@ public class CreateBonus {
 	}
 
 	/**
-	 * aggiunta di bonus alla carta costruzione
+	 * add bonuses at costruction card
 	 * @param bpt, the business permit tile
 	 * @param bonusTotali, a string with alla bonuses
 	 */

@@ -32,10 +32,9 @@ public class ReadCostructionXml {
 		final int cardNumber=cardNumber(endPath);//numero di carte costruzione nell'xml
 		final int cardNode=cardNodeNumber(endPath);//numero di nodi figli di card nell'xml +1
 		String[][]card=new String[cardNumber][cardNode];//array che contiene le info delle carte costruzione
-		path+=endPath;
 		
 		try{
-			File inputFile = new File(path);//creato nuovo file
+			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
@@ -72,7 +71,7 @@ public class ReadCostructionXml {
 	 * @param idnum, the number of the city link
 	 * @return a string with the city link easily to know 
 	 */
-	public String idConversion(String nome, int idnum){
+	private String idConversion(String nome, int idnum){
 		String idConcat="";//id delle citta' vicine
 		for(int i=1; i<=idnum; i++){
 			int k=6*i;//nella stringa originaria gli id della citta' vicine sono a distanza di 6
@@ -86,7 +85,7 @@ public class ReadCostructionXml {
 	 * @return the number of carts in the xml file
 	 * @throws XmlException 
 	 */
-	public int cardNumber(String endPath) throws XmlException{
+	private int cardNumber(String endPath) throws XmlException{
 		try {	
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -107,7 +106,7 @@ public class ReadCostructionXml {
 	 * @return the number of card nodes, 0 if no card or error
 	 * @throws XmlException 
 	 */
-	public int cardNodeNumber(String endPath) throws XmlException{
+	private int cardNodeNumber(String endPath) throws XmlException{
 		try {	
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati

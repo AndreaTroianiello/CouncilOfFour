@@ -26,7 +26,6 @@ public class Setting {
 
 	private XmlInterface leggiXml;
 	private CreateBonus cb;
-	
 	private List <Bonus> bonusList;//lista di bonus
 	private String endpath;//nome del file che contine le info della citta'
 	
@@ -36,7 +35,6 @@ public class Setting {
 	public Setting(){
 		this.leggiXml=new XmlInterface();
 		this.cb=new CreateBonus("ConfigurazionePartita.xml");
-		
 		this.bonusList=cb.bonusList(null);
 		this.endpath="ConfigurazionePartita.xml";
 	}
@@ -68,6 +66,7 @@ public class Setting {
 	 * @param b, the bonus name
 	 * @param number, the bonus number
 	 * @param nobinfo, nobility track number
+	 * @param nT, the nobility track
 	 */
 	private void nobilityBonus(String b, int number, String nobinfo, NobilityTrack nT){
 		List<NobilityBox> boxList=nT.getNobilityBoxes();//lista delle caselle del nobility track

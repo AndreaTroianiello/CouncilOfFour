@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -22,36 +25,14 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class FrameMap extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7022521494087312889L;
 	private JLayeredPane contentPane;
 	private static Logger logger;
-	
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameMap frame = new FrameMap();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					logger.error("errore frame", e);				
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public FrameMap() {
-
 		//configurazione logger
 		logger = Logger.getLogger(FrameMap.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -75,6 +56,8 @@ public class FrameMap extends JFrame {
 	 * @return scrollPanel
 	 */
 	private JScrollPane setMapPanel(){
+		
+		
 		//Load Image
 		BufferedImage image = null;
 		try {
@@ -112,19 +95,42 @@ public class FrameMap extends JFrame {
 		
 		layeredPane.setPreferredSize(new Dimension(200, 800));
 		layeredPane.setBackground(new Color(255, 120, 120));
-		JLabel label1 = new JLabel("cio");
-		layeredPane.add(label1, JLayeredPane.DEFAULT_LAYER);
 		
+		JButton button1 = new JButton("Back");
+		layeredPane.add(button1, JLayeredPane.DEFAULT_LAYER);
+		button1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		//Create ScrollPane
 		JScrollPane scrollPanel = new JScrollPane(layeredPane);
-		scrollPanel.setPreferredSize(new Dimension(200, 800));
+		scrollPanel.setPreferredSize(new Dimension(250, 800));
 		scrollPanel.setAutoscrolls(true);
 		//scrollPanel.setMaximumSize(new Dimension(200, 800));
 		scrollPanel.getVerticalScrollBar();//barra scorrimento verticale
-		scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
+		//scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
 
 		return scrollPanel;
 	} 
+	
+	/**
+	 * Launch the application.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FrameMap frame = new FrameMap();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					logger.error("errore frame", e);				
+				}
+			}
+		});
+	}
 	
 }
 

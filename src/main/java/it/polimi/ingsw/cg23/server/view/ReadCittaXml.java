@@ -29,6 +29,7 @@ public class ReadCittaXml {
 	 * coloumn 4: bonus of the city
 	 * coloumn 5: region of the city
 	 */
+	
 	/**
 	 * legge il file xml
 	 * @param endpath, the name of file (with the extension ".xml")
@@ -52,13 +53,15 @@ public class ReadCittaXml {
 			for (int i=0; i<citynum; i++){//scorre le citta' presenti nel file xml
 				city=createArray(i, citylist, zoneName, city, citynum);//recupero le informazioni della citta'
 			}
+			
 			return city;
+		
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}
 	}
 
-	public String[][] createArray(int i, NodeList citylist, NodeList zoneName, String[][]city, int citynum){
+	private String[][] createArray(int i, NodeList citylist, NodeList zoneName, String[][]city, int citynum){
 		Node actualNode=citylist.item(i);//nodo attualmente in uso
 		Element actualElement=(Element) actualNode;//cast del nodo in elemento per poterlo usare
 
@@ -85,7 +88,7 @@ public class ReadCittaXml {
 	 * @param idnum, the number of the city link
 	 * @return a string with the city link easily to know 
 	 */
-	public String idConversion(String nome, int idnum){
+	private String idConversion(String nome, int idnum){
 		String idConcat="";//id delle citta' vicine
 		for(int i=1; i<=idnum; i++){
 			int k=7*i;//nella stringa originaria gli id della citta' vicine sono a distanza di 7
