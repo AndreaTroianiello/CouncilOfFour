@@ -17,10 +17,10 @@ public class Client {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		boolean run=true;
 		logger.info("Welcome to Council of Four game!");
-		logger.info("Choose the type of connection. (SOCKET or RMI");
+		logger.info("Choose the type of connection. (SOCKET or RMI)");
+		while(run){
 		Scanner stdIn = new Scanner(System.in);
 		String inputLine=stdIn.nextLine();
-		while(run){
 			switch (inputLine) {
 			case "SOCKET":
 				try {
