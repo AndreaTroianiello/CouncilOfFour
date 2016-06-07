@@ -41,7 +41,7 @@ public class Server {
 	 * The constructor of Server.
 	 */
 	public Server(){
-		logger = Logger.getLogger(ServerSocketView.class);
+		logger = Logger.getLogger(Server.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.index=0;
 	}
@@ -50,11 +50,7 @@ public class Server {
 	private void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry=LocateRegistry.createRegistry(RMI_PORT);
 		System.out.println("Costructing the RMI registry");
-		
-		RMIView rmiView=new RMIView();
-		rmiView.registerObserver(this.controller);
-		this.model.registerObserver(rmiView);
-		
+		RMIView rmiView=new RMIView(this,registry);		
 		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		registry.bind("council", rmiView);
 	}
@@ -76,8 +72,7 @@ public class Server {
 			ServerSocketView view=new ServerSocketView(socket,model);
 			this.model.registerObserver(view);
 			view.registerObserver(this.controller);
-			executor.submit(view);
-			logger.info(index);				
+			executor.submit(view);			
 		}
 		
 		serverSocket.close();
@@ -104,6 +99,7 @@ public class Server {
 			initializationGame();
 		if(index==2)
 			new Thread(new NewGame(this)).start();
+		logger.info(index);	
 	}
 	
 	/**
@@ -124,6 +120,10 @@ public class Server {
 		return controller;
 	}
 	
+	public Board getModel(){
+		return model;
+	}
+	
 	/**
 	 * Starts the server.
 	 * @param args
@@ -131,8 +131,9 @@ public class Server {
 	public static void main(String[] args)  {
 		Server server=new Server();
 		try {
+			server.startRMI();
 			server.startSocket();
-		} catch (IOException e) {
+		} catch (IOException | AlreadyBoundException e) {
 			logger.error(e);
 		}
 	}	

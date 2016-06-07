@@ -1,12 +1,16 @@
 package it.polimi.ingsw.cg23.client;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
+
 public class Client {
 
 	private static Logger logger;
@@ -32,6 +36,13 @@ public class Client {
 				}
 				break;
 			case "RMI":
+				try {
+					ClientRMI clientRMI=new ClientRMI();
+					clientRMI.startClient();
+					run=false;
+				} catch (RemoteException | NotBoundException e) {
+					logger.error(e);
+				}
 				break;
 			default:
 				break;
