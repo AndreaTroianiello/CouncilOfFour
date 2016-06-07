@@ -24,7 +24,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	private final Color councillor;
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
-	
+	private final ControlAction controlAction;
 	
 	/**
 	 * the constructor set the variables of the class: it set the main to true, and the other 
@@ -39,6 +39,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
+		this.controlAction = new ControlAction();
 	}
 	
 	/**
@@ -73,6 +74,8 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board){
+		Region realRegion = controlAction.controlRegion(region, board);
+		if(realRegion != null){
 		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(newCouncillor!=null){
 			if(!this.king){
@@ -94,6 +97,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 			} catch(NegativeNumberException e){
 				getLogger().error(e);
 			}			
+		}
 		}
 	}
 

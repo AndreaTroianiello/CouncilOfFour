@@ -27,13 +27,14 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BuildEmporiumKingTest {
 	
-	Player player;
-	Board board;
+	private Player player;
+	private Board board;
 	private List<PoliticCard> cards;
 	private List<PoliticCard> discardedCards;
 	private City destination;
-	List<Integer> bonusKing = new ArrayList<>();
-	City kingCity;
+	private List<Integer> bonusKing = new ArrayList<>();
+	private City kingCity;
+	private Region region;
 	
 	Type type = new Type("purple", 5, new BonusKing(bonusKing));
 
@@ -46,7 +47,9 @@ public class BuildEmporiumKingTest {
 		types.add(type);
 		kingCity = new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		King king = new King(kingCity);
-		board = new Board(new Deck(new ArrayList<PoliticCard>()), null, types, null, king);
+		region = new Region("mare", 0, null, null);
+		this.board = new Board(new Deck(new ArrayList<PoliticCard>()), new ArrayList<Region>(), types, null, king);
+		board.getRegions().add(region);
 	}
 
 
@@ -165,9 +168,12 @@ public class BuildEmporiumKingTest {
 		this.cards = new ArrayList<>();
 		this.cards.add(card1);
 		this.cards.add(card2);
+		this.player.addPoliticCard(card1);
+		this.player.addPoliticCard(card2);
 		this.player.getRichness().setCoins(100);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.board.getRegions().get(0).addCity(destination);
 		this.board.getKing().getCity().addNeighbor(destination);
 		destination.addNeighbor(this.board.getKing().getCity());
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
@@ -193,6 +199,8 @@ public class BuildEmporiumKingTest {
 		this.cards = new ArrayList<>();
 		this.cards.add(card1);
 		this.cards.add(card2);
+		this.player.addPoliticCard(card1);
+		this.player.addPoliticCard(card2);
 		this.player.getRichness().setCoins(0);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
@@ -222,6 +230,8 @@ public class BuildEmporiumKingTest {
 		this.cards = new ArrayList<>();
 		this.cards.add(card1);
 		this.cards.add(card2);
+		this.player.addPoliticCard(card1);
+		this.player.addPoliticCard(card2);
 		this.player.getRichness().setCoins(10);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
@@ -251,6 +261,8 @@ public class BuildEmporiumKingTest {
 		this.cards = new ArrayList<>();
 		this.cards.add(card1);
 		this.cards.add(card2);
+		this.player.addPoliticCard(card1);
+		this.player.addPoliticCard(card2);
 		Player player2 = new Player("player 1", 0, 100, new NobilityTrack(3));
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));

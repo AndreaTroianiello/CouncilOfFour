@@ -21,6 +21,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = -2799809256014430924L;
 	private final Region region;
+	private final ControlAction controlAction;
 	
 	
 
@@ -33,6 +34,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	public ChangeBusinessPermit(Region region) {
 		super(false);
 		this.region = region;
+		this.controlAction = new ControlAction();
 	}
 
 	/**
@@ -48,22 +50,24 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int assistants = player.getAssistantsPool().getAssistants();
-		assistants = assistants -1;
-		try {
-			player.getAssistantsPool().setAssistants(assistants);
-		} catch (NegativeNumberException e) {
-			getLogger().error("The player doesn't have enough assistants!", e);
-			return;
-		}
+		Region realRegion = controlAction.controlRegion(region, board);
+		if(realRegion != null){
+			int assistants = player.getAssistantsPool().getAssistants();
+			assistants = assistants -1;
+			try {
+				player.getAssistantsPool().setAssistants(assistants);
+			} catch (NegativeNumberException e) {
+				getLogger().error("The player doesn't have enough assistants!", e);
+				return;
+			}
 		
-		region.getDeck().changeShowedDeck();
+			realRegion.getDeck().changeShowedDeck();
 		
-		//notify the change
-		for(BusinessPermitTile bpt : region.getDeck().getShowedDeck()){
-			this.notifyObserver(new BusinessPermitTileChange(bpt));
+			//notify the change
+			for(BusinessPermitTile bpt : realRegion.getDeck().getShowedDeck()){
+				this.notifyObserver(new BusinessPermitTileChange(bpt));
+			}
 		}
-
 	}
 
 	/** 

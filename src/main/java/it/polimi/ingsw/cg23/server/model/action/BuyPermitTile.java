@@ -31,6 +31,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	private final Region region;
 	private final BusinessPermitTile chosenTile;									//wich tile the player chose from the showed ones
 	private List<PoliticCard> discardedCards= new ArrayList<>();
+	private final ControlAction controlAction;
 	
 	
 	
@@ -47,6 +48,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 		this.cards = cards;
 		this.region = region;
 		this.chosenTile = choosenTile;
+		this.controlAction = new ControlAction();
 	}
 
 	
@@ -84,32 +86,36 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		Council council = this.region.getCouncil();
-		int jolly = howManyJolly(board);
-		int match = jolly + howManyMatch(board, council);
-		int moneyPaid = payCoins(match, player);
-		int coins = player.getRichness().getCoins();
+		List<PoliticCard> realHand = this.controlAction.controlPoliticCards(this.cards, player);
+		Region realRegion = this.controlAction.controlRegion(this.region, board);
+		if(realHand != null && realRegion != null){
+			Council council = realRegion.getCouncil();
+			int jolly = howManyJolly(board);
+			int match = jolly + howManyMatch(board, council);
+			int moneyPaid = payCoins(match, player);
+			int coins = player.getRichness().getCoins();
 		
-		if(moneyPaid != -1){
-			try {
-				coins = coins - jolly;
-				player.getRichness().setCoins(coins);
-				player.addAvailableBusinessPermit(chosenTile);
-				board.getDeck().discardCards(discardedCards);
-				this.region.getDeck().changeShowedDeck();
-			} catch (NegativeNumberException e) {
+			if(moneyPaid != -1){
 				try {
-					player.getRichness().setCoins(coins+moneyPaid);
-					this.cards.addAll(discardedCards);
-				} catch (NegativeNumberException e1) {
-					getLogger().error(e1);
+					coins = coins - jolly;
+					player.getRichness().setCoins(coins);
+					player.addAvailableBusinessPermit(chosenTile);
+					board.getDeck().discardCards(discardedCards);
+					realRegion.getDeck().changeShowedDeck();
+				} catch (NegativeNumberException e) {
+					try {
+						player.getRichness().setCoins(coins+moneyPaid);
+						this.cards.addAll(discardedCards);
+					} catch (NegativeNumberException e1) {
+						getLogger().error(e1);
+					}
+					getLogger().error(e);
 				}
-				getLogger().error(e);
 			}
-		}
 		
-		List<BusinessPermitTile> changedDeck = this.region.getDeck().getShowedDeck();
-		this.notifyObserver(new BusinessPermitTileChange(changedDeck.get(changedDeck.size()-1)));
+			List<BusinessPermitTile> changedDeck = realRegion.getDeck().getShowedDeck();
+			this.notifyObserver(new BusinessPermitTileChange(changedDeck.get(changedDeck.size()-1)));
+		}
 	}
 	
 	/**

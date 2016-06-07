@@ -69,8 +69,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 				player.getAvailableBusinessPermits().remove(realTile);
 				player.setUsedBusinessPermit(realTile);
 			} catch (NegativeNumberException e) {
-				getLogger().error("The player doesn't have enough assistants", e);
-										
+				getLogger().error("The player doesn't have enough assistants", e);										
 			}
 				
 		}
@@ -84,7 +83,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 */
 	@Override
 	public String toString() {
-		return "BuildEmporiumTile [card=" + card + ", cityID=" + city + "]";
+		return "BuildEmporiumTile [card=" + card + ", city=" + city + "]";
 	}
 	
 	

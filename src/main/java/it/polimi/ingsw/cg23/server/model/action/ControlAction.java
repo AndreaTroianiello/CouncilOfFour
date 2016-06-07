@@ -8,13 +8,14 @@ import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class ControlAction {
 	
 	
 	/**
-	 * controls if the region sent for the bonus exists in the map
+	 * controls if the city sent for the bonus exists in the map
 	 * @param board
 	 * @return
 	 */
@@ -24,6 +25,20 @@ public class ControlAction {
 				if(controlledCity.getId() == city.getId()){
 					return city;
 				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * controls if the region sent for the bonus exists in the map
+	 * @param board
+	 * @return
+	 */
+	public Region controlRegion(Region controlledRegion, Board board){
+		for(Region region: board.getRegions()){
+			if(controlledRegion.getName() == region.getName()){
+				return region;
 			}
 		}
 		return null;
@@ -40,12 +55,15 @@ public class ControlAction {
 	public List<PoliticCard> controlPoliticCards(List<PoliticCard> hand, Player player){
 		List<PoliticCard> playerCards = player.getHand();
 		int handSize = hand.size();
+		List<PoliticCard> fakeHand = new ArrayList<>();
+		fakeHand.addAll(hand);
 		List<PoliticCard> realHand = new ArrayList<>();
 		for(PoliticCard politicCard: playerCards){
-			for(PoliticCard chosenCard: hand){
+			for(PoliticCard chosenCard: fakeHand){
 				if(politicCard.getColor()==chosenCard.getColor()){
 					realHand.add(politicCard);
-					hand.remove(chosenCard);
+					fakeHand.remove(chosenCard);
+					break;
 				}
 			}
 		}
@@ -69,6 +87,13 @@ public class ControlAction {
 			if(playerTile.toString().equals(tile.toString())){
 				return playerTile;
 			}
+		}
+		return null;
+	}
+	
+	public Councillor controlCouncillor(Councillor councillor, Board board){
+		for(Councillor c : board.getCouncillorPool()){
+			
 		}
 		return null;
 	}

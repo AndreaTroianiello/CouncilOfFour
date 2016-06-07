@@ -86,6 +86,7 @@ public class BuildEmporiumTileTest {
 	@Test
 	public void testRunActionShouldBuildAnEmporiumIfItsAllFine(){
 		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
+		player.addAvailableBusinessPermit(card);
 		action.runAction(player, board);
 		assertEquals(true, this.city.containsEmporium(player));
 	}
