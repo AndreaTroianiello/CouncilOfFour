@@ -31,7 +31,7 @@ public class ElectCouncillorTest {
 	@Before
 	public void setUp() throws Exception {
 		this.king=false;
-		this.region=new Region(null, 0, null, null);
+		this.region=new Region("mare", 0, null, null);
 		this.councillor=Color.ORANGE;
 		regions.add(region);
 		player = new Player("player1", 10, 100, null);

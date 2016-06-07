@@ -74,15 +74,16 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board){
-		Region realRegion = controlAction.controlRegion(region, board);
-		if(realRegion != null){
 		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(newCouncillor!=null){
-			if(!this.king){
-				Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-				board.setCouncillor(oldCouncillor);
-				this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-				this.notifyObserver(new CouncilChange(this.region.getCouncil()));
+			if(!this.king){		
+				Region realRegion = controlAction.controlRegion(region, board);
+				if(realRegion != null){
+					Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+					board.setCouncillor(oldCouncillor);
+					this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+					this.notifyObserver(new CouncilChange(this.region.getCouncil()));
+				}
 			}
 			else{
 				Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);			//remove the first councillor in the chosen council
@@ -97,7 +98,6 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 			} catch(NegativeNumberException e){
 				getLogger().error(e);
 			}			
-		}
 		}
 	}
 

@@ -91,6 +91,8 @@ public class ControlAction {
 		return null;
 	}
 	
+	
+	//DA COMPLETARE
 	public Councillor controlCouncillor(Councillor councillor, Board board){
 		for(Councillor c : board.getCouncillorPool()){
 			
