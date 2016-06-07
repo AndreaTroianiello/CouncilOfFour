@@ -21,7 +21,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	private static final long serialVersionUID = -5184613644917685573L;
 	private final BusinessPermitTile card;
 	private final City city; 						//wich city the player choose from the ones on the card
-
+	private final ControlAction controlAction;
 	
 	/**
 	 * the constructor set the variable of the class: the boolean main is set to true, the city and the cityId
@@ -34,6 +34,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 		super(true);
 		this.card = card;
 		this.city = city;
+		controlAction = new ControlAction();
 	}
 	
 	/**
@@ -60,11 +61,13 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		if(player.getAvailableEmporium() != null && city != null){
+		City realCity = controlAction.controlCity(this.city, board);
+		BusinessPermitTile realTile = controlAction.controlBusinessPermit(card, player);
+		if(player.getAvailableEmporium() != null && realCity != null && realTile != null){
 			try {
-				city.buildEmporium(player.getAvailableEmporium());
-				player.getAvailableBusinessPermits().remove(card);
-				player.setUsedBusinessPermit(card);
+				realCity.buildEmporium(player.getAvailableEmporium());
+				player.getAvailableBusinessPermits().remove(realTile);
+				player.setUsedBusinessPermit(realTile);
 			} catch (NegativeNumberException e) {
 				getLogger().error("The player doesn't have enough assistants", e);
 										

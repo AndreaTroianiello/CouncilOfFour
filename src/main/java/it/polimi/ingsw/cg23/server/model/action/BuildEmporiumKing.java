@@ -13,9 +13,12 @@ import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.server.model.marketplace.Item;
+import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 
 /**
  * the class of the action that allows to build an emporium by the help of the king. It contains a boolean 
@@ -30,6 +33,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private final List<PoliticCard> cards;
 	private List<PoliticCard> discardedCards = new ArrayList<>();
 	private final City destination;
+	private final ControlAction controlAction;
 	
 
 	/**
@@ -43,6 +47,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		super(true);
 		this.cards = cards;
 		this.destination = destination;
+		controlAction = new ControlAction();
 	}
 
 
@@ -56,50 +61,53 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		int jolly = howManyJolly(board);															//control how many jolly there are
-		int match = jolly + howManyMatch(board, board.getKing().getCouncil());						//control how many match there are
-		int payMatch = payCoins(match, player);														//pay the amount of coins relative to the match
-		int steps = (int) board.getKing().getCity().minimumDistance(destination, new ArrayList<City>());		//control the distance between the king's city and the destination
-		int coin = player.getRichness().getCoins();													//control the richness of the player			
+		City realDestination = this.controlAction.controlCity(this.destination, board);
+		List<PoliticCard> realHand = this.controlAction.controlPoliticCards(cards, player);
+		if(realDestination != null && realHand != null){
+			int jolly = howManyJolly(board);															//control how many jolly there are
+			int match = jolly + howManyMatch(board, board.getKing().getCouncil());						//control how many match there are
+			int payMatch = payCoins(match, player);														//pay the amount of coins relative to the match
+			int steps = (int) board.getKing().getCity().minimumDistance(realDestination, new ArrayList<City>());		//control the distance between the king's city and the destination
+			int coin = player.getRichness().getCoins();													//control the richness of the player			
 		
-		if(payMatch!=-1){			
-			try {
-				coin = coin - steps*2 - jolly;
-				player.getRichness().setCoins(coin);
-			} catch (NegativeNumberException e) {
-				this.notifyObserver(new ErrorChange(e.getMessage()));
-				getLogger().error("The player doesn't have enough money!", e);
+			if(payMatch!=-1){			
 				try {
-					player.getRichness().setCoins(coin+payMatch);
-					this.cards.addAll(discardedCards);
-					return;
-				} catch (NegativeNumberException e1) {
-					this.notifyObserver(new ErrorChange(e.getMessage()));
-					getLogger().error(e1);
-				}
-			}
-			
-			if(player.getAvailableEmporium() != null){
-				try {
-					buildEmporiumK(player, board, steps, jolly, payMatch);
+					coin = coin - steps*2 - jolly;
+					player.getRichness().setCoins(coin);
 				} catch (NegativeNumberException e) {
 					this.notifyObserver(new ErrorChange(e.getMessage()));
+					getLogger().error("The player doesn't have enough money!", e);
+					try {
+						player.getRichness().setCoins(coin+payMatch);
+						this.cards.addAll(discardedCards);
+						return;
+					} catch (NegativeNumberException e1) {
+						this.notifyObserver(new ErrorChange(e.getMessage()));
+						getLogger().error(e1);
+					}
 				}
-			}
 			
-			else{															//if the path isn't correct, give back the player the money previously paid
-				try {
-					player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
-				} catch (NegativeNumberException e) {
-					this.notifyObserver(new ErrorChange(e.getMessage()));
-					getLogger().error(e);
+				if(player.getAvailableEmporium() != null){
+					try {
+						buildEmporiumK(player, board, steps, jolly, payMatch);
+					} catch (NegativeNumberException e) {
+						this.notifyObserver(new ErrorChange(e.getMessage()));
+					}
+				}
+			
+				else{															//if the path isn't correct, give back the player the money previously paid
+					try {
+						player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
+					} catch (NegativeNumberException e) {
+						this.notifyObserver(new ErrorChange(e.getMessage()));
+						getLogger().error(e);
+					}
 				}
 			}
+		
+			this.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
+			this.notifyObserver(new BoardChange(board));
 		}
-		
-		this.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
-		this.notifyObserver(new BoardChange(board));
-				
 	}
 
 	
