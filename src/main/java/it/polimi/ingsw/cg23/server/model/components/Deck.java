@@ -13,8 +13,8 @@ import java.util.Random;
 public class Deck implements Serializable {
 
 	private static final long serialVersionUID = 1343800378842862258L;
-	private final List<PoliticCard> politicCards ;								//Main deck.
-	private final List<PoliticCard> discardedCards;
+	private transient final List<PoliticCard> politicCards ;					//Main deck.
+	private transient final List<PoliticCard> discardedCards;
 
 	/**
 	 * The constructor of Deck. Initializes the principal list of politic cards and the list of discarded cards

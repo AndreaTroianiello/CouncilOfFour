@@ -171,6 +171,32 @@ public class Turn {
 			runActionNormal();
 	}
 
+	//bubble sort per ordinare
+	public void createRank(){
+		for(int index = 0; index < players.size(); index++) {
+			boolean flag = false;
+			for(int j = 0; j < players.size()-1; j++) {
+
+				//Se il punteggio è minore del successivo allora scambiamo i valori
+				if(players.get(j).getVictoryTrack().getVictoryPoints()<players.get(j+1).getVictoryTrack().getVictoryPoints()) {
+					players.add(j,players.get(j+1));
+					flag=true; //Lo setto a true per indicare che é avvenuto uno scambio
+				}
+				else
+					//se hanno lo stesso puntaggio guardo gli aiutanti e le carte politiche
+					if(players.get(j).getVictoryTrack().getVictoryPoints()==players.get(j+1).getVictoryTrack().getVictoryPoints()
+					&& players.get(j).getAssistantsPool().getAssistants()+players.get(j).getHand().size()<
+					players.get(j+1).getAssistantsPool().getAssistants()+players.get(j+1).getHand().size()){
+						players.add(j,players.get(j+1));
+						flag=true; //Lo setto a true per indicare che é avvenuto uno scambio
+					}
+
+			}
+			if(!flag)
+				return; //Se flag=false allora vuol dire che nell' ultima iterazione non ci sono stati scambi, quindi il metodo può terminare
+		}
+
+	}
 	/**
 	 * It generates a string formed by the most significant statistics of the Turn.
 	 * @return string
