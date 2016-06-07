@@ -110,7 +110,7 @@ public class Server {
 	 * Initializes a new controller and model.
 	 */
 	private void initializationGame(){
-		Avvio avvio=new Avvio();
+		Avvio avvio=new Avvio("ConfigurazionePartita.xml");
 		avvio.startPartita();
 		model=avvio.getBoard();
 		this.controller = new Controller(model);

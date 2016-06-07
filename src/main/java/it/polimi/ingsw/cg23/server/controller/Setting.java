@@ -18,6 +18,10 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
+/**
+ * 
+ * create the element of the game
+ */
 public class Setting {
 
 	private XmlInterface leggiXml;
@@ -26,6 +30,9 @@ public class Setting {
 	private List <Bonus> bonusList;//lista di bonus
 	private String endpath;//nome del file che contine le info della citta'
 	
+	/**
+	 * costructor
+	 */
 	public Setting(){
 		this.leggiXml=new XmlInterface();
 		this.cb=new CreateBonus("ConfigurazionePartita.xml");
@@ -36,6 +43,8 @@ public class Setting {
 
 	/**
 	 * refill the nobility track with the info find in the xml file
+	 * @param nT, the bobility track to fill
+	 * @return the nobility track filled
 	 */
 	public NobilityTrack nobilityTrackFill(NobilityTrack nT){
 		String[][]nobilityInfo=leggiXml.getNobilityTrackBonus("NobilityTrack.xml");//informazioni recuperate dall'xml
@@ -60,7 +69,7 @@ public class Setting {
 	 * @param number, the bonus number
 	 * @param nobinfo, nobility track number
 	 */
-	public void nobilityBonus(String b, int number, String nobinfo, NobilityTrack nT){
+	private void nobilityBonus(String b, int number, String nobinfo, NobilityTrack nT){
 		List<NobilityBox> boxList=nT.getNobilityBoxes();//lista delle caselle del nobility track
 		
 		for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
@@ -76,6 +85,7 @@ public class Setting {
 
 	/**
 	 * create the type(color) of the city
+	 * @param bk, the bonus king
 	 * @return a list with all the types
 	 */
 	public List<Type> createType(BonusKing bk){

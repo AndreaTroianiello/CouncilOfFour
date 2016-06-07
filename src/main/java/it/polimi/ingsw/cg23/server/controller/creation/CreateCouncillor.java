@@ -21,6 +21,7 @@ public class CreateCouncillor {
 	 * the function create the counsillor
 	 * @param numberCouncillor, number of councillors per color to create
 	 * @param b, the board
+	 * @return the list of councillor
 	 */
 	public List<Councillor>  createCouncillor(int numberCouncillor){
 		Color[] arrayColori=s.color();//recupero un array di Color con i possibili colori
@@ -36,7 +37,7 @@ public class CreateCouncillor {
 
 	/**
 	 * create the balconi region
-	 * @param b, the board
+	 * @param consiglieri, the consiglieri list
 	 * @param reg, the region
 	 */
 	public void setBalconi(Region reg, List<Councillor>consiglieri){
@@ -52,7 +53,7 @@ public class CreateCouncillor {
 
 	/**
 	 * create the balconi king
-	 * @param b, the board
+	 * @param consiglieri, the consiglieri list
 	 * @param k, the king
 	 */
 	public void setBalconi(King k, List<Councillor>consiglieri){

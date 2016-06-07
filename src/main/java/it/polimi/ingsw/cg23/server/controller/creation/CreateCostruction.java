@@ -14,14 +14,15 @@ public class CreateCostruction {
 	private XmlInterface leggiXml;
 	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
 	
-	public CreateCostruction(){
-		this.cb=new CreateBonus("ConfigurazionePartita.xml");
+	public CreateCostruction(String endPath){
+		this.cb=new CreateBonus(endPath);
 		this.leggiXml=new XmlInterface();
 		costructionCard=new ArrayList<>();
 	}
 	
 	/**
 	 * create and add at the list the costruction cards
+	 * @return the costruction card list
 	 */
 	public List<BusinessPermitTile> createCardCostruction(Board b){
 		cb.bonusList(b);

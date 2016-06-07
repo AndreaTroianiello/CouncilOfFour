@@ -21,7 +21,7 @@ public class CreateCostructionTest {
 
 	@Before
 	public void setUp(){
-		cc=new CreateCostruction();
+		cc=new CreateCostruction("ConfigurazionePartita.xml");
 
 		//Set up the bonus king
 		bonuses=new ArrayList<>();

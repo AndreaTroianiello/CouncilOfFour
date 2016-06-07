@@ -12,6 +12,9 @@ import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.server.view.Print;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
+/**
+ * create the cities and the regions
+ */
 public class CreateRegionCity {
 	
 	private Print p;
@@ -22,6 +25,10 @@ public class CreateRegionCity {
 	private String endPath;//nome del file che contine le info della citta'
 	private String[][] cityInfo;//array con le informazioni delle citta'
 	
+	/**
+	 * costructor
+	 * @param endPath
+	 */
 	public CreateRegionCity(String endPath){
 		this.s=new Setting();
 		this.p=new Print();

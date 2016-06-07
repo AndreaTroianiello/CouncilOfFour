@@ -15,8 +15,11 @@ import it.polimi.ingsw.cg23.server.model.components.King;
  *
  */
 public class CreateMap {
-	Print cl;
+	private Print cl;
 
+	/**
+	 * costrucor
+	 */
 	public CreateMap(){
 		this.cl=new Print();
 	}
@@ -31,8 +34,6 @@ public class CreateMap {
 	public void createMap(List<Region> reg, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 
 		List<City> city=getCityfromRegion(reg);
-
-
 		String gamemap="";//la stringa che stampa la plancia di gioco
 		int space=60;//spazio da mettere tra una regione e l'altra
 
@@ -87,7 +88,7 @@ public class CreateMap {
 
 		for(int i=0; i<city.getToken().size(); i++){//ciclo che scorre i bonus di una citta'
 			bonus+=city.getToken().get(i);//ritorna il nome del bonus
-			bonus+=", ";
+			bonus=bonus.concat(", ");
 		}
 		if(bonus.length()==0)//se non ci sono bonus ritorna una stringa vuota
 			return "";
@@ -143,7 +144,7 @@ public class CreateMap {
 		int length=totalSpace-digits(number);//spazi da aggiungere
 		if(digits(number)<totalSpace){
 			for(int j=0; j<length; j++){//ciclo per aggiungere spazi
-				numberExtended+=" ";//aggiungo spazi
+				numberExtended=numberExtended.concat(" ");//aggiungo spazi
 			}
 		}
 		return numberExtended;
@@ -232,7 +233,7 @@ public class CreateMap {
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
 				plancia+=addSpace(addMinus(minus), space);
 			}
-			plancia+="\n";
+			plancia=plancia.concat("\n");
 
 		}
 		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
@@ -360,7 +361,7 @@ public class CreateMap {
 	private String addMinus(int number){
 		String minus="";
 		for(int i=0; i<number; i++){//ciclo che scorre la quantita' di meno da aggiungere
-			minus+="-";//aggiungo un meno
+			minus=minus.concat("-");//aggiungo un meno
 		}
 		return minus;
 	}

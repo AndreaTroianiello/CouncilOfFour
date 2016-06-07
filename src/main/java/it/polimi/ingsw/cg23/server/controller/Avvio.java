@@ -48,13 +48,17 @@ public class Avvio {
 	private XmlInterface leggiXml;
 	private NobilityTrack nT;
 
-	public Avvio(){
-		cc=new CreateCostruction();
+	/**
+	 * costructor
+	 * @param endPath, the city file name
+	 */
+	public Avvio(String endPath){
+		cc=new CreateCostruction(endPath);
 		cco=new CreateCouncillor();
-		crc=new CreateRegionCity("ConfigurazionePartita.xml");
+		crc=new CreateRegionCity(endPath);
 		cl=new Print();
 		s=new Setting();
-		cb=new CreateBonus("ConfigurazionePartita.xml");
+		cb=new CreateBonus(endPath);
 
 		this.leggiXml= new XmlInterface();
 		this.board=null;
@@ -70,14 +74,7 @@ public class Avvio {
 	 * to start the game
 	 */
 	public void startPartita(){//metodo per avviare la partita
-		cl.print("", "Benvenuti a cof!");
-
-		//----------giocatori----------
-		/*int playerNumber=numeroGiocatori();//numero di giocatori della partita (richiesto per ora da cl)
-		for(int i=0; i<playerNumber; i++){//ciclo per creare i giocatori
-			cp.createPlayer();//creo i giocatori
-		}*/
-
+		
 		cl.print("", "\nCreo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
@@ -94,7 +91,6 @@ public class Avvio {
 		cl.print("", "-Creo i bonus");
 
 		//----------regioni----------
-		//giocatori=cp.getGiocatori();//recupero la lista dei giocatori dal controller
 		regions=crc.createRegions(bk);//crea le regioni e ne ritorna la lista
 		cl.print("", "-Creo le regioni");
 
@@ -177,15 +173,12 @@ public class Avvio {
 	 * set the board
 	 * @param b, the board
 	 */
-	public void setBoard(Board board){
+	private void setBoard(Board board){
 
 		board.setDeck(dec);//aggiungo il dec alla board
 		board.setKing(king);//aggiungo il re alla board
 		board.setRegions(regions);//aggiungo le regioni alla board
 		board.setTypes(tipi);//aggiungo i tipi alla board
-		/*for(int i=0; i<giocatori.size(); i++){
-			board.addPlayer(giocatori.get(i));//aggiungo i gicatori alla board
-		}*/
 		for(int i=0; i<consiglieri.size(); i++){
 			board.setCouncillor(consiglieri.get(i));//aggiungo i consiglieri avanzati alla board
 		}
@@ -198,30 +191,5 @@ public class Avvio {
 	 */
 	public Board getBoard(){
 		return board;
-	}
-
-	/**
-	 * 
-	 * @return the number of players
-	 */
-	public int numeroGiocatori(){
-		int playerNumber=0;
-		while(playerNumber==0){//si continua a ciclare finche' non e' stato inserito un numero valido
-			try{//provo a recuperare il numero di giocatori
-				playerNumber=Integer.parseInt(cl.writeReturnValue("Quanti giocatori siete?", null).toString());
-
-			}catch(NumberFormatException e){
-				cl.print(null, "devi inserire un numero");
-				playerNumber=0;
-			}
-		}
-		return playerNumber;
-	}
-
-	/**
-	 * @return the giocatori
-	 */
-	public List<Player> getGiocatori() {
-		return giocatori;
 	}
 }

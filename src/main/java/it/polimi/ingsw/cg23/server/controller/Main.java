@@ -6,7 +6,7 @@ public class Main {
 		
 	}
 	public static void main(String[] args) {
-		Avvio game=new Avvio();
+		Avvio game=new Avvio("ConfigurazionePartita.xml");
 		game.startPartita();
 	}
 }

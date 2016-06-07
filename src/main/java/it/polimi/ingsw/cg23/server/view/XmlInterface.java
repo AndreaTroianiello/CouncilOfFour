@@ -19,6 +19,9 @@ public class XmlInterface {
 	//variabile err nel caso di errore nella lettura del file xml
 	String err="ERROR! Errore nella lettura del file xml: ";
 
+	/**
+	 * costructor
+	 */
 	public XmlInterface(){
 		//configurazione logger
 		logger = Logger.getLogger(XmlInterface.class);
@@ -165,7 +168,7 @@ public class XmlInterface {
 
 	/**
 	 * 
-	 * @param endpath the name of xml file with .xml
+	 * @param endPath the name of xml file with .xml
 	 * @return the number city node in the xml file
 	 */
 	public int cityNodeNumber(String endPath){
