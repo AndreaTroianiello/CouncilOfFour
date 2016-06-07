@@ -137,7 +137,7 @@ public class Avvio {
 		cl.print("", "-Creo i consiglieri");
 
 		//----------nobility track----------
-		s.nobilityTrackFill();//riempio il nobility track
+		s.nobilityTrackFill(nT);//riempio il nobility track
 		cl.print("", "-Setto il Nobility track");
 
 		//----------board settaggio----------

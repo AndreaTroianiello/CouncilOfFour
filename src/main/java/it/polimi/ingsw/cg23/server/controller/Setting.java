@@ -25,21 +25,19 @@ public class Setting {
 	
 	private List <Bonus> bonusList;//lista di bonus
 	private String endpath;//nome del file che contine le info della citta'
-	private NobilityTrack nT;//recupero la lunghezza dall'xm
 	
 	public Setting(){
 		this.leggiXml=new XmlInterface();
 		this.cb=new CreateBonus("ConfigurazionePartita.xml");
 		
 		this.bonusList=cb.bonusList(null);
-		this.nT=new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//configurazione bovility track
 		this.endpath="ConfigurazionePartita.xml";
 	}
 
 	/**
 	 * refill the nobility track with the info find in the xml file
 	 */
-	public NobilityTrack nobilityTrackFill(){
+	public NobilityTrack nobilityTrackFill(NobilityTrack nT){
 		String[][]nobilityInfo=leggiXml.getNobilityTrackBonus("NobilityTrack.xml");//informazioni recuperate dall'xml
 		
 		for(int i=0; i<nobilityInfo.length; i++){//ciclo che scorre il numero di caselle presenti nel file xml
@@ -50,7 +48,7 @@ public class Setting {
 				b=name.substring(1, name.length());//isolo il nome del bonus
 				int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
 
-				nobilityBonus(b, number, nobilityInfo[i][0]);//riempie il nobility track con i bonus
+				nobilityBonus(b, number, nobilityInfo[i][0], nT);//riempie il nobility track con i bonus
 			}
 		}
 		return nT;
@@ -62,7 +60,7 @@ public class Setting {
 	 * @param number, the bonus number
 	 * @param nobinfo, nobility track number
 	 */
-	public void nobilityBonus(String b, int number, String nobinfo){
+	public void nobilityBonus(String b, int number, String nobinfo, NobilityTrack nT){
 		List<NobilityBox> boxList=nT.getNobilityBoxes();//lista delle caselle del nobility track
 		
 		for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
