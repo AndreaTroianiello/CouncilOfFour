@@ -37,7 +37,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param itemToCompare The assistants pool to compare.
 	 * @return If true the business permit tile is the same.
 	 */
-	public boolean compareAssistants(AssistantsPool itemToCompare){
+	private boolean compareAssistants(AssistantsPool itemToCompare){
 		int refenceAssistants=((AssistantsPool) item.getItem()).getAssistants();
 		int assistantsToCompare= itemToCompare.getAssistants();
 		if(refenceAssistants==assistantsToCompare)
@@ -51,7 +51,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param itemToCompare The politic card to compare.
 	 * @return If true the business permit tile is the same.
 	 */
-	public boolean comparePoliticCard(PoliticCard itemToCompare){
+	private boolean comparePoliticCard(PoliticCard itemToCompare){
 		PoliticCard refenceItem=(PoliticCard) item.getItem();
 		if(itemToCompare.getColor()!=null){
 			if(itemToCompare.getColor().equals(refenceItem.getColor()))
@@ -69,7 +69,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param itemToCompare The business permit tile to compare.
 	 * @return If true the business permit tile is the same.
 	 */
-	public boolean compareTile(BusinessPermitTile itemToCompare){
+	private boolean compareTile(BusinessPermitTile itemToCompare){
 		BusinessPermitTile refenceItem=(BusinessPermitTile) item.getItem();
 		if(itemToCompare.getCitiesId().equals(refenceItem.getCitiesId()))
 				return true;
@@ -82,7 +82,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param itemToCompare The item to compare.
 	 * @return If true the item is the same.
 	 */
-	public boolean compareItems(CanBeSold itemToCompare){
+	private boolean compareItems(CanBeSold itemToCompare){
 		if(itemToCompare instanceof BusinessPermitTile && item.getItem() instanceof BusinessPermitTile)
 			return compareTile((BusinessPermitTile) itemToCompare);
 		if(itemToCompare instanceof PoliticCard && item.getItem() instanceof PoliticCard)
@@ -98,7 +98,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param board the game's board.
 	 * @return the item for sale from the market's list. If the item wasn't found returns null.
 	 */
-	public Item searchItem(Board board){
+	private Item searchItem(Board board){
 		Market market=board.getMarket();
 		List<Item> items=market.getItems();
 		for(Item i: items){
@@ -116,7 +116,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param realItem The item to buy.
 	 * @throws NegativeNumberException Throws if the player has negative number of assistants. 
 	 */
-	public void addItem(Player player,Item realItem) throws NegativeNumberException{
+	private void addItem(Player player,Item realItem) throws NegativeNumberException{
 		CanBeSold itemToBuy=realItem.getItem();
 		if(itemToBuy instanceof BusinessPermitTile)
 			player.addAvailableBusinessPermit((BusinessPermitTile)itemToBuy);

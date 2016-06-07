@@ -39,7 +39,7 @@ public class MarketSell extends GameAction implements MarketAction {
 	 * @param player The owner of the assistants.
 	 * @return the item for sale from the player's stats. If the item wasn't found returns null.
 	 */
-	public AssistantsPool searchAssistants(AssistantsPool item,Player player){
+	private AssistantsPool searchAssistants(AssistantsPool item,Player player){
 		AssistantsPool playerAssistants=player.getAssistantsPool();
 		int assistants= playerAssistants.getAssistants()-item.getAssistants();
 		if(assistants>=0){
@@ -59,7 +59,7 @@ public class MarketSell extends GameAction implements MarketAction {
 	 * @param player The owner of the politic card.
 	 * @return the item for sale from the player's stats. If the item wasn't found returns null.
 	 */
-	public PoliticCard searchPoliticCard(PoliticCard item,Player player){
+	private PoliticCard searchPoliticCard(PoliticCard item,Player player){
 		List<PoliticCard> playerHand=player.getHand();
 		for(int index=0;index<playerHand.size();index++){
 			if(playerHand.get(index).getColor()!=null){
@@ -80,7 +80,7 @@ public class MarketSell extends GameAction implements MarketAction {
 	 * @param player The owner of the tile.
 	 * @return the item for sale from the player's stats. If the item wasn't found returns null.
 	 */
-	public BusinessPermitTile searchTile(BusinessPermitTile item,Player player){
+	private BusinessPermitTile searchTile(BusinessPermitTile item,Player player){
 		List<BusinessPermitTile> playerTiles=player.getAvailableBusinessPermits();
 		for(int index=0;index<playerTiles.size();index++){
 			if(playerTiles.get(index).getCitiesId().equals(item.getCitiesId()))
@@ -95,7 +95,7 @@ public class MarketSell extends GameAction implements MarketAction {
 	 * @param player The owner of the item.
 	 * @return the item for sale from the player's stats. If the item wasn't found returns null.
 	 */
-	public CanBeSold searchItem(CanBeSold item,Player player){
+	private CanBeSold searchItem(CanBeSold item,Player player){
 		CanBeSold newItem=null;
 		if(item instanceof BusinessPermitTile){
 			newItem=searchTile((BusinessPermitTile)item, player);

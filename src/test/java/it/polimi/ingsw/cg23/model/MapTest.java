@@ -154,7 +154,6 @@ public class MapTest {
 		assertTrue(regions.get(0).completedRegion(p2));
 		assertFalse(regions.get(1).completedRegion(p));
 		assertFalse(type1.completedType(p));
-		assertTrue(type1.isBonusAvailable());
 		for(City city: regions.get(1).getCities())
 			try {
 				int points=p.getVictoryTrack().getVictoryPoints();
@@ -164,7 +163,6 @@ public class MapTest {
 				assertEquals(p.getAssistantsPool().getAssistants(),10);
 			}
 		assertTrue(type1.completedType(p));
-		assertFalse(type1.isBonusAvailable());
 	}
 
 	/**

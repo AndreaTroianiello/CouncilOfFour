@@ -109,7 +109,7 @@ public class Server {
 	/**
 	 * Initializes a new controller and model.
 	 */
-	public void initializationGame(){
+	private void initializationGame(){
 		Avvio avvio=new Avvio();
 		avvio.startPartita();
 		model=avvio.getBoard();

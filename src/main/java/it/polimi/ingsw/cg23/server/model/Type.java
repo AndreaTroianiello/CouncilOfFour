@@ -52,14 +52,14 @@ public class Type implements Serializable {
 	 * 
 	 * @return the bonusAvailable.
 	 */
-	public boolean isBonusAvailable() {
+	private boolean isBonusAvailable() {
 		return bonusAvailable;
 	}
 
 	/**
 	 *  Sets the bonus status at false. The bonus is not available.
 	 */
-	public void setBonusUnavailable() {
+	private void setBonusUnavailable() {
 		this.bonusAvailable = false;
 	}
 

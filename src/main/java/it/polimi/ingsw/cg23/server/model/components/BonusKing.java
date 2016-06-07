@@ -62,7 +62,7 @@ public class BonusKing implements Serializable{
 	/**
 	 * Increases of one position the index of current bonus. 
 	 */
-	public void increasePosition(){
+	private void increasePosition(){
 		if(index<bonusValues.size()-1)					//The index can be at most the size of the set minus 1.
 			this.index++;
 	}

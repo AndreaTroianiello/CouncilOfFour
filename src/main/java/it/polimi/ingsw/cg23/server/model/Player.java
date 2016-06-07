@@ -65,7 +65,7 @@ public class Player implements Serializable {
 	 * 
 	 * @param availableEmporium 
 	 */
-	public void initializeAvailableEmporium() {
+	private void initializeAvailableEmporium() {
 		for(int index=0;index<10;++index)
 			this.availableEmporiums.add(new Emporium(this));
 	}
