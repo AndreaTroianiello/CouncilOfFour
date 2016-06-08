@@ -18,7 +18,7 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
  *
  */
 public class ReadNobilityTrackXml {
-	private String path="src/main/resources/";//file location
+	private String path="src/main/resources/xmlFiles/";//file location
 
 	/**
 	 * read the lenght of the nobility track in the xml file

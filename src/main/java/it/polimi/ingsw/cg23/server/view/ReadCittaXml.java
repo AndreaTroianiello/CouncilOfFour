@@ -20,7 +20,7 @@ import org.w3c.dom.Element;
  *
  */
 public class ReadCittaXml {
-	private String path="src/main/resources/";//file location
+	private String path="src/main/resources/xmlFiles/";//file location
 	/* array city prototype
 	 * coloumn 0: name of the city
 	 * coloumn 1: color of the city

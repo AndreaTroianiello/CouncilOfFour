@@ -73,6 +73,7 @@ public class CreateBonus {
 	/**
 	 * create the bonuses (null)
 	 * @return a bonus list with all the type of bonus
+	 * @param board, the board
 	 */
 	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());

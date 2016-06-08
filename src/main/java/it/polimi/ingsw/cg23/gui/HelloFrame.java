@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -29,43 +30,58 @@ public class HelloFrame extends JFrame {
 	private static Logger logger;
 	private FrameMap fm;
 	private BufferedImage image = null;
-	
+	private JTextField text1;
+
 	/**
 	 * Create the frame.
 	 */
 	public HelloFrame() {
 		fm=new FrameMap();
-		
+
+		//configurazione logger
+		logger = Logger.getLogger(FrameMap.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+
+
 		//immagine per informazioni grandezza
 		try {
-			image = ImageIO.read(new File("src/main/resources/preview.jpg"));
+			image = ImageIO.read(new File("src/main/resources/images/preview.jpg"));
 		} catch (IOException e) {
 
 			logger.error("impossibile caricare l'ìmmagine", e);
 		}
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, image.getWidth()+50, image.getHeight()+90);
 		//setBounds(0, 0, 1000, 1000);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setMaximumSize(new Dimension(image.getWidth()+50, image.getHeight()+90));
 		setContentPane(contentPane);
-		
+
 		//panel north
 		JPanel panel1 = new JPanel();
 		contentPane.add(panel1, BorderLayout.NORTH);
 		panel1.setBorder(null);
 		setBackgorund(panel1);//aggiungo lo sfondo
-		
+
 		//panel south
 		JPanel panel2 = new JPanel();
 		contentPane.add(panel2, BorderLayout.SOUTH);
 		panel2.setBorder(null);
 		addButton(panel2);//aggiungo i bottoni
+		panel2.add(setText());
+
+	}
+	
+	private JTextField setText(){
+		text1=new JTextField();
+		text1.setText("Loading");
 		
+		text1.setVisible(false);
+		return text1;
 	}
 	
 	/**
@@ -73,13 +89,13 @@ public class HelloFrame extends JFrame {
 	 * @param panel2
 	 */
 	private void setBackgorund(JPanel panel){
-		
+
 		//Create Image Label
 		JLabel label = new JLabel(new ImageIcon(image));
 		label.setBounds(0, 0, image.getWidth(), image.getHeight());
 		panel.add(label, JPanel.CENTER_ALIGNMENT);
 	}
-	
+
 	/**
 	 * add rmi and socket button
 	 * @param panel2
@@ -87,10 +103,14 @@ public class HelloFrame extends JFrame {
 	private void addButton(JPanel panel2){
 		JButton btnRmi = new JButton("RMI");//bottone rmi
 		btnRmi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				text1.setVisible(true);
 				fm.setVisible(true);//apro la finestra FrameMap
-				setVisible(false);//chiudo la finestra corrente
+				setVisible(true);//chiudo la finestra corrente
+
 				//azioni per rmi
+
 			}
 		});
 		panel2.add(btnRmi, JPanel.BOTTOM_ALIGNMENT);
@@ -106,7 +126,7 @@ public class HelloFrame extends JFrame {
 		});
 		panel2.add(socket, JPanel.BOTTOM_ALIGNMENT);
 	}
-	
+
 	/**
 	 * Launch the application.
 	 * @param args

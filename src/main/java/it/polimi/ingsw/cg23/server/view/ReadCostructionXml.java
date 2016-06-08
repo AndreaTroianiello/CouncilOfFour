@@ -20,7 +20,7 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
  *
  */
 public class ReadCostructionXml {
-	private String path="src/main/resources/";//file location
+	private String path="src/main/resources/xmlFiles/";//file location
 	
 	/**
 	 * legge il file xml

@@ -26,6 +26,9 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import javax.swing.JTextArea;
 
+/**
+ * create the map
+ */
 public class FrameMap extends JFrame {
 
 	private static final long serialVersionUID = 7022521494087312889L;
@@ -45,7 +48,7 @@ public class FrameMap extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, totalLengh, totalHeight);//dimensione finestra
-		//setBounds(0, 0, 2000, 2000);
+		setBounds(0, 0, 2000, 2000);
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -65,9 +68,8 @@ public class FrameMap extends JFrame {
 		//Load Image
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("src/main/resources/BackgroundIMG.jpg"));
+			image = ImageIO.read(new File("src/main/resources/images/BackgroundIMG.jpg"));
 		} catch (IOException e) {
-
 			logger.error("impossibile caricare l'ìmmagine", e);
 		}
 
@@ -102,7 +104,7 @@ public class FrameMap extends JFrame {
 		
 		//Create Layered Pane
 		JPanel layeredPane1= new JPanel();
-		layeredPane1.setPreferredSize(new Dimension(280, 30));
+		layeredPane1.setPreferredSize(new Dimension(280, 35));
 		layeredPane1.setBackground(new Color(0, 0, 0));
 
 		JButton button1 = new JButton("Exit");
@@ -120,14 +122,15 @@ public class FrameMap extends JFrame {
 		label1.setForeground(new Color(255,255,255));
 		layeredPane1.add(label1);
 		
-		layeredPane.add(layeredPane1);
+		layeredPane.add(layeredPane1);//aggiungo pane1 al pane
 		
 		
 		JPanel layeredPane2= new JPanel();
 		layeredPane2.setPreferredSize(new Dimension(280, totalHeight-30));
 		layeredPane2.setBackground(new Color(0, 0, 0));
 		layeredPane2.add(createTextArea(), JLayeredPane.TOP_ALIGNMENT);
-		layeredPane.add(layeredPane2);
+		
+		layeredPane.add(layeredPane2);//aggiungo pane2 al pane
 		
 		//Create ScrollPane
 		JScrollPane scrollPanel = new JScrollPane(layeredPane);
@@ -147,7 +150,7 @@ public class FrameMap extends JFrame {
 	private JTextArea createTextArea(){
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font(null, Font.PLAIN, 15));
-		textArea.setPreferredSize(new Dimension(280, totalHeight));//dimensione text area
+		textArea.setPreferredSize(new Dimension(280, totalHeight-30));//dimensione text area
 		textArea.setBackground(new Color(0, 0, 0));//sfondo nero
 		textArea.setForeground(new Color(255,255,255));//scritte bianche
 		textArea.setText("\n\nciao come va \npoi non so come sono \n e non sei \n per \nperc \nsedf \nedcome");
@@ -162,6 +165,7 @@ public class FrameMap extends JFrame {
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					FrameMap frame = new FrameMap();

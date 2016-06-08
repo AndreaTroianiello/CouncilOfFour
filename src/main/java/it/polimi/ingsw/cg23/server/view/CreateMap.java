@@ -54,9 +54,9 @@ public class CreateMap {
 
 				if(kingCity.equals(city.get(kk).getName())){//se la città e' quella che sta ciclando la segno
 					newcity=newcity.substring(0,newcity.length()-2)+"KING";//la citta del re non ha bonus
-					gamemap+=addSpace(newcity, space);
+					gamemap=gamemap.concat(addSpace(newcity, space));
 				}else
-					gamemap+=addSpace(newcity, space);//aggiungo la citta' appena aggiunta a quelle presenti
+					gamemap=gamemap.concat(addSpace(newcity, space));//aggiungo la citta' appena aggiunta a quelle presenti
 			}
 			gamemap=gamemap.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 		}
@@ -88,7 +88,7 @@ public class CreateMap {
 		String bonus="";
 
 		for(int i=0; i<city.getToken().size(); i++){//ciclo che scorre i bonus di una citta'
-			bonus+=city.getToken().get(i);//ritorna il nome del bonus
+			bonus=bonus.concat(city.getToken().get(i));//ritorna il nome del bonus
 			bonus=bonus.concat(", ");
 		}
 		if(bonus.length()==0)//se non ci sono bonus ritorna una stringa vuota
@@ -197,7 +197,7 @@ public class CreateMap {
 		for(int i=0; i<citypReg; i++){//ciclo che scorre le citta' per regione da stampare 5
 			int minus=32;
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
-				plancia+=addSpace(addMinus(minus), space);
+				plancia=plancia.concat(addSpace(addMinus(minus), space));
 			}
 			plancia=plancia.concat("\n");
 
@@ -211,36 +211,37 @@ public class CreateMap {
 				else
 					name=addSpace("|"+city.get(i+citypReg*k).getName()+" - "+city.get(i+citypReg*k).getId(), minus-1)+"|";
 
-				plancia=plancia+addSpace(name, space);//aggiungo il nome della citta'
+				plancia=plancia.concat(addSpace(name, space));//aggiungo il nome della citta'
 			}
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge il tipo(colore) della citta'
-				String tipo=addSpace("|"+city.get(i+citypReg*k).getType(), minus-1)+"|";
-				plancia=plancia+addSpace(tipo, space);//aggiungo il tipo della citta'
+				String tipo=addSpace("|"+city.get(i+citypReg*k).getType(), minus-1);
+				tipo=tipo.concat("|");
+				plancia=plancia.concat(addSpace(tipo, space));//aggiungo il tipo della citta'
 			}
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i bonus
 				String bonus=addSpace("|"+cityBonus(city.get(i+citypReg*k)), minus-1)+"|";
-				plancia=plancia+addSpace(bonus, space);//aggiungo i bonus della citta'
+				plancia=plancia.concat(addSpace(bonus, space));//aggiungo i bonus della citta'
 			}
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i vicini della citta'
 				String vicini=addSpace("|"+getNeighbourID(city.get(i+citypReg*k)), minus-1)+"|";
-				plancia=plancia+addSpace(vicini, space);//aggiungo i vicini della citta'
+				plancia=plancia.concat(addSpace(vicini, space));//aggiungo i vicini della citta'
 			}
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge gli empori
 				String empori=addSpace("|Empori:"+city.get(i+citypReg*k).getEmporiums(), minus-1)+"|";
-				plancia=plancia+addSpace(empori, space);//aggiungo gli empori della citta'
+				plancia=plancia.concat(addSpace(empori, space));//aggiungo gli empori della citta'
 			}
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
-				plancia+=addSpace(addMinus(minus), space);
+				plancia=plancia.concat(addSpace(addMinus(minus), space));
 			}
 			plancia=plancia.concat("\n");
 
@@ -261,7 +262,7 @@ public class CreateMap {
 	private String printName(List<Region>reg, int space){
 		String name="";
 		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
-			name+=addSpace(reg.get(j).getName().toUpperCase(), space);//nomi delle regioni
+			name=name.concat(addSpace(reg.get(j).getName().toUpperCase(), space));//nomi delle regioni
 		}
 		return name;
 	}
@@ -277,7 +278,7 @@ public class CreateMap {
 		int regSize=region.size();//numero di regioni
 		
 		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
-			cardShowed+=addSpace("Carte Costruzione "+region.get(j).getName()+":", space*2);//carte costruzione
+			cardShowed=cardShowed.concat(addSpace("Carte Costruzione "+region.get(j).getName()+":", space*2));//carte costruzione
 		}
 		cardShowed=cardShowed.concat("\n");
 
@@ -286,7 +287,7 @@ public class CreateMap {
 			List<BusinessPermitTile> costruction=region.get(j).getDeck().getShowedDeck();//recupero la lista delle carte permesso costruzione
 			
 			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
-				mino+=addSpace(addMinus(space-5), space);//aggiungo i -
+				mino=mino.concat(addSpace(addMinus(space-5), space));//aggiungo i -
 			}
 			cardShowed=cardShowed.concat(mino);//aggiungo il tutto alla string finale
 		}
@@ -313,7 +314,7 @@ public class CreateMap {
 			List<BusinessPermitTile> costruction=region.get(j).getDeck().getShowedDeck();//recupero la lista delle carte permesso costruzione
 			
 			for(int i=0; i<costruction.size(); i++){//ciclo che scorre le carte costruzione della regione
-				mino+=addSpace(addMinus(space-5), space);
+				mino=mino.concat(addSpace(addMinus(space-5), space));
 			}
 			cardShowed=cardShowed.concat(mino);//aggiungo il tutto alla string finale
 		}
@@ -340,9 +341,9 @@ public class CreateMap {
 				List<Bonus> bo=costruction.get(i).getBonusTile();//lista con i bonus
 				
 				if(bo.size()>1||n<1){//il secondo bonus può non esserci
-					bon+=addSpace("|"+bo.get(n).getName(), space-6);
+					bon=bon.concat(addSpace("|"+bo.get(n).getName(), space-6));
 				}else{
-					bon+=addSpace("|",space-6);//nel caso non ci sia il secondo bonus
+					bon=bon.concat(addSpace("|",space-6));//nel caso non ci sia il secondo bonus
 				}
 				bon=addSpace(bon+"|", space);//aggiungo gli spazi
 				bonusName=bonusName.concat(bon);//aggiungo il tutto alla string finale
@@ -362,7 +363,7 @@ public class CreateMap {
 		String viciniId="Vicini: ";//stringa che contiene i vicini della citta'
 		
 		for(int i=0; i<vicini.size(); i++){//scorre il numero di vicini della citta'
-			viciniId+=Character.toString(vicini.get(i).getId());//aggiunge alla stringa l'id della citta' vicina
+			viciniId=viciniId.concat(Character.toString(vicini.get(i).getId()));//aggiunge alla stringa l'id della citta' vicina
 			viciniId=viciniId.concat(", ");
 		}
 		
