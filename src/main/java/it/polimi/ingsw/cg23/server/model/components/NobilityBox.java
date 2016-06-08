@@ -4,15 +4,41 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
 public class NobilityBox implements Serializable{
 	
 	private static final long serialVersionUID = -2228749391593113128L;
 	private final List<Bonus> bonus;
+	private List<Player> players;
 
 	public NobilityBox() {
 		this.bonus = new ArrayList<>();
+		this.players = new ArrayList<>();
+	}
+	
+	/**
+	 * @return the list of players in the box
+	 */
+	public List<Player> getPlayers(){
+		return players;
+	}
+	
+	/**
+	 * adds a player in the list players
+	 * @param player
+	 */
+	public void addPlayer(Player player){
+		this.players.add(player);	
+	}
+	
+	/**
+	 * removes a player from the list players
+	 * @param player
+	 */
+	public void remove(Player player){
+		this.players.remove(player);	
 	}
 
 	/**

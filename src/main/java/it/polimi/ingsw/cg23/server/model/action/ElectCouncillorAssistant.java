@@ -25,6 +25,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	private final Color councillor;
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
+	private ControlAction controlAction;
 	
 	
 	/**
@@ -40,6 +41,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;
+		this.controlAction = new ControlAction();
 	}
 
 	/**
@@ -75,26 +77,31 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	@Override
 	public void runAction(Player player, Board board){
 		Councillor newCouncillor=board.getCouncillor(councillor);
-		if(!this.king){
-			Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-			board.setCouncillor(oldCouncillor);
-			this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-			this.notifyObserver(new CouncilChange(this.region.getCouncil()));
-		}
-		else{
-			Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-			board.setCouncillor(oldCouncillor);
-			board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-			this.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
-		}
+		if(newCouncillor != null){
+			if(!this.king){
+				Region realRegion = controlAction.controlRegion(region, board);
+				if(realRegion != null){
+					Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+					board.setCouncillor(oldCouncillor);
+					this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+					this.notifyObserver(new CouncilChange(this.region.getCouncil()));
+				}
+			}
+			else{
+				Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+				board.setCouncillor(oldCouncillor);
+				board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+				this.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
+			}
 		
-		int assistants = player.getAssistantsPool().getAssistants();
-		assistants = assistants - 1;
-		try {
-			player.getAssistantsPool().setAssistants(assistants);
-			this.notifyObserver(new PlayerChange(player));
-		} catch (NegativeNumberException e) {
-			getLogger().error("The player doesn't have enough assistants", e);
+			int assistants = player.getAssistantsPool().getAssistants();
+			assistants = assistants - 1;
+			try {
+				player.getAssistantsPool().setAssistants(assistants);
+				this.notifyObserver(new PlayerChange(player));
+			} catch (NegativeNumberException e) {
+				getLogger().error("The player doesn't have enough assistants", e);
+			}
 		}
 		
 	}
