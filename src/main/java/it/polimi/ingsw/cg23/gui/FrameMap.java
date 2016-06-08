@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -36,10 +35,11 @@ public class FrameMap extends JFrame {
 	private JLayeredPane contentPane;
 	private static Logger logger;
 
-	private int totalLengh=(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-	private int totalHeight=(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+	private int totalLengh;
+	private int totalHeight;
 	
-
+	private BufferedImage pointsImg;
+	private BufferedImage mapImg;
 	/**
 	 * Create the frame.
 	 */
@@ -48,52 +48,81 @@ public class FrameMap extends JFrame {
 		logger = Logger.getLogger(FrameMap.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 
+		//configurazione immagini
+		pointsImg=createPointImg();
+		mapImg=createMapImg();
+		
+		//configurazione dimensioni
+		totalHeight=pointsImg.getHeight()+mapImg.getHeight()+65;//altezza totale (la mappa completa: mappa + points)
+		totalLengh=mapImg.getWidth()+350;//larghezza totale (immagine + spazio per il logger)
+		
+		//configurazione contentPane
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, totalLengh, totalHeight);//dimensione finestra
 		contentPane = new JLayeredPane();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		
+		//aggiungo i layer
 		contentPane.add(setMapPanel(), BorderLayout.WEST);//aggiunta dell'immagine di sfondo al jpanel
-
 		contentPane.add(setLoggerPanel(), BorderLayout.EAST);//aggiunta dell'immagine di sfondo al jpanel
-
+		
 	}
-
-	/**
-	 * add the background image
-	 * @return scrollPanel
-	 */
-	private JScrollPane setMapPanel(){
-		//Load Image
+		
+	private BufferedImage createPointImg(){
 		BufferedImage image = null;
+		
+		try {
+			image = ImageIO.read(new File("src/main/resources/images/points.png"));
+		} catch (IOException e) {
+			logger.error("impossibile caricare l'ìmmagine", e);
+		}
+		
+		return image;
+	}
+	
+	private BufferedImage createMapImg(){
+		BufferedImage image = null;
+		
 		try {
 			image = ImageIO.read(new File("src/main/resources/images/BackgroundIMG.jpg"));
 		} catch (IOException e) {
 			logger.error("impossibile caricare l'ìmmagine", e);
 		}
+		
+		return image;
+	}
+	
+	/**
+	 * add the background image
+	 * @return scrollPanel
+	 */
+	private JScrollPane setMapPanel(){
 
-		//Create Image Label
-		JLabel label = new JLabel(new ImageIcon(image));
-		label.setBounds(0, 0, image.getWidth(), image.getHeight());
+		//Create Image Label1 (mappa)
+		JLabel label1 = new JLabel(new ImageIcon(mapImg));
+		label1.setBounds(0, 0, mapImg.getWidth(), mapImg.getHeight());
+		
+		//Create Image Label2 (points)
+		JLabel label2 = new JLabel(new ImageIcon(pointsImg));
+		label2.setBounds(0, 0, pointsImg.getWidth(), pointsImg.getHeight());
 		
 		//Create Layered Pane
 		JPanel layeredPane1 = new JPanel();
-		layeredPane1.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
+		layeredPane1.setPreferredSize(new Dimension(mapImg.getWidth(), totalHeight-50));
 
 		
 		
 		//Populate Layered Pane
-		layeredPane1.add(label, JLayeredPane.DEFAULT_LAYER);
-
-		
-
+		layeredPane1.add(label1, JLayeredPane.TOP_ALIGNMENT);
+		layeredPane1.add(label2, JLayeredPane.TOP_ALIGNMENT);
 
 		//Create ScrollPanel
 		JScrollPane scrollPanel = new JScrollPane(layeredPane1);
+		
 		//preferences scrollPanel
-		scrollPanel.setPreferredSize(new Dimension(totalLengh-325, totalHeight));
+		scrollPanel.setPreferredSize(new Dimension(mapImg.getWidth()+20, totalHeight-50));
 		scrollPanel.getVerticalScrollBar();//barra scorrimento verticale
 		scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
 
@@ -106,7 +135,7 @@ public class FrameMap extends JFrame {
 	 */
 	private JScrollPane setLoggerPanel(){
 		JPanel layeredPane= new JPanel();
-		layeredPane.setPreferredSize(new Dimension(280, totalHeight));
+		layeredPane.setPreferredSize(new Dimension(260, totalHeight-50));
 		layeredPane.setBackground(new Color(255, 255, 255));
 
 		//Create Layered Pane
@@ -114,6 +143,7 @@ public class FrameMap extends JFrame {
 		layeredPane1.setPreferredSize(new Dimension(280, 35));
 		layeredPane1.setBackground(new Color(255, 255, 255));
 
+		//creazione bottone exit
 		JButton button1 = new JButton("Exit");
 		layeredPane1.add(button1, JLayeredPane.TOP_ALIGNMENT);
 		button1.addActionListener(new ActionListener() {
@@ -123,15 +153,17 @@ public class FrameMap extends JFrame {
 				setVisible(false);//chiudo la finestra corrente
 			}
 		});
-
+		
+		//creazione etichetta logger
 		JLabel label1=new JLabel("Logger");//etichetta
 		label1.setFont(new Font(null, Font.PLAIN, 20));//font della label
 		label1.setForeground(new Color(0,0,0));//colore della label
 		layeredPane1.add(label1);//aggiuno la label al pane1
 		layeredPane.add(layeredPane1);//aggiungo pane1 al pane
 
+		//creazione layeredPane2
 		JPanel layeredPane2= new JPanel();
-		layeredPane2.setPreferredSize(new Dimension(280, totalHeight-30));
+		layeredPane2.setPreferredSize(new Dimension(280, totalHeight-100));
 		layeredPane2.setBackground(new Color(0, 0, 0));//colore di sfondo del pane2
 		layeredPane2.add(createTextArea(), JLayeredPane.TOP_ALIGNMENT);
 		layeredPane.add(layeredPane2);//aggiungo pane2 al pane
@@ -139,7 +171,7 @@ public class FrameMap extends JFrame {
 		//Create ScrollPane
 		JScrollPane scrollPanel = new JScrollPane(layeredPane);
 
-		scrollPanel.setPreferredSize(new Dimension(300, totalHeight));
+		scrollPanel.setPreferredSize(new Dimension(300, totalHeight-50));
 		scrollPanel.setAutoscrolls(true);
 		scrollPanel.getVerticalScrollBar();//barra scorrimento verticale
 		scrollPanel.getHorizontalScrollBar();//barra scorrimento orizzontale
@@ -179,12 +211,10 @@ public class FrameMap extends JFrame {
 				FrameMap frame = null;
 				try {
 					frame = new FrameMap();
-
 					frame.setVisible(true);
 				} catch (Exception e) {
 					logger.error("errore frame", e);				
 				}
-				frame.repaint(1000);
 			}
 		});
 	}

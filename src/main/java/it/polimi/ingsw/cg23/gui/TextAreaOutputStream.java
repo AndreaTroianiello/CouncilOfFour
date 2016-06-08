@@ -19,7 +19,7 @@ public class TextAreaOutputStream extends OutputStream{
 	 * @param txtarea, the text area to write on
 	 */
 	public TextAreaOutputStream(JTextArea txtarea) {
-		this(txtarea,1000);
+		this(txtarea,250);
 	}
 
 	/**
