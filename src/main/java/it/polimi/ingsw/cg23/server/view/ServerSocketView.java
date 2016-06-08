@@ -36,10 +36,10 @@ public class ServerSocketView extends View implements Runnable {
 	}
 
 	@Override
-	public void update(Change o) {
-		logger.error("Sending to the client " + o);
+	public void update(Change change) {
+		logger.error("Sending to the client " + change);
 		try {
-			this.socketOut.writeObject(o);
+			this.socketOut.writeObject(change);
 			this.socketOut.flush();
 			this.socketOut.reset();
 

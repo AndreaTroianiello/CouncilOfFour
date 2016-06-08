@@ -15,8 +15,7 @@ public class Richness implements Serializable{
 	private int coins;
 
 	/**
-	 * The constructor of richness.
-	 * @param coins The initial coins of the player.
+	 * The constructor of richness. The default value of coins is 0. 
 	 */
 	public Richness(int coins) {
 		this.coins = coins;

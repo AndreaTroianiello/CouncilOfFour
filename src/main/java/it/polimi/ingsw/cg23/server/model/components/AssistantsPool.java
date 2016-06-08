@@ -15,8 +15,7 @@ public class AssistantsPool implements CanBeSold{
 	private int assistants;
 
 	/**
-	 * The constructor of assistants pool.
-	 * @param assistants The initial number of assistants.
+	 * The constructor of assistants pool. The default value of assistants is 0. 
 	 */
 	public AssistantsPool(int assistants) {
 		this.assistants = assistants;
