@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.server.model.components;
 import java.awt.Color;
 import java.io.Serializable;
 
+import it.polimi.ingsw.cg23.utility.ColorManager;
+
 /**
  * The councillor can be used in a council and can be matched a politic card of the same color.
  * @author Andrea
@@ -37,7 +39,8 @@ public class Councillor implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Councillor [color=" + color + "]";
+		ColorManager manager=new ColorManager();
+		return "PoliticCard [color="+ manager.getColorName(color) +"]";
 	}
 	
 	

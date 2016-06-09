@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.server.model.components;
 import java.awt.Color;
 
 import it.polimi.ingsw.cg23.server.model.marketplace.CanBeSold;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * The councillor can be used to build a emporium and can be matched a councillor of the same color.
@@ -49,6 +50,11 @@ public class PoliticCard implements CanBeSold {
 	 */
 	@Override
 	public String toString() {
-		return "PoliticCard [color="+ color +", jolly="+ jolly+"]";
+		if(color!=null){
+			ColorManager manager=new ColorManager();
+			return "PoliticCard [color="+ manager.getColorName(color) +"]";
+		}
+		else
+			return "PoliticCard [jolly=true]";
 	}
 }
