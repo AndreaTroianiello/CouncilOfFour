@@ -21,11 +21,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
+
 
 /**
  * create the map
@@ -39,8 +40,8 @@ public class FrameMap extends JFrame {
 	private final int totalLengh;
 	private final int totalHeight;
 	
-	private BufferedImage pointsImg;
-	private BufferedImage mapImg;
+	private transient BufferedImage pointsImg;
+	private transient BufferedImage mapImg;
 	
 	/**
 	 * Create the frame.
@@ -56,7 +57,7 @@ public class FrameMap extends JFrame {
 		
 		//configurazione dimensioni
 		totalHeight=pointsImg.getHeight()+mapImg.getHeight()+65;//altezza totale (la mappa completa: mappa + points)
-		totalLengh=mapImg.getWidth()+350;//larghezza totale (immagine + spazio per il logger)
+		totalLengh=mapImg.getWidth()+400;//larghezza totale (immagine + spazio per il logger)
 		
 		//configurazione contentPane
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,12 +137,12 @@ public class FrameMap extends JFrame {
 	private JScrollPane setLoggerPanel(){
 		//crezione layer Panel
 		JPanel layeredPane= new JPanel();
-		layeredPane.setPreferredSize(new Dimension(290, totalHeight-50));//dimensione
+		layeredPane.setPreferredSize(new Dimension(1000, totalHeight-50));//dimensione
 		layeredPane.setBackground(new Color(255, 255, 255));//colore sfondo
 		
 		//creazione bottone exit
 		JButton button1 = new JButton("Exit");
-		layeredPane.add(button1, JLayeredPane.TOP_ALIGNMENT);//aggiunta bottone al layer panel
+		layeredPane.add(button1, JPanel.LEFT_ALIGNMENT);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -155,13 +156,12 @@ public class FrameMap extends JFrame {
 		label1.setFont(new Font(null, Font.PLAIN, 20));//font della label
 		label1.setForeground(new Color(0,0,0));//colore della label
 		layeredPane.add(label1);//aggiuno la label al layer panel
-		
 		//creazione textArea
 		JTextArea textArea=createTextArea();
 		
 		//creazione bottone clear
 		JButton button2 = new JButton("Clear");
-		layeredPane.add(button2, JLayeredPane.TOP_ALIGNMENT);//aggiunta bottone al layer panel
+		layeredPane.add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +179,7 @@ public class FrameMap extends JFrame {
 		);
 		
 		//settaggio scroll panel
-		scrollPanel.setPreferredSize(new Dimension(300, totalHeight-50));
+		scrollPanel.setPreferredSize(new Dimension(360, totalHeight-50));
 		scrollPanel.setAutoscrolls(true);
 
 		return scrollPanel;
@@ -193,7 +193,7 @@ public class FrameMap extends JFrame {
 		JTextArea textArea = new JTextArea();
 		
 		textArea.setFont(new Font(null, Font.PLAIN, 15));//font della text area
-		textArea.setPreferredSize(new Dimension(290, totalHeight-100));//dimensione text area
+		textArea.setPreferredSize(new Dimension(1000, totalHeight-100));//dimensione text area
 		textArea.setBackground(new Color(255,255,255));//sfondo bianco
 		textArea.setForeground(new Color(0,0,0));//scritte nere
 
@@ -202,7 +202,6 @@ public class FrameMap extends JFrame {
 		PrintStream ps = new PrintStream( taos );
 		System.setOut(ps);//scrive l'out nella text area
 		System.setErr(ps);//scrive l'err sulla text area
-		System.out.println("ok");
 		return textArea;
 	}
 

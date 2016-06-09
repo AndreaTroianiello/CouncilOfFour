@@ -6,13 +6,19 @@ import java.util.*;
 import java.util.List;
 import javax.swing.*;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+import it.polimi.ingsw.cg23.server.view.XmlInterface;
+
 /**
  * redirect the console out to the gui logger
  * http://stackoverflow.com/questions/342990/create-java-console-inside-a-gui-panel
  */
 public class TextAreaOutputStream extends OutputStream{
-	private byte[] oneByte; // array for write(int val);
+	private byte[] oneByte; // array per scrivere
 	private Appender appender; // most recent action
+	private static Logger logger;//logger
 
 	/**
 	 * costructor
@@ -20,6 +26,11 @@ public class TextAreaOutputStream extends OutputStream{
 	 */
 	public TextAreaOutputStream(JTextArea txtarea) {
 		this(txtarea, 1000);
+
+		//configurazione logger
+		logger = Logger.getLogger(XmlInterface.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+
 	}
 
 	/**
@@ -32,6 +43,10 @@ public class TextAreaOutputStream extends OutputStream{
 		}
 		oneByte=new byte[1];
 		appender=new Appender(txtara,maxlin);
+
+		//configurazione logger
+		logger = Logger.getLogger(XmlInterface.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logge
 	}
 
 	/** Clear the current console text area. */
@@ -46,7 +61,7 @@ public class TextAreaOutputStream extends OutputStream{
 		appender=null;
 	}
 
-	
+
 	/**
 	 * empty method
 	 */
@@ -77,7 +92,8 @@ public class TextAreaOutputStream extends OutputStream{
 	private static  String bytesToString(byte[] ba, int str, int len) {
 		try { 
 			return new String(ba,str,len,"UTF-8"); 
-		} catch(UnsupportedEncodingException thr) { 
+		} catch(UnsupportedEncodingException e) {
+			logger.error("errore", e);
 			return new String(ba,str,len); 
 		} // all JVMs are required to support UTF-8
 	}
@@ -88,10 +104,9 @@ public class TextAreaOutputStream extends OutputStream{
 
 	static class Appender implements Runnable
 	{
+		private static final String         EOL1="\n";
+		private static final String         EOL2=System.getProperty("line.separator",EOL1);
 
-		static private final String         EOL1="\n";
-		static private final String         EOL2=System.getProperty("line.separator",EOL1);
-		
 		private final JTextArea             textArea;
 		private final int                   maxLines;                                                   // maximum lines allowed in text area
 		private final LinkedList<Integer>   lengths;                                                    // length of lines within text area
@@ -152,7 +167,5 @@ public class TextAreaOutputStream extends OutputStream{
 			clear =false;
 			queue =true;
 		}
-
 	}
-
 }

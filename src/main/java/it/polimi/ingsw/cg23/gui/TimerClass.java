@@ -23,16 +23,20 @@ public class TimerClass {
 		timeRemaining=time/1000;
 		countdownTimer = new Timer(1000, new CountdownTimerListener());
 		this.label = passedLabel;
+		
+	}
+	
+	public void start(){
 		countdownTimer.start();
 	}
-
+	
 	class CountdownTimerListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (--timeRemaining > 0) {
 				label.setText(String.valueOf(timeRemaining));
 			} else {
-				label.setText("Time's up!");
+				label.setText("Gioco completo");
 				countdownTimer.stop();
 			}
 		}

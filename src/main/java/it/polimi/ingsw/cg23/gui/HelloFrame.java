@@ -28,8 +28,9 @@ public class HelloFrame extends JFrame {
 	private JPanel contentPane;
 	private static Logger logger;
 	private FrameMap fm;
-	private BufferedImage image = null;
-	final int time=20000;
+	private transient BufferedImage image = null;
+	private int time=20000;//tempo di attesa
+	private JLabel countdownLabel;//etichetta countdown
 
 	/**
 	 * Create the frame.
@@ -59,7 +60,6 @@ public class HelloFrame extends JFrame {
 		contentPane.setMaximumSize(new Dimension(image.getWidth()+50, image.getHeight()+90));
 		setContentPane(contentPane);
 
-
 		setPanel();
 
 	}
@@ -79,7 +79,8 @@ public class HelloFrame extends JFrame {
 
 	private JLabel labelCountdown(){
 		JLabel label=new JLabel(); 
-		new TimerClass(label, time);//countdown
+		TimerClass tc=new TimerClass(label, time);//countdown
+		tc.start();
 		return label;
 	}
 
@@ -100,11 +101,14 @@ public class HelloFrame extends JFrame {
 	 * @param panel2
 	 */
 	private void addButton(JPanel panel2){
+
 		JButton btnRmi = new JButton("RMI");//bottone rmi
 		btnRmi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.add(labelCountdown());//countdown di attesa
+				countdownLabel=labelCountdown();
+				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
+				
 				fm.setVisible(true);//apro la finestra FrameMap
 				setVisible(true);//chiudo la finestra corrente
 
@@ -118,9 +122,16 @@ public class HelloFrame extends JFrame {
 		socket.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentPane.add(labelCountdown());//countodwn di attesa
+				countdownLabel=labelCountdown();
+				
+				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
+				
 				fm.setVisible(true);//apro la finestra FrameMap
-				setVisible(false);//chiudo la finestra corrente
+				setVisible(true);//chiudo la finestra corrente
+			
+				if(countdownLabel.getText()=="Gioco completo")
+					setVisible(false);//chiudo la finestra corrente
+				
 				//azioni per socket
 			}
 		});
