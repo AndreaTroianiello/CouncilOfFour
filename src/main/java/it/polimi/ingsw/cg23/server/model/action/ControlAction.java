@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,10 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
-public class ControlAction {
+public class ControlAction implements Serializable{
 	
-	
+	private static final long serialVersionUID = 3589241930022739342L;
+
 	/**
 	 * controls if the city sent for the bonus exists in the map
 	 * @param board
