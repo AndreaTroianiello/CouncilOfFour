@@ -253,10 +253,11 @@ public class BuildEmporiumKingTest {
 		this.cards.add(card2);
 		this.player.addPoliticCard(card1);
 		this.player.addPoliticCard(card2);
-		this.player.getRichness().setCoins(10);
+		this.player.getRichness().setCoins(9);
 		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
-		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.destination = new City('I', "Iuvenar", this.type, new Region("mare", 0, null, new BonusKing(bonusKing)));
+		this.board.getRegions().get(0).addCity(destination);
 		this.board.getKing().getCity().addNeighbor(destination);
 		destination.addNeighbor(this.board.getKing().getCity());
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
@@ -266,7 +267,7 @@ public class BuildEmporiumKingTest {
 	}
 	
 	/**
-	 * it tests if runAction() works properly when all is fine
+	 * it tests if runAction() works properly when the player doesn't have assistants
 	 * @throws NegativeNumberException
 	 */
 	@Test
@@ -299,4 +300,39 @@ public class BuildEmporiumKingTest {
 		assertEquals(kingCity, city);
 	}
 
+	/**
+	 * it tests if runAction() works properly when the player doesn't have emporiums
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveEmpuriums() throws NegativeNumberException{
+		System.out.println("I'M RUNNING THE TEST");
+		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
+		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
+		Council council = board.getKing().getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
+		System.out.println(this.board.getKing().getCouncil().toString());
+		this.cards = new ArrayList<>();
+		this.cards.add(card1);
+		this.cards.add(card2);
+		this.player.addPoliticCard(card1);
+		this.player.addPoliticCard(card2);
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
+		this.player.setEmporium(new Emporium(this.player));
+		for(int i=0; i<10; i++){
+			this.player.getAvailableEmporium();
+		}
+		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
+		this.board.getRegions().get(0).addCity(destination);
+		this.board.getKing().getCity().addNeighbor(destination);
+		destination.addNeighbor(this.board.getKing().getCity());
+		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
+		action.runAction(player, board);
+		City city = board.getKing().getCity();
+		assertEquals(kingCity, city);
+	}
 }

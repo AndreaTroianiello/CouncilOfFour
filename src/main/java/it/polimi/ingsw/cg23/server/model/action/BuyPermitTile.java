@@ -3,11 +3,8 @@ package it.polimi.ingsw.cg23.server.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 
-import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
-import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;

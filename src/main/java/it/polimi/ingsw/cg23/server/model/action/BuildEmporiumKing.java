@@ -3,22 +3,16 @@ package it.polimi.ingsw.cg23.server.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.EmporiumsChange;
 import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
-import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
-import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.server.model.marketplace.Item;
-import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 
 /**
  * the class of the action that allows to build an emporium by the help of the king. It contains a boolean 

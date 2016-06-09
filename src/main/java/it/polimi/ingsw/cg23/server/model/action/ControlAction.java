@@ -9,7 +9,6 @@ import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class ControlAction implements Serializable{

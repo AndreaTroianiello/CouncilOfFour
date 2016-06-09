@@ -1,12 +1,10 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
-import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.server.controller.change.EmporiumsChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
-import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 

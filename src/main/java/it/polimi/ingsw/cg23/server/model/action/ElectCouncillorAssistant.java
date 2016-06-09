@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.server.model.action;
 
 import java.awt.Color;
 
-import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;

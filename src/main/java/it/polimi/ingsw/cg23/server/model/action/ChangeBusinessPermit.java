@@ -1,8 +1,5 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.server.model.Board;
