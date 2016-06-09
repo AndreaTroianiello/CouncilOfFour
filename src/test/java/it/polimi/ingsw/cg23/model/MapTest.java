@@ -37,8 +37,12 @@ public class MapTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		p=new Player("player1",10,100,new NobilityTrack(3));
-		p2=new Player("player2", 10, 10,new NobilityTrack(3));
+		p=new Player("player1",new NobilityTrack(3));
+		p.getAssistantsPool().setAssistants(10);
+		p.getRichness().setCoins(100);
+		p2=new Player("player2",new NobilityTrack(3));
+		p2.getAssistantsPool().setAssistants(10);
+		p2.getRichness().setCoins(10);
 		tiles=new ArrayList<>();
 		regions=new ArrayList<>();
 		for(int i=0;i<10;++i){

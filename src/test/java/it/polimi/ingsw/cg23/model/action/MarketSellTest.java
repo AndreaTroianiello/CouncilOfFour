@@ -25,8 +25,11 @@ public class MarketSellTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player=new Player("user",10,100,null);
-		assistants=new AssistantsPool(9);
+		player=new Player("user",null);
+		player.getAssistantsPool().setAssistants(10);
+		player.getRichness().setCoins(100);
+		assistants=new AssistantsPool();
+		assistants.setAssistants(9);
 		cards=Arrays.asList(new PoliticCard(Color.BLACK, false),
 							new PoliticCard(Color.BLACK, false),
 							new PoliticCard(Color.RED, false),

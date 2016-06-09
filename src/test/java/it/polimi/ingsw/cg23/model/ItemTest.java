@@ -21,9 +21,10 @@ public class ItemTest {
 	@Before
 	public void setUp() throws Exception {
 		card=new PoliticCard(null, false);
-		assistants=new AssistantsPool(10);
+		assistants=new AssistantsPool();
+		assistants.setAssistants(10);
 		tile=new BusinessPermitTile(null,"");
-		p=new Player("ciao", 0, 0, null);
+		p=new Player("ciao", null);
 	}
 
 	@Test

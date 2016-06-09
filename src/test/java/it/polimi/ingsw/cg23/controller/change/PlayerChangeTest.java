@@ -16,7 +16,7 @@ public class PlayerChangeTest {
 
 	@Test
 	public void testPlayerChange() {
-		Player newPlayer=new Player("user",0,0,null);
+		Player newPlayer=new Player("user",null);
 		PlayerChange change=new PlayerChange(newPlayer);
 		assertEquals(change.toString(),"PlayerChange [newPlayer=Player [user=user, additionalAction=false,"
 							+ " assistantsPool=0, richness=0, victoryTrack=0, nobilityBoxPosition=0]]" );

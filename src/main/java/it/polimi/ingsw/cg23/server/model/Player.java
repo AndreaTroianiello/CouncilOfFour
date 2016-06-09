@@ -38,31 +38,8 @@ public class Player implements Serializable {
 	public Player(String user, NobilityTrack nobilityTrack) { 
 		this.user = user;
 		this.additionalAction = false;
-		this.assistantsPool = new AssistantsPool(0);
-		this.richness = new Richness(0);
-		this.victoryTrack = new VictoryTrack();
-		this.politicsCards= new ArrayList<>();
-		this.availableEmporiums=new ArrayList<>();
-		this.usedEmporiums=new ArrayList<>();
-		this.availableBusinesPermits=new ArrayList<>();
-		this.usedBusinessPermits=new ArrayList<>();
-		this.nobilityBoxPosition=0; 
-		this.nobilityTrack= nobilityTrack;
-		initializeAvailableEmporium();
-	}
-	
-	/**
-	 * The class' constructor. Initializes the player with default stats.
-	 * @param user The username of the player.
-	 * @param assistants The initial number of player's assistants.
-	 * @param coins The initial number of player's coins.
-	 * @param nobilityTrack The nobility track of the game.
-	 */
-	public Player(String user, int assistants, int coins, NobilityTrack nobilityTrack) { 
-		this.user = user;
-		this.additionalAction = false;
-		this.assistantsPool = new AssistantsPool(assistants);
-		this.richness = new Richness(coins);
+		this.assistantsPool = new AssistantsPool();
+		this.richness = new Richness();
 		this.victoryTrack = new VictoryTrack();
 		this.politicsCards= new ArrayList<>();
 		this.availableEmporiums=new ArrayList<>();

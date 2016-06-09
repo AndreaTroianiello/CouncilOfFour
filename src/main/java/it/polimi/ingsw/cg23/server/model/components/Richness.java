@@ -17,8 +17,8 @@ public class Richness implements Serializable{
 	/**
 	 * The constructor of richness. The default value of coins is 0. 
 	 */
-	public Richness(int coins) {
-		this.coins = coins;
+	public Richness() {
+		this.coins = 0;
 	}
 
 	/**

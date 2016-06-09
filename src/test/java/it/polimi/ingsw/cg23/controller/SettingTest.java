@@ -65,8 +65,8 @@ public class SettingTest {
 		cities2.add(new City('C', "Crotone", type1 , regions.get(0)));
 		cities2.add(new City('R', "Roma", type1 , regions.get(1)));
 
-		player.add(new Player("player1",10,100,new NobilityTrack(3)));
-		player.add(new Player("player2", 10, 10,new NobilityTrack(3)));
+		player.add(new Player("player1",new NobilityTrack(3)));
+		player.add(new Player("player2",new NobilityTrack(3)));
 
 		cartePolitiche=s.politicList(13,12);
 	}

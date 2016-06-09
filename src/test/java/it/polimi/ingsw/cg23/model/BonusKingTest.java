@@ -30,7 +30,9 @@ public class BonusKingTest {
 		bonuses2=new ArrayList<>();
 		bonuses2.add(25);
 		bonuses2.add(0);
-		player=new Player("user", 10, 10, null);
+		player=new Player("user", null);
+		player.getAssistantsPool().setAssistants(10);
+		player.getRichness().setCoins(10);
 	}
 
 	/**

@@ -28,7 +28,7 @@ public class CreationPlayer extends Action {
 	 * @param model The model of the game.
 	 */
 	public void runAction(Controller controller,Board model){
-		Player player=new Player(name, 0, 0, model.getNobilityTrack());
+		Player player=new Player(name, model.getNobilityTrack());
 		controller.putSocketPlayer(super.getPlayer(), player);
 	}
 

@@ -31,7 +31,7 @@ public class BoardTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		p=new Player("user1", 0, 0, null);
+		p=new Player("user1", null);
 		region=new Region("region1", 0, null, null);
 		type=new Type("type1", 0, null);
 		deck=new Deck(new ArrayList<PoliticCard>());

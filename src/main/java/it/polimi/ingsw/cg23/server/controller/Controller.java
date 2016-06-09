@@ -101,7 +101,7 @@ public class Controller implements Observer<Action>{
 	private void gameTwoPlayers(){
 		Random rnd=new Random();
 		if(model.getPlayers().size()==2){
-			Player player=new Player("NaN",0,0,model.getNobilityTrack());
+			Player player=new Player("NaN",model.getNobilityTrack());
 			List<Region>reg=model.getRegions();
 			for(Region r:reg){
 				List<Character> list=r.getDeck().getShowedDeck().get(rnd.nextInt(r.getDeck().getShowedDeck().size())).getCitiesId();

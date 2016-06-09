@@ -21,6 +21,7 @@ import it.polimi.ingsw.cg23.server.model.components.Emporium;
 import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BuildEmporiumTileTest {
 	
@@ -93,10 +94,12 @@ public class BuildEmporiumTileTest {
 
 	/**
 	 * it tests if runAction() works properly when the player doesn't have assistants
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants(){
-		Player player2 = new Player("player2", 0, 100, new NobilityTrack(3));
+	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants() throws NegativeNumberException{
+		Player player2 = new Player("player2", new NobilityTrack(3));
+		player2.getRichness().setCoins(100);
 		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
 		this.city.getEmporiums().add(new Emporium(player));
 		action.runAction(player2, board);

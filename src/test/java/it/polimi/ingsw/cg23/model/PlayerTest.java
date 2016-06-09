@@ -46,7 +46,8 @@ public class PlayerTest {
 		citiesId.add('C');
 		tile=new BusinessPermitTile(citiesId, "collina" );
 		tile.addBonus(new BonusVictoryPoints(3));
-		p=new Player("player1",10,0,new NobilityTrack(3));
+		p=new Player("player1",new NobilityTrack(3));
+		p.getAssistantsPool().setAssistants(10);
 	}
 
 	/**

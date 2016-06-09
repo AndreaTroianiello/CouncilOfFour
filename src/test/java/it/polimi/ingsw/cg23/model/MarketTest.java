@@ -22,12 +22,14 @@ public class MarketTest {
 	private List<Player> players;
 	@Before
 	public void setUp() throws Exception {
-		Player player=new Player("ciao",0,0,null);
+		Player player=new Player("ciao",null);
 		item1=new Item(new PoliticCard(Color.BLACK,false), player , 10);
 		List<Character> id=Arrays.asList('A','B','C');
 		item2=new Item(new BusinessPermitTile(id, "regione"),player,5);
-		item3=new Item(new AssistantsPool(10),player,5);		
-		players=Arrays.asList(new Player("user1",0,0,null),new Player("user2",0,0,null),new Player("user3",0,0,null));
+		AssistantsPool pool=new AssistantsPool();
+		pool.setAssistants(10);
+		item3=new Item(pool,player,5);		
+		players=Arrays.asList(new Player("user1",null),new Player("user2",null),new Player("user3",null));
 	}
 
 	@Test

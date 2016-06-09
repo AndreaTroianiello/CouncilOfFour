@@ -14,7 +14,7 @@ public class StateTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		p=new Player("user1", 0, 0, null);
+		p=new Player("user1", null);
 	}
 
 	@Test

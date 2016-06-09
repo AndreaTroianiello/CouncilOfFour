@@ -16,6 +16,7 @@ import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 
@@ -28,9 +29,15 @@ public class MarketBuyTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player1=new Player("user1",10,100,null);
-		player2=new Player("user2",10,100,null);
-		player3=new Player("user3",10,100,null);
+		player1=new Player("user1",null);
+		player2=new Player("user2",null);
+		player3=new Player("user3",null);
+		player1.getAssistantsPool().setAssistants(10);
+		player2.getAssistantsPool().setAssistants(10);
+		player3.getAssistantsPool().setAssistants(10);
+		player1.getRichness().setCoins(100);
+		player2.getRichness().setCoins(100);
+		player3.getRichness().setCoins(100);
 		cards=Arrays.asList(new PoliticCard(Color.BLACK, false),
 				new PoliticCard(Color.BLACK, false),
 				new PoliticCard(Color.RED, false),
@@ -51,16 +58,22 @@ public class MarketBuyTest {
 		market.addItemToSell(new Item(cards.get(3), player2, 5));
 		market.addItemToSell(new Item(tiles.get(1), player1, 5));
 		market.addItemToSell(new Item(cards.get(2), player3, 10));
-		market.addItemToSell(new Item(new AssistantsPool(10), player1, 15));
+		AssistantsPool pool=new AssistantsPool();
+		pool.setAssistants(10);
+		market.addItemToSell(new Item(pool, player1, 15));
 	}
 
 	@Test
-	public void testMarketBuy() {
+	public void testMarketBuy() throws NegativeNumberException {
 		assertTrue(board.getMarket().getItems().size()==5);
-
+		List<Player> falsePlayers=Arrays.asList(new Player("user1",null),new Player("user2",null),new Player("user3",null));
+		for(Player player:falsePlayers){
+			player.getAssistantsPool().setAssistants(10);
+			player.getRichness().setCoins(100);
+		}
 		//First action. Buy a normal card.
 		GameAction action=new MarketBuy(new Item(new PoliticCard(Color.BLACK, false),
-				new Player("user1",10,100,null),
+				falsePlayers.get(0),
 				5));
 		action.runAction(player2, board);
 		assertTrue(player2.getHand().size()==1);
@@ -70,7 +83,7 @@ public class MarketBuyTest {
 
 		//Second action. Buy a jolly.
 		action=new MarketBuy(new Item(new PoliticCard(null, true),
-				new Player("user2",10,100,null),
+				falsePlayers.get(1),
 				5));
 		action.runAction(player1, board);
 		assertTrue(player1.getHand().size()==1);
@@ -81,7 +94,7 @@ public class MarketBuyTest {
 		//Third action. Buy nothing.
 		List<Character> ids=Arrays.asList('A','B','C');
 		action=new MarketBuy(new Item(new BusinessPermitTile(ids,"regione"),
-				new Player("user1",10,100,null),
+				falsePlayers.get(0),
 				15));
 		action.runAction(player2, board);
 		assertTrue(player2.getAvailableBusinessPermits().size()==0);
@@ -90,8 +103,10 @@ public class MarketBuyTest {
 		assertTrue(board.getMarket().getItems().size()==3);
 
 		//Fourth action. Buy assistants.(nothing)
-		action=new MarketBuy(new Item(new AssistantsPool(15),
-				new Player("user1",10,100,null),
+		AssistantsPool pool1=new AssistantsPool();
+		pool1.setAssistants(15);
+		action=new MarketBuy(new Item(pool1,
+				falsePlayers.get(0),
 				15));
 		action.runAction(player3, board);
 		assertTrue(player3.getAssistantsPool().getAssistants()==10);
@@ -100,8 +115,10 @@ public class MarketBuyTest {
 		assertTrue(board.getMarket().getItems().size()==3);
 
 		//Fifth action. Buy assistants.
-		action=new MarketBuy(new Item(new AssistantsPool(10),
-				new Player("user1",10,100,null),
+		AssistantsPool pool2=new AssistantsPool();
+		pool2.setAssistants(10);
+		action=new MarketBuy(new Item(pool2,
+				falsePlayers.get(0),
 				15));
 		action.runAction(player3, board);
 		assertTrue(player3.getAssistantsPool().getAssistants()==20);
@@ -110,8 +127,10 @@ public class MarketBuyTest {
 		assertTrue(board.getMarket().getItems().size()==2);
 
 		//Sixth action. Buy the same assistants.(nothing)
-		action=new MarketBuy(new Item(new AssistantsPool(10),
-				new Player("user1",10,100,null),
+		AssistantsPool pool3=new AssistantsPool();
+		pool3.setAssistants(10);
+		action=new MarketBuy(new Item(pool3,
+				falsePlayers.get(0),
 				15));
 		action.runAction(player3, board);
 		assertTrue(player3.getAssistantsPool().getAssistants()==20);
@@ -123,7 +142,7 @@ public class MarketBuyTest {
 		//Seventh action. Buy the tile.
 		ids=Arrays.asList('A','B');
 		action=new MarketBuy(new Item(new BusinessPermitTile(ids,"regione"),
-				new Player("user1",10,100,null),
+				falsePlayers.get(0),
 				15));
 		action.runAction(player2, board);
 		assertTrue(player2.getAvailableBusinessPermits().size()==1);
@@ -133,7 +152,7 @@ public class MarketBuyTest {
 
 		//Eighth action. Buy nothing.
 		action=new MarketBuy(new Item(new PoliticCard(Color.RED,false),
-				new Player("user1",10,100,null),
+				falsePlayers.get(0),
 				15));
 		action.runAction(player2, board);
 		assertTrue(player2.getAvailableBusinessPermits().size()==1);
@@ -144,7 +163,7 @@ public class MarketBuyTest {
 		//Ninth action. Buy nothing.
 		ids=Arrays.asList('A','B');
 		action=new MarketBuy(new Item(new BusinessPermitTile(ids,"regione"),
-				new Player("user1",10,100,null),
+				falsePlayers.get(0),
 				15));
 		action.runAction(player2, board);
 		assertTrue(player2.getAvailableBusinessPermits().size()==1);
