@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 
 public class BonusKingTest {
 
@@ -30,7 +31,7 @@ public class BonusKingTest {
 		bonuses2=new ArrayList<>();
 		bonuses2.add(25);
 		bonuses2.add(0);
-		player=new Player("user", null);
+		player=new Player("user", new NobilityTrack(1));
 		player.getAssistantsPool().setAssistants(10);
 		player.getRichness().setCoins(10);
 	}

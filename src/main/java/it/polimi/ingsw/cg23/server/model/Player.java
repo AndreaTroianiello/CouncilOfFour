@@ -48,6 +48,7 @@ public class Player implements Serializable {
 		this.usedBusinessPermits=new ArrayList<>();
 		this.nobilityBoxPosition=0; 
 		this.nobilityTrack= nobilityTrack;
+		this.nobilityTrack.getNobilityBoxes().get(0).addPlayer(this);
 		initializeAvailableEmporium();
 	}
 

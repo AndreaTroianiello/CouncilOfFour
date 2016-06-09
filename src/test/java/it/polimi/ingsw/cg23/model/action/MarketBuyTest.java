@@ -15,6 +15,7 @@ import it.polimi.ingsw.cg23.server.model.action.GameAction;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.model.marketplace.Item;
@@ -29,9 +30,9 @@ public class MarketBuyTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player1=new Player("user1",null);
-		player2=new Player("user2",null);
-		player3=new Player("user3",null);
+		player1=new Player("user1",new NobilityTrack(1));
+		player2=new Player("user2",new NobilityTrack(1));
+		player3=new Player("user3",new NobilityTrack(1));
 		player1.getAssistantsPool().setAssistants(10);
 		player2.getAssistantsPool().setAssistants(10);
 		player3.getAssistantsPool().setAssistants(10);
@@ -66,7 +67,7 @@ public class MarketBuyTest {
 	@Test
 	public void testMarketBuy() throws NegativeNumberException {
 		assertTrue(board.getMarket().getItems().size()==5);
-		List<Player> falsePlayers=Arrays.asList(new Player("user1",null),new Player("user2",null),new Player("user3",null));
+		List<Player> falsePlayers=Arrays.asList(new Player("user1",new NobilityTrack(1)),new Player("user2",new NobilityTrack(1)),new Player("user3",new NobilityTrack(1)));
 		for(Player player:falsePlayers){
 			player.getAssistantsPool().setAssistants(10);
 			player.getRichness().setCoins(100);

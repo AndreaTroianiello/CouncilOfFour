@@ -8,6 +8,7 @@ import org.junit.Test;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 
@@ -24,7 +25,7 @@ public class ItemTest {
 		assistants=new AssistantsPool();
 		assistants.setAssistants(10);
 		tile=new BusinessPermitTile(null,"");
-		p=new Player("ciao", null);
+		p=new Player("ciao", new NobilityTrack(1));
 	}
 
 	@Test

@@ -31,12 +31,12 @@ public class BoardTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		p=new Player("user1", null);
+		nobilityTrack=new NobilityTrack(1);
+		p=new Player("user1", nobilityTrack);
 		region=new Region("region1", 0, null, null);
 		type=new Type("type1", 0, null);
 		deck=new Deck(new ArrayList<PoliticCard>());
 		king=new King(new City('A', "Aosta", type, region));
-		nobilityTrack=new NobilityTrack(1);
 	}
 
 	@Test

@@ -12,6 +12,7 @@ import org.junit.Test;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 import it.polimi.ingsw.cg23.server.model.marketplace.Market;
@@ -22,14 +23,14 @@ public class MarketTest {
 	private List<Player> players;
 	@Before
 	public void setUp() throws Exception {
-		Player player=new Player("ciao",null);
+		Player player=new Player("ciao",new NobilityTrack(1));
 		item1=new Item(new PoliticCard(Color.BLACK,false), player , 10);
 		List<Character> id=Arrays.asList('A','B','C');
 		item2=new Item(new BusinessPermitTile(id, "regione"),player,5);
 		AssistantsPool pool=new AssistantsPool();
 		pool.setAssistants(10);
 		item3=new Item(pool,player,5);		
-		players=Arrays.asList(new Player("user1",null),new Player("user2",null),new Player("user3",null));
+		players=Arrays.asList(new Player("user1",new NobilityTrack(1)),new Player("user2",new NobilityTrack(1)),new Player("user3",new NobilityTrack(1)));
 	}
 
 	@Test

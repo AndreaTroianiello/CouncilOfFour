@@ -14,6 +14,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class MarketSellTest {
@@ -25,7 +26,7 @@ public class MarketSellTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player=new Player("user",null);
+		player=new Player("user",new NobilityTrack(1));
 		player.getAssistantsPool().setAssistants(10);
 		player.getRichness().setCoins(100);
 		assistants=new AssistantsPool();

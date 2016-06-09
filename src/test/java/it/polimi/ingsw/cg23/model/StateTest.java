@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.State;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 
 public class StateTest {
 
@@ -14,7 +15,7 @@ public class StateTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		p=new Player("user1", null);
+		p=new Player("user1", new NobilityTrack(1));
 	}
 
 	@Test
