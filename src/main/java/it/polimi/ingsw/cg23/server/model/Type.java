@@ -52,7 +52,7 @@ public class Type implements Serializable {
 	 * 
 	 * @return the bonusAvailable.
 	 */
-	private boolean isBonusAvailable() {
+	public boolean isBonusAvailable() {
 		return bonusAvailable;
 	}
 

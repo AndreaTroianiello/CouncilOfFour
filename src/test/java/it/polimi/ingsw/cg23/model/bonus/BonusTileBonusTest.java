@@ -51,7 +51,7 @@ public class BonusTileBonusTest {
 	@Test
 	public void testClone() {
 		BonusTileBonus bonus = new BonusTileBonus(0, null);
-		BonusTileBonus newBonus = (BonusTileBonus) bonus.clone();
+		BonusTileBonus newBonus = (BonusTileBonus) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
 	}
 

@@ -23,6 +23,6 @@ public interface Bonus extends Serializable{
 	public String getName();
 	public void setParameters();
 	public void setNumber(int number);
-	public Bonus clone();
+	public Bonus copy();
 
 }

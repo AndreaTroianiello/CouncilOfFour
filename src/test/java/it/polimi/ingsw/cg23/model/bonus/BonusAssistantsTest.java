@@ -83,7 +83,7 @@ public class BonusAssistantsTest {
 	@Test
 	public void testClone() {
 		BonusAssistants bonus = new BonusAssistants();
-		BonusAssistants newBonus = (BonusAssistants) bonus.clone();
+		BonusAssistants newBonus = (BonusAssistants) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());	}
 
 }

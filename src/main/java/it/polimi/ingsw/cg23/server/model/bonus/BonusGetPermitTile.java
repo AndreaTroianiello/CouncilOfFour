@@ -100,7 +100,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 * @return a new BonusGetPermitTile
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusGetPermitTile(0, board, businessPermit, region); 
 	}	
 	

@@ -132,7 +132,7 @@ public class Controller implements Observer<Action>{
 	 */
 	@Override
 	public synchronized void update(Action action){
-		System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
+		logger.info("I AM THE CONTROLLER UPDATING THE MODEL");
 		
 		
 		if("INITIALIZATION".equals(model.getStatus().getStatus())){

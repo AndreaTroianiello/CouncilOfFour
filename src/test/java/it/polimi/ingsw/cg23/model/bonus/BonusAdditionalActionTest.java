@@ -68,7 +68,7 @@ public class BonusAdditionalActionTest {
 	@Test
 	public void testClone() {
 		BonusAdditionalAction bonus = new BonusAdditionalAction();
-		BonusAdditionalAction newBonus = (BonusAdditionalAction) bonus.clone();
+		BonusAdditionalAction newBonus = (BonusAdditionalAction) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
 		
 	}

@@ -62,7 +62,7 @@ public class CreateBonus {
 			for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
 
-					Bonus bo=bonusList.get(j).clone();//clono il bonus preso dalla lista dei bonus
+					Bonus bo=bonusList.get(j).copy();//clono il bonus preso dalla lista dei bonus
 					c.addBonus(bo);//aggiungo il bonus alla citta'
 					bo.setNumber(number);//setta il numero di bonus
 				}
@@ -121,7 +121,7 @@ public class CreateBonus {
 
 			for(int j=0; j<bonusList.size(); j++){//scorro la lista dei bonus
 				if(bonusList.get(j).toString().contains(b)){//cerco il bonus nella lista dei bonus
-					Bonus bo=bonusList.get(j).clone();
+					Bonus bo=bonusList.get(j).copy();
 					bpt.addBonus(bo);//aggiungo alla carta costruzione i suoi bonus
 					bo.setNumber(number);//setto il numero di bonus
 					break;

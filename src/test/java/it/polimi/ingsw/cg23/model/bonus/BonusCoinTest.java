@@ -65,7 +65,7 @@ public class BonusCoinTest {
 	@Test
 	public void testClone() {
 		BonusCoin bonus = new BonusCoin(0);
-		BonusCoin newBonus = (BonusCoin) bonus.clone();
+		BonusCoin newBonus = (BonusCoin) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
 	}
 

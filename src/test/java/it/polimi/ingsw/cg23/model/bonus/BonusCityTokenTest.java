@@ -95,7 +95,7 @@ public class BonusCityTokenTest {
 	@Test
 	public void testClone() {
 		BonusCityToken bonus = new BonusCityToken(0, city, null);
-		BonusCityToken newBonus = (BonusCityToken) bonus.clone();
+		BonusCityToken newBonus = (BonusCityToken) bonus.copy();
 		assertEquals(bonus.toString(), newBonus.toString());
 	}
 	

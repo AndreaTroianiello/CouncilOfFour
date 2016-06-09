@@ -80,7 +80,7 @@ public class BonusVictoryPoints implements Bonus {
 	 * @return a new BonusVictoryPoints
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusVictoryPoints(0);
 	}	
 

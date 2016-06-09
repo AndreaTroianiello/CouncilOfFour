@@ -61,7 +61,7 @@ public class BonusVictoryPointsTest {
 	@Test
 	public void testClone() {
 		BonusVictoryPoints bonus = new BonusVictoryPoints(3);
-		BonusVictoryPoints newBonus = (BonusVictoryPoints) bonus.clone();
+		BonusVictoryPoints newBonus = (BonusVictoryPoints) bonus.copy();
 		newBonus.setNumber(3);
 		assertEquals(bonus.getName(), newBonus.getName());
 	}

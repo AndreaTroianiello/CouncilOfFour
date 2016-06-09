@@ -96,7 +96,7 @@ public class BonusCoin implements Bonus {
 	 * @return a new BonusCoin
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusCoin(0); 
 	}	
 

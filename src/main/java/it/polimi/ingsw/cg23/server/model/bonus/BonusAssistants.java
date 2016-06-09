@@ -90,7 +90,7 @@ public class BonusAssistants implements Bonus {
 	 * @return a new BonusAssistants
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusAssistants(); 
 	}	
 

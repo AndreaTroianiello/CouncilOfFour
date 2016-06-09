@@ -97,7 +97,7 @@ public class BonusPolitics implements Bonus {
 	 * @return a new BonusPolitics
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusPolitics(0, board);
 	}	
 	

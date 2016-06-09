@@ -146,6 +146,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 				addItem(player,realItem);	
 				board.getMarket().getItems().remove(realItem);
 			} catch (NegativeNumberException e) {
+				getLogger().error(e);
 			}
 		}
 		

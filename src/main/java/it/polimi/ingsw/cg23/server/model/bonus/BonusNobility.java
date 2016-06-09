@@ -100,7 +100,7 @@ public class BonusNobility implements Bonus {
 	 * @return a new BonusNobility
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusNobility(0, board); 
 	}	
 

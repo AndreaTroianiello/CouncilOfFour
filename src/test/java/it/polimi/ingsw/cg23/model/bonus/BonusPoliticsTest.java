@@ -100,7 +100,7 @@ public class BonusPoliticsTest {
 	@Test
 	public void testClone() {
 		BonusPolitics bonus = new BonusPolitics(1, board);
-		BonusPolitics newBonus = (BonusPolitics) bonus.clone();
+		BonusPolitics newBonus = (BonusPolitics) bonus.copy();
 		newBonus.setNumber(1);
 		assertEquals(bonus.getName(), newBonus.getName());
 	}

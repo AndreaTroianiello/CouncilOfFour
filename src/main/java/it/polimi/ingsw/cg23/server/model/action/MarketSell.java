@@ -47,6 +47,7 @@ public class MarketSell extends GameAction implements MarketAction {
 				playerAssistants.setAssistants(assistants);
 				return item;
 			} catch (NegativeNumberException e) {
+				getLogger().error(e);
 				return null;
 			}
 		}

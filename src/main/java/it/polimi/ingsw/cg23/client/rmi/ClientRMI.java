@@ -11,17 +11,15 @@ import java.util.StringTokenizer;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
-import it.polimi.ingsw.cg23.server.view.RMIServerView;
 import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
 
 public class ClientRMI {
 
-	private final static int RMI_PORT=52365;
-	private final static String HOST="127.0.0.1";
+	private static final int RMI_PORT=52365;
+	private static final String HOST="127.0.0.1";
 	private static final String NAME="council";
 	
 	private static Logger logger;

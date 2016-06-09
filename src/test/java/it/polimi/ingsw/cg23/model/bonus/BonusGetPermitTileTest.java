@@ -52,7 +52,7 @@ public class BonusGetPermitTileTest {
 	@Test
 	public void testClone() {
 		BonusGetPermitTile bonus = new BonusGetPermitTile(0, board, null, null);
-		BonusGetPermitTile newBonus = (BonusGetPermitTile) bonus.clone();
+		BonusGetPermitTile newBonus = (BonusGetPermitTile) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
 	}
 	

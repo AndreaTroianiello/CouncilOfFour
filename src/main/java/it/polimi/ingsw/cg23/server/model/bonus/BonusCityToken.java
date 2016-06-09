@@ -105,7 +105,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 * @return a new BonusCityToken
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusCityToken(0, city, board); 
 	}
 

@@ -82,7 +82,7 @@ public class BonusNobilityTest {
 	@Test
 	public void testClone() {
 		BonusNobility bonus = new BonusNobility(0, board);
-		BonusNobility newBonus = (BonusNobility) bonus.clone();
+		BonusNobility newBonus = (BonusNobility) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
 	}
 

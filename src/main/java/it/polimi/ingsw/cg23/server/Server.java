@@ -27,9 +27,9 @@ import it.polimi.ingsw.cg23.server.view.ServerSocketView;
  *
  */
 public class Server {
-	private final static int SOCKET_PORT=29999;
-	private final String NAME = "council";
-	private final static int RMI_PORT=52365;
+	private static final int SOCKET_PORT=29999;
+	private static final String NAME = "council";
+	private static final int RMI_PORT=52365;
 	
 	private static Logger logger;
 	
@@ -49,10 +49,10 @@ public class Server {
 	
 	private void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry=LocateRegistry.createRegistry(RMI_PORT);
-		System.out.println("Costructing the RMI registry");
 		RMIView rmiView=new RMIView(this,registry);		
 		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
-		registry.bind("council", rmiView);
+		registry.bind(NAME, viewRemote);
+		logger.info("SERVER RMI, NAME:"+NAME+" AND PORT:" + SOCKET_PORT);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class Server {
 		
 		ExecutorService executor=Executors.newCachedThreadPool();
 		ServerSocket serverSocket=new ServerSocket(SOCKET_PORT);
-		System.out.println("SERVER SOCKET, PORT:" + SOCKET_PORT);
+		logger.info("SERVER SOCKET, PORT:" + SOCKET_PORT);
 		
 		while(run){
 			Socket socket=serverSocket.accept();

@@ -89,7 +89,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 * @return a new BonusTileBonus
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusTileBonus(0, this.businessPermitTile); 
 	}	
 	

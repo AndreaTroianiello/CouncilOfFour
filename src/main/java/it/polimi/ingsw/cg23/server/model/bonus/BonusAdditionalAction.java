@@ -62,7 +62,7 @@ public class BonusAdditionalAction implements Bonus {
 	 * @return a new BonusAdditionalAction
 	 */
 	@Override
-	public Bonus clone() {
+	public Bonus copy() {
 		return new BonusAdditionalAction(); 
 	}	
 }

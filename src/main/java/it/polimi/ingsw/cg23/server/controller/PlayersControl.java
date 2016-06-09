@@ -44,6 +44,7 @@ public class PlayersControl implements Runnable {
 					Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				logger.error(e);
+				run=false;
 			}
 
 		}
