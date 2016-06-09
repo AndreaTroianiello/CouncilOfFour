@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -62,8 +61,10 @@ public class FrameMap extends JFrame {
 		//configurazione contentPane
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, totalLengh, totalHeight);//dimensione finestra
+		//setBounds(0, 0, 3000,1000);
+		
 		contentPane = new JLayeredPane();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		//contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -112,15 +113,15 @@ public class FrameMap extends JFrame {
 		label2.setBounds(0, 0, pointsImg.getWidth(), pointsImg.getHeight());
 		
 		//Create Layered Pane
-		JPanel layeredPane1 = new JPanel();
-		layeredPane1.setPreferredSize(new Dimension(mapImg.getWidth(), totalHeight-50));
+		JPanel mainPanel = new JPanel();
+		mainPanel.setPreferredSize(new Dimension(mapImg.getWidth(), totalHeight-50));
 
 		//Populate Layered Pane
-		layeredPane1.add(label1, JLayeredPane.TOP_ALIGNMENT);
-		layeredPane1.add(label2, JLayeredPane.TOP_ALIGNMENT);
+		mainPanel.add(label1, JLayeredPane.TOP_ALIGNMENT);
+		mainPanel.add(label2, JLayeredPane.TOP_ALIGNMENT);
 
 		//Create ScrollPanel
-		JScrollPane scrollPanel = new JScrollPane(layeredPane1);
+		JScrollPane scrollPanel = new JScrollPane(mainPanel);
 		
 		//preferences scrollPanel
 		scrollPanel.setPreferredSize(new Dimension(mapImg.getWidth()+20, totalHeight-50));
@@ -136,13 +137,14 @@ public class FrameMap extends JFrame {
 	 */
 	private JScrollPane setLoggerPanel(){
 		//crezione layer Panel
-		JPanel layeredPane= new JPanel();
-		layeredPane.setPreferredSize(new Dimension(1000, totalHeight-50));//dimensione
-		layeredPane.setBackground(new Color(255, 255, 255));//colore sfondo
+		JPanel mainPanel= new JPanel();
+		mainPanel.setPreferredSize(new Dimension(500, totalHeight-50));//dimensione
+		mainPanel.setBackground(new Color(255, 255, 255));
 		
 		//creazione bottone exit
 		JButton button1 = new JButton("Exit");
-		layeredPane.add(button1, JPanel.LEFT_ALIGNMENT);//aggiunta bottone al layer panel
+		//aFlowPanel.add(aComponent);
+		mainPanel.add(button1, JPanel.LEFT_ALIGNMENT);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -155,13 +157,13 @@ public class FrameMap extends JFrame {
 		JLabel label1=new JLabel("Logger");//etichetta
 		label1.setFont(new Font(null, Font.PLAIN, 20));//font della label
 		label1.setForeground(new Color(0,0,0));//colore della label
-		layeredPane.add(label1);//aggiuno la label al layer panel
+		mainPanel.add(label1, JPanel.LEFT_ALIGNMENT);//aggiuno la label al layer panel
 		//creazione textArea
 		JTextArea textArea=createTextArea();
 		
 		//creazione bottone clear
 		JButton button2 = new JButton("Clear");
-		layeredPane.add(button2);//aggiunta bottone al layer panel
+		mainPanel.add(button2, JPanel.LEFT_ALIGNMENT);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -170,10 +172,10 @@ public class FrameMap extends JFrame {
 		});
 		
 		//aggiungo la text area al layer panel
-		layeredPane.add(textArea, JLayeredPane.TOP_ALIGNMENT);
+		mainPanel.add(textArea);
 		
 		//creazione scroll panel
-		JScrollPane scrollPanel = new JScrollPane(layeredPane,
+		JScrollPane scrollPanel = new JScrollPane(mainPanel,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,//barra verticale
 		        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED//barra orizzontale
 		);
@@ -193,7 +195,7 @@ public class FrameMap extends JFrame {
 		JTextArea textArea = new JTextArea();
 		
 		textArea.setFont(new Font(null, Font.PLAIN, 15));//font della text area
-		textArea.setPreferredSize(new Dimension(1000, totalHeight-100));//dimensione text area
+		textArea.setPreferredSize(new Dimension(500, totalHeight-100));//dimensione text area
 		textArea.setBackground(new Color(255,255,255));//sfondo bianco
 		textArea.setForeground(new Color(0,0,0));//scritte nere
 
@@ -202,6 +204,7 @@ public class FrameMap extends JFrame {
 		PrintStream ps = new PrintStream( taos );
 		System.setOut(ps);//scrive l'out nella text area
 		System.setErr(ps);//scrive l'err sulla text area
+		textArea.setText("Benvenuto a COF\n");
 		return textArea;
 	}
 

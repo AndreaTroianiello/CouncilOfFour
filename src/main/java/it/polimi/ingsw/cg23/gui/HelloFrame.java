@@ -108,7 +108,7 @@ public class HelloFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				countdownLabel=labelCountdown();
 				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
-				
+
 				fm.setVisible(true);//apro la finestra FrameMap
 				setVisible(true);//chiudo la finestra corrente
 
