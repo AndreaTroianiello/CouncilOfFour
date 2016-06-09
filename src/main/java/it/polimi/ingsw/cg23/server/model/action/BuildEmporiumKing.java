@@ -105,8 +105,8 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 				}
 			}
 		
-			this.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
-			this.notifyObserver(new BoardChange(board));
+			board.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
+			board.notifyObserver(new BoardChange(board));
 		}
 	}
 

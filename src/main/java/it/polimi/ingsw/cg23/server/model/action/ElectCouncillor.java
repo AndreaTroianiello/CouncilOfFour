@@ -82,14 +82,14 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 					Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
 					board.setCouncillor(oldCouncillor);
 					this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-					this.notifyObserver(new CouncilChange(this.region.getCouncil()));
+					board.notifyObserver(new CouncilChange(this.region.getCouncil()));
 				}
 			}
 			else{
 				Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);			//remove the first councillor in the chosen council
 				board.setCouncillor(oldCouncillor);
 				board.getKing().getCouncil().getCouncillors().add(newCouncillor);							//append the chosen councillor in the same council
-				this.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
+				board.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
 			}
 			int coins = player.getRichness().getCoins();
 			coins = coins +4;

@@ -73,7 +73,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 			}
 				
 		}
-		this.notifyObserver(new EmporiumsChange(city.getEmporiums()));
+		board.notifyObserver(new EmporiumsChange(city.getEmporiums()));
 		
 	}
 
