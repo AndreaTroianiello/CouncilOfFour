@@ -40,7 +40,7 @@ public class BuildEmporiumKingTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("player 1", 10, 100, new NobilityTrack(3));
+		player = new Player("player 1", new NobilityTrack(3));
 		int n = 5;
 		bonusKing.add(n);	
 		List<Type> types = new ArrayList<>();
@@ -56,9 +56,12 @@ public class BuildEmporiumKingTest {
 
 	/**
 	 * it tests if HowManyJolly() returns the number of jolly  
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testHowManyJollyShouldReturn1IfIHave1Jolly() { 
+	public void testHowManyJollyShouldReturn1IfIHave1Jolly() throws NegativeNumberException { 
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		this.cards = new ArrayList<>();
@@ -72,9 +75,12 @@ public class BuildEmporiumKingTest {
 	
 	/**
 	 * it tests if HowManyMatch() returns the number of match
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testHowManyMatchShouldReturn1IfIHave1Match() { 
+	public void testHowManyMatchShouldReturn1IfIHave1Match() throws NegativeNumberException { 
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		Council council = new Council();
@@ -93,9 +99,12 @@ public class BuildEmporiumKingTest {
 	
 	/**
 	 * it tests if it returns 0 when the payment is successful 
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testTryPaymentShouldReturn0IfNotNegative(){
+	public void testTryPaymentShouldReturn0IfNotNegative() throws NegativeNumberException{
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
 		int number = action.tryPayment(player, 10, 7);
 		assertEquals(number, 0);
@@ -103,9 +112,12 @@ public class BuildEmporiumKingTest {
 	
 	/**
 	 * it tests if it returns -1 when the payment isn't successful 
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testTryPaymentShouldReturnMinus1IfItIsNegative(){
+	public void testTryPaymentShouldReturnMinus1IfItIsNegative() throws NegativeNumberException{
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		this.cards = new ArrayList<>();
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
 		cards.add(new PoliticCard(null, true));
@@ -117,9 +129,12 @@ public class BuildEmporiumKingTest {
 	
 	/**
 	 * it tests if payCoins() works properly when there are 0 or 4 match
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testPayCoinsShouldReturn0IfMatchIs4AndMinus1IfMatchIs0(){
+	public void testPayCoinsShouldReturn0IfMatchIs4AndMinus1IfMatchIs0() throws NegativeNumberException{
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
 		int payment = action.payCoins(0, player);
 		assertEquals(payment, -1);
@@ -129,9 +144,12 @@ public class BuildEmporiumKingTest {
 	
 	/**
 	 * it tests if payCoins() works properly when there are from 1 to 3 match
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testPayCoinsShouldReturn7IfThereAre2Match(){
+	public void testPayCoinsShouldReturn7IfThereAre2Match() throws NegativeNumberException{
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
 		int payment = action.payCoins(2, player);
 		assertEquals(payment, 7);
@@ -146,6 +164,7 @@ public class BuildEmporiumKingTest {
 		this.cards = new ArrayList<>();
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, null);
 		this.player.getRichness().setCoins(0);
+		this.player.getAssistantsPool().setAssistants(10);
 		int payment = action.payCoins(1, player);
 		assertEquals(payment, -1);
 	}
@@ -171,6 +190,7 @@ public class BuildEmporiumKingTest {
 		this.player.addPoliticCard(card1);
 		this.player.addPoliticCard(card2);
 		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		this.board.getRegions().get(0).addCity(destination);
@@ -202,6 +222,7 @@ public class BuildEmporiumKingTest {
 		this.player.addPoliticCard(card1);
 		this.player.addPoliticCard(card2);
 		this.player.getRichness().setCoins(0);
+		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		this.board.getKing().getCity().addNeighbor(destination);
@@ -233,6 +254,7 @@ public class BuildEmporiumKingTest {
 		this.player.addPoliticCard(card1);
 		this.player.addPoliticCard(card2);
 		this.player.getRichness().setCoins(10);
+		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		this.board.getKing().getCity().addNeighbor(destination);
@@ -263,7 +285,9 @@ public class BuildEmporiumKingTest {
 		this.cards.add(card2);
 		this.player.addPoliticCard(card1);
 		this.player.addPoliticCard(card2);
-		Player player2 = new Player("player 1", 0, 100, new NobilityTrack(3));
+		Player player2 = new Player("player 1", new NobilityTrack(3));
+		player2.getRichness().setCoins(100);
+		player2.getAssistantsPool().setAssistants(0);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		this.destination.getEmporiums().add(new Emporium(player));

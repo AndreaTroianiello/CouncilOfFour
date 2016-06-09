@@ -36,7 +36,7 @@ public class BuyPermitTileTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("player 1", 10, 100, new NobilityTrack(3));
+		player = new Player("player 1", new NobilityTrack(3));
 		citiesId.add('J');
 		choosenTile = new BusinessPermitTile(citiesId, null);
 		cards.add(new PoliticCard(Color.BLUE, false));
@@ -57,9 +57,12 @@ public class BuyPermitTileTest {
 
 	/**
 	 * tests if the chosenTile is added to the player's permit tile
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testRunAction(){
+	public void testRunAction() throws NegativeNumberException{
+		this.player.getAssistantsPool().setAssistants(10);
+		this.player.getRichness().setCoins(100);
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		action.runAction(player, board);
 		BusinessPermitTile card = player.getAvailableBusinessPermits().get(0);
@@ -169,9 +172,12 @@ public class BuyPermitTileTest {
 	
 	/**
 	 * it tests if payCoins() works properly when there are from 1 to 3 match
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testPayCoinsShouldReturn7IfThereAre2Match(){
+	public void testPayCoinsShouldReturn7IfThereAre2Match() throws NegativeNumberException{
+		this.player.getAssistantsPool().setAssistants(10);
+		this.player.getRichness().setCoins(100);
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		int payment = action.payCoins(2, player);
 		assertEquals(payment, 7);

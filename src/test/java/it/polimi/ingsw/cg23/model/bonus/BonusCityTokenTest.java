@@ -38,7 +38,7 @@ public class BonusCityTokenTest {
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
 		board = new Board(null, regions, null, null, null);
-		player = new Player("a", 10, 100, new NobilityTrack(3));
+		player = new Player("a", new NobilityTrack(3));
 	}
 
 	/**

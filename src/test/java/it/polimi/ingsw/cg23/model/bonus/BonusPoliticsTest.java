@@ -28,7 +28,7 @@ public class BonusPoliticsTest {
 		cards.add(card);
 		deck = new Deck(cards);
 		board = new Board( deck, null, null, null, null);
-		player = new Player("a", 10, 100, null);
+		player = new Player("a", null);
 	}
 
 	/**

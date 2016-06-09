@@ -15,7 +15,7 @@ public class BonusCoinTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("a", 10, 100, null);
+		player = new Player("a", null);
 	}
 
 	/**

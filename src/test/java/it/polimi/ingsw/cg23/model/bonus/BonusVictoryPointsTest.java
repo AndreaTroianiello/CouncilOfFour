@@ -15,7 +15,7 @@ public class BonusVictoryPointsTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("a", 10, 10, null);
+		player = new Player("a", null);
 	}
 
 	/**

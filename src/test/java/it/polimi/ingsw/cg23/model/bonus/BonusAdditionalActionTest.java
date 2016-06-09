@@ -14,7 +14,7 @@ public class BonusAdditionalActionTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("a", 0, 0, null);
+		player = new Player("a", null);
 	}
 
 	/**

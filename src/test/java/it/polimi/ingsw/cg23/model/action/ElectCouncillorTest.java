@@ -34,7 +34,7 @@ public class ElectCouncillorTest {
 		this.region=new Region("mare", 0, null, null);
 		this.councillor=Color.ORANGE;
 		regions.add(region);
-		player = new Player("player1", 10, 100, null);
+		player = new Player("player1", null);
 		King theKing = new King(null);
 		board = new Board(null, regions, null, null, theKing);
 	}

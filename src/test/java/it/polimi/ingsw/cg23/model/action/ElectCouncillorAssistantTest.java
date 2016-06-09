@@ -35,7 +35,7 @@ public class ElectCouncillorAssistantTest {
 		this.region=new Region(null, 0, null, null);
 		this.councillor=Color.ORANGE;
 		regions.add(region);
-		player = new Player("player1", 10, 100, null);
+		player = new Player("player1", null);
 		King theKing = new King(null);
 		board = new Board(null, regions, null, null, theKing);
 	}
@@ -47,7 +47,7 @@ public class ElectCouncillorAssistantTest {
 	@Test
 	public void testRunActionShouldntChangeTheCouncilWhenThereArentCouncillorsOfTheChosenColorInThePool() {
 		this.councillor=Color.ORANGE;
-		ElectCouncillor action = new ElectCouncillor(councillor, region, false);
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, region, false);
 		Council council = region.getCouncil();
 		council.getCouncillors().add(new Councillor(Color.BLUE));
 		council.getCouncillors().add(new Councillor(Color.BLACK));

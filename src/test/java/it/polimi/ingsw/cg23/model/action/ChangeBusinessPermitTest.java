@@ -39,7 +39,7 @@ public class ChangeBusinessPermitTest {
 		deckCards.add(card2);
 		deckCards.add(card3);
 		deckCards.add(card4);
-		player = new Player("player1", 10, 10, new NobilityTrack(3));
+		player = new Player("player1", new NobilityTrack(3));
 		List<Region> regions = new ArrayList<>();
 		RegionDeck deck = new RegionDeck(2);
 		deck.setBusinessPermitTiles(deckCards);
@@ -52,9 +52,12 @@ public class ChangeBusinessPermitTest {
 
 	/**
 	 * it tests if runAction() changes the showed cards when the player has enough assistants
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testRunActionShouldChangeTheShowedDeckWhenTiIsAllFine() {
+	public void testRunActionShouldChangeTheShowedDeckWhenTiIsAllFine() throws NegativeNumberException {
+		this.player.getAssistantsPool().setAssistants(10);
+		this.player.getRichness().setCoins(10);
 		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
 		action.runAction(player, board);
 		assertNotEquals(showedDeck, region.getDeck().getShowedDeck());

@@ -18,14 +18,15 @@ public class HireAssistantTest {
 	
 	@Before
 	public void setUp(){
-		player = new Player("player1",10,100,new NobilityTrack(3));
+		player = new Player("player1",new NobilityTrack(3));
 		board = new Board(null, null, null, null, null);
 	}
 
 	@Test
 	public void ifThePlayerHas10AssistantAnd100CoinsThemShouldBeChangesTo11And97() throws NegativeNumberException {
 		HireAssistant action = new HireAssistant();
-		player.getRichness().setCoins(100);
+		this.player.getRichness().setCoins(100);
+		this.player.getAssistantsPool().setAssistants(10);
 		action.runAction(player, board);		
 		int coin = player.getRichness().getCoins();
 		int assistants = player.getAssistantsPool().getAssistants();

@@ -37,7 +37,7 @@ public class BuildEmporiumTileTest {
 		List<Character> cityIDs = new ArrayList<>();
 		cityIDs.add('I');
 		card = new BusinessPermitTile(cityIDs, null);
-		player = new Player("player1", 10, 100, new NobilityTrack(3));
+		player = new Player("player1", new NobilityTrack(3));
 		int n = 5;
 		bonusKing.add(n);	
 		List<Type> types = new ArrayList<>();

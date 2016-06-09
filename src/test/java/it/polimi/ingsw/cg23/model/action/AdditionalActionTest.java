@@ -17,7 +17,7 @@ public class AdditionalActionTest {
 	
 	@Before
 	public void setUp(){
-		player = new Player("player1",10,100,new NobilityTrack(3));
+		player = new Player("player1",new NobilityTrack(3));
 		board = new Board(null, null, null, null, null);
 	}
 

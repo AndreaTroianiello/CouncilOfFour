@@ -24,7 +24,7 @@ public class BonusNobilityTest {
 		bonus2 = new BonusCoin(4);
 		nobilityTrack.getNobilityBoxes().get(2).addBonus(bonus2);
 		board = new Board(null, null, null ,nobilityTrack, null);
-		player = new Player("a", 10, 100, nobilityTrack);
+		player = new Player("a", nobilityTrack);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class BonusNobilityTest {
 		bonus.setNumber(2);
 		bonus.setParameters();
 		assertEquals(2, player.getNobilityBoxPosition());
-		assertEquals(104, player.getRichness().getCoins());
+		assertEquals(4, player.getRichness().getCoins());
 	}
 
 	/**
