@@ -8,6 +8,10 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
@@ -20,11 +24,19 @@ public class ClientRMI {
 	private final static String HOST="127.0.0.1";
 	private static final String NAME="council";
 	
+	private static Logger logger;
+
+	public ClientRMI(){
+		logger = Logger.getLogger(ClientRMI.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
+	}
+	
 	public void startClient() throws RemoteException, NotBoundException {
 		Registry registry=LocateRegistry.getRegistry(HOST,RMI_PORT);
 		RMIViewRemote serverStub=(RMIViewRemote) registry.lookup(NAME);
 		ClientRMIView rmiView=new ClientRMIView();
-		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(rmiView));	
+		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(rmiView));
+		logger.info("Connection created");
 		Scanner stdIn=new Scanner(System.in);	
 		while (true) {
 
@@ -37,11 +49,11 @@ public class ClientRMI {
 				switch (inputLine) {
 				case "CREATION":
 					action = new CreationPlayer(tokenizer.nextToken());
-					rmiServerView.eseguiAzione(action);
+					rmiServerView.performAction(action);
 					break;
 				case "ENDTURN":
 					action = new EndTurn();
-					rmiServerView.eseguiAzione(action);
+					rmiServerView.performAction(action);
 					break;
 				default:
 					break;

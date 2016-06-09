@@ -63,7 +63,7 @@ public class RMIView extends View implements RMIViewRemote {
 		return string;
 	}
 	@Override
-	public void eseguiAzione(Action action) throws RemoteException {
+	public void performAction(Action action) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

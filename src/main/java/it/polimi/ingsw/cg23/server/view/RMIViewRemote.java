@@ -9,5 +9,5 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 
 public interface RMIViewRemote extends Remote {
 		public String registerClient(ClientViewRemote clientStub) throws RemoteException;
-		public void eseguiAzione(Action action) throws RemoteException;
+		public void performAction(Action action) throws RemoteException;
 }
