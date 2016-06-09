@@ -284,14 +284,15 @@ public class BuildEmporiumKingTest {
 		this.cards = new ArrayList<>();
 		this.cards.add(card1);
 		this.cards.add(card2);
-		this.player.addPoliticCard(card1);
-		this.player.addPoliticCard(card2);
 		Player player2 = new Player("player 1", new NobilityTrack(3));
+		player2.addPoliticCard(card1);
+		player2.addPoliticCard(card2);
 		player2.getRichness().setCoins(100);
 		player2.getAssistantsPool().setAssistants(0);
 		this.player.setEmporium(new Emporium(this.player));
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		this.destination.getEmporiums().add(new Emporium(player));
+		this.board.getRegions().get(0).addCity(destination);
 		this.board.getKing().getCity().addNeighbor(destination);
 		destination.addNeighbor(this.board.getKing().getCity());
 		BuildEmporiumKing action = new BuildEmporiumKing(cards, destination);
