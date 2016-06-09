@@ -17,6 +17,7 @@ import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class ElectCouncillorAssistantTest {
@@ -35,7 +36,7 @@ public class ElectCouncillorAssistantTest {
 		this.region=new Region(null, 0, null, null);
 		this.councillor=Color.ORANGE;
 		regions.add(region);
-		player = new Player("player1", null);
+		player = new Player("player1", new NobilityTrack(3));
 		King theKing = new King(null);
 		board = new Board(null, regions, null, null, theKing);
 	}

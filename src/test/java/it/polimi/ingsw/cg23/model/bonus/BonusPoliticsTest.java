@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusPolitics;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 public class BonusPoliticsTest {
@@ -28,7 +29,7 @@ public class BonusPoliticsTest {
 		cards.add(card);
 		deck = new Deck(cards);
 		board = new Board( deck, null, null, null, null);
-		player = new Player("a", null);
+		player = new Player("a", new NobilityTrack(1));
 	}
 
 	/**

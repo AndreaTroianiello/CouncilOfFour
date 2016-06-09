@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusAssistants;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BonusAssistantsTest {
@@ -15,7 +16,7 @@ public class BonusAssistantsTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("a", null);
+		player = new Player("a", new NobilityTrack(3));
 	}
 
 	/**

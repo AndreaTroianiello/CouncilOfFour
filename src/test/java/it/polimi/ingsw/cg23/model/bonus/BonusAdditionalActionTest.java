@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusAdditionalAction;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 
 public class BonusAdditionalActionTest {
 
@@ -14,7 +15,7 @@ public class BonusAdditionalActionTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("a", null);
+		player = new Player("a", new NobilityTrack(1));
 	}
 
 	/**

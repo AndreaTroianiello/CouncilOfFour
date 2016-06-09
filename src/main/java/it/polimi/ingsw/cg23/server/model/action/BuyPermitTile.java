@@ -123,7 +123,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * @param council
 	 * @return match
 	 */
-	public int howManyMatch(Board board, Council council){
+	private int howManyMatch(Board board, Council council){
 		int match = 0;
 		int councilLenght = council.getCouncillors().size();
 		
@@ -149,7 +149,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * @param board
 	 * @return jolly
 	 */
-	public int howManyJolly(Board board){
+	private int howManyJolly(Board board){
 		int jolly = 0;
 		
 		for(PoliticCard card: cards)					//iterate the politic cards
@@ -170,7 +170,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * @param cardNumber
 	 * @param player
 	 */
-	public int payCoins(int match, Player player){
+	private int payCoins(int match, Player player){
 		int coin = player.getRichness().getCoins();
 		int payment = (4-match)*3+1;
 		if(match == 0){
@@ -196,7 +196,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * @param money
 	 * @param payment
 	 */
-	public int tryPayment(Player player,int money, int payment){
+	private int tryPayment(Player player,int money, int payment){
 		try {
 			money = money - payment;
 			player.getRichness().setCoins(money);

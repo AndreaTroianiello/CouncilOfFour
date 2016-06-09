@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 
 public class BonusVictoryPointsTest {
 
@@ -15,7 +16,7 @@ public class BonusVictoryPointsTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player("a", null);
+		player = new Player("a", new NobilityTrack(3));
 	}
 
 	/**
