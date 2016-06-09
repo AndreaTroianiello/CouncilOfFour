@@ -19,7 +19,7 @@ public class TextAreaOutputStream extends OutputStream{
 	 * @param txtarea, the text area to write on
 	 */
 	public TextAreaOutputStream(JTextArea txtarea) {
-		this(txtarea,250);
+		this(txtarea, 1000);
 	}
 
 	/**
@@ -46,10 +46,11 @@ public class TextAreaOutputStream extends OutputStream{
 		appender=null;
 	}
 
-	@Override
+	
 	/**
 	 * empty method
 	 */
+	@Override
 	public synchronized void flush() {
 		/*
 		 * empty method
@@ -73,7 +74,7 @@ public class TextAreaOutputStream extends OutputStream{
 			appender.append(bytesToString(ba,str,len)); }
 	}
 
-	static private String bytesToString(byte[] ba, int str, int len) {
+	private static  String bytesToString(byte[] ba, int str, int len) {
 		try { 
 			return new String(ba,str,len,"UTF-8"); 
 		} catch(UnsupportedEncodingException thr) { 

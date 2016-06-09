@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -30,7 +29,7 @@ public class HelloFrame extends JFrame {
 	private static Logger logger;
 	private FrameMap fm;
 	private BufferedImage image = null;
-	private JTextField text1;
+	final int time=20000;
 
 	/**
 	 * Create the frame.
@@ -53,7 +52,6 @@ public class HelloFrame extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, image.getWidth()+50, image.getHeight()+90);
-		//setBounds(0, 0, 1000, 1000);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -61,6 +59,11 @@ public class HelloFrame extends JFrame {
 		contentPane.setMaximumSize(new Dimension(image.getWidth()+50, image.getHeight()+90));
 		setContentPane(contentPane);
 
+
+		setPanel();
+
+	}
+	private void setPanel(){
 		//panel north
 		JPanel panel1 = new JPanel();
 		contentPane.add(panel1, BorderLayout.NORTH);
@@ -72,18 +75,14 @@ public class HelloFrame extends JFrame {
 		contentPane.add(panel2, BorderLayout.SOUTH);
 		panel2.setBorder(null);
 		addButton(panel2);//aggiungo i bottoni
-		panel2.add(setText());
+	}
 
+	private JLabel labelCountdown(){
+		JLabel label=new JLabel(); 
+		new TimerClass(label, time);//countdown
+		return label;
 	}
-	
-	private JTextField setText(){
-		text1=new JTextField();
-		text1.setText("Loading");
-		
-		text1.setVisible(false);
-		return text1;
-	}
-	
+
 	/**
 	 * create the background
 	 * @param panel2
@@ -105,7 +104,7 @@ public class HelloFrame extends JFrame {
 		btnRmi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text1.setVisible(true);
+				contentPane.add(labelCountdown());//countdown di attesa
 				fm.setVisible(true);//apro la finestra FrameMap
 				setVisible(true);//chiudo la finestra corrente
 
@@ -119,6 +118,7 @@ public class HelloFrame extends JFrame {
 		socket.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				contentPane.add(labelCountdown());//countodwn di attesa
 				fm.setVisible(true);//apro la finestra FrameMap
 				setVisible(false);//chiudo la finestra corrente
 				//azioni per socket
@@ -140,6 +140,7 @@ public class HelloFrame extends JFrame {
 			@Override
 			public void run() {
 				try {
+		         
 					HelloFrame frame = new HelloFrame();
 					frame.setMaximumSize(new Dimension(500, 500));
 					frame.setVisible(true);
