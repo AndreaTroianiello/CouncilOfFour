@@ -6,6 +6,7 @@ import it.polimi.ingsw.cg23.server.controller.Turn;
 import it.polimi.ingsw.cg23.server.controller.change.StateChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Rank;
 import it.polimi.ingsw.cg23.server.model.State;
 
 /**
@@ -34,7 +35,8 @@ public class EndTurn extends Action {
 		if(turn.changePlayer()){
 			State status=board.getStatus();
 			status.setStatus("FINISH");
-			this.notifyObserver(new StateChange(status));
+			board.notifyObserver(new StateChange(status));
+			new Rank(board).createRank();
 			return;
 		}
 		if(turn.isChangeState()){
