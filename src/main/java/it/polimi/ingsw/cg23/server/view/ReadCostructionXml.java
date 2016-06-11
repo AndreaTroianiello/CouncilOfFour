@@ -29,11 +29,13 @@ public class ReadCostructionXml {
 	 * @throws XmlException 
 	 */
 	public String[][] readCardXml(String endPath) throws XmlException{
-		final int cardNumber=cardNumber(endPath);//numero di carte costruzione nell'xml
-		final int cardNode=cardNodeNumber(endPath);//numero di nodi figli di card nell'xml +1
-		String[][]card=new String[cardNumber][cardNode];//array che contiene le info delle carte costruzione
+		String[][]card;
 		
 		try{
+			final int cardNumber=cardNumber(endPath);//numero di carte costruzione nell'xml
+			final int cardNode=cardNodeNumber(endPath);//numero di nodi figli di card nell'xml +1
+			card=new String[cardNumber][cardNode];//array che contiene le info delle carte costruzione
+			
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento

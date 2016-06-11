@@ -44,6 +44,7 @@ public class XmlInterface {
 			type=cittaXml.getType(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
+			type=null;
 		}
 
 		return type;
@@ -61,6 +62,7 @@ public class XmlInterface {
 			nobilityTrackLenght=nobilityXml.nobilityTrackLenght(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
+			nobilityTrackLenght=0;
 		}
 
 		return nobilityTrackLenght;
@@ -78,6 +80,7 @@ public class XmlInterface {
 			nobilityTrackBonus=nobilityXml.nobilityTrackBonus(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
+			nobilityTrackBonus=null;
 		}
 
 		return nobilityTrackBonus;
@@ -89,14 +92,18 @@ public class XmlInterface {
 	 * @param endPath, the name of the file to read
 	 */
 	public String[][] cittaXml(String endPath){
-		int citynum=cityNum("ConfigurazionePartita.xml");//numero di citta' nel file xml
-		int cityNodeNumber=cityNodeNumber("ConfigurazionePartita.xml");//numero di nodi di citta' nel file xml
-		String[][] cityInfo=new String[citynum][cityNodeNumber];//array con le informazioni delle citta'
+
+		String[][] cityInfo = null;
 		
 		try {//provo a leggere il file xml
+			//int citynum=cityNum(endPath);//numero di citta' nel file xml
+			//int cityNodeNumber=cityNodeNumber(endPath);//numero di nodi di citta' nel file xml
+			//cityInfo=new String[citynum][cityNodeNumber];//array con le informazioni delle citta'
+			
 			cityInfo=cittaXml.readFileXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
+			cityInfo=null;
 		}
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
@@ -121,13 +128,14 @@ public class XmlInterface {
 			bonusRegion=cittaXml.getBonusRegion(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
+			bonusRegion = null;
 		}
 
 		return bonusRegion;//ritorna un array con i bonus della regione
 	}
 
 	/**
-	 * 
+	 * read the costruction card in the xml file
 	 * @param endPath, the final part of the xml file path (name+extension)
 	 * @return a bidimensional array with the costruction cards info
 	 */
@@ -138,6 +146,7 @@ public class XmlInterface {
 			costructionCard=costructionXml.readCardXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
+			costructionCard=null;
 		}
 
 		return costructionCard;
@@ -146,41 +155,5 @@ public class XmlInterface {
 		 * coloumn 1: city
 		 * coloumn 2: bonus
 		 */
-	}
-	
-	/**
-	 * 
-	 * @param endpath the name of xml file with .xml
-	 * @return the number of cities in the xml file
-	 */
-	private int cityNum(String endPath){
-		int numeroCitta=0;
-		
-		try {//provo a leggere il file xml
-			numeroCitta=cittaXml.cityNumber(endPath);
-		} catch (XmlException e) {
-			logger.error(err + endPath, e);
-			numeroCitta=-1;
-		}
-
-		return numeroCitta;
-	}
-
-	/**
-	 * 
-	 * @param endPath the name of xml file with .xml
-	 * @return the number city node in the xml file
-	 */
-	public int cityNodeNumber(String endPath){
-		int nodeNumber=0;
-		
-		try {//provo a leggere il file xml
-			nodeNumber=cittaXml.cityNodeNumber(endPath);
-		} catch (XmlException e) {
-			logger.error(err + endPath, e);
-			nodeNumber=-1;
-		}
-
-		return nodeNumber;
 	}
 }

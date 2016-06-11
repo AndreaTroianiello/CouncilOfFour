@@ -26,7 +26,7 @@ public class NobilityTrackXmlTest {
 	@Test(expected=XmlException.class)
 	public void NobilityTest() throws XmlException {
 		assertEquals(ntx.nobilityTrackBonus("NobilityTrack.xml").length, 11);
-		assertNotEquals(ntx.nobilityTrackBonus("NobilityTracks.xml"), 21);//file inesistente
+		assertNotEquals(ntx.nobilityTrackBonus("NobilityTracks.xml"), 11);//file inesistente
 	}
 
 }

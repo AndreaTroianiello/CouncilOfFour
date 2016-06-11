@@ -125,10 +125,10 @@ public class HelloFrame extends JFrame {
 				countdownLabel=labelCountdown();
 				
 				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
-				if(countdownLabel.equals("1")){
+				
 				fm.setVisible(true);//apro la finestra FrameMap
 				setVisible(false);//chiudo la finestra corrente
-				}
+				
 				
 				//azioni per socket
 			}

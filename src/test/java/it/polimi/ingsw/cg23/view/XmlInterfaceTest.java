@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.server.view.Print;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
 public class XmlInterfaceTest {
@@ -43,20 +42,63 @@ public class XmlInterfaceTest {
 		assertEquals(xI.getNobilityTrackLength("NobilityTracks.xml"), 0);//nome del file sbagliato
 	}
 
-	
+
 	@Test
 	public void getNobilityTrackBonusTest(){
 		String[][] ntBonus=xI.getNobilityTrackBonus("NobilityTrack.xml");
-		new Print().printArray(ntBonus);
-		
+
 		assertEquals(ntBonus.length, 11);//ci sono 11 bonus nel nobility track
 		for(int i=0; i<ntBonus.length; i++){//controllo che il nobility track non sia vuoto
 			assertNotEquals(ntBonus[i][0], "");
 			assertNotEquals(ntBonus[i][1], "");
 		}
-		
+
 		//se il file non esiste viene restituito null
 		assertNull(xI.getNobilityTrackBonus("NobilityTracks.xml"));//nome del file sbagliato
 	}
 
+	@Test
+	public void getCittaXmlTest(){
+		String[][] cities=xI.cittaXml("ConfigurazionePartita.xml");
+		
+		assertEquals(cities.length, 15);//numero di citta' lette dall'xml
+		for(int i=0; i<cities.length; i++){//controllo che nell'array non ci siano valori nulli
+			assertNotEquals(cities[i][0],"");
+			assertNotEquals(cities[i][1],"");
+			assertNotEquals(cities[i][2],"");
+			assertNotEquals(cities[i][3],"");
+			assertNotEquals(cities[i][5],"");
+
+			if(cities[i][3].equals("J"))//la citta' del re non ha bonus
+				assertEquals(cities[i][4],"");
+			else
+				assertNotEquals(cities[i][4],"");
+		}
+		assertNull(xI.cittaXml("ConfigurazionePartitar.xml"));//il file non esiste
+	}
+	
+	@Test
+	public void getBonusRegionTest(){
+		String[][] regBonus=xI.getBonusRegion("ConfigurazionePartita.xml");
+		
+		assertEquals(regBonus.length, 3);
+		for(int i=0; i<regBonus.length; i++){//controllo che nell'array non ci siano valori nulli
+			assertNotEquals(regBonus[i][0],"");
+			assertNotEquals(regBonus[i][1],"");
+		}
+		assertNull(xI.getBonusRegion("ConfigurazionePartitas.xml"));//file inesistente
+	}
+	
+	@Test
+	public void costructionCard(){
+		String[][] costructionCards=xI.costructionCard("CostructionCard.xml");
+		
+		assertEquals(costructionCards.length, 45);
+		for(int i=0; i<costructionCards.length; i++){//controllo che nell'array non ci siano valori nulli
+			assertNotEquals(costructionCards[i][0], "");
+			assertNotEquals(costructionCards[i][1], "");
+			assertNotEquals(costructionCards[i][2], "");
+		}
+		assertNull(xI.costructionCard("CostructionCards.xml"));//file inesistente
+	}
 }

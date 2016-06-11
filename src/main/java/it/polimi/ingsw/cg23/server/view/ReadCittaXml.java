@@ -37,11 +37,13 @@ public class ReadCittaXml {
 	 * @throws XmlException 
 	 */
 	public String[][] readFileXml(String endPath) throws XmlException{
-		final int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
-		final int citynum=cityNumber(endPath);//numero di citta'
-		String[][] city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
-
+		String[][] city;
+		
 		try {
+			int citynum=cityNumber(endPath);//numero di citta'
+			int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
+			city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
+
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
@@ -102,7 +104,7 @@ public class ReadCittaXml {
 	 * @return the number of cities in the xml file
 	 * @throws XmlException 
 	 */
-	public int cityNumber(String endPath) throws XmlException{
+	private int cityNumber(String endPath) throws XmlException{
 		try {
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -122,7 +124,7 @@ public class ReadCittaXml {
 	 * @return the number of city nodes, 0 if no city or error
 	 * @throws XmlException 
 	 */
-	public int cityNodeNumber(String endPath) throws XmlException{
+	private int cityNodeNumber(String endPath) throws XmlException{
 		try {	
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati

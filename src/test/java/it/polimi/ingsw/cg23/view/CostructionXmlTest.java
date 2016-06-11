@@ -19,7 +19,14 @@ public class CostructionXmlTest {
 	
 	@Test
 	public void readCostructionTestTrue() throws XmlException {
-		assertEquals(rcx.readCardXml("CostructionCard.xml").length, 45);//numero di carte costruzione
+		String[][] costructionCards=rcx.readCardXml("CostructionCard.xml");
+		assertEquals(costructionCards.length, 45);//numero di carte costruzione
+		
+		for(int i=0; i<costructionCards.length; i++){//controllo che le carte costruzione non siano vuote
+			assertNotEquals(costructionCards[i][0], "");
+			assertNotEquals(costructionCards[i][1], "");
+			assertNotEquals(costructionCards[i][2], "");
+		}
 	}
 	
 	

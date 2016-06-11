@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -61,10 +62,9 @@ public class FrameMap extends JFrame {
 		//configurazione contentPane
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, totalLengh, totalHeight);//dimensione finestra
-		//setBounds(0, 0, 3000,1000);
 		
 		contentPane = new JLayeredPane();
-		//contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
@@ -143,7 +143,6 @@ public class FrameMap extends JFrame {
 		
 		//creazione bottone exit
 		JButton button1 = new JButton("Exit");
-		//aFlowPanel.add(aComponent);
 		mainPanel.add(button1, JPanel.LEFT_ALIGNMENT);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
 			@Override
@@ -158,6 +157,7 @@ public class FrameMap extends JFrame {
 		label1.setFont(new Font(null, Font.PLAIN, 20));//font della label
 		label1.setForeground(new Color(0,0,0));//colore della label
 		mainPanel.add(label1, JPanel.LEFT_ALIGNMENT);//aggiuno la label al layer panel
+		
 		//creazione textArea
 		JTextArea textArea=createTextArea();
 		

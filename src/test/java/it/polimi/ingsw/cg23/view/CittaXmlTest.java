@@ -30,20 +30,17 @@ public class CittaXmlTest {
 	}
 	
 	@Test(expected=XmlException.class)
-	public void cityNodeNumberTest() throws XmlException {
-		assertEquals(rcx.cityNodeNumber("ConfigurazionePartita.xml"), 6);
-		assertNotEquals(rcx.cityNodeNumber("ConfigurazionePartitas.xml"), 6);//file inesistente
-	}
-	
-	@Test(expected=XmlException.class)
-	public void cityNumberTest() throws XmlException {
-		assertEquals(rcx.cityNumber("ConfigurazionePartita.xml"), 15);
-		assertNotEquals(rcx.cityNumber("ConfigurazionePartitas.xml"), 15);//file inesistente
-	}
-	
-	@Test(expected=XmlException.class)
 	public void ReadFileXxmlTest() throws XmlException{
-		assertEquals(rcx.readFileXml("ConfigurazionePartita.xml").length, 15);
+		String[][] cities=rcx.readFileXml("ConfigurazionePartita.xml");
+		assertEquals(cities.length, 15);
+		
+		for(int i=0; i<cities.length; i++){//controllo che l'array sia pieno
+			assertNotEquals(cities[i][0], "");
+			assertNotEquals(cities[i][1], "");
+			assertNotEquals(cities[i][2], "");
+			assertNotEquals(cities[i][3], "");
+			assertNotEquals(cities[i][5], "");
+		}
 		assertNotEquals(rcx.readFileXml("ConfigurazionePartitas.xml").length, 15);//file inesistente
 	}
 	
