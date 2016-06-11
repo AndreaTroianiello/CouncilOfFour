@@ -14,7 +14,7 @@ public class RegionDeck implements Serializable {
 	
 	private static final long serialVersionUID = -6229199735767763627L;
 	private final int maxTilesShowed;			
-	private transient final List<BusinessPermitTile> hiddenDeck;
+	private final transient List<BusinessPermitTile> hiddenDeck;
 	private final List<BusinessPermitTile> showedDeck;
 	
 	/**

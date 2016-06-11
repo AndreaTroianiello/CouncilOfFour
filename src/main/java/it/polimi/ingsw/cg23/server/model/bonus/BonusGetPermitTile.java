@@ -6,7 +6,6 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.server.view.Print;
  
 /**
  * the class of the bonus that allows to get a permit tile from a region. It contains the board, the name and the CliInterface

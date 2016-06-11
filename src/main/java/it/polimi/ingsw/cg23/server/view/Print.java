@@ -5,7 +5,6 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.King;
@@ -15,7 +14,8 @@ import it.polimi.ingsw.cg23.server.model.components.King;
  * classe per stampare le info sulla cl
  */
 public class Print {
-
+	
+	private CreateMap cm;
 	private static Logger logger;//logger
 
 	/**
@@ -25,6 +25,8 @@ public class Print {
 		//configurazione logger
 		logger = Logger.getLogger(Print.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+		
+		this.cm=new CreateMap();
 	}
 
 	/**
@@ -84,21 +86,7 @@ public class Print {
 		
 	}
 
-	/**
-	 * calculate the number of regions from an city list
-	 * @param citta, a city list
-	 * @return the number of regions
-	 */
-	public int regionNumber(List<City> citta){
-		int regionNumber=0;
 
-		for(int i=0; i<citta.size()-1; i++){//scorre la lista delle citta'
-			if(citta.get(i).getRegion()!=citta.get(i+1).getRegion())//controlla se le regioni sono uguali
-				regionNumber++;//incrementa il numero di regioni
-		}
-
-		return regionNumber+1;//ritorna il numero di regioni +1 perchè la prima regione
-	}
 
 	/**
 	 * call the class PrintMap to create the game map
@@ -107,7 +95,7 @@ public class Print {
 	 * @param k, the king
 	 */
 	public void createMap(List<Region>reg, List<Player> giocatori, King k){
-		new CreateMap().createMapDraw(reg, giocatori, k);
+		print("", cm.createMapDraw(reg, giocatori, k));
 	}
 
 	/**
