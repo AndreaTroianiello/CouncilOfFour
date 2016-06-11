@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client;
+package it.polimi.ingsw.cg23.client.cli;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -11,25 +11,42 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 
-public class Client {
-
-	private static Logger logger;
+public class CommandLine {
 	
-	@SuppressWarnings("resource")
-	public static void main(String[] args){
-		logger= Logger.getLogger(Client.class);
+	private static Logger logger;
+	public CommandLine(){
+		logger = Logger.getLogger(ControllerCLI.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
+	}
+	
+	public void run(ControllerCLI controller,Scanner stdIn){
+		boolean run=true;
+		logger.info("RUNNING");
+		while (run) {
+			try {
+				controller.updateController(stdIn.nextLine());
+			} catch (IOException e) {
+				logger.error(e);
+				run=false;
+			}
+		}
+	}
+	
+	public static void main(String[] args){
+		CommandLine cli=new CommandLine();
 		boolean run=true;
 		logger.info("Welcome to Council of Four game!");
 		logger.info("Choose the type of connection. (SOCKET or RMI)");
-		while(run){
 		Scanner stdIn = new Scanner(System.in);
+		while(run){
 		String inputLine=stdIn.nextLine();
 			switch (inputLine) {
 			case "SOCKET":
 				try {
 					ClientSocket clientSocket=new ClientSocket();
-					clientSocket.startClient();
+					ControllerCLI controller=new ControllerCLI();
+					clientSocket.startClient(controller);
+					cli.run(controller, stdIn);
 					run=false;
 				} catch (IOException e) {
 					logger.error(e);
@@ -38,7 +55,9 @@ public class Client {
 			case "RMI":
 				try {
 					ClientRMI clientRMI=new ClientRMI();
-					clientRMI.startClient();
+					ControllerCLI controller=new ControllerCLI();
+					clientRMI.startClient(controller);
+					cli.run(controller, stdIn);
 					run=false;
 				} catch (RemoteException | NotBoundException e) {
 					logger.error(e);
@@ -48,5 +67,6 @@ public class Client {
 				break;
 			}
 		}
+		stdIn.close();
 	}
 }

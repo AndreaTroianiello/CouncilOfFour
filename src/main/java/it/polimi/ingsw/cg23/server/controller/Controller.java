@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg23.observer.*;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -77,6 +78,7 @@ public class Controller implements Observer<Action>{
 		gameTwoPlayers();
 		new CreateMap().createMapDraw(model.getRegions(), model.getPlayers(), model.getKing());
 		this.model.changeStatus();
+		this.model.notifyObserver(new BoardChange(model));
 	}
 	
 	/**
