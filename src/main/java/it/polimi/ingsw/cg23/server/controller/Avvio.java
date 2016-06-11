@@ -66,7 +66,7 @@ public class Avvio {
 		this.citta=new ArrayList<>();
 		this.giocatori=new ArrayList<>();
 		this.consiglieri=new ArrayList<>();
-		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLenght("NobilityTrack.xml"));//recupero la lunghezza dall'xml
+		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLength("NobilityTrack.xml"));//recupero la lunghezza dall'xml
 	}
 
 	/**
@@ -114,7 +114,6 @@ public class Avvio {
 
 		//----------deck----------
 		dec=new Deck(politcards);//creato il deck
-		//s.pesca(dec, giocatori, 4);//i giocatori pescano 4 carte
 		cl.print("", "-Creo il deck");
 
 		//----------carte permesso di costruzione----------

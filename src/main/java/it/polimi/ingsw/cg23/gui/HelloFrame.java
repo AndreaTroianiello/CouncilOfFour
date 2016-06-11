@@ -117,7 +117,7 @@ public class HelloFrame extends JFrame {
 			}
 		});
 		panel2.add(btnRmi, JPanel.BOTTOM_ALIGNMENT);
-
+		
 		JButton socket = new JButton("Socket");//bottone socket
 		socket.addActionListener(new ActionListener() {
 			@Override
@@ -125,12 +125,10 @@ public class HelloFrame extends JFrame {
 				countdownLabel=labelCountdown();
 				
 				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
-				
+				if(countdownLabel.equals("1")){
 				fm.setVisible(true);//apro la finestra FrameMap
-				setVisible(true);//chiudo la finestra corrente
-			
-				if(countdownLabel.getText()=="Gioco completo")
-					setVisible(false);//chiudo la finestra corrente
+				setVisible(false);//chiudo la finestra corrente
+				}
 				
 				//azioni per socket
 			}

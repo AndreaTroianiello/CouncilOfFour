@@ -54,7 +54,7 @@ public class XmlInterface {
 	 * @param endPath, the name of the file with the .xml
 	 * @return the lenght of the nobility track
 	 */
-	public int getNobilityTrackLenght(String endPath){
+	public int getNobilityTrackLength(String endPath){
 		int nobilityTrackLenght=0;
 
 		try {//provo a leggere il file xml
