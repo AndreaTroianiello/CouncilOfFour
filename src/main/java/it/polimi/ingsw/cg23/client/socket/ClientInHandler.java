@@ -13,7 +13,7 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
 public class ClientInHandler implements Runnable {
 	
 	private ObjectInputStream socketIn;
-	private ClientController controller;
+	private transient ClientController controller;
 	private static Logger logger;
 	
 	public ClientInHandler(ClientController controller,ObjectInputStream socketIn) {

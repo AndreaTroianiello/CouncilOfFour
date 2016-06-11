@@ -6,6 +6,7 @@ import java.awt.Color;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 public class ClientModel {
 	private Board model;
@@ -43,22 +44,6 @@ public class ClientModel {
 	}
 
 	public Color findColor(String colorName){
-
-		switch(colorName){
-		case "BLACK":
-			return Color.BLACK;
-		case "RED":
-			return Color.RED;
-		case "WHITE":
-			return Color.WHITE;
-		case "BLUE":
-			return Color.BLUE;
-		case "ORANGE":
-			return Color.ORANGE;
-		case "PINK":
-			return Color.PINK;
-		default:
-			return null;
-		}
+		return new ColorManager().getColor(colorName);
 	}
 }

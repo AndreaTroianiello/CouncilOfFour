@@ -15,8 +15,8 @@ import it.polimi.ingsw.cg23.client.ClientController;
 
 public class ClientSocket {
 
-	private final static int PORT = 29999;
-	private final static String IP = "127.0.0.1";
+	private static final int PORT = 29999;
+	private static final String IP = "127.0.0.1";
 	
 	private static Logger logger;
 

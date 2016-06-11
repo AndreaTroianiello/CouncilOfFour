@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.client.rmi;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
@@ -16,7 +15,7 @@ public class ClientRMIOutView implements ClientViewOut {
 	}
 
 	@Override
-	public void update(Action action) throws IOException, RemoteException {
+	public void update(Action action) throws IOException{
 		rmiServerView.performAction(action);
 	}
 
