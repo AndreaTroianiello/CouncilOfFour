@@ -20,8 +20,9 @@ public class BusinessPermitTileChange implements Change {
 		this.newTile=newTile;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the BusinessPermitTileChange.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

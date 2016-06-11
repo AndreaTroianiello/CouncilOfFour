@@ -13,8 +13,9 @@ public class ErrorChange implements Change {
 		this.msg=error;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the error message.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

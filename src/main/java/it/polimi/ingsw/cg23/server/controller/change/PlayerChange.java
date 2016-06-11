@@ -20,8 +20,9 @@ public class PlayerChange implements Change {
 		this.newPlayer=newPlayer;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the PlayerChange.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

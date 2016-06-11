@@ -22,8 +22,9 @@ public class EmporiumsChange implements Change {
 		this.emporiums=emporiums;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * It generates a string formed by the most significant statistics of the EmporiumsChange.
+	 * @return string
 	 */
 	@Override
 	public String toString() {

@@ -20,8 +20,17 @@ public class BoardChange implements Change {
 		this.newBoard=newBoard;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Returns the board of the game.
+	 * @return newBoard.
+	 */
+	public Board getBoard(){
+		return newBoard;
+	}
+	
+	/**
+	 * It generates a string formed by the most significant statistics of the BoardChange.
+	 * @return string
 	 */
 	@Override
 	public String toString() {
