@@ -33,6 +33,7 @@ public class ControllerCLI implements ClientController{
 
 	public ControllerCLI(){
 		this.out=null;
+		this.clientModel=new ClientModel();
 		logger= Logger.getLogger(ControllerCLI.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
@@ -50,12 +51,13 @@ public class ControllerCLI implements ClientController{
 				out.update(new CreationPlayer(tokenizer.nextToken()));
 				break;
 			default:
-				mainCommand(tokenizer);
+				mainCommand(string);
 				break;
 		}
 	}
 	
-	private void mainCommand(StringTokenizer tokenizer) throws IOException{
+	private void mainCommand(String string) throws IOException{
+		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;
 		switch(tokenizer.nextToken()){
 		case "ADDITIONAL":
