@@ -37,7 +37,7 @@ public class NobilityBox implements Serializable{
 	 * removes a player from the list players
 	 * @param player
 	 */
-	public void remove(Player player){
+	public void removePlayer(Player player){
 		this.players.remove(player);	
 	}
 

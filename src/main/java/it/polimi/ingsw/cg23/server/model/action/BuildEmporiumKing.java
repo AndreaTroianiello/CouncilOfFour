@@ -86,6 +86,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 						buildEmporiumK(player, board, steps, jolly, payMatch);
 					} catch (NegativeNumberException e) {
 						this.notifyObserver(new ErrorChange(e.getMessage()));
+						getLogger().error(e);
 					}
 				}
 			

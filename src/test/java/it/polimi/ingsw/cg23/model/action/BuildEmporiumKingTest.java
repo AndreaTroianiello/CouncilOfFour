@@ -119,10 +119,10 @@ public class BuildEmporiumKingTest {
 	
 	
 	/**
-	 * it tests if runAction() works properly when the player doesn't have enough money for the steps
+	 * it tests if runAction() works properly when the player doesn't have enough money for the jolly
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoneyForTheSteps() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoneyForTheJolly() throws NegativeNumberException{
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -293,6 +293,10 @@ public class BuildEmporiumKingTest {
 		assertEquals(this.destination, city);
 	}
 	
+	/**
+	 * tests if runAction() works properly when the player doesn't have enough money for the match payment
+	 * @throws NegativeNumberException
+	 */
 	@Test
 	public void testRunActionShouldntChangeTheKingCityWhenThePlayerDoesntHaveEnoughMoney() throws NegativeNumberException{
 		System.out.println("I'M RUNNING THE TEST");
