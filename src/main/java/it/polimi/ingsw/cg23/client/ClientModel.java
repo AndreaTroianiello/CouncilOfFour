@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.client;
 
 
 import java.awt.Color;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -34,6 +35,10 @@ public class ClientModel {
 	 * @param model the model to set
 	 */
 	public void setModel(Board model) {
+		List<Player> players=model.getPlayers();
+		for(Player player: players)
+			if(this.player.getUser().equals(player.getUser()))
+				setPlayer(player);
 		this.model = model;
 	}
 	
