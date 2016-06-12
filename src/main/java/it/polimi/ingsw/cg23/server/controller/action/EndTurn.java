@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.server.controller.action;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.server.controller.Turn;
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
+import it.polimi.ingsw.cg23.server.controller.change.RankChange;
 import it.polimi.ingsw.cg23.server.controller.change.StateChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -37,6 +39,7 @@ public class EndTurn extends Action {
 			status.setStatus("FINISH");
 			board.notifyObserver(new StateChange(status));
 			new Rank(board).createRank();
+			board.notifyObserver(new RankChange(board.getPlayers()));
 			return;
 		}
 		if(turn.isChangeState()){
@@ -50,6 +53,7 @@ public class EndTurn extends Action {
 		}
 		else
 			board.notifyObserver(new StateChange(board.getStatus()));
+		board.notifyObserver(new BoardChange(board));
 	}
 
 }

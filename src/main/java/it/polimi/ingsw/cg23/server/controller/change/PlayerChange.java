@@ -19,6 +19,10 @@ public class PlayerChange implements Change {
 	public PlayerChange(Player newPlayer){
 		this.newPlayer=newPlayer;
 	}
+	
+	public Player getPlayer(){
+		return newPlayer;
+	}
 
 	/**
 	 * It generates a string formed by the most significant statistics of the PlayerChange.

@@ -59,13 +59,15 @@ public class Turn {
 	 */
 	public boolean changePlayer() {
 		State status=board.getStatus();
-		if(players.get((currentPlayer+1)%players.size())!=status.getFinalPlayer()){     //Control if the next player wasn't the first to build all emporiums.
+		if(players.get((currentPlayer+1)%players.size())!=status.getFinalPlayer()){    //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
 			status.setCurrentPlayer(players.get(currentPlayer));
-			draw();
+			if(getCurrentPlayer().isAdditionalAction())
+				getCurrentPlayer().switchAdditionalAction();
 			this.mainAction=true;
 			this.secondAction=true;
 			this.mainIndex=1;
+			draw();
 			return false;
 		}
 		return true;

@@ -1,0 +1,13 @@
+CLI's commands:
+
+CREATION userName
+ADDITIONAL
+BUILDKING cityName
+BUILDTILE numberTile cityName
+BUYTILE regionName numberTile
+CHANGE regionName
+ELECT colorName regionName
+ELECTASSISTANT KING colorName
+ELECTASSISTANT regionName colorName
+HIRE
+ENDTURN
