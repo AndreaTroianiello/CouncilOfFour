@@ -1,13 +1,10 @@
 package it.polimi.ingsw.cg23.server.controller.action;
 
-import java.util.List;
-
 import it.polimi.ingsw.cg23.server.controller.Turn;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.RankChange;
 import it.polimi.ingsw.cg23.server.controller.change.StateChange;
 import it.polimi.ingsw.cg23.server.model.Board;
-import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Rank;
 import it.polimi.ingsw.cg23.server.model.State;
 
@@ -42,18 +39,10 @@ public class EndTurn extends Action {
 			board.notifyObserver(new RankChange(board.getPlayers()));
 			return;
 		}
-		if(turn.isChangeState()){
-			board.changeStatus();
-			List<Player> players=board.getPlayers();
-			State status=turn.getBoard().getStatus();
-			if("MARKET: BUYING".equals(status.getStatus()))
-				turn.setPlayers(board.getMarket().generatePlayersList(players));
-			else
-				turn.setPlayers(players);
-		}
-		else
+		else{
 			board.notifyObserver(new StateChange(board.getStatus()));
-		board.notifyObserver(new BoardChange(board));
+			board.notifyObserver(new BoardChange(board));
+		}
 	}
 
 }

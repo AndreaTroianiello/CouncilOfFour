@@ -7,7 +7,6 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
-import it.polimi.ingsw.cg23.server.controller.change.StateChange;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
@@ -228,8 +227,6 @@ public class Board extends Observable<Change> implements Serializable{
 
 		if(status.getFinalPlayer()!=null && !"FINAL TURN".equals(statusString))
 			status.setStatus("FINAL TURN");
-		
-		this.notifyObserver(new StateChange(status));			//When the state is changed notify the observer.
 	}
 	
 	/**
