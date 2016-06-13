@@ -32,10 +32,6 @@ public class ServerSocketView extends View implements Runnable {
 	}
 
 	@Override
-	public void update() {
-	}
-
-	@Override
 	public void update(Change change) {
 		logger.error("Sending to the client " + change);
 		try {

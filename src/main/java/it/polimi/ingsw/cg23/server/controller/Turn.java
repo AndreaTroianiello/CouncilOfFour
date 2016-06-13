@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.server.controller;
 
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.State;
@@ -144,6 +145,8 @@ public class Turn {
 			action.runAction(player, board);											//Run the action.
 			controlAction();															//Control the authorization.
 		}
+		else
+			action.notifyObserver(new ErrorChange("Action refused."));
 		if(status.getFinalPlayer()==null && player.isAvailableEmporiumEmpty())					//If the current player has been the first to build all emporiums.
 			status.setFinalPlayer(getCurrentPlayer());
 	}
@@ -158,6 +161,8 @@ public class Turn {
 			&& "MARKET: SELLING".equals(status.getStatus())){			//Control if the action permits to sell a item.
 			action.runAction(player, board);							//Run the action.															//Control the authorization.
 		}
+		else
+			action.notifyObserver(new ErrorChange("Action refused."));
 		
 	}
 	

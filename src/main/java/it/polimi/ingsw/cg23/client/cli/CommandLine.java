@@ -19,7 +19,7 @@ public class CommandLine {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 	
-	public void run(ControllerCLI controller,Scanner stdIn){
+	private void run(ControllerCLI controller,Scanner stdIn){
 		boolean run=true;
 		logger.info("RUNNING");
 		while (run) {

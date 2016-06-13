@@ -5,6 +5,7 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
+import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -149,16 +150,9 @@ public class Controller implements Observer<Action>{
 		}
 		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){
 			((EndTurn) action).runAction(turn);
-			return;
-		}	
-	}
-
-	/**
-	 * Not implemented.
-	 */
-	@Override
-	public void update() {
-		
+		}
+		else
+			action.notifyObserver(new ErrorChange("Action refused."));
 	}
 	
 	/**
@@ -170,6 +164,7 @@ public class Controller implements Observer<Action>{
 		   action instanceof MarketSell && "MARKET: SELLING".equals(model.getStatus().getStatus())||
 		   action instanceof MarketBuy && "MARKET: BUYING".equals(model.getStatus().getStatus())){
 			turn.setAction((GameAction) action);
-			turn.runAction();}
+			turn.runAction();
+		}
 	}
 }

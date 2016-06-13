@@ -22,12 +22,6 @@ public class RMIServerView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void update(Change change) {
 		logger.error("Sending to the client " + change);
 		try {

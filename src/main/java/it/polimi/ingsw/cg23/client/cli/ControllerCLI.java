@@ -42,7 +42,7 @@ public class ControllerCLI implements ClientController{
 	public void setOutView(ClientViewOut out){
 		this.out=out;
 	}
-	@Override
+	
 	public void updateController(String string) throws IOException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();

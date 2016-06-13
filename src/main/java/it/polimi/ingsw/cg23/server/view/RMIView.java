@@ -28,11 +28,6 @@ public class RMIView extends View implements RMIViewRemote {
 		this.server=server;
 		this.registry=registry;
 	}
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
 	
 	@Override
 	public String registerClient(ClientViewRemote clientStub) throws RemoteException {
