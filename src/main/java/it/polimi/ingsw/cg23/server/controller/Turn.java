@@ -72,7 +72,16 @@ public class Turn {
 			this.mainIndex=1;
 			return false;
 		}
-		return true;
+		
+			if(isChangeState()){
+				board.changeStatus();
+				List<Player> players=board.getPlayers();
+				if("MARKET: BUYING".equals(status.getStatus()))
+					setPlayers(board.getMarket().generatePlayersList(players));
+				else
+					setPlayers(players);
+			}
+			return true;
 	}
 	
 	/**
