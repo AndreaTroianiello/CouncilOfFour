@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.server.model.action;
 
 
 import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
+import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -55,7 +56,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 				player.getAssistantsPool().setAssistants(assistants);
 			} catch (NegativeNumberException e) {
 				getLogger().error("The player doesn't have enough assistants!", e);
-				return;
+				this.notifyObserver(new ErrorChange("The player doesn't have enough assistants!"));
 			}
 		
 			realRegion.getDeck().changeShowedDeck();
@@ -64,7 +65,10 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			for(BusinessPermitTile bpt : realRegion.getDeck().getShowedDeck()){
 				board.notifyObserver(new BusinessPermitTileChange(bpt));
 			}
+			return;
 		}
+		
+		this.notifyObserver(new ErrorChange("Region not found!"));
 	}
 
 	/** 

@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg23.server.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -97,7 +97,6 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 					coins = coins - jolly;
 					player.getRichness().setCoins(coins);
 					player.addAvailableBusinessPermit(chosenTile);
-					board.getDeck().discardCards(discardedCards);
 					realRegion.getDeck().changeShowedDeck();
 				} catch (NegativeNumberException e) {
 					try {
@@ -111,6 +110,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 			}
 		
 			List<BusinessPermitTile> changedDeck = realRegion.getDeck().getShowedDeck();
+			board.notifyObserver(new BoardChange(board));
 			board.notifyObserver(new BusinessPermitTileChange(changedDeck.get(changedDeck.size()-1)));
 		}
 	}

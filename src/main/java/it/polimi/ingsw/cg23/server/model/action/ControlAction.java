@@ -38,7 +38,7 @@ public class ControlAction implements Serializable{
 	 */
 	public Region controlRegion(Region controlledRegion, Board board){
 		for(Region region: board.getRegions()){
-			if(controlledRegion.getName() == region.getName()){
+			if(controlledRegion != null && controlledRegion.getName().equals(region.getName())){
 				return region;
 			}
 		}
@@ -61,7 +61,12 @@ public class ControlAction implements Serializable{
 		List<PoliticCard> realHand = new ArrayList<>();
 		for(PoliticCard politicCard: playerCards){
 			for(PoliticCard chosenCard: fakeHand){
-				if(politicCard.getColor()==chosenCard.getColor()){
+				if(chosenCard.isJolly() && politicCard.isJolly()){
+					realHand.add(politicCard);
+					fakeHand.remove(chosenCard);
+					break;
+				}
+				if(politicCard.getColor().equals(chosenCard.getColor())){
 					realHand.add(politicCard);
 					fakeHand.remove(chosenCard);
 					break;
