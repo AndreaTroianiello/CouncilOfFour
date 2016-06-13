@@ -8,8 +8,11 @@ import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
@@ -253,16 +256,19 @@ public class CreateMap {
 		plancia+=councillors(reg);
 		plancia=plancia.concat("\n");
 		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
-		plancia=plancia.concat(bonusCouncilKing(b.getKing()));
+		plancia=plancia.concat(bonusCouncilKing(b));
 		plancia=plancia.concat("\n");
 
 		plancia+=createPlayerInfo(b.getPlayers());//aggiunge alla plancia di gioco i punteggi giocatore
 
+		plancia+=printNobility(b);
+		
 		return plancia;//stampo la plancia di gioco
+		
 	}
 
 	/**
-	 * 
+	 * print the region name and the bonus region
 	 * @param reg, the regions list
 	 * @param space, the space
 	 * @return, a string with the spaced name of the region
@@ -422,14 +428,82 @@ public class CreateMap {
 	 * @param k, the king
 	 * @return a string with bonus king and king councill
 	 */
-	private String bonusCouncilKing(King k){//PARZIALE--> non stampa i bonus king
+	private String bonusCouncilKing(Board b){//PARZIALE--> non stampa i bonus king
 		String nome="Consiglieri del re: ";
+		List<Councillor> kingCouncillors=b.getKing().getCouncil().getCouncillors();//consiglieri del re
 		
-		for(int i=0; i<k.getCouncil().getCouncillors().size(); i++){
-			nome=nome.concat(cm.getColorName(k.getCouncil().getCouncillors().get(i).getColor()));
+		for(int i=0; i<kingCouncillors.size(); i++){
+			nome=nome.concat(cm.getColorName(kingCouncillors.get(i).getColor()));//converto i colori in nomi
 			nome=nome.concat(" ");
 		}
+		nome=addSpace(nome, space);
+		nome=nome.concat("Bonus king avaiable: ");
+		BonusKing bk=b.getBonusKing();//bonus king
 		
-		return nome;
+		for(int i=bk.getCurrentIndexBonusKing(); i<bk.getBonusValues().size()-1; i++){//scorre i bonus king
+			
+			nome+=b.getBonusKing().getBonusValues().get(i).toString()+", ";
+			
+		}
+		
+		return nome.substring(0, nome.length()-2);
+	}
+	
+	/**
+	 * print the nobility track
+	 * @param b, the board
+	 * @return a string with the nobility track
+	 */
+	private String printNobility(Board b){
+		String nobility = "Nobility Track:\n";
+		List<NobilityBox> nb = b.getNobilityTrack().getNobilityBoxes();
+		List<Player> players=b.getPlayers();
+		int nobilitySpace=20;
+		
+		for(int i=0; i<nb.size()-1; i++){//aggiunge i -
+			nobility+=addMinus(nobilitySpace);
+		}
+		
+		nobility+="\n|";
+		
+		for(int i=0; i<nb.size(); i++){//aggiunge il numero di box e il primo bonus (se c'è)
+			if(nb.get(i).getBonus().isEmpty())
+				nobility+=addSpace(i, nobilitySpace-2)+"|";
+			else
+				nobility+=addSpace(i+" "+nb.get(i).getBonus().get(0).getName(), nobilitySpace-2)+"|";
+		}
+		
+		nobility+="\n|";
+		
+		for(int i=0; i<nb.size(); i++){//aggiunge il secondo bonus (se c'è)
+			if(nb.get(i).getBonus().size()<2)
+				nobility+=addSpace("", nobilitySpace-2)+"|";
+			else
+				nobility+=addSpace(nb.get(i).getBonus().get(1).getName(), nobilitySpace-2)+"|";
+		}
+		
+		nobility+="\n|";
+		
+		for(int i=0; i<nb.size(); i++){//aggiunge i giocatori (se ci sono)
+			String giocatori="";
+			
+			for(int k=0; k<players.size(); k++){//scorre i giocatori
+				if(players.get(k).getNobilityBoxPosition()==i)
+					giocatori+=players.get(k).getUser()+", ";
+				
+			}
+			if(giocatori.length()==0)
+				nobility+=addSpace(giocatori, nobilitySpace-2)+"|";
+			else
+				nobility+=addSpace(giocatori.substring(0, giocatori.length()-2), nobilitySpace-2)+"|";
+		}
+		
+		nobility+="\n";
+		
+		for(int i=0; i<nb.size()-1; i++){//aggiunge i -
+			nobility+=addMinus(nobilitySpace);
+		}
+		
+		return nobility;
 	}
 }
