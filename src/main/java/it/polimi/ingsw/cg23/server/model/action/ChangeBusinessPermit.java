@@ -54,12 +54,12 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			assistants = assistants -1;
 			try {
 				player.getAssistantsPool().setAssistants(assistants);
+				realRegion.getDeck().changeShowedDeck();
 			} catch (NegativeNumberException e) {
 				getLogger().error("The player doesn't have enough assistants!", e);
 				this.notifyObserver(new ErrorChange("The player doesn't have enough assistants!"));
 			}
 		
-			realRegion.getDeck().changeShowedDeck();
 		
 			//notify the change
 			for(BusinessPermitTile bpt : realRegion.getDeck().getShowedDeck()){

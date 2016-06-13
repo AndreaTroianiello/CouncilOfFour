@@ -44,7 +44,7 @@ public class ChangeBusinessPermitTest {
 		RegionDeck deck = new RegionDeck(2);
 		deck.setBusinessPermitTiles(deckCards);
 		showedDeck.addAll(deck.getShowedDeck());
-		region = new Region(null, 0, deck, null);
+		region = new Region("montagna", 0, deck, null);
 		regions.add(region);
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null);
 
@@ -68,7 +68,7 @@ public class ChangeBusinessPermitTest {
 	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testRunAction() throws NegativeNumberException {
+	public void testRunActionShouldntChangeTheTilesWhenThePlayerDoesntHaveEnoughAssistants() throws NegativeNumberException {
 		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
 		player.getAssistantsPool().setAssistants(0);
 		action.runAction(player, board);
