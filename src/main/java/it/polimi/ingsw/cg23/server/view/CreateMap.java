@@ -9,13 +9,20 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * print the game map
  *
  */
 public class CreateMap {
-
+	private ColorManager cm;
+	private int space=50;//spazio da mettere tra una regione e l'altra
+	
+	public CreateMap(){
+		this.cm=new ColorManager();
+	}
+	
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
@@ -27,7 +34,6 @@ public class CreateMap {
 
 		List<City> city=getCityfromRegion(reg);
 		String gamemap="";//la stringa che stampa la plancia di gioco
-		int space=60;//spazio da mettere tra una regione e l'altra
 
 		gamemap+=printName(reg, space)+"\n";//aggiungo i nomi delle regioni
 
@@ -179,11 +185,11 @@ public class CreateMap {
 	 * @param reg, the regions list
 	 * @param giocatori, the player list
 	 * @param king, the king
+	 * @return the string of the map
 	 */
 	public String createMapDraw(List<Region> reg, List<Player> giocatori, King king){
 		List<City> city=getCityfromRegion(reg);
 		String plancia="\nPlancia di gioco\n";//la stringa che stampa la plancia di gioco
-		int space=50;//spazio da mettere tra una regione e l'altra
 		int regionNumber=reg.size();//numero di regioni
 		int citypReg=city.size()/regionNumber;
 		plancia+=printName(reg, space);//aggiungo i nomi delle regioni
@@ -239,10 +245,14 @@ public class CreateMap {
 				plancia=plancia.concat(addSpace(addMinus(minus), space));
 			}
 			plancia=plancia.concat("\n");
-
 		}
-		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
+		
+		plancia+=councillors(reg);
 		plancia=plancia.concat("\n");
+		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
+		plancia=plancia.concat(BonusKing(king));
+		plancia=plancia.concat("\n");
+
 		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
 
 		return plancia;//stampo la plancia di gioco
@@ -256,9 +266,17 @@ public class CreateMap {
 	 */
 	private String printName(List<Region>reg, int space){
 		String name="";
+		
 		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
-			name=name.concat(addSpace(reg.get(j).getName().toUpperCase(), space));//nomi delle regioni
+			String n;
+			if(reg.get(j).isBonusAvailable())
+				n=reg.get(j).getName().toUpperCase()+" Victory points: "+reg.get(j).getBonus().getPoints();
+			else
+				n=reg.get(j).getName().toUpperCase();
+			
+			name=name.concat(addSpace(n, space));//nomi delle regioni
 		}
+		
 		return name;
 	}
 
@@ -378,5 +396,32 @@ public class CreateMap {
 		}
 
 		return minus;
+	}
+
+	private String councillors(List<Region> regions){
+		String councillor="";
+
+		for(int k=0; k<regions.size(); k++){
+			Region reg=regions.get(k);
+			String aiutanti = "Consiglieri "+reg.getName() +": ";
+			for(int i=0; i<reg.getCouncil().getCouncillors().size(); i++){
+				aiutanti=aiutanti.concat(cm.getColorName(reg.getCouncil().getCouncillors().get(i).getColor()));
+				aiutanti=aiutanti.concat(" ");
+			}
+			councillor=councillor.concat(addSpace(aiutanti, space));
+		}
+
+		return councillor;
+	}
+	
+	private String BonusKing(King k){
+		String nome="Consiglieri del re: ";
+		
+		for(int i=0; i<k.getCouncil().getCouncillors().size(); i++){
+			nome+=cm.getColorName(k.getCouncil().getCouncillors().get(i).getColor());
+			nome+=" ";
+		}
+		
+		return nome;
 	}
 }

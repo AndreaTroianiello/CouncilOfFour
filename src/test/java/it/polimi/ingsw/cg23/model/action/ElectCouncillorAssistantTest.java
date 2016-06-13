@@ -33,7 +33,7 @@ public class ElectCouncillorAssistantTest {
 	@Before
 	public void setUp() throws Exception {
 		this.king=false;
-		this.region=new Region(null, 0, null, null);
+		this.region=new Region("mare", 0, null, null);
 		this.councillor=Color.ORANGE;
 		regions.add(region);
 		player = new Player("player1", new NobilityTrack(3));
@@ -81,29 +81,7 @@ public class ElectCouncillorAssistantTest {
 		assertEquals(newCouncillor, council.getCouncillors().get(3));
 		assertEquals(9, player.getAssistantsPool().getAssistants());
 	}
-	
-	/**
-	 * it tests if runAction change the last councillor of the councillor pool of the 
-	 * chosen region and if it takes an assistant from the player
-	 * @throws NegativeNumberException
-	 */
-	@Test
-	public void testRunActionShouldChangeTheKingCouncilAndTakeAnAssistantsFromThePlayer() throws NegativeNumberException{
-		this.councillor=Color.ORANGE;
-		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, null, true);
-		List<Councillor> councillorPool = board.getCouncillorPool();
-		Councillor newCouncillor = new Councillor(Color.ORANGE);
-		councillorPool.add(newCouncillor);
-		Council council = board.getKing().getCouncil();
-		council.getCouncillors().add(new Councillor(Color.BLUE));
-		council.getCouncillors().add(new Councillor(Color.BLACK));
-		council.getCouncillors().add(new Councillor(Color.RED));
-		council.getCouncillors().add(new Councillor(Color.WHITE));
-		player.getAssistantsPool().setAssistants(10);;
-		action.runAction(player, board);
-		assertEquals(newCouncillor, council.getCouncillors().get(3));
-		assertEquals(9, player.getAssistantsPool().getAssistants());
-	}
+
 
 	/**
 	 * it tests if it works properly when the player doesn't have assistant
