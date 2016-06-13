@@ -101,4 +101,24 @@ public class XmlInterfaceTest {
 		}
 		assertNull(xI.costructionCard("CostructionCards.xml"));//file inesistente
 	}
+	
+	@Test
+	public void colorTest(){
+		assertEquals(xI.colorNumberXml("Colori.xml"), 6);
+		String[] colors=xI.colorXml("Colori.xml");
+		assertEquals(colors.length, 6);
+		
+		for(int i=0; i<colors.length; i++){
+			assertNotEquals(colors[i], "");
+			assertNotEquals(colors[i], null);
+		}
+	}
+	
+	@Test (expected=Exception.class)
+	public void colorTestFail(){
+		assertEquals(xI.colorNumberXml("Coloric.xml"), 0);
+		String[] colors=xI.colorXml("Colorim.xml");
+		assertEquals(colors.length, null);
+
+	}
 }

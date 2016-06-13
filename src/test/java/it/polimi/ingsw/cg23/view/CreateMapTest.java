@@ -71,6 +71,7 @@ public class CreateMapTest {
 		//aggiungo regioni
 		reg.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
 		reg.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
+		reg.get(0).setBonusUnavailable();
 		cities.add(new City('A', "Aosta", type1 , reg.get(0)));
 		cities.add(new City('B', "Bari", type2 , reg.get(0)));
 		cities.add(new City('C', "Crotone", type1 , reg.get(0)));

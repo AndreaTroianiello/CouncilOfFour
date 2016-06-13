@@ -18,7 +18,7 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
  */
 public class ReadColorXml {
 	private String path="src/main/resources/xmlFiles/";//file location
-	
+
 	/**
 	 * find the colors in the xml file
 	 * @param endPath, the xml file name
@@ -26,9 +26,10 @@ public class ReadColorXml {
 	 * @throws XmlException
 	 */
 	public String[] coloriXml(String endPath) throws XmlException{
-		String[] color = new String[colorNumber(endPath)];//array con i colori
 		
+
 		try {
+			String[] color = new String[colorNumber(endPath)];//array con i colori
 
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
@@ -40,14 +41,16 @@ public class ReadColorXml {
 			for (int i=0; i<colori.getLength(); i++){//scorre le citta' presenti nel file xml
 				color[i]=colori.item(i).getTextContent();
 			}
+
 			
 			return color;
-		
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}
+		
+		
 	}
-	
+
 	/**
 	 * calcolate the number of colors in the xml file
 	 * @param endPath, the name of the xml file
@@ -55,20 +58,22 @@ public class ReadColorXml {
 	 * @throws XmlException
 	 */
 	public int colorNumber(String endPath) throws XmlException{
-		try {
+		int colorsNum=0;
 
+		try {
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 
 			NodeList colori=doc.getElementsByTagName("color");//lista dei nodi che contengono "city"
+			colorsNum=colori.getLength();
 
-			return colori.getLength();
-		
+			return colorsNum;
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}
+		
 	}
 
 }
