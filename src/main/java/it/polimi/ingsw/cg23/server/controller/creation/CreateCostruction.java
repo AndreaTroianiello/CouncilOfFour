@@ -62,6 +62,7 @@ public class CreateCostruction {
 				if(region.get(k).getName().equals(costructionCard.get(i).getZone()))
 					costructionRegionlist.add(costructionCard.get(i));
 			}
+			
 			region.get(k).getDeck().setBusinessPermitTiles(costructionRegionlist);
 		}
 	}

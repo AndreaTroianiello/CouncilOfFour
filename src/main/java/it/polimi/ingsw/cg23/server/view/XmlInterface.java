@@ -4,6 +4,10 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
+import it.polimi.ingsw.cg23.server.view.xmlreader.ReadCittaXml;
+import it.polimi.ingsw.cg23.server.view.xmlreader.ReadColorXml;
+import it.polimi.ingsw.cg23.server.view.xmlreader.ReadCostructionXml;
+import it.polimi.ingsw.cg23.server.view.xmlreader.ReadNobilityTrackXml;
 
 /**
  * recupera le informazioni dai file xml
@@ -13,6 +17,7 @@ public class XmlInterface {
 	private ReadCittaXml cittaXml;//legge l'xml delle citta'
 	private ReadCostructionXml costructionXml;//legge l'xml delle carte costruzione
 	private ReadNobilityTrackXml nobilityXml;//legge il nobility track dall'xml
+	private ReadColorXml colorXml;//legge i colori dall'xml
 
 	private static Logger logger;//logger
 
@@ -30,6 +35,7 @@ public class XmlInterface {
 		this.cittaXml=new ReadCittaXml();
 		this.costructionXml=new ReadCostructionXml();
 		this.nobilityXml=new ReadNobilityTrackXml();
+		this.colorXml=new ReadColorXml();
 	}
 	
 	/**
@@ -155,5 +161,41 @@ public class XmlInterface {
 		 * coloumn 1: city
 		 * coloumn 2: bonus
 		 */
+	}
+	
+	/**
+	 * find the colors in the xml file
+	 * @param endPath, the xml file name
+	 * @return an array with the colors
+	 */
+	public String[] colorXml(String endPath){
+		String[] color=null;
+
+		try {//provo a leggere il file xml
+			color=colorXml.coloriXml(endPath);
+		} catch (XmlException e) {
+			logger.error(err + endPath, e);
+			color=null;
+		}
+
+		return color;
+	}
+	
+	/**
+	 * find the number of colors in the xml file
+	 * @param endPath, the name of the xml file
+	 * @return the number of color in the xml file
+	 */
+	public int colorNumberXml(String endPath){
+		int color=0;
+
+		try {//provo a leggere il file xml
+			color=colorXml.colorNumber(endPath);
+		} catch (XmlException e) {
+			logger.error(err + endPath, e);
+			color=0;
+		}
+
+		return color;
 	}
 }

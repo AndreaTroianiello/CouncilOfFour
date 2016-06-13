@@ -17,6 +17,7 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * 
@@ -130,17 +131,19 @@ public class Setting {
 	}
 
 	/**
-	 * the Color array contains alla the possibitly colors
+	 * the Color array contains all the avaiable colors
 	 * @return a Color array
 	 */
 	public Color[] color(){
-		Color[] arrayColori=new Color[6];//array di Color con i possibili colori
-		arrayColori[0]=Color.BLACK;
-		arrayColori[1]=Color.RED;
-		arrayColori[2]=Color.WHITE;
-		arrayColori[3]=Color.BLUE;
-		arrayColori[4]=Color.ORANGE;
-		arrayColori[5]=Color.PINK;
+		int colorNumber=leggiXml.colorNumberXml("Colori.xml");//numero di colori nel file xml
+		Color[] arrayColori=new Color[colorNumber];//array di Color con i possibili colori
+		ColorManager cm=new ColorManager();//color manager per creare i colori
+		String[] colorsXml=leggiXml.colorXml("Colori.xml");
+		
+		for(int i=0; i<colorNumber; i++){
+			arrayColori[i]=cm.getColor(colorsXml[i]);
+		}
+		
 		return arrayColori;//ritorna un array con i possibili colori
 	}
 

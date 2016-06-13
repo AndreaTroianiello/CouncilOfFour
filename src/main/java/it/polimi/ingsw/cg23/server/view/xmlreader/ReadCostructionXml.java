@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.view.xmlreader;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class ReadCostructionXml {
 	
 	/**
 	 * legge il file xml
-	 * @param endpath, the name of file (with the extension ".xml")
+	 * @param endPath, the name of file (with the extension ".xml")
 	 * @return bidimensional array with cotructionCard info, null array if there is some problems
 	 * @throws XmlException 
 	 */
@@ -52,11 +52,11 @@ public class ReadCostructionXml {
 				Element actualElement=(Element) actualNode;//cast del nodo in elemento per poterlo usare
 
 				String nome=actualElement.getElementsByTagName("city").item(0).getTextContent();//recupera gli id delle citta' delle carte costruzione
-
+				
 				int idnum=actualElement.getElementsByTagName("city").item(0).getChildNodes().getLength();//numero dei tag filgi di card
 				idnum=(idnum-1)/2;//numero delle citta' su ciascuna carta costruzione
 
-				card[i][1]=idConversion(nome,idnum);
+				card[i][1]=idConversion(nome,idnum);//scrivo meglio gli id della citta'
 				card[i][2]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus delle carte costruzione
 			}
 
@@ -75,10 +75,12 @@ public class ReadCostructionXml {
 	 */
 	private String idConversion(String nome, int idnum){
 		String idConcat="";//id delle citta' vicine
+		
 		for(int i=1; i<=idnum; i++){
-			int k=6*i;//nella stringa originaria gli id della citta' vicine sono a distanza di 6
-			idConcat+=nome.substring(k-1, k);
+			int k=7*i;//nella stringa originaria gli id della citta' vicine sono a distanza di 6
+			idConcat=idConcat.concat(nome.substring(k-1, k));
 		}
+		
 		return idConcat;//ritorna la stringa della città
 	}
 
@@ -116,9 +118,11 @@ public class ReadCostructionXml {
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 			
 			Node rootnode = doc.getFirstChild();//recupera il primo nodo dell'xml (costruction)
+			
 			Node region = rootnode.getChildNodes().item(1);//primo elemento dei figli di costruction = secondo nodo xml (region)
-			Node card= region.getChildNodes().item(3);//terzo elemento dei figli di region = quarto nodo xml (card)
-
+			Node cards = region.getChildNodes().item(3);//terzo elemento dei figli di region = quarto nodo xml (cards)
+			Node card = cards.getChildNodes().item(1);
+			
 			return (card.getChildNodes().getLength()-1)/2+1;//più 1 per la regione
 		
 		}catch (IOException | ParserConfigurationException | SAXException  e) {

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.view.xmlreader;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class ReadCittaXml {
 	
 	/**
 	 * legge il file xml
-	 * @param endpath, the name of file (with the extension ".xml")
+	 * @param endPath, the name of file (with the extension ".xml")
 	 * @return bidimensional array with city info, null array if there is some problems
 	 * @throws XmlException 
 	 */
@@ -94,7 +94,7 @@ public class ReadCittaXml {
 		String idConcat="";//id delle citta' vicine
 		for(int i=1; i<=idnum; i++){
 			int k=7*i;//nella stringa originaria gli id della citta' vicine sono a distanza di 7
-			idConcat+=nome.substring(k-1, k);
+			idConcat=idConcat.concat(nome.substring(k-1, k));
 		}
 		return idConcat;//ritorna la stringa della città
 	}
@@ -169,6 +169,12 @@ public class ReadCittaXml {
 		}
 	}
 
+	/**
+	 * read the region bonus in the xml file
+	 * @param endPath, the xml file name
+	 * @return an array with the region bonus
+	 * @throws XmlException
+	 */
 	public String[][] getBonusRegion(String endPath) throws XmlException{
 		
 		try {

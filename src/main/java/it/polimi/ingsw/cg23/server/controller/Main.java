@@ -1,5 +1,4 @@
 package it.polimi.ingsw.cg23.server.controller;
-
 /**
  * 
  * main class
