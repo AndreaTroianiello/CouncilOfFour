@@ -99,11 +99,7 @@ public class Market implements Serializable{
 	 */
 	public List<Player> generatePlayersList(List<Player> players){
 		Random random= new Random();											//Create the random generator.
-		//Clone the list of player.
-		List<Player> marketList=new ArrayList<>();								//Create a new list of players.
-		for(Player player:players){									
-			marketList.add(player);
-		}
+		List<Player> marketList=new ArrayList<>(players);
 		//Shuffle the new list.
 		for(int index=players.size();index>0;index--){
 			int randomIndex=random.nextInt(index);								//Get a random index.
