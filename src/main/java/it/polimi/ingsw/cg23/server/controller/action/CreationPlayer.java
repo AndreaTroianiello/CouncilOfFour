@@ -27,7 +27,7 @@ public class CreationPlayer extends Action {
 	}
 	
 	/**
-	 * Runs the action.
+	 * Runs the action. If the name is already used doesn't create the player.
 	 * @param controller The controller of the game.
 	 * @param model The model of the game.
 	 */

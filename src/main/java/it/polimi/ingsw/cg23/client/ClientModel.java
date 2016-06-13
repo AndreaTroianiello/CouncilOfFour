@@ -12,6 +12,9 @@ import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.marketplace.Item;
+import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
 public class ClientModel {
@@ -85,6 +88,31 @@ public class ClientModel {
 		try{
 			int number=Integer.parseInt(numberTile);
 			return region.getDeck().getShowedDeck().get(number);
+		}catch(NumberFormatException e){
+			logger.error(e);
+			return null;
+		}	
+	}
+	
+	public Item findItem(String numberItem){
+		int number;
+		try{
+			number=Integer.parseInt(numberItem);
+		}catch(NumberFormatException e){
+			logger.error(e);
+			return null;
+		}
+		Market market=model.getMarket();
+		if(number>=market.getItems().size())
+			return null;
+		else
+			return market.getItems().get(number);
+	}
+	
+	public PoliticCard findPoliticCard(String numberTile){
+		try{
+			int number=Integer.parseInt(numberTile);
+			return player.getHand().get(number);
 		}catch(NumberFormatException e){
 			logger.error(e);
 			return null;

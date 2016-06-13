@@ -5,18 +5,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The class of ColorManager. It helps to manage the game's colors.
+ * @author Andrea
+ *
+ */
 public class ColorManager {
 
     
 	private Map<String,Color> colorList;
 	
+	/**
+	 * The construnctor of ColorManager. Initializes the list of the color.
+	 */
 	public ColorManager(){
 		this.colorList = new HashMap<>();
 		initColorList();
 	}
 	
 	/**
-     * Initialize the color list that we have.
+     * Initializes the color list.
      */
     private void initColorList() {
         colorList.put("AliceBlue",new Color(0xF0, 0xF8, 0xFF));
@@ -45,12 +53,9 @@ public class ColorManager {
     }
 
     /**
-     * Get the closest color name from our list
-     * 
-     * @param r
-     * @param g
-     * @param b
-     * @return
+     * Returns the color name from list. 
+     * @param color The color to be searched.
+     * @return the name of the color. If the color isn't found returns null.
      */
     public String getColorName(Color color) {
     	if(colorList.containsValue(color)){
@@ -63,6 +68,11 @@ public class ColorManager {
     	return null;
     }
     
+    /**
+     * Returns the color of the name.
+     * @param name the name of the color.
+     * @return the color or null if the name isn't found.
+     */
     public Color getColor(String name) {
     	return colorList.get(name);
     }

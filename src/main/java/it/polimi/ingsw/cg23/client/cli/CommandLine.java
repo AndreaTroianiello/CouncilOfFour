@@ -11,6 +11,11 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 
+/**
+ * The class that start the CLI client.
+ * @author Andrea
+ *
+ */
 public class CommandLine {
 	
 	private static Logger logger;

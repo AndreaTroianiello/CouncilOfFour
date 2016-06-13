@@ -6,6 +6,11 @@ import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
 
+/**
+ * The ClientOutHandler manages the objects  to send at the server, that uses RMI connection.
+ * @author Andrea
+ *
+ */
 public class ClientRMIOutView implements ClientViewOut {
 
 	private RMIViewRemote rmiServerView;
@@ -14,6 +19,11 @@ public class ClientRMIOutView implements ClientViewOut {
 		this.rmiServerView=rmiServerView;
 	}
 
+	/**
+	 * Sends the action to the server.
+	 * @param action The action to send.
+	 * @throws IOException if the RMI connection has problems.	
+	 */
 	@Override
 	public void update(Action action) throws IOException{
 		rmiServerView.performAction(action);

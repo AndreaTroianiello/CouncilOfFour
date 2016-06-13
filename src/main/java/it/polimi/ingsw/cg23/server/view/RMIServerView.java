@@ -10,17 +10,33 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 
+/**
+ * The personal server's view of the player whom use RMI connection.
+ * @author Andrea
+ */
 public class RMIServerView extends View implements RMIViewRemote {
 
 	private ClientViewRemote clientStub;
 	private static Logger logger;
+	private String nameView;
 	
-	public RMIServerView(ClientViewRemote clientStub,Board model) {
+	/**
+	 * The constructor of the server view.
+	 * @param clientStub the stub of the player.
+	 * @param model the model of the game.
+	 * @param nameView the name for lookup the view.
+	 */
+	public RMIServerView(ClientViewRemote clientStub,Board model,String nameView) {
 		this.clientStub=clientStub;
+		this.nameView=nameView;
 		logger = Logger.getLogger(RMIServerView.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
+	/**
+	 * Updates the client stub with a change.
+	 * @param change the change for the client.
+	 */
 	@Override
 	public void update(Change change) {
 		logger.error("Sending to the client " + change);
@@ -31,18 +47,27 @@ public class RMIServerView extends View implements RMIViewRemote {
 		}
 	}
 	
+	/**
+	 * Notify the controller with the incoming action.
+	 * @param action the action to run.
+	 * @throws RemoteException if RMI connection has problems.
+	 */
 	@Override
 	public void performAction(Action action) throws RemoteException{
 		action.setLogger(Logger.getLogger(Action.class));
 		action.setPlayer(this);
-		logger.error("VIEW: received the action " + action);
+		logger.info("VIEW: received the action " + action);
 		action.registerObserver(this);
 		this.notifyObserver(action);
 	}
-
+	
+	/**
+	 * Returns the name for lookup the view.
+	 * @param clientStub the stub of the client.
+	 * @throws RemoteException if RMI connection has problems.
+	 */
 	@Override
 	public String registerClient(ClientViewRemote clientStub) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return nameView;
 	}
 }

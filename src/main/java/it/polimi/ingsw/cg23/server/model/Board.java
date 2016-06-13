@@ -56,7 +56,8 @@ public class Board extends Observable<Change> implements Serializable{
 
 	
 	/**
-	 * @return the bonusKing
+	 * Returns the bonus king of game.
+	 * @return the bonusKing.
 	 */
 	public BonusKing getBonusKing() {
 		return bonusKing;
@@ -66,7 +67,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Returns the deck of politic cards.
 	 * 
-	 * @return the deck
+	 * @return the deck.
 	 */
 	public Deck getDeck() {
 		return deck;
@@ -75,7 +76,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Sets a new deck in the board.
 	 * 
-	 * @param deck the deck to set
+	 * @param deck the deck to set.
 	 */
 	public void setDeck(Deck deck) {
 		this.deck = deck;
@@ -84,7 +85,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Returns the types' list.
 	 * 
-	 * @return the types
+	 * @return the types.
 	 */
 	public List<Type> getTypes() {
 		return types;
@@ -92,7 +93,7 @@ public class Board extends Observable<Change> implements Serializable{
 	
 	/**
 	 * Sets type of the map.
-	 * @param types the types to set
+	 * @param types the types to set.
 	 */
 	public void setTypes(List<Type> types) {
 		this.types = types;
@@ -101,7 +102,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Returns the list of the regions.
 	 * 
-	 * @return the regions
+	 * @return the regions.
 	 */
 	public List<Region> getRegions() {
 		return regions;
@@ -109,7 +110,7 @@ public class Board extends Observable<Change> implements Serializable{
 	
 	/**
 	 * Sets the regions of the map.
-	 * @param regions the regions to set
+	 * @param regions the regions to set.
 	 */
 	public void setRegions(List<Region> regions) {
 		this.regions = regions;
@@ -127,7 +128,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Sets a new nobility track in the board.
 	 * 
-	 * @param nobilityTrack the nobilityTrack to set
+	 * @param nobilityTrack the nobilityTrack to set.
 	 */
 	public void setNobilityTrack(NobilityTrack nobilityTrack) {
 		this.nobilityTrack = nobilityTrack;
@@ -136,7 +137,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Returns the king.
 	 * 
-	 * @return the king
+	 * @return the king.
 	 */
 	public King getKing() {
 		return king;
@@ -145,7 +146,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Sets the king in the board.
 	 * 
-	 * @param king the king to set
+	 * @param king the king to set.
 	 */
 	public void setKing(King king) {
 		this.king = king;
@@ -155,7 +156,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Returns the list of councillor.
 	 * 
-	 * @return the councillorPool
+	 * @return the councillorPool.
 	 */
 	public List<Councillor> getCouncillorPool() {
 		return councillorPool;
@@ -165,7 +166,7 @@ public class Board extends Observable<Change> implements Serializable{
 	/**
 	 * Adds the councillor at the pool.
 	 * 
-	 * @param councillor
+	 * @param councillor the councillor to add at the list.
 	 */
 	public void setCouncillor(Councillor councillor){
 		councillorPool.add(councillor);
@@ -173,7 +174,7 @@ public class Board extends Observable<Change> implements Serializable{
 	
 	/**
 	 * Gets the list of the players.
-	 * @return players 
+	 * @return players of the game.
 	 */
 	public List<Player> getPlayers(){
 		return this.players;

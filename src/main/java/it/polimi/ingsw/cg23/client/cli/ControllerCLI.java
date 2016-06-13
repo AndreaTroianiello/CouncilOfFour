@@ -22,6 +22,10 @@ import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
+import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
+import it.polimi.ingsw.cg23.server.model.action.MarketSell;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.view.Print;
 
 /**
@@ -54,11 +58,67 @@ public class ControllerCLI implements ClientController{
 			case "SHOW":
 				showCommand(tokenizer);
 				break;
+			case "MARKET":
+				marketCommand(tokenizer);
 			default:
 				mainCommand(string);
 				break;
 		}
 	}
+	
+	private void createActionSell(StringTokenizer tokenizer) throws IOException{
+		Action action;
+		switch(tokenizer.nextToken()){
+		case "TILE":
+			action = new MarketSell(clientModel.findPlayerTile(tokenizer.nextToken()),
+									Integer.parseInt(tokenizer.nextToken()));
+			out.update(action);
+			break;
+		case "CARD":
+			action = new MarketSell(clientModel.findPoliticCard(tokenizer.nextToken()),
+									Integer.parseInt(tokenizer.nextToken()));
+			break;
+		case "ASSISTANTS":
+			AssistantsPool pool=new AssistantsPool();
+			try {
+				pool.setAssistants(Integer.parseInt(tokenizer.nextToken()));
+			} catch (NumberFormatException | NegativeNumberException e){
+				return;
+			}
+			action = new MarketSell(pool,
+									Integer.parseInt(tokenizer.nextToken()));
+			out.update(action);
+			break;
+		default:
+			cli.print("", "Command not found.");
+			break;
+		}
+	}
+	
+	private void marketCommand(StringTokenizer tokenizer) throws IOException{
+		Board model=clientModel.getModel();
+		if(model==null){
+			cli.print("", "Command refused.");
+			return;
+		}
+		switch(tokenizer.nextToken()){
+		case "BUY":
+			Action action = new MarketBuy(clientModel.findItem(tokenizer.nextToken()));
+			out.update(action);
+			break;
+		case "SELL":
+			createActionSell(tokenizer);
+			break;
+		case "VIEW":
+			cli.print("","Items for sale:");
+			cli.printList(model.getMarket().getItems());
+			break;
+		default:
+			cli.print("", "Command not found.");
+			break;
+		}
+	}
+	
 	private void showCommand(StringTokenizer tokenizer){
 		Board model=clientModel.getModel();
 		if(model==null){

@@ -1,5 +1,11 @@
 package it.polimi.ingsw.cg23.server.controller.change;
 
+
+/**
+ * The ErrorChange serves to notify a error.
+ * @author Andrea
+ *
+ */
 public class ErrorChange implements Change {
 	
 	private static final long serialVersionUID = -5693277103823286185L;
