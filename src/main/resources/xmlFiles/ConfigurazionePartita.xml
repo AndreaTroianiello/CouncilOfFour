@@ -77,7 +77,7 @@
 				<bonus>1Assistant,1Politics</bonus>
 			</city>
 		</cities>
-		<coin>13</coin>
+		<coin>5</coin>
 	</zone>
 	<zone>
 		<namez>Collina</namez>
@@ -194,6 +194,6 @@
 				<bonus>1PermitTile,1VictoryPoints</bonus>
 			</city>
 		</cities>
-		<coin>24</coin>
+		<coin>5</coin>
 	</zone>
 </map>

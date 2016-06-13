@@ -33,7 +33,7 @@ public class Region implements Serializable {
 	 * @param deck Region's deck. This deck contains business permit tiles.
 	 * @param bonusKing	The bonus king.
 	 */
-	public Region(String name,int points, RegionDeck deck, BonusKing bonusKing) {
+	public Region(String name, int points, RegionDeck deck, BonusKing bonusKing) {
 		this.name = name;
 		this.bonus = new BonusVictoryPoints(points);
 		this.cities = new ArrayList<>();
@@ -156,6 +156,10 @@ public class Region implements Serializable {
 		}
 	}
 
+	public BonusVictoryPoints getBonus() {
+		return (BonusVictoryPoints) bonus;
+	}
+	
 	/**
 	 * It generates a string formed by the most significant statistics of the Region.
 	 * @return string
@@ -165,4 +169,5 @@ public class Region implements Serializable {
 		return "Region [name=" + name + ", bonus=" + bonus.getName() + ", cities=" + cities.size() + ", bonusAvailable=" + bonusAvailable
 				+ "]";
 	}
+
 }
