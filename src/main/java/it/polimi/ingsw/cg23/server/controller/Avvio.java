@@ -82,7 +82,7 @@ public class Avvio {
 		cl.print("", "-Creo i type");
 
 		//----------board creazione----------
-		board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);//creata la board
+		board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, bk);//creata la board
 		cl.print("", "-Creo la board");
 
 		//----------bonus----------

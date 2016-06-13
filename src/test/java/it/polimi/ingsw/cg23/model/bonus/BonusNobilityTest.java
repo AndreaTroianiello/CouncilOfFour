@@ -23,7 +23,7 @@ public class BonusNobilityTest {
 		NobilityTrack nobilityTrack = new NobilityTrack(10);
 		bonus2 = new BonusCoin(4);
 		nobilityTrack.getNobilityBoxes().get(2).addBonus(bonus2);
-		board = new Board(null, null, null ,nobilityTrack, null);
+		board = new Board(null, null, null ,nobilityTrack, null, null);
 		player = new Player("a", nobilityTrack);
 	}
 

@@ -37,7 +37,7 @@ public class ElectCouncillorTest {
 		regions.add(region);
 		player = new Player("player1", new NobilityTrack(3));
 		King theKing = new King(null);
-		board = new Board(null, regions, null, null, theKing);
+		board = new Board(null, regions, null, null, theKing, null);
 	}
 
 	/**

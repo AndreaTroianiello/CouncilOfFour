@@ -49,7 +49,7 @@ public class BuildEmporiumTileTest {
 		regions.add(region);
 		city = new City('I', "Ioio", new Type(null, 0, new BonusKing(bonusKing)), region);
 		region.addCity(city);
-		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, null, king);
+		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, null, king, null);
 	}
 
 	

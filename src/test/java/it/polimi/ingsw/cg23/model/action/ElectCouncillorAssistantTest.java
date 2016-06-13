@@ -12,7 +12,6 @@ import org.junit.Test;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
@@ -38,7 +37,7 @@ public class ElectCouncillorAssistantTest {
 		regions.add(region);
 		player = new Player("player1", new NobilityTrack(3));
 		King theKing = new King(null);
-		board = new Board(null, regions, null, null, theKing);
+		board = new Board(null, regions, null, null, theKing, null);
 	}
 
 	/**

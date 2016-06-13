@@ -53,7 +53,7 @@ public class MarketBuyTest {
 				new BusinessPermitTile(id3, "regione"),
 				new BusinessPermitTile(id4, "regione"),
 				new BusinessPermitTile(id5, "regione"));
-		board=new Board(null,null,null,null,null);
+		board=new Board(null,null,null,null,null, null);
 		Market market=board.getMarket();
 		market.addItemToSell(new Item(cards.get(0), player1, 5));
 		market.addItemToSell(new Item(cards.get(3), player2, 5));

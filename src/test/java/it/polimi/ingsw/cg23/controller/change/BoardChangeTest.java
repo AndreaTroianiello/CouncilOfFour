@@ -27,7 +27,7 @@ public class BoardChangeTest {
 				new Region("regione3",0,null,null));
 		List<Type> types=Arrays.asList(new Type("type1",0,null),new Type("type2",0,null));
 		City city=new City('A', "Aosta", types.get(0), regions.get(0));
-		board=new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, new NobilityTrack(10), new King(city));
+		board=new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, new NobilityTrack(10), new King(city), null);
 		
 	}
 

@@ -22,7 +22,7 @@ public class RankTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		board=new Board(null, null, null, new NobilityTrack(21), null);
+		board=new Board(null, null, null, new NobilityTrack(21), null, null);
 		Setting setting=new Setting();
 		setting.nobilityTrackFill(board.getNobilityTrack());
 	}

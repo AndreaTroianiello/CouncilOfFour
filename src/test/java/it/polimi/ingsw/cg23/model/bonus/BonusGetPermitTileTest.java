@@ -16,7 +16,7 @@ public class BonusGetPermitTileTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		board = new Board(null, null, null, null, null);
+		board = new Board(null, null, null, null, null, null);
 	}
 
 	/**

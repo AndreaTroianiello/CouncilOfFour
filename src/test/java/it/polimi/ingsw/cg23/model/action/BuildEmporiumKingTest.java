@@ -47,7 +47,7 @@ public class BuildEmporiumKingTest {
 		kingCity = new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		King king = new King(kingCity);
 		region = new Region("mare", 0, null, null);
-		this.board = new Board(new Deck(new ArrayList<PoliticCard>()), new ArrayList<Region>(), types, null, king);
+		this.board = new Board(new Deck(new ArrayList<PoliticCard>()), new ArrayList<Region>(), types, null, king, null);
 		board.getRegions().add(region);
 	}
 

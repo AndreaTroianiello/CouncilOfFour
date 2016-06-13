@@ -46,7 +46,7 @@ public class ChangeBusinessPermitTest {
 		showedDeck.addAll(deck.getShowedDeck());
 		region = new Region("montagna", 0, deck, null);
 		regions.add(region);
-		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null);
+		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null, null);
 
 	}
 

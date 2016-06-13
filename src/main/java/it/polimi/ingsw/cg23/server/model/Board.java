@@ -8,6 +8,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.StateChange;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.King;
@@ -31,6 +32,7 @@ public class Board extends Observable<Change> implements Serializable{
 	private final List<Player> players;
 	private State status;
 	private final Market market;
+	private final BonusKing bonusKing;
 	
 	/**
 	 * The constructor of the board.
@@ -40,7 +42,7 @@ public class Board extends Observable<Change> implements Serializable{
 	 * @param nobilityTrack  The nobility track.
 	 * @param king The king pawn.
 	 */
-	public Board(Deck deck, List<Region> regions, List<Type> types, NobilityTrack nobilityTrack, King king) {
+	public Board(Deck deck, List<Region> regions, List<Type> types, NobilityTrack nobilityTrack, King king, BonusKing bonusKing) {
 		this.deck = deck;
 		this.regions = regions;
 		this.types = types;
@@ -50,7 +52,17 @@ public class Board extends Observable<Change> implements Serializable{
 		this.players=new ArrayList<>();
 		this.status=new State();
 		this.market=new Market();
+		this.bonusKing=bonusKing;
 	}
+
+	
+	/**
+	 * @return the bonusKing
+	 */
+	public BonusKing getBonusKing() {
+		return bonusKing;
+	}
+
 
 	/**
 	 * Returns the deck of politic cards.

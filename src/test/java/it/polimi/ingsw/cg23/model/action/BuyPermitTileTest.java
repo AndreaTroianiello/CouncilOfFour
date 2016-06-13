@@ -50,7 +50,7 @@ public class BuyPermitTileTest {
 		region = new Region("si", 5,deck , null);
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
-		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null);
+		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null, null);
 		choosenTile = new BusinessPermitTile(citiesId, null);
 		council = region.getCouncil();
 		council.getCouncillors().add(new Councillor(Color.BLUE));

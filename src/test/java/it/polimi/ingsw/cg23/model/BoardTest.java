@@ -41,7 +41,7 @@ public class BoardTest {
 
 	@Test
 	public void testDeck() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNull(board.getDeck());
 		board.setDeck(deck);
 		assertEquals(board.getDeck(),deck);
@@ -49,7 +49,7 @@ public class BoardTest {
 
 	@Test
 	public void testTypes() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getTypes().size(),0);
 		List<Type> types=new ArrayList<>();
 		types.add(type);
@@ -59,7 +59,7 @@ public class BoardTest {
 
 	@Test
 	public void testRegions() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getRegions().size(),0);
 		List<Region> regions=new ArrayList<>();
 		regions.add(region);
@@ -70,7 +70,7 @@ public class BoardTest {
 
 	@Test
 	public void testNobilityTrack() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNull(board.getNobilityTrack());
 		board.setNobilityTrack(nobilityTrack);
 		assertNotNull(board.getNobilityTrack());
@@ -78,7 +78,7 @@ public class BoardTest {
 
 	@Test
 	public void testKing() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNull(board.getKing());
 		board.setKing(king);
 		assertNotNull(board.getKing());
@@ -86,7 +86,7 @@ public class BoardTest {
 
 	@Test
 	public void testCouncillor() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getCouncillorPool().size(),0);
 		assertNull(board.getCouncillor(Color.BLACK));
 		board.getCouncillorPool().add(new Councillor(Color.BLACK));
@@ -96,7 +96,7 @@ public class BoardTest {
 
 	@Test
 	public void testPlayers() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getPlayers().size(),0);
 		board.addPlayer(p);
 		assertEquals(board.getPlayers().size(),1);		
@@ -104,7 +104,7 @@ public class BoardTest {
 
 	@Test
 	public void testGetStatus() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getStatus().getStatus(),"INITIALIZATION");
 		board.changeStatus();
 		assertEquals(board.getStatus().getStatus(),"TURN");
@@ -122,7 +122,7 @@ public class BoardTest {
 	
 	@Test
 	public void testMarket() {
-		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null);
+		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNotNull(board.getMarket());
 		
 	}

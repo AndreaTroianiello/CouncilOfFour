@@ -3,10 +3,8 @@ package it.polimi.ingsw.cg23.model.bonus;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.text.PlainDocument;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +35,7 @@ public class BonusCityTokenTest {
 		this.runnable = true;
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
-		board = new Board(null, regions, null, null, null);
+		board = new Board(null, regions, null, null, null, null);
 		player = new Player("a", new NobilityTrack(3));
 	}
 

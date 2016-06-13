@@ -51,7 +51,7 @@ public class MarketSellTest {
 
 	@Test
 	public void testMarketSell() {
-		Board board=new Board(null, null, null, null, null);
+		Board board=new Board(null, null, null, null, null, null);
 		new MarketSell(tiles.get(2), 10).runAction(player, board);
 		new MarketSell(cards.get(1), 10).runAction(player, board);
 		new MarketSell(cards.get(3), 10).runAction(player, board);

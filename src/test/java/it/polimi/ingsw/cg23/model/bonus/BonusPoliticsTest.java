@@ -28,7 +28,7 @@ public class BonusPoliticsTest {
 		List<PoliticCard> cards = new ArrayList<>();
 		cards.add(card);
 		deck = new Deck(cards);
-		board = new Board( deck, null, null, null, null);
+		board = new Board( deck, null, null, null, null, null);
 		player = new Player("a", new NobilityTrack(1));
 	}
 
@@ -79,7 +79,7 @@ public class BonusPoliticsTest {
 	public void testGiveBonusShouldntGiveThePlayerTheFirstCardInTheDeckIfItIsNull() {
 		List<PoliticCard> emptyDeck = new ArrayList<>();
 		Deck newDeck = new Deck(emptyDeck);
-		Board board2 = new Board(newDeck, null, null, null, null);
+		Board board2 = new Board(newDeck, null, null, null, null, null);
 		BonusPolitics bonus = new BonusPolitics(1, board2);
 		bonus.setParameters();
 		bonus.giveBonus(player);
