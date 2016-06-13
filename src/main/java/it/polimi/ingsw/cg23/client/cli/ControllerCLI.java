@@ -24,6 +24,9 @@ import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
 import it.polimi.ingsw.cg23.server.view.Print;
 
+/**
+ * controller cli
+ */
 public class ControllerCLI implements ClientController{
 
 	private ClientModel clientModel;
@@ -64,9 +67,7 @@ public class ControllerCLI implements ClientController{
 		}
 		switch(tokenizer.nextToken()){
 		case "BOARD":
-			cli.createMap(model.getRegions(),
-						  model.getPlayers(),
-						  model.getKing());
+			cli.createMap(model);
 			cli.print(model.getNobilityTrack(),"");
 			break;
 		case "HAND":

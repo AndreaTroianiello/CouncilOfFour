@@ -5,9 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.model.Player;
-import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.server.model.components.King;
+import it.polimi.ingsw.cg23.server.model.Board;
 
 /**
  * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
@@ -43,16 +41,16 @@ public class Print {
 	/**
 	 * stampa un array bidimensionale
 	 * @return void
-	 * @param bidimensional array
+	 * @param array bidimensional array
 	 */
 	public void printArray(String[][] array){
 		String stampa="";
 
 		for(int i=0;i<array.length;i++){//ciclo che scorre le righe
 			for(int k=0; k<array[0].length; k++){//ciclo che scorre le colonne
-				stampa+=array[i][k]+"      ";
+				stampa=stampa.concat(array[i][k]+"      ");
 			}
-			stampa+="\n";//alla fine di una riga si va a capo
+			stampa=stampa.concat("\n");//alla fine di una riga si va a capo
 		}
 		print("", stampa);//stampo l'array
 	}
@@ -78,7 +76,7 @@ public class Print {
 	/**
 	 * stampa una qualunque cosa gli viene passata
 	 * @return void
-	 * @param object (something to print, must be "" is there isn't)
+	 * @param ogg (something to print, must be "" is there isn't)
 	 * @param testo da stampare
 	 */
 	public void print(Object ogg, String testo){
@@ -89,12 +87,10 @@ public class Print {
 
 	/**
 	 * call the class PrintMap to create the game map
-	 * @param city, a list with the city
-	 * @param giocatori, a list with the players
-	 * @param k, the king
+	 * @param board, the board
 	 */
-	public void createMap(List<Region>reg, List<Player> giocatori, King k){
-		print("", cm.createMapDraw(reg, giocatori, k));
+	public void createMap(Board board){
+		print("", cm.createMapDraw(board));
 	}
 
 	/**

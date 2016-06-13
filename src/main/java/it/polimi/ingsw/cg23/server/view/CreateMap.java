@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.server.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -19,6 +20,9 @@ public class CreateMap {
 	private ColorManager cm;
 	private int space=50;//spazio da mettere tra una regione e l'altra
 	
+	/**
+	 * costructor
+	 */
 	public CreateMap(){
 		this.cm=new ColorManager();
 	}
@@ -87,7 +91,7 @@ public class CreateMap {
 		String bonus="";
 
 		for(int i=0; i<city.getToken().size(); i++){//ciclo che scorre i bonus di una citta'
-			bonus=bonus.concat(city.getToken().get(i));//ritorna il nome del bonus
+			bonus=bonus.concat(city.getToken().get(i).getName());//ritorna il nome del bonus
 			bonus=bonus.concat(", ");
 		}
 		if(bonus.length()==0)//se non ci sono bonus ritorna una stringa vuota
@@ -101,20 +105,20 @@ public class CreateMap {
 	 * @param giocatori, a list with the players
 	 * @return a string to print
 	 */
-	private String createPlayerInfo(List<Player>giocatori){
-		int space=20;//spazi da mettere per rendere il testo ordinato
+	public String createPlayerInfo(List<Player>giocatori){
+		int playerSpace=20;//spazi da mettere per rendere il testo ordinato
 		String percorsi="";
-		percorsi+=addSpace("Player", space)+addSpace("Richness(coin)", space)+addSpace("Victory", space)+
-				addSpace("Nobility", space)+addSpace("Assistants", space)+addSpace("Carte politiche", space);
+		percorsi+=addSpace("Player", playerSpace)+addSpace("Richness(coin)", playerSpace)+addSpace("Victory", playerSpace)+
+				addSpace("Nobility", playerSpace)+addSpace("Assistants", playerSpace)+addSpace("Carte politiche", playerSpace);
 		percorsi=percorsi.concat("\n");
 
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getUser(),space);//aggiungo il nome dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getRichness().getCoins(),space);//aggiungo il numero di coins
-			percorsi+=addSpace(giocatori.get(i).getVictoryTrack().getVictoryPoints(),space);//aggiungo i victory points
-			percorsi+=addSpace(giocatori.get(i).getNobilityBoxPosition(),space);//aggiungo la posizione sul nobility box
-			percorsi+=addSpace(giocatori.get(i).getAssistantsPool().getAssistants(), space);//aggiungo il numero di assistenti
-			percorsi+=addSpace(giocatori.get(i).getHand().size(), space);//aggiungo il numero di carte politiche
+			percorsi+=addSpace(giocatori.get(i).getUser(),playerSpace);//aggiungo il nome dei giocatori
+			percorsi+=addSpace(giocatori.get(i).getRichness().getCoins(),playerSpace);//aggiungo il numero di coins
+			percorsi+=addSpace(giocatori.get(i).getVictoryTrack().getVictoryPoints(),playerSpace);//aggiungo i victory points
+			percorsi+=addSpace(giocatori.get(i).getNobilityBoxPosition(),playerSpace);//aggiungo la posizione sul nobility box
+			percorsi+=addSpace(giocatori.get(i).getAssistantsPool().getAssistants(), playerSpace);//aggiungo il numero di assistenti
+			percorsi+=addSpace(giocatori.get(i).getHand().size(), playerSpace);//aggiungo il numero di carte politiche
 			percorsi=percorsi.concat("\n");
 		}
 
@@ -182,19 +186,18 @@ public class CreateMap {
 
 	/**
 	 * create the map with draw card
-	 * @param reg, the regions list
-	 * @param giocatori, the player list
-	 * @param king, the king
+	 * @param b, the board
 	 * @return the string of the map
 	 */
-	public String createMapDraw(List<Region> reg, List<Player> giocatori, King king){
+	public String createMapDraw(Board b){
+		List<Region> reg=b.getRegions();
 		List<City> city=getCityfromRegion(reg);
 		String plancia="\nPlancia di gioco\n";//la stringa che stampa la plancia di gioco
 		int regionNumber=reg.size();//numero di regioni
 		int citypReg=city.size()/regionNumber;
 		plancia+=printName(reg, space);//aggiungo i nomi delle regioni
 		plancia=plancia.concat("\n");
-
+		
 		for(int i=0; i<citypReg; i++){//ciclo che scorre le citta' per regione da stampare 5
 			int minus=32;
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
@@ -204,7 +207,7 @@ public class CreateMap {
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge la il nome della citta'
 				String name;
-				if(king.getCity().getName().equals(city.get(i+citypReg*k).getName())){
+				if(b.getKing().getCity().getName().equals(city.get(i+citypReg*k).getName())){
 					name=addSpace("|"+city.get(i+citypReg*k).getName()+" - "+city.get(i+citypReg*k).getId(), minus-1)+"|";
 					name=name.substring(0, name.length()-7);//faccio spazio per aggiungere king
 					name+="KING  |";//aggiungo king alla citta' del re
@@ -250,10 +253,10 @@ public class CreateMap {
 		plancia+=councillors(reg);
 		plancia=plancia.concat("\n");
 		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
-		plancia=plancia.concat(BonusKing(king));
+		plancia=plancia.concat(bonusCouncilKing(b.getKing()));
 		plancia=plancia.concat("\n");
 
-		plancia+=createPlayerInfo(giocatori);//aggiunge alla plancia di gioco i punteggi giocatore
+		plancia+=createPlayerInfo(b.getPlayers());//aggiunge alla plancia di gioco i punteggi giocatore
 
 		return plancia;//stampo la plancia di gioco
 	}
@@ -414,12 +417,17 @@ public class CreateMap {
 		return councillor;
 	}
 	
-	private String BonusKing(King k){
+	/**
+	 * print the bonus king and the king council
+	 * @param k, the king
+	 * @return a string with bonus king and king councill
+	 */
+	private String bonusCouncilKing(King k){//PARZIALE--> non stampa i bonus king
 		String nome="Consiglieri del re: ";
 		
 		for(int i=0; i<k.getCouncil().getCouncillors().size(); i++){
-			nome+=cm.getColorName(k.getCouncil().getCouncillors().get(i).getColor());
-			nome+=" ";
+			nome=nome.concat(cm.getColorName(k.getCouncil().getCouncillors().get(i).getColor()));
+			nome=nome.concat(" ");
 		}
 		
 		return nome;

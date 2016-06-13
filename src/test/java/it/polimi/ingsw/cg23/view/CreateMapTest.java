@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -35,15 +36,18 @@ public class CreateMapTest {
 		
 	private CreateMap cm;
 	private Type type1,type2;
+	private List<Type> tipi;
 	private List<Region> reg;
 	private List<Player> giocatori;
 	private List<Integer> bonuses;
 	private List<City> cities;
 	private King k;
 	private NobilityTrack nt;
+	private Board board;
 	
 	@Before
 	public void setUp(){
+		tipi=new ArrayList<>();
 		cm=new CreateMap();
 		reg=new ArrayList<>();
 		giocatori=new ArrayList<>();
@@ -60,6 +64,9 @@ public class CreateMapTest {
 		//Set up the types.
 		type1=new Type("Gold",10,bonusKing);
 		type2=new Type("Silver",10,bonusKing);
+		
+		tipi.add(type1);//aggiungo i tipi alla lista
+		tipi.add(type2);
 		
 		//aggiungo regioni
 		reg.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
@@ -119,11 +126,15 @@ public class CreateMapTest {
 		c4.add('A');
 		c4.add('C');
 		BusinessPermitTile b4=new BusinessPermitTile(c4, reg.get(0).getName());
-		b4.addBonus(new BonusCityToken(1,null,null));
+		b4.addBonus(new BonusCityToken(null,null));
 		List<BusinessPermitTile> bl2=new ArrayList<>();
 		bl2.add(b3);
 		bl2.add(b4);
 		reg.get(1).getDeck().setBusinessPermitTiles(bl2);
+		
+		board=new Board(null, reg, tipi, nt, k);
+		board.addPlayer(giocatori.get(0));
+		board.addPlayer(giocatori.get(1));
 	}
 
 	@Test
@@ -142,7 +153,7 @@ public class CreateMapTest {
 
 	@Test
 	public void createMapDrawTest() {
-		String map=cm.createMapDraw(reg, giocatori, k);
+		String map=cm.createMapDraw(board);
 		assertTrue(map.contains(reg.get(0).getName().toUpperCase()));//la mappa contiene il nome della regione
 		assertTrue(map.contains(reg.get(1).getName().toUpperCase()));
 		
@@ -150,6 +161,7 @@ public class CreateMapTest {
 		assertTrue(map.contains(cities.get(i).getName()));//la mappa contiene il nome delle citta'
 		assertTrue(map.contains(cities.get(i).getType()));//la mappa contiene il colore (tipo) delle citta'
 		}
+		System.out.println(map);
 		assertTrue(map.contains(giocatori.get(0).getUser()));//la mappa contiene il nome dei giocatori
 		assertTrue(map.contains(giocatori.get(1).getUser()));
 	}

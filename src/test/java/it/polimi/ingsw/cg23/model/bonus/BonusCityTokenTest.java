@@ -46,7 +46,7 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testGetNumber() {
-		BonusCityToken bonus = new BonusCityToken(0, city, null);
+		BonusCityToken bonus = new BonusCityToken(city, null);
 		assertEquals(0, bonus.getNumber());
 	}
 
@@ -64,7 +64,7 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testGetName() {
-		BonusCityToken bonus = new BonusCityToken(1, city, null);
+		BonusCityToken bonus = new BonusCityToken(city, null);
 		assertEquals("CityToken", bonus.getName());
 	}
 
@@ -73,7 +73,7 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testGetCity() {
-		BonusCityToken bonus = new BonusCityToken(1, city, null);
+		BonusCityToken bonus = new BonusCityToken(city, null);
 		assertEquals(city, bonus.getCity());
 	}
 
@@ -94,7 +94,7 @@ public class BonusCityTokenTest {
 	 */
 	@Test
 	public void testClone() {
-		BonusCityToken bonus = new BonusCityToken(0, city, null);
+		BonusCityToken bonus = new BonusCityToken(city, null);
 		BonusCityToken newBonus = (BonusCityToken) bonus.copy();
 		assertEquals(bonus.toString(), newBonus.toString());
 	}

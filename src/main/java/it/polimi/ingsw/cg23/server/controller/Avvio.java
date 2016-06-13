@@ -140,8 +140,8 @@ public class Avvio {
 
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
-		cl.createMap(regions, giocatori, king);//stampa la plancia di gioco dalla lista
-		//printAll();//stampa tutte le liste
+		cl.createMap(board);//stampa la plancia di gioco dalla lista
+		printAll();//stampa tutte le liste
 	}
 
 	/**

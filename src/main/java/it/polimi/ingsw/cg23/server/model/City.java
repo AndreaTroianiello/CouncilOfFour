@@ -114,7 +114,8 @@ public class City implements Serializable{
 	}
 
 	/**
-	 * 
+	 * add the bonus at the city
+	 * @param bonus
 	 */
 	public void addBonus(Bonus bonus){
 		this.token.add(bonus);
@@ -125,12 +126,8 @@ public class City implements Serializable{
 	 * 
 	 * @return the token.
 	 */
-	public List<String> getToken() {
-		//return token;
-		List<String> tokenNames=new ArrayList<>();
-		for(Bonus bonus: this.token)
-			tokenNames.add(bonus.getName());
-		return tokenNames;
+	public List<Bonus> getToken() {
+		return token;
 	}
 	
 	/**

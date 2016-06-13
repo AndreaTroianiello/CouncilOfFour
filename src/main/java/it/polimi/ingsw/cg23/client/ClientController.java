@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.client;
 
-import java.io.IOException;
 
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 

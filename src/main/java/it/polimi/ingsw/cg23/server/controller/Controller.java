@@ -77,7 +77,7 @@ public class Controller implements Observer<Action>{
 		setPlayersHand();
 		setPlayerStats();
 		gameTwoPlayers();
-		new CreateMap().createMapDraw(model.getRegions(), model.getPlayers(), model.getKing());
+		new CreateMap().createMapDraw(model);
 		this.model.changeStatus();
 		this.model.notifyObserver(new BoardChange(model));
 	}
