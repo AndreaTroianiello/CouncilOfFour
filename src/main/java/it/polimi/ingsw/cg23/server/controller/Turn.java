@@ -65,10 +65,11 @@ public class Turn {
 			status.setCurrentPlayer(players.get(currentPlayer));
 			if(getCurrentPlayer().isAdditionalAction())
 				getCurrentPlayer().switchAdditionalAction();
+			if(status.getStatus().contains("TURN"))
+				draw();
 			this.mainAction=true;
 			this.secondAction=true;
 			this.mainIndex=1;
-			draw();
 			return false;
 		}
 		return true;
