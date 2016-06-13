@@ -3,9 +3,6 @@ package it.polimi.ingsw.cg23.client.cli;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
@@ -15,6 +12,7 @@ import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
@@ -24,18 +22,18 @@ import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
+import it.polimi.ingsw.cg23.server.view.Print;
 
 public class ControllerCLI implements ClientController{
 
-	private static Logger logger;
 	private ClientModel clientModel;
 	private ClientViewOut out;
+	private Print cli;
 
 	public ControllerCLI(){
 		this.out=null;
 		this.clientModel=new ClientModel();
-		logger= Logger.getLogger(ControllerCLI.class);
-		PropertyConfigurator.configure("src/main/resources/logger.properties");
+		this.cli=new Print();
 	}
 	
 	@Override
@@ -50,12 +48,41 @@ public class ControllerCLI implements ClientController{
 			case "CREATION":
 				out.update(new CreationPlayer(tokenizer.nextToken()));
 				break;
+			case "SHOW":
+				showCommand(tokenizer);
+				break;
 			default:
 				mainCommand(string);
 				break;
 		}
 	}
-	
+	private void showCommand(StringTokenizer tokenizer){
+		Board model=clientModel.getModel();
+		if(model==null){
+			cli.print("", "Command refused.");
+			return;
+		}
+		switch(tokenizer.nextToken()){
+		case "BOARD":
+			cli.createMap(model.getRegions(),
+						  model.getPlayers(),
+						  model.getKing());
+			cli.print(model.getNobilityTrack(),"");
+			break;
+		case "HAND":
+			cli.printList(clientModel.getPlayer().getHand());
+			break;
+		case "TILES":
+			cli.print("","Available tiles:");
+			cli.printList(clientModel.getPlayer().getAvailableBusinessPermits());
+			cli.print("","Used tiles:");
+			cli.printList(clientModel.getPlayer().getUsedBusinessPermit());
+			break;
+		default:
+			cli.print("", "Command not found.");
+			break;
+		}
+	}
 	private void mainCommand(String string) throws IOException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;
@@ -109,7 +136,7 @@ public class ControllerCLI implements ClientController{
 			out.update(action);
 			break;
 		default:
-			logger.info("Command not found.");
+			cli.print("", "Command not found.");
 			break;
 		}
 	}
@@ -123,6 +150,6 @@ public class ControllerCLI implements ClientController{
 		if(change instanceof BoardChange)
 			clientModel.setModel(((BoardChange)change).getBoard());
 		else
-			logger.info(change);
+			cli.print(change,"");
 	}
 }

@@ -60,14 +60,6 @@ public class ServerSocketView extends View implements Runnable {
 					action.registerObserver(this);
 					this.notifyObserver(action);
 				}
-				
-				/*if(object instanceof Query){
-					System.out.println("SERVER VIEW: received query " + object);
-					Query query=(Query) object;
-					this.socketOut.writeObject(query.perform(model));
-					this.socketOut.flush();
-				}*/
-
 			} catch (ClassNotFoundException e){
 				logger.error(e);
 			} catch (IOException e) {
