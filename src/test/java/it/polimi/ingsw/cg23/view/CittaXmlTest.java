@@ -22,12 +22,6 @@ public class CittaXmlTest {
 		assertEquals(rcx.getBonusRegion("ConfigurazionePartita.xml").length, 3);
 		assertNotEquals(rcx.getBonusRegion("ConfigurazionePartitas.xml").length, 3);//file inesistente
 	}
-
-	@Test(expected=XmlException.class)
-	public void typeTest() throws XmlException {
-		assertEquals(rcx.getType("ConfigurazionePartita.xml").length, 5);
-		assertNotEquals(rcx.getType("ConfigurazionePartitas.xml").length, 5);//file inesistente
-	}
 	
 	@Test(expected=XmlException.class)
 	public void ReadFileXxmlTest() throws XmlException{

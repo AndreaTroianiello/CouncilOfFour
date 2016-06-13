@@ -29,7 +29,7 @@ public class ReadCittaXml {
 	 * coloumn 4: bonus of the city
 	 * coloumn 5: region of the city
 	 */
-	
+
 	/**
 	 * legge il file xml
 	 * @param endPath, the name of file (with the extension ".xml")
@@ -38,7 +38,7 @@ public class ReadCittaXml {
 	 */
 	public String[][] readFileXml(String endPath) throws XmlException{
 		String[][] city;
-		
+
 		try {
 			int citynum=cityNumber(endPath);//numero di citta'
 			int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
@@ -55,9 +55,9 @@ public class ReadCittaXml {
 			for (int i=0; i<citynum; i++){//scorre le citta' presenti nel file xml
 				city=createArray(i, citylist, zoneName, city, citynum);//recupero le informazioni della citta'
 			}
-			
+
 			return city;
-		
+
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}
@@ -111,9 +111,9 @@ public class ReadCittaXml {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
 			NodeList citylist=doc.getElementsByTagName("city");//lista dei nodi che contengono "city"
-			
+
 			return citylist.getLength();//numero di citta'
-		
+
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}
@@ -134,36 +134,9 @@ public class ReadCittaXml {
 			Node zone = rootnode.getChildNodes().item(3);//primo elemento dei figli di map = secondo nodo xml (zone)
 			Node cities= zone.getChildNodes().item(3);//terzo elemento dei figli di zone = quarto nodo xml (cities)
 			Node citty=cities.getChildNodes().item(1);// primo elemento dei figli di cities = qunto nodo xml (city)
-			
+
 			return (citty.getChildNodes().getLength()-1)/2+1; //numero di nodi di city, +1 perchè c'è da aggiungere zona
-		
-		}catch (IOException | ParserConfigurationException | SAXException  e) {
-			throw new XmlException(e);
-		}
-	}
 
-	/**
-	 * find the type of city
-	 * @param endPath, the name of the file with .xml
-	 * @return a bidimensional array with the type of city
-	 * @throws XmlException 
-	 */
-	public String[][] getType(String endPath) throws XmlException{
-		try {
-			File inputFile = new File(path+endPath);
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
-			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
-
-			NodeList color=doc.getElementsByTagName("colors");//lista dei nodi che contengono "color"
-			int typeNum=color.getLength();
-			String[][] type=new String[typeNum][2];
-			for(int i=0; i<typeNum; i++){
-				type[i][0]=color.item(i).getChildNodes().item(1).getTextContent();//recupero il nome del colore
-				type[i][1]=color.item(i).getChildNodes().item(3).getTextContent();//recupero i punti del colore
-			}
-			return type;
-		
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}
@@ -176,24 +149,24 @@ public class ReadCittaXml {
 	 * @throws XmlException
 	 */
 	public String[][] getBonusRegion(String endPath) throws XmlException{
-		
+
 		try {
 			File inputFile = new File(path+endPath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
 			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
-			
+
 			NodeList coin=doc.getElementsByTagName("coin");//lista dei nodi che contengono "color"
 			NodeList namez=doc.getElementsByTagName("namez");//lista dei nodi che contengono "color"
 			String[][] regionBonus=new String[namez.getLength()][2];
-			
+
 			for(int i=0; i<namez.getLength(); i++){
 				regionBonus[i][0]=namez.item(i).getTextContent();
 				regionBonus[i][1]=coin.item(i).getTextContent();
 			}
-			
+
 			return regionBonus;
-			
+
 		}catch (IOException | ParserConfigurationException | SAXException  e) {
 			throw new XmlException(e);
 		}

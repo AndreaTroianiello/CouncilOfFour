@@ -22,7 +22,7 @@ public class CreateBonusTest {
 
 	@Before
 	public void setUp(){
-		cb=new CreateBonus("ConfigurazionePartita.xml");
+		cb=new CreateBonus("RegionCity.xml");
 		List<Character> idcity=new ArrayList<>();
 		idcity.add('A');
 		idcity.add('B');

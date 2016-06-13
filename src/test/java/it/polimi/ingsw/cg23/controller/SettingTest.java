@@ -48,7 +48,7 @@ public class SettingTest {
 
 		//Set up the types.
 		type1=new Type("Gold",10,bonusKing);
-		type2=new Type("purple",10,bonusKing);
+		type2=new Type("Purple",10,bonusKing);
 
 		//Set up the regions and cities
 		regions.add(new Region("Region0",5,new RegionDeck(2),bonusKing));

@@ -14,7 +14,7 @@ public class AvvioTest {
 	
 	@Before
 	public void etUp(){
-		avv=new Avvio("ConfigurazionePartita.xml");
+		avv=new Avvio("RegionCity.xml");
 	}
 	
 	@Test

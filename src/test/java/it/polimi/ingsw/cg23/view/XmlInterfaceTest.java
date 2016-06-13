@@ -18,7 +18,7 @@ public class XmlInterfaceTest {
 
 	@Test
 	public void getTypeTest() {
-		String[][] type=xI.getType("ConfigurazionePartita.xml");
+		String[][] type=xI.getType("Type.xml");
 		assertEquals(type.length, 5);//numero dei tipi
 
 		for(int i=0; i<type.length; i++){//tutti i campi non sono vuoti
@@ -59,7 +59,7 @@ public class XmlInterfaceTest {
 
 	@Test
 	public void getCittaXmlTest(){
-		String[][] cities=xI.cittaXml("ConfigurazionePartita.xml");
+		String[][] cities=xI.cittaXml("RegionCity.xml");
 		
 		assertEquals(cities.length, 15);//numero di citta' lette dall'xml
 		for(int i=0; i<cities.length; i++){//controllo che nell'array non ci siano valori nulli
@@ -79,7 +79,7 @@ public class XmlInterfaceTest {
 	
 	@Test
 	public void getBonusRegionTest(){
-		String[][] regBonus=xI.getBonusRegion("ConfigurazionePartita.xml");
+		String[][] regBonus=xI.getBonusRegion("RegionCity.xml");
 		
 		assertEquals(regBonus.length, 3);
 		for(int i=0; i<regBonus.length; i++){//controllo che nell'array non ci siano valori nulli

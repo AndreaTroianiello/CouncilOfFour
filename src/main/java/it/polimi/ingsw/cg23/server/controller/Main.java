@@ -13,7 +13,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Avvio game=new Avvio("ConfigurazionePartita.xml");
+		Avvio game=new Avvio("RegionCity.xml");
 		game.startPartita();
 	}
 }

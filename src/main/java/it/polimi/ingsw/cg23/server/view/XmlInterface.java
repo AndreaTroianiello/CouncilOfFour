@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.server.view.xmlreader.ReadCittaXml;
 import it.polimi.ingsw.cg23.server.view.xmlreader.ReadColorXml;
 import it.polimi.ingsw.cg23.server.view.xmlreader.ReadCostructionXml;
 import it.polimi.ingsw.cg23.server.view.xmlreader.ReadNobilityTrackXml;
+import it.polimi.ingsw.cg23.server.view.xmlreader.ReadType;
 
 /**
  * recupera le informazioni dai file xml
@@ -18,6 +19,7 @@ public class XmlInterface {
 	private ReadCostructionXml costructionXml;//legge l'xml delle carte costruzione
 	private ReadNobilityTrackXml nobilityXml;//legge il nobility track dall'xml
 	private ReadColorXml colorXml;//legge i colori dall'xml
+	private ReadType typeXml;//legge i tipi dall'xml
 
 	private static Logger logger;//logger
 
@@ -36,8 +38,9 @@ public class XmlInterface {
 		this.costructionXml=new ReadCostructionXml();
 		this.nobilityXml=new ReadNobilityTrackXml();
 		this.colorXml=new ReadColorXml();
+		this.typeXml=new ReadType();
 	}
-	
+
 	/**
 	 * find the type(color) of the city
 	 * @param endPath, the name of the file with the .xml
@@ -47,7 +50,7 @@ public class XmlInterface {
 		String[][] type=null;
 
 		try {//provo a leggere il file xml
-			type=cittaXml.getType(endPath);
+			type=typeXml.typeXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
 			type=null;
@@ -91,7 +94,7 @@ public class XmlInterface {
 
 		return nobilityTrackBonus;
 	}
-	
+
 	/**
 	 * carica il file xml con le infromazioni della partita
 	 * @return a bidimensional array with all the city info
@@ -100,12 +103,12 @@ public class XmlInterface {
 	public String[][] cittaXml(String endPath){
 
 		String[][] cityInfo = null;
-		
+
 		try {//provo a leggere il file xml
 			//int citynum=cityNum(endPath);//numero di citta' nel file xml
 			//int cityNodeNumber=cityNodeNumber(endPath);//numero di nodi di citta' nel file xml
 			//cityInfo=new String[citynum][cityNodeNumber];//array con le informazioni delle citta'
-			
+
 			cityInfo=cittaXml.readFileXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
@@ -162,7 +165,7 @@ public class XmlInterface {
 		 * coloumn 2: bonus
 		 */
 	}
-	
+
 	/**
 	 * find the colors in the xml file
 	 * @param endPath, the xml file name
@@ -180,7 +183,7 @@ public class XmlInterface {
 
 		return color;
 	}
-	
+
 	/**
 	 * find the number of colors in the xml file
 	 * @param endPath, the name of the xml file

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type>
+	<colors>
+		<color>
+			<namec>Iron</namec>
+			<value>5</value>
+		</color>
+		<color>
+			<namec>Purple</namec>
+			<value>0</value>
+		</color>
+		<color>
+			<namec>Gold</namec>
+			<value>15</value>
+		</color>
+		<color>
+			<namec>Silver</namec>
+			<value>10</value>
+		</color>
+		<color>
+			<namec>Bronze</namec>
+			<value>7</value>
+		</color>
+	</colors>
+</type>

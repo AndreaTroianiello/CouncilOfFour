@@ -32,7 +32,7 @@ public class RegionCityTest {
 		bonuses.add(0);
 		bonusKing=new BonusKing(bonuses);
 
-		crc=new CreateRegionCity("ConfigurazionePartita.xml");
+		crc=new CreateRegionCity("RegionCity.xml");
 		regions=new ArrayList<>();
 		citta1=new ArrayList<>();
 		citta2=new ArrayList<>();
