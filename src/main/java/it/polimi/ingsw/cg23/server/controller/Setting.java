@@ -91,7 +91,7 @@ public class Setting {
 		List <Type> typeList=new ArrayList<>();//lista di type
 
 		for(int i=0; i<array.length; i++){//scorre i type che ci sono nell'xml
-			if("purple".equals(array[i][0])){
+			if("Purple".equals(array[i][0])){
 				Type t=new Type(array[i][0], Integer.parseInt(array[i][1]), null);//crea un nuovo tipo
 				typeList.add(t);//aggiungo il tipo alla lista dei tipi
 			}
