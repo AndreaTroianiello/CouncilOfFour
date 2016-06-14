@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
@@ -21,14 +22,14 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
 public class CreateMap {
 	private ColorManager cm;
 	private int space=50;//spazio da mettere tra una regione e l'altra
-	
+
 	/**
 	 * costructor
 	 */
 	public CreateMap(){
 		this.cm=new ColorManager();
 	}
-	
+
 	/**
 	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
 	 * @return void
@@ -115,12 +116,12 @@ public class CreateMap {
 		percorsi=percorsi.concat("\n");
 
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getUser(),playerSpace);//aggiungo il nome dei giocatori
-			percorsi+=addSpace(giocatori.get(i).getRichness().getCoins(),playerSpace);//aggiungo il numero di coins
-			percorsi+=addSpace(giocatori.get(i).getVictoryTrack().getVictoryPoints(),playerSpace);//aggiungo i victory points
-			percorsi+=addSpace(giocatori.get(i).getNobilityBoxPosition(),playerSpace);//aggiungo la posizione sul nobility box
-			percorsi+=addSpace(giocatori.get(i).getAssistantsPool().getAssistants(), playerSpace);//aggiungo il numero di assistenti
-			percorsi+=addSpace(giocatori.get(i).getHand().size(), playerSpace);//aggiungo il numero di carte politiche
+			percorsi=percorsi.concat(addSpace(giocatori.get(i).getUser(),playerSpace));//aggiungo il nome dei giocatori
+			percorsi=percorsi.concat(addSpace(giocatori.get(i).getRichness().getCoins(),playerSpace));//aggiungo il numero di coins
+			percorsi=percorsi.concat(addSpace(giocatori.get(i).getVictoryTrack().getVictoryPoints(),playerSpace));//aggiungo i victory points
+			percorsi=percorsi.concat(addSpace(giocatori.get(i).getNobilityBoxPosition(),playerSpace));//aggiungo la posizione sul nobility box
+			percorsi=percorsi.concat(addSpace(giocatori.get(i).getAssistantsPool().getAssistants(), playerSpace));//aggiungo il numero di assistenti
+			percorsi=percorsi.concat(addSpace(giocatori.get(i).getHand().size(), playerSpace));//aggiungo il numero di carte politiche
 			percorsi=percorsi.concat("\n");
 		}
 
@@ -199,7 +200,7 @@ public class CreateMap {
 		int citypReg=city.size()/regionNumber;
 		plancia+=printName(reg, space);//aggiungo i nomi delle regioni
 		plancia=plancia.concat("\n");
-		
+
 		for(int i=0; i<citypReg; i++){//ciclo che scorre le citta' per regione da stampare 5
 			int minus=32;
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge i -
@@ -251,7 +252,7 @@ public class CreateMap {
 			}
 			plancia=plancia.concat("\n");
 		}
-		
+
 		plancia+=councillors(reg);
 		plancia=plancia.concat("\n");
 		plancia+=createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
@@ -261,9 +262,9 @@ public class CreateMap {
 		plancia+=createPlayerInfo(b.getPlayers());//aggiunge alla plancia di gioco i punteggi giocatore
 
 		plancia+=printNobility(b);
-		
+
 		return plancia;//stampo la plancia di gioco
-		
+
 	}
 
 	/**
@@ -274,17 +275,17 @@ public class CreateMap {
 	 */
 	private String printName(List<Region>reg, int space){
 		String name="";
-		
+
 		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
 			String n;
 			if(reg.get(j).isBonusAvailable())
 				n=reg.get(j).getName().toUpperCase()+" Victory points: "+reg.get(j).getBonus().getPoints();
 			else
 				n=reg.get(j).getName().toUpperCase();
-			
+
 			name=name.concat(addSpace(n, space));//nomi delle regioni
 		}
-		
+
 		return name;
 	}
 
@@ -421,88 +422,97 @@ public class CreateMap {
 
 		return councillor;
 	}
-	
+
 	/**
 	 * print the bonus king and the king council
 	 * @param k, the king
 	 * @return a string with bonus king and king councill
 	 */
 	private String bonusCouncilKing(Board b){//PARZIALE--> non stampa i bonus king
-		String nome="Consiglieri del re: ";
+		String consiglieri="Consiglieri del re: ";
 		List<Councillor> kingCouncillors=b.getKing().getCouncil().getCouncillors();//consiglieri del re
-		
+
 		for(int i=0; i<kingCouncillors.size(); i++){
-			nome=nome.concat(cm.getColorName(kingCouncillors.get(i).getColor()));//converto i colori in nomi
-			nome=nome.concat(" ");
+			consiglieri=consiglieri.concat(cm.getColorName(kingCouncillors.get(i).getColor()));//converto i colori in nomi
+			consiglieri=consiglieri.concat(" ");
 		}
-		nome=addSpace(nome, space);
-		nome=nome.concat("Bonus king avaiable: ");
+		consiglieri=addSpace(consiglieri, space);
+
+		String bonus="Bonus king avaiable: ";
 		BonusKing bk=b.getBonusKing();//bonus king
-		
+
 		for(int i=bk.getCurrentIndexBonusKing(); i<bk.getBonusValues().size()-1; i++){//scorre i bonus king
-			
-			nome+=b.getBonusKing().getBonusValues().get(i).toString()+", ";
-			
+			bonus=bonus.concat(b.getBonusKing().getBonusValues().get(i).toString()+" ");
 		}
-		
-		return nome.substring(0, nome.length()-2);
+
+		String tipi="Avaiable type: ";
+		List<Type> tipes=b.getTypes();
+		for(int i=0; i<tipes.size(); i++){
+			if("Purple".equals(tipes.get(i).getName()))
+				tipi=tipi.concat("");
+				else
+					if(tipes.get(i).isBonusAvailable())
+						tipi=tipi.concat(tipes.get(i).getName()+": "+tipes.get(i).getBonus().getName()+", ");
+		}
+
+		return addSpace(consiglieri, space)+addSpace(bonus, space)+addSpace(tipi.substring(0, tipi.length()-2), space);
 	}
-	
+
 	/**
 	 * print the nobility track
 	 * @param b, the board
 	 * @return a string with the nobility track
 	 */
-	private String printNobility(Board b){
+	public String printNobility(Board b){
 		String nobility = "Nobility Track:\n";
 		List<NobilityBox> nb = b.getNobilityTrack().getNobilityBoxes();
 		List<Player> players=b.getPlayers();
 		int nobilitySpace=20;
-		
+
 		for(int i=0; i<nb.size()-1; i++){//aggiunge i -
-			nobility+=addMinus(nobilitySpace);
+			nobility=nobility.concat(addMinus(nobilitySpace));
 		}
-		
+
 		nobility+="\n|";
-		
+
 		for(int i=0; i<nb.size(); i++){//aggiunge il numero di box e il primo bonus (se c'è)
 			if(nb.get(i).getBonus().isEmpty())
-				nobility+=addSpace(i, nobilitySpace-2)+"|";
+				nobility=nobility.concat(addSpace(i, nobilitySpace-2)+"|");
 			else
-				nobility+=addSpace(i+" "+nb.get(i).getBonus().get(0).getName(), nobilitySpace-2)+"|";
+				nobility=nobility.concat(addSpace(i+" "+nb.get(i).getBonus().get(0).getName(), nobilitySpace-2)+"|");
 		}
-		
+
 		nobility+="\n|";
-		
+
 		for(int i=0; i<nb.size(); i++){//aggiunge il secondo bonus (se c'è)
 			if(nb.get(i).getBonus().size()<2)
-				nobility+=addSpace("", nobilitySpace-2)+"|";
+				nobility=nobility.concat(addSpace("", nobilitySpace-2)+"|");
 			else
-				nobility+=addSpace(nb.get(i).getBonus().get(1).getName(), nobilitySpace-2)+"|";
+				nobility=nobility.concat(addSpace(nb.get(i).getBonus().get(1).getName(), nobilitySpace-2)+"|");
 		}
-		
+
 		nobility+="\n|";
-		
+
 		for(int i=0; i<nb.size(); i++){//aggiunge i giocatori (se ci sono)
 			String giocatori="";
-			
+
 			for(int k=0; k<players.size(); k++){//scorre i giocatori
 				if(players.get(k).getNobilityBoxPosition()==i)
-					giocatori+=players.get(k).getUser()+", ";
-				
+					giocatori=giocatori.concat(players.get(k).getUser()+", ");
+
 			}
 			if(giocatori.length()==0)
-				nobility+=addSpace(giocatori, nobilitySpace-2)+"|";
+				nobility=nobility.concat(addSpace(giocatori, nobilitySpace-2)+"|");
 			else
-				nobility+=addSpace(giocatori.substring(0, giocatori.length()-2), nobilitySpace-2)+"|";
+				nobility=nobility.concat(addSpace(giocatori.substring(0, giocatori.length()-2), nobilitySpace-2)+"|");
 		}
-		
+
 		nobility+="\n";
-		
+
 		for(int i=0; i<nb.size()-1; i++){//aggiunge i -
-			nobility+=addMinus(nobilitySpace);
+			nobility=nobility.concat(addMinus(nobilitySpace));
 		}
-		
+
 		return nobility;
 	}
 }

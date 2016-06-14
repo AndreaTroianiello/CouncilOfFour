@@ -57,6 +57,13 @@ public class Type implements Serializable {
 	}
 
 	/**
+	 * @return the bonus
+	 */
+	public Bonus getBonus() {
+		return bonus;
+	}
+
+	/**
 	 *  Sets the bonus status at false. The bonus is not available.
 	 */
 	private void setBonusUnavailable() {
@@ -85,6 +92,7 @@ public class Type implements Serializable {
 	 * Seeks a specific city by the id.
 	 * 
 	 * @param id the identifier of the city.
+	 * @return the city
 	 */
 	public City searchCityById(char id){
 		for(City city: cities)								//Explore the city.

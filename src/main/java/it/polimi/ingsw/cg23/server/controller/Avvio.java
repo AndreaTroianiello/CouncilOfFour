@@ -73,7 +73,7 @@ public class Avvio {
 	 * to start the game
 	 */
 	public void startPartita(){//metodo per avviare la partita
-		
+
 		cl.print("", "Creo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
@@ -123,7 +123,7 @@ public class Avvio {
 
 		//----------consiglieri e balconi----------
 		consiglieri=cco.createCouncillor(4);//crea i consiglieri
-		
+
 		for(int i=0; i<regions.size(); i++){//scorro il numero di regioni
 			cco.setBalconi(regions.get(i), consiglieri);//crea i balconi delle regioni
 		}
@@ -141,13 +141,13 @@ public class Avvio {
 		//----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
 		cl.createMap(board);//stampa la plancia di gioco dalla lista
-		printAll();//stampa tutte le liste
+		//printAll();//stampa tutte le liste
 	}
 
 	/**
 	 * print all the list
 	 */
-	private void printAll(){
+	public void printAll(){
 		cl.print("", "STAMPO TUTTO");
 		cl.print(bonusList.size(),"Numero di bonus:");
 		cl.printList(bonusList);

@@ -14,7 +14,7 @@ public class Timer implements Runnable {
 
 	/**
 	 * The constructor of PlayersControl.
-	 * @param index The number of all views.
+	 * @param view The number of all views.
 	 * @param controller The game's controller.
 	 */
 	public Timer(View view,Controller controller) {
