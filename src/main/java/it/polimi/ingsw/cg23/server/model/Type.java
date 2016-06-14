@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 
@@ -19,7 +18,7 @@ public class Type implements Serializable {
 
 	private static final long serialVersionUID = -6707285349370676070L;
 	private final String name;													//The name of the region.
-	private final Bonus bonus;													//The bonus of the type.
+	private final BonusVictoryPoints bonus;													//The bonus of the type.
 	private final BonusKing bonusKing;											//The bonus king
 	private final List<City> cities;											//The list of cities contained.
 	private boolean bonusAvailable;												//Status of the bonus.
@@ -59,8 +58,8 @@ public class Type implements Serializable {
 	/**
 	 * @return the bonus
 	 */
-	public Bonus getBonus() {
-		return bonus;
+	public BonusVictoryPoints getBonus() {
+		return (BonusVictoryPoints) bonus;
 	}
 
 	/**

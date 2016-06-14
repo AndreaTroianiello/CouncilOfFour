@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.utility.CreateMap;
 
 public class Nuovo extends JFrame {
 
@@ -230,7 +229,7 @@ public class Nuovo extends JFrame {
 	}
 
 	private String nobilityTrack(){
-		return new CreateMap().printNobility(s.getBoard());
+		return "nobility track";
 	}
 
 	private void infoAction(JPanel panel){

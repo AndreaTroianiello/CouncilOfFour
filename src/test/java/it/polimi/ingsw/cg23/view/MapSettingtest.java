@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.polimi.ingsw.cg23.view;
 
 import static org.junit.Assert.*;
@@ -26,15 +23,11 @@ import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.utility.CreateMap;
+import it.polimi.ingsw.cg23.utility.MapSetting;
 
-/**
- * @author viga94
- *
- */
-public class CreateMapTest {
-		
-	private CreateMap cm;
+public class MapSettingtest {
+	
+	MapSetting ms;
 	private Type type1,type2;
 	private List<Type> tipi;
 	private List<Region> reg;
@@ -46,9 +39,9 @@ public class CreateMapTest {
 	private Board board;
 	
 	@Before
-	public void setUp(){
+	public void setUp() throws Exception {
+		ms=new MapSetting();
 		tipi=new ArrayList<>();
-		cm=new CreateMap();
 		reg=new ArrayList<>();
 		giocatori=new ArrayList<>();
 		
@@ -139,42 +132,20 @@ public class CreateMapTest {
 	}
 
 	@Test
-	public void createMapTest() {
-		String map=cm.createMap(reg, giocatori, k);
-		assertTrue(map.contains(reg.get(0).getName().toUpperCase()));//la mappa contiene il nome della regione
-		assertTrue(map.contains(reg.get(1).getName().toUpperCase()));
+	public void getCityfromRegionTest() {
+		List<City> citta=ms.getCityfromRegion(reg);
 		
-		for(int i=0; i<cities.size(); i++){//ciclo che scorre le citta'
-		assertTrue(map.contains(cities.get(i).getName()));//la mappa contiene il nome delle citta'
-		assertTrue(map.contains(cities.get(i).getType()));//la mappa contiene il colore (tipo) delle citta'
+		assertEquals(citta.size(), 6);
+		for(int i=0; i<cities.size(); i++){//puo' essere che non tutti i parametri siano settati
+			assertEquals(citta.get(i).getName(), cities.get(i).getName());
+			assertEquals(citta.get(i).getId(), cities.get(i).getId());
+			assertEquals(citta.get(i).getNeighbors(), cities.get(i).getNeighbors());
+			assertEquals(citta.get(i).getRegion(), cities.get(i).getRegion());
+			assertEquals(citta.get(i).getEmporiums(), cities.get(i).getEmporiums());
+			assertEquals(citta.get(i).getToken(), cities.get(i).getToken());
+			assertEquals(citta.get(i).getType(), cities.get(i).getType());
 		}
-		assertTrue(map.contains(giocatori.get(0).getUser()));//la mappa contiene il nome dei giocatori
-		assertTrue(map.contains(giocatori.get(1).getUser()));
-	}
-
-	@Test
-	public void createMapDrawTest() {
-		String map=cm.createMapDraw(board);
-		assertTrue(map.contains(reg.get(0).getName().toUpperCase()));//la mappa contiene il nome della regione
-		assertTrue(map.contains(reg.get(1).getName().toUpperCase()));
-		
-		for(int i=0; i<cities.size(); i++){//ciclo che scorre le citta'
-		assertTrue(map.contains(cities.get(i).getName()));//la mappa contiene il nome delle citta'
-		assertTrue(map.contains(cities.get(i).getType()));//la mappa contiene il colore (tipo) delle citta'
-		}
-		assertTrue(map.contains(giocatori.get(0).getUser()));//la mappa contiene il nome dei giocatori
-		assertTrue(map.contains(giocatori.get(1).getUser()));
 	}
 	
-	@Test
-	public void createPlayerInfoTest(){
-		String playerInfo=cm.createPlayerInfo(giocatori);
-		
-		assertTrue(playerInfo.contains(giocatori.get(0).getUser()));
-		assertTrue(playerInfo.contains(giocatori.get(1).getUser()));
-		assertNotEquals(playerInfo, null);
-		assertNotEquals(playerInfo, "");
-		assertTrue(playerInfo.contains("Player"));
-		assertTrue(playerInfo.contains("coin"));
-	}
+
 }
