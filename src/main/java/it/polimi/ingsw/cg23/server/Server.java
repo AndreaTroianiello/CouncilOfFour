@@ -69,7 +69,7 @@ public class Server {
 		while(run){
 			Socket socket=serverSocket.accept();
 			incrementIndex();
-			ServerSocketView view=new ServerSocketView(socket,model);
+			ServerSocketView view=new ServerSocketView(socket);
 			this.model.registerObserver(view);
 			view.registerObserver(this.controller);
 			executor.submit(view);			

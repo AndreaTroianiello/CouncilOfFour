@@ -62,6 +62,55 @@ public class Controller implements Observer<Action>{
 		
 	}
 	
+	/**
+	 * Resets the map of the connections and  cancels the registration on views.
+	 */
+	public void resetInterconnections(){
+		unregisterViews();
+		interconnections.clear();
+	}
+	
+	/**
+	 * The controller cancels the registration on views.
+	 */
+	private void unregisterViews(){
+		Set<View> views=interconnections.keySet();
+		for(View view: views)
+			view.unregisterObserver(this);
+	}
+	
+	/**
+     * Returns the view from the map. 
+     * @param player the owner of the view.
+     * @return the player's view. If the view isn't found returns null.
+     */
+	public View getView(Player player) {
+    	if(interconnections.containsValue(player)){
+    		Set<View> views=interconnections.keySet();
+    		for(View view: views){
+    			if(interconnections.get(view).equals(player))
+    				return view;
+    		}
+    	}
+    	return null;
+    }
+	
+	/**
+	 * Returns the status of all views of the game.
+	 * @return if true all view are suspended.
+	 */
+	public boolean isAllSuspended(){
+		Set<View> views=interconnections.keySet();
+		boolean result=true;
+		for(View view:views)
+			result=result&&view.getSuspended();
+		return result;
+	}
+	
+	/**
+	 * Returns the turn of the game.
+	 * @return the turn.
+	 */
 	public Turn getTurn(){
 		return turn;
 	}
@@ -139,21 +188,6 @@ public class Controller implements Observer<Action>{
 	}
 	
 	/**
-     * Returns the view from the map. 
-     * @param player the owner of the view.
-     * @return the player's view. If the view isn't found returns null.
-     */
-	public View getView(Player player) {
-    	if(interconnections.containsValue(player)){
-    		Set<View> views=interconnections.keySet();
-    		for(View view: views){
-    			if(interconnections.get(view).equals(player))
-    				return view;
-    		}
-    	}
-    	return null;
-    }
-	/**
 	 * Controls the action and performs it.
 	 */
 	@Override
@@ -175,8 +209,6 @@ public class Controller implements Observer<Action>{
 		}
 		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){
 			((EndTurn) action).runAction(this);
-			if(!model.getStatus().getStatus().contains("FINISH"))
-				new Thread(new Timer(getView(turn.getCurrentPlayer()),this)).start();
 		}
 		else
 			action.notifyObserver(new ErrorChange("Action refused."));

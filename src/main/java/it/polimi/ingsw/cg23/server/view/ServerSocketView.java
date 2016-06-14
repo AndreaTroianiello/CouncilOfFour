@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
-import it.polimi.ingsw.cg23.server.model.Board;
 
 /**
  * The view that manages the connections of the socket clients.
@@ -28,7 +27,7 @@ public class ServerSocketView extends View implements Runnable {
 	 * @param model The board of the game.
 	 * @throws IOException if the socket connection has problems.
 	 */
-	public ServerSocketView(Socket socket, Board model) throws IOException {
+	public ServerSocketView(Socket socket) throws IOException {
 		
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());

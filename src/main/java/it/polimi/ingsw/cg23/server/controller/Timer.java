@@ -30,14 +30,11 @@ public class Timer implements Runnable {
 	@Override
 	public void run() {
 		try {
-			System.out.println(1);
 			view.setSuspended(true);
-			Thread.sleep(120000);
+			Thread.sleep(60000);
 			if(view.getSuspended()){
-				System.out.println(2);
 				new EndTurn().runAction(controller);
 			}
-			System.out.println(3);
 		} catch (InterruptedException e) {
 			logger.error(e);
 		}

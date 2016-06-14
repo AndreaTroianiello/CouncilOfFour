@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
+import it.polimi.ingsw.cg23.server.controller.change.RankChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
@@ -26,6 +27,7 @@ import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
+import it.polimi.ingsw.cg23.utility.CreateMap;
 import it.polimi.ingsw.cg23.utility.Print;
 
 /**
@@ -129,7 +131,6 @@ public class ControllerCLI implements ClientController{
 		switch(tokenizer.nextToken()){
 		case "BOARD":
 			cli.createMap(model);
-			cli.print(model.getNobilityTrack(),"");
 			break;
 		case "HAND":
 			cli.printList(clientModel.getPlayer().getHand());
@@ -207,6 +208,10 @@ public class ControllerCLI implements ClientController{
 	public void updateController(Change change) {
 		if(change instanceof PlayerChange && clientModel.getModel()==null){
 			clientModel.setPlayer(((PlayerChange)change).getPlayer());
+			return;
+		}
+		if(change instanceof RankChange){
+			cli.print(new CreateMap().createPlayerInfo(((RankChange)change).getRank()),"");
 			return;
 		}
 		if(change instanceof BoardChange)
