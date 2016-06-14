@@ -184,7 +184,7 @@ public class Controller implements Observer<Action>{
 	 * Performs the game action if the state is right.
 	 * @param action The incoming action.
 	 */
-	public void performAction(GameAction action){
+	private void performAction(GameAction action){
 		if(action instanceof StandardAction && "TURN".equals(model.getStatus().getStatus())){
 			turn.setAction((GameAction) action);
 			turn.runAction();
@@ -193,6 +193,9 @@ public class Controller implements Observer<Action>{
 		   action instanceof MarketBuy && "MARKET: BUYING".equals(model.getStatus().getStatus())){
 			turn.setAction((GameAction) action);
 			turn.runAction();
+		}
+		else{
+			action.notifyObserver(new ErrorChange("Action refused."));
 		}
 	}
 }
