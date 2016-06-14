@@ -31,7 +31,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 	 * @param board
 	 */
 	@Override
-	public void runAction(Player player, Board board) {
+	public boolean runAction(Player player, Board board) {
 		int coin = player.getRichness().getCoins();
 		int assistants = player.getAssistantsPool().getAssistants();
 		
@@ -41,7 +41,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 		} catch (NegativeNumberException e) {
 			this.notifyObserver(new ErrorChange(e.getMessage()));
 			getLogger().error(e);
-			return;
+			return false;
 		}
 		
 		assistants = assistants + 1;
@@ -51,9 +51,9 @@ public class HireAssistant extends GameAction implements StandardAction{
 		} catch (NegativeNumberException e) {
 			this.notifyObserver(new ErrorChange(e.getMessage()));
 			getLogger().error(e);
-			return;
+			return false;
 		}
-
+		return true;
 	}
 
 	/**

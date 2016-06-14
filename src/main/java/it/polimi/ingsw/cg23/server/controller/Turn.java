@@ -159,8 +159,9 @@ public class Turn {
 		Player player=getCurrentPlayer();
 		State status=board.getStatus();
 		if((action.isMain() && mainAction)||(!action.isMain() && secondAction)){		//Control if the action is authorized
-			action.runAction(player, board);											//Run the action.
-			controlAction();															//Control the authorization.
+			boolean run=action.runAction(player, board);										//Run the action.
+			if(run)
+				controlAction();															//Control the authorization.
 		}
 		else
 			action.notifyObserver(new ErrorChange("Action refused."));

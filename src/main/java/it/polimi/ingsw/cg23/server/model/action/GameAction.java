@@ -26,8 +26,10 @@ public abstract class GameAction extends Action{
 	 * It allows to run the action.
 	 * @param player The current player of the turn.
 	 * @param board The model of the game.
+	 * @return the outcome of the action.
 	 */
-	public void runAction(Player player, Board board) {
+	public boolean runAction(Player player, Board board){
+		return true;
 	}
 
 	/**

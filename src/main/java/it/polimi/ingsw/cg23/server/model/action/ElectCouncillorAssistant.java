@@ -4,6 +4,7 @@ import java.awt.Color;
 
 
 import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
+import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -74,7 +75,17 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	 * @param board
 	 */
 	@Override
-	public void runAction(Player player, Board board){
+	public boolean runAction(Player player, Board board){
+		int assistants = player.getAssistantsPool().getAssistants();
+		assistants = assistants - 1;
+		try {
+			player.getAssistantsPool().setAssistants(assistants);
+			board.notifyObserver(new PlayerChange(player));
+		} catch (NegativeNumberException e) {
+			getLogger().error(e);
+			this.notifyObserver(new ErrorChange(e.getMessage()));
+			return false;
+		}
 		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(newCouncillor != null){
 			if(!this.king){
@@ -92,17 +103,14 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 				board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
 				board.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
 			}
-		
-			int assistants = player.getAssistantsPool().getAssistants();
-			assistants = assistants - 1;
-			try {
-				player.getAssistantsPool().setAssistants(assistants);
-				board.notifyObserver(new PlayerChange(player));
-			} catch (NegativeNumberException e) {
-				getLogger().error("The player doesn't have enough assistants", e);
-			}
+			return true;
 		}
-		
+		try {
+			player.getAssistantsPool().setAssistants(assistants+1);
+		} catch (NegativeNumberException e) {
+			getLogger().error(e);
+		}
+		return false;
 	}
 
 

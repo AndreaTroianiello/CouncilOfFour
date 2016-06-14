@@ -54,7 +54,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * @param board
 	 */
 	@Override
-	public void runAction(Player player, Board board) {
+	public boolean runAction(Player player, Board board) {
 		City realDestination = this.controlAction.controlCity(this.destination, board);
 		List<PoliticCard> realHand = this.controlAction.controlPoliticCards(cards, player);
 		if(realDestination != null && realHand != null){
@@ -75,7 +75,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 					try {
 						player.getRichness().setCoins(coin+payMatch);
 						this.cards.addAll(discardedCards);
-						return;
+						return false;
 					} catch (NegativeNumberException e1) {
 						this.notifyObserver(new ErrorChange(e.getMessage()));
 						getLogger().error(e1);
@@ -88,6 +88,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 					} catch (NegativeNumberException e) {
 						this.notifyObserver(new ErrorChange(e.getMessage()));
 						getLogger().error(e);
+						return false;
 					}
 				}
 			
@@ -99,11 +100,15 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 						getLogger().error(e);
 					}
 				}
+				
 			}
-		
+			else
+				return false;
 			board.notifyObserver(new BoardChange(board));
 			board.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
+			return true;
 		}
+		return false;
 	}
 
 	

@@ -27,12 +27,13 @@ public class AdditionalAction extends GameAction implements StandardAction {
 	 * @param board
 	 */
 	@Override
-	public void runAction(Player player, Board board) {
+	public boolean runAction(Player player, Board board) {
 		boolean addictionalAction = player.isAdditionalAction();
 		if(!addictionalAction){
 			player.switchAdditionalAction();
 		}
 		this.notifyObserver(new PlayerChange(player));
+		return true;
 	}
 
 	

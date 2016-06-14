@@ -119,13 +119,14 @@ public class MarketSell extends GameAction implements MarketAction {
 	 * @param board The model of the game.
 	 */
 	@Override
-	public void runAction(Player player,Board board){
+	public boolean runAction(Player player,Board board){
 		item=searchItem(item, player);
 		if(item!=null){
 			board.getMarket().addItemToSell(new Item(item,player,coins));
 			board.notifyObserver(new BoardChange(board));
+			return true;
 		}
-		
+		return false;
 	}
 
 }

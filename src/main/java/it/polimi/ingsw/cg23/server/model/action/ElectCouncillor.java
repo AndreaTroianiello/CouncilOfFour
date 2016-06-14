@@ -72,7 +72,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 * @param board
 	 */
 	@Override
-	public void runAction(Player player, Board board){
+	public boolean runAction(Player player, Board board){
 		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(newCouncillor!=null){
 			if(!this.king){		
@@ -96,8 +96,10 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 				player.getRichness().setCoins(coins);
 			} catch(NegativeNumberException e){
 				getLogger().error(e);
-			}			
+			}
+			return true;
 		}
+		return false;
 	}
 
 	/**

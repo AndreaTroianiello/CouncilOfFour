@@ -65,6 +65,7 @@ public class Controller implements Observer<Action>{
 	public Turn getTurn(){
 		return turn;
 	}
+	
 	/**
 	 * Returns number of the player created.
 	 * @return The size of the map.

@@ -47,7 +47,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 * one assistants from the player's assistants' pool
 	 */
 	@Override
-	public void runAction(Player player, Board board) {
+	public boolean runAction(Player player, Board board) {
 		Region realRegion = controlAction.controlRegion(region, board);
 		if(realRegion != null){
 			int assistants = player.getAssistantsPool().getAssistants();
@@ -58,6 +58,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			} catch (NegativeNumberException e) {
 				getLogger().error("The player doesn't have enough assistants!", e);
 				this.notifyObserver(new ErrorChange("The player doesn't have enough assistants!"));
+				return false;
 			}
 		
 		
@@ -65,10 +66,11 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			for(BusinessPermitTile bpt : realRegion.getDeck().getShowedDeck()){
 				board.notifyObserver(new BusinessPermitTileChange(bpt));
 			}
-			return;
+			return true;
 		}
 		
 		this.notifyObserver(new ErrorChange("Region not found!"));
+		return false;
 	}
 
 	/** 

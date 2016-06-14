@@ -138,7 +138,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param board The model of the game.
 	 */
 	@Override
-	public void runAction(Player player,Board board){
+	public boolean runAction(Player player,Board board){
 		Item realItem=searchItem(board);
 		if(realItem!=null){
 			int coinsBuyer=player.getRichness().getCoins();
@@ -150,11 +150,13 @@ public class MarketBuy extends GameAction implements MarketAction {
 				board.getMarket().getItems().remove(realItem);
 				this.notifyObserver(new ItemChange(realItem));
 				board.notifyObserver(new BoardChange(board));
+				return true;
 			} catch (NegativeNumberException e) {
 				getLogger().error(e);
 				board.notifyObserver(new ErrorChange(e.getMessage()));
 			}
 		}
+		return false;
 		
 	}
 

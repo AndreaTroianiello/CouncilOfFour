@@ -84,7 +84,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * @param board
 	 */
 	@Override
-	public void runAction(Player player, Board board) {
+	public boolean runAction(Player player, Board board) {
 		this.realHand = this.controlAction.controlPoliticCards(this.cards, player);
 		Region realRegion = this.controlAction.controlRegion(this.region, board);
 		if(this.realHand != null && realRegion != null){
@@ -112,13 +112,18 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 						getLogger().error(e1);
 					}
 					getLogger().error(e);
+					return false;
 				}
 			}
+			else
+				return false;
 		
 			List<BusinessPermitTile> changedDeck = realRegion.getDeck().getShowedDeck();
 			board.notifyObserver(new BoardChange(board));
 			board.notifyObserver(new BusinessPermitTileChange(changedDeck.get(changedDeck.size()-1)));
+			return true;
 		}
+		return false;
 	}
 	
 	/**
