@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.server.controller;
 
 import it.polimi.ingsw.cg23.observer.*;
+import it.polimi.ingsw.cg23.server.NewGame;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
@@ -17,10 +18,12 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.view.View;
 import it.polimi.ingsw.cg23.utility.CreateMap;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -61,6 +64,9 @@ public class Controller implements Observer<Action>{
 		
 	}
 	
+	public Turn getTurn(){
+		return turn;
+	}
 	/**
 	 * Returns number of the player created.
 	 * @return The size of the map.
@@ -82,6 +88,7 @@ public class Controller implements Observer<Action>{
 		model.changeStatus();
 		model.notifyObserver(new StateChange(model.getStatus()));
 		model.notifyObserver(new BoardChange(model));
+		new Thread(new Timer(getView(turn.getCurrentPlayer()),this)).start();
 	}
 	
 	/**
@@ -133,12 +140,28 @@ public class Controller implements Observer<Action>{
 	}
 	
 	/**
+     * Returns the view from the map. 
+     * @param player the owner of the view.
+     * @return the player's view. If the view isn't found returns null.
+     */
+    private View getView(Player player) {
+    	if(interconnections.containsValue(player)){
+    		Set<View> views=interconnections.keySet();
+    		for(View view: views){
+    			if(interconnections.get(view).equals(player))
+    				return view;
+    		}
+    	}
+    	return null;
+    }
+	/**
 	 * Controls the action and performs it.
 	 */
 	@Override
 	public synchronized void update(Action action){
 		logger.info("I AM THE CONTROLLER UPDATING THE MODEL");
 		
+		action.getPlayer().setSuspended(false);
 		
 		if("INITIALIZATION".equals(model.getStatus().getStatus())){
 			if(action instanceof CreationPlayer)
@@ -152,6 +175,8 @@ public class Controller implements Observer<Action>{
 		}
 		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){
 			((EndTurn) action).runAction(turn);
+			if(!model.getStatus().getStatus().contains("FINISH"))
+				new Thread(new Timer(getView(turn.getCurrentPlayer()),this)).start();
 		}
 		else
 			action.notifyObserver(new ErrorChange("Action refused."));
@@ -162,8 +187,11 @@ public class Controller implements Observer<Action>{
 	 * @param action The incoming action.
 	 */
 	public void performAction(GameAction action){
-		if(action instanceof StandardAction && "TURN".equals(model.getStatus().getStatus())||
-		   action instanceof MarketSell && "MARKET: SELLING".equals(model.getStatus().getStatus())||
+		if(action instanceof StandardAction && "TURN".equals(model.getStatus().getStatus())){
+			turn.setAction((GameAction) action);
+			turn.runAction();
+		}
+		if(action instanceof MarketSell && "MARKET: SELLING".equals(model.getStatus().getStatus())||
 		   action instanceof MarketBuy && "MARKET: BUYING".equals(model.getStatus().getStatus())){
 			turn.setAction((GameAction) action);
 			turn.runAction();

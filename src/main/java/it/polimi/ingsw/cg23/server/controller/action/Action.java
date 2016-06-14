@@ -46,11 +46,19 @@ public abstract class Action extends Observable<Change> implements Serializable{
 		return player;
 	}
 	
+	/**
+	 * Sets the logger of the action.
+	 * @param logger action's logger.
+	 */
 	public void setLogger(Logger logger){
 		this.logger=logger;
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 	
+	/**
+	 * Returns the logger of the action.
+	 * @return logger
+	 */
 	public Logger getLogger(){
 		return logger;
 	}

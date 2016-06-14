@@ -6,9 +6,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-
 import it.polimi.ingsw.cg23.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.cg23.server.Server;
 import it.polimi.ingsw.cg23.server.controller.Controller;
@@ -24,7 +21,6 @@ public class RMIView extends View implements RMIViewRemote {
 
 	private Server server;
 	private Registry registry;
-	private static Logger logger;
 	
 	/**
 	 * The contructor of RMIView.
@@ -32,8 +28,6 @@ public class RMIView extends View implements RMIViewRemote {
 	 * @param registry the registry created for RMI connections.
 	 */
 	public RMIView(Server server,Registry registry) {
-		logger = Logger.getLogger(RMIView.class);
-		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.server=server;
 		this.registry=registry;
 	}
@@ -56,7 +50,7 @@ public class RMIView extends View implements RMIViewRemote {
 		try {
 			registry.bind(name,(RMIViewRemote) UnicastRemoteObject.exportObject(viewRMI, 1));
 		} catch (AlreadyBoundException e) {
-			logger.error(e);
+			getLogger().error(e);
 		}
 		return name;
 	}
@@ -71,7 +65,7 @@ public class RMIView extends View implements RMIViewRemote {
 			String[] strings=registry.list();
 			string="client"+strings.length;
 		} catch (RemoteException e) {
-			logger.error(e);
+			getLogger().error(e);
 		}
 		return string;
 	}

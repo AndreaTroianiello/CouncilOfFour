@@ -3,7 +3,6 @@ package it.polimi.ingsw.cg23.server.view;
 import java.rmi.RemoteException;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
@@ -17,7 +16,6 @@ import it.polimi.ingsw.cg23.server.model.Board;
 public class RMIServerView extends View implements RMIViewRemote {
 
 	private ClientViewRemote clientStub;
-	private static Logger logger;
 	private String nameView;
 	
 	/**
@@ -29,8 +27,6 @@ public class RMIServerView extends View implements RMIViewRemote {
 	public RMIServerView(ClientViewRemote clientStub,Board model,String nameView) {
 		this.clientStub=clientStub;
 		this.nameView=nameView;
-		logger = Logger.getLogger(RMIServerView.class);
-		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
 	/**
@@ -39,11 +35,11 @@ public class RMIServerView extends View implements RMIViewRemote {
 	 */
 	@Override
 	public void update(Change change) {
-		logger.error("Sending to the client " + change);
+		getLogger().info("Sending to the client " + change);
 		try {
 			this.clientStub.updateClient(change);
 		} catch (RemoteException e) {
-			logger.error(e);
+			getLogger().info(e);
 		}
 	}
 	
@@ -56,7 +52,7 @@ public class RMIServerView extends View implements RMIViewRemote {
 	public void performAction(Action action) throws RemoteException{
 		action.setLogger(Logger.getLogger(Action.class));
 		action.setPlayer(this);
-		logger.info("VIEW: received the action " + action);
+		getLogger().info("VIEW: received the action " + action);
 		action.registerObserver(this);
 		this.notifyObserver(action);
 	}
