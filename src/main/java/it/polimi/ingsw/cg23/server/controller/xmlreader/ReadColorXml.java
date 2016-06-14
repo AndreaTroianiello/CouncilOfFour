@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view.xmlreader;
+package it.polimi.ingsw.cg23.server.controller.xmlreader;
 
 import java.io.File;
 import java.io.IOException;

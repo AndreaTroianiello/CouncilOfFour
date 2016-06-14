@@ -14,8 +14,8 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.*;
 import it.polimi.ingsw.cg23.server.model.components.Emporium;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.server.view.CreateMap;
 import it.polimi.ingsw.cg23.server.view.View;
+import it.polimi.ingsw.cg23.utility.CreateMap;
 
 import java.util.HashMap;
 import java.util.List;

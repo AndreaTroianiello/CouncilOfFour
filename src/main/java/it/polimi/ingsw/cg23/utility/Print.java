@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.utility;
 
 import java.util.List;
 import java.util.Scanner;

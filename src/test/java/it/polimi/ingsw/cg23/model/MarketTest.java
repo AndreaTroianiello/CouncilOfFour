@@ -14,6 +14,7 @@ import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 
@@ -34,7 +35,7 @@ public class MarketTest {
 	}
 
 	@Test
-	public void testMarket() {
+	public void testMarket() throws NegativeNumberException {
 		Market market=new Market();
 		assertEquals(market.getItems().size(), 0);
 		market.addItemToSell(item1);

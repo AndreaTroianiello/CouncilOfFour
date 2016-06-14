@@ -9,8 +9,8 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.Type;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
-import it.polimi.ingsw.cg23.server.view.Print;
 import it.polimi.ingsw.cg23.server.view.XmlInterface;
+import it.polimi.ingsw.cg23.utility.Print;
 
 /**
  * create the cities and the regions

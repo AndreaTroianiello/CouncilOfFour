@@ -3,12 +3,12 @@ package it.polimi.ingsw.cg23.server.view;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCittaXml;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadColorXml;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCostructionXml;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadNobilityTrackXml;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadType;
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
-import it.polimi.ingsw.cg23.server.view.xmlreader.ReadCittaXml;
-import it.polimi.ingsw.cg23.server.view.xmlreader.ReadColorXml;
-import it.polimi.ingsw.cg23.server.view.xmlreader.ReadCostructionXml;
-import it.polimi.ingsw.cg23.server.view.xmlreader.ReadNobilityTrackXml;
-import it.polimi.ingsw.cg23.server.view.xmlreader.ReadType;
 
 /**
  * recupera le informazioni dai file xml

@@ -26,7 +26,7 @@ import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.server.view.CreateMap;
+import it.polimi.ingsw.cg23.utility.CreateMap;
 
 /**
  * @author viga94

@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.server.controller.change.StateChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Rank;
 import it.polimi.ingsw.cg23.server.model.State;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 /**
  * The action EndTurn is used to notify the change of the current player.
@@ -31,17 +32,21 @@ public class EndTurn extends Action {
 	 */
 	public void runAction(Turn turn){
 		Board board=turn.getBoard();
-		if(turn.changePlayer()){
-			State status=board.getStatus();
-			status.setStatus("FINISH");
-			board.notifyObserver(new StateChange(status));
-			new Rank(board).createRank();
-			board.notifyObserver(new RankChange(board.getPlayers()));
-			return;
-		}
-		else{
-			board.notifyObserver(new StateChange(board.getStatus()));
-			board.notifyObserver(new BoardChange(board));
+		try {
+			if(turn.changePlayer()){
+				State status=board.getStatus();
+				status.setStatus("FINISH");
+				board.notifyObserver(new StateChange(status));
+				new Rank(board).createRank();
+				board.notifyObserver(new RankChange(board.getPlayers()));
+				return;
+			}
+			else{
+				board.notifyObserver(new StateChange(board.getStatus()));
+				board.notifyObserver(new BoardChange(board));
+			}
+		} catch (NegativeNumberException e) {
+			getLogger().error(e);
 		}
 	}
 

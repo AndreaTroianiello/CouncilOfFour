@@ -11,6 +11,7 @@ import it.polimi.ingsw.cg23.server.model.action.MarketAction;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 /**
  * The turn governs the actions of a player set.
@@ -57,8 +58,9 @@ public class Turn {
 	 * Sets the player that will play.
 	 * 
 	 * @return If true the game is finished and the first player of the list has built all emporiums available.
+	 * @throws NegativeNumberException 
 	 */
-	public boolean changePlayer() {
+	public boolean changePlayer() throws NegativeNumberException {
 		State status=board.getStatus();
 		if(players.get((currentPlayer+1)%players.size())!=status.getFinalPlayer()){    //Control if the next player wasn't the first to build all emporiums.
 			currentPlayer=(currentPlayer+1)%players.size();
@@ -68,8 +70,10 @@ public class Turn {
 				List<Player> players=board.getPlayers();
 				if("MARKET: BUYING".equals(status.getStatus()))
 					setPlayers(board.getMarket().generatePlayersList(players));
-				else
+				if("TURN".equals(status.getStatus())){
 					setPlayers(players);
+					board.getMarket().resetItems();
+				}
 			}
 			
 			status.setCurrentPlayer(players.get(currentPlayer));			

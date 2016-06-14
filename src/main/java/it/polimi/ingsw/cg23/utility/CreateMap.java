@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,6 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
-import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * print the game map

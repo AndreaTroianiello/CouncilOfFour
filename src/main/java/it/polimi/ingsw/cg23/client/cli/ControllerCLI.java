@@ -26,7 +26,7 @@ import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.server.view.Print;
+import it.polimi.ingsw.cg23.utility.Print;
 
 /**
  * controller cli

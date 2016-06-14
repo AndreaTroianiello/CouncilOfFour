@@ -21,6 +21,7 @@ public class Market implements Serializable{
 	private static final long serialVersionUID = 1070392830721899258L;
 	private final List<Item> itemsToSell;
 
+
 	/**
 	 * The constructor of the market. Creates a empty list of items.
 	 */
@@ -66,20 +67,22 @@ public class Market implements Serializable{
 	 * Adds assistants for sale to the player indicated
 	 * @param item The assistants pool for sale.
 	 * @param player The player indicated.
+	 * @throws NegativeNumberException 
 	 */
-	public void removeAssistants(AssistantsPool item,Player player){
+	public void removeAssistants(AssistantsPool item,Player player) throws NegativeNumberException{
 		int assistants=item.getAssistants();
 		assistants+=player.getAssistantsPool().getAssistants();
-		try {
+		/*try {*/
 			player.getAssistantsPool().setAssistants(assistants);
-		} catch (NegativeNumberException e) {
-		}
+		/*} catch (NegativeNumberException e) {
+		}*/
 	}
 	
 	/**
 	 * Removes all items from the list.
+	 * @throws NegativeNumberException 
 	 */
-	public void resetItems(){
+	public void resetItems() throws NegativeNumberException{
 		for(Item item:itemsToSell){
 			Player player=item.getPlayer();
 			if(item.getItem() instanceof BusinessPermitTile)
