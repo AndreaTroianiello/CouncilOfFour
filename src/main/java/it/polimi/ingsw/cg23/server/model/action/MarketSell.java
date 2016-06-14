@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.server.model.action;
 
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
@@ -122,6 +123,7 @@ public class MarketSell extends GameAction implements MarketAction {
 		item=searchItem(item, player);
 		if(item!=null){
 			board.getMarket().addItemToSell(new Item(item,player,coins));
+			board.notifyObserver(new BoardChange(board));
 		}
 		
 	}

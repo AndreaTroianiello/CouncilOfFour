@@ -20,7 +20,7 @@ public abstract class View extends Observable<Action> implements Observer<Change
 	public View() {
 		logger = Logger.getLogger(ServerSocketView.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		suspended=true;
+		suspended=false;
 	}
 
 	/**

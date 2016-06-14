@@ -52,7 +52,7 @@ public class Server {
 		RMIView rmiView=new RMIView(this,registry);		
 		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		registry.bind(NAME, viewRemote);
-		logger.info("SERVER RMI, NAME:"+NAME+" AND PORT:" + SOCKET_PORT);
+		logger.info("SERVER RMI, NAME:"+NAME+" AND PORT:" + RMI_PORT);
 	}
 	
 	/**

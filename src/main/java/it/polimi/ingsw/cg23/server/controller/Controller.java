@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.server.controller;
 
 import it.polimi.ingsw.cg23.observer.*;
-import it.polimi.ingsw.cg23.server.NewGame;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
@@ -18,7 +17,6 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.view.View;
 import it.polimi.ingsw.cg23.utility.CreateMap;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -144,7 +142,7 @@ public class Controller implements Observer<Action>{
      * @param player the owner of the view.
      * @return the player's view. If the view isn't found returns null.
      */
-    private View getView(Player player) {
+	public View getView(Player player) {
     	if(interconnections.containsValue(player)){
     		Set<View> views=interconnections.keySet();
     		for(View view: views){
@@ -174,7 +172,7 @@ public class Controller implements Observer<Action>{
 			return;
 		}
 		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){
-			((EndTurn) action).runAction(turn);
+			((EndTurn) action).runAction(this);
 			if(!model.getStatus().getStatus().contains("FINISH"))
 				new Thread(new Timer(getView(turn.getCurrentPlayer()),this)).start();
 		}

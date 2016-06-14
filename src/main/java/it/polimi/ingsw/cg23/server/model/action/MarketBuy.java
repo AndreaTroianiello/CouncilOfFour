@@ -2,6 +2,9 @@ package it.polimi.ingsw.cg23.server.model.action;
 
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
+import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.ItemChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
@@ -145,8 +148,11 @@ public class MarketBuy extends GameAction implements MarketAction {
 				realItem.getPlayer().getRichness().setCoins(coinsSeller+realItem.getCoins());
 				addItem(player,realItem);	
 				board.getMarket().getItems().remove(realItem);
+				this.notifyObserver(new ItemChange(realItem));
+				board.notifyObserver(new BoardChange(board));
 			} catch (NegativeNumberException e) {
 				getLogger().error(e);
+				board.notifyObserver(new ErrorChange(e.getMessage()));
 			}
 		}
 		

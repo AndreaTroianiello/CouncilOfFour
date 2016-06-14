@@ -31,10 +31,11 @@ public class Timer implements Runnable {
 	public void run() {
 		try {
 			System.out.println(1);
+			view.setSuspended(true);
 			Thread.sleep(120000);
 			if(view.getSuspended()){
 				System.out.println(2);
-				new EndTurn().runAction(controller.getTurn());
+				new EndTurn().runAction(controller);
 			}
 			System.out.println(3);
 		} catch (InterruptedException e) {

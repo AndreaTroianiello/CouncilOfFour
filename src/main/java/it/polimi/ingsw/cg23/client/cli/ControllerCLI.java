@@ -60,6 +60,7 @@ public class ControllerCLI implements ClientController{
 				break;
 			case "MARKET":
 				marketCommand(tokenizer);
+				break;
 			default:
 				mainCommand(string);
 				break;

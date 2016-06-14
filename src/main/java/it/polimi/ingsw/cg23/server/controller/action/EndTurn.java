@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.server.controller.action;
 
+import it.polimi.ingsw.cg23.server.controller.Controller;
 import it.polimi.ingsw.cg23.server.controller.Turn;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.RankChange;
@@ -24,29 +25,39 @@ public class EndTurn extends Action {
 	public EndTurn() {
 		super();
 	}
-
+	
+	/**
+	 * Sets the game in finish state and notify the observers.
+	 * @param board
+	 */
+	private void finishGame(Board board){
+		State status=board.getStatus();
+		status.setStatus("FINISH");
+		board.notifyObserver(new StateChange(status));
+		new Rank(board).createRank();
+		board.notifyObserver(new RankChange(board.getPlayers()));
+	}
 	/**
 	 * Runs the action.
 	 * 
 	 * @param turn The turn manager.
 	 */
-	public void runAction(Turn turn){
+	public void runAction(Controller controller){
+		Turn turn=controller.getTurn();
 		Board board=turn.getBoard();
-		try {
-			if(turn.changePlayer()){
-				State status=board.getStatus();
-				status.setStatus("FINISH");
-				board.notifyObserver(new StateChange(status));
-				new Rank(board).createRank();
-				board.notifyObserver(new RankChange(board.getPlayers()));
-				return;
+		boolean run=true;
+		while(run){
+			try {
+				if(turn.changePlayer())
+					finishGame(board);
+				else{
+					board.notifyObserver(new StateChange(board.getStatus()));
+					board.notifyObserver(new BoardChange(board));
+					run=controller.getView(board.getStatus().getCurrentPlayer()).getSuspended();
+				}
+			} catch (NegativeNumberException e) {
+				getLogger().error(e);
 			}
-			else{
-				board.notifyObserver(new StateChange(board.getStatus()));
-				board.notifyObserver(new BoardChange(board));
-			}
-		} catch (NegativeNumberException e) {
-			getLogger().error(e);
 		}
 	}
 
