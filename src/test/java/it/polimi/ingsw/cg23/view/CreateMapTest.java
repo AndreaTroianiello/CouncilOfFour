@@ -133,7 +133,7 @@ public class CreateMapTest {
 		bl2.add(b4);
 		reg.get(1).getDeck().setBusinessPermitTiles(bl2);
 		
-		board=new Board(null, reg, tipi, nt, k, null);
+		board=new Board(null, reg, tipi, nt, k, bonusKing);
 		board.addPlayer(giocatori.get(0));
 		board.addPlayer(giocatori.get(1));
 	}
