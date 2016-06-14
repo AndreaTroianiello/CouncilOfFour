@@ -168,7 +168,8 @@ public class Controller implements Observer<Action>{
 		}
 		if(interconnections.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			action instanceof GameAction){
-			performAction((GameAction) action);
+			turn.setAction((GameAction) action);
+			turn.runAction();
 			return;
 		}
 		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){

@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.State;
 import it.polimi.ingsw.cg23.server.model.action.GameAction;
 import it.polimi.ingsw.cg23.server.model.action.MarketAction;
+import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
@@ -173,8 +174,8 @@ public class Turn {
 	private void runActionMarket(){
 		Player player=getCurrentPlayer();
 		State status=board.getStatus();
-		if(action instanceof MarketSell 
-			&& "MARKET: SELLING".equals(status.getStatus())){			//Control if the action permits to sell a item.
+		if(action instanceof MarketSell && "MARKET: SELLING".equals(status.getStatus())||
+		   action instanceof MarketBuy && "MARKET: BUYING".equals(status.getStatus())){			//Control if the action permits to sell a item.
 			action.runAction(player, board);							//Run the action.															//Control the authorization.
 		}
 		else

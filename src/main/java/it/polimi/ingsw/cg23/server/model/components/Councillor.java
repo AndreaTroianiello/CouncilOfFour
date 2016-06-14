@@ -40,7 +40,7 @@ public class Councillor implements Serializable {
 	@Override
 	public String toString() {
 		ColorManager manager=new ColorManager();
-		return "PoliticCard [color="+ manager.getColorName(color) +"]";
+		return "Councillor [color="+ manager.getColorName(color) +"]";
 	}
 	
 	

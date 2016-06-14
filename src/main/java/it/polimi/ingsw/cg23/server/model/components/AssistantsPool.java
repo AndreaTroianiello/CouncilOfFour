@@ -43,5 +43,16 @@ public class AssistantsPool implements CanBeSold{
 			throw new NegativeNumberException("The number of assistants can't be negative.");
 	
 	}
+
+	/**
+	 * It generates a string formed by the most significant statistics of the AssistantsPool.
+	 * @return string
+	 */
+	@Override
+	public String toString() {
+		return "AssistantsPool [assistants=" + assistants + "]";
+	}
+	
+	
 	
 }
