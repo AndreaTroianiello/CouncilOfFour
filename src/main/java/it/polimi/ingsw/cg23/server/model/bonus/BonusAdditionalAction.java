@@ -28,8 +28,10 @@ public class BonusAdditionalAction implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		if(!player.isAdditionalAction())
+		boolean addictionalAction = player.isAdditionalAction();
+		if(!addictionalAction){
 			player.switchAdditionalAction();
+		}
 	}
 	
 	@Override

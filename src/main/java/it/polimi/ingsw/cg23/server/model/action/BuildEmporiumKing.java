@@ -60,6 +60,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		if(realDestination != null && realHand != null){
 			int jolly = howManyJolly(board);															//control how many jolly there are
 			int match = jolly + howManyMatch(board, board.getKing().getCouncil());						//control how many match there are
+			player.getHand().removeAll(discardedCards);
 			int payMatch = payCoins(match, player);														//pay the amount of coins relative to the match
 			int steps = (int) board.getKing().getCity().minimumDistance(realDestination, new ArrayList<City>());		//control the distance between the king's city and the destination
 			int coin = player.getRichness().getCoins();													//control the richness of the player			

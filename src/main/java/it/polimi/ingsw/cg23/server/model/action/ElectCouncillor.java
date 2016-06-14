@@ -34,7 +34,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 * @param king
 	 */
 	public ElectCouncillor(Color councillor, Region region, boolean king) {
-		super(false);
+		super(true);
 		this.councillor = councillor;
 		this.region = region;
 		this.king = king;

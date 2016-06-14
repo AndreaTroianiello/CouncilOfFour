@@ -17,5 +17,5 @@ SHOW HAND
 SHOW TILES
 
 MARKET BUY numberItem
-MARKET SELL TILE/CARD/ASSISTANTS numberTile/numberCard/numberAssistants
-MARKET SHOW
+MARKET SELL TILE/CARD/ASSISTANTS numberTile/numberCard/numberAssistants price
+MARKET VIEW

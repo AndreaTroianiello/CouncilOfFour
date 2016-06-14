@@ -1,8 +1,5 @@
 package it.polimi.ingsw.cg23.server.model.bonus;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -10,7 +7,6 @@ import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.utility.Print;
 
 /**
  * the class of the bonus that allows to run the bonus from a tile the player is in possession. It contains 

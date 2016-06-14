@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
@@ -29,6 +30,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	private final BusinessPermitTile chosenTile;									//wich tile the player chose from the showed ones
 	private List<PoliticCard> discardedCards= new ArrayList<>();
 	private final ControlAction controlAction;
+	private List<PoliticCard> realHand;
 	
 	
 	
@@ -83,12 +85,13 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 */
 	@Override
 	public void runAction(Player player, Board board) {
-		List<PoliticCard> realHand = this.controlAction.controlPoliticCards(this.cards, player);
+		this.realHand = this.controlAction.controlPoliticCards(this.cards, player);
 		Region realRegion = this.controlAction.controlRegion(this.region, board);
-		if(realHand != null && realRegion != null){
+		if(this.realHand != null && realRegion != null){
 			Council council = realRegion.getCouncil();
 			int jolly = howManyJolly(board);
 			int match = jolly + howManyMatch(board, council);
+			player.getHand().removeAll(discardedCards);
 			int moneyPaid = payCoins(match, player);
 			int coins = player.getRichness().getCoins();
 		
@@ -97,11 +100,14 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 					coins = coins - jolly;
 					player.getRichness().setCoins(coins);
 					player.addAvailableBusinessPermit(chosenTile);
+					for(Bonus b: chosenTile.getBonusTile()){
+						b.giveBonus(player);
+					}
 					realRegion.getDeck().changeShowedDeck();
 				} catch (NegativeNumberException e) {
 					try {
 						player.getRichness().setCoins(coins+moneyPaid);
-						this.cards.addAll(discardedCards);
+						this.realHand.addAll(discardedCards);
 					} catch (NegativeNumberException e1) {
 						getLogger().error(e1);
 					}
@@ -128,16 +134,16 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 		int councilLenght = council.getCouncillors().size();
 		
 		for(int i=0; i<councilLenght; i++){									//iterate the council
-			for(PoliticCard card: cards){									//iterate the politic cards
+			for(PoliticCard card: this.realHand){									//iterate the politic cards
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){
 					match = match + 1;										//if there is a match update the counter
 					this.discardedCards.add(card);							//add the card to the discarded cards
-					this.cards.remove(card);								//remove the card from the politic cards
+					this.realHand.remove(card);								//remove the card from the politic cards
 					break;													//and break the cycle
 				}
 			}
 		}
-		cards.removeAll(discardedCards);
+		this.realHand.removeAll(discardedCards);
 		board.getDeck().discardCards(discardedCards);
 		
 		return match;
@@ -152,12 +158,12 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	private int howManyJolly(Board board){
 		int jolly = 0;
 		
-		for(PoliticCard card: cards)					//iterate the politic cards
+		for(PoliticCard card: this.realHand)					//iterate the politic cards
 			if(card.isJolly()){							//if the card is a jolly
 				jolly = jolly + 1;						//update the counter
 				this.discardedCards.add(card);			//and add the card to the discardedCards
 			}
-		this.cards.removeAll(discardedCards);			//remove all the jolly from the politic cards
+		this.realHand.removeAll(discardedCards);			//remove all the jolly from the politic cards
 		board.getDeck().discardCards(discardedCards);
 		
 		return jolly;
@@ -202,7 +208,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 			player.getRichness().setCoins(money);
 			return 0;
 		} catch (NegativeNumberException e) {
-			this.cards.addAll(discardedCards);
+			this.realHand.addAll(discardedCards);
 			getLogger().error("The player doesn't have enough money!", e);
 			return -1;
 		}
