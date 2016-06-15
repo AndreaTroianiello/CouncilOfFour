@@ -50,6 +50,7 @@ public class ColorManager {
         colorList.put("Thistle",new Color(0xD8, 0xBF, 0xD8));
         colorList.put("White",new Color(0xFF, 0xFF, 0xFF));
         colorList.put("Yellow",new Color(0xFF, 0xFF, 0x00));
+        colorList.put("Violet",  new Color(0x8b, 0x00, 0xff));
     }
 
     /**

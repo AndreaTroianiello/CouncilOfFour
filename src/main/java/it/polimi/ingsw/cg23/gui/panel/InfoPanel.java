@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.gui.HelloFrame;
 
@@ -17,7 +18,7 @@ import it.polimi.ingsw.cg23.gui.HelloFrame;
  * @author viga94_
  *
  */
-public class InfoActionPanel extends JPanel {
+public class InfoPanel extends JPanel {
 
 	/**
 	 * 
@@ -27,7 +28,7 @@ public class InfoActionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public InfoActionPanel() {
+	public InfoPanel() {
 		/**
 		 * empty costructor
 		 */
@@ -37,7 +38,7 @@ public class InfoActionPanel extends JPanel {
 	 * create the info action
 	 * @return a panel with the info action
 	 */
-	public JPanel infoAction(){
+	public JPanel infoAction(JTextArea textArea){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 
@@ -55,6 +56,7 @@ public class InfoActionPanel extends JPanel {
 		panel.add(label);
 
 		JButton button1 = new JButton("Exit");
+		button1.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
@@ -64,6 +66,7 @@ public class InfoActionPanel extends JPanel {
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				textArea.append(button1.getName());
 				//AZIONI AZIONE exit
 				new HelloFrame().setVisible(true);
 				setVisible(false);
@@ -71,16 +74,19 @@ public class InfoActionPanel extends JPanel {
 		});
 
 		JButton button2 = new JButton("Clear");
+		button2.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		layout.setConstraints(button2, lim);
 		panel.add(button2);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
+		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				textArea.append(button2.getName());
 				//AZIONI AZIONE clear
+				textArea.setText("Logger cancellata");
 
 			}
 		});

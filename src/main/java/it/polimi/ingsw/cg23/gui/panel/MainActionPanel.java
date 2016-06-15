@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -36,7 +37,7 @@ public class MainActionPanel extends JPanel {
 	 * create the main action button
 	 * @return jpanel with the main action
 	 */
-	public JPanel mainAction(){
+	public JPanel mainAction(JTextArea text){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setBackground(new Color(245,123,123));
@@ -48,6 +49,7 @@ public class MainActionPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Main action");
+		label.setName("azioni principali");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.ipadx=0;//bordi componente
@@ -58,6 +60,7 @@ public class MainActionPanel extends JPanel {
 		panel.add(label);
 
 		JButton button1 = new JButton("Action 1");
+		button1.setName("azione principale 1");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
@@ -69,11 +72,13 @@ public class MainActionPanel extends JPanel {
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 1
 			}
 		});
 
 		JButton button2 = new JButton("Action 2");
+		button2.setName("azione principale 2");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
@@ -82,14 +87,16 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(button2, lim);
 		panel.add(button2);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
+		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				text.append("\n"+button2.getName());
 				//AZIONI AZIONE 2
 			}
 		});
 
 		JButton button3 = new JButton("Action 3");
+		button3.setName("azione principale 3");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
@@ -98,14 +105,16 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(button3, lim);
 		panel.add(button3);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
+		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				text.append("\n"+button3.getName());
 				//AZIONI AZIONE 3
 			}
 		});
 
 		JButton button4 = new JButton("Action 4");
+		button4.setName("azione principale 4");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
@@ -114,9 +123,10 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(button4, lim);
 		panel.add(button4);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
+		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				text.append("\n"+button4.getName());
 				//AZIONI AZIONE 4
 			}
 		});

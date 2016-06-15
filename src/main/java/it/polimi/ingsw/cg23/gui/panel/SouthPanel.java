@@ -6,8 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu.Separator;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 import it.polimi.ingsw.cg23.server.controller.Avvio;
@@ -37,7 +37,7 @@ public class SouthPanel extends JPanel {
 	 * @param s, the avvio
 	 * @return a jpanel with the south panel created
 	 */
-	public JPanel setSouthPanel(Avvio s){
+	public JPanel setSouthPanel(JTextArea textArea, Avvio s){
 		JPanel southPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		southPanel.setLayout(layout);
@@ -128,7 +128,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(c8);
 
 		//----------azioni principali----------
-		JPanel mainActionPanel=new MainActionPanel().mainAction();//richiamo il pannello azioni principali
+		JPanel mainActionPanel=new MainActionPanel().mainAction(textArea);//richiamo il pannello azioni principali
 		mainActionPanel.setName("label azioni principali");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
@@ -138,7 +138,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(mainActionPanel);
 
 		//----------azioni secondarie----------
-		JPanel secActionPanel=new SecondaryActionPanel().secondAction();//richiamo il pannello azioni secondarie
+		JPanel secActionPanel=new SecondaryActionPanel().secondAction(textArea);//richiamo il pannello azioni secondarie
 		mainActionPanel.setName("label azioni secondarie");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 3;
@@ -148,7 +148,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(secActionPanel);
 
 		//----------info panel----------
-		JPanel infoPanel=new InfoActionPanel().infoAction();//richiamo il pannello info
+		JPanel infoPanel=new InfoPanel().infoAction(textArea);//richiamo il pannello info
 		infoPanel.setName("label info panel");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 3;
