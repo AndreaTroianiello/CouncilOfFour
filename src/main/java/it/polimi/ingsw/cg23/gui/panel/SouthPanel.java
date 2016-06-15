@@ -51,7 +51,8 @@ public class SouthPanel extends JPanel {
 		JTextPane costruzione1=new JTextPane();
 		costruzione1.setName("Carte costruzione costa");
 		costruzione1.setEditable(false);
-		costruzione1.setText(costruzione(s.getBoard().getRegions().get(0)));
+		//costruzione1.setText(costruzione(s.getBoard().getRegions().get(0)));
+		costruzione1.setText("costruzione1");
 		costruzione1.setBackground(new Color(234, 125, 198));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -64,7 +65,8 @@ public class SouthPanel extends JPanel {
 		JTextPane costruzione2=new JTextPane();
 		costruzione2.setName("Carte costruzione collina");
 		costruzione2.setEditable(false);
-		costruzione2.setText(costruzione(s.getBoard().getRegions().get(1)));
+		//costruzione2.setText(costruzione(s.getBoard().getRegions().get(1)));
+		costruzione2.setText("costruzione2");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
@@ -77,7 +79,8 @@ public class SouthPanel extends JPanel {
 		costruzione3.setBackground(new Color(123,124,234));
 		costruzione3.setEditable(false);
 		costruzione3.setName("Carte costruzione montagna");
-		costruzione3.setText(costruzione(s.getBoard().getRegions().get(2)));
+		//costruzione3.setText(costruzione(s.getBoard().getRegions().get(2)));
+		costruzione3.setText("costruzione3");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro

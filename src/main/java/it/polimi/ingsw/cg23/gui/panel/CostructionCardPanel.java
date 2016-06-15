@@ -107,11 +107,12 @@ public class CostructionCardPanel extends JPanel {
 	 */
 	private BufferedImage getCostructionImg(String name){//recupero l'immagine della carta costruzione
 		BufferedImage image=null;
+		String path="src/main/resources/images/costruction/"+name+".png";
 
 		try {
-			image = ImageIO.read(new File("src/main/resources/images/costruction/"+name+".jpg"));
+			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
-			logger.error("impossibile caricare l'ìmmagine della carta costruzione", e);
+			logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
 		}
 
 		return image;

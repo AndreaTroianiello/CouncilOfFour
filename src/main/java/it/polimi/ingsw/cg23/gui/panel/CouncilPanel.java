@@ -86,7 +86,7 @@ public class CouncilPanel extends JPanel {
 		JLabel label2 = new JLabel(new ImageIcon(img2));//aggiungo l'immagine alla label
 		label2.setName("consigliere 2");
 		label2.setBounds(0, 0, img2.getWidth(), img2.getHeight());//dimensioni della label
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
@@ -97,11 +97,11 @@ public class CouncilPanel extends JPanel {
 
 		//----------consigliere 3----------
 		//recupero l'immagine con il consigliere
-		BufferedImage img3=getCouncilImg(new ColorManager().getColorName(reg.getCouncil().getCouncillors().get(0).getColor()));
+		BufferedImage img3=getCouncilImg(new ColorManager().getColorName(reg.getCouncil().getCouncillors().get(2).getColor()));
 		JLabel label3 = new JLabel(new ImageIcon(img3));//aggiungo l'immagine alla label
 		label3.setName("consigliere 3");
 		label3.setBounds(0, 0, img3.getWidth(), img3.getHeight());//dimensioni della label
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
@@ -112,11 +112,11 @@ public class CouncilPanel extends JPanel {
 
 		//----------consigliere 4----------
 		//recupero l'immagine con il consigliere
-		BufferedImage img4=getCouncilImg(new ColorManager().getColorName(reg.getCouncil().getCouncillors().get(0).getColor()));
+		BufferedImage img4=getCouncilImg(new ColorManager().getColorName(reg.getCouncil().getCouncillors().get(3).getColor()));
 		JLabel label4 = new JLabel(new ImageIcon(img4));//aggiungo l'immagine alla label
 		label4.setName("consigliere 4");
 		label4.setBounds(0, 0, img4.getWidth(), img4.getHeight());//dimensioni della label
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
@@ -130,12 +130,14 @@ public class CouncilPanel extends JPanel {
 
 	private BufferedImage getCouncilImg(String color){//recupero l'immagine del consigliere
 		BufferedImage image=null;
-
+		String path="src/main/resources/images/councillors/"+color+".png";
+		
+		
 		try {
-			image = ImageIO.read(new File("src/main/resources/images/councillors/"+color+".jpg"));
+			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
 
-			logger.error("impossibile caricare l'ìmmagine del consigliere", e);
+			logger.error("impossibile caricare l'ìmmagine del consigliere: "+path, e);
 		}
 
 		return image;
