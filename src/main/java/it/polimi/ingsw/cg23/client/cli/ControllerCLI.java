@@ -213,6 +213,7 @@ public class ControllerCLI implements ClientController{
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
 	private void mainCommand(String string) throws IOException,NoSuchElementException{
+		String tok=null;
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;
 		switch(tokenizer.nextToken()){
@@ -242,12 +243,16 @@ public class ControllerCLI implements ClientController{
 			out.update(action);
 			break;
 		case "ELECT":
-			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),
-					clientModel.findRegion(tokenizer.nextToken()), true);
+			tok=tokenizer.nextToken();
+			if("KING".equals(tok))
+				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),null, true);
+			else
+				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
+						clientModel.findRegion(tok), false);
 			out.update(action);
 			break;
 		case "ELECTASSISTANT":
-			String tok=tokenizer.nextToken();
+			tok=tokenizer.nextToken();
 			if("KING".equals(tok))
 				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
 						null, true);
