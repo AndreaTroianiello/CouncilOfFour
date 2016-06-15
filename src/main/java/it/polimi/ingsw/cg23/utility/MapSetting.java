@@ -11,13 +11,21 @@ import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
-
+/**
+ * methods to create the map
+ * @author viga94_
+ *
+ */
 public class MapSetting {
 
-	final int space=50;
+	private final int space;
 	private ColorManager cm;
 
+	/**
+	 * costructor
+	 */
 	public MapSetting(){
+		this.space=50;
 		this.cm=new ColorManager();
 	}
 
@@ -251,6 +259,11 @@ public class MapSetting {
 		return minus;
 	}
 
+	/**
+	 * create the region's council
+	 * @param regions, the regions
+	 * @return a string with the councillors
+	 */
 	public String councillors(List<Region> regions){
 		String councillor="";
 
@@ -269,10 +282,10 @@ public class MapSetting {
 
 	/**
 	 * print the bonus king, the king council and the type
-	 * @param k, the king
+	 * @param b, the board
 	 * @return a string with bonus king and king councill
 	 */
-	public String bonusCouncilKing(Board b){//PARZIALE--> non stampa i bonus king
+	public String bonusCouncilKingType(Board b){
 		String consiglieri="Consiglieri del re: ";
 		List<Councillor> kingCouncillors=b.getKing().getCouncil().getCouncillors();//consiglieri del re
 

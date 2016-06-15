@@ -15,12 +15,13 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
  */
 public class CreateMap {
 	private MapSetting ms;
-	private int space=50;//spazio da mettere tra una regione e l'altra
+	private final int space;//spazio da mettere tra una regione e l'altra
 
 	/**
 	 * costructor
 	 */
 	public CreateMap(){
+		this.space=50;
 		this.ms=new MapSetting();
 	}
 
@@ -137,7 +138,7 @@ public class CreateMap {
 		plancia+=ms.councillors(reg);
 		plancia=plancia.concat("\n");
 		plancia+=ms.createCostructionShowed(reg, space/2);//aggiungo le carte costruzione alla plancia
-		plancia=plancia.concat(ms.bonusCouncilKing(b));
+		plancia=plancia.concat(ms.bonusCouncilKingType(b));
 		plancia=plancia.concat("\n");
 
 		plancia+=createPlayerInfo(b.getPlayers());//aggiunge alla plancia di gioco i punteggi giocatore
