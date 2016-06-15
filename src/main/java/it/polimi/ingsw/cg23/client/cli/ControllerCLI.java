@@ -14,6 +14,7 @@ import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
+import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
@@ -270,7 +271,7 @@ public class ControllerCLI implements ClientController{
 			out.update(action);
 			break;
 		default:
-			cli.print("", "Command not found.");
+			out.update(new SendMessage(string, clientModel.getPlayer()));
 			break;
 		}
 	}

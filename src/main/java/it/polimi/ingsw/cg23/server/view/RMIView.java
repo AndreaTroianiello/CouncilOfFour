@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import it.polimi.ingsw.cg23.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.cg23.server.Chat;
 import it.polimi.ingsw.cg23.server.Server;
 import it.polimi.ingsw.cg23.server.controller.Controller;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
@@ -39,12 +40,12 @@ public class RMIView extends View implements RMIViewRemote {
 	 */
 	@Override
 	public String registerClient(ClientViewRemote clientStub) throws RemoteException {
-		System.out.println("RMI Client Registrato");
 		server.incrementIndex();
 		Controller controller=server.getController();
 		Board model=server.getModel();
+		Chat chat=server.getChat();
 		String name=generateName();
-		RMIServerView viewRMI=new RMIServerView(clientStub, model,name);
+		RMIServerView viewRMI=new RMIServerView(clientStub,name,chat);
 		viewRMI.registerObserver(controller);
 		model.registerObserver(viewRMI);
 		try {

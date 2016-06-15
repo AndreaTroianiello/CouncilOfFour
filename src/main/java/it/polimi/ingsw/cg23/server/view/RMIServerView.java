@@ -5,9 +5,10 @@ import java.rmi.RemoteException;
 import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.cg23.server.Chat;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
+import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
-import it.polimi.ingsw.cg23.server.model.Board;
 
 /**
  * The personal server's view of the player whom use RMI connection.
@@ -17,14 +18,16 @@ public class RMIServerView extends View implements RMIViewRemote {
 
 	private ClientViewRemote clientStub;
 	private String nameView;
+	private Chat chat;
 	
 	/**
 	 * The constructor of the server view.
 	 * @param clientStub the stub of the player.
-	 * @param model the model of the game.
 	 * @param nameView the name for lookup the view.
 	 */
-	public RMIServerView(ClientViewRemote clientStub,Board model,String nameView) {
+	public RMIServerView(ClientViewRemote clientStub,String nameView, Chat chat) {
+		this.chat=chat;
+		this.chat.addView(this);
 		this.clientStub=clientStub;
 		this.nameView=nameView;
 	}
@@ -54,6 +57,10 @@ public class RMIServerView extends View implements RMIViewRemote {
 			return;
 		action.setLogger(Logger.getLogger(Action.class));
 		action.setPlayer(this);
+		if(action instanceof SendMessage){
+			chat.update((SendMessage)action);
+			return;
+		}
 		getLogger().info("VIEW: received the action " + action);
 		action.registerObserver(this);
 		this.notifyObserver(action);

@@ -8,7 +8,9 @@ import java.net.Socket;
 
 import org.apache.log4j.Logger;
 
+import it.polimi.ingsw.cg23.server.Chat;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
+import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 
 /**
@@ -20,6 +22,7 @@ public class ServerSocketView extends View implements Runnable {
 
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
+	private Chat chat;
 
 	/**
 	 * The constructor of ServerSocketView.
@@ -27,8 +30,9 @@ public class ServerSocketView extends View implements Runnable {
 	 * @param model The board of the game.
 	 * @throws IOException if the socket connection has problems.
 	 */
-	public ServerSocketView(Socket socket) throws IOException {
-		
+	public ServerSocketView(Socket socket,Chat chat) throws IOException {
+		this.chat=chat;
+		this.chat.addView(this);
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
 	}
@@ -49,7 +53,30 @@ public class ServerSocketView extends View implements Runnable {
 			getLogger().error(e);
 		}
 	}
+	
+	/**
+	 * Manages the object received.
+	 * @param object the object received.
+	 */
 
+	private void performUpdate(Object object){
+		if(object==null)
+			return;
+		if(object instanceof SendMessage){
+			SendMessage action = (SendMessage) object;
+			action.setPlayer(this);
+			chat.update(action);
+			return;
+		}
+		if (object instanceof Action) {
+			Action action = (Action) object;
+			action.setLogger(Logger.getLogger(Action.class));
+			action.setPlayer(this);
+			getLogger().error("VIEW: received the action " + action);
+			action.registerObserver(this);
+			this.notifyObserver(action);
+		}
+	}
 	/**
 	 * The run of the thread. When receives a action,notify the controller with the incoming action.
 	 */
@@ -61,16 +88,8 @@ public class ServerSocketView extends View implements Runnable {
 			try {
 
 				Object object = socketIn.readObject();
-				if(object==null)
-					return;
-				if (object instanceof Action) {
-					Action action = (Action) object;
-					action.setLogger(Logger.getLogger(Action.class));
-					action.setPlayer(this);
-					getLogger().error("VIEW: received the action " + action);
-					action.registerObserver(this);
-					this.notifyObserver(action);
-				}
+				performUpdate(object);
+				
 			} catch (ClassNotFoundException e){
 				getLogger().error(e);
 			} catch (IOException e) {

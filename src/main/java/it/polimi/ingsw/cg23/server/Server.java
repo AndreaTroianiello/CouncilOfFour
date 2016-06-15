@@ -36,6 +36,7 @@ public class Server {
 	private int index; 							//Number of the players connected.
 	private Board model;						//The model of the game.
 	private Controller controller;				//The controller of the game.
+	private Chat chat;                          //The chat of the game.
 	
 	/**
 	 * The constructor of Server.
@@ -73,7 +74,7 @@ public class Server {
 		while(run){
 			Socket socket=serverSocket.accept();
 			incrementIndex();
-			ServerSocketView view=new ServerSocketView(socket);
+			ServerSocketView view=new ServerSocketView(socket,chat);
 			this.model.registerObserver(view);
 			view.registerObserver(this.controller);
 			executor.submit(view);			
@@ -97,6 +98,9 @@ public class Server {
 		this.index = 0;
 	}
 	
+	/**
+	 * Increments the index of the connected views.
+	 */
 	public void incrementIndex(){
 		++index;
 		if(index==1)
@@ -106,6 +110,10 @@ public class Server {
 		logger.info(index);	
 	}
 	
+	public Chat getChat(){
+		return chat;
+	}
+	
 	/**
 	 * Initializes a new controller and model.
 	 */
@@ -113,7 +121,8 @@ public class Server {
 		Avvio avvio=new Avvio("RegionCity.xml");
 		avvio.startPartita();
 		model=avvio.getBoard();
-		this.controller = new Controller(model);
+		controller = new Controller(model);
+		chat=new Chat();
 	}
 
 	/**

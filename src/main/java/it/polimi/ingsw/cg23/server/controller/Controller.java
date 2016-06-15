@@ -37,7 +37,7 @@ public class Controller implements Observer<Action>{
 	private Turn turn;
 	private final Map<View,Player> interconnections;
 	private static Logger logger;
-	
+	//private final Chat chat;
 	/**
 	 * The constructor of the Controller. 
 	 * Initializes the turn at null and the map of the connections.
@@ -47,6 +47,7 @@ public class Controller implements Observer<Action>{
 		this.model=model;
 		this.turn=null;
 		interconnections=new HashMap<>();
+		//this.chat=new Chat();
 		logger = Logger.getLogger(Controller.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
@@ -59,6 +60,7 @@ public class Controller implements Observer<Action>{
 	public void putSocketPlayer(View view,Player player){
 		this.interconnections.put(view, player);
 		this.model.addPlayer(player);
+		//this.chat.addView(view);
 		
 	}
 	
