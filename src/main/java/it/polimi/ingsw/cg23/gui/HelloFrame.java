@@ -117,19 +117,19 @@ public class HelloFrame extends JFrame {
 			}
 		});
 		panel2.add(btnRmi, JPanel.BOTTOM_ALIGNMENT);
-		
+
 		JButton socket = new JButton("Socket");//bottone socket
 		socket.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				countdownLabel=labelCountdown();
-				
+
 				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
-				
+
 				fm.setVisible(true);//apro la finestra FrameMap
 				setVisible(false);//chiudo la finestra corrente
-				
-				
+
+
 				//azioni per socket
 			}
 		});
@@ -149,7 +149,7 @@ public class HelloFrame extends JFrame {
 			@Override
 			public void run() {
 				try {
-		         
+
 					HelloFrame frame = new HelloFrame();
 					frame.setMaximumSize(new Dimension(500, 500));
 					frame.setVisible(true);

@@ -61,10 +61,12 @@ public class MapSettingtest {
 		//Set up the types.
 		type1=new Type("Gold",10,bonusKing);
 		type2=new Type("Silver",10,bonusKing);
+	
 
 		tipi.add(type1);//aggiungo i tipi alla lista
 		tipi.add(type2);
-
+		
+		
 		//aggiungo regioni
 		reg.add(new Region("Region0",5,new RegionDeck(2),bonusKing));
 		reg.add(new Region("Region1",5,new RegionDeck(2),bonusKing));
@@ -106,6 +108,9 @@ public class MapSettingtest {
 		giocatori.add(new Player("playerplayerplayer11", nt));
 		giocatori.add(new Player("player2", nt));
 
+		//setto un tipo gia' preso da un giocatore//RIVEDERE
+		tipi.get(0).runBonusType(giocatori.get(1));
+		
 		//setto i giocatori
 		try {
 			giocatori.get(0).getAssistantsPool().setAssistants(10);
@@ -190,6 +195,8 @@ public class MapSettingtest {
 		assertEquals(ms.addSpace(prova, space).length(), space);
 		assertEquals(ms.addSpace("provaprova", space).length(), space);
 		assertEquals(ms.addSpace(34, space).length(), space);
+		assertEquals(ms.addSpace(1112234, 6).length(), 7);
+		
 	}
 
 	@Test
