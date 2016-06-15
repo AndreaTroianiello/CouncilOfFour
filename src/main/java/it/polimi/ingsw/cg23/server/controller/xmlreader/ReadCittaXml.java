@@ -78,7 +78,9 @@ public class ReadCittaXml {
 		city[i][2]=idConversion(nome,idnum);
 
 		city[i][3]=actualElement.getElementsByTagName("Id").item(0).getTextContent();//recupera l'id della città
-
+		
+		city[i][4]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus della città
+		
 		Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
 		city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, montagna)
 
