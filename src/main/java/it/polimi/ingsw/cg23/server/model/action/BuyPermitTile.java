@@ -45,7 +45,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 */
 	public BuyPermitTile(List<PoliticCard> cards, Region region, BusinessPermitTile choosenTile) throws NullPointerException{
 		super(true);
-		if(cards!=null||region!=null||choosenTile!=null){
+		if(cards!=null&&region!=null&&choosenTile!=null){
 			this.cards = cards;
 			this.region = region;
 			this.chosenTile = choosenTile;

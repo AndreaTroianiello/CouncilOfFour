@@ -40,7 +40,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 */
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) throws NullPointerException{
 		super(true);
-		if(cards!=null || destination!=null){
+		if(cards!=null && destination!=null){
 			this.cards = cards;
 			this.destination = destination;
 		}else

@@ -33,7 +33,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 */ 
 	public BuildEmporiumTile(BusinessPermitTile card, City city) throws NullPointerException {
 		super(true);
-		if(card!=null||city!=null){
+		if(card!=null&&city!=null){
 			this.card = card;
 			this.city = city;
 		}else

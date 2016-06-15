@@ -35,12 +35,20 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	 * @param councillor
 	 * @param region
 	 * @param king
+	 * @throws NullPointerException if the paramiters are null.
 	 */
-	public ElectCouncillorAssistant(Color councillor, Region region, boolean king) {
+	public ElectCouncillorAssistant(Color councillor, Region region, boolean king) throws NullPointerException {
 		super(false);
-		this.councillor = councillor;
-		this.region = region;
-		this.king = king;
+		if(councillor!=null)
+			this.councillor = councillor;
+		else
+			throw new NullPointerException();
+		if(region!=null&&!king){
+			this.region = region;
+			this.king = king;
+		}
+		else
+			throw new NullPointerException();
 		this.controlAction = new ControlAction();
 	}
 
