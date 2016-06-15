@@ -130,8 +130,7 @@ public class CouncilPanel extends JPanel {
 
 	private BufferedImage getCouncilImg(String color){//recupero l'immagine del consigliere
 		BufferedImage image=null;
-		String path="src/main/resources/images/councillors/"+color+".png";
-		
+		String path="src/main/resources/images/councillors/"+color+".png";//percorso dell'immagine
 		
 		try {
 			image = ImageIO.read(new File(path));

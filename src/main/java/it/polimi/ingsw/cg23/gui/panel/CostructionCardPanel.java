@@ -56,7 +56,7 @@ public class CostructionCardPanel extends JPanel {
 		lim.anchor = GridBagConstraints.SOUTH;//posizione componenti nei riquadri
 
 		JLabel label0 = new JLabel("etichetta costruzione");
-		label0.setText("costruzione "+reg.getName());
+		label0.setText("Carte costruzione "+reg.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.ipadx=0;//bordi componente
@@ -76,27 +76,28 @@ public class CostructionCardPanel extends JPanel {
 		label1.setBounds(0, 0, img1.getWidth(), img1.getHeight());//dimensioni della label
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
+		lim.ipadx=10;//bordi componente
+		lim.ipady=10;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(label1, lim);
 		panel.add(label1);//aggiunta della label al panel
 
+		
 		//----------costruzione 2----------
-		BufferedImage img2=getCostructionImg(nameCostructor(bpt.get(0).getCitiesId()));//carta costruzione 2
+		BufferedImage img2=getCostructionImg(nameCostructor(bpt.get(1).getCitiesId()));//carta costruzione 2
 		JLabel label2 = new JLabel(new ImageIcon(img2));//aggiungo l'immagine alla label
 		label2.setName("costruzione 2");
 		label2.setBounds(0, 0, img2.getWidth(), img2.getHeight());//dimensioni della label
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
+		lim.ipadx=10;//bordi componente
+		lim.ipady=10;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(label2, lim);
 		panel.add(label2);//aggiunta della label al panel
-
+		
 		return panel;
 	}
 	
@@ -107,8 +108,8 @@ public class CostructionCardPanel extends JPanel {
 	 */
 	private BufferedImage getCostructionImg(String name){//recupero l'immagine della carta costruzione
 		BufferedImage image=null;
-		String path="src/main/resources/images/costruction/"+name+".png";
-
+		String path="src/main/resources/images/costruction/"+name+".png";//percorso dell'immagine
+		
 		try {
 			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
@@ -128,6 +129,6 @@ public class CostructionCardPanel extends JPanel {
 		for(int i=0; i<id.size(); i++){
 			nome=nome.concat(""+id.get(i));
 		}
-		return nome;
+		return nome.toUpperCase();
 	}
 }

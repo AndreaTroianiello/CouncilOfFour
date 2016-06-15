@@ -31,7 +31,7 @@ public class FrameMap extends JFrame {
 	 */
 	private static final long serialVersionUID = -1328028752338623444L;
 	private JPanel contentPane;
-	private JTextArea log;
+	private JTextArea loggerArea;
 	private transient Avvio s;
 	private static Logger logger;
 
@@ -79,29 +79,31 @@ public class FrameMap extends JFrame {
 		contentPane.add(b1);
 
 		//----------text area (logger)----------
-		log=new JTextArea(10, 10);
-		log.setName("textara");
-		log.setText("Benvenuti a Cof");
-		Component c8 = new JScrollPane(log);
+		loggerArea=new JTextArea(10, 10);
+		loggerArea.setName("textara");
+		loggerArea.setText("Benvenuti a Cof");
+		Component scrollLogger = new JScrollPane(loggerArea);
+		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=3;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(c8, lim); //Associazione
-		contentPane.add(c8); //Inserimento
+		layout.setConstraints(scrollLogger, lim); //Associazione
+		contentPane.add(scrollLogger); //Inserimento
 
 		//----------pannello sud (informazioni)----------
-		JPanel c4=new SouthPanel().setSouthPanel(s);
+		JPanel southPanel=new SouthPanel().setSouthPanel(s);
+		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
-		layout.setConstraints(c4, lim); //Associazione
-		contentPane.add(c4); //Inserimento
+		layout.setConstraints(southPanel, lim); //Associazione
+		contentPane.add(southPanel); //Inserimento
 	}
 
 	/**

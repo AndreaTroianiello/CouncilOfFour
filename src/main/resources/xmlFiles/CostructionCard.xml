@@ -77,9 +77,9 @@
 				<city>
 					<id>A</id>
 					<id>B</id>
-					<id>D</id>
+					<id>C</id>
 				</city>
-				<bonus>1Assistants</bonus>
+				<bonus>2Assistants</bonus>
 			</card>
 			<card>
 				<city>
@@ -257,7 +257,7 @@
 					<id>L</id>
 					<id>M</id>
 				</city>
-				<bonus>2Assistants,1Coin</bonus>
+				<bonus>1Assistants,1Coin</bonus>
 			</card>
 			<card>
 				<city>
@@ -275,8 +275,8 @@
 			</card>
 			<card>
 				<city>
-					<id>M</id>
 					<id>L</id>
+					<id>M</id>
 					<id>N</id>
 				</city>
 				<bonus>3VictoryPoints</bonus>
@@ -290,11 +290,11 @@
 			</card>
 			<card>
 				<city>
-					<id>L</id>
 					<id>K</id>
+					<id>L</id>
 					<id>O</id>
 				</city>
-				<bonus>2Politics,1Card</bonus>
+				<bonus>1Politics,1Coin</bonus>
 			</card>
 			<card>
 				<city>
