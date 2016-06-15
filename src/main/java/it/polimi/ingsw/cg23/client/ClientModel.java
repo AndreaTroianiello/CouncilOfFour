@@ -38,10 +38,6 @@ public class ClientModel {
 	 * @param model the model to set
 	 */
 	public void setModel(Board model) {
-		List<Player> players=model.getPlayers();
-		for(Player player: players)
-			if(this.player.getUser().equals(player.getUser()))
-				setPlayer(player);
 		this.model = model;
 	}
 	

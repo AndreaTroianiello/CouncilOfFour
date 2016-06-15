@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.client.cli;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.cg23.client.ClientController;
@@ -14,6 +15,7 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.controller.change.RankChange;
 import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
@@ -44,42 +46,42 @@ public class ControllerCLI implements ClientController{
 		this.clientModel=new ClientModel();
 		this.cli=new Print();
 	}
-	
+
 	@Override
 	public void setOutView(ClientViewOut out){
 		this.out=out;
 	}
-	
+
 	public void updateController(String string) throws IOException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();
-			switch (inputLine) {
-			case "CREATION":
-				out.update(new CreationPlayer(tokenizer.nextToken()));
-				break;
-			case "SHOW":
-				showCommand(tokenizer);
-				break;
-			case "MARKET":
-				marketCommand(tokenizer);
-				break;
-			default:
-				mainCommand(string);
-				break;
+		switch (inputLine) {
+		case "CREATION":
+			out.update(new CreationPlayer(tokenizer.nextToken()));
+			break;
+		case "SHOW":
+			showCommand(tokenizer);
+			break;
+		case "MARKET":
+			marketCommand(tokenizer);
+			break;
+		default:
+			mainCommand(string);
+			break;
 		}
 	}
-	
+
 	private void createActionSell(StringTokenizer tokenizer) throws IOException{
 		Action action;
 		switch(tokenizer.nextToken()){
 		case "TILE":
 			action = new MarketSell(clientModel.findPlayerTile(tokenizer.nextToken()),
-									Integer.parseInt(tokenizer.nextToken()));
+					Integer.parseInt(tokenizer.nextToken()));
 			out.update(action);
 			break;
 		case "CARD":
 			action = new MarketSell(clientModel.findPoliticCard(tokenizer.nextToken()),
-									Integer.parseInt(tokenizer.nextToken()));
+					Integer.parseInt(tokenizer.nextToken()));
 			break;
 		case "ASSISTANTS":
 			AssistantsPool pool=new AssistantsPool();
@@ -89,7 +91,7 @@ public class ControllerCLI implements ClientController{
 				return;
 			}
 			action = new MarketSell(pool,
-									Integer.parseInt(tokenizer.nextToken()));
+					Integer.parseInt(tokenizer.nextToken()));
 			out.update(action);
 			break;
 		default:
@@ -97,7 +99,7 @@ public class ControllerCLI implements ClientController{
 			break;
 		}
 	}
-	
+
 	private void marketCommand(StringTokenizer tokenizer) throws IOException{
 		Board model=clientModel.getModel();
 		if(model==null){
@@ -121,7 +123,7 @@ public class ControllerCLI implements ClientController{
 			break;
 		}
 	}
-	
+
 	private void showCommand(StringTokenizer tokenizer){
 		Board model=clientModel.getModel();
 		if(model==null){
@@ -156,19 +158,19 @@ public class ControllerCLI implements ClientController{
 			break;
 		case "BUILDKING":
 			action = new BuildEmporiumKing(clientModel.getPlayer().getHand(),
-										   clientModel.findCity(tokenizer.nextToken()));
+					clientModel.findCity(tokenizer.nextToken()));
 			out.update(action);
 			break;
 		case "BUILDTILE":
 			action = new BuildEmporiumTile(clientModel.findPlayerTile(tokenizer.nextToken()),
-										   clientModel.findCity(tokenizer.nextToken()));
+					clientModel.findCity(tokenizer.nextToken()));
 			out.update(action);
 			break;
 		case "BUYTILE":
 			Region region=clientModel.findRegion(tokenizer.nextToken());
 			action = new BuyPermitTile(clientModel.getPlayer().getHand(),
-									   region,
-									   clientModel.findRegionTile(tokenizer.nextToken(), region));
+					region,
+					clientModel.findRegionTile(tokenizer.nextToken(), region));
 			out.update(action);
 			break;
 		case "CHANGE":
@@ -177,17 +179,17 @@ public class ControllerCLI implements ClientController{
 			break;
 		case "ELECT":
 			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),
-										 clientModel.findRegion(tokenizer.nextToken()), true);
+					clientModel.findRegion(tokenizer.nextToken()), true);
 			out.update(action);
 			break;
 		case "ELECTASSISTANT":
 			String tok=tokenizer.nextToken();
 			if("KING".equals(tok))
 				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
-													  null, true);
+						null, true);
 			else
 				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
-													  clientModel.findRegion(tok), false);
+						clientModel.findRegion(tok), false);
 			out.update(action);
 			break;
 		case "HIRE":
@@ -214,8 +216,14 @@ public class ControllerCLI implements ClientController{
 			cli.print(new CreateMap().createPlayerInfo(((RankChange)change).getRank()),"");
 			return;
 		}
-		if(change instanceof BoardChange)
-			clientModel.setModel(((BoardChange)change).getBoard());
+		if(change instanceof BoardChange){
+			Board model=((BoardChange)change).getBoard();
+			List<Player> players=model.getPlayers();
+			for(Player player: players)
+				if(clientModel.getPlayer().getUser().equals(player.getUser()))
+					clientModel.setPlayer(player);
+			clientModel.setModel(model);
+		}
 		else
 			cli.print(change,"");
 	}
