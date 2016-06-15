@@ -74,6 +74,21 @@ public class ChangeBusinessPermitTest {
 		action.runAction(player, board);
 		assertEquals(showedDeck, board.getRegions().get(0).getDeck().getShowedDeck());
 	}
+	
+	/**
+	 * it tests if the method doesn't change the tiles when the region is not found
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testRunActionShouldntChangeTheShowedDeckWhenTheRegionIsNotFound() throws NegativeNumberException {
+		this.player.getAssistantsPool().setAssistants(10);
+		this.player.getRichness().setCoins(10);
+		List<Region> testRegions = new ArrayList<>();
+		Board testBoard = new Board(null, testRegions, null, null, null, null);
+		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
+		action.runAction(player, testBoard);
+		assertEquals(showedDeck, region.getDeck().getShowedDeck());
+	}
 
 
 	/**

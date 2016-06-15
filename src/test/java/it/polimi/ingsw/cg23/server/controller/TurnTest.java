@@ -10,13 +10,18 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.polimi.ingsw.cg23.model.action.ChangeBusinessPermitTest;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
+import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
 import it.polimi.ingsw.cg23.server.model.action.GameAction;
 import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
+import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
+import it.polimi.ingsw.cg23.server.model.action.MarketSell;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
@@ -200,6 +205,55 @@ public class TurnTest {
 		assertEquals(this.board.getStatus().getFinalPlayer(), this.player1);
 	}
 
+	/**
+	 * it tests if additionalAction makes the player has two main action
+	 */
+	@Test
+	public void testRunActionShouldMakeThePlayerMakesTwoMainActionWhenIsAdditionalAction(){
+		Turn turn = new Turn(board);
+		Region region = new Region("mare", 0, null, null);
+		region.getCouncil().getCouncillors().add(new Councillor(new Color(0, 0, 0)));
+		this.board.getRegions().add(region);
+		this.board.getCouncillorPool().add(new Councillor(new Color(25, 0, 0)));
+		this.board.getCouncillorPool().add(new Councillor(new Color(0, 0, 0)));
+		turn.setAction(new AdditionalAction());
+		turn.runAction();
+		turn.setAction(new ElectCouncillor(new Color(25, 0, 0), region, false));
+		turn.runAction();
+		turn.setAction(new ElectCouncillor(new Color(0, 0, 0), region, false));
+		turn.runAction();
+		assertTrue(region.getCouncil().getCouncillors().get(0).getColor().equals(new Color(0, 0, 0)));
+
+	}
+	
+	/**
+	 * it tests if the marketSell action works and take the item form the player when it's the selling turn,
+	 * if marketBuy gives the item when it's the buying turn, and if it did nothing when the player wants to 
+	 * do a market's action but is not the right turn
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testRunActionMarketSellShouldTakeTheItemFromThePlayerAndMarketBuyShouldGiveItToThePlayer() throws NegativeNumberException{
+		Turn turn = new Turn(board);
+		this.board.getStatus().setStatus("MARKET: SELLING");
+		AssistantsPool assistants = new AssistantsPool();
+		this.player1.getAssistantsPool().setAssistants(10);
+		assistants.setAssistants(5);
+		turn.setAction(new MarketSell(assistants, 5));
+		turn.runAction();
+		turn.setAction(new MarketBuy(this.board.getMarket().getItems().get(0)));
+		turn.runAction();
+		assertEquals(5, this.player1.getAssistantsPool().getAssistants());
+		this.board.getStatus().setStatus("MARKET: BUYING");
+		this.player1.getRichness().setCoins(5);
+		turn.setAction(new MarketBuy(this.board.getMarket().getItems().get(0)));
+		turn.runAction();
+		assertEquals(10, this.player1.getAssistantsPool().getAssistants());
+		turn.setAction(new MarketSell(assistants, 5));
+		turn.runAction();
+		assertEquals(10, this.player1.getAssistantsPool().getAssistants());
+	}
+	
 	/**
 	 * it tests if toString() works properly
 	 */
