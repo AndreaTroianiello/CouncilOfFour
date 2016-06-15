@@ -29,7 +29,7 @@ public class CouncilPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5988789718682147839L;
-	private Logger logger;
+	private transient Logger logger;
 
 	/**
 	 * Create the panel.
@@ -128,14 +128,14 @@ public class CouncilPanel extends JPanel {
 		return panel;
 	}
 
-	private BufferedImage getCouncilImg(String color){
+	private BufferedImage getCouncilImg(String color){//recupero l'immagine del consigliere
 		BufferedImage image=null;
 
 		try {
 			image = ImageIO.read(new File("src/main/resources/images/councillors/"+color+".jpg"));
 		} catch (IOException e) {
 
-			logger.error("impossibile caricare l'ìmmagine", e);
+			logger.error("impossibile caricare l'ìmmagine del consigliere", e);
 		}
 
 		return image;

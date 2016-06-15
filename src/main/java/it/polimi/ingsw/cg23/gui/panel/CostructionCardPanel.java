@@ -70,7 +70,7 @@ public class CostructionCardPanel extends JPanel {
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
 		
 		//----------costruzione 1----------
-		BufferedImage img1=null;//carta costruzione 1
+		BufferedImage img1=getCostructionImg(nameCostructor(bpt.get(0).getCitiesId()));//carta costruzione 1
 		JLabel label1 = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
 		label1.setName("costruzione 1");
 		label1.setBounds(0, 0, img1.getWidth(), img1.getHeight());//dimensioni della label
@@ -84,11 +84,11 @@ public class CostructionCardPanel extends JPanel {
 		panel.add(label1);//aggiunta della label al panel
 
 		//----------costruzione 2----------
-		BufferedImage img2=null;//carta costruzione 2
+		BufferedImage img2=getCostructionImg(nameCostructor(bpt.get(0).getCitiesId()));//carta costruzione 2
 		JLabel label2 = new JLabel(new ImageIcon(img2));//aggiungo l'immagine alla label
 		label2.setName("costruzione 2");
 		label2.setBounds(0, 0, img2.getWidth(), img2.getHeight());//dimensioni della label
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
@@ -99,18 +99,34 @@ public class CostructionCardPanel extends JPanel {
 
 		return panel;
 	}
-
-
-	private BufferedImage getCouncilImg(String name){
+	
+	/**
+	 * read the image
+	 * @param name, the image name
+	 * @return the buffered image
+	 */
+	private BufferedImage getCostructionImg(String name){//recupero l'immagine della carta costruzione
 		BufferedImage image=null;
 
 		try {
 			image = ImageIO.read(new File("src/main/resources/images/costruction/"+name+".jpg"));
 		} catch (IOException e) {
-
-			logger.error("impossibile caricare l'ìmmagine", e);
+			logger.error("impossibile caricare l'ìmmagine della carta costruzione", e);
 		}
 
 		return image;
+	}
+	
+	/**
+	 * trasform the list of id in a string
+	 * @param id, the list of city id of a costruction card
+	 * @return a string with the city id
+	 */
+	private String nameCostructor(List<Character> id){
+		String nome="";
+		for(int i=0; i<id.size(); i++){
+			nome=nome.concat(""+id.get(i));
+		}
+		return nome;
 	}
 }
