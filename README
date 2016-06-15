@@ -15,6 +15,7 @@ ENDTURN
 SHOW BOARD
 SHOW HAND
 SHOW TILES
+SHOW NEIGHBORS nameCity
 
 MARKET BUY numberItem
 MARKET SELL TILE/CARD/ASSISTANTS numberTile/numberCard/numberAssistants price
