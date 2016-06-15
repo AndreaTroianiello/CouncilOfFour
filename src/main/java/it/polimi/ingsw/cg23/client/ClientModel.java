@@ -2,7 +2,7 @@ package it.polimi.ingsw.cg23.client;
 
 
 import java.awt.Color;
-import java.util.List;
+
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;

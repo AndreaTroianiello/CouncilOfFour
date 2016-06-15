@@ -2,7 +2,11 @@ package it.polimi.ingsw.cg23.client.cli;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
@@ -40,11 +44,14 @@ public class ControllerCLI implements ClientController{
 	private ClientModel clientModel;
 	private ClientViewOut out;
 	private Print cli;
+	private Logger logger;
 
-	public ControllerCLI(){
+	public ControllerCLI(Print cli){
 		this.out=null;
 		this.clientModel=new ClientModel();
-		this.cli=new Print();
+		this.cli=cli;
+		logger = Logger.getLogger(ControllerCLI.class);
+		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
 	@Override
@@ -52,7 +59,14 @@ public class ControllerCLI implements ClientController{
 		this.out=out;
 	}
 
-	public void updateController(String string) throws IOException{
+	public void updateController(String string)throws IOException{
+		try{
+			comandControl(string);
+		}catch(NoSuchElementException e){
+			logger.error("Wrong comand.");
+		}
+	}
+	private void comandControl(String string) throws IOException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();
 		switch (inputLine) {
@@ -142,6 +156,10 @@ public class ControllerCLI implements ClientController{
 			cli.printList(clientModel.getPlayer().getAvailableBusinessPermits());
 			cli.print("","Used tiles:");
 			cli.printList(clientModel.getPlayer().getUsedBusinessPermit());
+			break;
+		case "NEIGHBORS":
+			cli.print("","City's neighbors:");
+			cli.printList(clientModel.findCity(tokenizer.nextToken()).getNeighbors());
 			break;
 		default:
 			cli.print("", "Command not found.");

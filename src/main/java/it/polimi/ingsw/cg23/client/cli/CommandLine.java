@@ -10,6 +10,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
+import it.polimi.ingsw.cg23.utility.Print;
 
 /**
  * The class that start the CLI client.
@@ -19,14 +20,17 @@ import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 public class CommandLine {
 	
 	private static Logger logger;
-	public CommandLine(){
-		logger = Logger.getLogger(ControllerCLI.class);
+	private Print cli;
+	
+	public CommandLine(Print cli){
+		logger = Logger.getLogger(CommandLine.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
+		this.cli=cli;
 	}
 	
 	private void run(ControllerCLI controller,Scanner stdIn){
 		boolean run=true;
-		logger.info("RUNNING");
+		cli.print("","RUNNING");
 		while (run) {
 			try {
 				controller.updateController(stdIn.nextLine());
@@ -38,10 +42,11 @@ public class CommandLine {
 	}
 	
 	public static void main(String[] args){
-		CommandLine cli=new CommandLine();
+		Print cli=new Print();
+		CommandLine command=new CommandLine(cli);
 		boolean run=true;
-		logger.info("Welcome to Council of Four game!");
-		logger.info("Choose the type of connection. (SOCKET or RMI)");
+		cli.print("","Welcome to Council of Four game!");
+		cli.print("","Choose the type of connection. (SOCKET or RMI)");
 		Scanner stdIn = new Scanner(System.in);
 		while(run){
 		String inputLine=stdIn.nextLine();
@@ -49,9 +54,9 @@ public class CommandLine {
 			case "SOCKET":
 				try {
 					ClientSocket clientSocket=new ClientSocket();
-					ControllerCLI controller=new ControllerCLI();
+					ControllerCLI controller=new ControllerCLI(cli);
 					clientSocket.startClient(controller);
-					cli.run(controller, stdIn);
+					command.run(controller, stdIn);
 					run=false;
 				} catch (IOException e) {
 					logger.error(e);
@@ -60,15 +65,16 @@ public class CommandLine {
 			case "RMI":
 				try {
 					ClientRMI clientRMI=new ClientRMI();
-					ControllerCLI controller=new ControllerCLI();
+					ControllerCLI controller=new ControllerCLI(cli);
 					clientRMI.startClient(controller);
-					cli.run(controller, stdIn);
+					command.run(controller, stdIn);
 					run=false;
 				} catch (RemoteException | NotBoundException e) {
 					logger.error(e);
 				}
 				break;
 			default:
+				cli.print("", "Wrong command.");
 				break;
 			}
 		}

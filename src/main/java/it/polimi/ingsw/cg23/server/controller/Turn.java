@@ -68,11 +68,11 @@ public class Turn {
 	
 			if(isChangeState()){
 				board.changeStatus();
-				List<Player> players=board.getPlayers();
+				List<Player> newPlayers=board.getPlayers();
 				if("MARKET: BUYING".equals(status.getStatus()))
-					setPlayers(board.getMarket().generatePlayersList(players));
+					setPlayers(board.getMarket().generatePlayersList(newPlayers));
 				if("TURN".equals(status.getStatus())){
-					setPlayers(players);
+					setPlayers(newPlayers);
 					board.getMarket().resetItems();
 				}
 			}
