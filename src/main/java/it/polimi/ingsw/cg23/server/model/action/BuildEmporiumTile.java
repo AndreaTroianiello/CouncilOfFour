@@ -29,11 +29,15 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 * 
 	 * @param card
 	 * @param cityID
-	 */
-	public BuildEmporiumTile(BusinessPermitTile card, City city) {
+	 * @throws NullPointerException if the parameters are null.
+	 */ 
+	public BuildEmporiumTile(BusinessPermitTile card, City city) throws NullPointerException {
 		super(true);
-		this.card = card;
-		this.city = city;
+		if(card!=null||city!=null){
+			this.card = card;
+			this.city = city;
+		}else
+			throw new NullPointerException();
 		controlAction = new ControlAction();
 	}
 	

@@ -13,7 +13,7 @@ import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 import it.polimi.ingsw.cg23.utility.Print;
 
 /**
- * The class that start the CLI client.
+ * The class that start the CLI client and manages the user input.
  * @author Andrea
  *
  */
@@ -22,12 +22,21 @@ public class CommandLine {
 	private static Logger logger;
 	private Print cli;
 	
+	/**
+	 * The constructor of CommandLine.
+	 * @param cli The Print class that prints to video.
+	 */
 	public CommandLine(Print cli){
 		logger = Logger.getLogger(CommandLine.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.cli=cli;
 	}
 	
+	/**
+	 * Manages the user information flow
+	 * @param controller The client's controller
+	 * @param stdIn The scanner of the client.
+	 */
 	private void run(ControllerCLI controller,Scanner stdIn){
 		boolean run=true;
 		cli.print("","RUNNING");
@@ -41,6 +50,10 @@ public class CommandLine {
 		}
 	}
 	
+	/**
+	 * Lets you choose the type of connection and starts the client.
+	 * @param args
+	 */
 	public static void main(String[] args){
 		Print cli=new Print();
 		CommandLine command=new CommandLine(cli);

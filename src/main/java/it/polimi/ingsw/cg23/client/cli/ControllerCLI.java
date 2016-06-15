@@ -37,7 +37,9 @@ import it.polimi.ingsw.cg23.utility.CreateMap;
 import it.polimi.ingsw.cg23.utility.Print;
 
 /**
- * controller cli
+ * The client Command Line Interface's controller.
+ * @author Andrea
+ *
  */
 public class ControllerCLI implements ClientController{
 
@@ -46,6 +48,10 @@ public class ControllerCLI implements ClientController{
 	private Print cli;
 	private Logger logger;
 
+	/**
+	 * The constructor of ControllerCLI.
+	 * @param cli The Print class that prints to video.
+	 */
 	public ControllerCLI(Print cli){
 		this.out=null;
 		this.clientModel=new ClientModel();
@@ -54,19 +60,35 @@ public class ControllerCLI implements ClientController{
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
+	/**
+	 * Sets the out view of the client.
+	 * @param out The class that manages the objects to send at the server.
+	 */
 	@Override
 	public void setOutView(ClientViewOut out){
 		this.out=out;
 	}
 
+	/**
+	 * Notifies the controller with a string.
+	 * @param string The string to be communicated
+	 * @throws IOException If the connection has problems.
+	 */
 	public void updateController(String string)throws IOException{
 		try{
-			comandControl(string);
-		}catch(NoSuchElementException e){
+			commandControl(string);
+		}catch(NoSuchElementException | NullPointerException e){
 			logger.error("Wrong comand.");
 		}
 	}
-	private void comandControl(String string) throws IOException{
+	
+	/**
+	 * Manages the command string.
+	 * @param string The string that contains the commands
+	 * @throws IOException If the connection has problems
+	 * @throws NoSuchElementException if the string doesn't contain many parameters..
+	 */
+	private void commandControl(String string) throws IOException,NoSuchElementException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();
 		switch (inputLine) {
@@ -85,7 +107,13 @@ public class ControllerCLI implements ClientController{
 		}
 	}
 
-	private void createActionSell(StringTokenizer tokenizer) throws IOException{
+	/**
+	 * Manages the string if contains a market buy command.
+	 * @param string The string that contains the commands
+	 * @throws IOException If the connection has problems.
+	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 */
+	private void createActionSell(StringTokenizer tokenizer) throws IOException,NoSuchElementException{
 		Action action;
 		switch(tokenizer.nextToken()){
 		case "TILE":
@@ -114,7 +142,13 @@ public class ControllerCLI implements ClientController{
 		}
 	}
 
-	private void marketCommand(StringTokenizer tokenizer) throws IOException{
+	/**
+	 * Manages the string if contains a market command.
+	 * @param string The string that contains the commands
+	 * @throws IOException If the connection has problems.
+	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 */
+	private void marketCommand(StringTokenizer tokenizer) throws IOException,NoSuchElementException{
 		Board model=clientModel.getModel();
 		if(model==null){
 			cli.print("", "Command refused.");
@@ -138,7 +172,12 @@ public class ControllerCLI implements ClientController{
 		}
 	}
 
-	private void showCommand(StringTokenizer tokenizer){
+	/**
+	 * Manages the string if contains a show command.
+	 * @param tokizer The string that contains the commands.
+	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 */
+	private void showCommand(StringTokenizer tokenizer) throws NoSuchElementException{
 		Board model=clientModel.getModel();
 		if(model==null){
 			cli.print("", "Command refused.");
@@ -166,7 +205,14 @@ public class ControllerCLI implements ClientController{
 			break;
 		}
 	}
-	private void mainCommand(String string) throws IOException{
+	
+	/**
+	 * Manages the string if contains a main command.
+	 * @param string The string that contains the commands
+	 * @throws IOException If the connection has problems. 
+	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 */
+	private void mainCommand(String string) throws IOException,NoSuchElementException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;
 		switch(tokenizer.nextToken()){
@@ -224,6 +270,10 @@ public class ControllerCLI implements ClientController{
 		}
 	}
 
+	/**
+	 * Notifies the controller with a change object.
+	 * @param change The object to control.
+	 */
 	@Override
 	public void updateController(Change change) {
 		if(change instanceof PlayerChange && clientModel.getModel()==null){

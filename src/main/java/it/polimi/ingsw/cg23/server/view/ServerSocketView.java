@@ -61,6 +61,8 @@ public class ServerSocketView extends View implements Runnable {
 			try {
 
 				Object object = socketIn.readObject();
+				if(object==null)
+					return;
 				if (object instanceof Action) {
 					Action action = (Action) object;
 					action.setLogger(Logger.getLogger(Action.class));

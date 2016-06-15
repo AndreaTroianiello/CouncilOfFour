@@ -17,6 +17,10 @@ public abstract class View extends Observable<Action> implements Observer<Change
 
 	private Logger logger;
 	private boolean suspended;
+	
+	/**
+	 * The constructor of View. Initializes the view's variables.
+	 */
 	public View() {
 		logger = Logger.getLogger(ServerSocketView.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");

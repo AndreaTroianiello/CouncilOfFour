@@ -192,15 +192,15 @@ public class Controller implements Observer<Action>{
 	 */
 	@Override
 	public synchronized void update(Action action){
-		logger.info("I AM THE CONTROLLER UPDATING THE MODEL");
-		
-		action.getPlayer().setSuspended(false);
-		
+		logger.info("I AM THE CONTROLLER UPDATING THE MODEL");		
 		if("INITIALIZATION".equals(model.getStatus().getStatus())){
 			if(action instanceof CreationPlayer)
 				((CreationPlayer) action).runAction(this, model);	
 			return;
 		}
+		
+		action.getPlayer().setSuspended(false);
+		notifyAll();
 		if(interconnections.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			action instanceof GameAction){
 			turn.setAction((GameAction) action);

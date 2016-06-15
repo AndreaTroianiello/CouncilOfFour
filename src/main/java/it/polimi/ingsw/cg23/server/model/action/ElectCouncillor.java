@@ -32,12 +32,16 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 * @param councillor
 	 * @param region
 	 * @param king
+	 * @throws NullPointerException if the parameters are null.
 	 */
-	public ElectCouncillor(Color councillor, Region region, boolean king) {
+	public ElectCouncillor(Color councillor, Region region, boolean king) throws NullPointerException {
 		super(true);
-		this.councillor = councillor;
-		this.region = region;
-		this.king = king;
+		if(councillor!=null||(region!=null && !king)){
+			this.councillor = councillor;
+			this.region = region;
+			this.king = king;
+		}else
+			throw new NullPointerException();
 		this.controlAction = new ControlAction();
 	}
 	

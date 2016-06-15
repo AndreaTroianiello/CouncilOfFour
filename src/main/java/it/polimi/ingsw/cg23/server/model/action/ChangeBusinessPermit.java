@@ -28,10 +28,14 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 * the parameter given to the method
 	 * 
 	 * @param region
+	 * @throws NullPointerException if the parameters are null.
 	 */
-	public ChangeBusinessPermit(Region region) {
+	public ChangeBusinessPermit(Region region) throws NullPointerException {
 		super(false);
-		this.region = region;
+		if(region!=null)
+			this.region = region;
+		else 
+			throw new NullPointerException();
 		this.controlAction = new ControlAction();
 	}
 

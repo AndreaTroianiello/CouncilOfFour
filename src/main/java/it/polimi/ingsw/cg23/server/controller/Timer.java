@@ -6,6 +6,11 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.view.View;
 
+/**
+ * The timer suspends the view if it isn't active.
+ * @author Andrea
+ *
+ */
 public class Timer implements Runnable {
 
 	private View view;

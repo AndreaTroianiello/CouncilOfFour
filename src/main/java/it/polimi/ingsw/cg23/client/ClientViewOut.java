@@ -5,7 +5,7 @@ import java.io.IOException;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 
 /**
- * The ClientViewOut manages the objects  to send at the server.
+ * The ClientViewOut manages the objects to send at the server.
  * @author Andrea
  *
  */

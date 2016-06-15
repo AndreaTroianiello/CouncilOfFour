@@ -52,9 +52,14 @@ public class Turn {
 		return players.get(currentPlayer);
 	}
 
+	/**
+	 * Indicates if the turn's mode must be change.
+	 * @return if true the turn's mode must be change.
+	 */
 	public boolean isChangeState(){
 		return currentPlayer==0 && !"FINAL TURN".equals(board.getStatus().getStatus()) ;
 	}
+	
 	/**
 	 * Sets the player that will play.
 	 * 

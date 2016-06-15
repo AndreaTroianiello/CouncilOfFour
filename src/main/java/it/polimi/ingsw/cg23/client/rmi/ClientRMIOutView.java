@@ -15,6 +15,10 @@ public class ClientRMIOutView implements ClientViewOut {
 
 	private RMIViewRemote rmiServerView;
 
+	/**
+	 * The constructor of ClientRMIOutView.
+	 * @param rmiServerView The server' stub.
+	 */
 	public ClientRMIOutView(RMIViewRemote rmiServerView) {
 		this.rmiServerView=rmiServerView;
 	}

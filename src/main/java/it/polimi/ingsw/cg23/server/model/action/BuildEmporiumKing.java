@@ -28,7 +28,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private List<PoliticCard> discardedCards = new ArrayList<>();
 	private final City destination;
 	private final ControlAction controlAction;
-	
+
 
 	/**
 	 * the constructor set the variable of the class: main is set to true, cards and destination are
@@ -36,11 +36,15 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * 
 	 * @param cards
 	 * @param destination
+	 * @throws NullPointerException if the parameters are null.
 	 */
-	public BuildEmporiumKing(List<PoliticCard> cards, City destination) {
+	public BuildEmporiumKing(List<PoliticCard> cards, City destination) throws NullPointerException{
 		super(true);
-		this.cards = cards;
-		this.destination = destination;
+		if(cards!=null || destination!=null){
+			this.cards = cards;
+			this.destination = destination;
+		}else
+			throw new NullPointerException();
 		controlAction = new ControlAction();
 	}
 
@@ -64,7 +68,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			int payMatch = payCoins(match, player);														//pay the amount of coins relative to the match
 			int steps = (int) board.getKing().getCity().minimumDistance(realDestination, new ArrayList<City>());		//control the distance between the king's city and the destination
 			int coin = player.getRichness().getCoins();													//control the richness of the player			
-		
+
 			if(payMatch!=-1){			
 				try {
 					coin = coin - steps*2 - jolly;
@@ -81,7 +85,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 						getLogger().error(e1);
 					}
 				}
-			
+
 				if(player.getAvailableEmporium() != null){
 					try {
 						buildEmporiumK(player, board, steps, jolly, payMatch);
@@ -91,7 +95,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 						return false;
 					}
 				}
-			
+
 				else{															//if the path isn't correct, give back the player the money previously paid
 					try {
 						player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
@@ -100,7 +104,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 						getLogger().error(e);
 					}
 				}
-				
+
 			}
 			else
 				return false;
@@ -111,7 +115,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		return false;
 	}
 
-	
+
 	/**
 	 * control how many jolly are there in the chosen politic cards
 	 * 
@@ -120,7 +124,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 */
 	private int howManyJolly(Board board){
 		int jolly = 0;
-		
+
 		for(PoliticCard card: cards)					//iterate the politic cards
 			if(card.isJolly()){							//if the card is a jolly
 				jolly = jolly + 1;						//update the counter
@@ -128,11 +132,11 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			}
 		this.cards.removeAll(discardedCards);			//remove all the jolly from the politic cards
 		board.getDeck().discardCards(discardedCards);
-		
+
 		return jolly;
 	}
-	
-	
+
+
 	/**
 	 * control how many match between are there between 
 	 * the councillors and the politic cards
@@ -144,7 +148,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private int howManyMatch(Board board, Council council){
 		int match = 0;
 		int councilLenght = council.getCouncillors().size();
-		
+
 		for(int i=0; i<councilLenght; i++){									//iterate the council
 			for(PoliticCard card: cards){									//iterate the politic cards
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){
@@ -157,19 +161,19 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		}
 		cards.removeAll(discardedCards);
 		board.getDeck().discardCards(discardedCards);
-		
+
 		return match;
 	}
 
 
 
-/**
- * take the relative amount of money based on the number of match
- * @param match
- * @param chosenTile
- * @param player
- * @param board
- */
+	/**
+	 * take the relative amount of money based on the number of match
+	 * @param match
+	 * @param chosenTile
+	 * @param player
+	 * @param board
+	 */
 	private int payCoins(int match, Player player){
 		int coin = player.getRichness().getCoins();
 		int payment = (4-match)*3+1;
@@ -186,8 +190,8 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		}
 	}
 
-	
-	
+
+
 	/**
 	 * try to make the payment, and catch the exception if the 
 	 * player doesn't have enough money

@@ -27,10 +27,14 @@ public class MarketSell extends GameAction implements MarketAction {
 	 * The constructor of MarketSell action.
 	 * @param item The item for sale.
 	 * @param coins The price of the item.
+	 * @throws NullPointerException if the parameters are null.
 	 */
-	public MarketSell(CanBeSold item,int coins) {
+	public MarketSell(CanBeSold item,int coins) throws NullPointerException{
 		super(false);
-		this.item=item;
+		if(item!=null)
+			this.item=item;
+		else
+			throw new NullPointerException();
 		this.coins=coins;
 	}
 	

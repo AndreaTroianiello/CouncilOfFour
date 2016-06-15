@@ -56,6 +56,7 @@ public class Type implements Serializable {
 	}
 
 	/**
+	 * Returns the bonus of type.
 	 * @return the bonus
 	 */
 	public BonusVictoryPoints getBonus() {

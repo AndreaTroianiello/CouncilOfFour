@@ -156,6 +156,10 @@ public class Region implements Serializable {
 		}
 	}
 
+	/**
+	 * Returns the bonus of region.
+	 * @return the bonus
+	 */
 	public BonusVictoryPoints getBonus() {
 		return (BonusVictoryPoints) bonus;
 	}

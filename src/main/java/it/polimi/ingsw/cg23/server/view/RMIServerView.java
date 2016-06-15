@@ -50,6 +50,8 @@ public class RMIServerView extends View implements RMIViewRemote {
 	 */
 	@Override
 	public void performAction(Action action) throws RemoteException{
+		if(action==null)
+			return;
 		action.setLogger(Logger.getLogger(Action.class));
 		action.setPlayer(this);
 		getLogger().info("VIEW: received the action " + action);

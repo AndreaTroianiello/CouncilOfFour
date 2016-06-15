@@ -46,7 +46,11 @@ public class Server {
 		this.index=0;
 	}
 	
-	
+	/**
+	 * Starts the RMI connection.
+	 * @throws RemoteException If the RMI connection has problem.
+	 * @throws AlreadyBoundException If the RMI connection has problem.
+	 */
 	private void startRMI() throws RemoteException, AlreadyBoundException{
 		Registry registry=LocateRegistry.createRegistry(RMI_PORT);
 		RMIView rmiView=new RMIView(this,registry);		

@@ -17,38 +17,63 @@ import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
+/**
+ * The model of the client.
+ * @author Andrea
+ *
+ */
 public class ClientModel {
 	private Board model;
 	private Player player;
 	private Logger logger;
 	
+	/**
+	 * The constructor of ClientModel. Initializes the variables at null.
+	 */
 	public ClientModel() {
 		this.model=null;
 		this.player=null;
 		logger= Logger.getLogger(ClientModel.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
+	
 	/**
-	 * @return the model
+	 * Returns the game's model on the client.
+	 * @return the game's model.
 	 */
 	public Board getModel() {
 		return model;
 	}
+	
 	/**
-	 * @param model the model to set
+	 * Sets the game's model on the client.
+	 * @param model the game's model to set.
 	 */
 	public void setModel(Board model) {
 		this.model = model;
 	}
 	
+	/**
+	 * Sets the player of the user.
+	 * @param player The user's player.
+	 */
 	public void setPlayer(Player player){
 		this.player=player;
 	}
 	
+	/**
+	 * Returns the player of the user.
+	 * @return the user's player.
+	 */
 	public Player getPlayer(){
 		return player;
 	}
 
+	/**
+	 * Finds the city on the game's model using the name.
+	 * @param cityName The name of the city to find.
+	 * @return if the city isn't find returns null.
+	 */
 	public City findCity(String cityName){
 		for(int i=0; i<model.getRegions().size(); i++){
 			City c=model.getRegions().get(i).searchCityById(cityName.toUpperCase().charAt(0));
@@ -58,6 +83,11 @@ public class ClientModel {
 		return null;
 	}
 
+	/**
+	 * Finds the region on the game's model using the name.
+	 * @param regionName The name of the region to find.
+	 * @return if the region isn't find returns null.
+	 */
 	public Region findRegion(String regionName){
 		for(int i=0; i<model.getRegions().size(); i++){
 			if(model.getRegions().get(i).getName().equals(regionName))
@@ -66,10 +96,20 @@ public class ClientModel {
 		return null;
 	}
 
+	/**
+	 * Finds the color.
+	 * @param colorName The name of the color to find.
+	 * @return if the color isn't find returns null.
+	 */
 	public Color findColor(String colorName){
 		return new ColorManager().getColor(colorName);
 	}
 	
+	/**
+	 * Finds the tile among the player's available tile.
+	 * @param numerTile The number of the tile.
+	 * @return if the tile isn't find returns null.
+	 */
 	public BusinessPermitTile findPlayerTile(String numberTile){
 		try{
 			int number=Integer.parseInt(numberTile);
@@ -80,6 +120,12 @@ public class ClientModel {
 		}	
 	}
 	
+	/**
+	 * Finds the tile among the region's showed tiles.
+	 * @param numerTile The number of the tile.
+	 * @param region the region of the tile.
+	 * @return if the city isn't find returns null.
+	 */
 	public BusinessPermitTile findRegionTile(String numberTile,Region region){
 		try{
 			int number=Integer.parseInt(numberTile);
@@ -90,6 +136,11 @@ public class ClientModel {
 		}	
 	}
 	
+	/**
+	 * Finds the item among the market's items.
+	 * @param numerItem The number of the item.
+	 * @return if the item isn't find returns null.
+	 */
 	public Item findItem(String numberItem){
 		int number;
 		try{
@@ -105,9 +156,14 @@ public class ClientModel {
 			return market.getItems().get(number);
 	}
 	
-	public PoliticCard findPoliticCard(String numberTile){
+	/**
+	 * Finds the Politic Card among the player's hand.
+	 * @param numberCard The number of the card.
+	 * @return if the card isn't find returns null.
+	 */
+	public PoliticCard findPoliticCard(String numberCard){
 		try{
-			int number=Integer.parseInt(numberTile);
+			int number=Integer.parseInt(numberCard);
 			return player.getHand().get(number);
 		}catch(NumberFormatException e){
 			logger.error(e);
