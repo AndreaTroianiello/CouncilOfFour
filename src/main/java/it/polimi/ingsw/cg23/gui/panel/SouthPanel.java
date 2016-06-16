@@ -80,7 +80,7 @@ public class SouthPanel extends JPanel {
 
 		//----------balcone 1----------
 		JPanel balcone1=new CouncilPanel().balcone(s.getBoard().getRegions().get(0));
-		balcone1.setBackground(new Color(116, 184, 181));
+		//balcone1.setBackground(new Color(116, 184, 181));
 		balcone1.setName("balcone costa");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -92,7 +92,7 @@ public class SouthPanel extends JPanel {
 		//----------balcone 2----------
 		JPanel balcone2=new CouncilPanel().balcone(s.getBoard().getRegions().get(1));
 		balcone2.setName("balcone collina");
-		balcone2.setBackground(new Color(116, 184, 181));
+		//balcone2.setBackground(new Color(116, 184, 181));
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
@@ -125,7 +125,18 @@ public class SouthPanel extends JPanel {
 		lim.gridwidth=3;
 		layout.setConstraints(c8, lim);
 		southPanel.add(c8);
-
+		
+		//----------------carte politiche------------
+		JPanel politics=new JPanel();
+		politics.setBackground(new Color(116, 184, 255));
+		politics.setName("Carte politiche");
+		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridy = 3;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=3;
+		layout.setConstraints(politics, lim);
+		southPanel.add(politics);
+		
 		return southPanel;
 	}
 }
