@@ -86,7 +86,7 @@ public class ElectCouncillorAssistantTest {
 	 * it tests if it works properly when the player doesn't have assistant
 	 * @throws NegativeNumberException
 	 */
-	@Test
+	/*@Test
 	public void testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant() throws NegativeNumberException{
 		this.councillor=Color.ORANGE;
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, null, true);
@@ -102,43 +102,43 @@ public class ElectCouncillorAssistantTest {
 		player.getAssistantsPool().setAssistants(0);;
 		action.runAction(player, board);
 		assertSame(oldCouncil, council);
-	}
+	}*/
 
 	/**
 	 * it tests if isKing works properly
 	 */
-	@Test
+	/*@Test
 	public void testIsKing() {
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, region, king);
 		assertEquals(false, action.isKing());
-	}
+	}*/
 
 	/**
 	 * it tests if getRegion works properly
 	 */
-	@Test
+	/*@Test
 	public void testGetRegion() {
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, region, king);
 		assertEquals(region, action.getRegion());
-	}
+	}*/
 
 	/**
 	 * it tests if getCouncillor works properly
 	 */
-	@Test
+	/*@Test
 	public void testGetCouncillor() {
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, region, king);
 		assertEquals(councillor, action.getCouncillor());
-	}
+	}*/
 
 	/**
 	 * it tests if toString works properly
 	 */
-	@Test
+	/*@Test
 	public void testToString() {
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, null, true);
 		assertEquals("ElectCouncillorAssistant [councillor=null, region=null, king=true]", action.toString());
 
-	}
+	}*/
 
 }

@@ -56,12 +56,12 @@ public class BuildEmporiumTileTest {
 	/**
 	 * it tests if getCityID works properly
 	 */
-	@Test
+	/*@Test
 	public void testGetCityIDShouldReturnTheCityID() {
 		BuildEmporiumTile action = new BuildEmporiumTile(null, city);
 		City city = action.getCity();
 		assertEquals(action.getCity(), city);
-	}
+	}*/
 
 	/**
 	 * it tests if getCard works properly
@@ -75,11 +75,11 @@ public class BuildEmporiumTileTest {
 	/**
 	 * it tests if toSting works properly
 	 */
-	@Test
+	/*@Test
 	public void testToString() {
 		BuildEmporiumTile action = new BuildEmporiumTile(null, null);
 		assertEquals("BuildEmporiumTile [card=null, city=null]", action.toString());
-	}
+	}*/
 	
 	/**
 	 * it tests if runAction() works properly when it's all fine
