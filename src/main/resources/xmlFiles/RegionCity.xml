@@ -7,10 +7,10 @@
 				<Id>A</Id>
 				<name>Arkon</name>
 				<link>
-					<Id>C</Id>
 					<Id>B</Id>
+					<Id>C</Id>
 				</link>
-				<color>Gold</color>
+				<color>Iron</color>
 				<bonus>1Nobility</bonus>
 			</city>
 			<city>
@@ -21,7 +21,7 @@
 					<Id>D</Id>
 					<Id>E</Id>
 				</link>
-				<color>Iron</color>
+				<color>Gold</color>
 				<bonus>2Assistants</bonus>
 			</city>
 			<city>
@@ -41,7 +41,7 @@
 					<Id>B</Id>
 					<Id>G</Id>
 				</link>
-				<color>Bronze</color>
+				<color>Silver</color>
 				<bonus>1Coin</bonus>
 			</city>
 			<city>
@@ -51,7 +51,7 @@
 					<Id>B</Id>
 					<Id>H</Id>
 				</link>
-				<color>Silver</color>
+				<color>Bronze</color>
 				<bonus>1Assistant,1Politics</bonus>
 			</city>
 		</cities>
@@ -67,7 +67,7 @@
 					<Id>C</Id>
 					<Id>I</Id>
 				</link>
-				<color>Bronze</color>
+				<color>Gold</color>
 				<bonus>2Coin</bonus>
 			</city>
 			<city>
@@ -77,7 +77,7 @@
 					<Id>D</Id>
 					<Id>J</Id>
 				</link>
-				<color>Iron</color>
+				<color>Silver</color>
 				<bonus>3VictoryPoints</bonus>
 			</city>
 			<city>
@@ -99,7 +99,7 @@
 					<Id>K</Id>
 					<Id>J</Id>
 				</link>
-				<color>Iron</color>
+				<color>Bronze</color>
 				<bonus>1VictoryPoints</bonus>
 			</city>
 			<city>
@@ -127,7 +127,7 @@
 					<Id>I</Id>
 					<Id>N</Id>
 				</link>
-				<color>Silver</color>
+				<color>Gold</color>
 				<bonus>1PermitTile</bonus>
 			</city>
 			<city>
@@ -137,7 +137,7 @@
 					<Id>J</Id>
 					<Id>O</Id>
 				</link>
-				<color>Iron</color>
+				<color>Silver</color>
 				<bonus>2VictoryPoints</bonus>
 			</city>
 			<city>
@@ -147,7 +147,7 @@
 					<Id>H</Id>
 					<Id>O</Id>
 				</link>
-				<color>Silver</color>
+				<color>Iron</color>
 				<bonus>3Coin</bonus>
 			</city>
 			<city>
