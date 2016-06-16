@@ -63,10 +63,11 @@ public class BuyPermitTileTest {
 	public void testRunAction() throws NegativeNumberException{
 		this.player.getAssistantsPool().setAssistants(10);
 		this.player.getRichness().setCoins(100);
+		this.region.getDeck().getShowedDeck().add(choosenTile);
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		action.runAction(player, board);
 		BusinessPermitTile card = player.getAvailableBusinessPermits().get(0);
-		assertEquals(choosenTile, card);
+		assertEquals(choosenTile.toString(), card.toString());
 	}
 
 	/**
@@ -152,6 +153,7 @@ public class BuyPermitTileTest {
 		this.player.getRichness().setCoins(10);
 		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
+		this.region.getDeck().getShowedDeck().add(choosenTile);
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		action.runAction(player, board);
 		List<BusinessPermitTile> card = player.getAvailableBusinessPermits();

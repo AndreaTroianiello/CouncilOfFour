@@ -66,6 +66,9 @@ public class ControlAction implements Serializable{
 					fakeHand.remove(chosenCard);
 					break;
 				}
+				if(politicCard.isJolly() ^ chosenCard.isJolly()){
+					break;
+				}
 				if(politicCard.getColor().equals(chosenCard.getColor())){
 					realHand.add(politicCard);
 					fakeHand.remove(chosenCard);
@@ -92,6 +95,22 @@ public class ControlAction implements Serializable{
 		for(BusinessPermitTile playerTile: playerTiles){
 			if(playerTile.toString().equals(tile.toString())){
 				return playerTile;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * controls if exist the chosen tile in the region showed deck
+	 * @param tile
+	 * @param region
+	 * @return
+	 */
+	public BusinessPermitTile controlBusinessPermitRegion(BusinessPermitTile  tile, Region region){
+		List<BusinessPermitTile> showedTiles = region.getDeck().getShowedDeck();
+		for(BusinessPermitTile showedTile: showedTiles){
+			if(showedTile.toString().equals(tile.toString())){
+				return showedTile;
 			}
 		}
 		return null;

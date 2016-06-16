@@ -91,7 +91,8 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	public boolean runAction(Player player, Board board) {
 		this.realHand = this.controlAction.controlPoliticCards(this.cards, player);
 		Region realRegion = this.controlAction.controlRegion(this.region, board);
-		if(this.realHand != null && realRegion != null){
+		BusinessPermitTile realTile = this.controlAction.controlBusinessPermitRegion(chosenTile, realRegion);
+		if(this.realHand != null && realRegion != null && realTile != null){
 			Council council = realRegion.getCouncil();
 			int jolly = howManyJolly(board);
 			int match = jolly + howManyMatch(board, council);
@@ -103,8 +104,9 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 				try {
 					coins = coins - jolly;
 					player.getRichness().setCoins(coins);
-					player.addAvailableBusinessPermit(chosenTile);
-					for(Bonus b: chosenTile.getBonusTile()){
+					player.addAvailableBusinessPermit(realTile);
+					realRegion.getDeck().getShowedDeck().remove(realTile);
+					for(Bonus b: realTile.getBonusTile()){
 						b.giveBonus(player);
 					}
 					realRegion.getDeck().changeShowedDeck();

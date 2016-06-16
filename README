@@ -1,16 +1,9 @@
-(DA TRADURRE IN INGLESE)
 Once changed the turn the current player has 60 seconds to make an action(chat is considered an action).
 If the player hasn't sent anything, the view get suspended.
 If the player is suspended, his turns get skipped.
 If all the player are suspended, the game ends.
 The player can come back in the game when he sends something(even a refused action or a chat message),
 if the game isn't ended yet.
-
-Cambiato il turno il player corrente ha 60 secondi per effetuare un'azione(conta anche la chat),
-se il giocatore non ha inviato niente,viene sospesa la view.
-se il giocatore è sospeso,i suoi turni sono vengono saltati.
-se tutti i giocatori sono sospesi, la partita finisce.
-il player puoi ritornare in gioco anche solo chattando,basta che la partita non sia finita.
 
 
 CLI's commands:
