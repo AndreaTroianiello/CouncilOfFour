@@ -37,6 +37,16 @@ public class ClientModelTest {
 	}
 
 	/**
+	 * it tests if getBoard works properly
+	 */
+	@Test
+	public void testGetBoard() {
+		ClientModel client = new ClientModel();
+		client.setModel(board);;
+		assertEquals(board, client.getModel());
+	}	
+	
+	/**
 	 * it tests if getPlayer works properly
 	 */
 	@Test

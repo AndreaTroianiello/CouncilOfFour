@@ -36,7 +36,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 */
 	public ElectCouncillor(Color councillor, Region region, boolean king) throws NullPointerException {
 		super(true);
-		if(councillor!=null&&(region!=null && !king)){
+		if(councillor!=null&&(region!=null || king)){
 			this.councillor = councillor;
 			this.region = region;
 			this.king = king;

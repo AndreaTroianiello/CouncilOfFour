@@ -86,10 +86,10 @@ public class ElectCouncillorAssistantTest {
 	 * it tests if it works properly when the player doesn't have assistant
 	 * @throws NegativeNumberException
 	 */
-	/*@Test
+	@Test
 	public void testRunActionShouldntDoAnythingIfThePlayerDoesntHaveAssistant() throws NegativeNumberException{
 		this.councillor=Color.ORANGE;
-		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, null, true);
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(this.councillor, null, true);
 		List<Councillor> councillorPool = board.getCouncillorPool();
 		Councillor newCouncillor = new Councillor(Color.ORANGE);
 		councillorPool.add(newCouncillor);
@@ -102,43 +102,43 @@ public class ElectCouncillorAssistantTest {
 		player.getAssistantsPool().setAssistants(0);;
 		action.runAction(player, board);
 		assertSame(oldCouncil, council);
-	}*/
+	}
 
 	/**
 	 * it tests if isKing works properly
 	 */
-	/*@Test
+	@Test
 	public void testIsKing() {
-		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, region, king);
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(this.councillor, this.region, this.king);
 		assertEquals(false, action.isKing());
-	}*/
+	}
 
 	/**
 	 * it tests if getRegion works properly
 	 */
-	/*@Test
+	@Test
 	public void testGetRegion() {
-		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, region, king);
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(this.councillor, this.region, this.king);
 		assertEquals(region, action.getRegion());
-	}*/
+	}
 
 	/**
 	 * it tests if getCouncillor works properly
 	 */
-	/*@Test
+	@Test
 	public void testGetCouncillor() {
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, region, king);
 		assertEquals(councillor, action.getCouncillor());
-	}*/
+	}
 
 	/**
 	 * it tests if toString works properly
 	 */
-	/*@Test
+	@Test
 	public void testToString() {
-		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, null, true);
-		assertEquals("ElectCouncillorAssistant [councillor=null, region=null, king=true]", action.toString());
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(this.councillor, this.region, true);
+		assertEquals("ElectCouncillorAssistant [councillor=java.awt.Color[r=255,g=200,b=0], region=Region [name=mare, bonus=0VictoryPoints, cities=0, bonusAvailable=true], king=true]", action.toString());
 
-	}*/
+	}
 
 }

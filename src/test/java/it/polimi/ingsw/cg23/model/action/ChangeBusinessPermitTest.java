@@ -104,10 +104,10 @@ public class ChangeBusinessPermitTest {
 	/**
 	 * it tests if toString() works properly
 	 */
-	/*@Test
+	@Test
 	public void testToString() {
-		ChangeBusinessPermit action = new ChangeBusinessPermit(null);
-		assertEquals("ChangeBusinessPermit [region=null]", action.toString());
-	}*/
+		ChangeBusinessPermit action = new ChangeBusinessPermit(this.region);
+		assertEquals("ChangeBusinessPermit [region=Region [name=montagna, bonus=0VictoryPoints, cities=0, bonusAvailable=true]]", action.toString());
+	}
 
 }

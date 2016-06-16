@@ -10,12 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.model.Board;
-import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
 import it.polimi.ingsw.cg23.server.model.action.BuyPermitTile;
-import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
@@ -31,7 +28,6 @@ public class BuyPermitTileTest {
 	private Region region;
 	private BusinessPermitTile choosenTile;
 	private Player player;
-	private List<PoliticCard> discardedCards;
 	private Board board;
 	private List<PoliticCard> cards = new ArrayList<>();
 	private List<Character> citiesId = new ArrayList<>();

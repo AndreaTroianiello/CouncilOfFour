@@ -56,12 +56,12 @@ public class BuildEmporiumTileTest {
 	/**
 	 * it tests if getCityID works properly
 	 */
-	/*@Test
+	@Test
 	public void testGetCityIDShouldReturnTheCityID() {
-		BuildEmporiumTile action = new BuildEmporiumTile(null, city);
+		BuildEmporiumTile action = new BuildEmporiumTile(this.card, this.city);
 		City city = action.getCity();
 		assertEquals(action.getCity(), city);
-	}*/
+	}
 
 	/**
 	 * it tests if getCard works properly
@@ -75,11 +75,11 @@ public class BuildEmporiumTileTest {
 	/**
 	 * it tests if toSting works properly
 	 */
-	/*@Test
+	@Test
 	public void testToString() {
-		BuildEmporiumTile action = new BuildEmporiumTile(null, null);
-		assertEquals("BuildEmporiumTile [card=null, city=null]", action.toString());
-	}*/
+		BuildEmporiumTile action = new BuildEmporiumTile(this.card, this.city);
+		assertEquals("BuildEmporiumTile [card=BusinessPermitTile [citiesId=[I], bonusTile=[] zone=null], city=City [id=I, name=Ioio, region=regione, bonus=[], type=null, neighbors=0]]", action.toString());
+	}
 	
 	/**
 	 * it tests if runAction() works properly when it's all fine

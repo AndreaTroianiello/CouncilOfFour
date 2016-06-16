@@ -43,7 +43,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 			this.councillor = councillor;
 		else
 			throw new NullPointerException();
-		if(region!=null&&!king){
+		if(region!=null || king){
 			this.region = region;
 			this.king = king;
 		}
