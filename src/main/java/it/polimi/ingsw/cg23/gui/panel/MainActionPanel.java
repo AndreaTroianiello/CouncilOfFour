@@ -35,6 +35,7 @@ public class MainActionPanel extends JPanel {
 
 	/**
 	 * create the main action button
+	 * @param text, the text area to view
 	 * @return jpanel with the main action
 	 */
 	public JPanel mainAction(JTextArea text){

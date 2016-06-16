@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.gui.panel.LoggerPanel;
 import it.polimi.ingsw.cg23.gui.panel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 
@@ -32,6 +33,7 @@ public class FrameMap extends JFrame {
 	private static final long serialVersionUID = -1328028752338623444L;
 	private JPanel contentPane;
 	private JTextArea loggerArea;
+	private JTextArea write;
 	private transient Avvio s;
 	private static Logger logger;
 
@@ -79,10 +81,11 @@ public class FrameMap extends JFrame {
 		contentPane.add(b1);
 
 		//----------text area (logger)----------
-		loggerArea=new JTextArea(10, 10);
-		loggerArea.setName("textara");
-		loggerArea.setText("Benvenuti a Cof");
-		Component scrollLogger = new JScrollPane(loggerArea);
+		loggerArea=new JTextArea();
+		write=new JTextArea();
+		JPanel panel=new LoggerPanel().loggerPanel(loggerArea, write);
+		
+		Component scrollLogger = new JScrollPane(panel);
 		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -94,7 +97,7 @@ public class FrameMap extends JFrame {
 		contentPane.add(scrollLogger); //Inserimento
 
 		//----------pannello sud (informazioni)----------
-		JPanel southPanel=new SouthPanel().setSouthPanel(loggerArea, s);
+		JPanel southPanel=new SouthPanel().setSouthPanel(s);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -119,7 +122,7 @@ public class FrameMap extends JFrame {
 
 					frame.setVisible(true);
 				} catch (Exception e) {
-					logger.error("errore", e);
+					logger.error("errore nel fame map", e);
 				}
 			}
 		});

@@ -33,12 +33,14 @@ public class InfoPanel extends JPanel {
 		 * empty costructor
 		 */
 	}
-	
+
 	/**
 	 * create the info action
-	 * @return a panel with the info action
+	 * @param textArea, the area to view
+	 * @param write, the area to write (chat)
+	 * @return, the info panel
 	 */
-	public JPanel infoAction(JTextArea textArea){
+	public JPanel infoAction(JTextArea textArea, JTextArea write){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 
@@ -52,6 +54,8 @@ public class InfoPanel extends JPanel {
 		JLabel label=new JLabel("Info:");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=2;
 		layout.setConstraints(label, lim);
 		panel.add(label);
 
@@ -59,8 +63,8 @@ public class InfoPanel extends JPanel {
 		button1.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
 		layout.setConstraints(button1, lim);
 		panel.add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
@@ -77,8 +81,8 @@ public class InfoPanel extends JPanel {
 		button2.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
 		layout.setConstraints(button2, lim);
 		panel.add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
@@ -88,6 +92,22 @@ public class InfoPanel extends JPanel {
 				//AZIONI AZIONE clear
 				textArea.setText("Logger cancellata");
 
+			}
+		});
+
+		JButton button3=new JButton("Invia");
+		button3.setName("Invia");
+		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(button3, lim); //Associazione
+		panel.add(button3); //Inserimento
+		button3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				write.setText("testo inviato");
+				//AZIONI AZIONE 1
 			}
 		});
 		return panel;
