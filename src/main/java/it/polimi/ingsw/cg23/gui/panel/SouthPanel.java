@@ -4,13 +4,19 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import it.polimi.ingsw.cg23.server.controller.Avvio;
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
@@ -28,12 +34,13 @@ public class SouthPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1220509934759316582L;
 	private CostructionCardPanel ccp;
-
+	private CouncilPanel cp;
 	/**
 	 * Create the panel.
 	 */
 	public SouthPanel() {
 		this.ccp=new CostructionCardPanel();
+		this.cp=new CouncilPanel();
 	}
 	
 	/**
@@ -41,7 +48,7 @@ public class SouthPanel extends JPanel {
 	 * @param s, the avvio
 	 * @return a jpanel with the south panel created
 	 */
-	public JPanel setSouthPanel(Avvio s){
+	public JPanel setSouthPanel(Board b){
 		JPanel southPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		southPanel.setLayout(layout);
@@ -50,8 +57,8 @@ public class SouthPanel extends JPanel {
 		lim.fill = GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-		List<Region> reg=s.getBoard().getRegions();
-		for(int i=0; i<reg.size(); i++){//scorre le regioni
+		List<Region> reg=b.getRegions();
+		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
 			//----------carte permesso di costruzione----------
 			
 			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i));
@@ -67,8 +74,8 @@ public class SouthPanel extends JPanel {
 			southPanel.add(costruzione);
 		}
 		
-		for(int i=0; i<reg.size(); i++){
-			JPanel balcone3=new CouncilPanel().balcone(reg.get(i));
+		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge i consiglieri
+			JPanel balcone3=cp.balcone(reg.get(i));
 			balcone3.setBackground(new Color(116, 184, 181));
 			balcone3.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
@@ -80,53 +87,12 @@ public class SouthPanel extends JPanel {
 			layout.setConstraints(balcone3, lim);
 			southPanel.add(balcone3);
 		}
-		
 		/*
-		//----------balcone 1----------
-		JPanel balcone1=new CouncilPanel().balcone(s.getBoard().getRegions().get(0));
-		balcone1.setBackground(new Color(116, 184, 181));
-		balcone1.setName("balcone costa");
-		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.weightx=1;//espansione in verticale e orizzontale
-		lim.weighty=0;
-		layout.setConstraints(balcone1, lim);
-		southPanel.add(balcone1);
-
-		//----------balcone 2----------
-		JPanel balcone2=new CouncilPanel().balcone(s.getBoard().getRegions().get(1));
-		balcone2.setName("balcone collina");
-		balcone2.setBackground(new Color(116, 184, 181));
-		lim.gridx = 1;//posizione componenti nella griglia
-		lim.gridy = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.weightx=1;//espansione in verticale e orizzontale
-		lim.weighty=0;
-		layout.setConstraints(balcone2, lim);
-		southPanel.add(balcone2);
-		
-		//----------balcone 3----------
-		JPanel balcone3=new CouncilPanel().balcone(s.getBoard().getRegions().get(2));
-		balcone3.setBackground(new Color(116, 184, 181));
-		balcone3.setName("balcone montagna");
-		lim.gridx = 2;//posizione componenti nella griglia
-		lim.gridy = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.weightx=1;//espansione in verticale e orizzontale
-		lim.weighty=0;
-		layout.setConstraints(balcone3, lim);
-		southPanel.add(balcone3);
-
-*/
 		//----------------nobility track------------
-		JTextPane l4=new JTextPane();
-		l4.setEditable(false);
+		JLabel l4=new JLabel(new ImageIcon(getCostructionImg()));
+		
 		l4.setName("Nobility panel");
-		l4.setText("nobility track");
+		//l4.setText("nobility track");
 		Component c8 = new JScrollPane(l4);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -137,22 +103,53 @@ public class SouthPanel extends JPanel {
 		
 		layout.setConstraints(c8, lim);
 		southPanel.add(c8);
-		
+		*/
 		//----------------carte politiche------------
 		Player p=new Player("io", new NobilityTrack(20));
+		//p.getHand().add(new PoliticCard(new Color(145,123,241), false));
+		p.getHand().add(new PoliticCard(new Color(145,255,241), false));
+		p.getHand().add(new PoliticCard(new Color(255,0,255), false));
 		p.getHand().add(new PoliticCard(new Color(145,123,241), false));
+		p.getHand().add(new PoliticCard(new Color(145,255,241), false));
+		p.getHand().add(new PoliticCard(new Color(255,123,241), false));
 		JPanel politics=new PoliticCardPanel().createCard(p);
-		politics.setBackground(new Color(116, 184, 255));
 		politics.setName("Carte politiche");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=3;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=2;
 		layout.setConstraints(politics, lim);
 		southPanel.add(politics);
 		
+		//----------------consiglieri del re------------
+		JPanel kingCouncillors=cp.Kingbalcone(b.getKing());
+		kingCouncillors.setBackground(new Color(116, 184, 181));
+		kingCouncillors.setName("Carte politiche");
+		lim.fill = GridBagConstraints.BOTH;
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 3;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(kingCouncillors, lim);
+		southPanel.add(kingCouncillors);
+		
 		return southPanel;
+	}
+	
+	private BufferedImage getCostructionImg(){//recupero l'immagine della carta costruzione
+		BufferedImage image=null;
+		String path="src/main/resources/images/Nobility track.png";//percorso dell'immagine
+		
+		try {
+			image = ImageIO.read(new File(path));
+		} catch (IOException e) {
+			//logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
+		}
+
+		return image;
 	}
 }

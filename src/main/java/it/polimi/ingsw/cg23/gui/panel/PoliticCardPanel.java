@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 
 public class PoliticCardPanel extends JPanel {
@@ -33,19 +32,43 @@ public class PoliticCardPanel extends JPanel {
 		panel.setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints(); 
 
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		
-		for(int i=0; i<p.getHand().size(); i++){
-			
-			JLabel label=new JLabel(i+"");
-			label.setBackground(p.getHand().get(i).getColor());
-			label.setOpaque(true);
-			label.setPreferredSize(new Dimension(50, 75));
-			lim.gridx=0;
+		//----------etichetta nome----------
+		JLabel label0=new JLabel("Carte politiche");
+		lim.gridx=1;
+		lim.gridy=0;
+		layout.setConstraints(label0, lim);
+		panel.add(label0);
+		
+		for(int i=0; i<p.getHand().size(); i++){//scorre le carte politiche
+			//----------carta politica----------
+			JLabel label1=new JLabel();
+			label1.setName(i+" politiche");
+			label1.setBackground(p.getHand().get(i).getColor());
+			label1.setOpaque(true);
+			label1.setPreferredSize(new Dimension(50, 75));
+			lim.gridx=i*2;
 			lim.gridy=1;
-			layout.setConstraints(label, lim);
-			panel.add(label);
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			layout.setConstraints(label1, lim);
+			panel.add(label1);
+			
+			//----------etichetta spazio----------
+			//Aggiunge lo spazio dopo aver messo la carta politica
+			JLabel label2=new JLabel();
+			label2.setName(i+" spazio");
+			label2.setBackground(new Color(0, 0, 0));
+			label2.setOpaque(true);
+			label2.setPreferredSize(new Dimension(5, 75));
+			lim.gridx=i*2+1;
+			lim.gridy=1;
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			layout.setConstraints(label2, lim);
+			panel.add(label2);
 		}
 		
 		return panel;
