@@ -200,8 +200,6 @@ public class Controller implements Observer<Action>{
 				((CreationPlayer) action).runAction(this, model);	
 			return;
 		}
-		
-		action.getPlayer().setSuspended(false);
 		notifyAll();
 		if(interconnections.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			action instanceof GameAction){

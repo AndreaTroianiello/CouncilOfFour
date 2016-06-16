@@ -8,6 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
+import it.polimi.ingsw.cg23.client.cli.ControllerCLI;
+import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
+import it.polimi.ingsw.cg23.client.socket.ClientSocket;
+
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -16,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -29,6 +36,7 @@ public class HelloFrame extends JFrame {
 	private static Logger logger;
 	private FrameMap fm;
 	private transient BufferedImage image = null;
+	private ControllerGUI controller;
 	private int time=20000;//tempo di attesa
 	private JLabel countdownLabel;//etichetta countdown
 
@@ -37,7 +45,7 @@ public class HelloFrame extends JFrame {
 	 */
 	public HelloFrame() {
 		fm=new FrameMap();
-
+		controller=new ControllerGUI();
 		//configurazione logger
 		logger = Logger.getLogger(FrameMap.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -107,12 +115,17 @@ public class HelloFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				countdownLabel=labelCountdown();
-				panel2.add(countdownLabel, JPanel.RIGHT_ALIGNMENT);//countodwn di attesa
-
 				fm.setVisible(true);//apro la finestra FrameMap
-				setVisible(true);//chiudo la finestra corrente
+				setVisible(false);//chiudo la finestra corrente
 
 				//azioni per rmi
+				
+				try {
+					ClientRMI clientRMI=new ClientRMI();
+					clientRMI.startClient(controller);
+				} catch (RemoteException | NotBoundException e1) {
+					logger.error(e);
+				}
 
 			}
 		});
@@ -131,6 +144,13 @@ public class HelloFrame extends JFrame {
 
 
 				//azioni per socket
+				
+				try {
+					ClientSocket clientSocket=new ClientSocket();
+					clientSocket.startClient(controller);
+				} catch (IOException e1) {
+					logger.error(e);
+				}
 			}
 		});
 		panel2.add(socket, JPanel.BOTTOM_ALIGNMENT);

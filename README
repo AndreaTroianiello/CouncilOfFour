@@ -1,3 +1,11 @@
+(DA TRADURRE IN INGLESE)
+Cambiato il turno il player corrente ha 60 secondi per effetuare un'azione(conta anche la chat),
+se il giocatore non ha inviato niente,viene sospesa la view.
+se il giocatore è sospeso,i suoi turni sono vengono saltati.
+se tutti i giocatori sono sospesi, la partita finisce.
+il player puoi ritornare in gioco anche solo chattando,basta che la partita non sia finita.
+
+
 CLI's commands:
 
 CREATION userName

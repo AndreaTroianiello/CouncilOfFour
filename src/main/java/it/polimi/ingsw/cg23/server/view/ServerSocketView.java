@@ -62,17 +62,15 @@ public class ServerSocketView extends View implements Runnable {
 	private void performUpdate(Object object){
 		if(object==null)
 			return;
-		if(object instanceof SendMessage){
-			SendMessage action = (SendMessage) object;
-			action.setPlayer(this);
-			chat.update(action);
-			return;
+		setSuspended(false);
+		Action action = (Action) object;
+		action.setLogger(Logger.getLogger(Action.class));
+		action.setPlayer(this);
+		if(action instanceof SendMessage){
+			chat.update((SendMessage)action);
 		}
-		if (object instanceof Action) {
-			Action action = (Action) object;
-			action.setLogger(Logger.getLogger(Action.class));
-			action.setPlayer(this);
-			getLogger().error("VIEW: received the action " + action);
+		else{
+			getLogger().info("VIEW: received the action " + action);
 			action.registerObserver(this);
 			this.notifyObserver(action);
 		}

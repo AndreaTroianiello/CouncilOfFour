@@ -55,15 +55,16 @@ public class RMIServerView extends View implements RMIViewRemote {
 	public void performAction(Action action) throws RemoteException{
 		if(action==null)
 			return;
+		setSuspended(false);
 		action.setLogger(Logger.getLogger(Action.class));
 		action.setPlayer(this);
 		if(action instanceof SendMessage){
 			chat.update((SendMessage)action);
-			return;
+		}else{
+			getLogger().info("VIEW: received the action " + action);
+			action.registerObserver(this);
+			this.notifyObserver(action);
 		}
-		getLogger().info("VIEW: received the action " + action);
-		action.registerObserver(this);
-		this.notifyObserver(action);
 	}
 	
 	/**
