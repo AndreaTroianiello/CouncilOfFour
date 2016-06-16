@@ -15,28 +15,36 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.Type;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusCityToken;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusNobility;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.components.Emporium;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BonusCityTokenTest {
 	
 	private City city;
 	public boolean runnable;
-	private Type type = new Type("blu", 0, null);
-	private Region region = new Region("regione", 0, null, null);
-	private Board board;
+	private Type type;
+	private Region region;
 	private Player player;
+	private Board board;
 
 	@Before
 	public void setUp() throws Exception {
-		city = new City('A', "Ancona", type, region);
+		this.type = new Type("blu", 0, null);
+		List<Integer> bKing = new ArrayList<>();
+		bKing.add(3);
+		this.region  = new Region("regione", 0, null, new BonusKing(bKing));
+		this.city = new City('A', "Ancona", type, region);
 		BonusVictoryPoints bonus1 = new BonusVictoryPoints(10);
 		this.city.addBonus(bonus1);
 		this.runnable = true;
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
-		board = new Board(null, regions, null, null, null, null);
-		player = new Player("a", new NobilityTrack(3));
+		this.board = new Board(null, regions, null, new NobilityTrack(3), null, null);
+		this.player = new Player("a", new NobilityTrack(3));
 	}
 
 	/**
@@ -51,11 +59,11 @@ public class BonusCityTokenTest {
 	/**
 	 * it tests if getRunnable works properly
 	 */
-	/*@Test
+	@Test
 	public void testGetRunnable() {
-		BonusCityToken bonus = new BonusCityToken(1, cities, null);
-		assertEquals(runnable[0], bonus.getRunnable()[0]);
-	}*/
+		BonusCityToken bonus = new BonusCityToken(city, null);
+		assertEquals(runnable, bonus.getRunnable());
+	}
 
 	/**
 	 * it tests if getName works properly
@@ -75,17 +83,56 @@ public class BonusCityTokenTest {
 		assertEquals(city, bonus.getCity());
 	}
 
+	/**
+	 * it tests if giveBonus doesn't give the bonus when the player doesn't have an emporium in the city
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testGiveBonusShouldntGiveTheBonusWhenThePlayerDoesntHaveAnEmporiumInTheCity() throws NegativeNumberException{
+		BonusCityToken bonus = new BonusCityToken(city, board);
+		this.player.getVictoryTrack().setVictoryPoints(10);
+		bonus.giveBonus(player);
+		assertEquals(10, this.player.getVictoryTrack().getVictoryPoints());
+	}
+	
+	/**
+	 * it tests if giveBonus give the bonus when it's all fine
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testGiveBonusShouldGiveTheBonusWhenItDoesntHaveANobilityBonus() throws NegativeNumberException{
+		BonusCityToken bonus = new BonusCityToken(city, board);
+		this.player.setEmporium(new Emporium(player));
+		this.city.buildEmporium(this.player.getAvailableEmporium());
+		this.player.getVictoryTrack().setVictoryPoints(10);
+		bonus.giveBonus(player);
+		assertEquals(20, this.player.getVictoryTrack().getVictoryPoints());
+	}
+	
+	/**
+	 * it tests if giveBonus doesn't give the bonus when the city has a nobilityBonus
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testGiveBonusShouldntGiveTheBonusWhenTheCityHasANobilityBonus() throws NegativeNumberException{
+		BonusCityToken bonus = new BonusCityToken(city, board);
+		this.city.addBonus(new BonusNobility(2, board));
+		this.player.setEmporium(new Emporium(player));
+		this.city.buildEmporium(this.player.getAvailableEmporium());
+		this.player.getVictoryTrack().setVictoryPoints(10);
+		bonus.giveBonus(player);
+		assertEquals(10, this.player.getVictoryTrack().getVictoryPoints());
+	}
 
 
 	/**
 	 * it tests if toString works properly
 	 */
-	/*@Test
+	@Test
 	public void testToString() {
-		BonusCityToken bonus = new BonusCityToken(1, cities, null);
-		assertEquals("BonusCityToken [number=1, city=" + cities + ", runnable="
-				+ Arrays.toString(runnable) + "]", bonus.toString());
-	}*/
+		BonusCityToken bonus = new BonusCityToken(null, null);
+		assertEquals("BonusCityToken [city=null, runnable=true]", bonus.toString());
+	}
 
 	/**
 	 * it tests if clone works properly

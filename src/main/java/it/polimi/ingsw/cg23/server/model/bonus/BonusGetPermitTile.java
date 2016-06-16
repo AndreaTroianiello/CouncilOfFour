@@ -68,7 +68,9 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	}
 
 	@Override
-	public void setNumber(int number){}
+	public void setNumber(int number){
+		//this is a method of the Bonus interfaced not used in this class
+	}
 
 	/**
 	 * give to the player the PermitTitle chosen and replace it 
@@ -84,7 +86,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 
 	@Override
 	public void setParameters(){
-		
+		//this is a method of the Bonus interfaced not used in this class
 	}
 
 	/**

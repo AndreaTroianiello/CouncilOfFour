@@ -58,18 +58,19 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		
-		for(Bonus bonus: this.businessPermitTile.getBonusTile()){					//for each PermitTite iterate the bonuses in it
-			bonus.giveBonus(player);							//for each bonus give it to the player
+		for(Bonus bonus: this.businessPermitTile.getBonusTile()){					//iterate the bonus in the tile and
+			bonus.giveBonus(player);												//for each bonus give it to the player
 		}
 	}
 	
 	@Override
-	public void setNumber(int number){}
+	public void setNumber(int number){
+		//this is a method of the Bonus interfaced not used in this class
+	}
 	
 	@Override
 	public void setParameters(){
-		
+		//this is a method of the Bonus interfaced not used in this class
 	}
 
 

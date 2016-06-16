@@ -72,18 +72,18 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	@Override
 	public void giveBonus(Player player) {
 		
-		for(int j=0; j<this.city.getToken().size(); j++) 					//iterate the bonus in every city
-			if(this.city.getToken().get(j).getName().contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
-				this.runnable=false;										//set as true the boolean referred to that city 
+		for(int i=0; i<this.city.getToken().size(); i++) 								//iterate the bonus in the city
+			if(this.city.getToken().get(i).getName().contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
+				this.runnable=false;													//set as false the boolean referred to the city 
 				}
-		if(this.city.containsEmporium(player) && this.runnable)				//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
-			(this.city).runBonusCity(player);								//if it does, give the player the bonus
+		if(this.city.containsEmporium(player) && this.runnable)						//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
+			this.city.runBonusCity(player);											//if it does, give the player the bonus
 	}
 	
 
 	@Override
 	public void setParameters(){
-		
+		//this is a method of the Bonus interfaced not used in this class
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 
 	@Override
 	public void setNumber(int number) {
-		
+		//this is a method of the Bonus interfaced not used in this class
 	}	
 	
 }
