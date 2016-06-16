@@ -301,4 +301,9 @@ public class ControllerCLI implements ClientController{
 		else
 			cli.print(change,"");
 	}
+	
+	@Override
+	public ClientModel getModel() {
+		return clientModel;
+	}
 }

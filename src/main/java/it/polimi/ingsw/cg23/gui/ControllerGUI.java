@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.gui;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,6 +10,7 @@ import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.client.cli.ControllerCLI;
+import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
@@ -48,6 +50,20 @@ public class ControllerGUI implements ClientController {
 	@Override
 	public void setOutView(ClientViewOut out) {
 		this.out=out;
+	}
+	
+	public void updateController(Action action){
+		try {
+			out.update(action);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public ClientModel getModel() {
+		return clientModel;
 	}
 
 }

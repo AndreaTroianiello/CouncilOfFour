@@ -1,8 +1,16 @@
 package it.polimi.ingsw.cg23.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,10 +27,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.AttributedCharacterIterator;
 import java.awt.event.ActionEvent;
 
 /**
@@ -44,8 +54,9 @@ public class HelloFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public HelloFrame() {
-		fm=new FrameMap();
+		this.setName("Council of Four");
 		controller=new ControllerGUI();
+		fm=new FrameMap(controller);
 		//configurazione logger
 		logger = Logger.getLogger(FrameMap.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -60,12 +71,12 @@ public class HelloFrame extends JFrame {
 		}
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, image.getWidth()+50, image.getHeight()+90);
+		//setBounds(0, 0, image.getWidth()+50, image.getHeight()+90);
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		/*contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.setMaximumSize(new Dimension(image.getWidth()+50, image.getHeight()+90));
+		contentPane.setMaximumSize(new Dimension(image.getWidth()+50, image.getHeight()+90));*/
 		setContentPane(contentPane);
 
 		setPanel();
@@ -171,7 +182,7 @@ public class HelloFrame extends JFrame {
 				try {
 
 					HelloFrame frame = new HelloFrame();
-					frame.setMaximumSize(new Dimension(500, 500));
+					frame.setBounds(100, 100,400,600);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					logger.error("Impossibile creare il frame", e);

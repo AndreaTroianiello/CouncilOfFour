@@ -24,4 +24,6 @@ public interface ClientController {
 	 * @param out The class that manages the objects to send at the server.
 	 */
 	public void setOutView(ClientViewOut out);
+	
+	public ClientModel getModel();
 }

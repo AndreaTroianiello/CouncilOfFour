@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.gui.panel.LoggerPanel;
 import it.polimi.ingsw.cg23.gui.panel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
@@ -35,16 +36,19 @@ public class FrameMap extends JFrame {
 	private JTextArea loggerArea;
 	private JTextArea write;
 	private transient Avvio s;
+	private ClientController controller;
 	private static Logger logger;
 
 	/**
 	 * Create the frame.
 	 */
-	public FrameMap() {
+	public FrameMap(ClientController controller) {
 		//configurazione logger
 		logger = Logger.getLogger(FrameMap.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-
+		
+		this.controller=controller;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1400, 900);
 		contentPane = new JPanel();
@@ -118,7 +122,7 @@ public class FrameMap extends JFrame {
 			@Override
 			public void run() {
 				try {
-					FrameMap frame = new FrameMap();
+					FrameMap frame = new FrameMap(new ControllerGUI());
 
 					frame.setVisible(true);
 				} catch (Exception e) {
