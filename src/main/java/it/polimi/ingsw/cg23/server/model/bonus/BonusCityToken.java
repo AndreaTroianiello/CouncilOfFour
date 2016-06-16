@@ -71,7 +71,6 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-
 		
 		for(int j=0; j<this.city.getToken().size(); j++) 					//iterate the bonus in every city
 			if(this.city.getToken().get(j).getName().contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
