@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class ButtonPanel extends JPanel {
 
@@ -18,10 +19,12 @@ public class ButtonPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ButtonPanel() {
-
+		/**
+		 * empty costructor
+		 */
 	}
-	
-	public JPanel buttonPanel(JTextArea textArea, JTextArea write){
+
+	public JPanel buttonPanel(JTextArea textArea, JTextField write){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
@@ -29,7 +32,7 @@ public class ButtonPanel extends JPanel {
 
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-		
+
 		//----------azioni principali----------
 		JPanel mainActionPanel=new MainActionPanel().mainAction(textArea);//richiamo il pannello azioni principali
 		mainActionPanel.setName("label azioni principali");
@@ -59,7 +62,7 @@ public class ButtonPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(infoPanel, lim);
 		panel.add(infoPanel);
-		
+
 		return panel;
 	}
 }

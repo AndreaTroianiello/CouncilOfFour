@@ -60,7 +60,7 @@ public class Type implements Serializable {
 	 * @return the bonus
 	 */
 	public BonusVictoryPoints getBonus() {
-		return (BonusVictoryPoints) bonus;
+		return bonus;
 	}
 
 	/**

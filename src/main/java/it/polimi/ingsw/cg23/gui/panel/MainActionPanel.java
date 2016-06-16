@@ -46,28 +46,25 @@ public class MainActionPanel extends JPanel {
 		panel.setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints(); 
 
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Main action");
 		label.setName("azioni principali");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(label, lim);
 		panel.add(label);
 
 		JButton button1 = new JButton("Action 1");
-		button1.setName("azione principale 1");
+		button1.setName("Azione principale 1");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
 		panel.add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
@@ -79,13 +76,12 @@ public class MainActionPanel extends JPanel {
 		});
 
 		JButton button2 = new JButton("Action 2");
-		button2.setName("azione principale 2");
+		button2.setName("Azione principale 2");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button2, lim);
 		panel.add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
@@ -97,13 +93,12 @@ public class MainActionPanel extends JPanel {
 		});
 
 		JButton button3 = new JButton("Action 3");
-		button3.setName("azione principale 3");
+		button3.setName("Azione principale 3");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button3, lim);
 		panel.add(button3);//aggiunta bottone al layer panel
 		button3.addActionListener(new ActionListener() {
@@ -115,13 +110,12 @@ public class MainActionPanel extends JPanel {
 		});
 
 		JButton button4 = new JButton("Action 4");
-		button4.setName("azione principale 4");
+		button4.setName("Azione principale 4");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button4, lim);
 		panel.add(button4);//aggiunta bottone al layer panel
 		button4.addActionListener(new ActionListener() {

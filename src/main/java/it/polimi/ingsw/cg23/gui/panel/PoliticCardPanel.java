@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.gui.panel;
 
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -24,7 +24,7 @@ public class PoliticCardPanel extends JPanel {
 	public PoliticCardPanel() {
 
 	}
-	
+
 	public JPanel createCard(Player p){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
@@ -33,15 +33,17 @@ public class PoliticCardPanel extends JPanel {
 		GridBagConstraints lim = new GridBagConstraints(); 
 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-		
+		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
+
 		//----------etichetta nome----------
 		JLabel label0=new JLabel("Carte politiche");
 		lim.gridx=1;
 		lim.gridy=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=p.getHand().size();
 		layout.setConstraints(label0, lim);
 		panel.add(label0);
-		
+
 		for(int i=0; i<p.getHand().size(); i++){//scorre le carte politiche
 			//----------carta politica----------
 			JLabel label1=new JLabel();
@@ -55,13 +57,11 @@ public class PoliticCardPanel extends JPanel {
 			lim.gridwidth=1;
 			layout.setConstraints(label1, lim);
 			panel.add(label1);
-			
+
 			//----------etichetta spazio----------
 			//Aggiunge lo spazio dopo aver messo la carta politica
 			JLabel label2=new JLabel();
 			label2.setName(i+" spazio");
-			label2.setBackground(new Color(0, 0, 0));
-			label2.setOpaque(true);
 			label2.setPreferredSize(new Dimension(5, 75));
 			lim.gridx=i*2+1;
 			lim.gridy=1;
@@ -70,7 +70,7 @@ public class PoliticCardPanel extends JPanel {
 			layout.setConstraints(label2, lim);
 			panel.add(label2);
 		}
-		
+
 		return panel;
 	}
 }

@@ -84,7 +84,7 @@ public class CouncilPanel extends JPanel {
 		return panel;
 	}
 
-	public JPanel Kingbalcone(King k){
+	public JPanel kingbalcone(King k){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);

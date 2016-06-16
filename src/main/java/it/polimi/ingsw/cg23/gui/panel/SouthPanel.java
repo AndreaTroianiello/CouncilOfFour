@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -87,12 +85,12 @@ public class SouthPanel extends JPanel {
 			layout.setConstraints(balcone3, lim);
 			southPanel.add(balcone3);
 		}
-		/*
+		
 		//----------------nobility track------------
-		JLabel l4=new JLabel(new ImageIcon(getCostructionImg()));
+		JLabel l4=new JLabel();
 		
 		l4.setName("Nobility panel");
-		//l4.setText("nobility track");
+		l4.setText("nobility track");
 		Component c8 = new JScrollPane(l4);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -103,17 +101,20 @@ public class SouthPanel extends JPanel {
 		
 		layout.setConstraints(c8, lim);
 		southPanel.add(c8);
-		*/
+		
 		//----------------carte politiche------------
-		Player p=new Player("io", new NobilityTrack(20));
-		//p.getHand().add(new PoliticCard(new Color(145,123,241), false));
-		p.getHand().add(new PoliticCard(new Color(145,255,241), false));
-		p.getHand().add(new PoliticCard(new Color(255,0,255), false));
-		p.getHand().add(new PoliticCard(new Color(145,123,241), false));
-		p.getHand().add(new PoliticCard(new Color(145,255,241), false));
-		p.getHand().add(new PoliticCard(new Color(255,123,241), false));
+		Player p=new Player("io", new NobilityTrack(20));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(new Color(145,123,241), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(new Color(145,255,241), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(new Color(255,0,255), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(new Color(145,123,241), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(new Color(145,255,241), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(new Color(255,123,241), false));//PROVA->provvisorio
+		
+		
 		JPanel politics=new PoliticCardPanel().createCard(p);
 		politics.setName("Carte politiche");
+		politics.setBackground(new Color(193,197,192));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -124,7 +125,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(politics);
 		
 		//----------------consiglieri del re------------
-		JPanel kingCouncillors=cp.Kingbalcone(b.getKing());
+		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
 		kingCouncillors.setBackground(new Color(116, 184, 181));
 		kingCouncillors.setName("Carte politiche");
 		lim.fill = GridBagConstraints.BOTH;

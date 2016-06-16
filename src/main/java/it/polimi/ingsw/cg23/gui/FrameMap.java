@@ -6,18 +6,19 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientController;
-import it.polimi.ingsw.cg23.gui.panel.LoggerPanel;
+import it.polimi.ingsw.cg23.gui.panel.EastPanel;
+import it.polimi.ingsw.cg23.gui.panel.MapPanel;
 import it.polimi.ingsw.cg23.gui.panel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 
@@ -34,7 +35,7 @@ public class FrameMap extends JFrame {
 	private static final long serialVersionUID = -1328028752338623444L;
 	private JPanel contentPane;
 	private JTextArea loggerArea;
-	private JTextArea write;
+	private JTextField write;
 	private transient Avvio s;
 	private ClientController controller;
 	private static Logger logger;
@@ -71,8 +72,7 @@ public class FrameMap extends JFrame {
 		GridBagConstraints lim = new GridBagConstraints();
 
 		//----------pannello nord (mappa)----------
-		JButton b1=new JButton();
-		b1.setText("b1");
+		JPanel mapPanel=new MapPanel().createMap();
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -81,13 +81,13 @@ public class FrameMap extends JFrame {
 		lim.gridwidth=3;
 		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.NORTHWEST;//posizione componenti nei riquadri
-		layout.setConstraints(b1, lim);
-		contentPane.add(b1);
+		layout.setConstraints(mapPanel, lim);
+		contentPane.add(mapPanel);
 
 		//----------text area (logger)----------
 		loggerArea=new JTextArea();
-		write=new JTextArea();
-		JPanel panel=new LoggerPanel().loggerPanel(loggerArea, write);
+		write=new JTextField();
+		JPanel panel=new EastPanel().loggerPanel(loggerArea, write);
 		
 		Component scrollLogger = new JScrollPane(panel);
 		scrollLogger.setName("scrollPane text area logger");
