@@ -3,7 +3,6 @@ package it.polimi.ingsw.cg23.server.controller.creation;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.cg23.server.controller.Setting;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.Type;
@@ -18,7 +17,6 @@ import it.polimi.ingsw.cg23.utility.Print;
 public class CreateRegionCity {
 	
 	private Print p;
-	private Setting s;
 	private XmlInterface leggiXml;
 	
 	private List <Region> regioni;//lista regioni
@@ -30,7 +28,6 @@ public class CreateRegionCity {
 	 * @param endPath, the name of the file xml
 	 */
 	public CreateRegionCity(String endPath){
-		this.s=new Setting();
 		this.p=new Print();
 		this.leggiXml=new XmlInterface();
 		this.regioni = new ArrayList<>();
@@ -61,15 +58,12 @@ public class CreateRegionCity {
 	 * create the cities object and add at the citta list
 	 * @param j, the number of the region
 	 * @param r, the region
-	 * @param bk, the bonus king
+	 * @param typeList, the type list
 	 * @return the city list
 	 */
-	public List<City> createCities(int j, Region r, BonusKing bk){//crea le citta' della regione
+	public List<City> createCities(int j, Region r, List<Type> typeList){//crea le citta' della regione
 		int regionNumber=p.regionsNumber(cityInfo);//numero di regioni
 		List <City> citta=new ArrayList<>();//lista citta
-		List <Type> typeList=new ArrayList<>();
-		typeList.clear();
-		typeList=s.createType(bk);//lista dei tipi(colori) delle citta'
 		
 		for(int i=0; i<cityInfo.length/regionNumber; i++){//ciclo che scorre le citta' di una regione
 			int ii=j*cityInfo.length/regionNumber+i;

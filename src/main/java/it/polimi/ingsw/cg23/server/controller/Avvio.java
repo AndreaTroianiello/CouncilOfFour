@@ -95,7 +95,7 @@ public class Avvio {
 
 		//----------citta'----------
 		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
-			citta.addAll(crc.createCities(i, regions.get(i), bk));//recupero le citta' della regione
+			citta.addAll(crc.createCities(i, regions.get(i), tipi));//recupero le citta' della regione
 		}
 
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
