@@ -80,7 +80,7 @@ public class SouthPanel extends JPanel {
 
 		//----------balcone 1----------
 		JPanel balcone1=new CouncilPanel().balcone(s.getBoard().getRegions().get(0));
-		//balcone1.setBackground(new Color(116, 184, 181));
+		balcone1.setBackground(new Color(116, 184, 181));
 		balcone1.setName("balcone costa");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -92,7 +92,7 @@ public class SouthPanel extends JPanel {
 		//----------balcone 2----------
 		JPanel balcone2=new CouncilPanel().balcone(s.getBoard().getRegions().get(1));
 		balcone2.setName("balcone collina");
-		//balcone2.setBackground(new Color(116, 184, 181));
+		balcone2.setBackground(new Color(116, 184, 181));
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
