@@ -68,9 +68,7 @@ public class FrameMap extends JFrame {
 	private void grid(){
 		GridBagLayout layout = new GridBagLayout();
 		contentPane.setLayout(layout);
-		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		GridBagConstraints lim = new GridBagConstraints();
 
 		//----------pannello nord (mappa)----------
 		JButton b1=new JButton();
@@ -81,6 +79,8 @@ public class FrameMap extends JFrame {
 		lim.weighty = 1;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=3;
+		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.NORTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(b1, lim);
 		contentPane.add(b1);
 
@@ -93,10 +93,12 @@ public class FrameMap extends JFrame {
 		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=3;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.VERTICAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 		layout.setConstraints(scrollLogger, lim); //Associazione
 		contentPane.add(scrollLogger); //Inserimento
 
@@ -109,6 +111,8 @@ public class FrameMap extends JFrame {
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
+		lim.fill=GridBagConstraints.HORIZONTAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(southPanel, lim); //Associazione
 		contentPane.add(southPanel); //Inserimento
 	}

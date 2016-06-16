@@ -46,7 +46,7 @@ public class MainActionPanel extends JPanel {
 		panel.setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints(); 
 
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Main action");

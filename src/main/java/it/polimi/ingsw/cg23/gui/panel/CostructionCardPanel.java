@@ -53,7 +53,7 @@ public class CostructionCardPanel extends JPanel {
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.SOUTH;//posizione componenti nei riquadri
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label0 = new JLabel("etichetta costruzione");
 		label0.setText("Carte costruzione "+reg.getName());
@@ -62,41 +62,29 @@ public class CostructionCardPanel extends JPanel {
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=4;
+		lim.gridwidth=2;
 		layout.setConstraints(label0, lim);
 		panel.add(label0);//aggiunta della label al panel
 
 		//carte costruzione regione
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
 		
-		//----------costruzione 1----------
-		BufferedImage img1=getCostructionImg(nameCostructor(bpt.get(0).getCitiesId()));//carta costruzione 1
-		JLabel label1 = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
-		label1.setName("costruzione 1");
-		label1.setBounds(0, 0, img1.getWidth(), img1.getHeight());//dimensioni della label
-		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 1;
-		lim.ipadx=10;//bordi componente
-		lim.ipady=10;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		layout.setConstraints(label1, lim);
-		panel.add(label1);//aggiunta della label al panel
-
-		
-		//----------costruzione 2----------
-		BufferedImage img2=getCostructionImg(nameCostructor(bpt.get(1).getCitiesId()));//carta costruzione 2
-		JLabel label2 = new JLabel(new ImageIcon(img2));//aggiungo l'immagine alla label
-		label2.setName("costruzione 2");
-		label2.setBounds(0, 0, img2.getWidth(), img2.getHeight());//dimensioni della label
-		lim.gridx = 1;//posizione componenti nella griglia
-		lim.gridy = 1;
-		lim.ipadx=10;//bordi componente
-		lim.ipady=10;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		layout.setConstraints(label2, lim);
-		panel.add(label2);//aggiunta della label al panel
+		for(int i=0; i<bpt.size(); i++){//scorre le carte costruzione visibili
+			
+			//----------carte costruzione----------
+			BufferedImage img=getCostructionImg(nameCostructor(bpt.get(0).getCitiesId()));//carta costruzione 1
+			JLabel label = new JLabel(new ImageIcon(img));//aggiungo l'immagine alla label
+			label.setName("costruzione"+i);
+			label.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
+			lim.gridx = i;//posizione componenti nella griglia
+			lim.gridy = 1;
+			lim.ipadx=10;//bordi componente
+			lim.ipady=10;
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			layout.setConstraints(label, lim);
+			panel.add(label);//aggiunta della label al panel
+		}
 		
 		return panel;
 	}

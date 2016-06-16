@@ -48,14 +48,16 @@ public class InfoPanel extends JPanel {
 		panel.setBackground(new Color(123,123,123));
 
 		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.SOUTH;//posizione componenti nei riquadri
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Info:");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		layout.setConstraints(label, lim);
 		panel.add(label);
 
@@ -63,6 +65,8 @@ public class InfoPanel extends JPanel {
 		button1.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button1, lim);
@@ -81,6 +85,8 @@ public class InfoPanel extends JPanel {
 		button2.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button2, lim);
