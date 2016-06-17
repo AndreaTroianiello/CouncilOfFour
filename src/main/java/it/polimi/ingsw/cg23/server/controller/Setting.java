@@ -32,9 +32,9 @@ public class Setting {
 	/**
 	 * costructor
 	 */
-	public Setting(){
+	public Setting(String fileName){
 		this.leggiXml=new XmlInterface();
-		this.cb=new CreateBonus("RegionCity.xml");
+		this.cb=new CreateBonus(fileName);
 		this.bonusList=cb.bonusList(null);
 	}
 

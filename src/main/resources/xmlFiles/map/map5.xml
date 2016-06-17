@@ -6,128 +6,170 @@
 			<city>
 				<Id>A</Id>
 				<name>Arkon</name>
+				<link>
+					<Id>C</Id>
+				</link>
 				<color>Gold</color>
-				<bonus>2VictoryPoints</bonus>
-				<Id>C</Id>
-			</city>
-			<city>
-				<Id>C</Id>
-				<name>Castrum</name>
-				<color>Bronze</color>
-				<bonus>3Coin</bonus>
-				<Id>A</Id>
-				<Id>F</Id>
-				<Id>D</Id>
+				<bonus>1Nobility</bonus>
 			</city>
 			<city>
 				<Id>B</Id>
 				<name>Burgen</name>
+				<link>
+					<Id>E</Id>
+				</link>
 				<color>Silver</color>
-				<bonus>1Nobility</bonus>
-				<Id>E</Id>
+				<bonus>2Assistants</bonus>
+			</city>
+			<city>
+				<Id>C</Id>
+				<name>Castrum</name>
+				<link>
+					<Id>A</Id>
+					<Id>D</Id>
+					<Id>F</Id>
+				</link>
+				<color>Bronze</color>
+				<bonus>1Assistants</bonus>
 			</city>
 			<city>
 				<Id>D</Id>
 				<name>Dorful</name>
+				<link>
+					<Id>C</Id>
+					<Id>G</Id>
+				</link>
 				<color>Iron</color>
-				<bonus>1PermitTile,1VictoryPoints</bonus>
-				<Id>C</Id>
-				<Id>G</Id>
+				<bonus>1Coin</bonus>
 			</city>
 			<city>
 				<Id>E</Id>
 				<name>Esti</name>
+				<link>
+					<Id>B</Id>
+					<Id>H</Id>
+				</link>
 				<color>Bronze</color>
-				<bonus>1Nobility</bonus>
-				<Id>B</Id>
-				<Id>H</Id>
+				<bonus>1Assistant,1Politics</bonus>
 			</city>
 		</cities>
+		<coin>5</coin>
 	</zone>
 	<zone>
 		<namez>Collina</namez>
 		<cities>
 			<city>
-				<name>Framek</name>
-				<color>Gold</color>
-				<bonus>2Assistants</bonus>
-				<Id>I</Id>
-				<Id>C</Id>
-			</city>
-			<city>
-				<name>Indur</name>
-				<color>Silver</color>
-				<bonus>1Assistants</bonus>
 				<Id>F</Id>
-				<Id>J</Id>
-				<Id>K</Id>
+				<name>Framek</name>
+				<link>
+					<Id>C</Id>
+					<Id>I</Id>
+				</link>
+				<color>Gold</color>
+				<bonus>2Coin</bonus>
 			</city>
 			<city>
+				<Id>G</Id>
+				<name>Graden</name>
+				<link>
+					<Id>D</Id>
+					<Id>J</Id>
+				</link>
+				<color>Bronze</color>
+				<bonus>3VictoryPoints</bonus>
+			</city>
+			<city>
+				<Id>H</Id>
+				<name>Hellar</name>
+				<link>
+					<Id>E</Id>
+					<Id>J</Id>
+					<Id>M</Id>
+				</link>
+				<color>Gold</color>
+				<bonus>1Assistants,1Coin,4Politics</bonus>
+			</city>
+			<city>
+				<Id>I</Id>
+				<name>Indur</name>
+				<link>
+					<Id>F</Id>
+					<Id>J</Id>
+					<Id>K</Id>
+				</link>
+				<color>Silver</color>
+				<bonus>1VictoryPoints</bonus>
+			</city>
+			<city>
+				<Id>J</Id>
 				<name>Juvelar</name>
+				<link>
+					<Id>G</Id>
+					<Id>H</Id>
+					<Id>I</Id>
+					<Id>L</Id>
+				</link>
 				<color>Purple</color>
 				<bonus></bonus>
-				<Id>I</Id>
-				<Id>G</Id>
-				<Id>H</Id>
-				<Id>L</Id>
-			</city>
-			<city>
-				<name>Graden</name>
-				<color>Bronze</color>
-				<bonus>1Coin</bonus>
-				<Id>J</Id>
-				<Id>D</Id>
-			</city>
-			<city>
-				<name>Hellar</name>
-				<color>Gold</color>
-				<bonus>1Assistant,1Politics</bonus>
-				<Id>J</Id>
-				<Id>E</Id>
-				<Id>M</Id>
 			</city>
 		</cities>
+		<coin>5</coin>
 	</zone>
 	<zone>
 		<namez>Montagna</namez>
 		<cities>
 			<city>
-				<name>Kultos</name>
-				<color>Gold</color>
-				<bonus>2Coin</bonus>
-				<Id>N</Id>
-				<Id>I</Id>
-			</city>
-			<city>
-				<name>Naris</name>
-				<color>Silver</color>
-				<bonus>3VictoryPoints</bonus>
 				<Id>K</Id>
-				<Id>O</Id>
-			</city>
-			<city>
-				<name>Lyram</name>
-				<color>Bronze</color>
-				<bonus>1Assistants,1Coin,4Politics</bonus>
-				<Id>J</Id>
-				<Id>O</Id>
-			</city>
-			<city>
-				<name>Osium</name>
+				<name>Kultos</name>
+				<link>
+					<Id>I</Id>
+					<Id>N</Id>
+				</link>
 				<color>Gold</color>
-				<bonus>1VictoryPoints</bonus>
-				
-				<Id>N</Id>
-				<Id>L</Id>
-				<Id>M</Id>
+				<bonus>1PermitTile</bonus>
 			</city>
 			<city>
+				<Id>L</Id>
+				<name>Luvram</name>
+				<link>
+					<Id>J</Id>
+					<Id>O</Id>
+				</link>
+				<color>Bronze</color>
+				<bonus>2VictoryPoints</bonus>
+			</city>
+			<city>
+				<Id>M</Id>
 				<name>Merkatim</name>
+				<link>
+					<Id>H</Id>
+					<Id>O</Id>
+				</link>
 				<color>Iron</color>
-				<bonus>1PermitTile</bonus>
+				<bonus>3Coin</bonus>
+			</city>
+			<city>
+				<Id>N</Id>
+				<name>Naris</name>
+				<link>
+					<Id>K</Id>
+					<Id>O</Id>
+				</link>
+				<color>Silver</color>
+				<bonus>1Nobility</bonus>
+			</city>
+			<city>
 				<Id>O</Id>
-				<Id>H</Id>
+				<name>Osium</name>
+				<link>
+					<Id>L</Id>
+					<Id>M</Id>
+					<Id>N</Id>
+				</link>
+				<color>Gold</color>
+				<bonus>1PermitTile,1VictoryPoints</bonus>
 			</city>
 		</cities>
+		<coin>5</coin>
 	</zone>
 </map>

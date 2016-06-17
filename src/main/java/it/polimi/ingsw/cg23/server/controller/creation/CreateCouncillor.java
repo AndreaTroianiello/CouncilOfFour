@@ -19,8 +19,8 @@ public class CreateCouncillor {
 	/**
 	 * costructor
 	 */
-	public CreateCouncillor(){
-		this.s=new Setting();
+	public CreateCouncillor(String fileName){
+		this.s=new Setting(fileName);
 	}
 	
 	/**

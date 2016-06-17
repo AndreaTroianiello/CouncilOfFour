@@ -54,10 +54,10 @@ public class Avvio {
 	 */
 	public Avvio(String endPath){
 		cc=new CreateCostruction(endPath);
-		cco=new CreateCouncillor();
+		cco=new CreateCouncillor(endPath);
 		crc=new CreateRegionCity(endPath);
 		cl=new Print();
-		s=new Setting();
+		s=new Setting(endPath);
 		cb=new CreateBonus(endPath);
 
 		this.leggiXml= new XmlInterface();

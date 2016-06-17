@@ -23,7 +23,7 @@ public class RankTest {
 	@Before
 	public void setUp() throws Exception {
 		board=new Board(null, null, null, new NobilityTrack(21), null, null);
-		Setting setting=new Setting();
+		Setting setting=new Setting("RegionCity.xml");
 		setting.nobilityTrackFill(board.getNobilityTrack());
 	}
 

@@ -23,7 +23,7 @@ import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 
 public class SettingTest {
 
-	private Setting s=new Setting();
+	private Setting s=new Setting("RegionCity.xml");
 	private Type type1,type2;
 	private List<Integer> bonuses;
 	private List<City> cities1,cities2;
