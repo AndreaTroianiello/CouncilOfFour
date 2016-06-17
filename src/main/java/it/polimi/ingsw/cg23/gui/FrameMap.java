@@ -51,7 +51,7 @@ public class FrameMap extends JFrame {
 		this.controller=controller;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1400, 900);
+		setBounds(0, 0, 1460, 900);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
@@ -72,7 +72,7 @@ public class FrameMap extends JFrame {
 		GridBagConstraints lim = new GridBagConstraints();
 
 		//----------pannello nord (mappa)----------
-		JPanel mapPanel=new MapPanel().createMap();
+		JPanel mapPanel=new MapPanel().createMap(s.getBoard().getRegions());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro

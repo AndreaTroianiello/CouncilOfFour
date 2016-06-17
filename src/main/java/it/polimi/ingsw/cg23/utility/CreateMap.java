@@ -154,7 +154,7 @@ public class CreateMap {
 	 * @param b, the board
 	 * @return a string with the nobility track
 	 */
-	private String printNobility(Board b){
+	public String printNobility(Board b){
 		String nobility = "Nobility Track:\n";
 		List<NobilityBox> nb = b.getNobilityTrack().getNobilityBoxes();
 		List<Player> players=b.getPlayers();

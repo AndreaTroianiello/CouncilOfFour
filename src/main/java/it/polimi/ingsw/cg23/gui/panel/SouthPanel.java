@@ -1,7 +1,7 @@
 package it.polimi.ingsw.cg23.gui.panel;
 
 import java.awt.Color;
-import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -87,15 +89,18 @@ public class SouthPanel extends JPanel {
 		}
 		
 		//----------------nobility track------------
-		JLabel l4=new JLabel();
-		
+		BufferedImage img=nobilityImg();
+		JLabel l4=new JLabel(new ImageIcon(img));
+		l4.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
 		l4.setName("Nobility panel");
-		l4.setText("nobility track");
-		Component c8 = new JScrollPane(l4);
+		JScrollPane c8 = new JScrollPane(l4);
+		c8.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()+3));
+		c8.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		c8.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
 		
@@ -141,16 +146,18 @@ public class SouthPanel extends JPanel {
 		return southPanel;
 	}
 	
-	private BufferedImage getCostructionImg(){//recupero l'immagine della carta costruzione
+	private BufferedImage nobilityImg(){//recupero l'immagine della carta costruzione
 		BufferedImage image=null;
 		String path="src/main/resources/images/Nobility track.png";//percorso dell'immagine
 		
 		try {
 			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
+			System.out.println("err");
 			//logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
 		}
 
 		return image;
 	}
+	
 }

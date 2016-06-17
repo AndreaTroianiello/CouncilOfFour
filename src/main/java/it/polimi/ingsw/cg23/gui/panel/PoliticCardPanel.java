@@ -33,7 +33,7 @@ public class PoliticCardPanel extends JPanel {
 		GridBagConstraints lim = new GridBagConstraints(); 
 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
+		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 
 		//----------etichetta nome----------
 		JLabel label0=new JLabel("Carte politiche");
@@ -70,7 +70,7 @@ public class PoliticCardPanel extends JPanel {
 			layout.setConstraints(label2, lim);
 			panel.add(label2);
 		}
-
+		
 		return panel;
 	}
 }
