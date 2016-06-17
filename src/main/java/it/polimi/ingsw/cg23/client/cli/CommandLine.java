@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -49,48 +50,36 @@ public class CommandLine {
 			}
 		}
 	}
-	
-	/**
-	 * Lets you choose the type of connection and starts the client.
-	 * @param args
-	 */
-	public static void main(String[] args){
-		Print cli=new Print();
-		CommandLine command=new CommandLine(cli);
-		boolean run=true;
-		cli.print("","Welcome to Council of Four game!");
-		cli.print("","Choose the type of connection. (SOCKET or RMI)");
-		Scanner stdIn = new Scanner(System.in);
-		while(run){
-		String inputLine=stdIn.nextLine();
-			switch (inputLine) {
-			case "SOCKET":
-				try {
-					ClientSocket clientSocket=new ClientSocket();
-					ControllerCLI controller=new ControllerCLI(cli);
-					clientSocket.startClient(controller);
-					command.run(controller, stdIn);
-					run=false;
-				} catch (IOException e) {
-					logger.error(e);
-				}
-				break;
-			case "RMI":
-				try {
-					ClientRMI clientRMI=new ClientRMI();
-					ControllerCLI controller=new ControllerCLI(cli);
-					clientRMI.startClient(controller);
-					command.run(controller, stdIn);
-					run=false;
-				} catch (RemoteException | NotBoundException e) {
-					logger.error(e);
-				}
-				break;
-			default:
-				cli.print("", "Wrong command.");
-				break;
-			}
+		
+	public boolean startSocket(StringTokenizer tokenizer, Scanner stdIn, Print cli){
+		if(!tokenizer.hasMoreTokens())
+			return true;
+		
+		try {
+			ClientSocket clientSocket=new ClientSocket();
+			ControllerCLI controller=new ControllerCLI(cli);
+			clientSocket.startClient(controller,tokenizer.nextToken());
+			run(controller, stdIn);
+			return false;
+		} catch (IOException e) {
+			logger.error(e);
+			return true;
 		}
-		stdIn.close();
+	}
+	
+	public boolean startRMI(StringTokenizer tokenizer, Scanner stdIn, Print cli){
+		if(!tokenizer.hasMoreTokens())
+			return true;
+		
+		try {
+			ClientRMI clientRMI=new ClientRMI();
+			ControllerCLI controller=new ControllerCLI(cli);
+			clientRMI.startClient(controller,tokenizer.nextToken());
+			run(controller, stdIn);
+			return false;
+		} catch (RemoteException | NotBoundException e) {
+			logger.error(e);
+			return true;
+		}
 	}
 }

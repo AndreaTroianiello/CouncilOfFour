@@ -19,7 +19,7 @@ import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
 public class ClientRMI{
 
 	private static final int RMI_PORT=52365;
-	private static final String HOST="127.0.0.1";
+	//private static final String HOST="127.0.0.1";
 	private static final String NAME="council";
 	private static Logger logger;
 
@@ -37,8 +37,8 @@ public class ClientRMI{
 	 * @throws RemoteException if the RMI connection has problems.
 	 * @throws NotBoundException if the view doesn't find a bind object.
 	 */
-	public void startClient(ClientController controller) throws RemoteException, NotBoundException {
-		Registry registry=LocateRegistry.getRegistry(HOST,RMI_PORT);
+	public void startClient(ClientController controller,String address) throws RemoteException, NotBoundException {
+		Registry registry=LocateRegistry.getRegistry(address,RMI_PORT);
 		RMIViewRemote serverStub=(RMIViewRemote) registry.lookup(NAME);
 		ClientRMIView rmiView=new ClientRMIView(controller);
 		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(rmiView));

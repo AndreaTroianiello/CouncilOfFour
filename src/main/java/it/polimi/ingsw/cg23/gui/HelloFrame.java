@@ -133,7 +133,7 @@ public class HelloFrame extends JFrame {
 				
 				try {
 					ClientRMI clientRMI=new ClientRMI();
-					clientRMI.startClient(controller);
+					clientRMI.startClient(controller,"127.0.0.1");
 				} catch (RemoteException | NotBoundException e1) {
 					logger.error(e);
 				}
@@ -158,7 +158,7 @@ public class HelloFrame extends JFrame {
 				
 				try {
 					ClientSocket clientSocket=new ClientSocket();
-					clientSocket.startClient(controller);
+					clientSocket.startClient(controller,"127.0.0.1");
 				} catch (IOException e1) {
 					logger.error(e);
 				}
