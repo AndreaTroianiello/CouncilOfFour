@@ -99,12 +99,12 @@ public class CreateBonus {
 	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
 		bonusList.add(new BonusAssistants());
-		bonusList.add(new BonusCityToken(null, board));
+		bonusList.add(new BonusCityToken(1));
 		bonusList.add(new BonusCoin(0));
-		bonusList.add(new BonusGetPermitTile(0,board, null, null));
+		bonusList.add(new BonusGetPermitTile());
 		bonusList.add(new BonusNobility(0,board));
 		bonusList.add(new BonusPolitics(0,board));
-		bonusList.add(new BonusTileBonus(0, null));
+		bonusList.add(new BonusTileBonus());
 		bonusList.add(new BonusVictoryPoints(0));
 		return bonusList;
 	}

@@ -66,7 +66,6 @@ public class BonusPoliticsTest {
 	@Test
 	public void testGiveBonusShouldGiveThePlayerTheFirstCardInTheDeck() {
 		BonusPolitics bonus = new BonusPolitics(1, board);
-		bonus.setParameters();
 		bonus.giveBonus(player);
 		PoliticCard expectedCard = new PoliticCard(Color.ORANGE, false);
 		assertEquals(expectedCard.getColor(), player.getHand().get(0).getColor());
@@ -81,7 +80,6 @@ public class BonusPoliticsTest {
 		Deck newDeck = new Deck(emptyDeck);
 		Board board2 = new Board(newDeck, null, null, null, null, null);
 		BonusPolitics bonus = new BonusPolitics(1, board2);
-		bonus.setParameters();
 		bonus.giveBonus(player);
 		assertEquals(new ArrayList<>(), player.getHand());
 	}

@@ -20,12 +20,8 @@ public class BonusChange implements Change {
 		this.bonus=bonus;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "BonusChange [bonus=" + bonus + "]";
+	
+	public Bonus getBonus(){
+		return bonus;
 	}
-
 }

@@ -37,7 +37,6 @@ public class BonusAssistantsTest {
 	public void testGiveBonusShouldGiveThePlayer10AssistantsIfNumberIs10() throws NegativeNumberException {
 		BonusAssistants bonus = new BonusAssistants();
 		bonus.setNumber(10);
-		bonus.setParameters();
 		player.getAssistantsPool().setAssistants(0);
 		bonus.giveBonus(player);
 		assertEquals(10, player.getAssistantsPool().getAssistants());

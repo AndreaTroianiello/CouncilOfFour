@@ -35,8 +35,8 @@ public class BonusAdditionalAction implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		
+	public int getParameters(){
+		return 0;
 	}
 	
 	@Override

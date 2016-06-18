@@ -66,8 +66,8 @@ public class BonusAssistants implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		
+	public int getParameters(){
+		return assistants;
 	}
 	
 	/**

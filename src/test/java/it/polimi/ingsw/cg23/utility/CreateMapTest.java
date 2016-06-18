@@ -127,7 +127,7 @@ public class CreateMapTest {
 		c4.add('A');
 		c4.add('C');
 		BusinessPermitTile b4=new BusinessPermitTile(c4, reg.get(0).getName());
-		b4.addBonus(new BonusCityToken(null,null));
+		b4.addBonus(new BonusCityToken(1));
 		List<BusinessPermitTile> bl2=new ArrayList<>();
 		bl2.add(b3);
 		bl2.add(b4);

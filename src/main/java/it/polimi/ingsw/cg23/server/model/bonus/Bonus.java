@@ -21,7 +21,7 @@ public interface Bonus extends Serializable{
 	 *  it returns the name and the variables of the class in string
 	 */
 	public String getName();
-	public void setParameters();
+	public int getParameters();
 	public void setNumber(int number);
 	public Bonus copy();
 

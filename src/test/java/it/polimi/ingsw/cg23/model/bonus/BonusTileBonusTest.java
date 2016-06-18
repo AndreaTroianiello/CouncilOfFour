@@ -29,51 +29,51 @@ public class BonusTileBonusTest {
 	/**
 	 * it tests if getBusinessPermitTiles works properly
 	 */
-	@Test
+	/*@Test
 	public void testGetBusinessPermitTiles() {
 		BonusTileBonus bonus = new BonusTileBonus(2, null);
 		assertEquals(null, bonus.getBusinessPermitTiles());
-	}
+	}*/
 	
 	/**
 	 * it tests if giveBonus actually give the bonus
 	 * @throws NegativeNumberException
 	 */
-	@Test 
+	/*@Test 
 	public void testGiveBonusShouldGiveTheBonusInTheTile() throws NegativeNumberException{
 		BonusTileBonus bonus = new BonusTileBonus(0, tile);
 		this.player.getRichness().setCoins(10);
 		bonus.giveBonus(player);
 		assertEquals(12, this.player.getRichness().getCoins());
-	}
+	}*/
 
 	/**
 	 * it tests if getName works properly
 	 */
-	@Test
+	/*@Test
 	public void testGetName() {
 		BonusTileBonus bonus = new BonusTileBonus(0, null);
 		assertEquals("TileBonus", bonus.getName());
-	}
+	}*/
 
 
 	/**
 	 * it tests if getName works properly
 	 */
-	@Test
+	/*@Test
 	public void testToString() {
 		BonusTileBonus bonus = new BonusTileBonus(0, null);
 		assertEquals("BonusTileBonus [businessPermitCard=null]", bonus.toString());
-	}
+	}*/
 
 	/**
 	 * it tests if getName works properly
 	 */
-	@Test
+	/*@Test
 	public void testClone() {
 		BonusTileBonus bonus = new BonusTileBonus(0, null);
 		BonusTileBonus newBonus = (BonusTileBonus) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
-	}
+	}*/
 
 }

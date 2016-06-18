@@ -16,10 +16,9 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = 5218205311068329970L;
-	private final Board board;
-	private final Region region;
 	private final String name;
-	private final BusinessPermitTile businessPermit;
+	private BusinessPermitTile businessPermit;
+	private int parameters;
 
 	
  
@@ -30,11 +29,10 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 * @param a
 	 * @param board
 	 */
-	public BonusGetPermitTile(int a, Board board, BusinessPermitTile businessPermit, Region region) {
-		this.businessPermit = businessPermit;
-		this.region = region;
-		this.board = board;
+	public BonusGetPermitTile() {
+		this.businessPermit = null;
 		this.name="GetPermitTile";
+		this.parameters=1;
 	}
 	
 	/**
@@ -43,21 +41,6 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	@Override
 	public String getName(){
 		return name;
-	}
-	
-	/**
-	 * @return the board
-	 */
-	public Board getBoard() {
-		return board;
-	}
-
-
-	/**
-	 * @return the region
-	 */
-	public Region getRegion() {
-		return region;
 	}
 
 	/**
@@ -81,12 +64,12 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	@Override
 	public void giveBonus(Player player) {
 		player.getAvailableBusinessPermits().add(businessPermit);   					//add the chosen PermitTitle to the player collection
-		this.region.getDeck().changeShowedDeck(); 										//replace the PermitTitle chosen with the one in top of the deck
+		//this.region.getDeck().changeShowedDeck(); 										//replace the PermitTitle chosen with the one in top of the deck
 	}
 
 	@Override
-	public void setParameters(){
-		//this is a method of the Bonus interfaced not used in this class
+	public int getParameters(){
+		return parameters;
 	}
 
 	/**
@@ -102,7 +85,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public Bonus copy() {
-		return new BonusGetPermitTile(0, board, businessPermit, region); 
+		return new BonusGetPermitTile(); 
 	}	
 	
 }

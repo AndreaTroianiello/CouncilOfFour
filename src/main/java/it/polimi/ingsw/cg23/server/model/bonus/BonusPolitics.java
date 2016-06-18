@@ -81,8 +81,8 @@ public class BonusPolitics implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		
+	public int getParameters(){
+		return cardNumber;
 	}
 
 	/**

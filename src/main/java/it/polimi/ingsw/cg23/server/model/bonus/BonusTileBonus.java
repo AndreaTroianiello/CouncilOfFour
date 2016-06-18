@@ -18,8 +18,9 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 public class BonusTileBonus extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -5750535311281465339L;
-	private final BusinessPermitTile businessPermitTile;	//the PerimtTile the player choose to have the bonuses from
+	private BusinessPermitTile businessPermitTile;	//the PerimtTile the player choose to have the bonuses from
 	private final String name;
+	private int parameters;
 	
 	
 	private static Logger logger;
@@ -29,10 +30,10 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 * the name of the bonus
 	 * @param number
 	 */
-	public BonusTileBonus(int number, BusinessPermitTile businessPermitTile) {
+	public BonusTileBonus() {
 		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		this.businessPermitTile = businessPermitTile;
+		this.parameters=1;
 		this.name="TileBonus";
 	}
 
@@ -69,8 +70,8 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		//this is a method of the Bonus interfaced not used in this class
+	public int getParameters(){
+		return parameters;
 	}
 
 
@@ -87,7 +88,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public Bonus copy() {
-		return new BonusTileBonus(0, this.businessPermitTile); 
+		return new BonusTileBonus(); 
 	}	
 	
 

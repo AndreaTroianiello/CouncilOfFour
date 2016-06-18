@@ -63,8 +63,8 @@ public class BonusVictoryPoints implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		
+	public int getParameters(){
+		return points;
 	}
 
 

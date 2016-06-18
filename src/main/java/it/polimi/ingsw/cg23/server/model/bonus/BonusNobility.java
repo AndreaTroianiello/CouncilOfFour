@@ -82,8 +82,8 @@ public class BonusNobility implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		
+	public int getParameters(){
+		return steps;
 	}
 
 	/**

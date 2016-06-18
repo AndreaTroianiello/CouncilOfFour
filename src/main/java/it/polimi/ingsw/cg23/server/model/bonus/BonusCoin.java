@@ -79,8 +79,8 @@ public class BonusCoin implements Bonus {
 	}
 	
 	@Override
-	public void setParameters(){
-		
+	public int getParameters(){
+		return coins;
 	}
 
 

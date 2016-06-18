@@ -3,19 +3,16 @@ package it.polimi.ingsw.cg23.server.controller;
 import static org.junit.Assert.*;
 
 import java.awt.Color;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.model.action.ChangeBusinessPermitTest;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
-import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
 import it.polimi.ingsw.cg23.server.model.action.GameAction;
 import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
@@ -27,18 +24,14 @@ import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
-import it.polimi.ingsw.cg23.server.view.ServerSocketView;
-import it.polimi.ingsw.cg23.server.view.View;
 
 public class TurnTest {
-
-	private int currentPlayer;										
+									
 	private GameAction action;	
 	private Board board;
 	private Player player1;
 	private Player player2;
 	private Deck deck;
-	private Controller controller;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -49,13 +42,12 @@ public class TurnTest {
 		politicCards.add(new PoliticCard(null, true));
 		politicCards.add(new PoliticCard(null, true));
 		this.deck = new Deck(politicCards);
-		this.board = new Board(deck, regions, null, null, null, null);
+		this.board = new Board(deck, regions, null, new NobilityTrack(1), null, null);
 		this.player1 = new Player("user1", new NobilityTrack(1));
 		this.player2 = new Player("user1", new NobilityTrack(1));
 		this.board.addPlayer(player1);
 		this.board.addPlayer(player2);
 		this.action = new HireAssistant();
-		this.controller = new Controller(board);
 	}
 
 	/**
@@ -96,7 +88,7 @@ public class TurnTest {
 	public void testIfChangePlayerActuallyChangeThePlayer() throws NegativeNumberException {
 		List<PoliticCard> politics = new ArrayList<>();
 		Deck deck2 = new Deck(politics);
-		Board board2 = new Board(deck2, null, null, null, null, null);
+		Board board2 = new Board(deck2, null, null, new NobilityTrack(1), null, null);
 		board2.addPlayer(player1);
 		board2.addPlayer(player2);
 		Turn turn = new Turn(board2);

@@ -1,7 +1,10 @@
 package it.polimi.ingsw.cg23.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.observer.Observable;
+import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -10,7 +13,9 @@ import it.polimi.ingsw.cg23.server.model.action.GameAction;
 import it.polimi.ingsw.cg23.server.model.action.MarketAction;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
+import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.components.Deck;
+import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
@@ -28,7 +33,7 @@ public class Turn {
 	private int mainIndex;											//Main action's counter.
 	private boolean mainAction;										//Authorization of the main action.
 	private boolean secondAction;									//Authorization of the second action
-	
+	private List<Observable<Change>> observableBonuses;
 	/**
 	 * The constructor of Turn.
 	 * @param board The game's board.
@@ -36,7 +41,20 @@ public class Turn {
 	public Turn(Board board){
 		this.players=board.getPlayers();
 		this.board=board;
+		observableBonuses=new ArrayList<>();
+		createBonusesObservableList();
 		initTurn();
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void createBonusesObservableList(){
+		List<NobilityBox> boxes=board.getNobilityTrack().getNobilityBoxes();
+		for(NobilityBox box: boxes){
+			List<Bonus> bonuses=box.getBonus();
+			for(Bonus bonus:bonuses)
+				if(bonus instanceof Observable<?>)
+					observableBonuses.add((Observable<Change>)bonus);
+		}
 	}
 
 	/**
@@ -206,6 +224,15 @@ public class Turn {
 			runActionNormal();
 	}
 
+	public void registerObserverBonuses(){
+		for(Observable<Change> bonus:observableBonuses)
+			bonus.registerObserver(action.getPlayer());
+	}
+	public void unregisterObserverBonuses(){
+		for(Observable<Change> bonus:observableBonuses)
+			bonus.unregisterObserver(action.getPlayer());
+	}
+	
 	/**
 	 * It generates a string formed by the most significant statistics of the Turn.
 	 * @return string

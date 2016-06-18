@@ -62,7 +62,6 @@ public class BonusNobilityTest {
 		BonusNobility bonus = new BonusNobility(2, board);
 		bonus.giveBonus(player);
 		bonus.setNumber(2);
-		bonus.setParameters();
 		assertEquals(2, player.getNobilityBoxPosition());
 		assertEquals(4, player.getRichness().getCoins());
 	}

@@ -1,7 +1,10 @@
 package it.polimi.ingsw.cg23.server.model.bonus;
 
 
+import java.util.List;
+
 import it.polimi.ingsw.cg23.observer.Observable;
+import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
@@ -19,11 +22,10 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -8457638846172650018L;
 	private int number;
-	private final City city;			//the city the player chooses to run the bonus from
-	private  boolean runnable;			//a boolean that show if the bonus in the city are runnable 
+	private List<City> cities;			//the city the player chooses to run the bonus from
+	//private boolean runnable;			//a boolean that show if the bonus in the city are runnable 
 	private final String name;
-		
-	private final Board board;
+	private int parameters;
 	
 	
 	/**
@@ -33,11 +35,10 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 * @param city
 	 * @param board
 	 */
-	public BonusCityToken(City city, Board board) {
+	public BonusCityToken(int parameters) {
 		this.number = 0;
-		this.city = city;
-		this.runnable=true;
-		this.board = board;
+		this.cities = null;
+		this.parameters=parameters;
 		this.name="CityToken";
 	}
 	
@@ -46,9 +47,9 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	/**
 	 * @return the runnable
 	 */
-	public boolean getRunnable() {
+	/*public boolean getRunnable() {
 		return runnable;
-	}
+	}*/
 
 	/**
 	 * return the bonus name and the number(if exist)
@@ -58,41 +59,36 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 		return name;
 	}
 
-	/**
-	 * @return the city
-	 */
-	public City getCity() {
-		return city;
+	private boolean controlParameters(){
+		if(cities==null||cities.size()==0)
+			return false;
+		for(City city: cities){
+			for(int i=0; i<city.getToken().size(); i++) 								//iterate the bonus in the city
+				if(city.getToken().get(i).getName().contains("BonusNobility")) 
+					return false;
+		}
+		return true;
 	}
-
-
 	/**
 	 * call the method runBonusCity of the class city
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		
-		for(int i=0; i<this.city.getToken().size(); i++) 								//iterate the bonus in the city
-			if(this.city.getToken().get(i).getName().contains("BonusNobility")) {		//if the city contains a nobilityBonus bonus
-				this.runnable=false;													//set as false the boolean referred to the city 
-				}
-		if(this.city.containsEmporium(player) && this.runnable)						//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
-			this.city.runBonusCity(player);											//if it does, give the player the bonus
+		if(!controlParameters()){
+			this.notifyObserver(new BonusChange(this));
+			return;
+		}
+		/*if(city.containsEmporium(player))						//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
+			city.runBonusCity(player);											//if it does, give the player the bonus
+		 */
 	}
 	
-
-	@Override
-	public void setParameters(){
-		//this is a method of the Bonus interfaced not used in this class
-	}
-
 	/**
 	 *  @return the name and the variables of the class in string
 	 */
 	@Override
 	public String toString() {
-		return "BonusCityToken [city=" + city + ", runnable="
-				+ runnable + "]";
+		return "BonusCityToken [parameters="+ parameters +"]";
 	}
 
 	/**
@@ -100,17 +96,17 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public Bonus copy() {
-		return new BonusCityToken(city, board); 
+		return new BonusCityToken(parameters); 
 	}
 
-	
-	public int getNumber() {
-		return number;
+	@Override
+	public int getParameters() {
+		return parameters;
 	}	
 
 	@Override
 	public void setNumber(int number) {
-		//this is a method of the Bonus interfaced not used in this class
+		this.parameters=number;
 	}	
 	
 }

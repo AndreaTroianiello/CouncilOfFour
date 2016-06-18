@@ -28,7 +28,6 @@ public class BonusAdditionalActionTest {
 		BonusAdditionalAction bonus = new BonusAdditionalAction();
 		bonus.giveBonus(player);
 		bonus.setNumber(0);
-		bonus.setParameters();
 		assertEquals(true, player.isAdditionalAction());
 	}
 	
