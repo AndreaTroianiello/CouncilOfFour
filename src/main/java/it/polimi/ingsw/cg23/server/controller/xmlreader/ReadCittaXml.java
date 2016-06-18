@@ -20,14 +20,13 @@ import org.w3c.dom.Element;
  *
  */
 public class ReadCittaXml {
-	private String path="src/main/resources/xmlFiles/";//file location
+	private String path="src/main/resources/xmlFiles/map/";//file location
 	/* array city prototype
 	 * coloumn 0: name of the city
 	 * coloumn 1: color of the city
 	 * coloumn 2: link of the city (the id to which it is connected the city)
 	 * coloumn 3: id of the city
-	 * coloumn 4: bonus of the city
-	 * coloumn 5: region of the city
+	 * coloumn 4: region of the city
 	 */
 
 	/**
@@ -43,7 +42,7 @@ public class ReadCittaXml {
 			int citynum=cityNumber(endPath);//numero di citta'
 			int cityNodeNumber=cityNodeNumber(endPath); //numero di nodi di city
 			city=new String[citynum][cityNodeNumber];//array per salvare le infromazioni delle citta'
-
+			
 			File inputFile = new File(path+endPath);//creato nuovo file
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
@@ -78,11 +77,9 @@ public class ReadCittaXml {
 		city[i][2]=idConversion(nome,idnum);
 
 		city[i][3]=actualElement.getElementsByTagName("Id").item(0).getTextContent();//recupera l'id della città
-		
-		city[i][4]=actualElement.getElementsByTagName("bonus").item(0).getTextContent();//recupera i bonus della città
-		
+				
 		Node actualZoneNode=zoneName.item(i/(citynum/zoneName.getLength()));//nodo zona delle citta'
-		city[i][5]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, montagna)
+		city[i][4]=actualZoneNode.getTextContent();//recupera il tipo di citta' (costa, collina, montagna)
 
 		return city;
 	}

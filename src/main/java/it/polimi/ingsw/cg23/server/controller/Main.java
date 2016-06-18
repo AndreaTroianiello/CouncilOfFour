@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.server.controller;
 
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
-
 /**
  * 
  * main class
@@ -18,7 +17,7 @@ public class Main {
 	 * @throws XmlException 
 	 */
 	public static void main(String[] args) throws XmlException {
-		Avvio game=new Avvio("RegionCity.xml");
+		Avvio game=new Avvio("map8.xml");
 		game.startPartita();
-		}
+	}
 }

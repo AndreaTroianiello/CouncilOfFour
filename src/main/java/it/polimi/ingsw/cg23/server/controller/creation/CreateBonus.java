@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.server.controller.creation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.cg23.server.model.Board;
@@ -27,8 +28,8 @@ public class CreateBonus {
 
 	private XmlInterface leggiXml;
 	private BonusKing bk;
-	private String[][] cityInfo;//array con le informazioni delle citta'
 	private List <Bonus> bonusList;//lista di bonus
+	private String[] bonus;//array con i bonus delle citta'
 
 	/**
 	 * costructor
@@ -37,8 +38,8 @@ public class CreateBonus {
 	public CreateBonus(String endpath){
 		this.bonusList=new ArrayList<>();
 		this.leggiXml=new XmlInterface();
-		this.cityInfo=leggiXml.cittaXml(endpath);
 		this.bk=new BonusKing(null);
+		this.bonus=leggiXml.BonusCity("CityBonus.xml");
 	}
 
 	/**
@@ -47,14 +48,15 @@ public class CreateBonus {
 	 * @param c, the actual city
 	 */
 	public void getCityBonus(int i, City c){
-
-		if("purple".equals(c.getType())){//la citta' del re non ha bonus
+		
+		if("Purple".equals(c.getType())){//la citta' del re non ha bonus
 			return;
 		}
 		String b;//contiene il nome del bonus
-		StringTokenizer st = new StringTokenizer(cityInfo[i][4]);//string tokenizer del nome dei bonus
-
+		
+		StringTokenizer st = new StringTokenizer(bonus());//string tokenizer del nome dei bonus
 		while(st.hasMoreTokens()){
+			
 			String name=st.nextToken(",");//estrae la sottostring fino alla virgola
 			b=name.substring(1, name.length());//isolo il nome del bonus
 			int number=Integer.parseInt(name.substring(0, 1));//contiene il numero es. 1 carta politica, 2 coins
@@ -69,7 +71,26 @@ public class CreateBonus {
 			}
 		}
 	}
-
+	
+	/**
+	 * find a random bonus in the array
+	 * @return a bonus find in the array
+	 */
+	private String bonus(){
+		Random rnd=new Random();
+		String myBonus=null;//stringa contenenete il bonus
+		int n=rnd.nextInt(bonus.length);//intero random massimo come il numero di bonus
+		
+		while(bonus[n]=="x"){//creca un bonus disponibile
+			n=rnd.nextInt(bonus.length);
+		}
+		
+		myBonus=bonus[n];//recupera il bonus disponibile
+		bonus[n]="x";//annullo il bonus trovato
+		
+		return myBonus;
+	}
+	
 	/**
 	 * create the bonuses (null)
 	 * @return a bonus list with all the type of bonus

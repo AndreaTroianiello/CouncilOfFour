@@ -118,7 +118,7 @@ public class Server {
 	 * Initializes a new controller and model.
 	 */
 	private void initializationGame(){
-		Avvio avvio=new Avvio("RegionCity.xml");
+		Avvio avvio=new Avvio("map1.xml");
 		avvio.startPartita();
 		model=avvio.getBoard();
 		controller = new Controller(model);

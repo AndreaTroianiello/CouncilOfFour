@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCittaXml;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCityBonusXml;
 import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadColorXml;
 import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCostructionXml;
 import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadNobilityTrackXml;
@@ -20,6 +21,7 @@ public class XmlInterface {
 	private ReadNobilityTrackXml nobilityXml;//legge il nobility track dall'xml
 	private ReadColorXml colorXml;//legge i colori dall'xml
 	private ReadType typeXml;//legge i tipi dall'xml
+	private ReadCityBonusXml bonusXml;//legge i bonus delle citta' dal file xml
 
 	private static Logger logger;//logger
 
@@ -39,6 +41,7 @@ public class XmlInterface {
 		this.nobilityXml=new ReadNobilityTrackXml();
 		this.colorXml=new ReadColorXml();
 		this.typeXml=new ReadType();
+		this.bonusXml=new ReadCityBonusXml();
 	}
 
 	/**
@@ -105,9 +108,6 @@ public class XmlInterface {
 		String[][] cityInfo = null;
 
 		try {//provo a leggere il file xml
-			//int citynum=cityNum(endPath);//numero di citta' nel file xml
-			//int cityNodeNumber=cityNodeNumber(endPath);//numero di nodi di citta' nel file xml
-			//cityInfo=new String[citynum][cityNodeNumber];//array con le informazioni delle citta'
 
 			cityInfo=cittaXml.readFileXml(endPath);
 		} catch (XmlException e) {
@@ -119,8 +119,7 @@ public class XmlInterface {
 		 * coloumn 1: color of the city
 		 * coloumn 2: link of the city (the id to which it is connected the city)
 		 * coloumn 3: id of the city
-		 * coloumn 4: bonus of the city
-		 * coloumn 5: region of the city
+		 * coloumn 4: region of the city
 		 */
 		return cityInfo;//ritorna l'array con le informazioni delle citta'
 	}
@@ -159,7 +158,7 @@ public class XmlInterface {
 		}
 
 		return costructionCard;
-		/* array CostructionCard prototype require
+		/* array CostructionCard prototype
 		 * coloumn 0: region
 		 * coloumn 1: city
 		 * coloumn 2: bonus
@@ -200,5 +199,23 @@ public class XmlInterface {
 		}
 
 		return color;
+	}
+	
+	/**
+	 * find the city bonus in the xml file
+	 * @param endPath, the file name
+	 * @return an array with the city bonus
+	 */
+	public String[] BonusCity(String endPath){
+		String[] bonus=null;
+
+		try {//provo a leggere il file xml
+			bonus=bonusXml.typeXml(endPath);
+		} catch (XmlException e) {
+			logger.error(err + endPath, e);//errore
+			bonus=null;
+		}
+
+		return bonus;
 	}
 }

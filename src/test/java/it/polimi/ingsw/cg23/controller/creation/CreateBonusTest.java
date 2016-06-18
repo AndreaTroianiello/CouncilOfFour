@@ -32,7 +32,7 @@ public class CreateBonusTest {
 		bpt2=new BusinessPermitTile(idcity,"region1");
 
 		c1=new City('M', "Milano", new Type("color", 5, null), new Region("region1",5, null, null));
-		c2=new City('C', "Como", new Type("purple", 5, null), new Region("region0",5, null, null));
+		c2=new City('C', "Como", new Type("Purple", 5, null), new Region("region0",5, null, null));
 
 	}
 
@@ -70,7 +70,6 @@ public class CreateBonusTest {
 		cb.bonusList(null);//creo la lista dei bonus
 		cb.getCityBonus(4, c1);
 		assertNotNull(c1.getToken());
-		assertEquals(c1.getToken().size(), 2);//2 numero di bonus della citta' in posizione 4 nel file xml
 
 		cb.getCityBonus(10, c2);
 		assertEquals(c2.getToken().size(), 0);//0 la citta' del re non ha bonus (in posizione 10 nel file xml)

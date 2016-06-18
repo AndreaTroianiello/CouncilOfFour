@@ -107,10 +107,9 @@ public class Print {
 				k=i-1;
 			else 
 				k=i;
-			if(cityInfo[i][5]!=cityInfo[k][5])//conta le variazioni delle regioni
+			if(cityInfo[i][4]!=cityInfo[k][4])//conta le variazioni delle regioni
 				n++;
 		}
-
 		return n+1;//aggiunge 1 per contare la prima regione
 	}
 }

@@ -48,7 +48,7 @@ public class CreateRegionCity {
 		for(int i=0; i<regionNumber; i++){//ciclo che scorre le regioni
 			RegionDeck rd=new RegionDeck(2);//creo il regiondeck
 			int regBonus=Integer.parseInt(regionBonus[i][1]);//trasformo i bonus regione in interi
-			Region r=new Region(cityInfo[i*c][5],regBonus,rd,bk);//creo la regione
+			Region r=new Region(cityInfo[i*c][4],regBonus,rd,bk);//creo la regione
 			regioni.add(r);//creata una nuova regione e aggiunta alla lista
 		}
 		return regioni;

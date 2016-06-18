@@ -10,7 +10,6 @@
 					<Id>C</Id>
 				</link>
 				<color>Gold</color>
-				<bonus>1Nobility</bonus>
 			</city>
 			<city>
 				<Id>B</Id>
@@ -19,7 +18,6 @@
 					<Id>E</Id>
 				</link>
 				<color>Silver</color>
-				<bonus>2Assistants</bonus>
 			</city>
 			<city>
 				<Id>C</Id>
@@ -30,7 +28,6 @@
 					<Id>F</Id>
 				</link>
 				<color>Bronze</color>
-				<bonus>1Assistants</bonus>
 			</city>
 			<city>
 				<Id>D</Id>
@@ -40,7 +37,6 @@
 					<Id>G</Id>
 				</link>
 				<color>Iron</color>
-				<bonus>1Coin</bonus>
 			</city>
 			<city>
 				<Id>E</Id>
@@ -50,7 +46,6 @@
 					<Id>H</Id>
 				</link>
 				<color>Bronze</color>
-				<bonus>1Assistant,1Politics</bonus>
 			</city>
 		</cities>
 		<coin>5</coin>
@@ -66,7 +61,6 @@
 					<Id>I</Id>
 				</link>
 				<color>Gold</color>
-				<bonus>2Coin</bonus>
 			</city>
 			<city>
 				<Id>G</Id>
@@ -76,7 +70,6 @@
 					<Id>J</Id>
 				</link>
 				<color>Bronze</color>
-				<bonus>3VictoryPoints</bonus>
 			</city>
 			<city>
 				<Id>H</Id>
@@ -87,7 +80,6 @@
 					<Id>M</Id>
 				</link>
 				<color>Gold</color>
-				<bonus>1Assistants,1Coin,4Politics</bonus>
 			</city>
 			<city>
 				<Id>I</Id>
@@ -98,7 +90,6 @@
 					<Id>K</Id>
 				</link>
 				<color>Silver</color>
-				<bonus>1VictoryPoints</bonus>
 			</city>
 			<city>
 				<Id>J</Id>
@@ -110,7 +101,6 @@
 					<Id>L</Id>
 				</link>
 				<color>Purple</color>
-				<bonus></bonus>
 			</city>
 		</cities>
 		<coin>5</coin>
@@ -126,7 +116,6 @@
 					<Id>L</Id>
 				</link>
 				<color>Gold</color>
-				<bonus>1PermitTile</bonus>
 			</city>
 			<city>
 				<Id>L</Id>
@@ -137,7 +126,6 @@
 					<Id>N</Id>
 				</link>
 				<color>Iron</color>
-				<bonus>2VictoryPoints</bonus>
 			</city>
 			<city>
 				<Id>M</Id>
@@ -147,7 +135,6 @@
 					<Id>O</Id>
 				</link>
 				<color>Bronze</color>
-				<bonus>3Coin</bonus>
 			</city>
 			<city>
 				<Id>N</Id>
@@ -156,7 +143,6 @@
 					<Id>L</Id>
 				</link>
 				<color>Silver</color>
-				<bonus>1Nobility</bonus>
 			</city>
 			<city>
 				<Id>O</Id>
@@ -165,7 +151,6 @@
 					<Id>M</Id>
 				</link>
 				<color>Gold</color>
-				<bonus>1PermitTile,1VictoryPoints</bonus>
 			</city>
 		</cities>
 		<coin>5</coin>

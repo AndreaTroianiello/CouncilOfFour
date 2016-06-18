@@ -59,7 +59,7 @@ public class XmlInterfaceTest {
 
 	@Test
 	public void getCittaXmlTest(){
-		String[][] cities=xI.cittaXml("RegionCity.xml");
+		String[][] cities=xI.cittaXml("map1.xml");
 		
 		assertEquals(cities.length, 15);//numero di citta' lette dall'xml
 		for(int i=0; i<cities.length; i++){//controllo che nell'array non ci siano valori nulli
@@ -67,19 +67,15 @@ public class XmlInterfaceTest {
 			assertNotEquals(cities[i][1],"");
 			assertNotEquals(cities[i][2],"");
 			assertNotEquals(cities[i][3],"");
-			assertNotEquals(cities[i][5],"");
+			assertNotEquals(cities[i][4],"");
 
-			if(cities[i][3].equals("J"))//la citta' del re non ha bonus
-				assertEquals(cities[i][4],"");
-			else
-				assertNotEquals(cities[i][4],"");
 		}
 		assertNull(xI.cittaXml("ConfigurazionePartitar.xml"));//il file non esiste
 	}
 	
 	@Test
 	public void getBonusRegionTest(){
-		String[][] regBonus=xI.getBonusRegion("RegionCity.xml");
+		String[][] regBonus=xI.getBonusRegion("map1.xml");
 		
 		assertEquals(regBonus.length, 3);
 		for(int i=0; i<regBonus.length; i++){//controllo che nell'array non ci siano valori nulli

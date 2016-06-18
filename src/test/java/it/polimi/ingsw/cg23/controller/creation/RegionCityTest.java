@@ -49,7 +49,7 @@ public class RegionCityTest {
 		bonuses.add(0);
 		bonusKing=new BonusKing(bonuses);
 
-		crc=new CreateRegionCity("RegionCity.xml");
+		crc=new CreateRegionCity("map1.xml");
 		regions=new ArrayList<>();
 		citta1=new ArrayList<>();
 		citta2=new ArrayList<>();

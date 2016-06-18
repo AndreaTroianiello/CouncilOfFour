@@ -57,7 +57,7 @@ public class FrameMap extends JFrame {
 		setContentPane(contentPane);
 
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
-		s=new Avvio("RegionCity.xml");
+		s=new Avvio("map1.xml");
 		s.startPartita();
 
 		grid();

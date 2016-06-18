@@ -14,7 +14,7 @@ public class AvvioTest {
 	
 	@Before
 	public void etUp(){
-		avv=new Avvio("RegionCity.xml");
+		avv=new Avvio("map1.xml");
 	}
 	
 	@Test
