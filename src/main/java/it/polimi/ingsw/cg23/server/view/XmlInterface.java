@@ -206,11 +206,11 @@ public class XmlInterface {
 	 * @param endPath, the file name
 	 * @return an array with the city bonus
 	 */
-	public String[] BonusCity(String endPath){
+	public String[] bonusCity(String endPath){
 		String[] bonus=null;
 
 		try {//provo a leggere il file xml
-			bonus=bonusXml.typeXml(endPath);
+			bonus=bonusXml.bonusCityXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);//errore
 			bonus=null;

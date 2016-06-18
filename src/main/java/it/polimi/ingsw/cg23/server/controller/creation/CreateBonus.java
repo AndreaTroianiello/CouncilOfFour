@@ -39,7 +39,7 @@ public class CreateBonus {
 		this.bonusList=new ArrayList<>();
 		this.leggiXml=new XmlInterface();
 		this.bk=new BonusKing(null);
-		this.bonus=leggiXml.BonusCity("CityBonus.xml");
+		this.bonus=leggiXml.bonusCity("CityBonus.xml");
 	}
 
 	/**

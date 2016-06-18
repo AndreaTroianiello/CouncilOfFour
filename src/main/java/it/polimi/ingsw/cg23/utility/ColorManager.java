@@ -51,6 +51,8 @@ public class ColorManager {
         colorList.put("White",new Color(0xFF, 0xFF, 0xFF));
         colorList.put("Yellow",new Color(0xFF, 0xFF, 0x00));
         colorList.put("Violet",  new Color(0x8b, 0x00, 0xff));
+        colorList.put("Bronze",  new Color(0xd2, 0x69, 0x1e));//#708090
+        colorList.put("Iron",  new Color(0x70, 0x80, 0x90));
     }
 
     /**

@@ -122,9 +122,12 @@ public class InfoPanel extends JPanel {
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textArea.append("\ntesto inviato: "+write.getText());
-				write.setText("Scrivi il testo che vuoi inviare");
-				//AZIONI AZIONE 1
+				if(write.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
+				}else{
+					textArea.append("\ntesto inviato: "+write.getText());
+					write.setText("");
+				}
 			}
 		});
 		return panel;

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.gui.panel;
 
-
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,11 +8,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.utility.ColorManager;
+import it.polimi.ingsw.cg23.utility.MapSetting;
 
 /**
  * create the panel map
@@ -20,7 +22,9 @@ import it.polimi.ingsw.cg23.server.model.Region;
  *
  */
 public class MapPanel extends JPanel {
-
+	private ColorManager cm;
+	private MapSetting ms;
+	
 	/**
 	 * 
 	 */
@@ -30,9 +34,8 @@ public class MapPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public MapPanel() {
-		/**
-		 * empty costructor
-		 */
+		this.cm=new ColorManager();
+		this.ms=new MapSetting();
 	}
 
 	public JPanel createMap(List<Region> reg){
@@ -44,16 +47,22 @@ public class MapPanel extends JPanel {
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		
+		List<City> city=ms.getCityfromRegion(reg);
+		
+		int j=0;
+		for(int i=0; i<reg.size()*2; i++){//scorre le colonne
+			for(int k=0; k<5; k++){
 
-		City[][] city=createArrayMap(reg);
-		for(int k=0; k<5; k++){
-			for(int i=0; i<6; i++){
-
-				JButton button1 = new JButton();
-				if(city[k][i]==null){
-					button1.setText("");
+				JTextArea button1 = new JTextArea();
+				if((i+k)%2==0){//posiziona le citta' a scacchiera
+					button1.setText(city.get(j).getName());
+					button1.setBackground(cm.getColor(city.get(j).getType()));
+					button1.append("\n"+ms.getNeighbourID(city.get(j)));
+					button1.append("\n"+ms.cityBonus(city.get(j)));
+					j++;
 				}else
-					button1.setText(city[k][i].getName()+"\n"+"");
+					button1.setText("");
 
 				lim.gridx = i;//posizione componenti nella griglia
 				lim.gridy = k;
@@ -79,7 +88,7 @@ public class MapPanel extends JPanel {
 					}
 					@Override
 					public void mouseExited(MouseEvent e) {
-						if(button1.getText()==""){
+						if(button1.getBackground().equals(new Color(255,255,255))){
 
 						}else{
 							button1.setSize(new Dimension((int)button1.getSize().getWidth()/2,(int)button1.getSize().getHeight()/2));
@@ -87,11 +96,11 @@ public class MapPanel extends JPanel {
 					}
 					@Override
 					public void mouseEntered(MouseEvent e) {
-						if(button1.getText()==""){
+						if(button1.getBackground().equals(new Color(255,255,255))){
 
 						}else{
 							button1.setSize(new Dimension((int)button1.getSize().getWidth()*2,(int)button1.getSize().getHeight()*2));
-						
+
 						}
 					}
 					@Override
@@ -106,37 +115,4 @@ public class MapPanel extends JPanel {
 
 		return panel;
 	}
-
-	public City[][] createArrayMap(List<Region> reg){
-		City[][] citta=new City[5][6];
-
-		for(int k=0; k<5; k++){
-			for(int i=0; i<6; i++){
-				citta[k][i]=null;
-			}
-		}
-		//region1
-		citta[0][0]=reg.get(0).getCities().get(0);
-		citta[1][1]=reg.get(0).getCities().get(1);
-		citta[2][0]=reg.get(0).getCities().get(2);
-		citta[3][1]=reg.get(0).getCities().get(3);
-		citta[4][0]=reg.get(0).getCities().get(4);
-
-		//region2
-		citta[0][2]=reg.get(1).getCities().get(0);
-		citta[1][3]=reg.get(1).getCities().get(1);
-		citta[2][2]=reg.get(1).getCities().get(2);
-		citta[3][3]=reg.get(1).getCities().get(3);
-		citta[4][2]=reg.get(1).getCities().get(4);
-
-		//region3
-		citta[0][4]=reg.get(2).getCities().get(0);
-		citta[1][5]=reg.get(2).getCities().get(1);
-		citta[2][4]=reg.get(2).getCities().get(2);
-		citta[3][5]=reg.get(2).getCities().get(3);
-		citta[4][4]=reg.get(2).getCities().get(4);
-
-		return citta;
-	}
-
 }

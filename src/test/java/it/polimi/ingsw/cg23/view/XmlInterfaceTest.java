@@ -115,6 +115,13 @@ public class XmlInterfaceTest {
 		assertEquals(xI.colorNumberXml("Coloric.xml"), 0);
 		String[] colors=xI.colorXml("Colorim.xml");
 		assertEquals(colors.length, null);
-
+	}
+	
+	@Test (expected=Exception.class)
+	public void BonusCityTest(){
+		String[] bonus=xI.bonusCity("CityBonus.xml");
+		assertEquals(bonus.length, 14);
+		
+		assertEquals(xI.bonusCity("CityBonuses.xml").length, null);//file inesistente
 	}
 }

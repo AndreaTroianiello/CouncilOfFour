@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -101,8 +102,12 @@ public class EastPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER){
-					loggerArea.append("\ntesto inviato: "+write.getText());
-					//write.setText("Scrivi il testo che vuoi inviare");
+					if(write.getText().equals("")){
+						JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
+					}else{
+						loggerArea.append("\ntesto inviato: "+write.getText());
+						write.setText("");
+					}
 				}
 
 			}

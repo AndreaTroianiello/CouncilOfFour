@@ -30,7 +30,7 @@ public class ReadCityBonusXml {
 	 * @return an array with the bonus find in the xml file
 	 * @throws XmlException
 	 */
-	public String[] typeXml(String endPath) throws XmlException{
+	public String[] bonusCityXml(String endPath) throws XmlException{
 
 		try {
 
