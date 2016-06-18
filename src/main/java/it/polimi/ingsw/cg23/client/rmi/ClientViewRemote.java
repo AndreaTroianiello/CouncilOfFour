@@ -10,7 +10,6 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
  * @author Andrea
  *
  */
-@FunctionalInterface
 public interface ClientViewRemote extends Remote {
 	
 	/**
@@ -19,4 +18,10 @@ public interface ClientViewRemote extends Remote {
 	 * @throws RemoteException if the RMI connection has problems.
 	 */
 	public void updateClient(Change c) throws RemoteException;
+	
+	/**
+	 * Closes the remote connection on the client.
+	 * @throws RemoteException
+	 */
+	public void close() throws RemoteException;
 }

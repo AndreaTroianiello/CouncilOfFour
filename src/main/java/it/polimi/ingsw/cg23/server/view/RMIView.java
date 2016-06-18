@@ -45,7 +45,7 @@ public class RMIView extends View implements RMIViewRemote {
 		Board model=server.getModel();
 		Chat chat=server.getChat();
 		String name=generateName();
-		RMIServerView viewRMI=new RMIServerView(clientStub,name,chat);
+		RMIServerView viewRMI=new RMIServerView(clientStub,name,registry,chat);
 		viewRMI.registerObserver(controller);
 		model.registerObserver(viewRMI);
 		try {

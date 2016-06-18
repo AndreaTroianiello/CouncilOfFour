@@ -6,7 +6,7 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.EmporiumsChange;
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -74,14 +74,14 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 					coin = coin - steps*2 - jolly;
 					player.getRichness().setCoins(coin);
 				} catch (NegativeNumberException e) {
-					this.notifyObserver(new ErrorChange(e.getMessage()));
+					this.notifyObserver(new InfoChange(e.getMessage()));
 					getLogger().error("The player doesn't have enough money!", e);
 					try {
 						player.getRichness().setCoins(coin+payMatch);
 						this.cards.addAll(discardedCards);
 						return false;
 					} catch (NegativeNumberException e1) {
-						this.notifyObserver(new ErrorChange(e.getMessage()));
+						this.notifyObserver(new InfoChange(e.getMessage()));
 						getLogger().error(e1);
 					}
 				}
@@ -90,7 +90,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 					try {
 						buildEmporiumK(player, board, steps, jolly, payMatch);
 					} catch (NegativeNumberException e) {
-						this.notifyObserver(new ErrorChange(e.getMessage()));
+						this.notifyObserver(new InfoChange(e.getMessage()));
 						getLogger().error(e);
 						return false;
 					}
@@ -100,7 +100,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 					try {
 						player.getRichness().setCoins(player.getRichness().getCoins()+payMatch);
 					} catch (NegativeNumberException e) {
-						this.notifyObserver(new ErrorChange(e.getMessage()));
+						this.notifyObserver(new InfoChange(e.getMessage()));
 						getLogger().error(e);
 					}
 				}

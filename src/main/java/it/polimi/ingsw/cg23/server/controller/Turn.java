@@ -2,7 +2,7 @@ package it.polimi.ingsw.cg23.server.controller;
 
 import java.util.List;
 
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.State;
@@ -36,13 +36,20 @@ public class Turn {
 	public Turn(Board board){
 		this.players=board.getPlayers();
 		this.board=board;
+		initTurn();
+	}
+
+	/**
+	 * Initializes the turn.
+	 */
+	private void initTurn(){
 		this.currentPlayer=0;
 		this.action=null;
 		this.mainIndex=1;
 		this.mainAction=true;
 		this.secondAction=true;
+		draw();
 	}
-
 	/**
 	 * Returns the current player.
 	 * 
@@ -169,7 +176,7 @@ public class Turn {
 				controlAction();															//Control the authorization.
 		}
 		else
-			action.notifyObserver(new ErrorChange("Action refused."));
+			action.notifyObserver(new InfoChange("Action refused."));
 		if(status.getFinalPlayer()==null && player.isAvailableEmporiumEmpty())					//If the current player has been the first to build all emporiums.
 			status.setFinalPlayer(getCurrentPlayer());
 	}
@@ -185,7 +192,7 @@ public class Turn {
 			action.runAction(player, board);							//Run the action.															//Control the authorization.
 		}
 		else
-			action.notifyObserver(new ErrorChange("Action refused."));
+			action.notifyObserver(new InfoChange("Action refused."));
 		
 	}
 	

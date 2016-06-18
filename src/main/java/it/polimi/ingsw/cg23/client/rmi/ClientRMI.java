@@ -42,8 +42,8 @@ public class ClientRMI{
 		RMIViewRemote serverStub=(RMIViewRemote) registry.lookup(NAME);
 		ClientRMIView rmiView=new ClientRMIView(controller);
 		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(rmiView));
-		ClientRMIOutView out=new ClientRMIOutView(rmiServerView);
-		controller.setOutView(out);
+		rmiView.setRMIServerView(rmiServerView);
+		controller.setOutView(rmiView);
 		logger.info("Connection created");
 	}
 }

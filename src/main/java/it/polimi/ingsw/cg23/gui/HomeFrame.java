@@ -23,6 +23,7 @@ import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -48,6 +49,8 @@ public class HomeFrame extends JFrame {
 	private JButton buttonLoggin;
 	private JLabel labelInfo2;
 	private JTextField fieldLoggin;
+	private JLabel labelMap;
+	private JComboBox<String> comboMap;
 
 	/**
 	 * Launch the application.
@@ -83,6 +86,8 @@ public class HomeFrame extends JFrame {
 			buttonLoggin=new JButton();
 			labelInfo2=new JLabel();
 			fieldLoggin=new JTextField();
+			comboMap=new JComboBox<>();
+			labelMap=new JLabel();
 
 		 
 		 	//panel1
@@ -106,65 +111,81 @@ public class HomeFrame extends JFrame {
 
 	        //Panel 2
 	        panelLoggin.setOpaque(false);
-	        panelLoggin.setVisible(false);
-	        labelInfo1.setForeground(new Color(255, 215, 0));
+
+	        labelInfo1.setForeground(new java.awt.Color(255, 215, 0));
 	        labelInfo1.setText("Connection created");
 
 	        labelLoggin.setForeground(new java.awt.Color(255, 215, 0));
 	        labelLoggin.setText("Insert your username:");
 
 	        buttonLoggin.setText("Loggin");
-	        buttonLoggin.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent evt) {
+	        buttonLoggin.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	                buttonLogginActionPerformed(evt);
 	            }
 	        });
 
 	        labelInfo2.setForeground(new java.awt.Color(255, 215, 0));
-	        labelInfo2.setText("");
+	        labelInfo2.setText("Loading");
 
-	        GroupLayout panelLogginLayout = new javax.swing.GroupLayout(panelLoggin);
+	        labelMap.setForeground(new java.awt.Color(255, 215, 0));
+	        labelMap.setText("Choose a map:");
+
+	        comboMap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Map A", "Map B" }));
+
+	        javax.swing.GroupLayout panelLogginLayout = new javax.swing.GroupLayout(panelLoggin);
 	        panelLoggin.setLayout(panelLogginLayout);
 	        panelLogginLayout.setHorizontalGroup(
 	            panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addGroup(panelLogginLayout.createSequentialGroup()
-	                .addGap(23, 23, 23)
-	                .addComponent(labelLoggin)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(panelLogginLayout.createSequentialGroup()
-	                        .addComponent(labelInfo1)
-	                        .addGap(0, 159, Short.MAX_VALUE))
-	                    .addComponent(fieldLoggin))
-	                .addContainerGap())
+	                .addGap(137, 137, 137)
+	                .addComponent(labelInfo1)
+	                .addContainerGap(169, Short.MAX_VALUE))
 	            .addGroup(panelLogginLayout.createSequentialGroup()
-	                .addGap(152, 152, 152)
 	                .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	                    .addGroup(panelLogginLayout.createSequentialGroup()
-	                        .addGap(10, 10, 10)
-	                        .addComponent(labelInfo2))
-	                    .addComponent(buttonLoggin))
-	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	                        .addGap(152, 152, 152)
+	                        .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(panelLogginLayout.createSequentialGroup()
+	                                .addGap(10, 10, 10)
+	                                .addComponent(labelInfo2))
+	                            .addComponent(buttonLoggin)))
+	                    .addGroup(panelLogginLayout.createSequentialGroup()
+	                        .addGap(23, 23, 23)
+	                        .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(labelLoggin)
+	                            .addComponent(labelMap))
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(panelLogginLayout.createSequentialGroup()
+	                                .addComponent(comboMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                .addGap(0, 0, Short.MAX_VALUE))
+	                            .addComponent(fieldLoggin))))
+	                .addGap(12, 12, 12))
 	        );
 	        panelLogginLayout.setVerticalGroup(
-	        		panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addGroup(panelLogginLayout.createSequentialGroup()
-	                .addGap(88, 88, 88)
+	                .addGap(73, 73, 73)
 	                .addComponent(labelInfo1)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                .addGap(3, 3, 3)
 	                .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 	                    .addComponent(labelLoggin)
 	                    .addComponent(fieldLoggin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 	                .addGap(18, 18, 18)
+	                .addGroup(panelLogginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(labelMap)
+	                    .addComponent(comboMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addGap(9, 9, 9)
 	                .addComponent(buttonLoggin)
 	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 	                .addComponent(labelInfo2)
-	                .addContainerGap(26, Short.MAX_VALUE))
+	                .addContainerGap(20, Short.MAX_VALUE))
 	        );
 
 	        getContentPane().add(panelLoggin);
 	        panelLoggin.setBounds(-10, 230, 400, 220);
-	        
+	        panelLoggin.setVisible(false);
 	        
 	        //Panel 1
 	        panelConnaction.setOpaque(false);
@@ -256,7 +277,9 @@ public class HomeFrame extends JFrame {
 	 }
 	 
 	 private void buttonLogginActionPerformed(ActionEvent evt) {
-			// TODO Auto-generated method stub
+			String map=(String)comboMap.getSelectedItem();
+			String user=fieldLoggin.getText();
+			labelInfo2.setText(map+" "+user);
 			
 	}
 }

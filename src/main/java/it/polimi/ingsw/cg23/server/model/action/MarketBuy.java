@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg23.server.model.action;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.ItemChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -157,7 +157,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 				return true;
 			} catch (NegativeNumberException e) {
 				getLogger().error(e);
-				board.notifyObserver(new ErrorChange(e.getMessage()));
+				board.notifyObserver(new InfoChange(e.getMessage()));
 			}
 		}
 		return false;

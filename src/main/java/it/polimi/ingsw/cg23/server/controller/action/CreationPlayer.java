@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg23.server.controller.action;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.server.controller.Controller;
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -47,7 +47,7 @@ public class CreationPlayer extends Action {
 			this.notifyObserver(new PlayerChange(player));
 		}
 		else
-			this.notifyObserver(new ErrorChange("The player already exists."));
+			this.notifyObserver(new InfoChange("The player already exists."));
 	}
 
 }

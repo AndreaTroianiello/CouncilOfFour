@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg23.server.model.action;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.EmporiumsChange;
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -77,7 +77,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 				return true;
 			} catch (NegativeNumberException e) {
 				getLogger().error("The player doesn't have enough assistants", e);	
-				this.notifyObserver(new ErrorChange("The player doesn't have enough assistants"));
+				this.notifyObserver(new InfoChange("The player doesn't have enough assistants"));
 				return false;
 			}	
 		}

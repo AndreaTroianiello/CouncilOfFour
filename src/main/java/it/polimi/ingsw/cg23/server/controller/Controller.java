@@ -5,7 +5,7 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.StateChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
@@ -37,7 +37,7 @@ public class Controller implements Observer<Action>{
 	private Turn turn;
 	private final Map<View,Player> interconnections;
 	private static Logger logger;
-	//private final Chat chat;
+	
 	/**
 	 * The constructor of the Controller. 
 	 * Initializes the turn at null and the map of the connections.
@@ -47,7 +47,6 @@ public class Controller implements Observer<Action>{
 		this.model=model;
 		this.turn=null;
 		interconnections=new HashMap<>();
-		//this.chat=new Chat();
 		logger = Logger.getLogger(Controller.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
@@ -211,6 +210,6 @@ public class Controller implements Observer<Action>{
 			((EndTurn) action).runAction(this);
 		}
 		else
-			action.notifyObserver(new ErrorChange("Action refused."));
+			action.notifyObserver(new InfoChange("Action refused."));
 	}
 }

@@ -59,4 +59,9 @@ public abstract class View extends Observable<Action> implements Observer<Change
 	public Logger getLogger(){
 		return logger;
 	}
+	
+	/**
+	 * Closes the connection.
+	 */
+	public void close(){}
 }

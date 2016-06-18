@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -39,7 +39,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 		try {
 			player.getRichness().setCoins(coin);
 		} catch (NegativeNumberException e) {
-			this.notifyObserver(new ErrorChange(e.getMessage()));
+			this.notifyObserver(new InfoChange(e.getMessage()));
 			getLogger().error(e);
 			return false;
 		}
@@ -49,7 +49,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 			player.getAssistantsPool().setAssistants(assistants);
 			board.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
-			this.notifyObserver(new ErrorChange(e.getMessage()));
+			this.notifyObserver(new InfoChange(e.getMessage()));
 			getLogger().error(e);
 			return false;
 		}

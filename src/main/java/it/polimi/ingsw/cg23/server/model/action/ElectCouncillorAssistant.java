@@ -4,7 +4,7 @@ import java.awt.Color;
 
 
 import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
-import it.polimi.ingsw.cg23.server.controller.change.ErrorChange;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -91,7 +91,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 			board.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
 			getLogger().error(e);
-			this.notifyObserver(new ErrorChange(e.getMessage()));
+			this.notifyObserver(new InfoChange(e.getMessage()));
 			return false;
 		}
 		Councillor newCouncillor=board.getCouncillor(councillor);

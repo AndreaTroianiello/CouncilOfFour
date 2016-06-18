@@ -23,6 +23,7 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
 	private Chat chat;
+	private Socket socket;
 
 	/**
 	 * The constructor of ServerSocketView.
@@ -33,6 +34,7 @@ public class ServerSocketView extends View implements Runnable {
 	public ServerSocketView(Socket socket,Chat chat) throws IOException {
 		this.chat=chat;
 		this.chat.addView(this);
+		this.socket=socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
 	}
@@ -94,6 +96,20 @@ public class ServerSocketView extends View implements Runnable {
 				getLogger().error(e);
 				run=false;
 			}
+		}
+	}
+	
+	/**
+	 * Close the Socket connection.
+	 */
+	@Override
+	public void close() {
+		try {
+			socket.close();
+			chat.resetViews();
+			chat=null;
+		} catch (IOException e) {
+			getLogger().error(e);
 		}
 	}
 }

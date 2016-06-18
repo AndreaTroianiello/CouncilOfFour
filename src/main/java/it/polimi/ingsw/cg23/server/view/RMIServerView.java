@@ -1,6 +1,8 @@
 package it.polimi.ingsw.cg23.server.view;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
 
 import org.apache.log4j.Logger;
 
@@ -9,6 +11,7 @@ import it.polimi.ingsw.cg23.server.Chat;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.controller.change.RankChange;
 
 /**
  * The personal server's view of the player whom use RMI connection.
@@ -19,17 +22,19 @@ public class RMIServerView extends View implements RMIViewRemote {
 	private ClientViewRemote clientStub;
 	private String nameView;
 	private Chat chat;
+	private Registry registry;
 	
 	/**
 	 * The constructor of the server view.
 	 * @param clientStub the stub of the player.
 	 * @param nameView the name for lookup the view.
 	 */
-	public RMIServerView(ClientViewRemote clientStub,String nameView, Chat chat) {
+	public RMIServerView(ClientViewRemote clientStub,String nameView, Registry registry, Chat chat) {
 		this.chat=chat;
 		this.chat.addView(this);
 		this.clientStub=clientStub;
 		this.nameView=nameView;
+		this.registry=registry;
 	}
 
 	/**
@@ -41,6 +46,9 @@ public class RMIServerView extends View implements RMIViewRemote {
 		getLogger().info("Sending to the client " + change);
 		try {
 			this.clientStub.updateClient(change);
+		    if (change instanceof RankChange) {
+		    	this.close();
+		    }
 		} catch (RemoteException e) {
 			getLogger().info(e);
 		}
@@ -75,5 +83,22 @@ public class RMIServerView extends View implements RMIViewRemote {
 	@Override
 	public String registerClient(ClientViewRemote clientStub) throws RemoteException {
 		return nameView;
+	}
+	
+	/**
+	 * Close the RMI connection on the server.
+	 */
+	@Override
+	public void close() {
+		try {
+			registry.unbind(nameView);
+			clientStub.close();
+			clientStub=null;
+			chat.resetViews();
+			chat=null;
+		} catch (RemoteException | NotBoundException e) {
+			getLogger().error(e);
+			e.printStackTrace();
+		}
 	}
 }
