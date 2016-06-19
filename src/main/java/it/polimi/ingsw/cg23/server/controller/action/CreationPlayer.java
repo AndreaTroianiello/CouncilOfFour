@@ -23,7 +23,7 @@ public class CreationPlayer extends Action {
 	 * @param name The name of the player.
 	 * @throws NullPointerException if the parameters are null.
 	 */
-	public CreationPlayer(String name) throws NullPointerException {
+	public CreationPlayer(String name) {
 		if(name!=null)
 			this.name=name;
 		else 

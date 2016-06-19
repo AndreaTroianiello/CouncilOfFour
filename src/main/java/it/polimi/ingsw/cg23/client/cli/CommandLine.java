@@ -50,11 +50,17 @@ public class CommandLine {
 			}
 		}
 	}
-		
+	
+	/**
+	 * Starts the Socket connection.
+	 * @param tokenizer the string to elaborate.
+	 * @param stdIn the scanner.
+	 * @param cli The class that print to video.
+	 * @return If the true the connection isn't created.
+	 */
 	public boolean startSocket(StringTokenizer tokenizer, Scanner stdIn, Print cli){
 		if(!tokenizer.hasMoreTokens())
 			return true;
-		
 		try {
 			ClientSocket clientSocket=new ClientSocket();
 			ControllerCLI controller=new ControllerCLI(cli);
@@ -67,6 +73,13 @@ public class CommandLine {
 		}
 	}
 	
+	/**
+	 * Starts the RMI connection.
+	 * @param tokenizer the string to elaborate.
+	 * @param stdIn the scanner.
+	 * @param cli The class that print to video.
+	 * @return If the true the connection isn't created.
+	 */
 	public boolean startRMI(StringTokenizer tokenizer, Scanner stdIn, Print cli){
 		if(!tokenizer.hasMoreTokens())
 			return true;

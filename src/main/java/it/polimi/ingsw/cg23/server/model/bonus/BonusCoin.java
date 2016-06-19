@@ -6,6 +6,7 @@ package it.polimi.ingsw.cg23.server.model.bonus;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
@@ -62,6 +63,12 @@ public class BonusCoin implements Bonus {
 		this.coins = number;
 	}
 	
+	@Override
+	public void setBoard(Board board) {
+		// Not implemented.
+		
+	}
+	
 	/**
 	 * add to the player's current coins the amount of coins of the bonus 
 	 * 
@@ -79,7 +86,7 @@ public class BonusCoin implements Bonus {
 	}
 	
 	@Override
-	public int getParameters(){
+	public int getNumber(){
 		return coins;
 	}
 

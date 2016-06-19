@@ -53,7 +53,7 @@ public class BonusCityTokenTest {
 	@Test
 	public void testGetNumber() {
 		BonusCityToken bonus = new BonusCityToken(0);
-		assertEquals(0, bonus.getParameters());
+		assertEquals(0, bonus.getNumber());
 	}
 
 	/**

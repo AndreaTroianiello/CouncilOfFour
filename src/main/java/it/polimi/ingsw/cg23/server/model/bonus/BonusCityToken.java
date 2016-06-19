@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.server.model.bonus;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.observer.Observable;
@@ -9,6 +10,7 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.Region;
 
 /**
  * the class of the bonus that allows to run a bonus from a city where the player builds an emporium. It contains 
@@ -21,12 +23,10 @@ import it.polimi.ingsw.cg23.server.model.Player;
 public class BonusCityToken extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -8457638846172650018L;
-	private int number;
 	private List<City> cities;			//the city the player chooses to run the bonus from
-	//private boolean runnable;			//a boolean that show if the bonus in the city are runnable 
 	private final String name;
-	private int parameters;
-	
+	private int number;
+	private transient Board board;
 	
 	/**
 	 * the constructor set the number and the board as the paramater given to the method, the city as a new 
@@ -36,20 +36,18 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 * @param board
 	 */
 	public BonusCityToken(int parameters) {
-		this.number = 0;
 		this.cities = null;
-		this.parameters=parameters;
+		this.number=parameters;
 		this.name="CityToken";
 	}
-	
-	
 
 	/**
-	 * @return the runnable
+	 * Sets the board.
 	 */
-	/*public boolean getRunnable() {
-		return runnable;
-	}*/
+	@Override
+	public void setBoard(Board board) {
+		this.board=board;	
+	}
 
 	/**
 	 * return the bonus name and the number(if exist)
@@ -59,28 +57,46 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 		return name;
 	}
 
-	private boolean controlParameters(){
-		if(cities==null||cities.size()==0)
+	public void setCities(List<City> cities){
+		this.cities=cities;
+	}
+	
+	private boolean controlParameters(List<City> realCities,Player player){
+		if(realCities.size()!=number)
 			return false;
-		for(City city: cities){
+		for(City city: realCities){
 			for(int i=0; i<city.getToken().size(); i++) 								//iterate the bonus in the city
-				if(city.getToken().get(i).getName().contains("BonusNobility")) 
+				if(city.getToken().get(i).getName().contains("BonusNobility")
+				   || !city.containsEmporium(player)) 
 					return false;
 		}
+		
 		return true;
+	}
+	
+	private void searchRealCities(List<City> realCities){
+		if(board==null)
+			return;
+		List<Region> regions=board.getRegions();
+		for(City city:cities)
+			for(Region region:regions)
+				if(region.searchCityById(city.getId())!=null)
+					realCities.add(city);
 	}
 	/**
 	 * call the method runBonusCity of the class city
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		if(!controlParameters()){
+		List<City> realCities=new ArrayList<>();
+		searchRealCities(realCities);
+		if(!controlParameters(realCities,player)){
 			this.notifyObserver(new BonusChange(this));
 			return;
 		}
-		/*if(city.containsEmporium(player))						//control if the city contains an emporium and if it doeasn't have bonusNobility in its bonuses
-			city.runBonusCity(player);											//if it does, give the player the bonus
-		 */
+		for(City city: realCities)
+			city.runBonusCity(player);				//if it does, give the player the bonus
+		 
 	}
 	
 	/**
@@ -88,7 +104,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public String toString() {
-		return "BonusCityToken [parameters="+ parameters +"]";
+		return "BonusCityToken [parameters="+ number +"]";
 	}
 
 	/**
@@ -96,17 +112,17 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public Bonus copy() {
-		return new BonusCityToken(parameters); 
+		return new BonusCityToken(number); 
 	}
-
+	
 	@Override
-	public int getParameters() {
-		return parameters;
+	public int getNumber() {
+		return number;
 	}	
 
 	@Override
 	public void setNumber(int number) {
-		this.parameters=number;
+		this.number=number;
 	}	
 	
 }

@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.server.model.bonus;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
@@ -66,10 +67,14 @@ public class BonusAssistants implements Bonus {
 	}
 	
 	@Override
-	public int getParameters(){
+	public int getNumber(){
 		return assistants;
 	}
 	
+	@Override
+	public void setBoard(Board board) {
+		// Not implemented.
+	}
 	/**
 	 * return the bonus name and the number(if exist)
 	 */

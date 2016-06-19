@@ -16,6 +16,7 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
 
 public class ControllerGUI implements ClientController {
@@ -23,11 +24,13 @@ public class ControllerGUI implements ClientController {
 	private Logger logger;
 	private ClientModel clientModel;
 	private ClientViewOut out;
+	private Bonus bonus;
 	
 	public ControllerGUI() {
 		logger = Logger.getLogger(ControllerCLI.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		clientModel= new ClientModel();
+		this.bonus=null;
 	}
 
 	@Override
@@ -64,6 +67,11 @@ public class ControllerGUI implements ClientController {
 	@Override
 	public ClientModel getModel() {
 		return clientModel;
+	}
+
+	@Override
+	public void setBonus(Bonus bonus) {
+		this.bonus=bonus;	
 	}
 
 }

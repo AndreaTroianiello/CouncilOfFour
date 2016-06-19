@@ -64,7 +64,10 @@ public class BonusNobility implements Bonus {
 		this.steps = number;
 	}
 
-	
+	@Override
+	public void setBoard(Board board) {
+		// Not implemented.
+	}
 	/** 
 	 * make the player advance tot steps in the nobility track
 	 * 
@@ -82,7 +85,7 @@ public class BonusNobility implements Bonus {
 	}
 	
 	@Override
-	public int getParameters(){
+	public int getNumber(){
 		return steps;
 	}
 

@@ -170,7 +170,7 @@ public class SouthPanel extends JPanel {
 			if(b.getTypes().get(i).getName().equals("Purple")){
 				
 			}else
-				typeBonus+=b.getTypes().get(i).getName()+": "+b.getTypes().get(i).getBonus().getParameters()+", ";
+				typeBonus+=b.getTypes().get(i).getName()+": "+b.getTypes().get(i).getBonus().getNumber()+", ";
 		}
 		cityTypeBonus.setText("Type: "+typeBonus.substring(0, typeBonus.length()-2));
 		cityTypeBonus.setBackground(new Color(116, 255, 181));

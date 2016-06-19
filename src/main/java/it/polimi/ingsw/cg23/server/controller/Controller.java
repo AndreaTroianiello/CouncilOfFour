@@ -199,16 +199,16 @@ public class Controller implements Observer<Action>{
 				((CreationPlayer) action).runAction(this, model);	
 			return;
 		}
-		notifyAll();
 		if(interconnections.get(action.getPlayer())==turn.getCurrentPlayer() &&
 			action instanceof GameAction){
 			turn.setAction((GameAction) action);
+			turn.registerObserverBonuses();
 			turn.runAction();
+			turn.unregisterObserverBonuses();
 			return;
 		}
-		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer()){
+		if(action instanceof EndTurn && interconnections.get(action.getPlayer())==turn.getCurrentPlayer())
 			((EndTurn) action).runAction(this);
-		}
 		else
 			action.notifyObserver(new InfoChange("Action refused."));
 	}

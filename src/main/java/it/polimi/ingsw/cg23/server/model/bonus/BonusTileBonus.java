@@ -4,7 +4,9 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.observer.Observable;
+import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
@@ -18,11 +20,9 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 public class BonusTileBonus extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = -5750535311281465339L;
-	private BusinessPermitTile businessPermitTile;	//the PerimtTile the player choose to have the bonuses from
 	private final String name;
-	private int parameters;
-	
-	
+	private int number;
+	private int numberTile;
 	private static Logger logger;
 
 	/**
@@ -33,16 +33,13 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	public BonusTileBonus() {
 		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		this.parameters=1;
+		this.number=1;
+		this.numberTile=-1;
 		this.name="TileBonus";
 	}
 
-
-	/**
-	 * @return the businessPermitTile
-	 */
-	public BusinessPermitTile getBusinessPermitTiles() {
-		return businessPermitTile;
+	public void setNumberTile(int numberTile) {
+		this.numberTile=numberTile;
 	}
 	
 	/**
@@ -59,8 +56,14 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		for(Bonus bonus: this.businessPermitTile.getBonusTile()){					//iterate the bonus in the tile and
-			bonus.giveBonus(player);												//for each bonus give it to the player
+		if(numberTile<player.getAvailableBusinessPermits().size() && numberTile>=0){
+			BusinessPermitTile businessPermitTile=player.getAvailableBusinessPermits().get(numberTile);   					//add the chosen PermitTitle to the player collection
+			for(Bonus bonus: businessPermitTile.getBonusTile()){					//iterate the bonus in the tile and
+				bonus.giveBonus(player);												//for each bonus give it to the player
+			}
+		}else{
+			this.notifyObserver(new BonusChange(this));
+			return;
 		}
 	}
 	
@@ -70,17 +73,21 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	}
 	
 	@Override
-	public int getParameters(){
-		return parameters;
+	public int getNumber(){
+		return number;
 	}
 
+	@Override
+	public void setBoard(Board board) {
+		// Not implemented.	
+	}
 
 	/**
 	 * @return the name of the class as string
 	 */
 	@Override
 	public String toString() {
-		return "BonusTileBonus [businessPermitCard=" + businessPermitTile + "]";
+		return "BonusTileBonus [businessPermitCard=" + number + "]";
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.server.model.bonus;
 
+import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 
 /**
@@ -35,13 +36,18 @@ public class BonusAdditionalAction implements Bonus {
 	}
 	
 	@Override
-	public int getParameters(){
+	public int getNumber(){
 		return 0;
 	}
 	
 	@Override
 	public void setNumber(int number){
-		
+		//Not implemented.
+	}
+	
+	@Override
+	public void setBoard(Board board) {
+		// Not implemented.		
 	}
 	
 	/**

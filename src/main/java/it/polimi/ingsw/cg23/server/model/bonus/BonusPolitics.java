@@ -81,10 +81,14 @@ public class BonusPolitics implements Bonus {
 	}
 	
 	@Override
-	public int getParameters(){
+	public int getNumber(){
 		return cardNumber;
 	}
 
+	@Override
+	public void setBoard(Board board) {
+		//Not implemented.
+	}
 	/**
 	 * @return the name of the class as string
 	 */
