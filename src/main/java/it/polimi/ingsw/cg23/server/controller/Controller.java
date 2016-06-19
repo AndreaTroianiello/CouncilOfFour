@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg23.observer.*;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
+import it.polimi.ingsw.cg23.server.controller.action.PerformBonus;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.StateChange;
@@ -197,6 +198,10 @@ public class Controller implements Observer<Action>{
 		if("INITIALIZATION".equals(model.getStatus().getStatus())){
 			if(action instanceof CreationPlayer)
 				((CreationPlayer) action).runAction(this, model);	
+			return;
+		}
+		if(action instanceof PerformBonus){
+			((PerformBonus)action).runAction(model);
 			return;
 		}
 		if(interconnections.get(action.getPlayer())==turn.getCurrentPlayer() &&
