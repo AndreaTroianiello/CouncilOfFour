@@ -62,10 +62,22 @@ public class CostructionCardPanel extends JPanel {
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=2;
+		lim.gridwidth=1;
 		layout.setConstraints(label0, lim);
 		panel.add(label0);//aggiunta della label al panel
 
+		
+		JLabel label1 = new JLabel();
+		label1.setText("Bonus "+reg.getName()+": "+reg.getBonus().getParameters());
+		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridy = 0;
+		lim.ipadx=0;//bordi componente
+		lim.ipady=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(label1, lim);
+		panel.add(label1);//aggiunta della label al panel
+		
 		//carte costruzione regione
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
 		

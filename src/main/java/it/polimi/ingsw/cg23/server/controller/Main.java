@@ -17,7 +17,7 @@ public class Main {
 	 * @throws XmlException 
 	 */
 	public static void main(String[] args) throws XmlException {
-		Avvio game=new Avvio("map5.xml");
+		Avvio game=new Avvio("map3.xml");
 		game.startPartita();
 	}
 }

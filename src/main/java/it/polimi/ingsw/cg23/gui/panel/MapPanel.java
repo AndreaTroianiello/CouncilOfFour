@@ -61,9 +61,17 @@ public class MapPanel extends JPanel {
 					button1.append("\n"+ms.getNeighbourID(city.get(j)));
 					button1.append("\n"+ms.cityBonus(city.get(j)));
 					j++;
-				}else
+				}else{
 					button1.setText("");
-
+					if(i==0||i==1)
+						button1.setBackground(new Color(204, 255, 255));
+					if(i==2||i==3)
+						button1.setBackground(new Color(204, 255, 204));
+					if(i==4||i==5)
+						button1.setBackground(new Color(188, 144, 101));
+				}
+				
+				button1.setPreferredSize(new Dimension(50, 50));
 				lim.gridx = i;//posizione componenti nella griglia
 				lim.gridy = k;
 				lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -88,7 +96,7 @@ public class MapPanel extends JPanel {
 					}
 					@Override
 					public void mouseExited(MouseEvent e) {
-						if(button1.getBackground().equals(new Color(255,255,255))){
+						if(button1.getText().equals("")){
 
 						}else{
 							button1.setSize(new Dimension((int)button1.getSize().getWidth()/2,(int)button1.getSize().getHeight()/2));
@@ -96,7 +104,7 @@ public class MapPanel extends JPanel {
 					}
 					@Override
 					public void mouseEntered(MouseEvent e) {
-						if(button1.getBackground().equals(new Color(255,255,255))){
+						if(button1.getText().equals("")){
 
 						}else{
 							button1.setSize(new Dimension((int)button1.getSize().getWidth()*2,(int)button1.getSize().getHeight()*2));

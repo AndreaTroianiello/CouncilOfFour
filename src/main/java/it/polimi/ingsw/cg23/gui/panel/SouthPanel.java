@@ -59,11 +59,13 @@ public class SouthPanel extends JPanel {
 
 		List<Region> reg=b.getRegions();
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
-			//----------carte permesso di costruzione----------
 			
+			//----------carte permesso di costruzione----------
 			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i));
 			costruzione.setName("costruzione "+reg.get(i).getName());
-			costruzione.setBackground(new Color(206, 177, 129));
+			if(i==0)costruzione.setBackground(new Color(204, 255, 255));
+			if(i==1)costruzione.setBackground(new Color(204, 255, 204));
+			if(i==2)costruzione.setBackground(new Color(188, 144, 101));
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -75,17 +77,19 @@ public class SouthPanel extends JPanel {
 		}
 		
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge i consiglieri
-			JPanel balcone3=cp.balcone(reg.get(i));
-			balcone3.setBackground(new Color(116, 184, 181));
-			balcone3.setName("balcone "+reg.get(i).getName());
+			JPanel balcone=cp.balcone(reg.get(i));
+			if(i==0)balcone.setBackground(new Color(204, 255, 255));
+			if(i==1)balcone.setBackground(new Color(204, 255, 204));
+			if(i==2)balcone.setBackground(new Color(188, 144, 101));
+			balcone.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			lim.weightx=1;//espansione in verticale e orizzontale
 			lim.weighty=0;
-			layout.setConstraints(balcone3, lim);
-			southPanel.add(balcone3);
+			layout.setConstraints(balcone, lim);
+			southPanel.add(balcone);
 		}
 		
 		//----------------nobility track------------
@@ -124,15 +128,15 @@ public class SouthPanel extends JPanel {
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=0;
-		lim.gridheight=1;//grandezza del riquadro
+		lim.gridheight=3;//grandezza del riquadro
 		lim.gridwidth=2;
 		layout.setConstraints(politics, lim);
 		southPanel.add(politics);
 		
 		//----------------consiglieri del re------------
 		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
-		kingCouncillors.setBackground(new Color(116, 184, 181));
-		kingCouncillors.setName("Carte politiche");
+		kingCouncillors.setBackground(new Color(116, 255, 181));
+		kingCouncillors.setName("consiglieri re");
 		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 3;
@@ -142,6 +146,45 @@ public class SouthPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(kingCouncillors, lim);
 		southPanel.add(kingCouncillors);
+		
+		JLabel kingBonus=new JLabel();
+		//kingBonus.setFont(new Font("Calibre", Font.PLAIN, 14));
+		kingBonus.setText("Bonus king corrente: "+b.getBonusKing().getCurrentBonusKing());
+		kingBonus.setBackground(new Color(116, 255, 181));
+		kingBonus.setOpaque(true);
+		kingBonus.setName("bonus king");
+		lim.fill = GridBagConstraints.BOTH;
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 4;
+		lim.weightx=0;//espansione in verticale e orizzontale
+		lim.weighty=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(kingBonus, lim);
+		southPanel.add(kingBonus);
+		
+		JLabel cityTypeBonus=new JLabel();
+		
+		String typeBonus="";
+		for(int i=0; i<b.getTypes().size(); i++){
+			if(b.getTypes().get(i).getName().equals("Purple")){
+				
+			}else
+				typeBonus+=b.getTypes().get(i).getName()+": "+b.getTypes().get(i).getBonus().getParameters()+", ";
+		}
+		cityTypeBonus.setText("Type: "+typeBonus.substring(0, typeBonus.length()-2));
+		cityTypeBonus.setBackground(new Color(116, 255, 181));
+		cityTypeBonus.setOpaque(true);
+		cityTypeBonus.setName("bonus type");
+		lim.fill = GridBagConstraints.BOTH;
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 5;
+		lim.weightx=0;//espansione in verticale e orizzontale
+		lim.weighty=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(cityTypeBonus, lim);
+		southPanel.add(cityTypeBonus);
 		
 		return southPanel;
 	}
