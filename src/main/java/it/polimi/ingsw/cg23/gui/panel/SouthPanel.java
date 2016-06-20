@@ -15,6 +15,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * create the south panel
@@ -29,6 +30,7 @@ public class SouthPanel extends JPanel {
 	private static final long serialVersionUID = 1220509934759316582L;
 	private CostructionCardPanel ccp;
 	private CouncilPanel cp;
+	private ColorManager cm;
 
 	/**
 	 * Create the panel.
@@ -36,6 +38,7 @@ public class SouthPanel extends JPanel {
 	public SouthPanel() {
 		this.ccp=new CostructionCardPanel();
 		this.cp=new CouncilPanel();
+		this.cm=new ColorManager();
 
 	}
 
@@ -86,7 +89,7 @@ public class SouthPanel extends JPanel {
 		}
 
 		//----------------nobility track------------
-		JPanel l4=new NobilityTrackPanel().createNobility(21);
+		JPanel l4=new NobilityTrackPanel().createNobility(b.getNobilityTrack().getNobilityBoxes().size());
 		l4.setName("Nobility panel");
 		JScrollPane c8 = new JScrollPane(l4);
 		c8.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -104,12 +107,13 @@ public class SouthPanel extends JPanel {
 
 		//----------------carte politiche------------
 		Player p=new Player("io", new NobilityTrack(20));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(new Color(145,123,241), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(new Color(145,255,241), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(new Color(255,0,255), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(new Color(145,123,241), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(new Color(145,255,241), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(new Color(255,123,241), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(null, true));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(cm.getColor("Blue"), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(cm.getColor("Brown"), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(cm.getColor("Pink"), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(cm.getColor("Orange"), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(cm.getColor("Violet"), false));//PROVA->provvisorio
+		p.getHand().add(new PoliticCard(cm.getColor("White"), false));//PROVA->provvisorio
 
 
 		JPanel politics=new PoliticCardPanel().createCard(p);

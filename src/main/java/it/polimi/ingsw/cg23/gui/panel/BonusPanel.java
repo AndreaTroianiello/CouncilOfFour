@@ -106,7 +106,7 @@ public class BonusPanel extends JPanel {
 		return bonusPanel;
 	}
 
-	private BufferedImage getBonusKingImg(int num){//recupero l'immagine della carta costruzione
+	private BufferedImage getBonusKingImg(int num){//recupero l'immagine dei bonus king
 		BufferedImage image=null;
 		String path="src/main/resources/images/bonusKing/"+num+".png";//percorso dell'immagine
 
@@ -119,7 +119,7 @@ public class BonusPanel extends JPanel {
 		return image;
 	}
 
-	private BufferedImage getBonusTypeImg(String name){//recupero l'immagine della carta costruzione
+	private BufferedImage getBonusTypeImg(String name){//recupero l'immagine dei bonus type
 		BufferedImage image=null;
 		String path="src/main/resources/images/bonusType/"+name+".png";//percorso dell'immagine
 

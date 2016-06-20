@@ -4,12 +4,24 @@ package it.polimi.ingsw.cg23.gui.panel;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * create the politic card panel
@@ -22,14 +34,15 @@ public class PoliticCardPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7548143133078585999L;
+	private Logger logger;
 
 	/**
 	 * Create the panel.
 	 */
 	public PoliticCardPanel() {
-/**
- * empty costructor
- */
+		//configurazione logger
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 	}
 
 	/**
@@ -58,23 +71,32 @@ public class PoliticCardPanel extends JPanel {
 
 		for(int i=0; i<p.getHand().size(); i++){//scorre le carte politiche
 			//----------carta politica----------
-			JLabel label1=new JLabel();
-			label1.setName(i+" politiche");
-			label1.setBackground(p.getHand().get(i).getColor());
-			label1.setOpaque(true);
-			label1.setPreferredSize(new Dimension(50, 75));
+			BufferedImage img;
+			if(p.getHand().get(i).isJolly())
+				img=politcsImg("Jolly");//carta jolly
+			else
+				img=politcsImg(new ColorManager().getColorName(p.getHand().get(i).getColor()));//carte colorate
+			JButton button1=new JButton(new ImageIcon(img));
+			button1.setName(i+" politiche");
+			button1.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 			lim.gridx=i*2;
 			lim.gridy=1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			layout.setConstraints(label1, lim);
-			panel.add(label1);
+			layout.setConstraints(button1, lim);
+			panel.add(button1);
+			button1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+				}
+			});
 
 			//----------etichetta spazio----------
 			//Aggiunge lo spazio dopo aver messo la carta politica
 			JLabel label2=new JLabel();
 			label2.setName(i+" spazio");
-			label2.setPreferredSize(new Dimension(5, 75));
+			label2.setPreferredSize(new Dimension(5, 50));
 			lim.gridx=i*2+1;
 			lim.gridy=1;
 			lim.gridheight=1;//grandezza del riquadro
@@ -82,7 +104,20 @@ public class PoliticCardPanel extends JPanel {
 			layout.setConstraints(label2, lim);
 			panel.add(label2);
 		}
-		
+
 		return panel;
+	}
+	
+	private BufferedImage politcsImg(String name){//recupero l'immagine delle carte politiche
+		BufferedImage image=null;
+		String path="src/main/resources/images/politics/"+name+".png";//percorso dell'immagine
+		
+		try {
+			image = ImageIO.read(new File(path));
+		} catch (IOException e) {
+			logger.error("impossibile caricare l'ìmmagine del nobility track: "+path, e);
+		}
+
+		return image;
 	}
 }
