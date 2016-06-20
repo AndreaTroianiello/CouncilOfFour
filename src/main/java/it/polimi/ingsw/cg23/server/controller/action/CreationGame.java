@@ -40,14 +40,33 @@ public class CreationGame extends Action {
 	 * @param model The model of the game.
 	 */
 	public void runAction(Controller controller,Board model){
+		createMap(controller, model);
+		createPlayer(controller, model);
+	}
+	
+	/**
+	 * It loads map if no one else did. 
+	 * @param controller The controller of the game.
+	 * @param model The model of the game.
+	 */
+	private void createMap(Controller controller,Board model){
 		if(model.getDeck()==null){
 			try {
 				new Avvio(map+".xml",model).startPartita();
+				this.notifyObserver(new InfoChange("Your map has been chosen."));
 			} catch (XmlException e) {
-			//logger
+				getLogger().error(e);
+				this.notifyObserver(new InfoChange("Your map wasn't found."));
 			}
-			this.notifyObserver(new InfoChange("Your map has been chosen."));
 		}
+	}
+	
+	/**
+	 * It creates the player. 
+	 * @param controller The controller of the game.
+	 * @param model The model of the game.
+	 */
+	private void createPlayer(Controller controller,Board model){
 		boolean exist=false;
 		List<Player> players=model.getPlayers();
 		for(Player player: players)
