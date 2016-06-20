@@ -59,8 +59,10 @@ public class CommandLine {
 	 * @return If the true the connection isn't created.
 	 */
 	public boolean startSocket(StringTokenizer tokenizer, Scanner stdIn, Print cli){
-		if(!tokenizer.hasMoreTokens())
+		if(!tokenizer.hasMoreTokens()){
+			logger.error("Wrong command");
 			return true;
+		}
 		try {
 			ClientSocket clientSocket=new ClientSocket();
 			ControllerCLI controller=new ControllerCLI(cli);
@@ -81,9 +83,10 @@ public class CommandLine {
 	 * @return If the true the connection isn't created.
 	 */
 	public boolean startRMI(StringTokenizer tokenizer, Scanner stdIn, Print cli){
-		if(!tokenizer.hasMoreTokens())
+		if(!tokenizer.hasMoreTokens()){
+			logger.error("Wrong command");
 			return true;
-		
+		}
 		try {
 			ClientRMI clientRMI=new ClientRMI();
 			ControllerCLI controller=new ControllerCLI(cli);

@@ -11,7 +11,7 @@ CLI's commands:
 SOCKET address
 RMI address
 
-CREATION userName
+CREATION userName nameMap (ex. map1,map2,map3,...)
 ADDITIONAL
 BUILDKING cityName
 BUILDTILE numberTile cityName

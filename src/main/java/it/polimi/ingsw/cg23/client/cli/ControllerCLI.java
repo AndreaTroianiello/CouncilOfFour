@@ -122,6 +122,7 @@ public class ControllerCLI implements ClientController{
 				if(clientModel.getPlayer().getUser().equals(player.getUser()))
 					clientModel.setPlayer(player);
 			clientModel.setModel(model);
+			return;
 		}
 		if(change instanceof BonusChange){
 			cli.print("","You have activated the "+ ((BonusChange)change).getBonus().toString() +". Choose the appropriate parameters. ");

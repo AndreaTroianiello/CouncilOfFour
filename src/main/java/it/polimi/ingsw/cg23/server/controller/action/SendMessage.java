@@ -23,8 +23,7 @@ public class SendMessage extends Action {
 	public void runAction(Set<View> views){
 		ChatChange change=new ChatChange(message, player.getUser());
 		for(View view: views)
-			if(view!=getPlayer())
-				view.update(change);
+			view.update(change);
 	}
 
 }
