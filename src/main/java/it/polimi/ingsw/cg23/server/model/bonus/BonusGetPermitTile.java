@@ -48,7 +48,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public String getName(){
-		return name;
+		return number+name;
 	}
 
 	/**

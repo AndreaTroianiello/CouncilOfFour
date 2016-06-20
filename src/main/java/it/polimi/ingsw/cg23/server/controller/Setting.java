@@ -73,7 +73,6 @@ public class Setting {
 		for(int j=0; j<bonusList.size(); j++){//ciclo che scorre la lista dei bonus
 			if(bonusList.get(j).toString().contains(b)){//controllo se il bonus contiene quello che sto cercando
 				Bonus bo=bonusList.get(j).copy();//clono il bonus preso dalla lista dei bonus
-
 				bo.setNumber(number);//setta il numero di bonus
 				int boxNum=Integer.parseInt(nobinfo);//numero della casella del nobility track
 				boxList.get(boxNum).addBonus(bo);//aggiungo alla casella del nobility track il bonus corretto

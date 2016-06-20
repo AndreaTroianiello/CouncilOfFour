@@ -54,7 +54,7 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public String getName(){
-		return name;
+		return number+name;
 	}
 
 	public void setCities(List<City> cities){
