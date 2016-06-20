@@ -182,7 +182,8 @@ public class ClientModel {
 		cards.clear();
 		while(tokenizer.hasMoreTokens()){
 			int i = Integer.parseInt(tokenizer.nextToken());
-			cards.add(player.getHand().get(i));
+			if(player.getHand().get(i)!=null)
+				cards.add(player.getHand().get(i));
 		}
 	}
 }
