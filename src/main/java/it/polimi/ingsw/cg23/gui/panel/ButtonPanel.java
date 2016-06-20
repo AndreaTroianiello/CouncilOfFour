@@ -40,7 +40,7 @@ public class ButtonPanel extends JPanel {
 		panel.setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints(); 
 
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------azioni principali----------
@@ -66,10 +66,10 @@ public class ButtonPanel extends JPanel {
 		//----------info panel----------
 		JPanel infoPanel=new InfoPanel().infoAction(textArea, write);//richiamo il pannello info
 		infoPanel.setName("label info panel");
-		lim.gridx = 2;//posizione componenti nella griglia
-		lim.gridy = 0;
+		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=2;
 		layout.setConstraints(infoPanel, lim);
 		panel.add(infoPanel);
 

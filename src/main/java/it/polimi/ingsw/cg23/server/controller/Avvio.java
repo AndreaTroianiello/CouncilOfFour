@@ -60,7 +60,7 @@ public class Avvio {
 		cco=new CreateCouncillor(endPath);
 		crc=new CreateRegionCity(endPath);
 		cl=new Print();
-		s=new Setting(endPath);
+		s=new Setting();
 		cb=new CreateBonus();
 
 		this.board=board;
