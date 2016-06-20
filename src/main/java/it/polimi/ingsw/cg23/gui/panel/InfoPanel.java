@@ -124,7 +124,7 @@ public class InfoPanel extends JPanel {
 				if("".equals(write.getText())||"Scrivi il testo che vuoi inviare".equals(write.getText())){
 					JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
 				}else{
-					textArea.append("\ntesto inviato: "+write.getText());
+					textArea.append("\nTesto inviato: "+write.getText());
 					write.setText("");
 				}
 			}

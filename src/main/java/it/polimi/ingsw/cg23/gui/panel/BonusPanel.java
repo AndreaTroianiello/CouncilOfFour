@@ -41,7 +41,6 @@ public class BonusPanel extends JPanel {
 		JPanel bonusPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		bonusPanel.setLayout(layout);
-		bonusPanel.setBackground(new Color(123, 158, 237));
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill = GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -49,7 +48,7 @@ public class BonusPanel extends JPanel {
 
 		//----------------consiglieri del re------------
 		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
-		kingCouncillors.setBackground(new Color(116, 255, 181));
+		kingCouncillors.setBackground(new Color(245, 124, 125));
 		kingCouncillors.setName("consiglieri re");
 		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -64,7 +63,7 @@ public class BonusPanel extends JPanel {
 		//----------------bonus king------------
 		JLabel kingBonus = null;
 		if(b.getBonusKing().getCurrentBonusKing()!=0){
-			BufferedImage img=getBonusKingImg(b.getBonusKing().getCurrentBonusKing());
+			BufferedImage img=getImg("bonusKing/"+b.getBonusKing().getCurrentBonusKing());
 			kingBonus=new JLabel(new ImageIcon(img));
 		}else{
 			kingBonus=new JLabel("Bonus king finiti");
@@ -76,10 +75,30 @@ public class BonusPanel extends JPanel {
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=b.getTypes().size();
+		lim.gridwidth=1;
 		layout.setConstraints(kingBonus, lim);
 		bonusPanel.add(kingBonus);
 
+		//----------------bonus region------------
+		for(int k=0; k<b.getRegions().size(); k++){
+			JLabel regionBonus;
+			if(b.getRegions().get(k).isBonusAvailable()){
+				BufferedImage img=getImg("bonusRegion/"+b.getRegions().get(k).getName());
+				regionBonus=new JLabel(new ImageIcon(img));
+			}else
+				regionBonus=new JLabel("Bonus finiti");
+
+			regionBonus.setName("bonus type "+b.getRegions().get(k).getName());
+			lim.fill = GridBagConstraints.BOTH;
+			lim.gridx = k+1;//posizione componenti nella griglia
+			lim.gridy = 1;
+			lim.weightx=0;//espansione in verticale e orizzontale
+			lim.weighty=0;
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			layout.setConstraints(regionBonus, lim);
+			bonusPanel.add(regionBonus);
+		}
 
 		//----------------city type bonus------------
 		for(int i=0; i<b.getTypes().size(); i++){
@@ -87,41 +106,31 @@ public class BonusPanel extends JPanel {
 			if(("Purple").equals(b.getTypes().get(i).getName())){
 			}else{
 				if(b.getTypes().get(i).isBonusAvailable()){
-					BufferedImage img=getBonusTypeImg(b.getTypes().get(i).getName());
+					BufferedImage img=getImg("bonusType/"+b.getTypes().get(i).getName());
 					cityTypeBonus=new JLabel(new ImageIcon(img));
-					cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
-					lim.fill = GridBagConstraints.BOTH;
-					lim.gridx = i;//posizione componenti nella griglia
-					lim.gridy = 2;
-					lim.weightx=0;//espansione in verticale e orizzontale
-					lim.weighty=0;
-					lim.gridheight=1;//grandezza del riquadro
-					lim.gridwidth=1;
-					layout.setConstraints(cityTypeBonus, lim);
-					bonusPanel.add(cityTypeBonus);
-				}
+				}else
+					cityTypeBonus=new JLabel("Bonus finiti");
+
+				cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
+				lim.fill = GridBagConstraints.BOTH;
+				lim.gridx = i;//posizione componenti nella griglia
+				lim.gridy = 2;
+				lim.weightx=0;//espansione in verticale e orizzontale
+				lim.weighty=0;
+				lim.gridheight=1;//grandezza del riquadro
+				lim.gridwidth=1;
+				layout.setConstraints(cityTypeBonus, lim);
+				bonusPanel.add(cityTypeBonus);
+
 			}
 		}
 
 		return bonusPanel;
 	}
 
-	private BufferedImage getBonusKingImg(int num){//recupero l'immagine dei bonus king
+	private BufferedImage getImg(String name){//recupero le immagini
 		BufferedImage image=null;
-		String path="src/main/resources/images/bonusKing/"+num+".png";//percorso dell'immagine
-
-		try {
-			image = ImageIO.read(new File(path));
-		} catch (IOException e) {
-			logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
-		}
-
-		return image;
-	}
-
-	private BufferedImage getBonusTypeImg(String name){//recupero l'immagine dei bonus type
-		BufferedImage image=null;
-		String path="src/main/resources/images/bonusType/"+name+".png";//percorso dell'immagine
+		String path="src/main/resources/images/"+name+".png";//percorso dell'immagine
 
 		try {
 			image = ImageIO.read(new File(path));

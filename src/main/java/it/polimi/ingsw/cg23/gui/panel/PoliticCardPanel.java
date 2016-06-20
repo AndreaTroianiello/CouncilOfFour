@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
@@ -50,7 +51,7 @@ public class PoliticCardPanel extends JPanel {
 	 * @param p, the player
 	 * @return a panel with the politic card
 	 */
-	public JPanel createCard(Player p){
+	public JPanel createCard(Player p, JTextArea loggerArea){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -72,12 +73,17 @@ public class PoliticCardPanel extends JPanel {
 		for(int i=0; i<p.getHand().size(); i++){//scorre le carte politiche
 			//----------carta politica----------
 			BufferedImage img;
-			if(p.getHand().get(i).isJolly())
+			String color;
+			if(p.getHand().get(i).isJolly()){
 				img=politcsImg("Jolly");//carta jolly
-			else
-				img=politcsImg(new ColorManager().getColorName(p.getHand().get(i).getColor()));//carte colorate
+				color="Jolly";
+			}
+			else{
+				color=new ColorManager().getColorName(p.getHand().get(i).getColor());
+				img=politcsImg(color);//carte colorate
+			}
 			JButton button1=new JButton(new ImageIcon(img));
-			button1.setName(i+" politiche");
+			button1.setName("Carta politca "+i+", "+color);
 			button1.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 			lim.gridx=i*2;
 			lim.gridy=1;
@@ -88,7 +94,7 @@ public class PoliticCardPanel extends JPanel {
 			button1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-
+					loggerArea.append("\nSelezionata la carta politica: "+color);
 				}
 			});
 

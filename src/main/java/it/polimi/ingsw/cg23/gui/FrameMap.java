@@ -115,7 +115,7 @@ public class FrameMap extends JFrame {
 		contentPane.add(scrollLogger); //Inserimento
 
 		//----------pannello sud (informazioni)----------
-		JPanel southPanel=new SouthPanel().setSouthPanel(model.getModel());
+		JPanel southPanel=new SouthPanel().setSouthPanel(model.getModel(), loggerArea);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;

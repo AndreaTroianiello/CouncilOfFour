@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import it.polimi.ingsw.cg23.server.model.Board;
@@ -47,11 +48,10 @@ public class SouthPanel extends JPanel {
 	 * @param s, the avvio
 	 * @return a jpanel with the south panel created
 	 */
-	public JPanel setSouthPanel(Board b){
+	public JPanel setSouthPanel(Board b, JTextArea loggerArea){
 		JPanel southPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		southPanel.setLayout(layout);
-		southPanel.setBackground(new Color(123, 158, 237));
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill = GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -115,8 +115,7 @@ public class SouthPanel extends JPanel {
 		p.getHand().add(new PoliticCard(cm.getColor("Violet"), false));//PROVA->provvisorio
 		p.getHand().add(new PoliticCard(cm.getColor("White"), false));//PROVA->provvisorio
 
-
-		JPanel politics=new PoliticCardPanel().createCard(p);
+		JPanel politics=new PoliticCardPanel().createCard(p, loggerArea);
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(193,197,192));
 		lim.fill = GridBagConstraints.BOTH;
@@ -132,7 +131,6 @@ public class SouthPanel extends JPanel {
 		//----------------bonus panel------------
 		JPanel bonusPanel=new BonusPanel().createBonusPanel(b);
 		bonusPanel.setName("bonus");
-		bonusPanel.setBackground(new Color(193,197,192));
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
