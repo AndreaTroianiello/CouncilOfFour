@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
 
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
@@ -70,9 +71,9 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			for(BusinessPermitTile bpt : realRegion.getDeck().getShowedDeck()){
 				board.notifyObserver(new BusinessPermitTileChange(bpt));
 			}
+			this.notifyObserver(new BoardChange(board));
 			return true;
 		}
-		
 		this.notifyObserver(new InfoChange("Region not found!"));
 		return false;
 	}

@@ -47,6 +47,9 @@ public class CommandLine {
 			} catch (IOException e) {
 				logger.error(e);
 				run=false;
+			} catch (NullPointerException e) {
+				logger.error(e);
+				cli.print("", "Wrong Command");
 			}
 		}
 	}

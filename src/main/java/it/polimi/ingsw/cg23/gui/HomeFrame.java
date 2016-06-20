@@ -21,6 +21,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
+import it.polimi.ingsw.cg23.server.controller.action.CreationGame;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -126,18 +127,18 @@ public class HomeFrame extends JFrame {
 		labelLogin.setForeground(new java.awt.Color(255, 215, 0));
 		labelLogin.setText("Insert your username:");
 
-		buttonLogin.setText("Loggin");
-		buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+		buttonLogin.setText("Login");
+		buttonLogin.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				buttonLogginActionPerformed(evt);
 			}
 		});
 
-		labelInfo2.setForeground(new java.awt.Color(255, 215, 0));
+		labelInfo2.setForeground(new Color(255, 215, 0));
 		labelInfo2.setText("Loading");
 
-		labelMap.setForeground(new java.awt.Color(255, 215, 0));
+		labelMap.setForeground(new Color(255, 215, 0));
 		labelMap.setText("Choose a map:");
 
 		comboMap.setModel(new DefaultComboBoxModel<>(new String[] { "Map 1", "Map 2","Map 3", "Map 4","Map 5", "Map 6","Map 7", "Map 8" }));
@@ -264,7 +265,7 @@ public class HomeFrame extends JFrame {
 		}
 	}
 
-	private void buttonSocketActionPerformed(java.awt.event.ActionEvent evt) {                                         
+	private void buttonSocketActionPerformed(ActionEvent evt) {                                         
 		try {
 			ClientSocket clientSocket=new ClientSocket();
 			clientSocket.startClient(controller,fieldAddress.getText());
@@ -276,7 +277,7 @@ public class HomeFrame extends JFrame {
 		}
 	}
 
-	private void buttonRMIActionPerformed(java.awt.event.ActionEvent evt) {                                         
+	private void buttonRMIActionPerformed(ActionEvent evt) {                                         
 		try {
 			ClientRMI clientRMI=new ClientRMI();
 			clientRMI.startClient(controller,fieldAddress.getText());
@@ -292,9 +293,6 @@ public class HomeFrame extends JFrame {
 		String map=(String)comboMap.getSelectedItem();
 		map=map.substring(0, map.length()-2)+map.charAt(map.length()-1);//tolgo lo spazio
 		map=map.toLowerCase();//metto tutto in minuscolo
-
-		String user=fieldLogin.getText();
-		labelInfo2.setText(map+" "+user);
-
+		controller.updateController(new CreationGame(fieldLogin.getText(),map));
 	}
 }

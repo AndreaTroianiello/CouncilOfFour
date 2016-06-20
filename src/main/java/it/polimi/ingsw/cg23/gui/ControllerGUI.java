@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.gui;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -25,6 +27,7 @@ public class ControllerGUI implements ClientController {
 	private ClientModel clientModel;
 	private ClientViewOut out;
 	private Bonus bonus;
+	private FrameMap map;
 	
 	public ControllerGUI() {
 		logger = Logger.getLogger(ControllerCLI.class);
@@ -32,7 +35,20 @@ public class ControllerGUI implements ClientController {
 		clientModel= new ClientModel();
 		this.bonus=null;
 	}
-
+ 
+	private void updateFrameMap(){
+		if(map!=null){
+			System.out.println("ciao");
+			map.removeAll();
+			//map.revalidate();
+			//map.repaint();
+		}else
+			if(clientModel.getModel()!=null){
+				map=new FrameMap(clientModel);
+				map.setVisible(true);
+		}
+		
+	}
 	@Override
 	public void updateController(Change change) {
 		if(change instanceof PlayerChange && clientModel.getModel()==null){
@@ -47,7 +63,7 @@ public class ControllerGUI implements ClientController {
 					clientModel.setPlayer(player);
 			clientModel.setModel(model);
 		}
-
+		updateFrameMap();
 	}
 
 	@Override
