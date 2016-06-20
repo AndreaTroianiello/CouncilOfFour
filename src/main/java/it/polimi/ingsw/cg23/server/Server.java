@@ -14,7 +14,6 @@ import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.Controller;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.view.RMIView;
@@ -118,9 +117,7 @@ public class Server {
 	 * Initializes a new controller and model.
 	 */
 	private void initializationGame(){
-		Avvio avvio=new Avvio("map6.xml", model);
-		avvio.startPartita();
-		model=avvio.getBoard();
+		model=new Board(null,null,null,null,null,null);
 		controller = new Controller(model);
 		chat=new Chat();
 	}

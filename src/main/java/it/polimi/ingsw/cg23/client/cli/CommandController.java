@@ -9,7 +9,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
-import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
+import it.polimi.ingsw.cg23.server.controller.action.CreationGame;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.model.Board;
@@ -77,7 +77,7 @@ public class CommandController {
 		String inputLine = tokenizer.nextToken();
 		switch (inputLine) {
 		case "CREATION":
-			controller.updateController(new CreationPlayer(tokenizer.nextToken()));
+			controller.updateController(new CreationGame(tokenizer.nextToken(),tokenizer.nextToken()));
 			break;
 		case "SHOW":
 			showCommand(tokenizer);

@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.server.controller.action;
 
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.Controller;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
@@ -13,20 +14,22 @@ import it.polimi.ingsw.cg23.server.model.Player;
  * @author Andrea
  *
  */
-public class CreationPlayer extends Action {
+public class CreationGame extends Action {
 
 	private static final long serialVersionUID = 3683134725976321975L;
 	private final String name;
+	private String map;
 	
 	/**
 	 * The constructor of CreationPlayer.
 	 * @param name The name of the player.
 	 * @throws NullPointerException if the parameters are null.
 	 */
-	public CreationPlayer(String name) {
-		if(name!=null)
+	public CreationGame(String name,String map) {
+		if(name!=null && map!=null){
 			this.name=name;
-		else 
+			this.map=map;
+		}else 
 			throw new NullPointerException();
 	}
 	
@@ -36,6 +39,10 @@ public class CreationPlayer extends Action {
 	 * @param model The model of the game.
 	 */
 	public void runAction(Controller controller,Board model){
+		if(model.getDeck()==null){
+			new Avvio(map+".xml",model).startPartita();
+			this.notifyObserver(new InfoChange("Your map has been chosen."));
+		}
 		boolean exist=false;
 		List<Player> players=model.getPlayers();
 		for(Player player: players)
@@ -45,6 +52,7 @@ public class CreationPlayer extends Action {
 			Player player=new Player(name, model.getNobilityTrack());
 			controller.putSocketPlayer(super.getPlayer(), player);
 			this.notifyObserver(new PlayerChange(player));
+			this.notifyObserver(new InfoChange("Player has been created."));
 		}
 		else
 			this.notifyObserver(new InfoChange("The player already exists."));

@@ -2,7 +2,7 @@ package it.polimi.ingsw.cg23.server.controller;
 
 import it.polimi.ingsw.cg23.observer.*;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
-import it.polimi.ingsw.cg23.server.controller.action.CreationPlayer;
+import it.polimi.ingsw.cg23.server.controller.action.CreationGame;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 import it.polimi.ingsw.cg23.server.controller.action.PerformBonus;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
@@ -196,8 +196,8 @@ public class Controller implements Observer<Action>{
 	public synchronized void update(Action action){
 		logger.info("I AM THE CONTROLLER UPDATING THE MODEL");		
 		if("INITIALIZATION".equals(model.getStatus().getStatus())){
-			if(action instanceof CreationPlayer)
-				((CreationPlayer) action).runAction(this, model);	
+			if(action instanceof CreationGame)
+				((CreationGame) action).runAction(this, model);	
 			return;
 		}
 		if(action instanceof PerformBonus){
