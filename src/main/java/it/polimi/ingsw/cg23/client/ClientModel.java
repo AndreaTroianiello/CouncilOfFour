@@ -2,7 +2,9 @@ package it.polimi.ingsw.cg23.client;
 
 
 import java.awt.Color;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -26,6 +28,7 @@ public class ClientModel {
 	private Board model;
 	private Player player;
 	private Logger logger;
+	private List<PoliticCard> cards;
 	
 	/**
 	 * The constructor of ClientModel. Initializes the variables at null.
@@ -33,6 +36,7 @@ public class ClientModel {
 	public ClientModel() {
 		this.model=null;
 		this.player=null;
+		this.cards=new ArrayList<>();
 		logger= Logger.getLogger(ClientModel.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
@@ -69,6 +73,9 @@ public class ClientModel {
 		return player;
 	}
 
+	public List<PoliticCard> getCards(){
+		return cards;
+	}
 	/**
 	 * Finds the city on the game's model using the name.
 	 * @param cityName The name of the city to find.
@@ -169,5 +176,13 @@ public class ClientModel {
 			logger.error(e);
 			return null;
 		}	
+	}
+	
+	public void makeHand(StringTokenizer tokenizer){
+		cards.clear();
+		while(tokenizer.hasMoreTokens()){
+			int i = Integer.parseInt(tokenizer.nextToken());
+			cards.add(player.getHand().get(i));
+		}
 	}
 }

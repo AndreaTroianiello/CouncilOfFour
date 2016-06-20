@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.client.cli;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
@@ -85,10 +87,14 @@ public class ControllerCLI implements ClientController{
 	 * @throws IOException If the connection has problems.
 	 */
 	public void updateController(String string) throws IOException{
-		if(bonus==null)
-			commandController.updateCommand(string);
-		else
+		if(bonus!=null)
 			bonusController.updateCommand(string,bonus);
+		
+		StringTokenizer tokenizer=new StringTokenizer(string," ");
+		if("SHOW".equals(tokenizer.nextToken()))
+			showCommand(tokenizer);
+		else
+			commandController.updateCommand(string);
 	}
 	
 	/**
@@ -100,7 +106,43 @@ public class ControllerCLI implements ClientController{
 		out.update(action);
 	}
 
-
+	/**
+	 * Manages the string if contains a show command.
+	 * @param tokizer The string that contains the commands.
+	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 */
+	private void showCommand(StringTokenizer tokenizer){
+		Board model=clientModel.getModel();
+		if(model==null){
+			cli.print("", "Command refused.");
+			return;
+		}
+		switch(tokenizer.nextToken()){
+		case "BOARD":
+			cli.createMap(model);
+			break;
+		case "HAND":
+			cli.print("", "Your hand is:");
+			cli.printList(clientModel.getPlayer().getHand());
+			cli.print("", "The chosen cards for the action are:");
+			cli.printList(clientModel.getCards());
+			break;
+		case "TILES":
+			cli.print("","Available tiles:");
+			cli.printList(clientModel.getPlayer().getAvailableBusinessPermits());
+			cli.print("","Used tiles:");
+			cli.printList(clientModel.getPlayer().getUsedBusinessPermit());
+			break;
+		case "NEIGHBORS":
+			cli.print("","City's neighbors:");
+			cli.printList(clientModel.findCity(tokenizer.nextToken()).getNeighbors());
+			break;
+		default:
+			cli.print("", "Command not found.");
+			break;
+		}
+	}
+	
 	/**
 	 * Notifies the controller with a change object.
 	 * @param change The object to control.
