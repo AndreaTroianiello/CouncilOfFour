@@ -60,7 +60,7 @@ public class FrameMap extends JFrame {
 
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
 		Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
-		s=new Avvio("map1.xml", b);
+		s=new Avvio("map8.xml", b);
 		s.startPartita();
 
 		grid();
