@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +15,7 @@ import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.Type;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 public class RegionCityTest {
 
@@ -24,11 +27,16 @@ public class RegionCityTest {
 	private BonusKing bonusKing;
 	private Type type1,type2, type3, type4, type5;
 	private List<Type> tipi;
+	private Logger logger;
 
 	@Before
 	public void setUp(){
+		//configurazione logger
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+
 		tipi=new ArrayList<>();
-		
+
 		//Set up the types.
 		type1=new Type("Gold",10,bonusKing);
 		type2=new Type("Silver",10,bonusKing);
@@ -40,8 +48,8 @@ public class RegionCityTest {
 		tipi.add(type3);
 		tipi.add(type4);
 		tipi.add(type5);
-		
-		
+
+
 		//Set up the bonus king
 		bonuses=new ArrayList<>();
 		bonuses.add(10);
@@ -49,7 +57,13 @@ public class RegionCityTest {
 		bonuses.add(0);
 		bonusKing=new BonusKing(bonuses);
 
-		crc=new CreateRegionCity("map1.xml");
+		String name="map1.xml";
+		try {
+			crc=new CreateRegionCity(name);
+		} catch (XmlException e) {
+			logger.error("Errore nel caricare il file xml: "+name, e);
+		}
+		
 		regions=new ArrayList<>();
 		citta1=new ArrayList<>();
 		citta2=new ArrayList<>();

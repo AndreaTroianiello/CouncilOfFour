@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.gui.panel;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
@@ -89,7 +88,6 @@ public class SouthPanel extends JPanel {
 		JPanel l4=new NobilityTrackPanel().createNobility(21);
 		l4.setName("Nobility panel");
 		JScrollPane c8 = new JScrollPane(l4);
-		//c8.setPreferredSize(new Dimension(100,50));
 		c8.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		c8.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		lim.fill = GridBagConstraints.BOTH;

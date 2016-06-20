@@ -45,7 +45,7 @@ public class BonusGetPermitTileTest {
 	@Test
 	public void testGetName() {
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
-		assertEquals("GetPermitTile", bonus.getName());
+		assertEquals("1GetPermitTile", bonus.getName());
 	}
 
 	/**

@@ -53,7 +53,7 @@ public class NobilityTrackPanel extends JPanel {
 		
 		for(int i=0; i<length; i++){
 			JLabel label0 = new JLabel();
-			label0.setBackground(new Color(124, 253, i*10));
+			label0.setBackground(new Color(124, i*10, 123));
 			label0.setOpaque(true);
 			label0.setText(i+"");
 			lim.gridx = i;//posizione componenti nella griglia

@@ -9,7 +9,7 @@ import javax.swing.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 
 /**
  * redirect the console out to the gui logger

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
@@ -19,7 +20,6 @@ import it.polimi.ingsw.cg23.server.model.bonus.BonusTileBonus;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
 /**
  * create the bonus (city, king, costruction card)

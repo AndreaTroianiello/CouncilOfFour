@@ -3,10 +3,10 @@ package it.polimi.ingsw.cg23.server.controller.creation;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
 
 /**
  * create the costruction card and region deck

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import it.polimi.ingsw.cg23.server.controller.creation.CreateBonus;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Type;
@@ -16,7 +17,6 @@ import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**

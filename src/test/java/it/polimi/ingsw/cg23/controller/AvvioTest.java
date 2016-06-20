@@ -9,13 +9,14 @@ import org.junit.Test;
 
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 public class AvvioTest {
 	
 	Avvio avv;
 	
 	@Before
-	public void etUp(){
+	public void etUp() throws XmlException{
 		avv=new Avvio("map1.xml", new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null));
 	}
 	

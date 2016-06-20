@@ -1,14 +1,8 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.controller.xmlreader;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCittaXml;
-import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCityBonusXml;
-import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadColorXml;
-import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadCostructionXml;
-import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadNobilityTrackXml;
-import it.polimi.ingsw.cg23.server.controller.xmlreader.ReadType;
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
@@ -102,18 +96,13 @@ public class XmlInterface {
 	 * carica il file xml con le infromazioni della partita
 	 * @return a bidimensional array with all the city info
 	 * @param endPath, the name of the file to read
+	 * @throws XmlException 
 	 */
-	public String[][] cittaXml(String endPath){
+	public String[][] cittaXml(String endPath) throws XmlException{
 
 		String[][] cityInfo = null;
-
-		try {//provo a leggere il file xml
-
-			cityInfo=cittaXml.readFileXml(endPath);
-		} catch (XmlException e) {
-			logger.error(err + endPath, e);
-			cityInfo=null;
-		}
+		cityInfo=cittaXml.readFileXml(endPath);
+		
 		/* array cityInfo prototype returned
 		 * coloumn 0: name of the city
 		 * coloumn 1: color of the city

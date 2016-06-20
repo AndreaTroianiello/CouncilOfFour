@@ -23,6 +23,7 @@ import it.polimi.ingsw.cg23.gui.panel.MapPanel;
 import it.polimi.ingsw.cg23.gui.panel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
  * create the map
@@ -44,6 +45,7 @@ public class FrameMap extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param controller
 	 */
 	public FrameMap(ClientController controller) {
 		//configurazione logger
@@ -51,7 +53,7 @@ public class FrameMap extends JFrame {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 		
 		this.controller=controller;
-		
+		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1460, 900);
 		contentPane = new JPanel();
@@ -60,7 +62,12 @@ public class FrameMap extends JFrame {
 
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
 		Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
-		s=new Avvio("map8.xml", b);
+		String name="map6.xml";
+		try {
+			s=new Avvio(name, b);
+		} catch (XmlException e) {
+			logger.error("Errore nel caricare il file xml: "+name, e);
+		}
 		s.startPartita();
 
 		grid();

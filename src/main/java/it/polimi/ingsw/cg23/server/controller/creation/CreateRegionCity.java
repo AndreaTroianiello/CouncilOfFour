@@ -3,12 +3,13 @@ package it.polimi.ingsw.cg23.server.controller.creation;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.Type;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 import it.polimi.ingsw.cg23.utility.Print;
 
 /**
@@ -26,8 +27,9 @@ public class CreateRegionCity {
 	/**
 	 * costructor
 	 * @param endPath, the name of the file xml
+	 * @throws XmlException 
 	 */
-	public CreateRegionCity(String endPath){
+	public CreateRegionCity(String endPath) throws XmlException{
 		this.p=new Print();
 		this.leggiXml=new XmlInterface();
 		this.regioni = new ArrayList<>();

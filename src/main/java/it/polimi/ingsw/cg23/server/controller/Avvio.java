@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.cg23.server.controller.creation.*;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -17,7 +18,7 @@ import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 import it.polimi.ingsw.cg23.utility.Print;
 
 /**
@@ -52,8 +53,9 @@ public class Avvio {
 	 * costructor
 	 * @param endPath, the name of the xml file
 	 * @param board the board to refill
+	 * @throws XmlException 
 	 */
-	public Avvio(String endPath, Board board){
+	public Avvio(String endPath, Board board) throws XmlException{
 		cc=new CreateCostruction();
 		cco=new CreateCouncillor(endPath);
 		crc=new CreateRegionCity(endPath);

@@ -2,18 +2,25 @@ package it.polimi.ingsw.cg23.view;
 
 import static org.junit.Assert.*;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.polimi.ingsw.cg23.server.view.XmlInterface;
+import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 public class XmlInterfaceTest {
 
-	XmlInterface xI;
+	private XmlInterface xI;
+	private Logger logger;
 
 	@Before
 	public void setUp(){
 		xI=new XmlInterface();
+		//configurazione logger
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 	}
 
 	@Test
@@ -59,8 +66,14 @@ public class XmlInterfaceTest {
 
 	@Test
 	public void getCittaXmlTest(){
-		String[][] cities=xI.cittaXml("map1.xml");
-		
+		String[][] cities = null;
+		String name1="map1.xml";
+		try {
+			cities = xI.cittaXml(name1);
+		} catch (XmlException e) {
+			logger.error("Errore lettura file xml: "+name1, e);
+		}
+
 		assertEquals(cities.length, 15);//numero di citta' lette dall'xml
 		for(int i=0; i<cities.length; i++){//controllo che nell'array non ci siano valori nulli
 			assertNotEquals(cities[i][0],"");
@@ -70,13 +83,18 @@ public class XmlInterfaceTest {
 			assertNotEquals(cities[i][4],"");
 
 		}
-		assertNull(xI.cittaXml("ConfigurazionePartitar.xml"));//il file non esiste
+		String name2="maps.xml";
+		try {
+			assertNull(xI.cittaXml(name2));
+		} catch (XmlException e) {
+			logger.error("Errore lettura file xml: "+name2, e);
+		}//il file non esiste
 	}
-	
+
 	@Test
 	public void getBonusRegionTest(){
 		String[][] regBonus=xI.getBonusRegion("map1.xml");
-		
+
 		assertEquals(regBonus.length, 3);
 		for(int i=0; i<regBonus.length; i++){//controllo che nell'array non ci siano valori nulli
 			assertNotEquals(regBonus[i][0],"");
@@ -84,11 +102,11 @@ public class XmlInterfaceTest {
 		}
 		assertNull(xI.getBonusRegion("ConfigurazionePartitas.xml"));//file inesistente
 	}
-	
+
 	@Test
 	public void costructionCard(){
 		String[][] costructionCards=xI.costructionCard("CostructionCard.xml");
-		
+
 		assertEquals(costructionCards.length, 45);
 		for(int i=0; i<costructionCards.length; i++){//controllo che nell'array non ci siano valori nulli
 			assertNotEquals(costructionCards[i][0], "");
@@ -97,31 +115,31 @@ public class XmlInterfaceTest {
 		}
 		assertNull(xI.costructionCard("CostructionCards.xml"));//file inesistente
 	}
-	
+
 	@Test
 	public void colorTest(){
 		assertEquals(xI.colorNumberXml("Colori.xml"), 6);
 		String[] colors=xI.colorXml("Colori.xml");
 		assertEquals(colors.length, 6);
-		
+
 		for(int i=0; i<colors.length; i++){
 			assertNotEquals(colors[i], "");
 			assertNotEquals(colors[i], null);
 		}
 	}
-	
+
 	@Test (expected=Exception.class)
 	public void colorTestFail(){
 		assertEquals(xI.colorNumberXml("Coloric.xml"), 0);
 		String[] colors=xI.colorXml("Colorim.xml");
 		assertEquals(colors.length, null);
 	}
-	
+
 	@Test (expected=Exception.class)
 	public void BonusCityTest(){
 		String[] bonus=xI.bonusCity("CityBonus.xml");
 		assertEquals(bonus.length, 14);
-		
+
 		assertEquals(xI.bonusCity("CityBonuses.xml").length, null);//file inesistente
 	}
 }

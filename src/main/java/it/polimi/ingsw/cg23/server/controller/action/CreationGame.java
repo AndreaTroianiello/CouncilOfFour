@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
  * The action CreationPlayer is used to create new players.
@@ -40,7 +41,11 @@ public class CreationGame extends Action {
 	 */
 	public void runAction(Controller controller,Board model){
 		if(model.getDeck()==null){
-			new Avvio(map+".xml",model).startPartita();
+			try {
+				new Avvio(map+".xml",model).startPartita();
+			} catch (XmlException e) {
+			//logger
+			}
 			this.notifyObserver(new InfoChange("Your map has been chosen."));
 		}
 		boolean exist=false;
