@@ -48,16 +48,16 @@ public class InfoPanel extends JPanel {
 		panel.setBackground(new Color(123,123,123));
 
 		GridBagConstraints lim = new GridBagConstraints(); 
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Info");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=2;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.gridwidth=4;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		layout.setConstraints(label, lim);
 		panel.add(label);
 
@@ -65,11 +65,10 @@ public class InfoPanel extends JPanel {
 		button1.setName("Uscita");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
 		panel.add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
@@ -91,13 +90,12 @@ public class InfoPanel extends JPanel {
 
 		JButton button2 = new JButton("Clear");
 		button2.setName("Clear");
-		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 2;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button2, lim);
 		panel.add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
@@ -112,11 +110,12 @@ public class InfoPanel extends JPanel {
 
 		JButton button3=new JButton("Invia");
 		button3.setName("Invia");
-		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		layout.setConstraints(button3, lim); //Associazione
 		panel.add(button3); //Inserimento
 		button3.addActionListener(new ActionListener() {
@@ -130,6 +129,24 @@ public class InfoPanel extends JPanel {
 				}
 			}
 		});
+		
+		JButton button4 = new JButton("End Turn");
+		button4.setName("Fineturno");
+		lim.gridx = 3;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(button4, lim);
+		panel.add(button4);//aggiunta bottone al layer panel
+		button4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//azione fine turno
+			}
+		});
+		
 		return panel;
 	}
 }

@@ -15,14 +15,15 @@ import it.polimi.ingsw.cg23.server.model.components.King;
  */
 public class CreateCouncillor {
 	private Setting s;
-	
+
 	/**
 	 * costructor
+	 * @param fileName, the xml file name
 	 */
 	public CreateCouncillor(String fileName){
-		this.s=new Setting(fileName);
+		this.s=new Setting();
 	}
-	
+
 	/**
 	 * the function create the counsillor
 	 * @param numberCouncillor, number of councillors per color to create

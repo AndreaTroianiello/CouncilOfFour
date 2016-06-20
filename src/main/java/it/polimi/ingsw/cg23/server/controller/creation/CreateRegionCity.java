@@ -16,14 +16,14 @@ import it.polimi.ingsw.cg23.utility.Print;
  * create the cities and the regions
  */
 public class CreateRegionCity {
-	
+
 	private Print p;
 	private XmlInterface leggiXml;
-	
+
 	private List <Region> regioni;//lista regioni
 	private String endPath;//nome del file che contine le info della citta'
 	private String[][] cityInfo;//array con le informazioni delle citta'
-	
+
 	/**
 	 * costructor
 	 * @param endPath, the name of the file xml
@@ -36,7 +36,7 @@ public class CreateRegionCity {
 		this.endPath=endPath;//endpath e' il nome del file xml da leggere
 		this.cityInfo=leggiXml.cittaXml(endPath);
 	}
-	
+
 	/**
 	 * create the regions object and add at the regions list
 	 * @param bk, the bonus king
@@ -66,10 +66,10 @@ public class CreateRegionCity {
 	public List<City> createCities(int j, Region r, List<Type> typeList){//crea le citta' della regione
 		int regionNumber=p.regionsNumber(cityInfo);//numero di regioni
 		List <City> citta=new ArrayList<>();//lista citta
-		
+
 		for(int i=0; i<cityInfo.length/regionNumber; i++){//ciclo che scorre le citta' di una regione
 			int ii=j*cityInfo.length/regionNumber+i;
-			
+
 			for(int k=0; k<typeList.size(); k++){
 				if(cityInfo[ii][1].equals(typeList.get(k).getName())){
 					City c=new City(cityInfo[ii][3].charAt(0), cityInfo[ii][0], typeList.get(k), r);//creo la citta'
