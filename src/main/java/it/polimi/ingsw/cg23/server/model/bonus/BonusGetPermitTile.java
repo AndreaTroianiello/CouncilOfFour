@@ -5,6 +5,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -82,6 +83,10 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 		Region realRegion=searchRegion(region);
 		if(realRegion!=null){
 			RegionDeck deck=realRegion.getDeck();
+			if(deck.getShowedDeck().size()==0){
+				this.notifyObserver(new InfoChange("The tiles are finished."));
+				return;
+			}
 			if(numberTile<deck.getShowedDeck().size() && numberTile>=0){
 				player.getAvailableBusinessPermits().add(deck.getShowedDeck().get(numberTile));   					//add the chosen PermitTitle to the player collection
 				realRegion.getDeck().changeShowedDeck(); //replace the PermitTitle chosen with the one in top of the deck

@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
@@ -56,6 +57,10 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
+		if(player.getAvailableBusinessPermits().size()==0){
+			this.notifyObserver(new InfoChange("The list is empty."));
+			return;
+		}
 		if(numberTile<player.getAvailableBusinessPermits().size() && numberTile>=0){
 			BusinessPermitTile businessPermitTile=player.getAvailableBusinessPermits().get(numberTile);   					//add the chosen PermitTitle to the player collection
 			for(Bonus bonus: businessPermitTile.getBonusTile()){					//iterate the bonus in the tile and

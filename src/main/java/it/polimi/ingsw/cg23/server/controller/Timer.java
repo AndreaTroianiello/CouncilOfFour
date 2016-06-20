@@ -37,9 +37,9 @@ public class Timer implements Runnable {
 		try {
 			view.setSuspended(true);
 			Thread.sleep(60000);
-			if(view.getSuspended()){
+			/*if(view.getSuspended()){
 				new EndTurn().runAction(controller);
-			}
+			}*/
 		} catch (InterruptedException e) {
 			logger.error(e);
 		}
