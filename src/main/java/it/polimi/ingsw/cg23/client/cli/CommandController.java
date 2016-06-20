@@ -1,6 +1,8 @@
 package it.polimi.ingsw.cg23.client.cli;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -25,6 +27,7 @@ import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.utility.Print;
 
@@ -259,4 +262,12 @@ public class CommandController {
 		}
 	}
 
+	private List<PoliticCard> getHand(StringTokenizer tokenizer){
+		List<PoliticCard> cards = new ArrayList<>();
+		while(tokenizer.hasMoreTokens()){
+			int i = Integer.parseInt(tokenizer.nextToken());
+			cards.add(clientModel.getPlayer().getHand().get(i));
+		}
+		return cards;
+	}
 }
