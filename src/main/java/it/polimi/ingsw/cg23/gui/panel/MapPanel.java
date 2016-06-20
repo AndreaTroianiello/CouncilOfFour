@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.gui.panel;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,9 +23,9 @@ import it.polimi.ingsw.cg23.utility.MapSetting;
  *
  */
 public class MapPanel extends JPanel {
-	private ColorManager cm;
-	private MapSetting ms;
-	
+	private transient ColorManager cm;
+	private transient MapSetting ms;
+
 	/**
 	 * 
 	 */
@@ -38,18 +39,22 @@ public class MapPanel extends JPanel {
 		this.ms=new MapSetting();
 	}
 
+	/**
+	 * create the map panel
+	 * @param reg, the regions list
+	 * @return a panel with the map
+	 */
 	public JPanel createMap(List<Region> reg){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
-
 		panel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-		
+
 		List<City> city=ms.getCityfromRegion(reg);
-		
+
 		int j=0;
 		for(int i=0; i<reg.size()*2; i++){//scorre le colonne
 			for(int k=0; k<5; k++){
@@ -63,14 +68,9 @@ public class MapPanel extends JPanel {
 					j++;
 				}else{
 					button1.setText("");
-					if(i==0||i==1)
-						button1.setBackground(new Color(204, 255, 255));
-					if(i==2||i==3)
-						button1.setBackground(new Color(204, 255, 204));
-					if(i==4||i==5)
-						button1.setBackground(new Color(188, 144, 101));
+					addBackground(button1, i);
 				}
-				
+
 				button1.setPreferredSize(new Dimension(50, 50));
 				lim.gridx = i;//posizione componenti nella griglia
 				lim.gridy = k;
@@ -81,46 +81,41 @@ public class MapPanel extends JPanel {
 
 				layout.setConstraints(button1, lim);
 				panel.add(button1);//aggiunta bottone al layer panel
+				
 				button1.addMouseListener(new MouseListener() {
 					@Override
-					public void mouseReleased(MouseEvent e) {
-						/**
-						 * empty method, not erasable
-						 */
-					}
+					public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 					@Override
-					public void mousePressed(MouseEvent e) {
-						/**
-						 * empty method, not erasable
-						 */
-					}
+					public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 					@Override
 					public void mouseExited(MouseEvent e) {
-						if(button1.getText().equals("")){
-
-						}else{
+						if("".equals(button1.getText())){
+							button1.setText("");
+						}else
 							button1.setSize(new Dimension((int)button1.getSize().getWidth()/2,(int)button1.getSize().getHeight()/2));
-						}
 					}
 					@Override
 					public void mouseEntered(MouseEvent e) {
-						if(button1.getText().equals("")){
-
-						}else{
+						if("".equals(button1.getText())){
+							button1.setText("");
+						}else
 							button1.setSize(new Dimension((int)button1.getSize().getWidth()*2,(int)button1.getSize().getHeight()*2));
-
-						}
 					}
 					@Override
-					public void mouseClicked(MouseEvent e) {
-						/**
-						 * empty method, not erasable
-						 */
-					}
+					public void mouseClicked(MouseEvent e) {/**empty, not erasable*/}
 				});
 			}
 		}
 
 		return panel;
+	}
+	
+	private void addBackground(Component c, int i){
+		if(i==0||i==1)
+			c.setBackground(new Color(204, 255, 255));
+		if(i==2||i==3)
+			c.setBackground(new Color(204, 255, 204));
+		if(i==4||i==5)
+			c.setBackground(new Color(188, 144, 101));
 	}
 }

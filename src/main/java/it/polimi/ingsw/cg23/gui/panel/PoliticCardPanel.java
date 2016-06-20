@@ -11,6 +11,11 @@ import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 
+/**
+ * create the politic card panel
+ * @author viga94_
+ *
+ */
 public class PoliticCardPanel extends JPanel {
 
 	/**
@@ -22,9 +27,16 @@ public class PoliticCardPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public PoliticCardPanel() {
-
+/**
+ * empty costructor
+ */
 	}
 
+	/**
+	 * create the politic card panel
+	 * @param p, the player
+	 * @return a panel with the politic card
+	 */
 	public JPanel createCard(Player p){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();

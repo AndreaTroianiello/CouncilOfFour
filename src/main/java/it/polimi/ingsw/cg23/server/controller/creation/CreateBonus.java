@@ -35,7 +35,7 @@ public class CreateBonus {
 	 * costructor
 	 * @param endpath, the name of the file xml
 	 */
-	public CreateBonus(String endpath){
+	public CreateBonus(){
 		this.bonusList=new ArrayList<>();
 		this.leggiXml=new XmlInterface();
 		this.bk=new BonusKing(null);
@@ -44,10 +44,9 @@ public class CreateBonus {
 
 	/**
 	 * aggiunta di bonus alla citta'
-	 * @param i, to define the actual city (where find bonus in the array)
 	 * @param c, the actual city
 	 */
-	public void getCityBonus(int i, City c){
+	public void getCityBonus(City c){
 		
 		if("Purple".equals(c.getType())){//la citta' del re non ha bonus
 			return;
@@ -78,7 +77,7 @@ public class CreateBonus {
 	 */
 	private String bonus(){
 		Random rnd=new Random();
-		String myBonus=null;//stringa contenenete il bonus
+		String myBonus;//stringa contenenete il bonus
 		int n=rnd.nextInt(bonus.length);//intero random massimo come il numero di bonus
 		
 		while(bonus[n]=="x"){//creca un bonus disponibile

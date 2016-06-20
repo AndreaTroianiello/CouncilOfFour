@@ -36,6 +36,7 @@ public class SecondaryActionPanel extends JPanel {
 
 	/**
 	 * create the secondary action button
+	 * @param text, the text area to write on
 	 * @return the panel
 	 */
 	public JPanel secondAction(JTextArea text){

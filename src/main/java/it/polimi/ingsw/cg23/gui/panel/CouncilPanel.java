@@ -84,6 +84,11 @@ public class CouncilPanel extends JPanel {
 		return panel;
 	}
 
+	/**
+	 * create the king councillor
+	 * @param k, the king
+	 * @return the king conucillor
+	 */
 	public JPanel kingbalcone(King k){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();

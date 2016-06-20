@@ -80,36 +80,29 @@ public class EastPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(scrollLogger2, lim); //Associazione
 		logger.add(scrollLogger2); //Inserimento
-		write.addMouseListener(new MouseAdapter()//cancella il testo presente
-				{
+		write.addMouseListener(new MouseAdapter(){//cancella il testo presente
+			@Override
 			public void mouseClicked(MouseEvent me)
 			{
 				write.setText("");
 			}
 				});
+		
 		write.addKeyListener(new KeyListener() {
-
 			@Override
-			public void keyTyped(KeyEvent e) {
-
-			}
-
+			public void keyTyped(KeyEvent e) {/**empty*/}
 			@Override
-			public void keyReleased(KeyEvent e) {
-
-			}
-
+			public void keyReleased(KeyEvent e) {/**empty*/}
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER){
-					if(write.getText().equals("")){
+					if(("").equals(write.getText())){
 						JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
 					}else{
 						loggerArea.append("\ntesto inviato: "+write.getText());
 						write.setText("");
 					}
 				}
-
 			}
 		});
 

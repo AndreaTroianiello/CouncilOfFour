@@ -1,16 +1,12 @@
 package it.polimi.ingsw.cg23.gui.panel;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,6 +31,7 @@ public class SouthPanel extends JPanel {
 	private static final long serialVersionUID = 1220509934759316582L;
 	private CostructionCardPanel ccp;
 	private CouncilPanel cp;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -63,9 +60,7 @@ public class SouthPanel extends JPanel {
 			//----------carte permesso di costruzione----------
 			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i));
 			costruzione.setName("costruzione "+reg.get(i).getName());
-			if(i==0)costruzione.setBackground(new Color(204, 255, 255));
-			if(i==1)costruzione.setBackground(new Color(204, 255, 204));
-			if(i==2)costruzione.setBackground(new Color(188, 144, 101));
+			addBackground(costruzione, i);
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -78,9 +73,7 @@ public class SouthPanel extends JPanel {
 		
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge i consiglieri
 			JPanel balcone=cp.balcone(reg.get(i));
-			if(i==0)balcone.setBackground(new Color(204, 255, 255));
-			if(i==1)balcone.setBackground(new Color(204, 255, 204));
-			if(i==2)balcone.setBackground(new Color(188, 144, 101));
+			addBackground(balcone, i);
 			balcone.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
@@ -93,14 +86,13 @@ public class SouthPanel extends JPanel {
 		}
 		
 		//----------------nobility track------------
-		BufferedImage img=nobilityImg();
-		JLabel l4=new JLabel(new ImageIcon(img));
-		l4.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()));
+		JPanel l4=new NobilityTrackPanel().createNobility(21);
 		l4.setName("Nobility panel");
 		JScrollPane c8 = new JScrollPane(l4);
-		c8.setPreferredSize(new Dimension(img.getWidth(),img.getHeight()+3));
+		c8.setPreferredSize(new Dimension(100,50));
 		c8.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		c8.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -124,6 +116,7 @@ public class SouthPanel extends JPanel {
 		JPanel politics=new PoliticCardPanel().createCard(p);
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(193,197,192));
+		lim.fill = GridBagConstraints.HORIZONTAL;
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -148,7 +141,6 @@ public class SouthPanel extends JPanel {
 		southPanel.add(kingCouncillors);
 		
 		JLabel kingBonus=new JLabel();
-		//kingBonus.setFont(new Font("Calibre", Font.PLAIN, 14));
 		kingBonus.setText("Bonus king corrente: "+b.getBonusKing().getCurrentBonusKing());
 		kingBonus.setBackground(new Color(116, 255, 181));
 		kingBonus.setOpaque(true);
@@ -167,10 +159,11 @@ public class SouthPanel extends JPanel {
 		
 		String typeBonus="";
 		for(int i=0; i<b.getTypes().size(); i++){
-			if(b.getTypes().get(i).getName().equals("Purple")){
-				
+			if(("Purple").equals(b.getTypes().get(i).getName())){
+				typeBonus=typeBonus.concat("");
 			}else
-				typeBonus+=b.getTypes().get(i).getName()+": "+b.getTypes().get(i).getBonus().getNumber()+", ";
+				if(b.getTypes().get(i).isBonusAvailable())
+					typeBonus=typeBonus.concat(b.getTypes().get(i).getName()+": "+b.getTypes().get(i).getBonus().getNumber()+", ");
 		}
 		cityTypeBonus.setText("Type: "+typeBonus.substring(0, typeBonus.length()-2));
 		cityTypeBonus.setBackground(new Color(116, 255, 181));
@@ -189,18 +182,18 @@ public class SouthPanel extends JPanel {
 		return southPanel;
 	}
 	
-	private BufferedImage nobilityImg(){//recupero l'immagine della carta costruzione
-		BufferedImage image=null;
-		String path="src/main/resources/images/Nobility track.png";//percorso dell'immagine
-		
-		try {
-			image = ImageIO.read(new File(path));
-		} catch (IOException e) {
-			System.out.println("err");
-			//logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
-		}
-
-		return image;
+	/**
+	 * add the background color
+	 * @param c, the component to add color
+	 * @param i
+	 */
+	private void addBackground(Component c, int i){
+		if(i==0)
+			c.setBackground(new Color(204, 255, 255));
+		if(i==1)
+			c.setBackground(new Color(204, 255, 204));
+		if(i==2)
+			c.setBackground(new Color(188, 144, 101));
 	}
 	
 }

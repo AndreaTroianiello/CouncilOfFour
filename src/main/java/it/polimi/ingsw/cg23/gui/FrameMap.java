@@ -47,7 +47,7 @@ public class FrameMap extends JFrame {
 	 */
 	public FrameMap(ClientController controller) {
 		//configurazione logger
-		logger = Logger.getLogger(FrameMap.class);
+		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 		
 		this.controller=controller;

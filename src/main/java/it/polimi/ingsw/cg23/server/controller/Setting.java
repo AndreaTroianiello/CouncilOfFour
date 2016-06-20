@@ -34,7 +34,7 @@ public class Setting {
 	 */
 	public Setting(String fileName){
 		this.leggiXml=new XmlInterface();
-		this.cb=new CreateBonus(fileName);
+		this.cb=new CreateBonus();
 		this.bonusList=cb.bonusList(null);
 	}
 

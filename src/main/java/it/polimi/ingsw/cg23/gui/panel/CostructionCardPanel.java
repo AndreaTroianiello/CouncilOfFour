@@ -68,7 +68,7 @@ public class CostructionCardPanel extends JPanel {
 
 		
 		JLabel label1 = new JLabel();
-		label1.setText("Bonus "+reg.getName()+": "+reg.getBonus().getNumber());
+		label1.setText("Bonus: "+reg.getBonus().getNumber());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.ipadx=0;//bordi componente
@@ -90,8 +90,8 @@ public class CostructionCardPanel extends JPanel {
 			label.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
-			lim.ipadx=10;//bordi componente
-			lim.ipady=10;
+			lim.ipadx=0;//bordi componente
+			lim.ipady=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(label, lim);

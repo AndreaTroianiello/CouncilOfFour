@@ -51,14 +51,15 @@ public class Avvio {
 	/**
 	 * costructor
 	 * @param endPath, the name of the xml file
+	 * @param board the board to refill
 	 */
 	public Avvio(String endPath, Board board){
-		cc=new CreateCostruction(endPath);
+		cc=new CreateCostruction();
 		cco=new CreateCouncillor(endPath);
 		crc=new CreateRegionCity(endPath);
 		cl=new Print();
 		s=new Setting(endPath);
-		cb=new CreateBonus(endPath);
+		cb=new CreateBonus();
 
 		this.board=board;
 		this.leggiXml= new XmlInterface();
@@ -81,10 +82,6 @@ public class Avvio {
 		tipi=s.createType(bk);//creo i type (colori) delle citta'
 		cl.print("", "-Creo i type");
 
-		//----------board creazione----------
-	//	board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, bk);//creata la board
-		//cl.print("", "-Creo la board");
-
 		//----------bonus----------
 		bonusList=cb.bonusList(board);//recupero la lista con tutti i bonus
 		cl.print("", "-Creo i bonus");
@@ -99,7 +96,7 @@ public class Avvio {
 		}
 
 		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
-			cb.getCityBonus(j, citta.get(j));//aggiungo alla citta' i bonus
+			cb.getCityBonus(citta.get(j));//aggiungo alla citta' i bonus
 		}
 		crc.addNeighbors(citta);//aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");

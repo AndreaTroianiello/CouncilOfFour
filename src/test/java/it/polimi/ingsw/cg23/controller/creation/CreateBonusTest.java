@@ -22,7 +22,7 @@ public class CreateBonusTest {
 
 	@Before
 	public void setUp(){
-		cb=new CreateBonus("RegionCity.xml");
+		cb=new CreateBonus();
 		List<Character> idcity=new ArrayList<>();
 		idcity.add('A');
 		idcity.add('B');
@@ -68,10 +68,10 @@ public class CreateBonusTest {
 	@Test
 	public void CityBonusTest(){
 		cb.bonusList(null);//creo la lista dei bonus
-		cb.getCityBonus(4, c1);
+		cb.getCityBonus(c1);
 		assertNotNull(c1.getToken());
 
-		cb.getCityBonus(10, c2);
+		cb.getCityBonus(c2);
 		assertEquals(c2.getToken().size(), 0);//0 la citta' del re non ha bonus (in posizione 10 nel file xml)
 	}
 }

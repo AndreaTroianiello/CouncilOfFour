@@ -7,7 +7,11 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+/**
+ * create the button bunel (main action, secondary action, info button)
+ * @author viga94_
+ *
+ */
 public class ButtonPanel extends JPanel {
 
 	/**
@@ -23,7 +27,13 @@ public class ButtonPanel extends JPanel {
 		 * empty costructor
 		 */
 	}
-
+	
+	/**
+	 * create the button panel
+	 * @param textArea, to read
+	 * @param write, to write
+	 * @return the panel
+	 */
 	public JPanel buttonPanel(JTextArea textArea, JTextField write){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();

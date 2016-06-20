@@ -19,10 +19,9 @@ public class CreateCostruction {
 	
 	/**
 	 * costructor
-	 * @param endPath, the name of the file xml
 	 */
-	public CreateCostruction(String endPath){
-		this.cb=new CreateBonus(endPath);
+	public CreateCostruction(){
+		this.cb=new CreateBonus();
 		this.leggiXml=new XmlInterface();
 		costructionCard=new ArrayList<>();
 	}

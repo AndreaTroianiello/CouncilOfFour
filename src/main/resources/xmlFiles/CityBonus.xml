@@ -7,11 +7,11 @@
 	<bonus>1Assistant,1Politics</bonus>
 	<bonus>2Coin</bonus>
 	<bonus>3VictoryPoints</bonus>
-	<bonus>1Assistants,1Coin,4Politics</bonus>
+	<bonus>1Assistants,1Coin</bonus>
 	<bonus>1VictoryPoints</bonus>
-	<bonus>1PermitTile</bonus>
+	<bonus>1Politics</bonus>
 	<bonus>2VictoryPoints</bonus>
 	<bonus>3Coin</bonus>
 	<bonus>1Nobility</bonus>
-	<bonus>1PermitTile,1VictoryPoints</bonus>
+	<bonus>1Politics,1VictoryPoints</bonus>
 </bonuses>
