@@ -11,7 +11,10 @@
 	<bonus>1VictoryPoints</bonus>
 	<bonus>1Politics</bonus>
 	<bonus>2VictoryPoints</bonus>
-	<bonus>3Coin</bonus>
-	<bonus>1Nobility</bonus>
-	<bonus>1Politics,1VictoryPoints</bonus>
+	<!-- cancelare --><bonus>1GetPermit</bonus>
+	<!-- cancellare --><bonus>1TileBonus</bonus>
+	<!--  cancellare --><bonus>1CityToken</bonus>
+	<!--  <bonus>3Coin</bonus> -->
+	<!--  <bonus>1Nobility</bonus> -->
+	<!--  <bonus>1Politics,1VictoryPoints</bonus> -->
 </bonuses>
