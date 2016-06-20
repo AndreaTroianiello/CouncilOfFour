@@ -84,7 +84,7 @@ public class CostructionCardPanel extends JPanel {
 		for(int i=0; i<bpt.size(); i++){//scorre le carte costruzione visibili
 			
 			//----------carte costruzione----------
-			BufferedImage img=getCostructionImg(nameCostructor(bpt.get(0).getCitiesId()));//carta costruzione 1
+			BufferedImage img=getCostructionImg(nameCostructor(bpt.get(i).getCitiesId()));//carta costruzione 1
 			JLabel label = new JLabel(new ImageIcon(img));//aggiungo l'immagine alla label
 			label.setName("costruzione"+i);
 			label.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
