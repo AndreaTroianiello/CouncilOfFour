@@ -2,6 +2,18 @@
 <type>
 	<colors>
 		<color>
+			<namec>Gold</namec>
+			<value>20</value>
+		</color>
+		<color>
+			<namec>Silver</namec>
+			<value>12</value>
+		</color>
+		<color>
+			<namec>Bronze</namec>
+			<value>8</value>
+		</color>
+		<color>
 			<namec>Iron</namec>
 			<value>5</value>
 		</color>
@@ -9,17 +21,7 @@
 			<namec>Purple</namec>
 			<value>0</value>
 		</color>
-		<color>
-			<namec>Gold</namec>
-			<value>15</value>
-		</color>
-		<color>
-			<namec>Silver</namec>
-			<value>10</value>
-		</color>
-		<color>
-			<namec>Bronze</namec>
-			<value>7</value>
-		</color>
+
+
 	</colors>
 </type>

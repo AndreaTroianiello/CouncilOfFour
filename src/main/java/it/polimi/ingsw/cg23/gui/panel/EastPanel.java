@@ -116,6 +116,7 @@ public class EastPanel extends JPanel {
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.HORIZONTAL;
 		layout.setConstraints(panel, lim); //Associazione
 		logger.add(panel); //Inserimento
 		return logger;

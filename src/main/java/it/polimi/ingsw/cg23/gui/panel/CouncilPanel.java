@@ -51,6 +51,8 @@ public class CouncilPanel extends JPanel {
 		label0.setText("Consiglieri "+reg.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
+		lim.weightx=0;//espansione in verticale e orizzontale
+		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=8;
 		layout.setConstraints(label0, lim);
@@ -66,6 +68,8 @@ public class CouncilPanel extends JPanel {
 			label1.setPreferredSize(new Dimension(50, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
+			lim.weightx=0;//espansione in verticale e orizzontale
+			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(label1, lim);
@@ -75,6 +79,8 @@ public class CouncilPanel extends JPanel {
 			label2.setPreferredSize(new Dimension(10, 20));
 			lim.gridx = i*2+1;//posizione componenti nella griglia
 			lim.gridy = 1;
+			lim.weightx=0;//espansione in verticale e orizzontale
+			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(label2, lim);

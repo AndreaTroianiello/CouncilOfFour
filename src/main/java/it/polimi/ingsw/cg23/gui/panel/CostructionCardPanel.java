@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.gui.FrameMap;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
@@ -37,7 +36,7 @@ public class CostructionCardPanel extends JPanel {
 	 */
 	public CostructionCardPanel() {
 		//configurazione logger
-		logger = Logger.getLogger(FrameMap.class);
+		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 	}
 
@@ -71,8 +70,8 @@ public class CostructionCardPanel extends JPanel {
 		label1.setText("Bonus: "+reg.getBonus().getNumber());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
+		lim.weightx=0;//espansione in verticale e orizzontale
+		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(label1, lim);
@@ -90,8 +89,8 @@ public class CostructionCardPanel extends JPanel {
 			label.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
-			lim.ipadx=0;//bordi componente
-			lim.ipady=0;
+			lim.weightx=0;//espansione in verticale e orizzontale
+			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(label, lim);
