@@ -88,7 +88,8 @@ public class TurnTest {
 	public void testIfChangePlayerActuallyChangeThePlayer() throws NegativeNumberException {
 		List<PoliticCard> politics = new ArrayList<>();
 		Deck deck2 = new Deck(politics);
-		Board board2 = new Board(deck2, null, null, new NobilityTrack(1), null, null);
+		List<Region> regions = new ArrayList<>();
+		Board board2 = new Board(deck2, regions, null, new NobilityTrack(1), null, null);
 		board2.addPlayer(player1);
 		board2.addPlayer(player2);
 		Turn turn = new Turn(board2);

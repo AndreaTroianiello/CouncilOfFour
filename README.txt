@@ -17,7 +17,7 @@ BUILDKING cityName
 BUILDTILE numberTile cityName
 BUYTILE regionName numberTile
 CHANGE regionName
-ELECT colorName regionName
+ELECT regionName colorName
 ELECT KING colorName
 ELECTASSISTANT KING colorName
 ELECTASSISTANT regionName colorName

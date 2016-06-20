@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BonusCityTokenTest {
 	
-	private City city;
+	private List<City> cities;
 	public boolean runnable;
 	private Type type;
 	private Region region;
@@ -33,13 +33,15 @@ public class BonusCityTokenTest {
 
 	@Before
 	public void setUp() throws Exception {
+		this.cities = new ArrayList<>();
 		this.type = new Type("blu", 0, null);
 		List<Integer> bKing = new ArrayList<>();
 		bKing.add(3);
 		this.region  = new Region("regione", 0, null, new BonusKing(bKing));
-		this.city = new City('A', "Ancona", type, region);
+		City city = new City('A', "Ancona", type, region);
 		BonusVictoryPoints bonus1 = new BonusVictoryPoints(10);
-		this.city.addBonus(bonus1);
+		city.addBonus(bonus1);
+		this.cities.add(city);
 		this.runnable = true;
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
@@ -62,69 +64,75 @@ public class BonusCityTokenTest {
 	@Test
 	public void testGetName() {
 		BonusCityToken bonus = new BonusCityToken(0);
-		assertEquals("CityToken", bonus.getName());
+		assertEquals("0CityToken", bonus.getName());
 	}
 
 	/**
 	 * it tests if giveBonus doesn't give the bonus when the player doesn't have an emporium in the city
 	 * @throws NegativeNumberException
 	 */
-	/*@Test
+	@Test
 	public void testGiveBonusShouldntGiveTheBonusWhenThePlayerDoesntHaveAnEmporiumInTheCity() throws NegativeNumberException{
 		BonusCityToken bonus = new BonusCityToken(1);
+		bonus.setCities(cities);
+		bonus.setBoard(board);
 		this.player.getVictoryTrack().setVictoryPoints(10);
 		bonus.giveBonus(player);
 		assertEquals(10, this.player.getVictoryTrack().getVictoryPoints());
-	}*/
+	}
 	
 	/**
-	 * it tests if giveBonus give the bonus when it's all fine
+	 * it tests if giveBonus give the bonus when it's all fine, and if doesn't give it when the board is null
 	 * @throws NegativeNumberException
 	 */
-	/*@Test
+	@Test
 	public void testGiveBonusShouldGiveTheBonusWhenItDoesntHaveANobilityBonus() throws NegativeNumberException{
-		BonusCityToken bonus = new BonusCityToken(city, board);
+		BonusCityToken bonus = new BonusCityToken(1);
+		bonus.giveBonus(player);
+		assertEquals(0, this.player.getVictoryTrack().getVictoryPoints());
+		bonus.setCities(cities);
+		bonus.setBoard(board);
 		this.player.setEmporium(new Emporium(player));
-		this.city.buildEmporium(this.player.getAvailableEmporium());
+		this.cities.get(0).buildEmporium(this.player.getAvailableEmporium());
 		this.player.getVictoryTrack().setVictoryPoints(10);
 		bonus.giveBonus(player);
 		assertEquals(20, this.player.getVictoryTrack().getVictoryPoints());
-	}*/
+	}
 	
 	/**
 	 * it tests if giveBonus doesn't give the bonus when the city has a nobilityBonus
 	 * @throws NegativeNumberException
 	 */
-	/*@Test
+	@Test
 	public void testGiveBonusShouldntGiveTheBonusWhenTheCityHasANobilityBonus() throws NegativeNumberException{
-		BonusCityToken bonus = new BonusCityToken(city, board);
-		this.city.addBonus(new BonusNobility(2, board));
+		BonusCityToken bonus = new BonusCityToken(1);
+		bonus.setCities(cities);
+		bonus.setBoard(board);
+		this.cities.get(0).addBonus(new BonusNobility(2, board));
 		this.player.setEmporium(new Emporium(player));
-		this.city.buildEmporium(this.player.getAvailableEmporium());
+		this.cities.get(0).buildEmporium(this.player.getAvailableEmporium());
 		this.player.getVictoryTrack().setVictoryPoints(10);
 		bonus.giveBonus(player);
 		assertEquals(10, this.player.getVictoryTrack().getVictoryPoints());
-	}*/
+	}
 
 
 	/**
 	 * it tests if toString works properly
 	 */
-	/*@Test
+	@Test
 	public void testToString() {
-		BonusCityToken bonus = new BonusCityToken(null, null);
-		assertEquals("BonusCityToken [city=null, runnable=true]", bonus.toString());
-	}*/
+		BonusCityToken bonus = new BonusCityToken(0);
+		assertEquals("BonusCityToken [parameters=0]", bonus.toString());
+	}
 
 	/**
 	 * it tests if clone works properly
 	 */
-	/*@Test
+	@Test
 	public void testClone() {
-		BonusCityToken bonus = new BonusCityToken(city, null);
+		BonusCityToken bonus = new BonusCityToken(0);
 		BonusCityToken newBonus = (BonusCityToken) bonus.copy();
 		assertEquals(bonus.toString(), newBonus.toString());
-	}*/
-	
-
+	}
 }

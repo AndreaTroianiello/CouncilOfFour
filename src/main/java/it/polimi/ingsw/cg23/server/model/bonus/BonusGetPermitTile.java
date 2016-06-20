@@ -9,7 +9,6 @@ import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
  
 /**
@@ -22,7 +21,6 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	
 	private static final long serialVersionUID = 5218205311068329970L;
 	private final String name;
-	private BusinessPermitTile businessPermit;
 	private int number;
 	private Board board;
 	private Region region;
@@ -38,7 +36,6 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 * @param board
 	 */
 	public BonusGetPermitTile() {
-		this.businessPermit = null;
 		this.name="GetPermitTile";
 		this.number=1;
 	}
@@ -51,12 +48,6 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 		return number+name;
 	}
 
-	/**
-	 * @return the businessPermit
-	 */
-	public BusinessPermitTile getBusinessPermit() {
-		return businessPermit;
-	}
 
 	@Override
 	public void setNumber(int number){
@@ -80,7 +71,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		Region realRegion=searchRegion(region);
+		Region realRegion=searchRegion();
 		if(realRegion!=null){
 			RegionDeck deck=realRegion.getDeck();
 			if(deck.getShowedDeck().size()==0){
@@ -96,7 +87,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 			return;
 		}
 	}
-	private Region searchRegion(Region region2) {
+	private Region searchRegion() {
 		if(board==null)
 			return null;
 		List<Region> regions=board.getRegions();

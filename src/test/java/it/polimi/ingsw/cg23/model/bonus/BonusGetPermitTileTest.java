@@ -23,6 +23,7 @@ public class BonusGetPermitTileTest {
 	private Region region;
 	private BusinessPermitTile tile;
 	private Player player;
+	private List<Character> citiesId;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -32,8 +33,8 @@ public class BonusGetPermitTileTest {
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
 		this.board = new Board(null, regions, null, null, null, null);
-		List<Character> citiesId = new ArrayList<>();
-		citiesId.add('R');
+		this.citiesId = new ArrayList<>();
+		this.citiesId.add('R');
 		this.tile = new BusinessPermitTile(citiesId, "Costa");
 		this.region.getDeck().getShowedDeck().add(tile);
 		this.player = new Player("user", new NobilityTrack(3));
@@ -47,34 +48,55 @@ public class BonusGetPermitTileTest {
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
 		assertEquals("1GetPermitTile", bonus.getName());
 	}
-
-	/**
-	 * it tests if getBoard works properly
-	 */
-	/*@Test
-	public void testGetBoard() {
-		BonusGetPermitTile bonus = new BonusGetPermitTile();
-		assertEquals(board, bonus.getBoard());
-	}*/
 	
 	/**
 	 * it tests if giveBonus add the tile to the player's tiles
 	 */
-	/*@Test
+	@Test
 	public void testGiveBonusShouldAddThePermitTileInThePlayersTile(){
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
 		bonus.giveBonus(player);
+		assertTrue(this.player.getAvailableBusinessPermits().isEmpty());
+		bonus.setBoard(board);
+		bonus.setTile(region, 0);
+		bonus.giveBonus(player);
 		assertEquals(this.tile, this.player.getAvailableBusinessPermits().get(0));
-	}*/
+	}
+	
+	/**
+	 * it tests if it doesn't give the tile if the showed deck of the region is empty
+	 */
+	@Test
+	public void testGiveBonusShouldntAddThePermitIfTheShowedDeckIsEmpty(){
+		BonusGetPermitTile bonus = new BonusGetPermitTile();
+		bonus.setBoard(board);
+		this.region.getDeck().getShowedDeck().clear();
+		bonus.setTile(region, 0);
+		bonus.giveBonus(player);
+		assertTrue(this.player.getAvailableBusinessPermits().isEmpty());
+	}
 
+	/**
+	 * it tests if it doesn't give the bonus when the region is not in the board
+	 */
+	@Test
+	public void testGiveBonusShouldntAddTheCardIfTheRegionIsNotInTheBoard(){
+		BonusGetPermitTile bonus = new BonusGetPermitTile();
+		bonus.setBoard(board);
+		Region nullRegion = new Region("Ciao", 0, null, null);
+		bonus.setTile(nullRegion, 0);
+		bonus.giveBonus(player);
+		assertTrue(this.player.getAvailableBusinessPermits().isEmpty());
+	}
 	/**
 	 * it tests if toString works properly
 	 */
-	/*@Test
+	@Test
 	public void testToString() {
-		BonusGetPermitTile bonus = new BonusGetPermitTile(0, board, null, null);
+		BonusGetPermitTile bonus = new BonusGetPermitTile();
+		bonus.getNumber();
 		assertEquals("BonusGetPermitTile", bonus.toString());
-	}*/
+	}
 
 	/**
 	 * it tests if clone works properly
@@ -85,25 +107,4 @@ public class BonusGetPermitTileTest {
 		BonusGetPermitTile newBonus = (BonusGetPermitTile) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
 	}
-	
-	/**
-	 * it tests if getRegion works properly
-	 */
-	/*@Test
-	public void testGetRegion(){
-		Region region = new Region(null, 0, null, null);
-		BonusGetPermitTile bonus = new BonusGetPermitTile();
-		assertEquals(region, bonus.getRegion());
-	}*/
-	
-	/**
-	 * it tests if getBusinessPermit works properly
-	 */
-	/*@Test
-	public void testGetBusinessPermit(){
-		BusinessPermitTile permit = new BusinessPermitTile(null, null);
-		BonusGetPermitTile bonus = new BonusGetPermitTile(0, board, permit, null);
-		assertEquals(permit, bonus.getBusinessPermit());
-	}*/
-
 }
