@@ -52,7 +52,7 @@ public class Avvio {
 	 * costructor
 	 * @param endPath, the name of the xml file
 	 */
-	public Avvio(String endPath){
+	public Avvio(String endPath, Board board){
 		cc=new CreateCostruction(endPath);
 		cco=new CreateCouncillor(endPath);
 		crc=new CreateRegionCity(endPath);
@@ -60,8 +60,8 @@ public class Avvio {
 		s=new Setting(endPath);
 		cb=new CreateBonus(endPath);
 
+		this.board=board;
 		this.leggiXml= new XmlInterface();
-		this.board=null;
 		this.bk=cb.bonusKing();
 		this.citta=new ArrayList<>();
 		this.giocatori=new ArrayList<>();
@@ -82,8 +82,8 @@ public class Avvio {
 		cl.print("", "-Creo i type");
 
 		//----------board creazione----------
-		board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, bk);//creata la board
-		cl.print("", "-Creo la board");
+	//	board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, bk);//creata la board
+		//cl.print("", "-Creo la board");
 
 		//----------bonus----------
 		bonusList=cb.bonusList(board);//recupero la lista con tutti i bonus
@@ -181,6 +181,7 @@ public class Avvio {
 			board.setCouncillor(consiglieri.get(i));//aggiungo i consiglieri avanzati alla board
 		}
 		board.setNobilityTrack(nT);//aggiungo il nobility track alla board
+		board.setBonusKing(bk);
 	}
 
 	/**

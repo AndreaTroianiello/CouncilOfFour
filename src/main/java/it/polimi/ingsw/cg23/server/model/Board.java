@@ -31,7 +31,7 @@ public class Board extends Observable<Change> implements Serializable{
 	private final List<Player> players;
 	private State status;
 	private final Market market;
-	private final BonusKing bonusKing;
+	private BonusKing bonusKing;
 	
 	/**
 	 * The constructor of the board.
@@ -62,7 +62,10 @@ public class Board extends Observable<Change> implements Serializable{
 	public BonusKing getBonusKing() {
 		return bonusKing;
 	}
-
+	
+	public void setBonusKing(BonusKing bk){
+		this.bonusKing=bk;
+	}
 
 	/**
 	 * Returns the deck of politic cards.

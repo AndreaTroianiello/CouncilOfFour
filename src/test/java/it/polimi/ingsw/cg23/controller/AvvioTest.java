@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +16,7 @@ public class AvvioTest {
 	
 	@Before
 	public void etUp(){
-		avv=new Avvio("map1.xml");
+		avv=new Avvio("map1.xml", new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null));
 	}
 	
 	@Test

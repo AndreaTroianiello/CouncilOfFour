@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ import it.polimi.ingsw.cg23.gui.panel.EastPanel;
 import it.polimi.ingsw.cg23.gui.panel.MapPanel;
 import it.polimi.ingsw.cg23.gui.panel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
+import it.polimi.ingsw.cg23.server.model.Board;
 
 /**
  * create the map
@@ -57,7 +59,8 @@ public class FrameMap extends JFrame {
 		setContentPane(contentPane);
 
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
-		s=new Avvio("map1.xml");
+		Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
+		s=new Avvio("map1.xml", b);
 		s.startPartita();
 
 		grid();
