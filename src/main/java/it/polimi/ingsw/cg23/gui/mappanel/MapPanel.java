@@ -57,7 +57,7 @@ public class MapPanel extends JPanel {
 
 		int j=0;
 		for(int i=0; i<reg.size()*2; i++){//scorre le colonne
-			for(int k=0; k<5; k++){
+			for(int k=0; k<5; k++){//scorre le righe
 
 				JTextArea button1 = new JTextArea();
 				if((i+k)%2==0){//posiziona le citta' a scacchiera
@@ -81,7 +81,7 @@ public class MapPanel extends JPanel {
 
 				layout.setConstraints(button1, lim);
 				panel.add(button1);//aggiunta bottone al layer panel
-				
+
 				button1.addMouseListener(new MouseListener() {
 					@Override
 					public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -109,7 +109,7 @@ public class MapPanel extends JPanel {
 
 		return panel;
 	}
-	
+
 	private void addBackground(Component c, int i){
 		if(i==0||i==1)
 			c.setBackground(new Color(204, 255, 255));

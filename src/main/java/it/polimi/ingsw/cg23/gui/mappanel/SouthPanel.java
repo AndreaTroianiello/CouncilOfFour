@@ -134,7 +134,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(politics);
 
 		//----------------bonus panel------------
-		JPanel bonusPanel=new BonusPanel().createBonusPanel(b);
+		JPanel bonusPanel=new BonusPanel().createBonusPanel(b, loggerArea);
 		bonusPanel.setName("bonus");
 		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 2;//posizione componenti nella griglia

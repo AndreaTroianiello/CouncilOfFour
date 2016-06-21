@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,11 +13,14 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.Type;
 /**
  * create the bonus panel
  * @author viga94_
@@ -35,6 +40,7 @@ public class BonusPanel extends JPanel {
 	 */
 	public BonusPanel() {
 		this.cp=new CouncilPanel();
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -44,20 +50,21 @@ public class BonusPanel extends JPanel {
 	/**
 	 * create the bonus panel
 	 * @param b, the board
+	 * @param loggerArea, the area to write on
 	 * @return the panel
 	 */
-	public JPanel createBonusPanel(Board b){
+	public JPanel createBonusPanel(Board b, JTextArea loggerArea){
 		JPanel bonusPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		bonusPanel.setLayout(layout);
+		bonusPanel.setBackground(new Color(245, 124, 255));
 
 		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------------consiglieri del re------------
 		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
-		kingCouncillors.setBackground(new Color(245, 124, 125));
 		kingCouncillors.setName("consiglieri re");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -65,7 +72,6 @@ public class BonusPanel extends JPanel {
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=b.getTypes().size()-1;
-		
 		layout.setConstraints(kingCouncillors, lim);
 		bonusPanel.add(kingCouncillors);
 
@@ -86,6 +92,7 @@ public class BonusPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(kingBonus, lim);
 		bonusPanel.add(kingBonus);
+		mouseOverKing(kingBonus, loggerArea, b);
 
 		//----------------bonus region------------
 		for(int k=0; k<b.getRegions().size(); k++){
@@ -105,6 +112,7 @@ public class BonusPanel extends JPanel {
 			lim.gridwidth=1;
 			layout.setConstraints(regionBonus, lim);
 			bonusPanel.add(regionBonus);
+			mouseOverRegion(regionBonus, loggerArea, b.getRegions().get(k));
 		}
 
 		//----------------city type bonus------------
@@ -128,10 +136,71 @@ public class BonusPanel extends JPanel {
 				lim.gridwidth=1;
 				layout.setConstraints(cityTypeBonus, lim);
 				bonusPanel.add(cityTypeBonus);
+				mouseOverType(cityTypeBonus, loggerArea, b.getTypes().get(i));
 			}
 		}
 
 		return bonusPanel;
+	}
+	
+	private void mouseOverKing(JLabel kingBonus, JTextArea loggerArea, Board b){
+		kingBonus.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(b.getBonusKing().getCurrentBonusKing()==0)
+					loggerArea.append("\nBonus king finiti!");
+				else
+					loggerArea.append("\nBonus king disponibile: "+b.getBonusKing().getCurrentBonusKing()+"VictoryPoints");
+			}
+		});
+	}
+	
+	private void mouseOverRegion(JLabel regionBonus, JTextArea loggerArea, Region reg){
+		regionBonus.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!reg.isBonusAvailable())
+					loggerArea.append("\nBonus "+reg.getName()+" finito!");
+				else
+					loggerArea.append("\nBonus "+reg.getName()+" disponibile: "+reg.getBonus().getName());
+			}
+		});
+	}
+	
+	private void mouseOverType(JLabel typeBonus, JTextArea loggerArea, Type tipo){
+		typeBonus.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!tipo.isBonusAvailable())
+					loggerArea.append("\nBonus "+tipo.getName()+" finito!");
+				else
+					loggerArea.append("\nBonus "+tipo.getName()+" disponibile: "+tipo.getBonus().getName());
+			}
+		});
 	}
 	
 	/**
