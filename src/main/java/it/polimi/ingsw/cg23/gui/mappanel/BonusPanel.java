@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.panel;
+package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -16,14 +16,18 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.Board;
-
+/**
+ * create the bonus panel
+ * @author viga94_
+ *
+ */
 public class BonusPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7246573558727825743L;
-	private Logger logger;
+	private transient Logger logger;
 	private CouncilPanel cp;
 
 	/**
@@ -37,31 +41,36 @@ public class BonusPanel extends JPanel {
 
 	}
 
+	/**
+	 * create the bonus panel
+	 * @param b, the board
+	 * @return the panel
+	 */
 	public JPanel createBonusPanel(Board b){
 		JPanel bonusPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		bonusPanel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill = GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------------consiglieri del re------------
 		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
 		kingCouncillors.setBackground(new Color(245, 124, 125));
 		kingCouncillors.setName("consiglieri re");
-		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=b.getTypes().size();
+		lim.gridwidth=b.getTypes().size()-1;
+		
 		layout.setConstraints(kingCouncillors, lim);
 		bonusPanel.add(kingCouncillors);
 
 		//----------------bonus king------------
-		JLabel kingBonus = null;
+		JLabel kingBonus;
 		if(b.getBonusKing().getCurrentBonusKing()!=0){
 			BufferedImage img=getImg("bonusKing/"+b.getBonusKing().getCurrentBonusKing());
 			kingBonus=new JLabel(new ImageIcon(img));
@@ -69,7 +78,6 @@ public class BonusPanel extends JPanel {
 			kingBonus=new JLabel("Bonus king finiti");
 		}
 		kingBonus.setName("bonus king");
-		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx=0;//espansione in verticale e orizzontale
@@ -89,7 +97,6 @@ public class BonusPanel extends JPanel {
 				regionBonus=new JLabel("Bonus finiti");
 
 			regionBonus.setName("bonus type "+b.getRegions().get(k).getName());
-			lim.fill = GridBagConstraints.BOTH;
 			lim.gridx = k+1;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
@@ -104,6 +111,7 @@ public class BonusPanel extends JPanel {
 		for(int i=0; i<b.getTypes().size(); i++){
 			JLabel cityTypeBonus;
 			if(("Purple").equals(b.getTypes().get(i).getName())){
+				lim.anchor = GridBagConstraints.CENTER;
 			}else{
 				if(b.getTypes().get(i).isBonusAvailable()){
 					BufferedImage img=getImg("bonusType/"+b.getTypes().get(i).getName());
@@ -112,22 +120,25 @@ public class BonusPanel extends JPanel {
 					cityTypeBonus=new JLabel("Bonus finiti");
 
 				cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
-				lim.fill = GridBagConstraints.BOTH;
 				lim.gridx = i;//posizione componenti nella griglia
 				lim.gridy = 2;
-				lim.weightx=0;//espansione in verticale e orizzontale
-				lim.weighty=0;
+				lim.weightx=1;//espansione in verticale e orizzontale
+				lim.weighty=1;
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
 				layout.setConstraints(cityTypeBonus, lim);
 				bonusPanel.add(cityTypeBonus);
-
 			}
 		}
 
 		return bonusPanel;
 	}
-
+	
+	/**
+	 * load the image
+	 * @param name, the name of the image 
+	 * @return the image
+	 */
 	private BufferedImage getImg(String name){//recupero le immagini
 		BufferedImage image=null;
 		String path="src/main/resources/images/"+name+".png";//percorso dell'immagine

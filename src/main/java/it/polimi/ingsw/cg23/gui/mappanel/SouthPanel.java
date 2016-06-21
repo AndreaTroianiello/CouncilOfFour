@@ -1,7 +1,8 @@
-package it.polimi.ingsw.cg23.gui.panel;
+package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
@@ -31,12 +32,14 @@ public class SouthPanel extends JPanel {
 	private static final long serialVersionUID = 1220509934759316582L;
 	private CostructionCardPanel ccp;
 	private CouncilPanel cp;
-	private ColorManager cm;
+	private transient ColorManager cm;
+	private NobilityTrackPanel ntp;
 
 	/**
 	 * Create the panel.
 	 */
 	public SouthPanel() {
+		this.ntp=new NobilityTrackPanel();
 		this.ccp=new CostructionCardPanel();
 		this.cp=new CouncilPanel();
 		this.cm=new ColorManager();
@@ -45,7 +48,8 @@ public class SouthPanel extends JPanel {
 
 	/**
 	 * create the south panel
-	 * @param s, the avvio
+	 * @param b, the board
+	 * @param loggerArea, the area to write on
 	 * @return a jpanel with the south panel created
 	 */
 	public JPanel setSouthPanel(Board b, JTextArea loggerArea){
@@ -75,6 +79,8 @@ public class SouthPanel extends JPanel {
 		}
 
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge i consiglieri
+			
+			//----------consiglieri regione----------
 			JPanel balcone=cp.balcone(reg.get(i));
 			addBackground(balcone, i);
 			balcone.setName("balcone "+reg.get(i).getName());
@@ -89,23 +95,22 @@ public class SouthPanel extends JPanel {
 		}
 
 		//----------------nobility track------------
-		JPanel l4=new NobilityTrackPanel().createNobility(b.getNobilityTrack().getNobilityBoxes().size());
-		l4.setName("Nobility panel");
-		JScrollPane c8 = new JScrollPane(l4);
-		c8.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		c8.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		lim.fill = GridBagConstraints.BOTH;
+		JPanel panelNobility=ntp.createNobility(b.getNobilityTrack(), loggerArea);
+		panelNobility.setName("Nobility panel");
+		JScrollPane scrollNobility=new  JScrollPane(panelNobility);
+		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollNobility.setPreferredSize(new Dimension(WIDTH, 75));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
+		layout.setConstraints(scrollNobility, lim);
+		southPanel.add(scrollNobility);
 
-		layout.setConstraints(c8, lim);
-		southPanel.add(c8);
-
-		//----------------carte politiche------------
+		//----------carte politiche------------
 		Player p=new Player("io", new NobilityTrack(20));//PROVA->provvisorio
 		p.getHand().add(new PoliticCard(null, true));//PROVA->provvisorio
 		p.getHand().add(new PoliticCard(cm.getColor("Blue"), false));//PROVA->provvisorio
@@ -121,7 +126,7 @@ public class SouthPanel extends JPanel {
 		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
-		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
@@ -131,9 +136,10 @@ public class SouthPanel extends JPanel {
 		//----------------bonus panel------------
 		JPanel bonusPanel=new BonusPanel().createBonusPanel(b);
 		bonusPanel.setName("bonus");
+		lim.fill = GridBagConstraints.BOTH;
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 3;
-		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
