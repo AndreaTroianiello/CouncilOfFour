@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.panel;
+package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -65,7 +65,7 @@ public class CouncilPanel extends JPanel {
 			label1.setBackground(councillors.get(i).getColor());
 			label1.setName("consigliere "+i);
 			label1.setOpaque(true);
-			label1.setPreferredSize(new Dimension(50, 20));
+			label1.setPreferredSize(new Dimension(60, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale

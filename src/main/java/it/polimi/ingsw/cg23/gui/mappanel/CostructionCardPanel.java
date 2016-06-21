@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.panel;
+package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -61,12 +61,12 @@ public class CostructionCardPanel extends JPanel {
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=2;
 		layout.setConstraints(label0, lim);
 		panel.add(label0);//aggiunta della label al panel
 
 		
-		JLabel label1 = new JLabel();
+		/*JLabel label1 = new JLabel();
 		label1.setText("Bonus: "+reg.getBonus().getNumber());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -76,7 +76,7 @@ public class CostructionCardPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(label1, lim);
 		panel.add(label1);//aggiunta della label al panel
-		
+		*/
 		//carte costruzione regione
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
 		
@@ -91,6 +91,7 @@ public class CostructionCardPanel extends JPanel {
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
+			lim.ipadx=10;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(label, lim);

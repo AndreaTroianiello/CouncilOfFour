@@ -19,9 +19,9 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
-import it.polimi.ingsw.cg23.gui.panel.EastPanel;
-import it.polimi.ingsw.cg23.gui.panel.MapPanel;
-import it.polimi.ingsw.cg23.gui.panel.SouthPanel;
+import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
+import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
+import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
