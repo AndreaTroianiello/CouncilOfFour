@@ -35,7 +35,7 @@ public class PoliticCardPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7548143133078585999L;
-	private Logger logger;
+	private transient Logger logger;
 
 	/**
 	 * Create the panel.

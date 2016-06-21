@@ -1,12 +1,8 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -14,7 +10,6 @@ import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.utility.ColorManager;
 import it.polimi.ingsw.cg23.utility.MapSetting;
 
 /**
@@ -23,7 +18,6 @@ import it.polimi.ingsw.cg23.utility.MapSetting;
  *
  */
 public class MapPanel extends JPanel {
-	private transient ColorManager cm;
 	private transient MapSetting ms;
 
 	/**
@@ -35,7 +29,6 @@ public class MapPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public MapPanel() {
-		this.cm=new ColorManager();
 		this.ms=new MapSetting();
 	}
 
@@ -44,7 +37,7 @@ public class MapPanel extends JPanel {
 	 * @param reg, the regions list
 	 * @return a panel with the map
 	 */
-	public JPanel createMap(List<Region> reg){
+	public JPanel createMap(List<Region> reg, JTextArea loggerArea){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
@@ -59,19 +52,13 @@ public class MapPanel extends JPanel {
 		for(int i=0; i<reg.size()*2; i++){//scorre le colonne
 			for(int k=0; k<5; k++){//scorre le righe
 
-				JTextArea button1 = new JTextArea();
+				JPanel citta = new JPanel();
 				if((i+k)%2==0){//posiziona le citta' a scacchiera
-					button1.setText(city.get(j).getName());
-					button1.setBackground(cm.getColor(city.get(j).getType()));
-					button1.append("\n"+ms.getNeighbourID(city.get(j)));
-					button1.append("\n"+ms.cityBonus(city.get(j)));
+					citta=new CityPanel().createCity(city.get(j), loggerArea);
 					j++;
-				}else{
-					button1.setText("");
-					addBackground(button1, i);
 				}
 
-				button1.setPreferredSize(new Dimension(50, 50));
+				citta.setBackground(new Color(153,255,153));
 				lim.gridx = i;//posizione componenti nella griglia
 				lim.gridy = k;
 				lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -79,43 +66,12 @@ public class MapPanel extends JPanel {
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
 
-				layout.setConstraints(button1, lim);
-				panel.add(button1);//aggiunta bottone al layer panel
-
-				button1.addMouseListener(new MouseListener() {
-					@Override
-					public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-					@Override
-					public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-					@Override
-					public void mouseExited(MouseEvent e) {
-						if("".equals(button1.getText())){
-							button1.setText("");
-						}else
-							button1.setSize(new Dimension((int)button1.getSize().getWidth()/2,(int)button1.getSize().getHeight()/2));
-					}
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						if("".equals(button1.getText())){
-							button1.setText("");
-						}else
-							button1.setSize(new Dimension((int)button1.getSize().getWidth()*2,(int)button1.getSize().getHeight()*2));
-					}
-					@Override
-					public void mouseClicked(MouseEvent e) {/**empty, not erasable*/}
-				});
+				layout.setConstraints(citta, lim);
+				panel.add(citta);//aggiunta bottone al layer panel
+				
 			}
 		}
 
 		return panel;
-	}
-
-	private void addBackground(Component c, int i){
-		if(i==0||i==1)
-			c.setBackground(new Color(204, 255, 255));
-		if(i==2||i==3)
-			c.setBackground(new Color(204, 255, 204));
-		if(i==4||i==5)
-			c.setBackground(new Color(188, 144, 101));
 	}
 }

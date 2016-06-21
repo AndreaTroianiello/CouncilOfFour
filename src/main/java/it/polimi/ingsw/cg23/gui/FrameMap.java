@@ -71,10 +71,10 @@ public class FrameMap extends JFrame {
 			logger.error("Errore nel caricare il file xml: "+name, e);
 		}
 		s.startPartita();
-		*/
+		 */
 		grid();
 	}
-	
+
 	/**
 	 * create the main panel (map + south + logger)
 	 */
@@ -83,24 +83,11 @@ public class FrameMap extends JFrame {
 		contentPane.setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints();
 
-		//----------pannello nord (mappa)----------
-		JPanel mapPanel=new MapPanel().createMap(model.getModel().getRegions());
-		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
-		lim.gridheight=2;//grandezza del riquadro
-		lim.gridwidth=3;
-		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
-		lim.anchor = GridBagConstraints.NORTHWEST;//posizione componenti nei riquadri
-		layout.setConstraints(mapPanel, lim);
-		contentPane.add(mapPanel);
-
 		//----------text area (logger)----------
 		loggerArea=new JTextArea();
 		write=new JTextField();
 		JPanel panel=new EastPanel().loggerPanel(loggerArea, write);
-		
+
 		Component scrollLogger = new JScrollPane(panel);
 		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
@@ -113,6 +100,19 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 		layout.setConstraints(scrollLogger, lim); //Associazione
 		contentPane.add(scrollLogger); //Inserimento
+
+		//----------pannello nord (mappa)----------
+		JPanel mapPanel=new MapPanel().createMap(model.getModel().getRegions(), loggerArea);
+		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridy = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=2;//grandezza del riquadro
+		lim.gridwidth=3;
+		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.NORTHWEST;//posizione componenti nei riquadri
+		layout.setConstraints(mapPanel, lim);
+		contentPane.add(mapPanel);
 
 		//----------pannello sud (informazioni)----------
 		JPanel southPanel=new SouthPanel().setSouthPanel(model.getModel(), loggerArea);
@@ -127,6 +127,7 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(southPanel, lim); //Associazione
 		contentPane.add(southPanel); //Inserimento
+
 	}
 
 
@@ -137,7 +138,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map2.xml",model.getModel()).startPartita();
+					new Avvio("map7.xml",model.getModel()).startPartita();
 					FrameMap frame = new FrameMap(model);
 					frame.setVisible(true);
 				} catch (Exception e) {

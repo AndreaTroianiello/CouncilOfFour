@@ -101,7 +101,6 @@ public class CouncilPanel extends JPanel {
 		panel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label0 = new JLabel("etichetta consiglieri");
@@ -110,6 +109,7 @@ public class CouncilPanel extends JPanel {
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=8;
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(label0, lim);
 		panel.add(label0);//aggiunta della label al panel
 		
@@ -125,6 +125,7 @@ public class CouncilPanel extends JPanel {
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
+			lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 			layout.setConstraints(label1, lim);
 			panel.add(label1);//aggiunta della label al panel
 			
@@ -134,6 +135,7 @@ public class CouncilPanel extends JPanel {
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
+			lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 			layout.setConstraints(label2, lim);
 			panel.add(label2);//aggiunta della label al panel
 		}

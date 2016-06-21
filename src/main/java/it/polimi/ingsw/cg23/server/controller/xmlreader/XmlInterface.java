@@ -27,7 +27,7 @@ public class XmlInterface {
 	 */
 	public XmlInterface(){
 		//configurazione logger
-		logger = Logger.getLogger(XmlInterface.class);
+		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 
 		this.cittaXml=new ReadCittaXml();
@@ -100,7 +100,7 @@ public class XmlInterface {
 	 */
 	public String[][] cittaXml(String endPath) throws XmlException{
 
-		String[][] cityInfo = null;
+		String[][] cityInfo;
 		cityInfo=cittaXml.readFileXml(endPath);
 		
 		/* array cityInfo prototype returned

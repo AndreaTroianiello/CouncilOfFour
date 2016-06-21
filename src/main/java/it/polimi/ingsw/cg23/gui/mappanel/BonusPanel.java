@@ -40,11 +40,10 @@ public class BonusPanel extends JPanel {
 	 */
 	public BonusPanel() {
 		this.cp=new CouncilPanel();
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-
 	}
 
 	/**
@@ -142,7 +141,7 @@ public class BonusPanel extends JPanel {
 
 		return bonusPanel;
 	}
-	
+
 	private void mouseOverKing(JLabel kingBonus, JTextArea loggerArea, Board b){
 		kingBonus.addMouseListener(new MouseListener() {
 			@Override
@@ -162,7 +161,7 @@ public class BonusPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	private void mouseOverRegion(JLabel regionBonus, JTextArea loggerArea, Region reg){
 		regionBonus.addMouseListener(new MouseListener() {
 			@Override
@@ -182,7 +181,7 @@ public class BonusPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	private void mouseOverType(JLabel typeBonus, JTextArea loggerArea, Type tipo){
 		typeBonus.addMouseListener(new MouseListener() {
 			@Override
@@ -202,7 +201,7 @@ public class BonusPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	/**
 	 * load the image
 	 * @param name, the name of the image 
