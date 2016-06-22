@@ -1,10 +1,8 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -85,6 +83,9 @@ public class MapPanel extends JPanel {
 				if((i+k)%2==0){//posiziona le citta' a scacchiera
 					citta=new CityPanel().createCity(city.get(j), loggerArea);//recupero il pannello con la citta'
 					j++;
+					citta.setOpaque(false);
+				}else{
+					citta.setOpaque(true);
 				}
 
 				lim.gridx = i;//posizione componenti nella griglia
@@ -93,7 +94,7 @@ public class MapPanel extends JPanel {
 				lim.weighty = 1;
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
-				citta.setOpaque(false);
+				
 				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
 				label.add(citta);//aggiunta il panel alla label
 
@@ -108,14 +109,14 @@ public class MapPanel extends JPanel {
 
 	private BufferedImage getImg(){//recupero le immagini
 		BufferedImage image=null;
-		String path="src/main/resources/images/region 1000.jpg";//percorso dell'immagine
+		String path="src/main/resources/images/region 1200.jpg";//percorso dell'immagine
 
 		try {
 			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
 			logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
 		}
-
+		
 		return image;
 	}
 }

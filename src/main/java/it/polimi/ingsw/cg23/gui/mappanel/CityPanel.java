@@ -1,6 +1,8 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
@@ -14,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.Popup;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -54,18 +55,20 @@ public class CityPanel extends JPanel {
 		panel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints();
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		
 
 		//----------nome citta'----------
-		JLabel nameLabel=new JLabel(c.getName());
+		JLabel nameLabel=new JLabel(c.getId()+"");
+		nameLabel.setFont(new Font("Calibre", Font.ITALIC, 60));
+		nameLabel.setForeground(new Color(255,255,255));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-
+		lim.gridwidth=0;
+		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
 
@@ -73,12 +76,13 @@ public class CityPanel extends JPanel {
 		BufferedImage img=getImg(c.getType());
 		JLabel label=new JLabel(new ImageIcon(img));
 		label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
-		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 1;
+		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
+		lim.gridx =1;//posizione componenti nella griglia
+		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=0;
 
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel

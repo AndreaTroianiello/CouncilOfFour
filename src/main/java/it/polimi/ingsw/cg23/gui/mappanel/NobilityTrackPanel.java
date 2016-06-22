@@ -88,6 +88,7 @@ public class NobilityTrackPanel extends JPanel {
 					writeArea(loggerArea, nt, k);}
 			});
 		}
+
 		return panel;
 	}
 

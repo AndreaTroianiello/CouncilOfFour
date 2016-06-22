@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,14 +16,12 @@ import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.model.Board;
-import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
  * create the map
@@ -61,7 +58,7 @@ public class FrameMap extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
-		//setResizable(false);
+		setResizable(false);
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
 		/*Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		String name="map6.xml";
@@ -129,8 +126,7 @@ public class FrameMap extends JFrame {
 		layout.setConstraints(southPanel, lim); //Associazione
 		contentPane.add(southPanel); //Inserimento
 		
-		System.out.println(getHeight()+"+"+getWidth());
-		pack();
+		pack();//necessario
 	}
 
 
@@ -141,7 +137,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map7.xml",model.getModel()).startPartita();
+					new Avvio("map5.xml",model.getModel()).startPartita();
 					FrameMap frame = new FrameMap(model);
 					frame.setVisible(true);
 				} catch (Exception e) {

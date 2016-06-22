@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -45,7 +48,7 @@ public class CostructionCardPanel extends JPanel {
 	 * @param reg, the region
 	 * @return the panel with the showed costruction card
 	 */
-	public JPanel getShowCostructionCard(Region reg){
+	public JPanel getShowCostructionCard(Region reg, JTextArea loggerArea){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
@@ -83,6 +86,21 @@ public class CostructionCardPanel extends JPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(costructionCard, lim);
+			final int k=i;
+			costructionCard.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					writeArea(loggerArea, bpt.get(k));}
+			});
+		
 			panel.add(costructionCard);//aggiunta della label al panel
 		}
 
@@ -119,4 +137,21 @@ public class CostructionCardPanel extends JPanel {
 		}
 		return nome.toUpperCase();
 	}
+	
+	private void writeArea(JTextArea loggerArea, BusinessPermitTile bpt){
+		loggerArea.append("\nCarta costruzione "+bpt.getZone());
+		loggerArea.append("\n  Citta': ");
+		String id = "";
+		for(int i=0; i<bpt.getCitiesId().size(); i++){
+			id+=bpt.getCitiesId().get(i)+", ";
+		}
+		loggerArea.append(id.substring(0, id.length()-2));
+		loggerArea.append("\n  Bonus: ");
+		String bonus= "";
+		for(int i=0; i<bpt.getBonusTile().size(); i++){
+			bonus+=bpt.getBonusTile().get(i).getName()+", ";
+		}
+		loggerArea.append(bonus.substring(0, bonus.length()-2));
+	}
 }
+

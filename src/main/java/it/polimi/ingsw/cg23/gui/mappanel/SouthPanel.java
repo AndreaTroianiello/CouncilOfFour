@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -64,7 +65,7 @@ public class SouthPanel extends JPanel {
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
 
 			//----------carte permesso di costruzione----------
-			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i));
+			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i), loggerArea);
 			costruzione.setName("costruzione "+reg.get(i).getName());
 			addBackground(costruzione, i);
 			lim.gridx = i;//posizione componenti nella griglia
@@ -78,7 +79,7 @@ public class SouthPanel extends JPanel {
 		}
 
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge i consiglieri
-			
+
 			//----------consiglieri regione----------
 			JPanel balcone=cp.balcone(reg.get(i));
 			addBackground(balcone, i);
@@ -100,15 +101,30 @@ public class SouthPanel extends JPanel {
 		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		//scrollNobility.setPreferredSize(new Dimension(WIDTH, 75));
+		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=3;
+		lim.gridwidth=2;
 		layout.setConstraints(scrollNobility, lim);
 		southPanel.add(scrollNobility);
+
+		//----------------punteggi------------
+		JButton button=new JButton();
+		button.setText("bottone vuoto");
+		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 2;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(button, lim);
+		southPanel.add(button);
 
 		//----------carte politiche------------
 		Player p=new Player("io", new NobilityTrack(20));//PROVA->provvisorio
