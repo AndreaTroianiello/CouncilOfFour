@@ -54,15 +54,17 @@ public class NobilityTrackPanel extends JPanel {
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
-
+		
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){
-			final int k=i;
+			
 			BufferedImage img=nobilityImg(i);
 			JLabel boxLabel = new JLabel(new ImageIcon(img));
+			boxLabel.setName("box "+i);
+			boxLabel.setToolTipText("Box Nobility Track "+i);
 			boxLabel.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
@@ -70,10 +72,11 @@ public class NobilityTrackPanel extends JPanel {
 			lim.gridwidth=1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=1;
-
+			
 			layout.setConstraints(boxLabel, lim);
 			panel.add(boxLabel);//aggiunta della label al panel
-
+			
+			final int k=i;
 			boxLabel.addMouseListener(new MouseListener() {
 				@Override
 				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -120,4 +123,7 @@ public class NobilityTrackPanel extends JPanel {
 		return image;
 	}
 
+	public void update(){
+		this.repaint();
+	}
 }

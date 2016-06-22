@@ -18,14 +18,17 @@ public class ButtonPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1351973823788889664L;
-
+	private MainActionPanel map;
+	private SecondaryActionPanel sap;
+	private InfoPanel ip;
+	
 	/**
 	 * Create the panel.
 	 */
 	public ButtonPanel() {
-		/**
-		 * empty costructor
-		 */
+		this.map=new MainActionPanel();
+		this.sap=new SecondaryActionPanel();
+		this.ip=new InfoPanel();
 	}
 	
 	/**
@@ -44,7 +47,7 @@ public class ButtonPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------azioni principali----------
-		JPanel mainActionPanel=new MainActionPanel().mainAction(textArea);//richiamo il pannello azioni principali
+		JPanel mainActionPanel=map.mainAction(textArea);//richiamo il pannello azioni principali
 		mainActionPanel.setName("label azioni principali");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -54,7 +57,7 @@ public class ButtonPanel extends JPanel {
 		panel.add(mainActionPanel);
 
 		//----------azioni secondarie----------
-		JPanel secActionPanel=new SecondaryActionPanel().secondAction(textArea);//richiamo il pannello azioni secondarie
+		JPanel secActionPanel=sap.secondAction(textArea);//richiamo il pannello azioni secondarie
 		mainActionPanel.setName("label azioni secondarie");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -64,7 +67,7 @@ public class ButtonPanel extends JPanel {
 		panel.add(secActionPanel);
 
 		//----------info panel----------
-		JPanel infoPanel=new InfoPanel().infoAction(textArea, write);//richiamo il pannello info
+		JPanel infoPanel=ip.infoAction(textArea, write);//richiamo il pannello info
 		infoPanel.setName("label info panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -74,5 +77,12 @@ public class ButtonPanel extends JPanel {
 		panel.add(infoPanel);
 
 		return panel;
+	}
+	
+	public void update(){
+		map.update();
+		sap.update();
+		ip.update();
+		this.repaint();
 	}
 }

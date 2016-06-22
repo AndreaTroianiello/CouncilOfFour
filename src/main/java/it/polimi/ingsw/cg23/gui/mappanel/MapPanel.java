@@ -27,19 +27,20 @@ import it.polimi.ingsw.cg23.utility.MapSetting;
  *
  */
 public class MapPanel extends JPanel {
-	private transient MapSetting ms;
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7690616717551129511L;
 	private transient Logger logger;
+	private transient MapSetting ms;
+	private CityPanel cp;
 
 	/**
 	 * Create the panel.
 	 */
 	public MapPanel() {
 		this.ms=new MapSetting();
+		this.cp=new CityPanel();
 
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
@@ -62,7 +63,7 @@ public class MapPanel extends JPanel {
 
 		BufferedImage img=getImg();//immagine di sfondo
 		//Image myim=img.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT);
-		
+
 		JLabel label=new JLabel(new ImageIcon(img));//etichetta con l'immagine di sfondo
 		label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));//dimensione etichetta immagine di sfondo
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -82,11 +83,12 @@ public class MapPanel extends JPanel {
 
 				JPanel citta = new JPanel();//pannello con le citta'
 				if((i+k)%2==0){//posiziona le citta' a scacchiera
-					citta=new CityPanel().createCity(city.get(j), loggerArea);//recupero il pannello con la citta'
+					citta=cp.createCity(city.get(j), loggerArea);//recupero il pannello con la citta'
+					citta.setToolTipText(city.get(j).getName());
 					j++;
 					citta.setOpaque(false);
 				}else{
-					citta.setOpaque(true);
+					citta.setOpaque(false);
 				}
 
 				lim.gridx = i;//posizione componenti nella griglia
@@ -119,5 +121,10 @@ public class MapPanel extends JPanel {
 		}
 
 		return image;
+	}
+
+	public void update(){
+		cp.update();
+		this.repaint();
 	}
 }

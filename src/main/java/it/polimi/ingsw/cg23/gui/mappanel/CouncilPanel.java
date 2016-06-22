@@ -64,6 +64,7 @@ public class CouncilPanel extends JPanel {
 			JLabel label1 = new JLabel();
 			label1.setBackground(councillors.get(i).getColor());
 			label1.setName("consigliere "+i);
+			label1.setToolTipText("Consigliere "+reg.getName()+" numero "+(i+1));
 			label1.setOpaque(true);
 			label1.setPreferredSize(new Dimension(60, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
@@ -119,6 +120,7 @@ public class CouncilPanel extends JPanel {
 			JLabel label1 = new JLabel();
 			label1.setBackground(councillors.get(i).getColor());
 			label1.setName("consigliere "+i);
+			label1.setToolTipText("Consigliere king numero "+(i+1));
 			label1.setOpaque(true);
 			label1.setPreferredSize(new Dimension(60, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
@@ -140,6 +142,11 @@ public class CouncilPanel extends JPanel {
 			panel.add(label2);//aggiunta della label al panel
 		}
 		panel.setOpaque(false);
+		
 		return panel;
+	}
+	
+	public void update(){
+		this.repaint();
 	}
 }

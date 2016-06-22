@@ -50,6 +50,7 @@ public class MainActionPanel extends JPanel {
 
 		JLabel label=new JLabel("Main action");
 		label.setName("azioni principali");
+		label.setToolTipText(label.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
@@ -60,6 +61,7 @@ public class MainActionPanel extends JPanel {
 
 		JButton button1 = new JButton("Action 1");
 		button1.setName("Azione principale 1");
+		button1.setToolTipText(button1.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
@@ -77,6 +79,7 @@ public class MainActionPanel extends JPanel {
 
 		JButton button2 = new JButton("Action 2");
 		button2.setName("Azione principale 2");
+		button2.setToolTipText(button2.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
@@ -94,6 +97,7 @@ public class MainActionPanel extends JPanel {
 
 		JButton button3 = new JButton("Action 3");
 		button3.setName("Azione principale 3");
+		button3.setToolTipText(button3.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.gridheight=1;//grandezza del riquadro
@@ -111,6 +115,7 @@ public class MainActionPanel extends JPanel {
 
 		JButton button4 = new JButton("Action 4");
 		button4.setName("Azione principale 4");
+		button4.setToolTipText(button4.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.gridheight=1;//grandezza del riquadro
@@ -128,5 +133,8 @@ public class MainActionPanel extends JPanel {
 
 		return panel;
 	}
-
+	
+	public void update(){
+		this.repaint();
+	}
 }

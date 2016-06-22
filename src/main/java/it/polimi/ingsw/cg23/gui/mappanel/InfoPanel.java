@@ -52,6 +52,7 @@ public class InfoPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Info");
+		label.setName("info label");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
@@ -63,6 +64,7 @@ public class InfoPanel extends JPanel {
 
 		JButton button1 = new JButton("Exit");
 		button1.setName("Uscita");
+		button1.setToolTipText("Exit from the game");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -90,6 +92,7 @@ public class InfoPanel extends JPanel {
 
 		JButton button2 = new JButton("Clear");
 		button2.setName("Clear");
+		button1.setToolTipText("Cancella la log area");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -110,6 +113,7 @@ public class InfoPanel extends JPanel {
 
 		JButton button3=new JButton("Invia");
 		button3.setName("Invia");
+		button3.setToolTipText("Invia il testo scritto");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
@@ -132,6 +136,7 @@ public class InfoPanel extends JPanel {
 		
 		JButton button4 = new JButton("End Turn");
 		button4.setName("Fineturno");
+		button4.setToolTipText("Finisci il turno");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -148,5 +153,9 @@ public class InfoPanel extends JPanel {
 		});
 		
 		return panel;
+	}
+	
+	public void update(){
+		this.repaint();
 	}
 }

@@ -42,6 +42,9 @@ public class FrameMap extends JFrame {
 	//private ClientController controller;
 	private static Logger logger;
 
+	private EastPanel ep;
+	private MapPanel mp;
+	private SouthPanel sp;
 	/**
 	 * Create the frame.
 	 * @param controller
@@ -50,11 +53,17 @@ public class FrameMap extends JFrame {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+		
+		//pannel
+		ep=new EastPanel();
+		mp=new MapPanel();
+		sp=new SouthPanel();
+		
 		this.model=model;
 		//this.controller=controller;
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1460, 900);
+		setBounds(10, 10, 1460, 900);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
@@ -70,6 +79,7 @@ public class FrameMap extends JFrame {
 		s.startPartita();
 		 */
 		grid();
+		update();
 	}
 
 	/**
@@ -83,7 +93,7 @@ public class FrameMap extends JFrame {
 		//----------text area (logger)----------
 		loggerArea=new JTextArea();
 		write=new JTextField();
-		JPanel panel=new EastPanel().loggerPanel(loggerArea, write);
+		JPanel panel=ep.loggerPanel(loggerArea, write);
 
 		Component scrollLogger = new JScrollPane(panel);
 		scrollLogger.setName("scrollPane text area logger");
@@ -99,7 +109,7 @@ public class FrameMap extends JFrame {
 		contentPane.add(scrollLogger); //Inserimento
 
 		//----------pannello nord (mappa)----------
-		JPanel mapPanel=new MapPanel().createMap(model.getModel().getRegions(), loggerArea);
+		JPanel mapPanel=mp.createMap(model.getModel().getRegions(), loggerArea);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -113,7 +123,7 @@ public class FrameMap extends JFrame {
 		
 		
 		//----------pannello sud (informazioni)----------
-		JPanel southPanel=new SouthPanel().setSouthPanel(model.getModel(), loggerArea);
+		JPanel southPanel=sp.setSouthPanel(model.getModel(), loggerArea);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -147,4 +157,10 @@ public class FrameMap extends JFrame {
 		});
 	}
 
+	public void update(){
+		ep.update();
+		mp.update();
+		sp.update();
+		this.repaint();
+	}
 }

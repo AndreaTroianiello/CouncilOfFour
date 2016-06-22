@@ -25,13 +25,13 @@ public class EastPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -7843525022282542659L;
+	private ButtonPanel bp;
+	
 	/**
 	 * Create the panel.
 	 */
 	public EastPanel() {
-		/**
-		 * empty costructor
-		 */
+		this.bp=new ButtonPanel();
 	}
 
 	/**
@@ -69,6 +69,7 @@ public class EastPanel extends JPanel {
 		write.setEditable(true);
 		write.setFont(new Font("Calibre", Font.PLAIN, 18));
 		write.setName("write area");
+		write.setToolTipText("Scrivi il testo che vuoi inviare");
 		write.setText("Scrivi il testo che vuoi inviare");
 		Component scrollLogger2 = new JScrollPane(write);
 		scrollLogger2.setName("scrollPane write area");
@@ -108,7 +109,7 @@ public class EastPanel extends JPanel {
 
 
 		//----------button----------
-		JPanel panel=new ButtonPanel().buttonPanel(loggerArea, write);
+		JPanel panel=bp.buttonPanel(loggerArea, write);
 		panel.setName("button panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
@@ -119,7 +120,12 @@ public class EastPanel extends JPanel {
 		lim.fill=GridBagConstraints.HORIZONTAL;
 		layout.setConstraints(panel, lim); //Associazione
 		logger.add(panel); //Inserimento
+		
 		return logger;
 	}
 
+	public void update(){
+		bp.update();
+		this.repaint();
+	}
 }

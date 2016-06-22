@@ -52,6 +52,8 @@ public class SecondaryActionPanel extends JPanel {
 		panel.setLayout(layout);
 
 		JLabel label=new JLabel("Secondary action");
+		label.setName("secondary action");
+		label.setToolTipText(label.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.ipadx=0;//bordi componente
@@ -63,6 +65,7 @@ public class SecondaryActionPanel extends JPanel {
 
 		JButton button1 = new JButton("Action 1");
 		button1.setName("Azione secondaria 1");
+		button1.setToolTipText(button1.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
@@ -81,6 +84,7 @@ public class SecondaryActionPanel extends JPanel {
 
 		JButton button2 = new JButton("Action 2");
 		button2.setName("Azione secondaria 2");
+		button2.setToolTipText(button2.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
@@ -99,6 +103,7 @@ public class SecondaryActionPanel extends JPanel {
 
 		JButton button3 = new JButton("Action 3");
 		button3.setName("Azione secondaria 3");
+		button3.setToolTipText(button3.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
@@ -117,6 +122,7 @@ public class SecondaryActionPanel extends JPanel {
 
 		JButton button4 = new JButton("Action 4");
 		button4.setName("Azione secondaria 4");
+		button4.setToolTipText(button4.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
@@ -136,5 +142,7 @@ public class SecondaryActionPanel extends JPanel {
 		return panel;
 	}
 
-
+	public void update(){
+		this.repaint();
+	}
 }

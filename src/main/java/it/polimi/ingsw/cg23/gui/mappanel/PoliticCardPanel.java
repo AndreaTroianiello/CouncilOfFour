@@ -61,15 +61,6 @@ public class PoliticCardPanel extends JPanel {
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 
-		//----------etichetta nome----------
-		JLabel label0=new JLabel("Carte politiche");
-		lim.gridx=1;
-		lim.gridy=0;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=p.getHand().size();
-		layout.setConstraints(label0, lim);
-		panel.add(label0);
-
 		for(int i=0; i<p.getHand().size(); i++){//scorre le carte politiche
 			//----------carta politica----------
 			BufferedImage img;
@@ -84,9 +75,10 @@ public class PoliticCardPanel extends JPanel {
 			}
 			JButton button1=new JButton(new ImageIcon(img));
 			button1.setName("Carta politca "+i+", "+color);
+			button1.setToolTipText("Carta politica "+color);
 			button1.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 			lim.gridx=i*2;
-			lim.gridy=1;
+			lim.gridy=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(button1, lim);
@@ -104,7 +96,7 @@ public class PoliticCardPanel extends JPanel {
 			label2.setName(i+" spazio");
 			label2.setPreferredSize(new Dimension(5, 50));
 			lim.gridx=i*2+1;
-			lim.gridy=1;
+			lim.gridy=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(label2, lim);
@@ -113,11 +105,11 @@ public class PoliticCardPanel extends JPanel {
 
 		return panel;
 	}
-	
+
 	private BufferedImage politcsImg(String name){//recupero l'immagine delle carte politiche
 		BufferedImage image=null;
 		String path="src/main/resources/images/politics/"+name+".png";//percorso dell'immagine
-		
+
 		try {
 			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
@@ -125,5 +117,9 @@ public class PoliticCardPanel extends JPanel {
 		}
 
 		return image;
+	}
+	
+	public void update(){
+		this.repaint();
 	}
 }

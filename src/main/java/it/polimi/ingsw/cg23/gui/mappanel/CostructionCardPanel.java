@@ -61,6 +61,7 @@ public class CostructionCardPanel extends JPanel {
 		BufferedImage img1=getCostructionImg(reg.getName());//carta costruzione 1
 		JLabel defaultCostruction = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
 		defaultCostruction.setName("costruzione");
+		defaultCostruction.setToolTipText("Mazzo carte costruzione "+reg.getName());
 		defaultCostruction.setBounds(0, 0, img1.getWidth(), img1.getHeight());//dimensioni della label
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -81,6 +82,7 @@ public class CostructionCardPanel extends JPanel {
 			BufferedImage img=getCostructionImg(nameCostructor(bpt.get(i).getCitiesId()));//carta costruzione 1
 			JLabel costructionCard = new JLabel(new ImageIcon(img));//aggiungo l'immagine alla label
 			costructionCard.setName("costruzione"+i);
+			costructionCard.setToolTipText("Carta costruzione "+(i+1)+" "+bpt.get(i).getZone());
 			costructionCard.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
 			lim.gridx = i+1;//posizione componenti nella griglia
 			lim.gridy = 0;
@@ -156,6 +158,10 @@ public class CostructionCardPanel extends JPanel {
 			bonus+=bpt.getBonusTile().get(i).getName()+", ";
 		}
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
+	}
+	
+	public void update(){
+		this.repaint();
 	}
 }
 

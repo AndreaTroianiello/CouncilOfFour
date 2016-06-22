@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -33,6 +32,8 @@ public class SouthPanel extends JPanel {
 	private CouncilPanel cp;
 	private transient ColorManager cm;
 	private NobilityTrackPanel ntp;
+	private PoliticCardPanel pcp;
+	private BonusPanel bp;
 
 	/**
 	 * Create the panel.
@@ -42,7 +43,8 @@ public class SouthPanel extends JPanel {
 		this.ccp=new CostructionCardPanel();
 		this.cp=new CouncilPanel();
 		this.cm=new ColorManager();
-
+		this.pcp=new PoliticCardPanel();
+		this.bp=new BonusPanel();
 	}
 
 	/**
@@ -55,18 +57,18 @@ public class SouthPanel extends JPanel {
 		JPanel southPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		southPanel.setLayout(layout);
-
+		
 		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill = GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-
+		
 		List<Region> reg=b.getRegions();
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
 
 			//----------carte permesso di costruzione----------
 			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i), loggerArea);
 			costruzione.setName("costruzione "+reg.get(i).getName());
-			costruzione.setBackground(new Color(90, 255, 55));
+			costruzione.setBackground(new Color(154, 205, 50));
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -81,7 +83,7 @@ public class SouthPanel extends JPanel {
 
 			//----------consiglieri regione----------
 			JPanel balcone=cp.balcone(reg.get(i));
-			balcone.setBackground(new Color(90, 255, 55));
+			balcone.setBackground(new Color(154, 205, 50));
 			balcone.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
@@ -96,12 +98,12 @@ public class SouthPanel extends JPanel {
 		//----------------nobility track------------
 		JPanel panelNobility=ntp.createNobility(b.getNobilityTrack(), loggerArea);
 		panelNobility.setName("Nobility panel");
+		panelNobility.setBackground(new Color(154, 205, 50));
 		JScrollPane scrollNobility=new  JScrollPane(panelNobility);
 		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
 		//scrollNobility.setPreferredSize(new Dimension(WIDTH, 75));
-		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -111,19 +113,20 @@ public class SouthPanel extends JPanel {
 		layout.setConstraints(scrollNobility, lim);
 		southPanel.add(scrollNobility);
 
-		//----------------punteggi------------
-		JButton button=new JButton();
-		button.setText("bottone vuoto");
-		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+
+		//----------------consiglieri del re------------
+		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
+		kingCouncillors.setName("consiglieri re");
+		kingCouncillors.setBackground(new Color(123, 104, 238));
+		kingCouncillors.setOpaque(true);
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(button, lim);
-		southPanel.add(button);
+		layout.setConstraints(kingCouncillors, lim);
+		southPanel.add(kingCouncillors);
 
 		//----------carte politiche------------
 		Player p=new Player("io", new NobilityTrack(20));//PROVA->provvisorio
@@ -135,24 +138,26 @@ public class SouthPanel extends JPanel {
 		p.getHand().add(new PoliticCard(cm.getColor("Violet"), false));//PROVA->provvisorio
 		p.getHand().add(new PoliticCard(cm.getColor("White"), false));//PROVA->provvisorio
 
+		//come riconosco che player sta giocando?????
 		JPanel politics=new PoliticCardPanel().createCard(p, loggerArea);
 		politics.setName("Carte politiche");
-		politics.setBackground(new Color(193,197,192));
-		lim.fill = GridBagConstraints.BOTH;
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		politics.setBackground(new Color(154, 205, 50));
+		JScrollPane scroll=new JScrollPane(politics);
+		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
-		layout.setConstraints(politics, lim);
-		southPanel.add(politics);
+		layout.setConstraints(scroll, lim);
+		southPanel.add(scroll);
 
 		//----------------bonus panel------------
 		JPanel bonusPanel=new BonusPanel().createBonusPanel(b, loggerArea);
 		bonusPanel.setName("bonus");
-		lim.fill = GridBagConstraints.BOTH;
+		bonusPanel.setBackground(new Color(123, 104, 238));
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=0;//espansione in verticale e orizzontale
@@ -160,9 +165,17 @@ public class SouthPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(bonusPanel, lim);
-		
 		southPanel.add(bonusPanel);
 
 		return southPanel;
+	}
+	
+	public void update(){
+		ccp.update();
+		cp.update();
+		ntp.update();
+		pcp.update();
+		bp.update();
+		this.repaint();
 	}
 }

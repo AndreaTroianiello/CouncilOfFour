@@ -133,5 +133,8 @@ public class CityPanel extends JPanel {
 		return image;
 	}
 	
-
+	public void update(){
+		this.repaint();
+	}
+	
 }

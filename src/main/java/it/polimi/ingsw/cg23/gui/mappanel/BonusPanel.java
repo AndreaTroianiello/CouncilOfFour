@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
@@ -33,14 +32,11 @@ public class BonusPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -7246573558727825743L;
 	private transient Logger logger;
-	private CouncilPanel cp;
 
 	/**
 	 * Create the panel.
 	 */
 	public BonusPanel() {
-		this.cp=new CouncilPanel();
-
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -56,23 +52,10 @@ public class BonusPanel extends JPanel {
 		JPanel bonusPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		bonusPanel.setLayout(layout);
-		bonusPanel.setBackground(new Color(245, 124, 255));
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-
-		//----------------consiglieri del re------------
-		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
-		kingCouncillors.setName("consiglieri re");
-		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 0;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=b.getTypes().size()-1;
-		layout.setConstraints(kingCouncillors, lim);
-		bonusPanel.add(kingCouncillors);
 
 		//----------------bonus king------------
 		JLabel kingBonus;
@@ -84,7 +67,7 @@ public class BonusPanel extends JPanel {
 		}
 		kingBonus.setName("bonus king");
 		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 1;
+		lim.gridy = 0;
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
@@ -104,7 +87,7 @@ public class BonusPanel extends JPanel {
 
 			regionBonus.setName("bonus type "+b.getRegions().get(k).getName());
 			lim.gridx = k+1;//posizione componenti nella griglia
-			lim.gridy = 1;
+			lim.gridy = 0;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -128,7 +111,7 @@ public class BonusPanel extends JPanel {
 
 				cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
 				lim.gridx = i;//posizione componenti nella griglia
-				lim.gridy = 2;
+				lim.gridy = 1;
 				lim.weightx=1;//espansione in verticale e orizzontale
 				lim.weighty=1;
 				lim.gridheight=1;//grandezza del riquadro
@@ -220,5 +203,9 @@ public class BonusPanel extends JPanel {
 		}
 
 		return image;
+	}
+	
+	public void update(){
+		this.repaint();
 	}
 }
