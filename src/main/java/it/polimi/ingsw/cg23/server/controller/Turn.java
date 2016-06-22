@@ -36,6 +36,8 @@ public class Turn {
 	private boolean mainAction;										//Authorization of the main action.
 	private boolean secondAction;									//Authorization of the second action
 	private List<Observable<Change>> observableBonuses;
+	private Timer timerTurn;
+	
 	/**
 	 * The constructor of Turn.
 	 * @param board The game's board.
@@ -133,6 +135,22 @@ public class Turn {
 	 */
 	public void setAction(GameAction action){
 		this.action=action;
+	}
+	
+	/**
+	 * Sets the timer.
+	 * @param timer The turn's timer.
+	 */
+	public void setTimer(Timer timer){
+		this.timerTurn=timer;
+	}
+	
+	/**
+	 * Returns the timer.
+	 * @return the turn's timer.
+	 */
+	public Timer getTimer(){
+		return timerTurn;
 	}
 	
 	/**

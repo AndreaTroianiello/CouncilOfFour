@@ -16,6 +16,7 @@ public class Timer implements Runnable {
 	private View view;
 	private static Logger logger;
 	private Controller controller;
+	private boolean running;
 
 	/**
 	 * The constructor of PlayersControl.
@@ -25,8 +26,23 @@ public class Timer implements Runnable {
 	public Timer(View view,Controller controller) {
 		this.view=view;
 		this.controller=controller;
+		this.running=true;
 		logger = Logger.getLogger(Timer.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
+	}
+	
+	public boolean isRunning(){
+		return running;
+	}
+	
+	/**
+	 * Stops the timer.
+	 */
+	public void stop(){
+		running=false;
+		view=null;
+		controller=null;
+		Thread.currentThread().interrupt();
 	}
 
 	/**
@@ -34,14 +50,19 @@ public class Timer implements Runnable {
 	 */
 	@Override
 	public void run() {
+		controller.getTurn().setTimer(this);
+		view.setSuspended(true);
 		try {
-			view.setSuspended(true);
 			Thread.sleep(60000);
-			/*if(view.getSuspended()){
-				new EndTurn().runAction(controller);
-			}*/
+			if(!view.getSuspended()){
+				Thread.sleep(240000);
+			}
+			new EndTurn().runAction(controller);
 		} catch (InterruptedException e) {
 			logger.error(e);
+			view=null;
+			controller=null;
+			running=false;
 		}
 	}
 

@@ -19,7 +19,6 @@ import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
 public class ClientRMI{
 
 	private static final int RMI_PORT=52365;
-	//private static final String HOST="127.0.0.1";
 	private static final String NAME="council";
 	private static Logger logger;
 

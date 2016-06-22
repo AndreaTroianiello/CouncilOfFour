@@ -21,7 +21,6 @@ import it.polimi.ingsw.cg23.client.ClientController;
 public class ClientSocket {
 
 	private static final int PORT = 29999;
-	//private static final String IP = "127.0.0.1";
 	private static Logger logger;
 
 	/**
@@ -41,7 +40,7 @@ public class ClientSocket {
 	public void startClient(ClientController controller, String address) throws IOException {
 		Socket socket = new Socket(address, PORT);
 		ExecutorService executor = Executors.newFixedThreadPool(2);
-		ClientOutHandler out=new ClientOutHandler(new ObjectOutputStream(socket.getOutputStream()));
+		ClientOutHandler out=new ClientOutHandler(socket,new ObjectOutputStream(socket.getOutputStream()));
 		ClientInHandler in=new ClientInHandler(controller,new ObjectInputStream(socket.getInputStream()));
 		executor.submit(out);
 		executor.submit(in);

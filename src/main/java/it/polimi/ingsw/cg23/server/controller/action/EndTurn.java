@@ -69,6 +69,8 @@ public class EndTurn extends Action {
 		Turn turn=controller.getTurn();
 		Board board=turn.getBoard();
 		boolean run=true;
+		if(turn.getTimer().isRunning())
+			turn.getTimer().stop();
 		while(run){
 			try {
 				if(turn.changePlayer()){

@@ -45,6 +45,8 @@ public class ServerSocketView extends View implements Runnable {
 	 */
 	@Override
 	public void update(Change change) {
+		if(getSuspended())
+			return;
 		getLogger().error("Sending to the client " + change);
 		try {
 			this.socketOut.writeObject(change);
@@ -53,6 +55,7 @@ public class ServerSocketView extends View implements Runnable {
 
 		} catch (IOException e) {
 			getLogger().error(e);
+			setSuspended(true);
 		}
 	}
 	

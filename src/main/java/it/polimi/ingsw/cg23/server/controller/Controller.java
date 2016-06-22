@@ -38,6 +38,7 @@ public class Controller implements Observer<Action>{
 	private Turn turn;
 	private final Map<View,Player> interconnections;
 	private static Logger logger;
+
 	
 	/**
 	 * The constructor of the Controller. 
@@ -108,7 +109,7 @@ public class Controller implements Observer<Action>{
 			result=result&&view.getSuspended();
 		return result;
 	}
-	
+		
 	/**
 	 * Returns the turn of the game.
 	 * @return the turn.
@@ -134,7 +135,7 @@ public class Controller implements Observer<Action>{
 		setPlayersHand();
 		setPlayerStats();
 		gameTwoPlayers();
-		new CreateMap().createMapDraw(model);
+		new CreateMap().createMapDraw(model);     //Print the map on Server's console.
 		model.changeStatus();
 		model.notifyObserver(new StateChange(model.getStatus()));
 		model.notifyObserver(new BoardChange(model));

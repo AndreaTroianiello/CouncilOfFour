@@ -16,23 +16,19 @@ import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusCityToken;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusGetPermitTile;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusTileBonus;
-import it.polimi.ingsw.cg23.utility.Print;
 
 public class BonusController {
 
 	private ControllerCLI controller;
-	private Print cli;
 	private Logger logger;
 	private ClientModel clientModel;
 
 	/**
 	 * The constructor of BonusController
 	 * @param controller The main controller of the client.
-	 * @param cli The Print class that prints to video.
 	 */
-	public BonusController(ControllerCLI controller,Print cli) {
+	public BonusController(ControllerCLI controller) {
 		this.controller=controller;
-		this.cli=cli;
 		logger = Logger.getLogger(CommandController.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
@@ -40,15 +36,14 @@ public class BonusController {
 	public void updateCommand(String string, Bonus bonus) throws IOException{
 		clientModel=controller.getModel();
 		try{
-			bonusControl(string,bonus);
+			parseCommand(string,bonus);
 			controller.setBonus(null);
 		}catch(NoSuchElementException | NullPointerException | NumberFormatException e){
 			logger.error("Wrong command.");
-			//cli.print("", "Wrong command");
 		}
 	}
 	
-	private void bonusControl(String string, Bonus bonus) throws IOException{
+	private void parseCommand(String string, Bonus bonus) throws IOException{
 		if(bonus instanceof BonusCityToken){
 			((BonusCityToken)bonus).setCities(searchCities(string,bonus.getNumber()));
 		}

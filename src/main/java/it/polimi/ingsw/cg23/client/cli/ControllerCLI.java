@@ -43,7 +43,7 @@ public class ControllerCLI implements ClientController{
 		this.clientModel=new ClientModel();
 		this.cli=cli;
 		commandController=new CommandController(this,cli);
-		bonusController=new BonusController(this,cli);
+		bonusController=new BonusController(this);
 		this.bonus=null;
 	}
 
@@ -87,14 +87,22 @@ public class ControllerCLI implements ClientController{
 	 * @throws IOException If the connection has problems.
 	 */
 	public void updateController(String string) throws IOException{
-		if(bonus!=null)
-			bonusController.updateCommand(string,bonus);
-		
+		string+="";
 		StringTokenizer tokenizer=new StringTokenizer(string," ");
-		if("SHOW".equals(tokenizer.nextToken()))
-			showCommand(tokenizer);
-		else
-			commandController.updateCommand(string);
+		switch (tokenizer.nextToken()) {
+		case "QUIT":
+			out.close();
+			break;
+		case "SHOW":
+			parseShowCommand(tokenizer);
+			break;
+		default:
+			if(bonus!=null)
+				bonusController.updateCommand(string,bonus);
+			else
+				commandController.updateCommand(string);
+			break;
+		}
 	}
 	
 	/**
@@ -111,7 +119,7 @@ public class ControllerCLI implements ClientController{
 	 * @param tokizer The string that contains the commands.
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
-	private void showCommand(StringTokenizer tokenizer){
+	private void parseShowCommand(StringTokenizer tokenizer){
 		Board model=clientModel.getModel();
 		if(model==null){
 			cli.print("", "Command refused.");

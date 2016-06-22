@@ -60,7 +60,7 @@ public class CommandController {
 	public void updateCommand(String string) throws IOException{
 		clientModel=controller.getModel();
 		try{
-			commandControl(string);
+			parseCommand(string);
 		}catch(NoSuchElementException | NullPointerException | NumberFormatException e){
 			logger.error("Wrong command.");
 		}
@@ -72,7 +72,7 @@ public class CommandController {
 	 * @throws IOException If the connection has problems
 	 * @throws NoSuchElementException if the string doesn't contain many parameters..
 	 */
-	private void commandControl(String string) throws IOException,NoSuchElementException{
+	private void parseCommand(String string) throws IOException,NoSuchElementException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();
 		switch (inputLine) {
@@ -80,13 +80,13 @@ public class CommandController {
 			controller.updateController(new CreationGame(tokenizer.nextToken(),tokenizer.nextToken()));
 			break;
 		case "MARKET":
-			marketCommand(tokenizer);
+			parseMarketCommand(tokenizer);
 			break;
 		case "CHOOSECARDS":
 			clientModel.makeHand(tokenizer);
 			break;
 		default:
-			mainCommand(string);
+			parseMainCommand(string);
 			break;
 		}
 	}
@@ -97,7 +97,7 @@ public class CommandController {
 	 * @throws IOException If the connection has problems.
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
-	private void createActionSell(StringTokenizer tokenizer) throws IOException{
+	private void parseActionSell(StringTokenizer tokenizer) throws IOException{
 		Action action;
 		switch(tokenizer.nextToken()){
 		case "TILE":
@@ -132,7 +132,7 @@ public class CommandController {
 	 * @throws IOException If the connection has problems.
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
-	private void marketCommand(StringTokenizer tokenizer) throws IOException{
+	private void parseMarketCommand(StringTokenizer tokenizer) throws IOException{
 		Board model=clientModel.getModel();
 		if(model==null){
 			cli.print("", "Command refused.");
@@ -144,7 +144,7 @@ public class CommandController {
 			controller.updateController(action);
 			break;
 		case "SELL":
-			createActionSell(tokenizer);
+			parseActionSell(tokenizer);
 			break;
 		case "VIEW":
 			cli.print("","Items for sale:");
@@ -162,7 +162,7 @@ public class CommandController {
 	 * @throws IOException If the connection has problems. 
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
-	private void mainCommand(String string) throws IOException{
+	private void parseMainCommand(String string) throws IOException{
 		String tok=null;
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;

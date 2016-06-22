@@ -2,6 +2,9 @@ package it.polimi.ingsw.cg23.client.socket;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
@@ -14,13 +17,18 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 public class ClientOutHandler implements Runnable,ClientViewOut {
 
 	private ObjectOutputStream socketOut;
+	boolean run;
+	private Socket socket;
+	private Logger logger;
 
 	/**
 	 * The constructor of ClientOutHandler.
 	 * @param socketOut the socket connection output.
 	 */
-	public ClientOutHandler(ObjectOutputStream socketOut) {
+	public ClientOutHandler(Socket socket,ObjectOutputStream socketOut) {
 		this.socketOut = socketOut;
+		this.socket=socket;
+		this.run=true;
 	}
 	
 	/**
@@ -36,11 +44,19 @@ public class ClientOutHandler implements Runnable,ClientViewOut {
 	}
 	
 	/**
+	 * Closes the Socket connection.
+	 * @throws IOException if the Socket connection has problems.
+	 */
+	public void close() throws IOException{
+		this.run=false;
+		socket.close();
+	}
+	
+	/**
 	 * The run of the thread.
 	 */
 	@Override
 	public void run() {
-		boolean run=true;
 		while(run){
 		}
 	}

@@ -43,6 +43,8 @@ public class RMIServerView extends View implements RMIViewRemote {
 	 */
 	@Override
 	public void update(Change change) {
+		if(getSuspended())
+			return;
 		getLogger().info("Sending to the client " + change);
 		try {
 			this.clientStub.updateClient(change);
@@ -51,6 +53,7 @@ public class RMIServerView extends View implements RMIViewRemote {
 		    }
 		} catch (RemoteException e) {
 			getLogger().info(e);
+			setSuspended(true);
 		}
 	}
 	
@@ -98,7 +101,6 @@ public class RMIServerView extends View implements RMIViewRemote {
 			chat=null;
 		} catch (RemoteException | NotBoundException e) {
 			getLogger().error(e);
-			e.printStackTrace();
 		}
 	}
 }

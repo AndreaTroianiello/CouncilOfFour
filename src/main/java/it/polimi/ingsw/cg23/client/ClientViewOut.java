@@ -9,7 +9,6 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
  * @author Andrea
  *
  */
-@FunctionalInterface
 public interface ClientViewOut {
 	
 	/**
@@ -18,4 +17,10 @@ public interface ClientViewOut {
 	 * @throws IOException if the connection has problems.	
 	 */
 	public void update(Action action) throws IOException;
+	
+	/**
+	 * Closes the connection.
+	 * @throws IOException if the connection has problems. 
+	 */
+	public void close() throws IOException;
 }
