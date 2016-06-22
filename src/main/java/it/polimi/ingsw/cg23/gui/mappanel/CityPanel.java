@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.Popup;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -71,7 +72,7 @@ public class CityPanel extends JPanel {
 		//----------immagine citta'----------
 		BufferedImage img=getImg(c.getType());
 		JLabel label=new JLabel(new ImageIcon(img));
-		label.setPreferredSize(new Dimension(img.getWidth()-20, img.getHeight()-10));
+		label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -81,7 +82,7 @@ public class CityPanel extends JPanel {
 
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-
+		 
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -89,18 +90,12 @@ public class CityPanel extends JPanel {
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				/*	if("".equals(label.getText())){
-					label.setText("");
-				}else
-					label.setSize(new Dimension((int)label.getSize().getWidth()/2,(int)label.getSize().getHeight()/2));
-				 */}
+				//	label.setSize(new Dimension((int)label.getSize().getWidth()/2,(int)label.getSize().getHeight()/2));
+				 }
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				/*	if("".equals(label.getText())){
-					label.setText("");
-				}else
-					label.setSize(new Dimension((int)label.getSize().getWidth()*2,(int)label.getSize().getHeight()*2));
-				 */}
+					//label.setSize(new Dimension((int)label.getSize().getWidth()*2,(int)label.getSize().getHeight()*2));
+				 }
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				loggerArea.append("\nCitta' "+c.getName());
@@ -133,4 +128,6 @@ public class CityPanel extends JPanel {
 
 		return image;
 	}
+	
+
 }
