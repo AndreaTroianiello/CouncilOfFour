@@ -139,7 +139,7 @@ public class CouncilPanel extends JPanel {
 			layout.setConstraints(label2, lim);
 			panel.add(label2);//aggiunta della label al panel
 		}
-
+		panel.setOpaque(false);
 		return panel;
 	}
 }

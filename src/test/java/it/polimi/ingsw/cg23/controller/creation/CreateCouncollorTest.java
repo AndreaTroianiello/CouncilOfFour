@@ -30,7 +30,7 @@ public class CreateCouncollorTest {
 
 	@Before
 	public void setUp(){
-		cc=new CreateCouncillor("RegionCity.xml");
+		cc=new CreateCouncillor();
 
 
 		//Set up the bonus king

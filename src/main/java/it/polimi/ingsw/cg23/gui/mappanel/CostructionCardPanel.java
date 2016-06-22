@@ -57,17 +57,21 @@ public class CostructionCardPanel extends JPanel {
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-		JLabel nameCostruzione = new JLabel("etichetta costruzione");
-		nameCostruzione.setText("Carte costruzione "+reg.getName());
+		//----------carte costruzione----------
+		BufferedImage img1=getCostructionImg(reg.getName());//carta costruzione 1
+		JLabel defaultCostruction = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
+		defaultCostruction.setName("costruzione");
+		defaultCostruction.setBounds(0, 0, img1.getWidth(), img1.getHeight());//dimensioni della label
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.ipadx=0;//bordi componente
-		lim.ipady=0;
+		lim.weightx=0;//espansione in verticale e orizzontale
+		lim.weighty=0;
+		lim.ipadx=10;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=2;
-		layout.setConstraints(nameCostruzione, lim);
-		panel.add(nameCostruzione);//aggiunta della label al panel
-
+		lim.gridwidth=1;
+		layout.setConstraints(defaultCostruction, lim);
+		panel.add(defaultCostruction);//aggiunta della label al panel
+		
 		//carte costruzione regione
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
 
@@ -78,8 +82,8 @@ public class CostructionCardPanel extends JPanel {
 			JLabel costructionCard = new JLabel(new ImageIcon(img));//aggiungo l'immagine alla label
 			costructionCard.setName("costruzione"+i);
 			costructionCard.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
-			lim.gridx = i;//posizione componenti nella griglia
-			lim.gridy = 1;
+			lim.gridx = i+1;//posizione componenti nella griglia
+			lim.gridy = 0;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.ipadx=10;

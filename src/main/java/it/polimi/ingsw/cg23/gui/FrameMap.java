@@ -137,7 +137,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map5.xml",model.getModel()).startPartita();
+					new Avvio("map7.xml",model.getModel()).startPartita();
 					FrameMap frame = new FrameMap(model);
 					frame.setVisible(true);
 				} catch (Exception e) {

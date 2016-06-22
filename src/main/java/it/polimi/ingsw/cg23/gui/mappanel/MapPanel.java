@@ -33,7 +33,7 @@ public class MapPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7690616717551129511L;
-	private Logger logger;
+	private transient Logger logger;
 
 	/**
 	 * Create the panel.
@@ -62,8 +62,9 @@ public class MapPanel extends JPanel {
 
 		BufferedImage img=getImg();//immagine di sfondo
 		//Image myim=img.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT);
+		
 		JLabel label=new JLabel(new ImageIcon(img));//etichetta con l'immagine di sfondo
-	label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));//dimensione etichetta immagine di sfondo
+		label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));//dimensione etichetta immagine di sfondo
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -94,7 +95,7 @@ public class MapPanel extends JPanel {
 				lim.weighty = 1;
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
-				
+
 				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
 				label.add(citta);//aggiunta il panel alla label
 
@@ -116,7 +117,7 @@ public class MapPanel extends JPanel {
 		} catch (IOException e) {
 			logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
 		}
-		
+
 		return image;
 	}
 }

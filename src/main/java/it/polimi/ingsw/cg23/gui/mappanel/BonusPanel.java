@@ -174,10 +174,11 @@ public class BonusPanel extends JPanel {
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				loggerArea.append("\nBonus ");
 				if(!reg.isBonusAvailable())
-					loggerArea.append("\nBonus "+reg.getName()+" finito!");
+					loggerArea.append(reg.getName()+" finito!");
 				else
-					loggerArea.append("\nBonus "+reg.getName()+" disponibile: "+reg.getBonus().getName());
+					loggerArea.append(reg.getName()+" disponibile: "+reg.getBonus().getName());
 			}
 		});
 	}
@@ -194,10 +195,11 @@ public class BonusPanel extends JPanel {
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				loggerArea.append("\nBonus ");
 				if(!tipo.isBonusAvailable())
-					loggerArea.append("\nBonus "+tipo.getName()+" finito!");
+					loggerArea.append(tipo.getName()+" finito!");
 				else
-					loggerArea.append("\nBonus "+tipo.getName()+" disponibile: "+tipo.getBonus().getName());
+					loggerArea.append(tipo.getName()+" disponibile: "+tipo.getBonus().getName());
 			}
 		});
 	}

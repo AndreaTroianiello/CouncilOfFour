@@ -57,7 +57,7 @@ public class Avvio {
 	 */
 	public Avvio(String endPath, Board board) throws XmlException{
 		cc=new CreateCostruction();
-		cco=new CreateCouncillor(endPath);
+		cco=new CreateCouncillor();
 		crc=new CreateRegionCity(endPath);
 		cl=new Print();
 		s=new Setting();

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
@@ -67,7 +66,7 @@ public class SouthPanel extends JPanel {
 			//----------carte permesso di costruzione----------
 			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i), loggerArea);
 			costruzione.setName("costruzione "+reg.get(i).getName());
-			addBackground(costruzione, i);
+			costruzione.setBackground(new Color(90, 255, 55));
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -82,7 +81,7 @@ public class SouthPanel extends JPanel {
 
 			//----------consiglieri regione----------
 			JPanel balcone=cp.balcone(reg.get(i));
-			addBackground(balcone, i);
+			balcone.setBackground(new Color(90, 255, 55));
 			balcone.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
@@ -161,23 +160,9 @@ public class SouthPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(bonusPanel, lim);
+		
 		southPanel.add(bonusPanel);
 
 		return southPanel;
 	}
-
-	/**
-	 * add the background color
-	 * @param c, the component to add color
-	 * @param i
-	 */
-	private void addBackground(Component c, int i){
-		if(i==0)
-			c.setBackground(new Color(204, 255, 255));
-		if(i==1)
-			c.setBackground(new Color(204, 255, 204));
-		if(i==2)
-			c.setBackground(new Color(188, 144, 101));
-	}
-
 }

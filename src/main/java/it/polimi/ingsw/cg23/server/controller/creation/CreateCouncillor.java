@@ -20,7 +20,7 @@ public class CreateCouncillor {
 	 * costructor
 	 * @param fileName, the xml file name
 	 */
-	public CreateCouncillor(String fileName){
+	public CreateCouncillor(){
 		this.s=new Setting();
 	}
 
