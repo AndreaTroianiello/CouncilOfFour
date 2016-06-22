@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
@@ -100,7 +99,8 @@ public class SouthPanel extends JPanel {
 		JScrollPane scrollNobility=new  JScrollPane(panelNobility);
 		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollNobility.setPreferredSize(new Dimension(WIDTH, 75));
+		//scrollNobility.setPreferredSize(new Dimension(WIDTH, 75));
+		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -124,6 +124,7 @@ public class SouthPanel extends JPanel {
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(193,197,192));
 		lim.fill = GridBagConstraints.BOTH;
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=0;//espansione in verticale e orizzontale

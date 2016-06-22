@@ -61,7 +61,7 @@ public class FrameMap extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
-
+		//setResizable(false);
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
 		/*Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		String name="map6.xml";
@@ -113,7 +113,8 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.NORTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-
+		
+		
 		//----------pannello sud (informazioni)----------
 		JPanel southPanel=new SouthPanel().setSouthPanel(model.getModel(), loggerArea);
 		southPanel.setName("south panel");
@@ -127,7 +128,9 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(southPanel, lim); //Associazione
 		contentPane.add(southPanel); //Inserimento
-
+		
+		System.out.println(getHeight()+"+"+getWidth());
+		pack();
 	}
 
 
