@@ -38,10 +38,7 @@ public class ControllerGUI implements ClientController {
  
 	private void updateFrameMap(){
 		if(map!=null){
-			System.out.println("ciao");
-			map.removeAll();
-			//map.revalidate();
-			//map.repaint();
+			map.update();
 		}else
 			if(clientModel.getModel()!=null){
 				map=new FrameMap(clientModel);

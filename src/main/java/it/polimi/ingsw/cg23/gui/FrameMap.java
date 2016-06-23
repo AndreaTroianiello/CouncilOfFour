@@ -1,10 +1,13 @@
 package it.polimi.ingsw.cg23.gui;
 
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +25,8 @@ import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 /**
  * create the map
@@ -148,6 +153,14 @@ public class FrameMap extends JFrame {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
 					new Avvio("map4.xml",model.getModel()).startPartita();
+					model.setPlayer(new Player("user",model.getModel().getNobilityTrack()));
+					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
+					new PoliticCard(Color.ORANGE, false),
+					new PoliticCard(null, true),
+					new PoliticCard(null, true),
+					new PoliticCard(Color.BLUE, false),
+					new PoliticCard(Color.PINK, false));
+					model.getPlayer().getHand().addAll(list);
 					FrameMap frame = new FrameMap(model);
 					frame.setVisible(true);
 				} catch (Exception e) {
