@@ -33,11 +33,16 @@ public class CostructionCardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 6311594300963247531L;
 	private transient Logger logger;
+	//private Region reg;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public CostructionCardPanel() {
+	public CostructionCardPanel(JTextArea loggerArea) {
+		//this.reg=reg;
+		this.loggerArea=loggerArea;
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -48,7 +53,7 @@ public class CostructionCardPanel extends JPanel {
 	 * @param reg, the region
 	 * @return the panel with the showed costruction card
 	 */
-	public JPanel getShowCostructionCard(Region reg, JTextArea loggerArea){
+	public JPanel getShowCostructionCard(Region reg){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
@@ -160,8 +165,8 @@ public class CostructionCardPanel extends JPanel {
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
 	}
 	
-	public void update(){
+	/*public void update(){
 		this.repaint();
-	}
+	}*/
 }
 

@@ -33,12 +33,15 @@ public class NobilityTrackPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 2715614441311015393L;
 	private transient Logger logger;
+	private NobilityTrack nt;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public NobilityTrackPanel() {
-
+	public NobilityTrackPanel(NobilityTrack nt, JTextArea loggerArea) {
+		this.nt=nt;
+		this.loggerArea=loggerArea;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -50,17 +53,17 @@ public class NobilityTrackPanel extends JPanel {
 	 * @param loggerArea, the text area to write on
 	 * @return a panel with the nobility track
 	 */
-	public JPanel createNobility(NobilityTrack nt, JTextArea loggerArea){
+	public JPanel createNobility(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
-		
+
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){
-			
+
 			BufferedImage img=nobilityImg(i);
 			JLabel boxLabel = new JLabel(new ImageIcon(img));
 			boxLabel.setName("box "+i);
@@ -72,10 +75,10 @@ public class NobilityTrackPanel extends JPanel {
 			lim.gridwidth=1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=1;
-			
+
 			layout.setConstraints(boxLabel, lim);
 			panel.add(boxLabel);//aggiunta della label al panel
-			
+
 			final int k=i;
 			boxLabel.addMouseListener(new MouseListener() {
 				@Override
@@ -123,7 +126,7 @@ public class NobilityTrackPanel extends JPanel {
 		return image;
 	}
 
-	public void update(){
+	/*public void update(){
 		this.repaint();
-	}
+	}*/
 }

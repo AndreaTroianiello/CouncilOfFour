@@ -36,11 +36,15 @@ public class PoliticCardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 7548143133078585999L;
 	private transient Logger logger;
+	private Player p;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public PoliticCardPanel() {
+	public PoliticCardPanel(Player p, JTextArea loggerArea) {
+		this.p=p;
+		this.loggerArea=loggerArea;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -51,7 +55,7 @@ public class PoliticCardPanel extends JPanel {
 	 * @param p, the player
 	 * @return a panel with the politic card
 	 */
-	public JPanel createCard(Player p, JTextArea loggerArea){
+	public JPanel createCard(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -119,7 +123,7 @@ public class PoliticCardPanel extends JPanel {
 		return image;
 	}
 	
-	public void update(){
+	/*public void update(){
 		this.repaint();
-	}
+	}*/
 }

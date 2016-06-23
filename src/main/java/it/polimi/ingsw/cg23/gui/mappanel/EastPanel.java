@@ -26,12 +26,17 @@ public class EastPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -7843525022282542659L;
 	private ButtonPanel bp;
+	private JTextArea loggerArea;
+	private JTextField write;
 	
 	/**
 	 * Create the panel.
 	 */
-	public EastPanel() {
-		this.bp=new ButtonPanel();
+	public EastPanel(JTextArea loggerArea, JTextField write) {
+		this.loggerArea=loggerArea;
+		this.write=write;
+		this.bp=new ButtonPanel(loggerArea, write);
+		
 	}
 
 	/**
@@ -40,7 +45,7 @@ public class EastPanel extends JPanel {
 	 * @param write, the area to write on
 	 * @return the panel
 	 */
-	public JPanel loggerPanel(JTextArea loggerArea, JTextField write){
+	public JPanel loggerPanel(){
 		JPanel logger=new JPanel();
 
 		GridBagLayout layout = new GridBagLayout();
@@ -109,7 +114,7 @@ public class EastPanel extends JPanel {
 
 
 		//----------button----------
-		JPanel panel=bp.buttonPanel(loggerArea, write);
+		JPanel panel=bp.buttonPanel();
 		panel.setName("button panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
@@ -126,6 +131,7 @@ public class EastPanel extends JPanel {
 
 	public void update(){
 		bp.update();
+		bp.buttonPanel();
 		this.repaint();
 	}
 }

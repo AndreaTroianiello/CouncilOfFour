@@ -24,14 +24,15 @@ public class InfoPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -4105281946320933564L;
+	private JTextArea textArea;
+	private JTextField write;
 
 	/**
 	 * Create the panel.
 	 */
-	public InfoPanel() {
-		/**
-		 * empty costructor
-		 */
+	public InfoPanel(JTextArea textArea, JTextField write) {
+		this.textArea=textArea;
+		this.write=write;
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class InfoPanel extends JPanel {
 	 * @param write, the area to write (chat)
 	 * @return, the info panel
 	 */
-	public JPanel infoAction(JTextArea textArea, JTextField write){
+	public JPanel infoAction(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 
@@ -155,7 +156,8 @@ public class InfoPanel extends JPanel {
 		return panel;
 	}
 	
-	public void update(){
+	/*public void update(){
+		infoAction(textArea, write);
 		this.repaint();
-	}
+	}*/
 }

@@ -32,11 +32,15 @@ public class BonusPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -7246573558727825743L;
 	private transient Logger logger;
+	private Board b;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public BonusPanel() {
+	public BonusPanel(Board b, JTextArea loggerArea) {
+		this.b=b;
+		this.loggerArea=loggerArea;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -48,7 +52,7 @@ public class BonusPanel extends JPanel {
 	 * @param loggerArea, the area to write on
 	 * @return the panel
 	 */
-	public JPanel createBonusPanel(Board b, JTextArea loggerArea){
+	public JPanel createBonusPanel(){
 		JPanel bonusPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		bonusPanel.setLayout(layout);
@@ -205,7 +209,7 @@ public class BonusPanel extends JPanel {
 		return image;
 	}
 	
-	public void update(){
+	/*public void update(){
 		this.repaint();
-	}
+	}*/
 }

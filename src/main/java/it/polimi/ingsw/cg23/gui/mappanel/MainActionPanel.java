@@ -23,14 +23,12 @@ public class MainActionPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5715872370987341629L;
-
+	private JTextArea text;
 	/**
 	 * Create the panel.
 	 */
-	public MainActionPanel() {
-		/**
-		 * empty costructor
-		 */
+	public MainActionPanel(JTextArea text) {
+		this.text=text;
 	}
 
 	/**
@@ -38,7 +36,7 @@ public class MainActionPanel extends JPanel {
 	 * @param text, the text area to view
 	 * @return jpanel with the main action
 	 */
-	public JPanel mainAction(JTextArea text){
+	public JPanel mainAction(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setBackground(new Color(245,123,123));
@@ -134,7 +132,7 @@ public class MainActionPanel extends JPanel {
 		return panel;
 	}
 	
-	public void update(){
+	/*public void update(){
 		this.repaint();
-	}
+	}*/
 }

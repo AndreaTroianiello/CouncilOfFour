@@ -29,16 +29,18 @@ public class SouthPanel extends JPanel {
 	private NobilityTrackPanel ntp;
 	private PoliticCardPanel pcp;
 	private BonusPanel bp;
+	private ClientModel model;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public SouthPanel() {
-		this.ntp=new NobilityTrackPanel();
-		this.ccp=new CostructionCardPanel();
+	public SouthPanel(ClientModel model, JTextArea loggerArea) {
+		this.ntp=new NobilityTrackPanel(model.getModel().getNobilityTrack(), loggerArea);
+		this.ccp=new CostructionCardPanel(loggerArea);
 		this.cp=new CouncilPanel();
-		this.pcp=new PoliticCardPanel();
-		this.bp=new BonusPanel();
+		this.pcp=new PoliticCardPanel(model.getPlayer(), loggerArea);
+		this.bp=new BonusPanel(model.getModel(), loggerArea);
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class SouthPanel extends JPanel {
 	 * @param loggerArea, the area to write on
 	 * @return a jpanel with the south panel created
 	 */
-	public JPanel setSouthPanel(ClientModel model, JTextArea loggerArea){
+	public JPanel setSouthPanel(){
 		JPanel southPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		southPanel.setLayout(layout);
@@ -60,7 +62,7 @@ public class SouthPanel extends JPanel {
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
 
 			//----------carte permesso di costruzione----------
-			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i), loggerArea);
+			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i));
 			costruzione.setName("costruzione "+reg.get(i).getName());
 			costruzione.setBackground(new Color(154, 205, 50));
 			lim.gridx = i;//posizione componenti nella griglia
@@ -90,7 +92,7 @@ public class SouthPanel extends JPanel {
 		}
 
 		//----------------nobility track------------
-		JPanel panelNobility=ntp.createNobility(model.getModel().getNobilityTrack(), loggerArea);
+		JPanel panelNobility=ntp.createNobility();
 		panelNobility.setName("Nobility panel");
 		panelNobility.setBackground(new Color(154, 205, 50));
 		JScrollPane scrollNobility=new  JScrollPane(panelNobility);
@@ -122,7 +124,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(kingCouncillors);
 
 		//----------carte politiche------------
-		JPanel politics=new PoliticCardPanel().createCard(model.getPlayer(), loggerArea);
+		JPanel politics=pcp.createCard();
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(154, 205, 50));
 		JScrollPane scroll=new JScrollPane(politics);
@@ -138,7 +140,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(scroll);
 
 		//----------------bonus panel------------
-		JPanel bonusPanel=new BonusPanel().createBonusPanel(model.getModel(), loggerArea);
+		JPanel bonusPanel=bp.createBonusPanel();
 		bonusPanel.setName("bonus");
 		bonusPanel.setBackground(new Color(123, 104, 238));
 		lim.gridx = 2;//posizione componenti nella griglia
@@ -154,11 +156,11 @@ public class SouthPanel extends JPanel {
 	}
 	
 	public void update(){
-		ccp.update();
-		cp.update();
-		ntp.update();
-		pcp.update();
-		bp.update();
+		//ccp.getShowCostructionCard();
+		//cp.balcone();
+		ntp.createNobility();
+		pcp.createCard();
+		bp.createBonusPanel();
 		this.repaint();
 	}
 }

@@ -59,10 +59,12 @@ public class FrameMap extends JFrame {
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 		
+		loggerArea=new JTextArea();
+		write=new JTextField();
 		//pannel
-		ep=new EastPanel();
+		ep=new EastPanel(loggerArea, write);
 		mp=new MapPanel();
-		sp=new SouthPanel();
+		sp=new SouthPanel(model, loggerArea);
 		
 		this.model=model;
 		//this.controller=controller;
@@ -98,7 +100,7 @@ public class FrameMap extends JFrame {
 		//----------text area (logger)----------
 		loggerArea=new JTextArea();
 		write=new JTextField();
-		JPanel panel=ep.loggerPanel(loggerArea, write);
+		JPanel panel=ep.loggerPanel();
 
 		Component scrollLogger = new JScrollPane(panel);
 		scrollLogger.setName("scrollPane text area logger");
@@ -128,7 +130,7 @@ public class FrameMap extends JFrame {
 		
 		
 		//----------pannello sud (informazioni)----------
-		JPanel southPanel=sp.setSouthPanel(model, loggerArea);
+		JPanel southPanel=sp.setSouthPanel();
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -171,9 +173,9 @@ public class FrameMap extends JFrame {
 	}
 
 	public void update(){
-		ep.update();
-		mp.update();
-		sp.update();
+		ep.loggerPanel();
+		mp.createMap(model.getModel().getRegions(), loggerArea);
+		sp.setSouthPanel();
 		this.repaint();
 	}
 }

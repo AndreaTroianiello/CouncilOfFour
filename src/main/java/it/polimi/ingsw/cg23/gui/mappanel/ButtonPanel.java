@@ -21,14 +21,18 @@ public class ButtonPanel extends JPanel {
 	private MainActionPanel map;
 	private SecondaryActionPanel sap;
 	private InfoPanel ip;
+	private JTextArea textArea;
+	private JTextField write;
 	
 	/**
 	 * Create the panel.
 	 */
-	public ButtonPanel() {
-		this.map=new MainActionPanel();
-		this.sap=new SecondaryActionPanel();
-		this.ip=new InfoPanel();
+	public ButtonPanel(JTextArea textArea, JTextField write) {
+		this.map=new MainActionPanel(textArea);
+		this.sap=new SecondaryActionPanel(textArea);
+		this.ip=new InfoPanel(textArea, write);
+		this.textArea=textArea;
+		this.write=write;
 	}
 	
 	/**
@@ -37,7 +41,7 @@ public class ButtonPanel extends JPanel {
 	 * @param write, to write
 	 * @return the panel
 	 */
-	public JPanel buttonPanel(JTextArea textArea, JTextField write){
+	public JPanel buttonPanel(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
@@ -47,7 +51,7 @@ public class ButtonPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------azioni principali----------
-		JPanel mainActionPanel=map.mainAction(textArea);//richiamo il pannello azioni principali
+		JPanel mainActionPanel=map.mainAction();//richiamo il pannello azioni principali
 		mainActionPanel.setName("label azioni principali");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -57,7 +61,7 @@ public class ButtonPanel extends JPanel {
 		panel.add(mainActionPanel);
 
 		//----------azioni secondarie----------
-		JPanel secActionPanel=sap.secondAction(textArea);//richiamo il pannello azioni secondarie
+		JPanel secActionPanel=sap.secondAction();//richiamo il pannello azioni secondarie
 		mainActionPanel.setName("label azioni secondarie");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -67,7 +71,7 @@ public class ButtonPanel extends JPanel {
 		panel.add(secActionPanel);
 
 		//----------info panel----------
-		JPanel infoPanel=ip.infoAction(textArea, write);//richiamo il pannello info
+		JPanel infoPanel=ip.infoAction();//richiamo il pannello info
 		infoPanel.setName("label info panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -80,9 +84,9 @@ public class ButtonPanel extends JPanel {
 	}
 	
 	public void update(){
-		map.update();
-		sap.update();
-		ip.update();
+		map.mainAction();
+		sap.secondAction();
+		ip.infoAction();
 		this.repaint();
 	}
 }

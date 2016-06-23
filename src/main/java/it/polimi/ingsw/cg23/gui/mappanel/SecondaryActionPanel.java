@@ -24,14 +24,13 @@ public class SecondaryActionPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -1693691013491659757L;
-
+	private JTextArea text;
+	
 	/**
 	 * Create the panel.
 	 */
-	public SecondaryActionPanel() {
-		/**
-		 * empty costructor
-		 */
+	public SecondaryActionPanel(JTextArea text) {
+		this.text=text;
 	}
 
 	/**
@@ -39,7 +38,7 @@ public class SecondaryActionPanel extends JPanel {
 	 * @param text, the text area to write on
 	 * @return the panel
 	 */
-	public JPanel secondAction(JTextArea text){
+	public JPanel secondAction(){
 		JPanel panel=new JPanel();
 		panel.setBackground(new Color(123,255,123));
 		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -142,7 +141,7 @@ public class SecondaryActionPanel extends JPanel {
 		return panel;
 	}
 
-	public void update(){
+	/*public void update(){
 		this.repaint();
-	}
+	}*/
 }
