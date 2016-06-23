@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class MapPanel extends JPanel {
 	private transient Logger logger;
 	private transient MapSetting ms;
 	private CityPanel cp;
+	final double lung=Toolkit.getDefaultToolkit().getScreenSize().width;
+	final double alt=Toolkit.getDefaultToolkit().getScreenSize().height;
 
 	/**
 	 * Create the panel.
@@ -63,10 +66,15 @@ public class MapPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		BufferedImage img=getImg();//immagine di sfondo
-		//Image myim=img.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT);
-
-		JLabel label=new JLabel(new ImageIcon(img));//etichetta con l'immagine di sfondo
-		label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));//dimensione etichetta immagine di sfondo
+		double width= ((double) 3/4)*lung;
+		double height=  ((double) img.getHeight()/img.getWidth())*width;
+		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
+	
+		//System.out.println(lung+" "+width);
+		//System.out.println(height+" "+alt);
+		
+		JLabel label=new JLabel(new ImageIcon(myim));//etichetta con l'immagine di sfondo
+		//label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));//dimensione etichetta immagine di sfondo
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro

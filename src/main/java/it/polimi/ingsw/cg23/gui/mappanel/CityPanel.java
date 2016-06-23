@@ -64,7 +64,8 @@ public class CityPanel extends JPanel {
 
 		//----------nome citta'----------
 		JLabel nameLabel=new JLabel(c.getId()+"");
-		nameLabel.setFont(new Font("Calibre", Font.ITALIC, 60));
+		double font= ((double) 3/100)*lung;
+		nameLabel.setFont(new Font("Calibre", Font.ITALIC,(int) font));
 		nameLabel.setForeground(new Color(255,255,255));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -78,20 +79,20 @@ public class CityPanel extends JPanel {
 
 		//----------immagine citta'----------
 		BufferedImage img=getImg(c.getType());
-		int width=(int) (img.getWidth()*(alt/lung));
-		int height=(int) (img.getHeight()*(alt/lung));
+		double width= ((double) 3/50)*lung;
+		double height=  ((double) img.getHeight()/img.getWidth())*width;
+		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
 		
-		Image scaled=img.getScaledInstance(width, height, Image.SCALE_DEFAULT);
-		JLabel label=new JLabel(new ImageIcon(img));
+		JLabel label=new JLabel(new ImageIcon(myim));
 
 		//label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.gridx =1;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=0;
+		lim.gridwidth=1;
 
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
