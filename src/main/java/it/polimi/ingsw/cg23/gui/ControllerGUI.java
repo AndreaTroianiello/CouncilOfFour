@@ -41,10 +41,9 @@ public class ControllerGUI implements ClientController {
 			map.update();
 		}else
 			if(clientModel.getModel()!=null){
-				map=new FrameMap(clientModel);
-				map.setVisible(true);
+				//map=new FrameMap(this);
+				//map.setVisible(true);
 		}
-		
 	}
 	@Override
 	public void updateController(Change change) {

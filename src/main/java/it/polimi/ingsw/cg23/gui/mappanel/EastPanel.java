@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
+
 /**
  * create the logger panel
  * @author viga94_
@@ -32,10 +34,10 @@ public class EastPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EastPanel(JTextArea loggerArea, JTextField write) {
+	public EastPanel(JTextArea loggerArea, JTextField write,ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.write=write;
-		this.bp=new ButtonPanel(loggerArea, write);
+		this.bp=new ButtonPanel(loggerArea, write,controller);
 		
 	}
 

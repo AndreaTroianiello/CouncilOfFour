@@ -96,6 +96,8 @@ public class HomeFrame extends JFrame {
 
 			logger.error("impossibile caricare l'ìmmagine", e);
 		}
+		
+		pack();
 	}
 	
 	public void switchPanel(){

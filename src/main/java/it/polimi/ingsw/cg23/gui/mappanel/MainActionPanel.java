@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
+
 /**
  * create the main action button of the gui
  * @author viga94_
@@ -24,11 +27,13 @@ public class MainActionPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -5715872370987341629L;
 	private JTextArea text;
+	private ControllerGUI controller;
 	/**
 	 * Create the panel.
 	 */
-	public MainActionPanel(JTextArea text) {
+	public MainActionPanel(JTextArea text,ControllerGUI controller) {
 		this.text=text;
+		this.controller=controller;
 	}
 
 	/**

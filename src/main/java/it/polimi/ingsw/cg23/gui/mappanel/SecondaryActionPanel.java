@@ -13,24 +13,27 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
+import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
+
 /**
  * create the secondar
  * @author viga94_
  *
  */
 public class SecondaryActionPanel extends JPanel {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -1693691013491659757L;
 	private JTextArea text;
+	private ControllerGUI controller;
 	
 	/**
 	 * Create the panel.
 	 */
-	public SecondaryActionPanel(JTextArea text) {
+	public SecondaryActionPanel(JTextArea text,ControllerGUI controller) {
 		this.text=text;
+		this.controller=controller;
 	}
 
 	/**
@@ -78,6 +81,7 @@ public class SecondaryActionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 1
+				controller.updateController(new HireAssistant());
 			}
 		});
 
@@ -93,10 +97,12 @@ public class SecondaryActionPanel extends JPanel {
 		layout.setConstraints(button2, lim);
 		panel.add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				text.append("\n"+button2.getName());
 				//AZIONI AZIONE 2
+				controller.updateController(new AdditionalAction());
 			}
 		});
 

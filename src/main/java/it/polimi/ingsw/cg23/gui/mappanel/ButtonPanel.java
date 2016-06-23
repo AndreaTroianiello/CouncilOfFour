@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 /**
  * create the button bunel (main action, secondary action, info button)
  * @author viga94_
@@ -27,12 +29,12 @@ public class ButtonPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ButtonPanel(JTextArea textArea, JTextField write) {
-		this.map=new MainActionPanel(textArea);
-		this.sap=new SecondaryActionPanel(textArea);
-		this.ip=new InfoPanel(textArea, write);
+	public ButtonPanel(JTextArea textArea, JTextField write,ControllerGUI controller) {
 		this.textArea=textArea;
 		this.write=write;
+		this.map=new MainActionPanel(textArea,controller);
+		this.sap=new SecondaryActionPanel(textArea,controller);
+		this.ip=new InfoPanel(textArea, write);
 	}
 	
 	/**

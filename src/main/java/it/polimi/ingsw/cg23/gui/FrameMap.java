@@ -43,31 +43,29 @@ public class FrameMap extends JFrame {
 	private JTextArea loggerArea;
 	private JTextField write;
 	private transient ClientModel model;
-	//private transient Avvio model;
-	//private ClientController controller;
 	private static Logger logger;
 
 	private EastPanel ep;
 	private MapPanel mp;
 	private SouthPanel sp;
+	private ControllerGUI controller;
 	/**
 	 * Create the frame.
 	 * @param controller
 	 */
-	public FrameMap(ClientModel model) {
+	public FrameMap(/*ControllerGUI controller*/ ClientModel model) {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-		
+		this.controller=null;
+		//this.model=controller.getModel();
+		this.model=model;
 		loggerArea=new JTextArea();
 		write=new JTextField();
 		//pannel
-		ep=new EastPanel(loggerArea, write);
+		ep=new EastPanel(loggerArea, write,controller);
 		mp=new MapPanel();
 		sp=new SouthPanel(model, loggerArea);
-		
-		this.model=model;
-		//this.controller=controller;
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 1460, 900);
@@ -86,7 +84,7 @@ public class FrameMap extends JFrame {
 		s.startPartita();
 		 */
 		grid();
-		update();
+		//update();
 	}
 
 	/**
@@ -143,7 +141,7 @@ public class FrameMap extends JFrame {
 		layout.setConstraints(southPanel, lim); //Associazione
 		contentPane.add(southPanel); //Inserimento
 		
-		pack();//necessario
+		//pack();//necessario
 	}
 
 
@@ -163,6 +161,7 @@ public class FrameMap extends JFrame {
 					new PoliticCard(Color.BLUE, false),
 					new PoliticCard(Color.PINK, false));
 					model.getPlayer().getHand().addAll(list);
+					//ControllerGUI controller=new ControllerGUI();
 					FrameMap frame = new FrameMap(model);
 					frame.setVisible(true);
 				} catch (Exception e) {
