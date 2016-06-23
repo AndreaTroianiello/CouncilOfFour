@@ -28,6 +28,13 @@ public class Client {
 				case "RMI":
 					run=command.startRMI(tokenizer, stdIn, cli);
 					break;
+				case "QUIT":
+					cli.print("", "Bye.");
+					run=false;
+					break;
+				case "HELP":
+					new ReaderTextFile(cli).readFile();
+					break;
 				default:
 					cli.print("", "Wrong command.");
 					break;

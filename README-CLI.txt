@@ -8,6 +8,10 @@ if the game isn't ended yet.
 Start game from CLI: Client.java (package it.polimi.ingsw.cg23.client.cli)
 CLI's commands:
 
+HELP
+
+QUIT
+
 SOCKET address
 RMI address
 

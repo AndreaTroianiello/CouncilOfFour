@@ -91,7 +91,11 @@ public class ControllerCLI implements ClientController{
 		StringTokenizer tokenizer=new StringTokenizer(string," ");
 		switch (tokenizer.nextToken()) {
 		case "QUIT":
+			cli.print("", "Bye.");
 			out.close();
+			break;
+		case "HELP":
+			new ReaderTextFile(cli).readFile();
 			break;
 		case "SHOW":
 			parseShowCommand(tokenizer);
