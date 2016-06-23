@@ -43,9 +43,10 @@ public class ElectCouncillorAssistantTest {
 	/**
 	 * it tests if when there aren't councillor of the chosen color in the pool runAction doesn't
 	 * change the council
+	 * @throws NegativeNumberException 
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheCouncilWhenThereArentCouncillorsOfTheChosenColorInThePool() {
+	public void testRunActionShouldntChangeTheCouncilWhenThereArentCouncillorsOfTheChosenColorInThePool() throws NegativeNumberException {
 		this.councillor=Color.ORANGE;
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, region, false);
 		Council council = region.getCouncil();
@@ -54,6 +55,7 @@ public class ElectCouncillorAssistantTest {
 		council.getCouncillors().add(new Councillor(Color.RED));
 		council.getCouncillors().add(new Councillor(Color.WHITE));
 		Council oldCouncil = council;
+		this.player.getAssistantsPool().setAssistants(2);
 		action.runAction(player, board);
 		assertSame(oldCouncil, council);
 	}
@@ -102,6 +104,49 @@ public class ElectCouncillorAssistantTest {
 		player.getAssistantsPool().setAssistants(0);;
 		action.runAction(player, board);
 		assertSame(oldCouncil, council);
+	}
+	
+	/**
+	 * it tests if runAction change the last councillor of the councillor pool of the 
+	 * chosen region and if it gives the player 4 coins
+	 * @throws NegativeNumberException
+	 */
+	@Test
+	public void testRunActionShouldChangeTheKingCouncilAndGiveThePlayer4CoinsIfItIsAllFine() throws NegativeNumberException{
+		this.councillor=Color.ORANGE;
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(councillor, null, true);
+		List<Councillor> councillorPool = board.getCouncillorPool();
+		Councillor newCouncillor = new Councillor(Color.ORANGE);
+		councillorPool.add(newCouncillor);
+		Council council = board.getKing().getCouncil();
+		council.getCouncillors().add(new Councillor(Color.BLUE));
+		council.getCouncillors().add(new Councillor(Color.BLACK));
+		council.getCouncillors().add(new Councillor(Color.RED));
+		council.getCouncillors().add(new Councillor(Color.WHITE));
+		player.getAssistantsPool().setAssistants(10);
+		action.runAction(player, board);
+		assertEquals(newCouncillor, council.getCouncillors().get(3));
+		assertEquals(9, player.getAssistantsPool().getAssistants());
+	}
+	
+	/**
+	 * it tests if the constructor throws the null pointer exception
+	 * @throws NullPointerException
+	 */
+	@Test(expected=NullPointerException.class)
+	public void testNullPointerExceptionCouncillor() throws NullPointerException{
+		this.councillor=Color.ORANGE;
+		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, null, true);
+	}
+	
+	/**
+	 * it tests if the constructor throws the null pointer exception
+	 * @throws NullPointerException
+	 */
+	@Test(expected=NullPointerException.class)
+	public void testNullPointerExceptionRegion() throws NullPointerException{
+		this.councillor=Color.ORANGE;
+		ElectCouncillorAssistant action2 = new ElectCouncillorAssistant(this.councillor, null, false);
 	}
 
 	/**

@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.King;
@@ -104,6 +105,15 @@ public class ElectCouncillorTest {
 		assertEquals(14, player.getRichness().getCoins());
 	}
 
+	/**
+	 * it tests if the constructor throws the null pointer exception
+	 * @throws NullPointerException
+	 */
+	@Test(expected=NullPointerException.class)
+	public void testNullPointerExceptionCouncillor() throws NullPointerException{
+		this.councillor=Color.ORANGE;
+		ElectCouncillor action = new ElectCouncillor(null, null, true);
+	}
 
 	/**
 	 * it tests if isKing works properly

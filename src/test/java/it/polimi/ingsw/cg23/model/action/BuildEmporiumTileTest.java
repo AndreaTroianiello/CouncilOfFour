@@ -100,9 +100,15 @@ public class BuildEmporiumTileTest {
 	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants() throws NegativeNumberException{
 		Player player2 = new Player("player2", new NobilityTrack(3));
 		player2.getRichness().setCoins(100);
+		player2.addAvailableBusinessPermit(card);
 		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
 		this.city.getEmporiums().add(new Emporium(player));
 		action.runAction(player2, board);
 		assertEquals(false, this.city.containsEmporium(player2));
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testNullPointerException() throws NullPointerException{
+		BuildEmporiumTile action = new BuildEmporiumTile(null, null);
 	}
 }
