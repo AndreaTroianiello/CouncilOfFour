@@ -37,7 +37,7 @@ public class FrameMap extends JFrame {
 	private JPanel contentPane;
 	private JTextArea loggerArea;
 	private JTextField write;
-	private ClientModel model;
+	private transient ClientModel model;
 	//private transient Avvio model;
 	//private ClientController controller;
 	private static Logger logger;
@@ -67,7 +67,7 @@ public class FrameMap extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
-		setResizable(false);
+		//setResizable(false);
 		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
 		/*Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		String name="map6.xml";
@@ -123,7 +123,7 @@ public class FrameMap extends JFrame {
 		
 		
 		//----------pannello sud (informazioni)----------
-		JPanel southPanel=sp.setSouthPanel(model.getModel(), loggerArea);
+		JPanel southPanel=sp.setSouthPanel(model, loggerArea);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -147,7 +147,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map7.xml",model.getModel()).startPartita();
+					new Avvio("map4.xml",model.getModel()).startPartita();
 					FrameMap frame = new FrameMap(model);
 					frame.setVisible(true);
 				} catch (Exception e) {

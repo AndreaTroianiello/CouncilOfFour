@@ -10,12 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import it.polimi.ingsw.cg23.server.model.Board;
-import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
-import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
-import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * create the south panel
@@ -30,7 +26,6 @@ public class SouthPanel extends JPanel {
 	private static final long serialVersionUID = 1220509934759316582L;
 	private CostructionCardPanel ccp;
 	private CouncilPanel cp;
-	private transient ColorManager cm;
 	private NobilityTrackPanel ntp;
 	private PoliticCardPanel pcp;
 	private BonusPanel bp;
@@ -42,18 +37,17 @@ public class SouthPanel extends JPanel {
 		this.ntp=new NobilityTrackPanel();
 		this.ccp=new CostructionCardPanel();
 		this.cp=new CouncilPanel();
-		this.cm=new ColorManager();
 		this.pcp=new PoliticCardPanel();
 		this.bp=new BonusPanel();
 	}
 
 	/**
 	 * create the south panel
-	 * @param b, the board
+	 * @param model, the board
 	 * @param loggerArea, the area to write on
 	 * @return a jpanel with the south panel created
 	 */
-	public JPanel setSouthPanel(Board b, JTextArea loggerArea){
+	public JPanel setSouthPanel(ClientModel model, JTextArea loggerArea){
 		JPanel southPanel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		southPanel.setLayout(layout);
@@ -62,7 +56,7 @@ public class SouthPanel extends JPanel {
 		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		
-		List<Region> reg=b.getRegions();
+		List<Region> reg=model.getModel().getRegions();
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
 
 			//----------carte permesso di costruzione----------
@@ -96,14 +90,13 @@ public class SouthPanel extends JPanel {
 		}
 
 		//----------------nobility track------------
-		JPanel panelNobility=ntp.createNobility(b.getNobilityTrack(), loggerArea);
+		JPanel panelNobility=ntp.createNobility(model.getModel().getNobilityTrack(), loggerArea);
 		panelNobility.setName("Nobility panel");
 		panelNobility.setBackground(new Color(154, 205, 50));
 		JScrollPane scrollNobility=new  JScrollPane(panelNobility);
 		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-		//scrollNobility.setPreferredSize(new Dimension(WIDTH, 75));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -115,7 +108,7 @@ public class SouthPanel extends JPanel {
 
 
 		//----------------consiglieri del re------------
-		JPanel kingCouncillors=cp.kingbalcone(b.getKing());
+		JPanel kingCouncillors=cp.kingbalcone(model.getModel().getKing());
 		kingCouncillors.setName("consiglieri re");
 		kingCouncillors.setBackground(new Color(123, 104, 238));
 		kingCouncillors.setOpaque(true);
@@ -129,17 +122,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(kingCouncillors);
 
 		//----------carte politiche------------
-		Player p=new Player("io", new NobilityTrack(20));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(null, true));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(cm.getColor("Blue"), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(cm.getColor("Brown"), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(cm.getColor("Pink"), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(cm.getColor("Orange"), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(cm.getColor("Violet"), false));//PROVA->provvisorio
-		p.getHand().add(new PoliticCard(cm.getColor("White"), false));//PROVA->provvisorio
-
-		//come riconosco che player sta giocando?????
-		JPanel politics=new PoliticCardPanel().createCard(p, loggerArea);
+		JPanel politics=new PoliticCardPanel().createCard(model.getPlayer(), loggerArea);
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(154, 205, 50));
 		JScrollPane scroll=new JScrollPane(politics);
@@ -155,7 +138,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(scroll);
 
 		//----------------bonus panel------------
-		JPanel bonusPanel=new BonusPanel().createBonusPanel(b, loggerArea);
+		JPanel bonusPanel=new BonusPanel().createBonusPanel(model.getModel(), loggerArea);
 		bonusPanel.setName("bonus");
 		bonusPanel.setBackground(new Color(123, 104, 238));
 		lim.gridx = 2;//posizione componenti nella griglia

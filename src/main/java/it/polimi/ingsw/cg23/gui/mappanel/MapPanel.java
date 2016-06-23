@@ -56,7 +56,7 @@ public class MapPanel extends JPanel {
 		JPanel mapPanel=new JPanel();//pannello con la mappa
 		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
 		mapPanel.setLayout(layout);//il pannello usa il layout grid bag
-
+		
 		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
