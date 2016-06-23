@@ -108,6 +108,7 @@ public class CommandController {
 		case "CARD":
 			action = new MarketSell(clientModel.findPoliticCard(tokenizer.nextToken()),
 					Integer.parseInt(tokenizer.nextToken()));
+			controller.updateController(action);
 			break;
 		case "ASSISTANTS":
 			AssistantsPool pool=new AssistantsPool();
