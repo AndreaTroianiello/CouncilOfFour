@@ -131,7 +131,7 @@ public class MapSetting {
 		for(int j=0; j<reg.size(); j++){//ciclo che scorre le regioni
 			String n;
 			if(reg.get(j).isBonusAvailable())
-				n=reg.get(j).getName().toUpperCase()+" Victory points: "+reg.get(j).getBonus().getPoints();
+				n=reg.get(j).getName().toUpperCase()+" Victory points: "+reg.get(j).getBonus().getNumber();
 			else
 				n=reg.get(j).getName().toUpperCase();
 
@@ -309,7 +309,7 @@ public class MapSetting {
 				tipi=tipi.concat("");
 			else
 				if(tipes.get(i).isBonusAvailable())
-					tipi=tipi.concat(tipes.get(i).getName()+": "+tipes.get(i).getBonus().getPoints()+", ");
+					tipi=tipi.concat(tipes.get(i).getName()+": "+tipes.get(i).getBonus().getNumber()+", ");
 		}
 
 		return addSpace(consiglieri, space)+addSpace(bonus, space)+addSpace(tipi.substring(0, tipi.length()-2), space);

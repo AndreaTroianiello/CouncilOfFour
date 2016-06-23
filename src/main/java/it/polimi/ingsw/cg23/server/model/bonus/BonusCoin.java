@@ -46,13 +46,6 @@ public class BonusCoin implements Bonus {
 	public String getName(){
 		return coins+name;
 	}
-	
-	/**
-	 * @return the coin
-	 */
-	public int getCoin() {
-		return coins;
-	}
 
 
 	/**

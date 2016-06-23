@@ -51,7 +51,8 @@ public class BonusNobilityTest {
 	@Test
 	public void testGetSteps() {
 		BonusNobility bonus = new BonusNobility(2, board);
-		assertEquals(2, bonus.getSteps());
+		bonus.setBoard(board);
+		assertEquals(2, bonus.getNumber());
 	}
 
 	/**

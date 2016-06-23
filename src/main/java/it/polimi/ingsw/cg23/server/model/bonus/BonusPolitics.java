@@ -45,14 +45,6 @@ public class BonusPolitics implements Bonus {
 	public Board getBoard() {
 		return board;
 	}
-
-
-	/**
-	 * @return the cardNumber
-	 */
-	public int getCardNumber() {
-		return cardNumber;
-	}
 	
 
 	/**

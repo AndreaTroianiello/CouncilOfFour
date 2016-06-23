@@ -255,5 +255,17 @@ public class TurnTest {
 		Turn turn = new Turn(board);
 		assertEquals("Turn [currentPlayer=user1, mainIndex=1, mainAction=true, secondAction=true]", turn.toString());
 	}
+	
+	/**
+	 * it tests if setTimer and getTimer work properly
+	 */
+	@Test
+	public void testSetGetTimer(){
+		Turn turn = new Turn(board);
+		Timer timer = new Timer(null, null);
+		timer.isRunning();
+		turn.setTimer(timer);
+		assertEquals(timer, turn.getTimer());
+	}
 
 }

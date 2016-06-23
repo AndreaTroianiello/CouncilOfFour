@@ -25,8 +25,9 @@ public class BonusAssistantsTest {
 	@Test
 	public void testGetAssistants() {
 		BonusAssistants bonus = new BonusAssistants();
+		bonus.setBoard(null);
 		bonus.setNumber(10);
-		assertEquals(10, bonus.getAssistants());
+		assertEquals(10, bonus.getNumber());
 	}
 
 	/**
