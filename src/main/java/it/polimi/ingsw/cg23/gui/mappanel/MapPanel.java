@@ -59,10 +59,10 @@ public class MapPanel extends JPanel {
 		mapPanel.setLayout(layout);//il pannello usa il layout grid bag
 		
 		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-		/*BufferedImage img=getImg();//immagine di sfondo
+		BufferedImage img=getImg();//immagine di sfondo
 		//Image myim=img.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT);
 
 		JLabel label=new JLabel(new ImageIcon(img));//etichetta con l'immagine di sfondo
@@ -75,7 +75,7 @@ public class MapPanel extends JPanel {
 		lim.gridwidth=1;
 
 		label.setLayout(layout);//la label usa il layout grid bag
-		 */
+		 
 		List<City> city=ms.getCityfromRegion(reg);//lista con le citta'
 
 		int j=0;
@@ -100,13 +100,13 @@ public class MapPanel extends JPanel {
 				lim.gridwidth=1;
 
 				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
-				mapPanel.add(citta);//aggiunta il panel alla label
+				label.add(citta);//aggiunta il panel alla label
 
 			}
 		}
 
-		//layout.setConstraints(label, lim);//applico il layout alla label con lo sfondo
-		//mapPanel.add(label);//aggiungo la label al panel
+		layout.setConstraints(label, lim);//applico il layout alla label con lo sfondo
+		mapPanel.add(label);//aggiungo la label al panel
 
 		return mapPanel;
 	}

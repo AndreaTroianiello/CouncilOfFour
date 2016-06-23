@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class FrameMap extends JFrame {
 		sp=new SouthPanel(model, loggerArea);
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(10, 10, 1460, 900);
+		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
@@ -104,12 +105,12 @@ public class FrameMap extends JFrame {
 		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=3;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.VERTICAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
-		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
+		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(scrollLogger, lim); //Associazione
 		contentPane.add(scrollLogger); //Inserimento
 
@@ -117,12 +118,12 @@ public class FrameMap extends JFrame {
 		JPanel mapPanel=mp.createMap(model.getModel().getRegions(), loggerArea);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=3;
-		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
-		lim.anchor = GridBagConstraints.NORTHWEST;//posizione componenti nei riquadri
+		lim.fill=GridBagConstraints.NONE;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
 		
@@ -132,16 +133,16 @@ public class FrameMap extends JFrame {
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
-		lim.fill=GridBagConstraints.HORIZONTAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
-		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
+		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(southPanel, lim); //Associazione
 		contentPane.add(southPanel); //Inserimento
 		
-		//pack();//necessario
+		pack();//necessario
 	}
 
 

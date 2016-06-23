@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -36,6 +38,8 @@ public class CityPanel extends JPanel {
 	private static final long serialVersionUID = -1040653424377395735L;
 	private transient Logger logger;
 	private transient MapSetting ms;
+	final double lung=Toolkit.getDefaultToolkit().getScreenSize().width;
+	final double alt=Toolkit.getDefaultToolkit().getScreenSize().height;
 
 	/**
 	 * Create the panel.
@@ -74,8 +78,13 @@ public class CityPanel extends JPanel {
 
 		//----------immagine citta'----------
 		BufferedImage img=getImg(c.getType());
+		int width=(int) (img.getWidth()*(alt/lung));
+		int height=(int) (img.getHeight()*(alt/lung));
+		
+		Image scaled=img.getScaledInstance(width, height, Image.SCALE_DEFAULT);
 		JLabel label=new JLabel(new ImageIcon(img));
-		label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+
+		//label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.gridx =1;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -107,7 +116,7 @@ public class CityPanel extends JPanel {
 				loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
 				loggerArea.append("\n  Tipo: "+c.getType());
 				loggerArea.append("\n  Empori: ");
-				if(c.getEmporiums().size()==0)
+				if(c.getEmporiums().isEmpty())
 					loggerArea.append("0");
 				else{
 					for(int i=0; i<c.getEmporiums().size(); i++){
