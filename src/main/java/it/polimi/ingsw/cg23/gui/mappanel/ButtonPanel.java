@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -45,7 +46,7 @@ public class ButtonPanel extends JPanel {
 		panel.setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints(); 
 
-		lim.fill=GridBagConstraints.HORIZONTAL;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------azioni principali----------
@@ -77,7 +78,8 @@ public class ButtonPanel extends JPanel {
 		lim.gridwidth=2;
 		layout.setConstraints(infoPanel, lim);
 		panel.add(infoPanel);
-
+		
+		panel.setBackground(new Color(123,123,123));
 		return panel;
 	}
 	

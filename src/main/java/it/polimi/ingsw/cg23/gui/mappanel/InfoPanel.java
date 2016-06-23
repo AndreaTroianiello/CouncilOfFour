@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -44,12 +43,10 @@ public class InfoPanel extends JPanel {
 	public JPanel infoAction(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
-
 		panel.setLayout(layout);
-		panel.setBackground(new Color(123,123,123));
-
-		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		panel.setOpaque(false);
+		
+		GridBagConstraints lim = new GridBagConstraints();
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Info");
@@ -58,8 +55,10 @@ public class InfoPanel extends JPanel {
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=4;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+
 		layout.setConstraints(label, lim);
 		panel.add(label);
 
@@ -68,10 +67,11 @@ public class InfoPanel extends JPanel {
 		button1.setToolTipText("Exit from the game");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
 		panel.add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
@@ -96,8 +96,8 @@ public class InfoPanel extends JPanel {
 		button1.setToolTipText("Cancella la log area");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button2, lim);
@@ -119,8 +119,8 @@ public class InfoPanel extends JPanel {
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		layout.setConstraints(button3, lim); //Associazione
 		panel.add(button3); //Inserimento
 		button3.addActionListener(new ActionListener() {

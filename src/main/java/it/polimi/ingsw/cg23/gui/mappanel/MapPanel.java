@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -20,6 +23,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.utility.MapSetting;
 
 /**
@@ -36,14 +40,16 @@ public class MapPanel extends JPanel {
 	private transient MapSetting ms;
 	private CityPanel cp;
 	private final double lung;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public MapPanel() {
+	public MapPanel(JTextArea loggerArea) {
+		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
 		this.ms=new MapSetting();
-		this.cp=new CityPanel();
+		this.cp=new CityPanel(loggerArea);
 
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
@@ -56,11 +62,11 @@ public class MapPanel extends JPanel {
 	 * @param loggerArea, the area to read on
 	 * @return a panel with the map
 	 */
-	public JPanel createMap(List<Region> reg, JTextArea loggerArea){
+	public JPanel createMap(List<Region> reg, King king){
 		JPanel mapPanel=new JPanel();//pannello con la mappa
 		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
 		mapPanel.setLayout(layout);//il pannello usa il layout grid bag
-		
+
 		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
@@ -69,7 +75,7 @@ public class MapPanel extends JPanel {
 		double width= (3.0/4)*lung;
 		double height=  ((double) img.getHeight()/img.getWidth())*width;
 		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
-		
+
 		JLabel label=new JLabel(new ImageIcon(myim));//etichetta con l'immagine di sfondo
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -79,7 +85,7 @@ public class MapPanel extends JPanel {
 		lim.gridwidth=1;
 
 		label.setLayout(layout);//la label usa il layout grid bag
-		 
+
 		List<City> city=ms.getCityfromRegion(reg);//lista con le citta'
 
 		int j=0;
@@ -88,7 +94,7 @@ public class MapPanel extends JPanel {
 
 				JPanel citta = new JPanel();//pannello con le citta'
 				if((i+k)%2==0){//posiziona le citta' a scacchiera
-					citta=cp.createCity(city.get(j), loggerArea);//recupero il pannello con la citta'
+					citta=cp.createCity(city.get(j), king);//recupero il pannello con la citta'
 					citta.setToolTipText(city.get(j).getName());
 					j++;
 					citta.setOpaque(false);
@@ -103,9 +109,28 @@ public class MapPanel extends JPanel {
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
 
+				if(i%2!=0&&k==4){
+					String region=city.get(j-1).getRegion().getName();
+					JButton but=new JButton(region);
+					lim.gridx = i;//posizione componenti nella griglia
+					lim.gridy = k;
+					lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+					lim.weighty = 1;
+					lim.gridheight=1;//grandezza del riquadro
+					lim.gridwidth=1;
+					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+					layout.setConstraints(but, lim);//applico il layout al pannello delle citta'
+					label.add(but);//aggiunta il panel alla label
+					but.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							loggerArea.append("\nSelezionato "+region);
+						}
+					});
+				}
 				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
 				label.add(citta);//aggiunta il panel alla label
-
 			}
 		}
 

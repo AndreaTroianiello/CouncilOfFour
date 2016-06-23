@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
@@ -80,6 +81,55 @@ public class CostructionCardPanel extends JPanel {
 		
 		//carte costruzione regione
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
+
+		for(int i=0; i<bpt.size(); i++){//scorre le carte costruzione visibili
+
+			//----------carte costruzione----------
+			BufferedImage img=getCostructionImg(nameCostructor(bpt.get(i).getCitiesId()));//carta costruzione 1
+			JLabel costructionCard = new JLabel(new ImageIcon(img));//aggiungo l'immagine alla label
+			costructionCard.setName("costruzione"+i);
+			costructionCard.setToolTipText("Carta costruzione "+(i+1)+" "+bpt.get(i).getZone());
+			costructionCard.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
+			lim.gridx = i+1;//posizione componenti nella griglia
+			lim.gridy = 0;
+			lim.weightx=0;//espansione in verticale e orizzontale
+			lim.weighty=0;
+			lim.ipadx=10;
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			layout.setConstraints(costructionCard, lim);
+			final int k=i;
+			costructionCard.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					writeArea(loggerArea, bpt.get(k));}
+			});
+		
+			panel.add(costructionCard);//aggiunta della label al panel
+		}
+
+		return panel;
+	}
+	
+	public JPanel myCostructionCard(Player p){
+		JPanel panel=new JPanel();
+		GridBagLayout layout = new GridBagLayout();
+		panel.setLayout(layout);
+
+		GridBagConstraints lim = new GridBagConstraints(); 
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		
+		//carte costruzione regione
+		List<BusinessPermitTile> bpt=p.getAvailableBusinessPermits();
 
 		for(int i=0; i<bpt.size(); i++){//scorre le carte costruzione visibili
 

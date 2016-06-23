@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
+
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -52,6 +53,7 @@ public class EastPanel extends JPanel {
 
 		GridBagLayout layout = new GridBagLayout();
 		logger.setLayout(layout);
+		
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri

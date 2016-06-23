@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.City;
+import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.utility.MapSetting;
 
 /**
@@ -37,15 +38,15 @@ public class CityPanel extends JPanel {
 	private static final long serialVersionUID = -1040653424377395735L;
 	private transient Logger logger;
 	private transient MapSetting ms;
-	final double lung;
-	final double alt;
+	private final double lung;
+	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
 	 */
-	public CityPanel() {
+	public CityPanel(JTextArea loggerArea) {
+		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
-		alt=Toolkit.getDefaultToolkit().getScreenSize().height-50.0;
 		
 		this.ms=new MapSetting();
 
@@ -61,7 +62,7 @@ public class CityPanel extends JPanel {
 	 * @param loggerArea, the area to read on
 	 * @return the city panel
 	 */
-	public JPanel createCity(City c, JTextArea loggerArea){
+	public JPanel createCity(City c, King k){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
@@ -80,29 +81,46 @@ public class CityPanel extends JPanel {
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=0;
+		lim.gridwidth=1;
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
-
+		
+		int p=1;
+		//----------king label----------
+		if(c.equals(k.getCity())){
+			BufferedImage imgKing=getImg("king");//lettura immagine
+			JLabel kingLabel=new JLabel(new ImageIcon(imgKing));
+			lim.anchor = GridBagConstraints.NORTHEAST;//posizione componenti nei riquadri
+			lim.gridx = p;//posizione componenti nella griglia
+			lim.gridy = 0;
+			lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+			lim.weighty = 1;
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			p++;
+			
+			layout.setConstraints(kingLabel, lim);
+			panel.add(kingLabel);//aggiunta bottone al layer panel
+		}
+		
 		//----------immagine citta'----------
-		BufferedImage img=getImg(c.getType());//lettura immagine
+		BufferedImage img=getImg("city/"+c.getType()+"City");//lettura immagine
 		double width= ((double) 3/50)*lung;
 		double height=  ((double) img.getHeight()/img.getWidth())*width;
 		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
 
 		JLabel label=new JLabel(new ImageIcon(myim));
-		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
-		lim.gridx =1;//posizione componenti nella griglia
+		lim.gridx =p;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-
+		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-
+		
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -128,13 +146,13 @@ public class CityPanel extends JPanel {
 				}
 			}
 		});
-
+		
 		return panel;
 	}
 
 	private BufferedImage getImg(String name){//recupero le immagini
 		BufferedImage image=null;
-		String path="src/main/resources/images/city/"+name+"City.png";//percorso dell'immagine
+		String path="src/main/resources/images/"+name+".png";//percorso dell'immagine
 
 		try {
 			image = ImageIO.read(new File(path));

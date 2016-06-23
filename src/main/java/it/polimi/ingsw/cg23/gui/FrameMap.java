@@ -65,11 +65,11 @@ public class FrameMap extends JFrame {
 		write=new JTextField();
 		//pannel
 		ep=new EastPanel(loggerArea, write,controller);
-		mp=new MapPanel();
+		mp=new MapPanel(loggerArea);
 		sp=new SouthPanel(model, loggerArea);
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-10, Toolkit.getDefaultToolkit().getScreenSize().height-50);
+		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-100, Toolkit.getDefaultToolkit().getScreenSize().height-200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
@@ -115,7 +115,7 @@ public class FrameMap extends JFrame {
 		contentPane.add(scrollLogger); //Inserimento
 
 		//----------pannello nord (mappa)----------
-		JPanel mapPanel=mp.createMap(model.getModel().getRegions(), loggerArea);
+		JPanel mapPanel=mp.createMap(model.getModel().getRegions(), model.getModel().getKing());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -126,10 +126,11 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-		
-		
+
+
 		//----------pannello sud (informazioni)----------
 		JPanel southPanel=sp.setSouthPanel();
+		JScrollPane scroll=new JScrollPane(southPanel);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -139,9 +140,9 @@ public class FrameMap extends JFrame {
 		lim.gridwidth=3;
 		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-		layout.setConstraints(southPanel, lim); //Associazione
-		contentPane.add(southPanel); //Inserimento
-		
+		layout.setConstraints(scroll, lim); //Associazione
+		contentPane.add(scroll); //Inserimento
+
 		pack();//necessario
 	}
 
@@ -154,13 +155,15 @@ public class FrameMap extends JFrame {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
 					new Avvio("map4.xml",model.getModel()).startPartita();
-					model.setPlayer(new Player("user",model.getModel().getNobilityTrack()));
+					Player p=new Player("user",model.getModel().getNobilityTrack());
+					System.out.println(p.getRichness());
+					model.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
-					new PoliticCard(Color.ORANGE, false),
-					new PoliticCard(null, true),
-					new PoliticCard(null, true),
-					new PoliticCard(Color.BLUE, false),
-					new PoliticCard(Color.PINK, false));
+							new PoliticCard(Color.ORANGE, false),
+							new PoliticCard(null, true),
+							new PoliticCard(null, true),
+							new PoliticCard(Color.BLUE, false),
+							new PoliticCard(Color.PINK, false));
 					model.getPlayer().getHand().addAll(list);
 					//ControllerGUI controller=new ControllerGUI();
 					FrameMap frame = new FrameMap(model);
@@ -172,10 +175,4 @@ public class FrameMap extends JFrame {
 		});
 	}
 
-	public void update(){
-		ep.loggerPanel();
-		mp.createMap(model.getModel().getRegions(), loggerArea);
-		sp.setSouthPanel();
-		this.repaint();
-	}
 }
