@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -36,13 +35,13 @@ public class MapPanel extends JPanel {
 	private transient Logger logger;
 	private transient MapSetting ms;
 	private CityPanel cp;
-	final double lung=Toolkit.getDefaultToolkit().getScreenSize().width;
-	final double alt=Toolkit.getDefaultToolkit().getScreenSize().height;
+	private final double lung;
 
 	/**
 	 * Create the panel.
 	 */
 	public MapPanel() {
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
 		this.ms=new MapSetting();
 		this.cp=new CityPanel();
 
@@ -54,6 +53,7 @@ public class MapPanel extends JPanel {
 	/**
 	 * create the map panel
 	 * @param reg, the regions list
+	 * @param loggerArea, the area to read on
 	 * @return a panel with the map
 	 */
 	public JPanel createMap(List<Region> reg, JTextArea loggerArea){
@@ -66,15 +66,11 @@ public class MapPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		BufferedImage img=getImg();//immagine di sfondo
-		double width= ((double) 3/4)*lung;
+		double width= (3.0/4)*lung;
 		double height=  ((double) img.getHeight()/img.getWidth())*width;
 		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
-	
-		//System.out.println(lung+" "+width);
-		//System.out.println(height+" "+alt);
 		
 		JLabel label=new JLabel(new ImageIcon(myim));//etichetta con l'immagine di sfondo
-		//label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));//dimensione etichetta immagine di sfondo
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro

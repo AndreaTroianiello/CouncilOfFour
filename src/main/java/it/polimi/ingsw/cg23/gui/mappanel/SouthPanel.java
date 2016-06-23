@@ -30,11 +30,12 @@ public class SouthPanel extends JPanel {
 	private NobilityTrackPanel ntp;
 	private PoliticCardPanel pcp;
 	private BonusPanel bp;
-	private ClientModel model;
-	private JTextArea loggerArea;
+	private transient ClientModel model;
 
 	/**
-	 * Create the panel.
+	 * 
+	 * @param model
+	 * @param loggerArea
 	 */
 	public SouthPanel(ClientModel model, JTextArea loggerArea) {
 		this.ntp=new NobilityTrackPanel(model.getModel().getNobilityTrack(), loggerArea);
@@ -99,7 +100,7 @@ public class SouthPanel extends JPanel {
 		panelNobility.setBackground(new Color(154, 205, 50));
 		JScrollPane scrollNobility=new  JScrollPane(panelNobility);
 		scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollNobility.setPreferredSize(new Dimension(21*40,75));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -158,8 +159,6 @@ public class SouthPanel extends JPanel {
 	}
 	
 	public void update(){
-		//ccp.getShowCostructionCard();
-		//cp.balcone();
 		ntp.createNobility();
 		pcp.createCard();
 		bp.createBonusPanel();

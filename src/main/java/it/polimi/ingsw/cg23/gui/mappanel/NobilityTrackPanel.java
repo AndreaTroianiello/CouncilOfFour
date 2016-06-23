@@ -1,8 +1,10 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
-import java.awt.Dimension;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -36,10 +38,14 @@ public class NobilityTrackPanel extends JPanel {
 	private NobilityTrack nt;
 	private JTextArea loggerArea;
 
+	private final double lung;
+
 	/**
 	 * Create the panel.
 	 */
 	public NobilityTrackPanel(NobilityTrack nt, JTextArea loggerArea) {
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
+		
 		this.nt=nt;
 		this.loggerArea=loggerArea;
 		//configurazione logger
@@ -49,8 +55,6 @@ public class NobilityTrackPanel extends JPanel {
 
 	/**
 	 * create the nobility track boxes
-	 * @param nt, the nobility track
-	 * @param loggerArea, the text area to write on
 	 * @return a panel with the nobility track
 	 */
 	public JPanel createNobility(){
@@ -65,10 +69,15 @@ public class NobilityTrackPanel extends JPanel {
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){
 
 			BufferedImage img=nobilityImg(i);
-			JLabel boxLabel = new JLabel(new ImageIcon(img));
+			double width= (9.0/16)*lung/21;
+			double height=  ((double) img.getHeight()/img.getWidth())*width;
+			Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
+			
+			
+			JLabel boxLabel = new JLabel(new ImageIcon(myim));
+			
 			boxLabel.setName("box "+i);
 			boxLabel.setToolTipText("Box Nobility Track "+i);
-			boxLabel.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro

@@ -23,15 +23,11 @@ public class ButtonPanel extends JPanel {
 	private MainActionPanel map;
 	private SecondaryActionPanel sap;
 	private InfoPanel ip;
-	private JTextArea textArea;
-	private JTextField write;
 	
 	/**
 	 * Create the panel.
 	 */
 	public ButtonPanel(JTextArea textArea, JTextField write,ControllerGUI controller) {
-		this.textArea=textArea;
-		this.write=write;
 		this.map=new MainActionPanel(textArea,controller);
 		this.sap=new SecondaryActionPanel(textArea,controller);
 		this.ip=new InfoPanel(textArea, write);

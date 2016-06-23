@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -38,13 +37,16 @@ public class CityPanel extends JPanel {
 	private static final long serialVersionUID = -1040653424377395735L;
 	private transient Logger logger;
 	private transient MapSetting ms;
-	final double lung=Toolkit.getDefaultToolkit().getScreenSize().width;
-	final double alt=Toolkit.getDefaultToolkit().getScreenSize().height;
+	final double lung;
+	final double alt;
 
 	/**
 	 * Create the panel.
 	 */
 	public CityPanel() {
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
+		alt=Toolkit.getDefaultToolkit().getScreenSize().height-50.0;
+		
 		this.ms=new MapSetting();
 
 		//configurazione logger
@@ -53,6 +55,12 @@ public class CityPanel extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * @param c, the city
+	 * @param loggerArea, the area to read on
+	 * @return the city panel
+	 */
 	public JPanel createCity(City c, JTextArea loggerArea){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
@@ -60,10 +68,10 @@ public class CityPanel extends JPanel {
 
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		
+
 
 		//----------nome citta'----------
-		JLabel nameLabel=new JLabel(c.getId()+"");
+		JLabel nameLabel=new JLabel(Character.toString(c.getId()));
 		double font= ((double) 3/100)*lung;
 		nameLabel.setFont(new Font("Calibre", Font.ITALIC,(int) font));
 		nameLabel.setForeground(new Color(255,255,255));
@@ -78,14 +86,12 @@ public class CityPanel extends JPanel {
 		panel.add(nameLabel);//aggiunta bottone al layer panel
 
 		//----------immagine citta'----------
-		BufferedImage img=getImg(c.getType());
+		BufferedImage img=getImg(c.getType());//lettura immagine
 		double width= ((double) 3/50)*lung;
 		double height=  ((double) img.getHeight()/img.getWidth())*width;
-		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
-		
-		JLabel label=new JLabel(new ImageIcon(myim));
+		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
 
-		//label.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+		JLabel label=new JLabel(new ImageIcon(myim));
 		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.gridx =1;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -96,20 +102,16 @@ public class CityPanel extends JPanel {
 
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-		 
+
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mouseExited(MouseEvent e) {
-				//	label.setSize(new Dimension((int)label.getSize().getWidth()/2,(int)label.getSize().getHeight()/2));
-				 }
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mouseEntered(MouseEvent e) {
-					//label.setSize(new Dimension((int)label.getSize().getWidth()*2,(int)label.getSize().getHeight()*2));
-				 }
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				loggerArea.append("\nCitta' "+c.getName());
@@ -142,9 +144,9 @@ public class CityPanel extends JPanel {
 
 		return image;
 	}
-	
+
 	public void update(){
 		this.repaint();
 	}
-	
+
 }

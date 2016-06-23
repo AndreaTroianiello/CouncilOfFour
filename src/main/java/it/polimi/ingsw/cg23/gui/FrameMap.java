@@ -69,7 +69,7 @@ public class FrameMap extends JFrame {
 		sp=new SouthPanel(model, loggerArea);
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-10, Toolkit.getDefaultToolkit().getScreenSize().height-50);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
