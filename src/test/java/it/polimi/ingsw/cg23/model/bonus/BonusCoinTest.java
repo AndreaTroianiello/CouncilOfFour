@@ -35,7 +35,8 @@ public class BonusCoinTest {
 	@Test
 	public void testGetCoin() {
 		BonusCoin bonus = new BonusCoin(2);
-		assertEquals(2, bonus.getCoin());
+		bonus.setBoard(null);
+		assertEquals(2, bonus.getNumber());
 	}
 
 	/**

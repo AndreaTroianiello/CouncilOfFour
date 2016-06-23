@@ -31,14 +31,7 @@ public class BonusAssistants implements Bonus {
 		this.assistants = 0;
 		this.name="Assistants";
 	}
-	
 
-	/**
-	 * @return the assistants
-	 */
-	public int getAssistants() {
-		return assistants;
-	}
 	
 	/**
 	 * it sets the number of the assistants that the bonus gives

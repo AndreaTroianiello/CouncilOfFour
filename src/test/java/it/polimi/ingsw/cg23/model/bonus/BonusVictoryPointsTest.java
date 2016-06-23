@@ -34,7 +34,8 @@ public class BonusVictoryPointsTest {
 	@Test
 	public void testGetPoints() {
 		BonusVictoryPoints bonus = new BonusVictoryPoints(3);
-		assertEquals(3, bonus.getPoints());
+		bonus.setBoard(null);
+		assertEquals(3, bonus.getNumber());
 	}
 
 	/**

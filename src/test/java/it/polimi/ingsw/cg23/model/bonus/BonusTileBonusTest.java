@@ -36,6 +36,7 @@ public class BonusTileBonusTest {
 		BonusTileBonus bonus = new BonusTileBonus();
 		this.player.getAvailableBusinessPermits().add(tile);
 		bonus.giveBonus(player);
+		bonus.setBoard(null);
 		assertEquals(0, this.player.getRichness().getCoins());
 		bonus.setNumberTile(0);
 		this.player.getRichness().setCoins(10);

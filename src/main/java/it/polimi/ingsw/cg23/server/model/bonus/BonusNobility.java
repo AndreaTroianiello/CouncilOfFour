@@ -44,15 +44,6 @@ public class BonusNobility implements Bonus {
 	public Board getBoard() {
 		return board;
 	}
-
-
-
-	/**
-	 * @return the steps
-	 */
-	public int getSteps() {
-		return steps;
-	}
 	
 	
 

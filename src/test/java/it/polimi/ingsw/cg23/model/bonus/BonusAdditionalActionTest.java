@@ -27,7 +27,9 @@ public class BonusAdditionalActionTest {
 			player.switchAdditionalAction();
 		BonusAdditionalAction bonus = new BonusAdditionalAction();
 		bonus.giveBonus(player);
+		bonus.setBoard(null);
 		bonus.setNumber(0);
+		assertEquals(0, bonus.getNumber());
 		assertEquals(true, player.isAdditionalAction());
 	}
 	

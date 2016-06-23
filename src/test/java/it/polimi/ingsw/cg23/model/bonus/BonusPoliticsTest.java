@@ -57,7 +57,8 @@ public class BonusPoliticsTest {
 	@Test
 	public void testGetCardNumber() {
 		BonusPolitics bonus = new BonusPolitics(1, board);
-		assertEquals(1, bonus.getCardNumber());
+		bonus.setBoard(board);
+		assertEquals(1, bonus.getNumber());
 	}
 
 	/**

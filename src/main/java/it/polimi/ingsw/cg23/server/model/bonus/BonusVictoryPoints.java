@@ -35,12 +35,7 @@ public class BonusVictoryPoints implements Bonus {
 		return points+name;
 	}
 
-	/**
-	 * @return the points
-	 */
-	public int getPoints() {
-		return points;
-	}
+
 	
 	/**
 	 * set the number of points given by the bonus
