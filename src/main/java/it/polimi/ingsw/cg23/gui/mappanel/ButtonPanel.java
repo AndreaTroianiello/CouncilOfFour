@@ -26,9 +26,11 @@ public class ButtonPanel extends JPanel {
 	private InfoPanel ip;
 	
 	/**
-	 * Create the panel.
+	 * @param textArea, the area to read on
+	 * @param write, the area to write on
+	 * @param controller
 	 */
-	public ButtonPanel(JTextArea textArea, JTextField write,ControllerGUI controller) {
+	public ButtonPanel(JTextArea textArea, JTextField write, ControllerGUI controller) {
 		this.map=new MainActionPanel(textArea,controller);
 		this.sap=new SecondaryActionPanel(textArea,controller);
 		this.ip=new InfoPanel(textArea, write);
@@ -36,8 +38,6 @@ public class ButtonPanel extends JPanel {
 	
 	/**
 	 * create the button panel
-	 * @param textArea, to read
-	 * @param write, to write
 	 * @return the panel
 	 */
 	public JPanel buttonPanel(){

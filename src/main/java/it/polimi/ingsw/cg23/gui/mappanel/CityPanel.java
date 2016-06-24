@@ -42,7 +42,7 @@ public class CityPanel extends JPanel {
 	private JTextArea loggerArea;
 
 	/**
-	 * Create the panel.
+	 * @param loggerArea, the area area to read on
 	 */
 	public CityPanel(JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
@@ -57,7 +57,7 @@ public class CityPanel extends JPanel {
 	}
 
 	/**
-	 * 
+	 * @param k, the king
 	 * @param c, the city
 	 * @param loggerArea, the area to read on
 	 * @return the city panel

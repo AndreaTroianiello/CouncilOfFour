@@ -33,7 +33,10 @@ public class EastPanel extends JPanel {
 	private JTextField write;
 	
 	/**
-	 * Create the panel.
+	 * 
+	 * @param loggerArea, the area to read on
+	 * @param write, the area to write on
+	 * @param controller
 	 */
 	public EastPanel(JTextArea loggerArea, JTextField write,ControllerGUI controller) {
 		this.loggerArea=loggerArea;

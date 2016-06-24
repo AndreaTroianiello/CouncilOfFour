@@ -45,8 +45,6 @@ public class SouthPanel extends JPanel {
 
 	/**
 	 * create the south panel
-	 * @param model, the board
-	 * @param loggerArea, the area to write on
 	 * @return a jpanel with the south panel created
 	 */
 	public JPanel setSouthPanel(){

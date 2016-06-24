@@ -41,11 +41,13 @@ public class NobilityTrackPanel extends JPanel {
 	private final double lung;
 
 	/**
-	 * Create the panel.
+	 * 
+	 * @param nt, the nobility track
+	 * @param loggerArea, the area to read on
 	 */
 	public NobilityTrackPanel(NobilityTrack nt, JTextArea loggerArea) {
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
-		
+
 		this.nt=nt;
 		this.loggerArea=loggerArea;
 		//configurazione logger
@@ -72,10 +74,10 @@ public class NobilityTrackPanel extends JPanel {
 			double width= (9.0/16)*lung/21;
 			double height=  ((double) img.getHeight()/img.getWidth())*width;
 			Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
-			
-			
+
+
 			JLabel boxLabel = new JLabel(new ImageIcon(myim));
-			
+
 			boxLabel.setName("box "+i);
 			boxLabel.setToolTipText("Box Nobility Track "+i);
 			lim.gridx = i;//posizione componenti nella griglia

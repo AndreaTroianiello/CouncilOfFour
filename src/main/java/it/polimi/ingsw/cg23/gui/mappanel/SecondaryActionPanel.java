@@ -23,13 +23,15 @@ import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
  *
  */
 public class SecondaryActionPanel extends JPanel {
-	
+
 	private static final long serialVersionUID = -1693691013491659757L;
 	private JTextArea text;
-	private ControllerGUI controller;
-	
+	private transient ControllerGUI controller;
+
 	/**
-	 * Create the panel.
+	 * 
+	 * @param text, the area to read on
+	 * @param controller
 	 */
 	public SecondaryActionPanel(JTextArea text,ControllerGUI controller) {
 		this.text=text;

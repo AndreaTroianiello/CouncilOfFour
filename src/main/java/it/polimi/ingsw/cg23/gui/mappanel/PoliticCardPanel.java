@@ -40,7 +40,9 @@ public class PoliticCardPanel extends JPanel {
 	private JTextArea loggerArea;
 
 	/**
-	 * Create the panel.
+	 * 
+	 * @param p, the player
+	 * @param loggerArea, the area to read on
 	 */
 	public PoliticCardPanel(Player p, JTextArea loggerArea) {
 		this.p=p;
@@ -52,8 +54,7 @@ public class PoliticCardPanel extends JPanel {
 
 	/**
 	 * create the politic card panel
-	 * @param p, the player
-	 * @return a panel with the politic card
+	 * @return the politic card panel
 	 */
 	public JPanel createCard(){
 		JPanel panel=new JPanel();
@@ -122,7 +123,7 @@ public class PoliticCardPanel extends JPanel {
 
 		return image;
 	}
-	
+
 	/*public void update(){
 		this.repaint();
 	}*/

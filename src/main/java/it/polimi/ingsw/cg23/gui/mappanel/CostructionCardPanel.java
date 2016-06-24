@@ -34,14 +34,12 @@ public class CostructionCardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 6311594300963247531L;
 	private transient Logger logger;
-	//private Region reg;
 	private JTextArea loggerArea;
 
 	/**
-	 * Create the panel.
+	 * @param loggerArea, the area to write on
 	 */
 	public CostructionCardPanel(JTextArea loggerArea) {
-		//this.reg=reg;
 		this.loggerArea=loggerArea;
 		
 		//configurazione logger
@@ -66,7 +64,6 @@ public class CostructionCardPanel extends JPanel {
 		//----------carte costruzione----------
 		BufferedImage img1=getCostructionImg(reg.getName());//carta costruzione 1
 		JLabel defaultCostruction = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
-		defaultCostruction.setName("costruzione");
 		defaultCostruction.setToolTipText("Mazzo carte costruzione "+reg.getName());
 		defaultCostruction.setBounds(0, 0, img1.getWidth(), img1.getHeight());//dimensioni della label
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -119,6 +116,11 @@ public class CostructionCardPanel extends JPanel {
 		return panel;
 	}
 	
+	/**
+	 * print the costruction card avaiable for the player
+	 * @param p, the player
+	 * @return a panel with the player's costruction card
+	 */
 	public JPanel myCostructionCard(Player p){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
@@ -204,13 +206,13 @@ public class CostructionCardPanel extends JPanel {
 		loggerArea.append("\n  Citta': ");
 		String id = "";
 		for(int i=0; i<bpt.getCitiesId().size(); i++){
-			id+=bpt.getCitiesId().get(i)+", ";
+			id=id.concat(bpt.getCitiesId().get(i)+", ");
 		}
 		loggerArea.append(id.substring(0, id.length()-2));
 		loggerArea.append("\n  Bonus: ");
 		String bonus= "";
 		for(int i=0; i<bpt.getBonusTile().size(); i++){
-			bonus+=bpt.getBonusTile().get(i).getName()+", ";
+			bonus=bonus.concat(bpt.getBonusTile().get(i).getName()+", ");
 		}
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
 	}

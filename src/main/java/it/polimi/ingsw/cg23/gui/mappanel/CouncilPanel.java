@@ -23,13 +23,14 @@ public class CouncilPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5988789718682147839L;
-//private Region reg;
-
+	
 	/**
 	 * Create the panel.
 	 */
 	public CouncilPanel() {
-		//this.reg=reg;
+		/**
+		 * empty costructor
+		 */
 	}
 
 	/**

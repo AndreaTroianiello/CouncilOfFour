@@ -36,7 +36,8 @@ public class BonusPanel extends JPanel {
 	private JTextArea loggerArea;
 
 	/**
-	 * Create the panel.
+	 * @param b, the board
+	 * @param loggerArea, the area to read on
 	 */
 	public BonusPanel(Board b, JTextArea loggerArea) {
 		this.b=b;
@@ -48,8 +49,6 @@ public class BonusPanel extends JPanel {
 
 	/**
 	 * create the bonus panel
-	 * @param b, the board
-	 * @param loggerArea, the area to write on
 	 * @return the panel
 	 */
 	public JPanel createBonusPanel(){

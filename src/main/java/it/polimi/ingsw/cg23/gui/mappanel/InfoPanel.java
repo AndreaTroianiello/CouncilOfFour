@@ -27,7 +27,9 @@ public class InfoPanel extends JPanel {
 	private JTextField write;
 
 	/**
-	 * Create the panel.
+	 * 
+	 * @param textArea, the area to read on
+	 * @param write, the area to write on
 	 */
 	public InfoPanel(JTextArea textArea, JTextField write) {
 		this.textArea=textArea;
@@ -36,8 +38,6 @@ public class InfoPanel extends JPanel {
 
 	/**
 	 * create the info action
-	 * @param textArea, the area to view
-	 * @param write, the area to write (chat)
 	 * @return, the info panel
 	 */
 	public JPanel infoAction(){

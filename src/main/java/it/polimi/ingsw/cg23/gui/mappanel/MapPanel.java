@@ -43,7 +43,8 @@ public class MapPanel extends JPanel {
 	private JTextArea loggerArea;
 
 	/**
-	 * Create the panel.
+	 * 
+	 * @param loggerArea, the area to read on
 	 */
 	public MapPanel(JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
@@ -59,7 +60,7 @@ public class MapPanel extends JPanel {
 	/**
 	 * create the map panel
 	 * @param reg, the regions list
-	 * @param loggerArea, the area to read on
+	 * @param king, the king
 	 * @return a panel with the map
 	 */
 	public JPanel createMap(List<Region> reg, King king){

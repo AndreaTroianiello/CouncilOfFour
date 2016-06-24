@@ -49,7 +49,8 @@ public class FrameMap extends JFrame {
 	private EastPanel ep;
 	private MapPanel mp;
 	private SouthPanel sp;
-	private ControllerGUI controller;
+	private transient ControllerGUI controller;
+	
 	/**
 	 * Create the frame.
 	 * @param controller
