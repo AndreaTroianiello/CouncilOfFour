@@ -3,14 +3,12 @@ package it.polimi.ingsw.cg23.server.controller;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.view.ServerSocketView;
-
 /**
  * PlayersControl controls if the all game'players are created and starts the game.
  * @author Andrea
  *
  */
-public class PlayersControl implements Runnable {
+public class GameControl implements Runnable {
 
 	private int index;
 	private Controller controller;
@@ -21,10 +19,10 @@ public class PlayersControl implements Runnable {
 	 * @param index The number of all views.
 	 * @param controller The game's controller.
 	 */
-	public PlayersControl(int index,Controller controller) {
+	public GameControl(int index,Controller controller) {
 		this.index=index;
 		this.controller=controller;
-		logger = Logger.getLogger(ServerSocketView.class);
+		logger = Logger.getLogger(GameControl.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
@@ -36,7 +34,7 @@ public class PlayersControl implements Runnable {
 		boolean run=true;
 		while(run){
 			try {
-				if(controller.getPlayersNumber()==index){
+				if(controller.isReady(index)){
 					controller.startGame();
 					run=false;
 				}

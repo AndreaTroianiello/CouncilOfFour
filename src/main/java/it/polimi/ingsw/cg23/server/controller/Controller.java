@@ -61,8 +61,16 @@ public class Controller implements Observer<Action>{
 	public void putSocketPlayer(View view,Player player){
 		this.interconnections.put(view, player);
 		this.model.addPlayer(player);
-		//this.chat.addView(view);
 		
+	}
+	
+	/**
+	 * Returns the status of the game.
+	 * @param index the number of the clients connected.
+	 * @return if returns true the game is ready.
+	 */
+	public boolean isReady(int index){
+		return model.getPlayers().size()==index && model.getDeck()!=null;
 	}
 	
 	/**
@@ -117,15 +125,7 @@ public class Controller implements Observer<Action>{
 	public Turn getTurn(){
 		return turn;
 	}
-	
-	/**
-	 * Returns number of the player created.
-	 * @return The size of the map.
-	 */
-	public int getPlayersNumber(){
-		return model.getPlayers().size();
-	}
-	
+		
 	/**
 	 * Creates the turn, sets all players and the game's state.
 	 */

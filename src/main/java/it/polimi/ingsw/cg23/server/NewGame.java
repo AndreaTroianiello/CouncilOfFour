@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.controller.Controller;
-import it.polimi.ingsw.cg23.server.controller.PlayersControl;
+import it.polimi.ingsw.cg23.server.controller.GameControl;
 import it.polimi.ingsw.cg23.server.view.ServerSocketView;
 
 /**
@@ -38,7 +38,7 @@ public class NewGame implements Runnable{
 			int index=server.getIndex();
 			Controller controller=server.getController();
 			server.resetIndex();
-			new Thread(new PlayersControl(index,controller)).start();
+			new Thread(new GameControl(index,controller)).start();
 		} catch (InterruptedException e) {
 			logger.error(e);
 		}
