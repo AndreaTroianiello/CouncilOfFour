@@ -41,7 +41,8 @@ public class CreationGame extends Action {
 	 */
 	public void runAction(Controller controller,Board model){
 		createMap(controller, model);
-		createPlayer(controller, model);
+		if(model.getNobilityTrack()!=null)
+			createPlayer(controller, model);
 	}
 	
 	/**
@@ -56,6 +57,7 @@ public class CreationGame extends Action {
 				this.notifyObserver(new InfoChange("Your map has been chosen."));
 			} catch (XmlException e) {
 				getLogger().error(e);
+				model.resetBoard();
 				this.notifyObserver(new InfoChange("Your map wasn't found."));
 			}
 		}

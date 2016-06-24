@@ -58,7 +58,6 @@ public class RegionDeck implements Serializable {
 	 * @param businessPermitTiles
 	 */
 	public void setBusinessPermitTiles(List<BusinessPermitTile> businessPermitTiles){
-		
 		shuffleTitle(businessPermitTiles);	//Shuffles the titles.
 		for(int index=0;index<maxTilesShowed;++index)							//Puts maxTilesShowed tiles in the showed deck. 
 			showedDeck.add(businessPermitTiles.remove(0));

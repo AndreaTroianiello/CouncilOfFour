@@ -152,7 +152,7 @@ public class MapSetting {
 		int regSize=region.size();//numero di regioni
 
 		for(int j=0; j<regSize; j++){//ciclo che scorre le regioni
-			cardShowed=cardShowed.concat(addSpace("Carte Costruzione "+region.get(j).getName()+":", space*2));//carte costruzione
+			cardShowed=cardShowed.concat(addSpace("Business Permit Tiles "+region.get(j).getName()+":", space*2));//carte costruzione
 		}
 		cardShowed=cardShowed.concat("\n");
 
@@ -234,13 +234,12 @@ public class MapSetting {
 	 */
 	public String getNeighbourID(City c){
 		List<City> vicini=c.getNeighbors();//recupero la lista dei vicini della citta'
-		String viciniId="Vicini: ";//stringa che contiene i vicini della citta'
+		String viciniId="Neighbors: ";//stringa che contiene i vicini della citta'
 
 		for(int i=0; i<vicini.size(); i++){//scorre il numero di vicini della citta'
 			viciniId=viciniId.concat(Character.toString(vicini.get(i).getId()));//aggiunge alla stringa l'id della citta' vicina
 			viciniId=viciniId.concat(", ");
 		}
-
 		return viciniId.substring(0, viciniId.length()-2);//tolgo gli ultimi due caratteri (virgola e spazio)
 	}
 
@@ -269,7 +268,7 @@ public class MapSetting {
 
 		for(int k=0; k<regions.size(); k++){
 			Region reg=regions.get(k);
-			String aiutanti = "Consiglieri "+reg.getName() +": ";
+			String aiutanti = reg.getName() +" Council: ";
 			for(int i=0; i<reg.getCouncil().getCouncillors().size(); i++){
 				aiutanti=aiutanti.concat(cm.getColorName(reg.getCouncil().getCouncillors().get(i).getColor()));
 				aiutanti=aiutanti.concat(" ");
@@ -286,7 +285,7 @@ public class MapSetting {
 	 * @return a string with bonus king and king councill
 	 */
 	public String bonusCouncilKingType(Board b){
-		String consiglieri="Consiglieri del re: ";
+		String consiglieri="King Council: ";
 		List<Councillor> kingCouncillors=b.getKing().getCouncil().getCouncillors();//consiglieri del re
 
 		for(int i=0; i<kingCouncillors.size(); i++){
@@ -295,14 +294,14 @@ public class MapSetting {
 		}
 		consiglieri=addSpace(consiglieri, space);
 
-		String bonus="Bonus king avaiable: ";
+		String bonus="Bonus king available: ";
 		BonusKing bk=b.getBonusKing();//bonus king
 
 		for(int i=bk.getCurrentIndexBonusKing(); i<bk.getBonusValues().size()-1; i++){//scorre i bonus king
 			bonus=bonus.concat(b.getBonusKing().getBonusValues().get(i).toString()+" ");
 		}
 
-		String tipi="Avaiable type: ";
+		String tipi="Available type: ";
 		List<Type> tipes=b.getTypes();
 		for(int i=0; i<tipes.size(); i++){
 			if("Purple".equals(tipes.get(i).getName()))

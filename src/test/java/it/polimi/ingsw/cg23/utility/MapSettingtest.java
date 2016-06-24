@@ -212,7 +212,7 @@ public class MapSettingtest {
 		String nome=ms.createCostructionShowed(reg, 50);
 		assertTrue(nome.contains(reg.get(0).getName()));
 		assertTrue(nome.contains(reg.get(1).getName()));
-		assertTrue(nome.contains("Carte Costruzione"));
+		assertTrue(nome.contains("Business Permit Tiles"));
 		assertEquals(nome.length(), 50*6*4+6);
 		for(int i=0; i<bpt.size(); i++){
 			assertTrue(nome.contains(bpt.get(i).getCitiesId().toString()));
@@ -224,7 +224,7 @@ public class MapSettingtest {
 	public void neightbourTest(){
 		for(int i=0; i<cities.size(); i++){
 			String nome=ms.getNeighbourID(cities.get(i));
-			assertTrue(nome.contains("Vicini:"));
+			assertTrue(nome.contains("Neighbors:"));
 			assertTrue(nome.contains(""+cities.get(i).getNeighbors().get(0).getId()));
 		}
 	}
@@ -242,7 +242,7 @@ public class MapSettingtest {
 	public void councillorsTest(){
 		for(int i=0; i<reg.size(); i++){
 			String nome=ms.councillors(reg);
-			assertTrue(nome.contains("Consiglieri "+reg.get(i).getName()));
+			assertTrue(nome.contains(reg.get(i).getName()+ " Council"));
 			assertNotEquals(nome, "");
 			assertNotEquals(nome, null);
 			
@@ -253,9 +253,9 @@ public class MapSettingtest {
 	public void bonusCouncilKingTypetest(){
 		String nome=ms.bonusCouncilKingType(board);
 		assertEquals(nome.length(), 50*3);
-		assertTrue(nome.contains("Consiglieri del re:"));
-		assertTrue(nome.contains("Bonus king avaiable:"));
-		assertTrue(nome.contains("Avaiable type:"));
+		assertTrue(nome.contains("King Council:"));
+		assertTrue(nome.contains("Bonus king available:"));
+		assertTrue(nome.contains("Available type:"));
 		assertNotEquals(nome, "");
 		assertNotEquals(nome, null);
 		assertTrue(nome.contains(tipi.get(0).getName()));

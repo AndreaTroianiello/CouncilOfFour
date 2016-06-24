@@ -31,8 +31,8 @@ public class CreateCostructionTest {
 		bonuses.add(0);
 		BonusKing bonusKing=new BonusKing(bonuses);
 
-		reg.add(new Region("Costa", 5, new RegionDeck(2), bonusKing));
-		reg.add(new Region("Collina", 5, new RegionDeck(2), bonusKing));
+		reg.add(new Region("Coast", 5, new RegionDeck(2), bonusKing));
+		reg.add(new Region("Hills", 5, new RegionDeck(2), bonusKing));
 	}
 
 	@Test

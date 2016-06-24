@@ -77,7 +77,7 @@ public class CreateMap {
 	public String createMapDraw(Board b){
 		List<Region> reg=b.getRegions();
 		List<City> city=ms.getCityfromRegion(reg);
-		String plancia="\nPlancia di gioco\n";//la stringa che stampa la plancia di gioco
+		String plancia="\nGame Board\n";//la stringa che stampa la plancia di gioco
 		int regionNumber=reg.size();//numero di regioni
 		int citypReg=city.size()/regionNumber;
 		plancia+=ms.printName(reg, space);//aggiungo i nomi delle regioni
@@ -124,7 +124,7 @@ public class CreateMap {
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
 
 			for(int k=0; k<regionNumber; k++){//ciclo che aggiunge gli empori
-				String empori=ms.addSpace("|Empori:"+city.get(i+citypReg*k).getEmporiums(), minus-1)+"|";
+				String empori=ms.addSpace("|Emporiums:"+city.get(i+citypReg*k).getEmporiums(), minus-1)+"|";
 				plancia=plancia.concat(ms.addSpace(empori, space));//aggiungo gli empori della citta'
 			}
 			plancia=plancia.concat("\n");//aggiungo un a capo dopo aver messo 3 citta' su una riga (una per regione)
@@ -220,7 +220,7 @@ public class CreateMap {
 		percorsi=percorsi.concat(ms.addSpace("Victory", playerSpace));
 		percorsi=percorsi.concat(ms.addSpace("Nobility", playerSpace));
 		percorsi=percorsi.concat(ms.addSpace("Assistants", playerSpace));
-		percorsi=percorsi.concat(ms.addSpace("Carte politiche", playerSpace));
+		percorsi=percorsi.concat(ms.addSpace("Politics Cards", playerSpace));
 		percorsi=percorsi.concat("\n");
 
 		for(int i=0; i<giocatori.size(); i++){//stampa i punteggi dei giocatori

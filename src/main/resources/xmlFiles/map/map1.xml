@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map>
 	<zone>
-		<namez>Costa</namez>
+		<namez>Coast</namez>
 		<cities>
 			<city>
 				<Id>A</Id>
@@ -53,7 +53,7 @@
 		<coin>5</coin>
 	</zone>
 	<zone>
-		<namez>Collina</namez>
+		<namez>Hills</namez>
 		<cities>
 			<city>
 				<Id>F</Id>
@@ -108,7 +108,7 @@
 		<coin>5</coin>
 	</zone>
 	<zone>
-		<namez>Montagna</namez>
+		<namez>Mountains</namez>
 		<cities>
 			<city>
 				<Id>K</Id>

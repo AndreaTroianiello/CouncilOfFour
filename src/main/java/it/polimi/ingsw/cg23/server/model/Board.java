@@ -240,6 +240,18 @@ public class Board extends Observable<Change> implements Serializable{
 	public Market getMarket(){
 		return market;
 	}
+	
+	/**
+	 * Clears all board's parameters except the players' list and status.
+	 */
+	public void resetBoard(){
+		deck=null;
+		regions=null;
+		types=null;
+		king=null;
+		nobilityTrack=null;
+		councillorPool.clear();
+	}
 
 	/**
 	 * It generates a string formed by the most significant statistics of the Board.

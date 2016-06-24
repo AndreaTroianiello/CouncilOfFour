@@ -40,8 +40,6 @@ public class Timer implements Runnable {
 	 */
 	public void stop(){
 		running=false;
-		view=null;
-		controller=null;
 		Thread.currentThread().interrupt();
 	}
 
@@ -57,7 +55,8 @@ public class Timer implements Runnable {
 			if(!view.getSuspended()){
 				Thread.sleep(240000);
 			}
-			new EndTurn().runAction(controller);
+			if(running)
+				new EndTurn().runAction(controller);
 		} catch (InterruptedException e) {
 			logger.error(e);
 			view=null;

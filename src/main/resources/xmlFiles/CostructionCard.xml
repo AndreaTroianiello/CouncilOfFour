@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <costruction>
 	<region>
-		<name>Costa</name>
+		<name>Coast</name>
 		<cards>
 			<card>
 				<city>
@@ -111,7 +111,7 @@
 		</cards>
 	</region>
 	<region>
-		<name>Collina</name>
+		<name>Hills</name>
 		<cards>
 			<card>
 				<city>
@@ -221,7 +221,7 @@
 		</cards>
 	</region>
 	<region>
-		<name>Montagna</name>
+		<name>Mountains</name>
 		<cards>
 			<card>
 				<city>
