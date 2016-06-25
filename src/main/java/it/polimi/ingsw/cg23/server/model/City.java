@@ -87,8 +87,8 @@ public class City implements Serializable{
 	
 	
 	/**
-	 * Adds a neighbors of the city.
-	 * @param neighbor a city near at this city.
+	 * Adds a neighbor to the city.
+	 * @param neighbor a city near to this city.
 	 */
 	public void addNeighbor(City neighbor){
 		neighbors.add(neighbor);
@@ -98,7 +98,7 @@ public class City implements Serializable{
 	/**
 	 * Returns all neighbors of the city
 	 * 
-	 * @return a list of city.
+	 * @return a list of cities.
 	 */
 	public List<City> getNeighbors() {
 		return neighbors;

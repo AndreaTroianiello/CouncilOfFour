@@ -21,7 +21,7 @@ public class ReadType {
 
 	/**
 	 * find the colors in the xml file
-	 * @param endPath, the xml file name
+	 * @param endPath the xml file name
 	 * @return an array with the colors
 	 * @throws XmlException
 	 */

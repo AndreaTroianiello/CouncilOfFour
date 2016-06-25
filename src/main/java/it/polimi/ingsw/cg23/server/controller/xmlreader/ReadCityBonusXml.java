@@ -20,13 +20,16 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 public class ReadCityBonusXml {
 	private String path;
 
+	/**
+	 * read the bonuses from the xml file
+	 */
 	public ReadCityBonusXml(){
 		path="src/main/resources/xmlFiles/";//file location
 	}
 
 	/**
-	 * 
-	 * @param endPath, the file name
+	 * find the bonuses in the xml file
+	 * @param endPath the file name
 	 * @return an array with the bonus find in the xml file
 	 * @throws XmlException
 	 */

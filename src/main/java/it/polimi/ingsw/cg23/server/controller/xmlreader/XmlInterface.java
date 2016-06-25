@@ -6,7 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
- * recupera le informazioni dai file xml
+ * recover the informations from the xml files
  *
  */
 public class XmlInterface {
@@ -23,7 +23,7 @@ public class XmlInterface {
 	String err="ERROR! Errore nella lettura del file xml: ";
 
 	/**
-	 * costructor
+	 * constructor
 	 */
 	public XmlInterface(){
 		//configurazione logger
@@ -41,7 +41,7 @@ public class XmlInterface {
 	/**
 	 * find the type(color) of the city
 	 * @param endPath, the name of the file with the .xml
-	 * @return a bidimensional array with the type(color)
+	 * @return a two-dimensional array with the type(color)
 	 */
 	public String[][] getType(String endPath){
 		String[][] type=null;
@@ -57,9 +57,9 @@ public class XmlInterface {
 	}
 
 	/**
-	 * find the lenght of the nobility track
-	 * @param endPath, the name of the file with the .xml
-	 * @return the lenght of the nobility track
+	 * find the length of the nobility track
+	 * @param endPath the name of the file with the .xml
+	 * @return the length of the nobility track
 	 */
 	public int getNobilityTrackLength(String endPath){
 		int nobilityTrackLenght=0;
@@ -76,8 +76,8 @@ public class XmlInterface {
 
 	/**
 	 * return the info of nobility track
-	 * @param endPath, the name of the file with the .xml
-	 * @return a bidimensional array with the nobility track info
+	 * @param endPath the name of the file with the .xml
+	 * @return a two-dimensional array with the nobility track info
 	 */
 	public String[][] getNobilityTrackBonus(String endPath){
 		String[][] nobilityTrackBonus=null;
@@ -93,9 +93,9 @@ public class XmlInterface {
 	}
 
 	/**
-	 * carica il file xml con le infromazioni della partita
-	 * @return a bidimensional array with all the city info
-	 * @param endPath, the name of the file to read
+	 * load the xml file with the game's informations
+	 * @return a two-dimensional array with all the city info
+	 * @param endPath the name of the file to read
 	 * @throws XmlException 
 	 */
 	public String[][] cittaXml(String endPath) throws XmlException{
@@ -115,8 +115,8 @@ public class XmlInterface {
 
 	/**
 	 * read the bonus region from the xml file
-	 * @param endPath, the name of the file with .xml
-	 * @return a bidimensional array with the region name and bonus region
+	 * @param endPath the name of the file with .xml
+	 * @return a two-dimensional array with the region name and bonus region
 	 */
 	public String[][] getBonusRegion(String endPath){
 		String[][] bonusRegion = null;
@@ -132,9 +132,9 @@ public class XmlInterface {
 	}
 
 	/**
-	 * read the costruction card in the xml file
-	 * @param endPath, the final part of the xml file path (name+extension)
-	 * @return a bidimensional array with the costruction cards info
+	 * read the construction card in the xml file
+	 * @param endPath the final part of the xml file path (name+extension)
+	 * @return a two-dimensional array with the construction cards info
 	 */
 	public String[][] costructionCard(String endPath){
 		String[][] costructionCard=null;
@@ -156,7 +156,7 @@ public class XmlInterface {
 
 	/**
 	 * find the colors in the xml file
-	 * @param endPath, the xml file name
+	 * @param endPath the xml file name
 	 * @return an array with the colors
 	 */
 	public String[] colorXml(String endPath){
@@ -174,7 +174,7 @@ public class XmlInterface {
 
 	/**
 	 * find the number of colors in the xml file
-	 * @param endPath, the name of the xml file
+	 * @param endPath the name of the xml file
 	 * @return the number of color in the xml file
 	 */
 	public int colorNumberXml(String endPath){
@@ -192,7 +192,7 @@ public class XmlInterface {
 	
 	/**
 	 * find the city bonus in the xml file
-	 * @param endPath, the file name
+	 * @param endPath the file name
 	 * @return an array with the city bonus
 	 */
 	public String[] bonusCity(String endPath){

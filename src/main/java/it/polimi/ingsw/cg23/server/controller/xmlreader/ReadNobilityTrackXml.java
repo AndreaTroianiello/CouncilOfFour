@@ -22,7 +22,7 @@ public class ReadNobilityTrackXml {
 
 	/**
 	 * read the lenght of the nobility track in the xml file
-	 * @param endPath, the name of the xml file with .xml
+	 * @param endPath the name of the xml file with .xml
 	 * @return an int with the lenght of the nobility track
 	 * @throws XmlException 
 	 */
@@ -44,9 +44,9 @@ public class ReadNobilityTrackXml {
 	}
 
 	/**
-	 * create a bidimensional array with the nobility track info
-	 * @param endPath, the name of the xml file with .xml
-	 * @return a bidimensional array with the nobility track info
+	 * create a two-dimensional array with the nobility track info
+	 * @param endPath the name of the xml file with .xml
+	 * @return a two-dimensional array with the nobility track info
 	 * @throws XmlException 
 	 */
 	public String[][] nobilityTrackBonus(String endPath) throws XmlException{

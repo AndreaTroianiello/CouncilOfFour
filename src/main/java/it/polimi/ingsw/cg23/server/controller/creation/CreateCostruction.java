@@ -9,7 +9,7 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
 /**
- * create the costruction card and region deck
+ * create the construction card and region deck
  */
 public class CreateCostruction {
 
@@ -18,7 +18,7 @@ public class CreateCostruction {
 	private List <BusinessPermitTile> costructionCard;//lista di carte costruzione
 
 	/**
-	 * costructor
+	 * constructor
 	 */
 	public CreateCostruction(){
 		this.cb=new CreateBonus();
@@ -27,9 +27,9 @@ public class CreateCostruction {
 	}
 
 	/**
-	 * create and add at the list the costruction cards
-	 * @param b, the board
-	 * @return the costruction card list
+	 * create and add at the list the construction cards
+	 * @param b the board
+	 * @return the construction card list
 	 */
 	public List<BusinessPermitTile> createCardCostruction(Board b){
 		cb.bonusList(b);
@@ -50,8 +50,8 @@ public class CreateCostruction {
 	}
 
 	/**
-	 * fill the regiondeck with the costruction card
-	 * @param region, the regions list
+	 * fill the regiondeck with the construction card
+	 * @param region the regions list
 	 */
 	public void createRegionDeck(List<Region> region){
 		List<BusinessPermitTile> costructionRegionlist=new ArrayList<>();
