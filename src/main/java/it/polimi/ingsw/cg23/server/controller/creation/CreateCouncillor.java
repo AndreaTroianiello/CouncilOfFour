@@ -17,16 +17,15 @@ public class CreateCouncillor {
 	private Setting s;
 
 	/**
-	 * costructor
-	 * @param fileName, the xml file name
+	 * constructor
 	 */
 	public CreateCouncillor(){
 		this.s=new Setting();
 	}
 
 	/**
-	 * the function create the counsillor
-	 * @param numberCouncillor, number of councillors per color to create
+	 * the function create the councillor
+	 * @param numberCouncillor number of councillors per color to create
 	 * @return the list of councillor
 	 */
 	public List<Councillor>  createCouncillor(int numberCouncillor){
@@ -43,10 +42,10 @@ public class CreateCouncillor {
 
 	/**
 	 * create the regions councils
-	 * @param consiglieri, the consiglieri list
-	 * @param reg, the region
+	 * @param consiglieri the councillor's list
+	 * @param reg the region
 	 */
-	public void setBalconi(Region reg, List<Councillor>consiglieri){
+	public void setBalconi(Region reg, List<Councillor> consiglieri){
 		Random rnd = new Random();
 		List<Councillor> nuoviConsiglieri = new ArrayList<>();//consiglieri della regione
 		for(int i=0; i<4; i++){//ciclo che scorre i consiglieri (4 per regione)
@@ -59,10 +58,10 @@ public class CreateCouncillor {
 
 	/**
 	 * create the king council
-	 * @param consiglieri, the consiglieri list
-	 * @param k, the king
+	 * @param consiglieri the conuncillor's list
+	 * @param k the king
 	 */
-	public void setBalconi(King k, List<Councillor>consiglieri){
+	public void setBalconi(King k, List<Councillor> consiglieri){
 		Random rnd = new Random();
 		List<Councillor> nuoviConsiglieri = new ArrayList<>();//lista dei consiglieri del re
 		for(int i=0; i<4; i++){//ciclo che scorre i consiglieri (4 per il balcone del re)

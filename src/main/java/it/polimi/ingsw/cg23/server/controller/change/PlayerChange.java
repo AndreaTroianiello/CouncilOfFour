@@ -20,6 +20,10 @@ public class PlayerChange implements Change {
 		this.newPlayer=newPlayer;
 	}
 	
+	/**
+	 * Returns the player to be notified
+	 * @return the player
+	 */
 	public Player getPlayer(){
 		return newPlayer;
 	}

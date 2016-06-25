@@ -62,7 +62,7 @@ public class Player implements Serializable {
 	}
 
 	/**
-	 * Adds the availables emporiums at the player's list.
+	 * Adds the available emporiums at the player's list.
 	 * 
 	 * @param availableEmporium 
 	 */
@@ -72,7 +72,7 @@ public class Player implements Serializable {
 	}
 	
 	/**
-	 * Returns the status of the emporiums available
+	 * Returns the status of the available emporiums
 	 * 
 	 * @return the status of availableEmporiums' list. It is true if this list is empty.
 	 */

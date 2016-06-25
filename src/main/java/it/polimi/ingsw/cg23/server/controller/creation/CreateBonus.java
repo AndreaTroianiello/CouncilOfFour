@@ -33,7 +33,7 @@ public class CreateBonus {
 
 	/**
 	 * costructor
-	 * @param endpath, the name of the file xml
+	 * @param endpath the name of the file xml
 	 */
 	public CreateBonus(){
 		this.bonusList=new ArrayList<>();
@@ -44,7 +44,7 @@ public class CreateBonus {
 
 	/**
 	 * aggiunta di bonus alla citta'
-	 * @param c, the actual city
+	 * @param c the actual city
 	 */
 	public void getCityBonus(City c){
 
@@ -93,7 +93,7 @@ public class CreateBonus {
 	/**
 	 * create the bonuses (null)
 	 * @return a bonus list with all the type of bonus
-	 * @param board, the board
+	 * @param board the board
 	 */
 	public List<Bonus> bonusList(Board board){//creo e aggiungo i bonus alla lista bonus
 		bonusList.add(new BonusAdditionalAction());
@@ -126,8 +126,8 @@ public class CreateBonus {
 
 	/**
 	 * add bonuses at costruction card
-	 * @param bpt, the business permit tile
-	 * @param bonusTotali, a string with alla bonuses
+	 * @param bpt the business permit tile
+	 * @param bonusTotali a string with alla bonuses
 	 */
 	public void getCostructorBonus(BusinessPermitTile bpt, String bonusTotali){
 

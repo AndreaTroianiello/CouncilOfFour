@@ -41,6 +41,11 @@ public class PerformBonus extends Action {
 		((Observable<Change>)bonus).registerObserver(getPlayer());
 	}
 
+	/**
+	 * Search the player in the model
+	 * @param board the model of the game
+	 * @return the player if it's in the model, null if it's not
+	 */
 	private Player searchPlayer(Board board) {
 		List<Player> players=board.getPlayers();
 		for(Player p: players)

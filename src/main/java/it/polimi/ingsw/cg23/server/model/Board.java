@@ -63,6 +63,10 @@ public class Board extends Observable<Change> implements Serializable{
 		return bonusKing;
 	}
 	
+	/**
+	 * set the bonus of the king
+	 * @param bk the king's bonus
+	 */
 	public void setBonusKing(BonusKing bk){
 		this.bonusKing=bk;
 	}

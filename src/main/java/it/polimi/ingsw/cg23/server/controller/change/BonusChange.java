@@ -20,7 +20,10 @@ public class BonusChange implements Change {
 		this.bonus=bonus;
 	}
 
-	
+	/**
+	 * Return the bonus 
+	 * @return the bonus
+	 */
 	public Bonus getBonus(){
 		return bonus;
 	}

@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 /**
- * classe che si occupa della lettura del file xml 
+ * class that deals with the xml files reading 
  *
  */
 public class ReadCittaXml {
@@ -30,9 +30,9 @@ public class ReadCittaXml {
 	 */
 
 	/**
-	 * legge il file xml
+	 * reads the xml file
 	 * @param endPath, the name of file (with the extension ".xml")
-	 * @return bidimensional array with city info, null array if there is some problems
+	 * @return two-dimensional array with city info, null array if there is some problems
 	 * @throws XmlException 
 	 */
 	public String[][] readFileXml(String endPath) throws XmlException{
@@ -85,10 +85,10 @@ public class ReadCittaXml {
 	}
 
 	/**
-	 * strasforma la stringa che contiene le città vicine in una piu' leggibile
-	 * @param nome, the string to executhe the substring (the string contain the city link)
-	 * @param idnum, the number of the city link
-	 * @return a string with the city link easily to know 
+	 * transforms the string that contains the neighbor city in one more readable 
+	 * @param nome the string to execute the substring (the string contain the city link)
+	 * @param idnum the number of the city link
+	 * @return a string with the linked city easily to know 
 	 */
 	private String idConversion(String nome, int idnum){
 		String idConcat="";//id delle citta' vicine
@@ -100,7 +100,7 @@ public class ReadCittaXml {
 	}
 
 	/**
-	 * calcola il numero di citta' nel file xml
+	 * count the number of the cities in the xml file
 	 * @return the number of cities in the xml file
 	 * @throws XmlException 
 	 */
@@ -120,7 +120,7 @@ public class ReadCittaXml {
 	}
 
 	/**
-	 * calcola il numero di nodi di citta'
+	 * count the number of cities' nodes
 	 * @return the number of city nodes, 0 if no city or error
 	 * @throws XmlException 
 	 */
@@ -144,7 +144,7 @@ public class ReadCittaXml {
 
 	/**
 	 * read the region bonus in the xml file
-	 * @param endPath, the xml file name
+	 * @param endPath the xml file name
 	 * @return an array with the region bonus
 	 * @throws XmlException
 	 */

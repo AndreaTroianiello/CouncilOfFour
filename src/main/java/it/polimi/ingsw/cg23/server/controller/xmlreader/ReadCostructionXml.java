@@ -16,16 +16,16 @@ import org.xml.sax.SAXException;
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
- * the class read the xml who contains the costruction cards
+ * the class read the xml who contains the construction cards
  *
  */
 public class ReadCostructionXml {
 	private String path="src/main/resources/xmlFiles/";//file location
 	
 	/**
-	 * legge il file xml
+	 * read the xml file
 	 * @param endPath, the name of file (with the extension ".xml")
-	 * @return bidimensional array with cotructionCard info, null array if there is some problems
+	 * @return two-dimensional array with cotructionCard info, null array if there is some problems
 	 * @throws XmlException 
 	 */
 	public String[][] readCardXml(String endPath) throws XmlException{
@@ -68,9 +68,9 @@ public class ReadCostructionXml {
 	}
 
 	/**
-	 * strasforma la stringa che contiene le città in una piu' leggibile
-	 * @param nome, the string to execute the substring (the string contain the city id)
-	 * @param idnum, the number of the city link
+	 * trasforms the string that contains the cities in one more readable 
+	 * @param nome the string to execute the substring (the string contain the city id)
+	 * @param idnum the number of the city link
 	 * @return a string with the city link easily to know 
 	 */
 	private String idConversion(String nome, int idnum){
@@ -85,8 +85,8 @@ public class ReadCostructionXml {
 	}
 
 	/**
-	 * calcola il numero di carte nel file xml
-	 * @return the number of carts in the xml file
+	 * count the card's number in the xml file
+	 * @return the number of cards in the xml file
 	 * @throws XmlException 
 	 */
 	private int cardNumber(String endPath) throws XmlException{
@@ -106,7 +106,7 @@ public class ReadCostructionXml {
 	}
 
 	/**
-	 * calcola il numero di nodi di card
+	 * count the card's nodes' number
 	 * @return the number of card nodes, 0 if no card or error
 	 * @throws XmlException 
 	 */

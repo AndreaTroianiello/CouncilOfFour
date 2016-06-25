@@ -25,8 +25,8 @@ public class CreateRegionCity {
 	private String[][] cityInfo;//array con le informazioni delle citta'
 
 	/**
-	 * costructor
-	 * @param endPath, the name of the file xml
+	 * constructor
+	 * @param endPath the name of the file xml
 	 * @throws XmlException 
 	 */
 	public CreateRegionCity(String endPath) throws XmlException{
@@ -39,7 +39,7 @@ public class CreateRegionCity {
 
 	/**
 	 * create the regions object and add at the regions list
-	 * @param bk, the bonus king
+	 * @param bk the bonus king
 	 * @return the regions list
 	 */
 	public List<Region> createRegions(BonusKing bk){
@@ -58,9 +58,9 @@ public class CreateRegionCity {
 
 	/**
 	 * create the cities object and add at the citta list
-	 * @param j, the number of the region
-	 * @param r, the region
-	 * @param typeList, the type list
+	 * @param j the number of the region
+	 * @param r the region
+	 * @param typeList the type list
 	 * @return the city list
 	 */
 	public List<City> createCities(int j, Region r, List<Type> typeList){//crea le citta' della regione
@@ -82,7 +82,7 @@ public class CreateRegionCity {
 
 	/**
 	 * set the neighbors of a city
-	 * @param citta, the list of the cities
+	 * @param citta the list of the cities
 	 */
 	public void addNeighbors(List<City> citta){
 		for(int h=0; h<citta.size(); h++){//scorre le citta' a cui aggiungere i vicini
@@ -96,8 +96,8 @@ public class CreateRegionCity {
 
 	/**
 	 * broken the addNeighbors() function that there was 4 innest
-	 * @param i, the xml city
-	 * @param h, the city to add neighbors
+	 * @param i the xml city
+	 * @param h the city to add neighbors
 	 */
 	private void nearVicini(int i, int h, List<City> citta){//rompe la funzione addNeighbors che aveva troppi innesti
 		for(int k=0; k<cityInfo[i][2].length(); k++){//scorro il numero di link delle citta'
