@@ -20,15 +20,15 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	
 	private static final long serialVersionUID = -5184613644917685573L;
 	private final BusinessPermitTile card;
-	private final City city; 						//wich city the player choose from the ones on the card
+	private final City city; 						//which city the player choose from the ones on the card
 	private final ControlAction controlAction;
 	
 	/**
 	 * the constructor set the variable of the class: the boolean main is set to true, the city and the cityId
-	 * are set to the value of the paramater given
+	 * are set to the value of the parameter given
 	 * 
-	 * @param card
-	 * @param cityID
+	 * @param card the tile used
+	 * @param city where to build the emporium
 	 * @throws NullPointerException if the parameters are null.
 	 */ 
 	public BuildEmporiumTile(BusinessPermitTile card, City city) throws NullPointerException {
@@ -60,8 +60,10 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 * runAction controls if where is the chosen city and if the player has available emporiums, and if it has
 	 * it builds the emporium in the chosen city
 	 * 
-	 * @param player
-	 * @param board
+	 * @param player who runs the action
+	 * @param board the model of the game
+	 * 
+	 * @return true if the action is successful, false otherwise
 	 */
 	@Override
 	public boolean runAction(Player player, Board board) {

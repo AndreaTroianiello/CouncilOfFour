@@ -23,8 +23,10 @@ public class AdditionalAction extends GameAction implements StandardAction {
 
 	/**
 	 * switch addictionalAction in true 
-	 * @param player
-	 * @param board
+	 * @param player who runs the action
+	 * @param board the mdoel of the game
+	 * 
+	 * @return true
 	 */
 	@Override
 	public boolean runAction(Player player, Board board) {

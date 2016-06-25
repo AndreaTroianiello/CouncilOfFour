@@ -38,9 +38,9 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * the constructor set the variable of the class: main i set to true, cards, region, and chosenTile 
 	 * are set as the parameter given to the method
 	 * 
-	 * @param cards
-	 * @param region
-	 * @param choosenTile
+	 * @param cards the cards that will be matched with the council
+	 * @param region where to pick the tile
+	 * @param choosenTile which tile the player chooses
 	 * @throws NullPointerException if the parameters are null.
 	 */
 	public BuyPermitTile(List<PoliticCard> cards, Region region, BusinessPermitTile choosenTile) throws NullPointerException{
@@ -84,8 +84,10 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * and the relative amount of money is taken from him
 	 * then it show another PermitTile form the hidden deck
 	 * 
-	 * @param player
-	 * @param board
+	 * @param player who runs the action
+	 * @param board the model of the game
+	 * 
+	 * @return true if the action is successful, false otherwise
 	 */
 	@Override
 	public boolean runAction(Player player, Board board) {
@@ -136,9 +138,9 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * control how many match between are there between 
 	 * the councillors and the politic cards
 	 * 
-	 * @param board
-	 * @param council
-	 * @return match
+	 * @param board the model of the game
+	 * @param council the council chosen
+	 * @return the number of match between cards and councillors
 	 */
 	private int howManyMatch(Board board, Council council){
 		int match = 0;
@@ -163,8 +165,8 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	/**
 	 * control how many jolly are there in the chosen politic cards
 	 * 
-	 * @param board
-	 * @return jolly
+	 * @param board the model of the game
+	 * @return the number of jollies in cards
 	 */
 	private int howManyJolly(Board board){
 		int jolly = 0;
@@ -184,8 +186,10 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	/**
 	 * take the relative amount of money based on the number of match
 	 * 
-	 * @param cardNumber
-	 * @param player
+	 * @param match the number of match
+	 * @param player the player who pays 
+	 * 
+	 * @return the money paid, -1 if the player doesn't have enough money
 	 */
 	private int payCoins(int match, Player player){
 		int coin = player.getRichness().getCoins();
@@ -209,9 +213,11 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	 * try to make the payment, and catch the exception if the 
 	 * player doesn't have enough money
 	 * 
-	 * @param player
-	 * @param money
-	 * @param payment
+	 * @param player who tries the payment
+	 * @param money the current money of the player
+	 * @param payment the money to be paid
+	 * 
+	 * @return 0 if the payment is successful, -1 otherwise
 	 */
 	private int tryPayment(Player player,int money, int payment){
 		try {

@@ -27,8 +27,10 @@ public class HireAssistant extends GameAction implements StandardAction{
 	 * give the player an assistant and take
 	 * from him 3 coins
 	 * 
-	 * @param palyer
-	 * @param board
+	 * @param palyer who runs the action
+	 * @param board the model of the game
+	 * 
+	 * @return true if the action is succesfull, false otherwise
 	 */
 	@Override
 	public boolean runAction(Player player, Board board) {

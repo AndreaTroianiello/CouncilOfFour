@@ -17,8 +17,8 @@ public class ControlAction implements Serializable{
 
 	/**
 	 * controls if the city sent for the bonus exists in the map
-	 * @param board
-	 * @return
+	 * @param board the model of the game
+	 * @return the city if it is in the board, null otherwise
 	 */
 	public City controlCity(City controlledCity, Board board){
 		for(Region region: board.getRegions()){
@@ -33,8 +33,10 @@ public class ControlAction implements Serializable{
 	
 	/**
 	 * controls if the region sent for the bonus exists in the map
-	 * @param board
-	 * @return
+	 * 
+	 * @param controlledRegion the region to be controlled
+	 * @param board the model of the game
+	 * @return the region if it is in the board, null otherwise
 	 */
 	public Region controlRegion(Region controlledRegion, Board board){
 		for(Region region: board.getRegions()){
@@ -49,9 +51,10 @@ public class ControlAction implements Serializable{
 	/**
 	 * control if the player has the chosen cards in his hand
 	 * 
-	 * @param hand
-	 * @param player
-	 * @return
+	 * @param hand the hand to be controlled
+	 * @param player the hand's player
+	 * 
+	 * @return the hand if the player has the cards, null otherwise
 	 */
 	public List<PoliticCard> controlPoliticCards(List<PoliticCard> hand, Player player){
 		List<PoliticCard> playerCards = player.getHand();
@@ -86,9 +89,9 @@ public class ControlAction implements Serializable{
 	
 	/**
 	 * controls if the player has in his available tiles the chosen tile
-	 * @param tile
-	 * @param player
-	 * @return
+	 * @param tile the tile to be controlled
+	 * @param player the tile's player
+	 * @return the tile if the player has it, null otherwise
 	 */
 	public BusinessPermitTile controlBusinessPermit(BusinessPermitTile tile, Player player){
 		List<BusinessPermitTile> playerTiles = player.getAvailableBusinessPermits();
@@ -102,9 +105,9 @@ public class ControlAction implements Serializable{
 	
 	/**
 	 * controls if exist the chosen tile in the region showed deck
-	 * @param tile
-	 * @param region
-	 * @return
+	 * @param tile the tile to be controlled
+	 * @param region the tile's region
+	 * @return the tile if it is in the region's showed deck, null otherwise
 	 */
 	public BusinessPermitTile controlBusinessPermitRegion(BusinessPermitTile  tile, Region region){
 		List<BusinessPermitTile> showedTiles = region.getDeck().getShowedDeck();

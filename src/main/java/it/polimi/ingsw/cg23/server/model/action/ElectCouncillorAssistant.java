@@ -32,10 +32,10 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	 * the constructor set the variables of the class: main is set to false, and the other variables are set
 	 * as the parameter given to the method
 	 * 
-	 * @param councillor
-	 * @param region
-	 * @param king
-	 * @throws NullPointerException if the paramiters are null.
+	 * @param councillor the color of the councillor to be elected
+	 * @param region the region of the election
+	 * @param king if the election is for the king's council
+	 * @throws NullPointerException if the councillor is null, and if the region is null and the king is false.
 	 */
 	public ElectCouncillorAssistant(Color councillor, Region region, boolean king){
 		super(false);
@@ -79,8 +79,10 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	/**
 	 * remove the first councillor from the chosen council and append
 	 * the new one
-	 * @param player
-	 * @param board
+	 * @param player who runs the action
+	 * @param board the model of the game
+	 * 
+	 * @return true if the action is successful, false otherwise
 	 */
 	@Override
 	public boolean runAction(Player player, Board board){

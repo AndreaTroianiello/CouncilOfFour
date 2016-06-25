@@ -34,8 +34,8 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * the constructor set the variable of the class: main is set to true, cards and destination are
 	 * set as the parameter given to the method
 	 * 
-	 * @param cards
-	 * @param destination
+	 * @param cards the cards that will be matched with the king's council
+	 * @param destination where the player wants to build an emporium
 	 * @throws NullPointerException if the parameters are null.
 	 */
 	public BuildEmporiumKing(List<PoliticCard> cards, City destination) throws NullPointerException{
@@ -54,8 +54,9 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * in the politic cards, and it take the corresponding amount of money from the player. Then it move 
 	 * the king in the final destination and take two coins for each step from the player.
 	 * 
-	 * @param player 
-	 * @param board
+	 * @param player who runs the action
+	 * @param board the model of the game
+	 * @return true if the action is successful, false otherwise
 	 */
 	@Override
 	public boolean runAction(Player player, Board board) {
@@ -119,8 +120,8 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	/**
 	 * control how many jolly are there in the chosen politic cards
 	 * 
-	 * @param board
-	 * @return jolly
+	 * @param board the model of the game
+	 * @return the number of jollies in cards
 	 */
 	private int howManyJolly(Board board){
 		int jolly = 0;
@@ -141,9 +142,9 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * control how many match between are there between 
 	 * the councillors and the politic cards
 	 * 
-	 * @param board
-	 * @param council
-	 * @return match
+	 * @param board the model of the game
+	 * @param council the chosen council
+	 * @return how many match are there between cards and councillor
 	 */
 	private int howManyMatch(Board board, Council council){
 		int match = 0;
@@ -169,10 +170,10 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 
 	/**
 	 * take the relative amount of money based on the number of match
-	 * @param match
-	 * @param chosenTile
-	 * @param player
-	 * @param board
+	 * @param match the number of match 
+	 * @param player who runs the action
+	 * @param board the model of the game
+	 * @return the money paid, -1 if the player doesn't have enough
 	 */
 	private int payCoins(int match, Player player){
 		int coin = player.getRichness().getCoins();
@@ -196,9 +197,10 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * try to make the payment, and catch the exception if the 
 	 * player doesn't have enough money
 	 * 
-	 * @param player
-	 * @param money
-	 * @param payment
+	 * @param player who tries the payment
+	 * @param money the current money of the player
+	 * @param payment the money to be paid
+	 * @return 0 if the payment is successful, -1 otherwise
 	 */
 	private int tryPayment(Player player,int money, int payment){
 		try {
@@ -215,10 +217,10 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	/**
 	 * build the emporium in the destination
 	 * 
-	 * @param player
-	 * @param board
-	 * @param steps
-	 * @param payMatch
+	 * @param player who builds the emporium
+	 * @param board the model of the game
+	 * @param steps how far is the destination from the king's city
+	 * @param payMatch the money paid
 	 * @throws NegativeNumberException 
 	 */
 	private void buildEmporiumK(Player player, Board board, int steps, int jolly, int payMatch) throws NegativeNumberException{

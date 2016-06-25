@@ -28,8 +28,8 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 * the constructor set the variables of the class: main is set to false, and region is set as 
 	 * the parameter given to the method
 	 * 
-	 * @param region
-	 * @throws NullPointerException if the parameters are null.
+	 * @param region where to change the tiles
+	 * @throws NullPointerException if the parameter is null.
 	 */
 	public ChangeBusinessPermit(Region region) throws NullPointerException {
 		super(false);
@@ -50,6 +50,11 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	/**
 	 * change the chosen region's showed deck and take
 	 * one assistants from the player's assistants' pool
+	 * 
+	 * @param player who runs the action
+	 * @param board the model of the game
+	 * 
+	 * @return true if the action is successful, false otherwise
 	 */
 	@Override
 	public boolean runAction(Player player, Board board) {
