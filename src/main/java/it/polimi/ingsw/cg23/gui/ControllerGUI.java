@@ -3,8 +3,6 @@ package it.polimi.ingsw.cg23.gui;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.SwingUtilities;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -19,6 +17,7 @@ import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
+import it.polimi.ingsw.cg23.provagui.FrameMap;
 
 
 public class ControllerGUI implements ClientController {
@@ -38,11 +37,11 @@ public class ControllerGUI implements ClientController {
  
 	private void updateFrameMap(){
 		if(map!=null){
-			//map.update();
+			map.update();
 		}else
 			if(clientModel.getModel()!=null){
-				//map=new FrameMap(this);
-				//map.setVisible(true);
+				map=new FrameMap(this);
+				map.setVisible(true);
 		}
 	}
 	@Override
