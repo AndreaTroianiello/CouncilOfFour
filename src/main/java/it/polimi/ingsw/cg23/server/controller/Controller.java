@@ -192,6 +192,7 @@ public class Controller implements Observer<Action>{
 	
 	/**
 	 * Controls the action and performs it.
+	 * @param action the action to be performed
 	 */
 	@Override
 	public synchronized void update(Action action){

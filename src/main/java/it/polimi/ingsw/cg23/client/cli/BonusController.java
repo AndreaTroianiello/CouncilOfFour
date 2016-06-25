@@ -33,6 +33,12 @@ public class BonusController {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
+	/**
+	 * Notifies the controller with a string.
+	 * @param string The string to be communicated
+	 * @param bonus The bonus to be communicated
+	 * @throws IOException if the connection has problems
+	 */
 	public void updateCommand(String string, Bonus bonus) throws IOException{
 		clientModel=controller.getModel();
 		try{
@@ -43,6 +49,11 @@ public class BonusController {
 		}
 	}
 	
+	/**
+	 * Manages the command string.
+	 * @param string The string that contains the commands
+	 * @throws IOException If the connection has problems
+	 */
 	private void parseCommand(String string, Bonus bonus) throws IOException{
 		if(bonus instanceof BonusCityToken){
 			((BonusCityToken)bonus).setCities(searchCities(string,bonus.getNumber()));
@@ -59,6 +70,12 @@ public class BonusController {
 		controller.updateController(new PerformBonus(clientModel.getPlayer(), bonus));
 	}
 
+	/**
+	 * Search if each city in the string are in the model, and add in cities the ones that are in it
+	 * @param string The names of the cities to be searched
+	 * @param parameters The number of cities to be searched
+	 * @return the list of the city in the string that are in the model too
+	 */
 	public List<City> searchCities(String string,int parameters){
 		List<City> cities=new ArrayList<>();
 		StringTokenizer tokenizer= new StringTokenizer(string," ");

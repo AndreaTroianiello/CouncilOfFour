@@ -51,7 +51,7 @@ public class Avvio {
 
 	/**
 	 * costructor
-	 * @param endPath, the name of the xml file
+	 * @param endPath the name of the xml file
 	 * @param board the board to refill
 	 * @throws XmlException 
 	 */
@@ -168,7 +168,7 @@ public class Avvio {
 
 	/**
 	 * set the board
-	 * @param b, the board
+	 * @param board the model of the game
 	 */
 	private void setBoard(Board board){
 
@@ -184,7 +184,7 @@ public class Avvio {
 	}
 
 	/**
-	 * 
+	 * Returns the model of the game
 	 * @return the board
 	 */
 	public Board getBoard(){

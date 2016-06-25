@@ -31,6 +31,10 @@ public class Timer implements Runnable {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 	
+	/**
+	 * Returns the boolean running
+	 * @return running
+	 */
 	public boolean isRunning(){
 		return running;
 	}

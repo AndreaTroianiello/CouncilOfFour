@@ -15,14 +15,14 @@ public interface ClientController {
 	
 	/**
 	 * Notifies the controller with a string.
-	 * @param string The string to be communicated
+	 * @param change The change to be communicated
 	 * @throws IOException If the connection has problems.
 	 */
 	public void updateController(Change change);
 	
 	/**
 	 * Sets the out view of the client.
-	 * @param out The class that manages the objects to send at the server.
+	 * @param out The class that manages the objects to send to the server.
 	 */
 	public void setOutView(ClientViewOut out);
 	

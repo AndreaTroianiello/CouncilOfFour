@@ -73,13 +73,17 @@ public class ClientModel {
 		return player;
 	}
 
+	/**
+	 * Returns the cards of the user
+	 * @return the user's cards
+	 */
 	public List<PoliticCard> getCards(){
 		return cards;
 	}
 	/**
 	 * Finds the city on the game's model using the name.
 	 * @param cityName The name of the city to find.
-	 * @return if the city isn't find returns null.
+	 * @return the city, if it isn't found returns null.
 	 */
 	public City findCity(String cityName){
 		for(int i=0; i<model.getRegions().size(); i++){
@@ -93,7 +97,7 @@ public class ClientModel {
 	/**
 	 * Finds the region on the game's model using the name.
 	 * @param regionName The name of the region to find.
-	 * @return if the region isn't find returns null.
+	 * @return the region, if it isn't found returns null.
 	 */
 	public Region findRegion(String regionName){
 		for(int i=0; i<model.getRegions().size(); i++){
@@ -106,7 +110,7 @@ public class ClientModel {
 	/**
 	 * Finds the color.
 	 * @param colorName The name of the color to find.
-	 * @return if the color isn't find returns null.
+	 * @return the color, if it isn't found returns null.
 	 */
 	public Color findColor(String colorName){
 		return new ColorManager().getColor(colorName);
@@ -115,7 +119,7 @@ public class ClientModel {
 	/**
 	 * Finds the tile among the player's available tile.
 	 * @param numerTile The number of the tile.
-	 * @return if the tile isn't find returns null.
+	 * @return the tile, if ti isn't found returns null.
 	 */
 	public BusinessPermitTile findPlayerTile(String numberTile){
 		try{
@@ -131,7 +135,7 @@ public class ClientModel {
 	 * Finds the tile among the region's showed tiles.
 	 * @param numerTile The number of the tile.
 	 * @param region the region of the tile.
-	 * @return if the city isn't find returns null.
+	 * @return the tile, if it isn't found returns null.
 	 */
 	public BusinessPermitTile findRegionTile(String numberTile,Region region){
 		try{
@@ -145,8 +149,8 @@ public class ClientModel {
 	
 	/**
 	 * Finds the item among the market's items.
-	 * @param numerItem The number of the item.
-	 * @return if the item isn't find returns null.
+	 * @param numberItem The number of the item.
+	 * @return the item, if it isn't found returns null.
 	 */
 	public Item findItem(String numberItem){
 		int number;
@@ -166,7 +170,7 @@ public class ClientModel {
 	/**
 	 * Finds the Politic Card among the player's hand.
 	 * @param numberCard The number of the card.
-	 * @return if the card isn't find returns null.
+	 * @return the card, if it isn't found returns null.
 	 */
 	public PoliticCard findPoliticCard(String numberCard){
 		try{
@@ -178,6 +182,11 @@ public class ClientModel {
 		}	
 	}
 	
+	/**
+	 * Add the cards that the player chooses for an action in a list
+	 * @param tokenizer a string with the numbers of the chosen cards in the player's hand
+	 * 		            (the numbers are the position of the cards in the hand from 0 to the size of the hand minus one)
+	 */
 	public void makeHand(StringTokenizer tokenizer){
 		cards.clear();
 		while(tokenizer.hasMoreTokens()){

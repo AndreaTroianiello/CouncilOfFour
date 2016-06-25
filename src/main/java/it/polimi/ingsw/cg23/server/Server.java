@@ -129,7 +129,10 @@ public class Server {
 	public Controller getController(){
 		return controller;
 	}
-	
+	/**
+	 * Returns the model of the game
+	 * @return model
+	 */
 	public Board getModel(){
 		return model;
 	}

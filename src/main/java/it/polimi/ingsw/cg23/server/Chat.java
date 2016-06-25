@@ -20,10 +20,17 @@ public class Chat implements Observer<SendMessage> {
 		this.views=new HashSet<>();
 	}
 	
+	/**
+	 * Add the view in the set 
+	 * @param view
+	 */
 	public void addView(View view){
 		views.add(view);
 	}
 	
+	/**
+	 * Clear the set of the views
+	 */
 	public void resetViews(){
 		views.clear();
 	}

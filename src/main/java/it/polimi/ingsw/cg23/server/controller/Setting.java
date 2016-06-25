@@ -40,7 +40,7 @@ public class Setting {
 
 	/**
 	 * refill the nobility track with the info find in the xml file
-	 * @param nT, the bobility track to fill
+	 * @param nT the bobility track to fill
 	 * @return the nobility track filled
 	 */
 	public NobilityTrack nobilityTrackFill(NobilityTrack nT){
@@ -62,10 +62,10 @@ public class Setting {
 
 	/**
 	 * broken the nobilityTrackFill because was too eavy for sonar 
-	 * @param b, the bonus name
-	 * @param number, the bonus number
-	 * @param nobinfo, nobility track number
-	 * @param nT, the nobility track
+	 * @param b the bonus name
+	 * @param number the bonus number
+	 * @param nobinfo nobility track number
+	 * @param nT the nobility track
 	 */
 	private void nobilityBonus(String b, int number, String nobinfo, NobilityTrack nT){
 		List<NobilityBox> boxList=nT.getNobilityBoxes();//lista delle caselle del nobility track
@@ -82,7 +82,7 @@ public class Setting {
 
 	/**
 	 * create the type(color) of the city
-	 * @param bk, the bonus king
+	 * @param bk the bonus king
 	 * @return a list with all the types
 	 */
 	public List<Type> createType(BonusKing bk){
@@ -106,8 +106,8 @@ public class Setting {
 
 	/**
 	 * create the politic cards
-	 * @param numberColor, the number of cards for each color
-	 * @param jolly, the number of jolly cards
+	 * @param numberColor the number of cards for each color
+	 * @param jolly the number of jolly cards
 	 * @return a list with all the politic cards
 	 */
 	public List<PoliticCard> politicList(int numberColor, int jolly){
@@ -129,7 +129,7 @@ public class Setting {
 
 	/**
 	 * the Color array contains all the avaiable colors
-	 * @return a Color array
+	 * @return a Color's array
 	 */
 	public Color[] color(){
 		int colorNumber=leggiXml.colorNumberXml("Colori.xml");//numero di colori nel file xml
@@ -147,8 +147,8 @@ public class Setting {
 
 	/**
 	 * @param dec, the deck
-	 * @param giocatori, a list with the players
-	 * @param cardsNumber, the number of cards to drow for each player
+	 * @param giocatori a list with the players
+	 * @param cardsNumber the number of cards to drow for each player
 	 */
 	public void pesca(Deck dec, List<Player> giocatori, int cardsNumber){
 		for(int i=0; i<giocatori.size(); i++){//ciclo che scorre i giocatori
@@ -160,7 +160,7 @@ public class Setting {
 
 	/**
 	 * find the king's city
-	 * @param citta, a list with all the cities
+	 * @param citta a list with all the cities
 	 * @return the king
 	 */
 	public King king(List<City>citta){

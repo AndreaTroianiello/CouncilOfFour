@@ -131,7 +131,8 @@ public class Turn {
 	}
 	
 	/**
-	 * Sets the action to do.
+	 * Sets the action to be done.
+	 * @param action 
 	 */
 	public void setAction(GameAction action){
 		this.action=action;

@@ -70,7 +70,7 @@ public class CommandController {
 	 * Manages the command string.
 	 * @param string The string that contains the commands
 	 * @throws IOException If the connection has problems
-	 * @throws NoSuchElementException if the string doesn't contain many parameters..
+	 * @throws NoSuchElementException if the string doesn't contain some parameters..
 	 */
 	private void parseCommand(String string) throws IOException,NoSuchElementException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
