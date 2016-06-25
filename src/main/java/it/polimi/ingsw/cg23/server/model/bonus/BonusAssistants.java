@@ -8,8 +8,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 /**
- * the class of the bonus that allows the player to take an amount of assistants specified it the bonus. It
- * contains the number of assistants given by the bonus and a string of the name
+ * the class of the bonus that allows the player to take an amount of assistants specified it the bonus. 
  * 
  * @author utente
  *
@@ -23,7 +22,7 @@ public class BonusAssistants implements Bonus {
 	private static Logger logger;
 	
 	/**
-	 * the construcotor set the name of the bonus and the assistants to 0
+	 * the constructor set the name of the bonus and the assistants to 0, and the name as Assistants
 	 */
 	public BonusAssistants() {
 		BonusAssistants.logger = Logger.getLogger(BonusAssistants.class);
@@ -35,6 +34,7 @@ public class BonusAssistants implements Bonus {
 	
 	/**
 	 * it sets the number of the assistants that the bonus gives
+	 * @param number how many asssistants the bonus gives
 	 */
 	@Override
 	public void setNumber(int number){
@@ -44,7 +44,7 @@ public class BonusAssistants implements Bonus {
 	/**
 	 * add to the player's assistants' pool the amount of assistants of the bonus
 	 * 
-	 * @param player
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -59,6 +59,10 @@ public class BonusAssistants implements Bonus {
 		}
 	}
 	
+	/**
+	 * Returns the number of assistants in the bonus
+	 * @return the assistants
+	 */
 	@Override
 	public int getNumber(){
 		return assistants;
@@ -69,7 +73,7 @@ public class BonusAssistants implements Bonus {
 		// Not implemented.
 	}
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){

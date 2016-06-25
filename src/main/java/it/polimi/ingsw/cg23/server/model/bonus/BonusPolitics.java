@@ -5,8 +5,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
 /**
- * the class of the bonus that allows to draw a politic card from the deck. It contains the number of card to 
- * be drawn, the board and the name.
+ * the class of the bonus that allows to draw a politic card from the deck. 
  * 
  * @author Vincenzo
  *
@@ -22,8 +21,8 @@ public class BonusPolitics implements Bonus {
 	 * the constructor set the name as the name of the bonus, and the other variables as the parameters
 	 * given to the method
 	 * 
-	 * @param cardNumber
-	 * @param board
+	 * @param cardNumber the number of politic's cards given by the bonus
+	 * @param board the model of the game
 	 */
 	public BonusPolitics(int cardNumber, Board board) {
 		this.cardNumber = cardNumber;
@@ -48,7 +47,7 @@ public class BonusPolitics implements Bonus {
 	
 
 	/**
-	 * set the numebr of the card to be drawn
+	 * set the number of the card to be drawn
 	 * 
 	 * @param cardNumber the cardNumber to set
 	 */
@@ -60,8 +59,8 @@ public class BonusPolitics implements Bonus {
 	/**
 	 * add cardNumber politic cards to the player's hand
 	 * 
-	 *  @param player
-	 *  @param board
+	 * @param player whom the bonus is given to
+	 * @param board the model of the game
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -72,6 +71,9 @@ public class BonusPolitics implements Bonus {
 		}
 	}
 	
+	/**
+	 * @return the number of the cards to be drawn
+	 */
 	@Override
 	public int getNumber(){
 		return cardNumber;

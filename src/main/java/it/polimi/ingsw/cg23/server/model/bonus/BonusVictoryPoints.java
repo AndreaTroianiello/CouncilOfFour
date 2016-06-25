@@ -5,8 +5,8 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 
 /**
- * the class of the bonus that allows to give the player some victory points. It contains the number of points
- * to be given to the player and the name of the bonus
+ * the class of the bonus that allows to give the player some victory points.
+ * 
  * @author utente
  *
  */
@@ -20,7 +20,7 @@ public class BonusVictoryPoints implements Bonus {
 	 * the constructor set the name as the name of the bonus and the points as the paramater given to the 
 	 * method
 	 * 
-	 * @param points
+	 * @param points how many points the player receives
 	 */
 	public BonusVictoryPoints(int points) {
 		this.points = points;
@@ -39,6 +39,8 @@ public class BonusVictoryPoints implements Bonus {
 	
 	/**
 	 * set the number of points given by the bonus
+	 * 
+	 * @param number the number of points
 	 */
 	@Override
 	public void setNumber(int number){
@@ -49,7 +51,7 @@ public class BonusVictoryPoints implements Bonus {
 	/**
 	 * give to the player the amount of victory points of the bonus
 	 * 
-	 * @param player
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -58,6 +60,9 @@ public class BonusVictoryPoints implements Bonus {
 		player.getVictoryTrack().setVictoryPoints(playerPoints);
 	}
 	
+	/**
+	 * @return the points
+	 */
 	@Override
 	public int getNumber(){
 		return points;

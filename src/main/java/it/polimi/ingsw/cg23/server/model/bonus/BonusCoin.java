@@ -11,8 +11,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 /**
- * the class of the bonus that allows the player to increase his richness. It contains the number of coins given
- * byt the bonus to the player and the string of the name
+ * the class of the bonus that allows the player to increase his richness. 
  *
  * 
  * @author utente
@@ -65,7 +64,7 @@ public class BonusCoin implements Bonus {
 	/**
 	 * add to the player's current coins the amount of coins of the bonus 
 	 * 
-	 * @param player
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -78,6 +77,9 @@ public class BonusCoin implements Bonus {
 		}
 	}
 	
+	/**
+	 * @return the number of coins
+	 */
 	@Override
 	public int getNumber(){
 		return coins;

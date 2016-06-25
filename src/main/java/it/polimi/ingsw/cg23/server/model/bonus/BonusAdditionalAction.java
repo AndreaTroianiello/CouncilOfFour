@@ -4,7 +4,7 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 
 /**
- * the class of the bonus that allows to have another main action. It contains the string of the name
+ * the class of the bonus that allows to have another main action. 
  * 
  * @author Vincenzo
  *
@@ -25,8 +25,8 @@ public class BonusAdditionalAction implements Bonus {
 	 * if the player have the additional action set to false,
 	 * it switches it
 	 * 
-	 * @param player
-	 */
+	 * @param player whom the bonus is given to
+	 */ 
 	@Override
 	public void giveBonus(Player player) {
 		boolean addictionalAction = player.isAdditionalAction();
@@ -51,7 +51,7 @@ public class BonusAdditionalAction implements Bonus {
 	}
 	
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){

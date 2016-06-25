@@ -5,8 +5,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.NobilityBox;
 
 /**
- * the class of the bonus that allows the player to step forward in the nobility track. It contains the
- * number of steps given by the bonus, the board and the name.
+ * the class of the bonus that allows the player to step forward in the nobility track.
  * 
  * @author Vincenzo
  *
@@ -21,8 +20,8 @@ public class BonusNobility implements Bonus {
 	/**
 	 * the constructor set the name as the name of the bonus, and the other variables as the 
 	 * parameter given to the method
-	 * @param steps (can't be negative)
-	 * @param board
+	 * @param steps the number of steps in the nobility track(can't be negative)
+	 * @param board the model of the game
 	 */
 	public BonusNobility(int steps, Board board) {
 		this.steps = steps;
@@ -31,7 +30,7 @@ public class BonusNobility implements Bonus {
 	}
 
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){
@@ -59,10 +58,11 @@ public class BonusNobility implements Bonus {
 	public void setBoard(Board board) {
 		// Not implemented.
 	}
+	
 	/** 
-	 * make the player advance tot steps in the nobility track
+	 * make the player advance the number of steps in the nobility track
 	 * 
-	 * @param player
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -75,6 +75,9 @@ public class BonusNobility implements Bonus {
 		}
 	}
 	
+	/**
+	 * @return the number of steps
+	 */
 	@Override
 	public int getNumber(){
 		return steps;

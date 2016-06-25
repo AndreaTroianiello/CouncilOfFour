@@ -13,10 +13,8 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 
 /**
- * the class of the bonus that allows to run a bonus from a city where the player builds an emporium. It contains 
- * the number of times the bonus can be run, a list of the city where the player wants to take the bonus
- * from, an array that shows if the bonuses in the chosen cities are runnable, a string of the name, the board 
- * and the CliInterface 
+ * the class of the bonus that allows to run a bonus from a city where the player builds an emporium. 
+ *  
  * @author Vincenzo
  *
  */
@@ -29,11 +27,10 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	private transient Board board;
 	
 	/**
-	 * the constructor set the number and the board as the paramater given to the method, the city as a new 
-	 * arraylist, every elements of runnbale as true, cl as a new cliinterface and the name as the name
-	 * of the bonus
-	 * @param city
-	 * @param board
+	 * the constructor set the parameter as the parameter given to the method, the city as null,
+	 * and the name as CityToken
+	 * 
+	 * @param parameters the number of cities the bonus can be run from
 	 */
 	public BonusCityToken(int parameters) {
 		this.cities = null;
@@ -43,6 +40,8 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 
 	/**
 	 * Sets the board.
+	 * 
+	 * @param board the model of the game
 	 */
 	@Override
 	public void setBoard(Board board) {
@@ -50,17 +49,28 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	}
 
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){
 		return number+name;
 	}
 
+	/**
+	 * set the list of the cities
+	 * @param cities the list of the cities
+	 */
 	public void setCities(List<City> cities){
 		this.cities=cities;
 	}
 	
+	/**
+	 * Control if the cities don't contains the nobility bonus and contain the player's emporium
+	 * @param realCities the list of the cities
+	 * @param player who must have the emporiums in the cities
+	 * @return false if the size of the list is different from number, and if a city contains a nobility bonus
+	 * 		   or doesn't contain the player's emporium, true otherwise
+	 */
 	private boolean controlParameters(List<City> realCities,Player player){
 		if(realCities.size()!=number)
 			return false;
@@ -74,6 +84,10 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 		return true;
 	}
 	
+	/**
+	 * Add to a list the city in cities that are actually in the board
+	 * @param realCities the list where the real cities are added
+	 */
 	private void searchRealCities(List<City> realCities){
 		if(board==null)
 			return;
@@ -85,6 +99,8 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 	}
 	/**
 	 * call the method runBonusCity of the class city
+	 * 
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -115,11 +131,17 @@ public class BonusCityToken extends Observable<Change> implements Bonus {
 		return new BonusCityToken(number); 
 	}
 	
+	/**
+	 * @return the number of the cities
+	 */
 	@Override
 	public int getNumber() {
 		return number;
 	}	
 
+	/**
+	 * set the number of the cities
+	 */
 	@Override
 	public void setNumber(int number) {
 		this.number=number;

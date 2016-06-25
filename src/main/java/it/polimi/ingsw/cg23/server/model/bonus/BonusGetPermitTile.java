@@ -12,7 +12,7 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
  
 /**
- * the class of the bonus that allows to get a permit tile from a region. It contains the board, the name and the CliInterface
+ * the class of the bonus that allows to get a permit tile from a region. 
  * 
  * @author Vincenzo
  *
@@ -29,11 +29,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	
  
 	/**
-	 * the constructor set the board as the parameter given to the method, cl as a new cliinterface 
-	 * and the name as the name of the bonus
-	 * @param i
-	 * @param a
-	 * @param board
+	 * the constructor set number to 1 and the name as the name of the bonus
 	 */
 	public BonusGetPermitTile() {
 		this.name="GetPermitTile";
@@ -41,7 +37,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 	}
 	
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){
@@ -54,20 +50,30 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 		//this is a method of the Bonus interfaced not used in this class
 	}
 
+	/**
+	 * Set the board of the bonus
+	 */
 	@Override
 	public void setBoard(Board board) {
 		this.board=board;	
 	}
 	
+	/**
+	 * Set the tile to be taken with the bonus
+	 * 
+	 * @param region where the tile is taken from
+	 * @param numberTile the number of the tile in the showed deck(form 0 to maxShowedTile-1)
+	 */
 	public void setTile(Region region,int numberTile){
 		this.region=region;
 		this.numberTile=numberTile;
 	}
+	
 	/**
 	 * give to the player the PermitTitle chosen and replace it 
 	 * on the field with the one on the top of the region deck
 	 * 
-	 * @param player
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -87,6 +93,11 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 			return;
 		}
 	}
+	
+	/**
+	 * Search if the region is in the board
+	 * @return null if the board is null or the region isn't found, the region otherwise
+	 */
 	private Region searchRegion() {
 		if(board==null)
 			return null;
@@ -97,6 +108,9 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 		return null;
 	}
 
+	/**
+	 * @return the number of the tile
+	 */
 	@Override
 	public int getNumber(){
 		return number;

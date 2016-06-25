@@ -12,8 +12,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
 /**
- * the class of the bonus that allows to run the bonus from a tile the player is in possession. It contains 
- * the tile the player wants to run the bonus from, the name and the cliinterface
+ * the class of the bonus that allows to run the bonus from a tile the player is in possession. 
  *  
  * @author Vincenzo
  *
@@ -27,9 +26,8 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	private static Logger logger;
 
 	/**
-	 * the constructor set the tile as a new arraylist, the cli as a new cliinterface and the name as 
-	 * the name of the bonus
-	 * @param number
+	 * the constructor set number and numberTile to 1 and the name of the bonus
+	 * 
 	 */
 	public BonusTileBonus() {
 		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
@@ -39,12 +37,17 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 		this.name="TileBonus";
 	}
 
+	/**
+	 * Set the numberTile
+	 * 
+	 * @param numberTile the number of the tile chosen
+	 */
 	public void setNumberTile(int numberTile) {
 		this.numberTile=numberTile;
 	}
 	
 	/**
-	 * return the bonus name and the number(if exist)
+	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
 	public String getName(){
@@ -52,8 +55,9 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	}
 
 	/**
-	 * for each businessPermitTile in the List give 
-	 * the player the bonuses in it
+	 * for businessPermitTile give the player the bonuses in it
+	 * 
+	 * @param player whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
@@ -77,6 +81,9 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 		//this is a method of the Bonus interfaced not used in this class
 	}
 	
+	/**
+	 * @return number
+	 */
 	@Override
 	public int getNumber(){
 		return number;
