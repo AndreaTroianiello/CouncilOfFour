@@ -16,7 +16,7 @@ public class ColorManager {
 	private Map<String,Color> colorList;
 	
 	/**
-	 * The construnctor of ColorManager. Initializes the list of the color.
+	 * The constructor of ColorManager. Initializes the list of the color.
 	 */
 	public ColorManager(){
 		this.colorList = new HashMap<>();

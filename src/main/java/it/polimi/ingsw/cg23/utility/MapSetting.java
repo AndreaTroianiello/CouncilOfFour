@@ -22,7 +22,7 @@ public class MapSetting {
 	private ColorManager cm;
 
 	/**
-	 * costructor
+	 * constructor
 	 */
 	public MapSetting(){
 		this.space=50;
@@ -31,8 +31,8 @@ public class MapSetting {
 
 	/**
 	 * find the city from the regions
-	 * @param regions, the regions
-	 * @return teh city list
+	 * @param regions the regions
+	 * @return the list of the cities
 	 */
 	public List<City> getCityfromRegion(List<Region> regions){
 		List<City> city = new ArrayList<>();
@@ -44,8 +44,8 @@ public class MapSetting {
 
 	/**
 	 * convert all the city bonus to a string
-	 * @param city, the city you want to have the bonus
-	 * @return a string with all the city bonus
+	 * @param city the city you want to have the bonus
+	 * @return a string with all the cities' bonus
 	 */
 	public String cityBonus(City city){
 		String bonus="";
@@ -79,8 +79,8 @@ public class MapSetting {
 	}
 
 	/**
-	 * @param number, the number to add space
-	 * @param totalSpace, the number of space you want to add
+	 * @param number the number to add space
+	 * @param totalSpace the number of space you want to add
 	 * @return a string with the number and the space
 	 */
 	public String addSpace(int number, int totalSpace){	
@@ -98,7 +98,7 @@ public class MapSetting {
 
 	/**
 	 * calculate the number of digits in a number
-	 * @param number, the number you want to calculate the digits
+	 * @param number the number you want to calculate the digits
 	 * @return the number of digits
 	 */
 	private int digits(int number){
@@ -121,9 +121,9 @@ public class MapSetting {
 
 	/**
 	 * print the region name and the bonus region
-	 * @param reg, the regions list
-	 * @param space, the space
-	 * @return, a string with the spaced name of the region
+	 * @param reg the regions list
+	 * @param space the space
+	 * @return a string with the spaced name of the region
 	 */
 	public String printName(List<Region>reg, int space){
 		String name="";
@@ -142,10 +142,10 @@ public class MapSetting {
 	}
 
 	/**
-	 * creathe the costruction card to print
-	 * @param region, the region
-	 * @param space, half of the space
-	 * @return a string with the costruction card
+	 * creates the business permit tiles to print
+	 * @param region the region
+	 * @param space half of the space
+	 * @return a string with the business permit tiles
 	 */
 	public String createCostructionShowed(List<Region> region, int space){
 		String cardShowed="";//plancia delle carte costrucione
@@ -199,9 +199,9 @@ public class MapSetting {
 
 	/**
 	 * 
-	 * @param reg, the regions list
-	 * @param space, the space
-	 * @param n, the numer of bonus (0,1)
+	 * @param reg the regions list
+	 * @param space the space
+	 * @param n the number of bonus (0,1)
 	 * @return a string with the bonus name
 	 */
 	private String getBonusCostructor(List<Region> reg, int space, int n){
@@ -228,8 +228,8 @@ public class MapSetting {
 	}
 
 	/**
-	 * trasmor a list of city in a string of the city id
-	 * @param c, the city
+	 * transforms a list of cities in a string of cities' id
+	 * @param c the city
 	 * @return a string with the id of the city
 	 */
 	public String getNeighbourID(City c){
@@ -245,7 +245,7 @@ public class MapSetting {
 
 	/**
 	 * return a string with the specified number of minus -
-	 * @param number, the number of minus you want
+	 * @param number the number of minus you want
 	 * @return a string with minus
 	 */
 	public String addMinus(int number){
@@ -260,7 +260,7 @@ public class MapSetting {
 
 	/**
 	 * create the region's council
-	 * @param regions, the regions
+	 * @param regions the regions
 	 * @return a string with the councillors
 	 */
 	public String councillors(List<Region> regions){
@@ -281,8 +281,8 @@ public class MapSetting {
 
 	/**
 	 * print the bonus king, the king council and the type
-	 * @param b, the board
-	 * @return a string with bonus king and king councill
+	 * @param b the board
+	 * @return a string with bonus king and king council
 	 */
 	public String bonusCouncilKingType(Board b){
 		String consiglieri="King Council: ";

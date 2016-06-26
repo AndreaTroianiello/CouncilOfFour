@@ -25,7 +25,7 @@ public class Councillor implements Serializable {
 	}
 	
 	/**
-	 * Returns the color of the coucillor.
+	 * Returns the color of the councillor.
 	 * 
 	 * @return the color
 	 */

@@ -13,7 +13,7 @@ public class VictoryTrack implements Serializable {
 	private int victoryPoints;
 
 	/**
-	 * The constructot of VictoryTrack. The victory points are default to zero.
+	 * The constructor of VictoryTrack. The victory points are default to zero.
 	 */
 	public VictoryTrack() {
 		this.victoryPoints = 0;

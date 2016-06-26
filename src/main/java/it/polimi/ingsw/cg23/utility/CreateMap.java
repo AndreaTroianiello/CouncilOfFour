@@ -18,7 +18,7 @@ public class CreateMap {
 	private final int space;//spazio da mettere tra una regione e l'altra
 
 	/**
-	 * costructor
+	 * constructor
 	 */
 	public CreateMap(){
 		this.space=50;
@@ -26,11 +26,11 @@ public class CreateMap {
 	}
 
 	/**
-	 * stampa la mappa (funziona parzialmente, NON TIENE CONTO DEI LINK FRA CITY)
+	 * Print the map
 	 * @return void
-	 * @param king, the king
-	 * @param reg, a region list
-	 * @param giocatori, a list with the players
+	 * @param king the king
+	 * @param reg a region list
+	 * @param giocatori a list of the players
 	 */
 	public String createMap(List<Region> reg, List<Player>giocatori, King king){//NON TIENE CONTO DEI COLLEGAMENTI
 
@@ -71,7 +71,7 @@ public class CreateMap {
 
 	/**
 	 * create the map with draw card
-	 * @param b, the board
+	 * @param b the board
 	 * @return the string of the map
 	 */
 	public String createMapDraw(Board b){
@@ -151,7 +151,7 @@ public class CreateMap {
 
 	/**
 	 * print the nobility track
-	 * @param b, the board
+	 * @param b the board
 	 * @return a string with the nobility track
 	 */
 	public String printNobility(Board b){
@@ -209,7 +209,7 @@ public class CreateMap {
 
 	/**
 	 * create the players info
-	 * @param giocatori, a list with the players
+	 * @param giocatori a list with the players
 	 * @return a string to print
 	 */
 	public String createPlayerInfo(List<Player>giocatori){

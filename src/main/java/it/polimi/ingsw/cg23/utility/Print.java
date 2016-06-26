@@ -8,8 +8,8 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.server.model.Board;
 
 /**
- * il file xml da cui si caricano le informazioni per la partita è "ConfigurazionePartita.xml"
- * classe per stampare le info sulla cl
+ * the xml files where the informations for the game are loaded from is "ConfigurazionePartita.xml"
+ * class for the printing of the infos on the cli
  */
 public class Print {
 	
@@ -17,7 +17,7 @@ public class Print {
 	private static Logger logger;//logger
 
 	/**
-	 * costructor
+	 * constructor
 	 */
 	public Print(){
 		//configurazione logger
@@ -29,7 +29,7 @@ public class Print {
 
 	/**
 	 * 	print all the element of a list
-	 * @param lista, the list to print
+	 * @param lista the list to print
 	 */
 	public void printList(List<?>lista){
 		
@@ -39,9 +39,9 @@ public class Print {
 	}
 
 	/**
-	 * stampa un array bidimensionale
+	 * prints a two-dimensional array
 	 * @return void
-	 * @param array bidimensional array
+	 * @param array two-dimensional array
 	 */
 	public void printArray(String[][] array){
 		String stampa="";
@@ -56,9 +56,9 @@ public class Print {
 	}
 
 	/**
-	 * stampa una qualunque cosa gli viene passata e ritorna il valore letto dalla cl
-	 * @param testo, what you want to show on the cl
-	 * @param ogg, the object you want to show with the test on the cl (null if none)
+	 * prints what is passed to it and returns the value red from the cl
+	 * @param testo what you want to show on the cl
+	 * @param ogg the object you want to show with the test on the cl (null if none)
 	 * @return what the user write on the cl
 	 */
 	public Object writeReturnValue(String testo, Object ogg){
@@ -74,10 +74,10 @@ public class Print {
 	}
 
 	/**
-	 * stampa una qualunque cosa gli viene passata
+	 * prints what is passed to it
 	 * @return void
-	 * @param ogg (something to print, must be "" is there isn't)
-	 * @param testo da stampare
+	 * @param ogg (something to print, must be "" if there isn't)
+	 * @param text to be printed
 	 */
 	public void print(Object ogg, String testo){
 		logger.info(testo+" "+ogg);	
@@ -87,7 +87,7 @@ public class Print {
 
 	/**
 	 * call the class PrintMap to create the game map
-	 * @param board, the board
+	 * @param board the board
 	 */
 	public void createMap(Board board){
 		print("", cm.createMapDraw(board));
@@ -95,7 +95,7 @@ public class Print {
 
 	/**
 	 * calculate the number of regions
-	 * @param cityInfo, the array 
+	 * @param cityInfo the array 
 	 * @return the number of regions
 	 */
 	public int regionsNumber(String[][] cityInfo){

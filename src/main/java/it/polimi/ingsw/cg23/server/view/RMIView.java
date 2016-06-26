@@ -24,7 +24,7 @@ public class RMIView extends View implements RMIViewRemote {
 	private Registry registry;
 	
 	/**
-	 * The contructor of RMIView.
+	 * The constructor of RMIView.
 	 * @param server the class that manages connections.
 	 * @param registry the registry created for RMI connections.
 	 */
