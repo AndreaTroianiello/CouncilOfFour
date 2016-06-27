@@ -120,7 +120,13 @@ public class CityPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
+		
+		listener(panel, c);
+		return panel;
+	}
 
+	private void listener(JPanel panel, City c){
+		
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -150,10 +156,7 @@ public class CityPanel extends JPanel {
 				}
 			}
 		});
-
-		return panel;
 	}
-
 	private BufferedImage getImg(String name){//recupero le immagini
 		BufferedImage image=null;
 		String path="src/main/resources/images/"+name+".png";//percorso dell'immagine
@@ -166,9 +169,4 @@ public class CityPanel extends JPanel {
 
 		return image;
 	}
-
-	public void update(){
-		this.repaint();
-	}
-
 }

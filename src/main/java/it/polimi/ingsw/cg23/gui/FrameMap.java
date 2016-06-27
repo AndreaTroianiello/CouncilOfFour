@@ -60,7 +60,6 @@ public class FrameMap extends JFrame {
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 		this.controller=null;
-		//this.model=controller.getModel();
 		this.model=model;
 		loggerArea=new JTextArea();
 		write=new JTextField();
@@ -74,19 +73,7 @@ public class FrameMap extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
-		//setResizable(false);
-		//carica le informazioni sulle citta'--- PROVVISORIO (poi gia' caricate)
-		/*Board b=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
-		String name="map6.xml";
-		try {
-			s=new Avvio(name, b);
-		} catch (XmlException e) {
-			logger.error("Errore nel caricare il file xml: "+name, e);
-		}
-		s.startPartita();
-		 */
 		grid();
-		//update();
 	}
 
 	/**

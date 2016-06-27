@@ -207,8 +207,4 @@ public class BonusPanel extends JPanel {
 
 		return image;
 	}
-	
-	/*public void update(){
-		this.repaint();
-	}*/
 }

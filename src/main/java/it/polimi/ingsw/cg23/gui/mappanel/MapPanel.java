@@ -157,9 +157,4 @@ public class MapPanel extends JPanel {
 
 		return image;
 	}
-
-	public void update(){
-		cp.update();
-		this.repaint();
-	}
 }

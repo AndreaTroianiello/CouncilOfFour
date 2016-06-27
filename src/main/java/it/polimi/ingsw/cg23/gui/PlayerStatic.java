@@ -129,13 +129,19 @@ public class PlayerStatic extends JFrame {
 		contentPane.add(panel);
 	}
 
+	/**
+	 * load the image and add the text
+	 * @param name, the image name
+	 * @param num, the text to write over the image
+	 * @return, a buffered image
+	 */
 	private BufferedImage createImage(String name, int num){
 		BufferedImage img = getImg(name);
 		Graphics2D g2d = img.createGraphics();
 		g2d.drawImage(img, 0, 0, null);
 		g2d.setPaint(Color.white);
 		g2d.setFont(new Font("Serif", Font.BOLD, 80));
-		String s = num+"";
+		String s = Integer.toString(num);
 		FontMetrics fm = g2d.getFontMetrics();
 		int x = (img.getWidth() - fm.stringWidth(s) )/2;
 		int y = (img.getHeight() +fm.getHeight() )/2;
