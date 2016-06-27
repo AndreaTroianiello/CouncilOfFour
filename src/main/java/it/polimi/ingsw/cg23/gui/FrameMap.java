@@ -157,7 +157,6 @@ public class FrameMap extends JFrame {
 					model.setModel(new Board(null,null,null,null,null,null));
 					new Avvio("map4.xml",model.getModel()).startPartita();
 					Player p=new Player("user",model.getModel().getNobilityTrack());
-					System.out.println(p.getRichness());
 					model.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
 							new PoliticCard(Color.ORANGE, false),

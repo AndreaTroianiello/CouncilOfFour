@@ -112,18 +112,22 @@ public class MapPanel extends JPanel {
 
 				if(i%2!=0&&k==4){
 					String region=city.get(j-1).getRegion().getName();
-					JButton but=new JButton(region);
+					JButton but=new JButton();
+					but.setOpaque(false);//bottone trasparente
+					but.setContentAreaFilled(false);//contenuto bottone trasparente
+					//but.setBorderPainted(false);//bordi bottone trasparente
 					lim.gridx = i;//posizione componenti nella griglia
 					lim.gridy = k;
 					lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 					lim.weighty = 1;
 					lim.gridheight=1;//grandezza del riquadro
 					lim.gridwidth=1;
+					lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 					layout.setConstraints(but, lim);//applico il layout al pannello delle citta'
 					label.add(but);//aggiunta il panel alla label
 					but.addActionListener(new ActionListener() {
-						
+
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							loggerArea.append("\nSelezionato "+region);

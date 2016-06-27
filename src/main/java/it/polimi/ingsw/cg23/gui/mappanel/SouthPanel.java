@@ -93,10 +93,6 @@ public class SouthPanel extends JPanel {
 		JPanel panelNobility=ntp.createNobility();
 		panelNobility.setName("Nobility panel");
 		panelNobility.setBackground(new Color(154, 205, 50));
-		//JScrollPane scrollNobility=new  JScrollPane(panelNobility);
-		////scrollNobility.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//scrollNobility.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		//
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -143,9 +139,6 @@ public class SouthPanel extends JPanel {
 		JPanel politics=pcp.createCard();
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(154, 205, 50));
-		//JScrollPane scroll=new JScrollPane(politics);
-		//scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 4;
 		lim.weightx=0;//espansione in verticale e orizzontale
@@ -159,9 +152,6 @@ public class SouthPanel extends JPanel {
 		JPanel avaiableCostrucion=ccp.myCostructionCard(model.getPlayer());
 		avaiableCostrucion.setName("costruzione disponibile");
 		avaiableCostrucion.setBackground(new Color(154, 205, 50));
-		//JScrollPane scroll=new JScrollPane(politics);
-		//scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 4;
 		lim.weightx=0;//espansione in verticale e orizzontale

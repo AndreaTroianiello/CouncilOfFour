@@ -47,7 +47,7 @@ public class CityPanel extends JPanel {
 	public CityPanel(JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
-		
+
 		this.ms=new MapSetting();
 
 		//configurazione logger
@@ -85,7 +85,7 @@ public class CityPanel extends JPanel {
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
-		
+
 		int p=1;
 		//----------king label----------
 		if(c.equals(k.getCity())){
@@ -99,11 +99,11 @@ public class CityPanel extends JPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			p++;
-			
+
 			layout.setConstraints(kingLabel, lim);
 			panel.add(kingLabel);//aggiunta bottone al layer panel
 		}
-		
+
 		//----------immagine citta'----------
 		BufferedImage img=getImg("city/"+c.getType()+"City");//lettura immagine
 		double width= ((double) 3/50)*lung;
@@ -120,7 +120,7 @@ public class CityPanel extends JPanel {
 		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-		
+
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -134,7 +134,11 @@ public class CityPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				loggerArea.append("\nCitta' "+c.getName());
 				loggerArea.append("\n  "+ms.getNeighbourID(c));
-				loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
+				loggerArea.append("\n  Regione: "+c.getRegion().getName());
+				if(c.getToken().isEmpty())
+					loggerArea.append("\n  King city");
+				else
+					loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
 				loggerArea.append("\n  Tipo: "+c.getType());
 				loggerArea.append("\n  Empori: ");
 				if(c.getEmporiums().isEmpty())
@@ -146,7 +150,7 @@ public class CityPanel extends JPanel {
 				}
 			}
 		});
-		
+
 		return panel;
 	}
 
