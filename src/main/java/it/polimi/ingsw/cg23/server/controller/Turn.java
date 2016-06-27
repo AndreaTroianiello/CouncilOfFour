@@ -106,7 +106,7 @@ public class Turn {
 			currentPlayer=(currentPlayer+1)%players.size();
 	
 			if(isChangeState()){
-				board.changeStatus();
+				status.changeStatus();
 				List<Player> newPlayers=board.getPlayers();
 				if("MARKET: BUYING".equals(status.getStatus()))
 					setPlayers(board.getMarket().generatePlayersList(newPlayers));

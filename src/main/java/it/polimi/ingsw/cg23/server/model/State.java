@@ -79,6 +79,26 @@ public class State implements Serializable{
 	public void setFinalPlayer(Player player) {
 		this.finalPlayer = player;
 	}
+	
+	/**
+	 * Changes the status of the model.
+	 */
+	public void changeStatus() {
+		if(finalPlayer!=null && !"FINAL TURN".equals(status)){
+			status="FINAL TURN";
+			return;
+		}
+		if("TURN".equals(status)){
+			status="MARKET: SELLING";
+			return;
+		}
+		if("MARKET: SELLING".equals(status)){
+			status="MARKET: BUYING";
+			return;
+		}
+		if("MARKET: BUYING".equals(status) || "INITIALIZATION".equals(status))
+			status="TURN";
+	}
 
 	/**
 	 * It generates a string formed by the most significant statistics of the State.

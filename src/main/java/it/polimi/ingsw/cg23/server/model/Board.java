@@ -219,25 +219,6 @@ public class Board extends Observable<Change> implements Serializable{
 	}
 	
 	/**
-	 * Changes the status of the model.
-	 */
-	public void changeStatus() {
-		String statusString=status.getStatus();
-		
-		if("TURN".equals(statusString))
-			status.setStatus("MARKET: SELLING");
-		
-		if("MARKET: SELLING".equals(statusString))
-			status.setStatus("MARKET: BUYING");
-		
-		if("MARKET: BUYING".equals(statusString) || "INITIALIZATION".equals(statusString))
-			status.setStatus("TURN");
-
-		if(status.getFinalPlayer()!=null && !"FINAL TURN".equals(statusString))
-			status.setStatus("FINAL TURN");
-	}
-	
-	/**
 	 * Returns the market of the game.
 	 * @return market
 	 */

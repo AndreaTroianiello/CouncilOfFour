@@ -105,19 +105,7 @@ public class BoardTest {
 	@Test
 	public void testGetStatus() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
-		assertEquals(board.getStatus().getStatus(),"INITIALIZATION");
-		board.changeStatus();
-		assertEquals(board.getStatus().getStatus(),"TURN");
-		board.changeStatus();
-		assertEquals(board.getStatus().getStatus(),"MARKET: SELLING");
-		board.changeStatus();
-		assertEquals(board.getStatus().getStatus(),"MARKET: BUYING");
-		board.changeStatus();
-		assertEquals(board.getStatus().getStatus(),"TURN");
-		board.getStatus().setFinalPlayer(p);
-		board.changeStatus();
-		assertEquals(board.getStatus().getStatus(),"FINAL TURN");
-		
+		assertEquals(board.getStatus().getStatus(),"INITIALIZATION");		
 	}
 	
 	@Test

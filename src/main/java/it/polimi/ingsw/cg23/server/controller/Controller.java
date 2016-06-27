@@ -136,7 +136,7 @@ public class Controller implements Observer<Action>{
 		setPlayerStats();
 		gameTwoPlayers();
 		new CreateMap().createMapDraw(model);     //Print the map on Server's console.
-		model.changeStatus();
+		model.getStatus().changeStatus();
 		model.notifyObserver(new StateChange(model.getStatus()));
 		model.notifyObserver(new BoardChange(model));
 		new Thread(new Timer(getView(turn.getCurrentPlayer()),this)).start();

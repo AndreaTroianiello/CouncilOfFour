@@ -41,6 +41,24 @@ public class StateTest {
 		state.setFinalPlayer(p);
 		assertEquals(state.getFinalPlayer(),p);
 	}
+	
+	@Test
+	public void testChangeStatus() {
+		State state=new State();
+		assertEquals(state.getStatus(),"INITIALIZATION");
+		state.changeStatus();
+		assertEquals(state.getStatus(),"TURN");
+		state.changeStatus();
+		assertEquals(state.getStatus(),"MARKET: SELLING");
+		state.changeStatus();
+		assertEquals(state.getStatus(),"MARKET: BUYING");
+		state.changeStatus();
+		assertEquals(state.getStatus(),"TURN");
+		state.setFinalPlayer(p);
+		state.changeStatus();
+		assertEquals(state.getStatus(),"FINAL TURN");
+		
+	}
 
 	@Test
 	public void testToString() {
