@@ -14,6 +14,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.gui.homepanels.PanelConnection;
 import it.polimi.ingsw.cg23.gui.homepanels.PanelLogin;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -40,7 +41,7 @@ public class HomeFrame extends JFrame {
 	public HomeFrame() {
 		logger = Logger.getLogger(HomeFrame.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		controller=new ControllerGUI();
+		controller=new ControllerGUI(this);
 		initComponents();
 	}
 	
@@ -105,5 +106,8 @@ public class HomeFrame extends JFrame {
 		panelConnection.setVisible(!panelConnection.isVisible());
 	}
 
+	public void updateInfo(InfoChange info){
+		panelLogin.getLabelInfo2().setText(info.getInfo());
+	}
 
 }

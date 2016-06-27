@@ -20,6 +20,7 @@ public class CreationGame extends Action {
 	private static final long serialVersionUID = 3683134725976321975L;
 	private final String name;
 	private String map;
+	private String message;
 	
 	/**
 	 * The constructor of CreationPlayer.
@@ -32,6 +33,7 @@ public class CreationGame extends Action {
 			this.map=map;
 		}else 
 			throw new NullPointerException();
+		message="";
 	}
 	
 	/**
@@ -54,7 +56,7 @@ public class CreationGame extends Action {
 		if(model.getDeck()==null){
 			try {
 				new Avvio(map+".xml",model).startPartita();
-				this.notifyObserver(new InfoChange("Your map has been chosen."));
+				message="Your map has been chosen and";
 			} catch (XmlException e) {
 				getLogger().error(e);
 				model.resetBoard();
@@ -78,10 +80,10 @@ public class CreationGame extends Action {
 			Player player=new Player(name, model.getNobilityTrack());
 			controller.putSocketPlayer(super.getPlayer(), player);
 			this.notifyObserver(new PlayerChange(player));
-			this.notifyObserver(new InfoChange("Player has been created."));
+			this.notifyObserver(new InfoChange(message + " your player has been created."));
 		}
 		else
-			this.notifyObserver(new InfoChange("The player already exists."));
+			this.notifyObserver(new InfoChange(message + " the username already exists."));
 	}
 
 }

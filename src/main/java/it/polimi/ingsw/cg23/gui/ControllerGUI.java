@@ -13,6 +13,7 @@ import it.polimi.ingsw.cg23.client.cli.ControllerCLI;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -27,11 +28,13 @@ public class ControllerGUI implements ClientController {
 	private ClientViewOut out;
 	private Bonus bonus;
 	private FrameMap map;
+	private HomeFrame home;
 	
-	public ControllerGUI() {
+	public ControllerGUI(HomeFrame home) {
 		logger = Logger.getLogger(ControllerCLI.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		clientModel= new ClientModel();
+		this.home=home;
 		this.bonus=null;
 	}
  
@@ -42,6 +45,15 @@ public class ControllerGUI implements ClientController {
 			if(clientModel.getModel()!=null){
 				map=new FrameMap(this);
 				map.setVisible(true);
+				home.setVisible(false);
+		}
+	}
+	
+	private void updateInfo(Change change){
+		if(map!=null){
+			//map.update();
+		}else{
+			home.updateInfo((InfoChange)change);
 		}
 	}
 	@Override
@@ -57,8 +69,10 @@ public class ControllerGUI implements ClientController {
 				if(clientModel.getPlayer().getUser().equals(player.getUser()))
 					clientModel.setPlayer(player);
 			clientModel.setModel(model);
+			updateFrameMap();
+			return;
 		}
-		updateFrameMap();
+		updateInfo(change);
 	}
 
 	@Override
@@ -70,8 +84,7 @@ public class ControllerGUI implements ClientController {
 		try {
 			out.update(action);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 	

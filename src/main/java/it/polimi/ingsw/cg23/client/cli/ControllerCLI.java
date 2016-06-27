@@ -132,6 +132,8 @@ public class ControllerCLI implements ClientController{
 		switch(tokenizer.nextToken()){
 		case "BOARD":
 			cli.createMap(model);
+			cli.print("","Available councillors:");
+			cli.printList(model.getCouncillorPool());
 			break;
 		case "HAND":
 			cli.print("", "Your hand is:");

@@ -62,7 +62,7 @@ public class PanelLogin extends JPanel {
 		});
 
 		labelInfo2.setForeground(new Color(255, 215, 0));
-		labelInfo2.setText("Loading");
+		labelInfo2.setText("");
 
 		labelMap.setForeground(new Color(255, 215, 0));
 		labelMap.setText("Choose a map:");
@@ -126,6 +126,10 @@ public class PanelLogin extends JPanel {
 		map=map.substring(0, map.length()-2)+map.charAt(map.length()-1);//tolgo lo spazio
 		map=map.toLowerCase();//metto tutto in minuscolo
 		controller.updateController(new CreationGame(fieldLogin.getText(),map));
+	}
+	
+	public JLabel getLabelInfo2(){
+		return labelInfo2;
 	}
 
 }
