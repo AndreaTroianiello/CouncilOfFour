@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.view.rmi;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.RankChange;
+import it.polimi.ingsw.cg23.server.view.View;
 
 /**
  * The personal server's view of the player whom use RMI connection.
@@ -43,8 +44,6 @@ public class RMIServerView extends View implements RMIViewRemote {
 	 */
 	@Override
 	public void update(Change change) {
-		if(getSuspended())
-			return;
 		getLogger().info("Sending to the client " + change);
 		try {
 			this.clientStub.updateClient(change);

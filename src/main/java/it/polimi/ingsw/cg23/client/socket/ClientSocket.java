@@ -1,8 +1,6 @@
 package it.polimi.ingsw.cg23.client.socket;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,15 +34,11 @@ public class ClientSocket {
 	 * @param controller The client's controller.
 	 * @throws IOException if the socket connection has problems.
 	 */
-	@SuppressWarnings("resource")
 	public void startClient(ClientController controller, String address) throws IOException {
 		Socket socket = new Socket(address, PORT);
 		ExecutorService executor = Executors.newFixedThreadPool(2);
-		ClientOutHandler out=new ClientOutHandler(socket,new ObjectOutputStream(socket.getOutputStream()));
-		ClientInHandler in=new ClientInHandler(controller,new ObjectInputStream(socket.getInputStream()));
-		executor.submit(out);
-		executor.submit(in);
-		controller.setOutView(out);
+		ClientHandler clientHandler=new ClientHandler(socket,controller);
+		executor.submit(clientHandler);
 		logger.info("Connection created");
 	}
 	

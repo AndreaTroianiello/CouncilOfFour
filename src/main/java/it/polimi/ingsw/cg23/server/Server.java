@@ -16,9 +16,9 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.controller.Controller;
 import it.polimi.ingsw.cg23.server.model.Board;
-import it.polimi.ingsw.cg23.server.view.RMIView;
-import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
-import it.polimi.ingsw.cg23.server.view.ServerSocketView;
+import it.polimi.ingsw.cg23.server.view.rmi.RMIView;
+import it.polimi.ingsw.cg23.server.view.rmi.RMIViewRemote;
+import it.polimi.ingsw.cg23.server.view.socket.ServerSocketView;
 
 /**
  * The Server accepts new connections from clients.

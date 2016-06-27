@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.view.rmi;
 
 
 import java.rmi.AlreadyBoundException;
@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.server.Server;
 import it.polimi.ingsw.cg23.server.controller.Controller;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.model.Board;
+import it.polimi.ingsw.cg23.server.view.View;
 
 /**
  * The view that manages the requests of the RMI clients.

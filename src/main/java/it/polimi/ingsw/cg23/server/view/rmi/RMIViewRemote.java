@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.view.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

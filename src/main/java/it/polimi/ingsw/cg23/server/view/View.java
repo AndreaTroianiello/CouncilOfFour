@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.observer.Observer;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.view.socket.ServerSocketView;
 
 /**
  * The general view of the server. It can be a RMI or a Socket view.

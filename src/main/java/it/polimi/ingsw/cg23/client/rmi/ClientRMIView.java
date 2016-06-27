@@ -8,10 +8,10 @@ import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
-import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
+import it.polimi.ingsw.cg23.server.view.rmi.RMIViewRemote;
 
 /**
- * The ClientRMIView manages the objects received by the client,whom uses a RMI connection.
+ * The ClientRMIView manages the input and output objects flow, when a RMI connection between client and server is used.
  * @author Andrea
  *
  */
@@ -27,8 +27,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 	 * @throws RemoteException if the RMI connection has problems.	
 	 */
 	public ClientRMIView(ClientController controller) throws RemoteException {
-		super();
 		this.controller=controller;
+		controller.setOutView(this);
 	}
 	
 	/**

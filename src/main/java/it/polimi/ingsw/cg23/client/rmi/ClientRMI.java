@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientController;
-import it.polimi.ingsw.cg23.server.view.RMIViewRemote;
+import it.polimi.ingsw.cg23.server.view.rmi.RMIViewRemote;
 
 /**
  * ClientRMI manages the creation of RMI connection.
@@ -42,7 +42,6 @@ public class ClientRMI{
 		ClientRMIView rmiView=new ClientRMIView(controller);
 		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(rmiView));
 		rmiView.setRMIServerView(rmiServerView);
-		controller.setOutView(rmiView);
 		logger.info("Connection created");
 	}
 }

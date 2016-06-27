@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.server.view;
+package it.polimi.ingsw.cg23.server.view.socket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.server.Chat;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
+import it.polimi.ingsw.cg23.server.view.View;
 
 /**
  * The view that manages the connections of the socket clients.
@@ -45,8 +46,6 @@ public class ServerSocketView extends View implements Runnable {
 	 */
 	@Override
 	public void update(Change change) {
-		if(getSuspended())
-			return;
 		getLogger().error("Sending to the client " + change);
 		try {
 			this.socketOut.writeObject(change);
