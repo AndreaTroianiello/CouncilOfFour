@@ -3,12 +3,16 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
+import it.polimi.ingsw.cg23.gui.PlayerStatic;
 import it.polimi.ingsw.cg23.server.model.Region;
 
 /**
@@ -118,7 +122,7 @@ public class SouthPanel extends JPanel {
 		southPanel.add(kingCouncillors);
 
 		//----------------consiglieri del re------------
-		JTextArea punteggi=new JTextArea();
+	/*	JTextArea punteggi=new JTextArea();
 		punteggi.setText("Coin: "+model.getPlayer().getRichness().getCoins());
 		punteggi.append("\nVictory points: "+model.getPlayer().getVictoryTrack().getVictoryPoints());
 		punteggi.append("\nNobility Track position: "+model.getPlayer().getNobilityBoxPosition());
@@ -133,7 +137,28 @@ public class SouthPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(punteggi, lim);
+		southPanel.add(punteggi);*/
+		JButton punteggi=new JButton("stat");
+		punteggi.setBackground(new Color(123, 104, 238));
+		punteggi.setOpaque(true);
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 3;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(punteggi, lim);
 		southPanel.add(punteggi);
+		punteggi.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//text.append("\n"+button1.getName());
+				PlayerStatic stat=new PlayerStatic();
+				stat.createGrid(model.getPlayer());
+				stat.setVisible(true);
+				//AZIONI AZIONE 1
+			}
+		});
 
 		//----------carte politiche------------
 		JPanel politics=pcp.createCard();
