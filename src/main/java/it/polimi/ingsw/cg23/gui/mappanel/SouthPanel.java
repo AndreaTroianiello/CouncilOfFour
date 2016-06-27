@@ -3,8 +3,8 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -32,6 +32,7 @@ public class SouthPanel extends JPanel {
 	private PoliticCardPanel pcp;
 	private BonusPanel bp;
 	private transient ClientModel model;
+	private PlayerStatic stat;
 
 	/**
 	 * 
@@ -45,6 +46,7 @@ public class SouthPanel extends JPanel {
 		this.pcp=new PoliticCardPanel(model.getPlayer(), loggerArea);
 		this.bp=new BonusPanel(model.getModel(), loggerArea);
 		this.model=model;
+		this.stat=new PlayerStatic();
 	}
 
 	/**
@@ -121,23 +123,7 @@ public class SouthPanel extends JPanel {
 		layout.setConstraints(kingCouncillors, lim);
 		southPanel.add(kingCouncillors);
 
-		//----------------consiglieri del re------------
-	/*	JTextArea punteggi=new JTextArea();
-		punteggi.setText("Coin: "+model.getPlayer().getRichness().getCoins());
-		punteggi.append("\nVictory points: "+model.getPlayer().getVictoryTrack().getVictoryPoints());
-		punteggi.append("\nNobility Track position: "+model.getPlayer().getNobilityBoxPosition());
-		punteggi.append("\nNumero assistenti "+model.getPlayer().getAssistantsPool().getAssistants());
-		punteggi.setName("consiglieri re");
-		punteggi.setBackground(new Color(123, 104, 238));
-		punteggi.setOpaque(true);
-		lim.gridx = 2;//posizione componenti nella griglia
-		lim.gridy = 3;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		layout.setConstraints(punteggi, lim);
-		southPanel.add(punteggi);*/
+		//----------------statistiche player------------
 		JButton punteggi=new JButton("stat");
 		punteggi.setBackground(new Color(123, 104, 238));
 		punteggi.setOpaque(true);
@@ -149,14 +135,21 @@ public class SouthPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(punteggi, lim);
 		southPanel.add(punteggi);
-		punteggi.addActionListener(new ActionListener() {
+		punteggi.addMouseListener(new MouseListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				//text.append("\n"+button1.getName());
-				PlayerStatic stat=new PlayerStatic();
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				stat.setVisible(false);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
 				stat.createGrid(model.getPlayer());
-				stat.setVisible(true);
-				//AZIONI AZIONE 1
+				stat.setVisible(true);}
+			@Override
+			public void mouseClicked(MouseEvent e) {
 			}
 		});
 

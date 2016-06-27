@@ -130,7 +130,7 @@ public class MapPanel extends JPanel {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							loggerArea.append("\nSelezionato "+region);
+							loggerArea.append("\nSelezionata regione "+region);
 						}
 					});
 				}

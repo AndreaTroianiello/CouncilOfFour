@@ -68,7 +68,7 @@ public class CityPanel extends JPanel {
 		panel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints();
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 
 
 		//----------nome citta'----------
@@ -82,7 +82,7 @@ public class CityPanel extends JPanel {
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
 
@@ -117,7 +117,7 @@ public class CityPanel extends JPanel {
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.anchor = GridBagConstraints.SOUTHWEST;//posizione componenti nei riquadri
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
 
