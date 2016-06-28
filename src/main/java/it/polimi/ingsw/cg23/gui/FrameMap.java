@@ -25,6 +25,7 @@ import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
+import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
@@ -136,8 +137,8 @@ public class FrameMap extends JFrame {
 		//repaint();
 	}
 	
-	public JTextArea getLoggerArea(){
-		return loggerArea;
+	public void updateInfo(Change change){
+		loggerArea.append("\n"+change.toString());
 	}
 
 

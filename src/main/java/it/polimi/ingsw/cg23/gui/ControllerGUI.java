@@ -49,7 +49,7 @@ public class ControllerGUI implements ClientController {
 	
 	private void updateInfo(Change change){
 		if(map!=null){
-			map.getLoggerArea().append("\n"+change.toString());;
+			map.updateInfo(change);
 		}else{
 			home.updateInfo((InfoChange)change);
 		}
