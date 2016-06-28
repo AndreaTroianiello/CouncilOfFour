@@ -29,7 +29,7 @@ public class SouthPanel extends JPanel {
 	private transient ClientModel model;
 	private SouthEastPanel southEastPanel;
 	private JTextArea loggerArea;
-	
+
 	/**
 	 * 
 	 * @param model
@@ -48,10 +48,10 @@ public class SouthPanel extends JPanel {
 	private void init(){
 		this.panelNobility=new NobilityTrackPanel(model, loggerArea);
 		this.ccp=new CostructionCardPanel(loggerArea);
-		this.cp=new CouncilPanel();
+		this.cp=new CouncilPanel(loggerArea);
 		this.pcp=new PoliticCardPanel(model.getPlayer(), loggerArea);
 		this.southEastPanel=new SouthEastPanel(model, loggerArea);
-		
+
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 
@@ -79,7 +79,7 @@ public class SouthPanel extends JPanel {
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge i consiglieri
 
 			//----------consiglieri regione----------
-			JPanel balcone=cp.balcone(reg.get(i));
+			JPanel balcone=cp.regionBalcone(reg.get(i));
 			balcone.setBackground(new Color(154, 205, 50));
 			balcone.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
@@ -105,7 +105,7 @@ public class SouthPanel extends JPanel {
 		add(panelNobility);
 
 		//----------------southeast panel------------
-		//bonusPanel.setBackground(new Color(154, 205, 50));
+		southEastPanel.setBackground(new Color(154, 205, 50));
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx=0;//espansione in verticale e orizzontale
@@ -114,7 +114,7 @@ public class SouthPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(southEastPanel, lim);
 		add(southEastPanel);
-		
+
 		//----------carte politiche------------
 		JPanel politics=pcp.createCard();
 		politics.setName("Carte politiche");
@@ -141,9 +141,5 @@ public class SouthPanel extends JPanel {
 		layout.setConstraints(avaiableCostrucion, lim);
 		add(avaiableCostrucion);
 	}
-	
-	public void update(){
-		removeAll();
-		init();
-	}
+
 }

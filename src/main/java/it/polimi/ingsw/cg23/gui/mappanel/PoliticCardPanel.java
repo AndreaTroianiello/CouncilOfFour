@@ -124,7 +124,4 @@ public class PoliticCardPanel extends JPanel {
 		return image;
 	}
 
-	/*public void update(){
-		this.repaint();
-	}*/
 }

@@ -60,6 +60,7 @@ public class FrameMap extends JFrame {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+		
 		this.controller=controller;
 		this.model=model;
 		loggerArea=new JTextArea();
@@ -128,13 +129,8 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(scroll, lim); //Associazione
 		contentPane.add(scroll); //Inserimento
-
+		loggerArea.append("cio");
 		pack();//necessario
-	}
-	public void update(){
-		southPanel.update();
- 		//revalidate();
-		//repaint();
 	}
 	
 	public void updateInfo(Change change){

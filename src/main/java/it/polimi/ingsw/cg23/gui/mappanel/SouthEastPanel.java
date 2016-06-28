@@ -20,7 +20,6 @@ public class SouthEastPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8844330258965324138L;
-	//private BonusPanel bp;
 	private BonusFrame bonusf;
 	private CouncilPanel cp;
 	private PlayerStatic stat;
@@ -30,8 +29,7 @@ public class SouthEastPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public SouthEastPanel(ClientModel model, JTextArea loggerArea) {
-		this.cp=new CouncilPanel();
-		//this.bp=new BonusPanel(model.getModel(), loggerArea);
+		this.cp=new CouncilPanel(loggerArea);
 		this.stat=new PlayerStatic();
 		this.model=model;
 		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
@@ -46,9 +44,8 @@ public class SouthEastPanel extends JPanel {
 		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-
 		//----------------consiglieri del re------------
-		JPanel kingCouncillors=cp.kingbalcone(model.getModel().getKing());
+		JPanel kingCouncillors=cp.kingBalcone(model.getModel().getKing());
 		kingCouncillors.setName("consiglieri re");
 		kingCouncillors.setBackground(new Color(154, 205, 50));
 		kingCouncillors.setOpaque(true);
@@ -81,8 +78,8 @@ public class SouthEastPanel extends JPanel {
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				stat.removeAll();
 				stat.setVisible(false);
+				stat.dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -97,10 +94,11 @@ public class SouthEastPanel extends JPanel {
 		//----------------bonus panel------------
 		JButton bonusPanel=new JButton("Bonus");
 		bonusPanel.setBackground(new Color(154, 205, 50));
+		bonusPanel.setToolTipText("View the game bonus");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(bonusPanel, lim);
@@ -112,7 +110,7 @@ public class SouthEastPanel extends JPanel {
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				bonusf.removeAll();
+				bonusf.dispose();
 				bonusf.setVisible(false);
 			}
 			@Override
@@ -125,18 +123,17 @@ public class SouthEastPanel extends JPanel {
 			}
 		});
 
-		//----------------consiglieri dipsonibilit------------
-		JPanel consiglieriColor=new JPanel();
-		consiglieriColor.setName("bonus");
-		consiglieriColor.setToolTipText("Available bonus");
-		consiglieriColor.setBackground(new Color(154, 1, 50));
+		//----------------consiglieri dipsonibili------------
+		JPanel consiglieriColor=cp.colurCouncillors(model.getModel());
+		consiglieriColor.setBackground(new Color(154, 205, 50));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
 		layout.setConstraints(consiglieriColor, lim);
 		add(consiglieriColor);
+
 	}
 }

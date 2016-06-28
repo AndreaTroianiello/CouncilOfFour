@@ -22,6 +22,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 
 
 public class BonusFrame extends JFrame {
@@ -40,7 +41,7 @@ public class BonusFrame extends JFrame {
 	 */
 	public BonusFrame(Board b, JTextArea loggerArea) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setBounds(200, 200, 500, 200);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,7 +55,7 @@ public class BonusFrame extends JFrame {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 
 	}
-	
+
 	/**
 	 * create the bonus panel
 	 * @return the panel
@@ -72,52 +73,92 @@ public class BonusFrame extends JFrame {
 		JLabel nameBonus=new JLabel("Bonus disponibili");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=b.getRegions().size()+1;
+		lim.gridwidth=b.getBonusKing().getBonusValues().size();
 		layout.setConstraints(nameBonus, lim);
 		panel.add(nameBonus);
 
-		//----------------bonus king------------
-		JLabel kingBonus;
-		if(b.getBonusKing().getCurrentBonusKing()!=0){
-			BufferedImage img=getImg("bonusKing/"+b.getBonusKing().getCurrentBonusKing());
-			kingBonus=new JLabel(new ImageIcon(img));
-		}else{
-			kingBonus=new JLabel("Bonus king finiti");
-		}
-		kingBonus.setName("bonus king");
-		lim.gridx = 0;//posizione componenti nella griglia
+		int p=0;//posizione colonna componenti bonus king
+		//----------------bonus king label------------
+		BonusKing bk=b.getBonusKing();
+		JLabel bonuskingLabel=new JLabel("King");
+		lim.gridx = p;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(kingBonus, lim);
-		panel.add(kingBonus);
-		mouseOverKing(kingBonus, loggerArea, b);
+		layout.setConstraints(bonuskingLabel, lim);
+		panel.add(bonuskingLabel);
+		p++;
+
+		//----------------bonus king------------
+		JLabel kingBonus;
+		for(int i=0; i<bk.getBonusValues().size()-1; i++){//scrorre i bonus king disponibili
+			if(bk.getBonusValues().get(i).intValue()<=bk.getCurrentBonusKing()){
+				BufferedImage img=getImg("bonusKing/"+bk.getBonusValues().get(i).intValue());
+				kingBonus=new JLabel(new ImageIcon(img));
+				kingBonus.setName("bonus king");
+				lim.gridx = p;;//posizione componenti nella griglia
+				lim.gridy = 1;
+				lim.weightx=1;//espansione in verticale e orizzontale
+				lim.weighty=1;
+				lim.gridheight=1;//grandezza del riquadro
+				lim.gridwidth=1;
+				layout.setConstraints(kingBonus, lim);
+				panel.add(kingBonus);
+				mouseOverKing(kingBonus, loggerArea, b);
+				p++;
+			}
+		}
+
+		int q=0;//posizione componenti colonna bonus region
+		//----------------bonus region label------------
+		JLabel bonusRegionLabel=new JLabel("Region");
+		lim.gridx = q;//posizione componenti nella griglia
+		lim.gridy = 2;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(bonusRegionLabel, lim);
+		panel.add(bonusRegionLabel);
+		q++;
 
 		//----------------bonus region------------
-		for(int k=0; k<b.getRegions().size(); k++){
+		for(int k=0; k<b.getRegions().size(); k++){//scorre le regioni
 			JLabel regionBonus;
 			if(b.getRegions().get(k).isBonusAvailable()){
 				BufferedImage img=getImg("bonusRegion/"+b.getRegions().get(k).getName());
 				regionBonus=new JLabel(new ImageIcon(img));
-			}else
-				regionBonus=new JLabel("Bonus finiti");
 
-			regionBonus.setName("bonus type "+b.getRegions().get(k).getName());
-			lim.gridx = k+1;//posizione componenti nella griglia
-			lim.gridy = 1;
-			lim.weightx=0;//espansione in verticale e orizzontale
-			lim.weighty=0;
-			lim.gridheight=1;//grandezza del riquadro
-			lim.gridwidth=1;
-			layout.setConstraints(regionBonus, lim);
-			panel.add(regionBonus);
-			mouseOverRegion(regionBonus, loggerArea, b.getRegions().get(k));
+				lim.gridx = q;//posizione componenti nella griglia
+				lim.gridy = 2;
+				lim.weightx=1;//espansione in verticale e orizzontale
+				lim.weighty=1;
+				lim.gridheight=1;//grandezza del riquadro
+				lim.gridwidth=1;
+				layout.setConstraints(regionBonus, lim);
+				panel.add(regionBonus);
+				mouseOverRegion(regionBonus, loggerArea, b.getRegions().get(k));
+				q++;
+			}
 		}
+
+		int r=0;//posizione componenti colonna bonus type
+		//----------------bonus region label------------
+		JLabel bonusTypeLabel=new JLabel("Type");
+		lim.gridx = r;//posizione componenti nella griglia
+		lim.gridy = 3;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(bonusTypeLabel, lim);
+		panel.add(bonusTypeLabel);
+		r++;
 
 		//----------------city type bonus------------
 		for(int i=0; i<b.getTypes().size(); i++){
@@ -128,22 +169,22 @@ public class BonusFrame extends JFrame {
 				if(b.getTypes().get(i).isBonusAvailable()){
 					BufferedImage img=getImg("bonusType/"+b.getTypes().get(i).getName());
 					cityTypeBonus=new JLabel(new ImageIcon(img));
-				}else
-					cityTypeBonus=new JLabel("Bonus finiti");
 
-				cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
-				lim.gridx = i;//posizione componenti nella griglia
-				lim.gridy = 2;
-				lim.weightx=1;//espansione in verticale e orizzontale
-				lim.weighty=1;
-				lim.gridheight=1;//grandezza del riquadro
-				lim.gridwidth=1;
-				layout.setConstraints(cityTypeBonus, lim);
-				panel.add(cityTypeBonus);
-				mouseOverType(cityTypeBonus, loggerArea, b.getTypes().get(i));
+					cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
+					lim.gridx = r;//posizione componenti nella griglia
+					lim.gridy = 3;
+					lim.weightx=1;//espansione in verticale e orizzontale
+					lim.weighty=1;
+					lim.gridheight=1;//grandezza del riquadro
+					lim.gridwidth=1;
+					layout.setConstraints(cityTypeBonus, lim);
+					panel.add(cityTypeBonus);
+					mouseOverType(cityTypeBonus, loggerArea, b.getTypes().get(i));
+					r++;
+				}
 			}
 		}
-		
+
 		contentPane.add(panel);
 	}
 
