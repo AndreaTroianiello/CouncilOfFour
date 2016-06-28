@@ -86,7 +86,7 @@ public class CityPanel extends JPanel {
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
 
-		int p=1;
+		int p=1;//posizione della griglia
 		//----------king label----------
 		if(c.equals(k.getCity())){
 			BufferedImage imgKing=getImg("king");//lettura immagine
@@ -102,6 +102,20 @@ public class CityPanel extends JPanel {
 
 			layout.setConstraints(kingLabel, lim);
 			panel.add(kingLabel);//aggiunta bottone al layer panel
+		}else{
+			BufferedImage imgCityBonus=getImg("cityBonus/"+ms.cityBonus(c));//lettura immagine			
+			JLabel bonusCityLabel=new JLabel(new ImageIcon(imgCityBonus));
+			lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+			lim.gridx = p;//posizione componenti nella griglia
+			lim.gridy = 0;
+			lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+			lim.weighty = 1;
+			lim.gridheight=1;//grandezza del riquadro
+			lim.gridwidth=1;
+			p++;
+
+			layout.setConstraints(bonusCityLabel, lim);
+			panel.add(bonusCityLabel);//aggiunta bottone al layer panel
 		}
 
 		//----------immagine citta'----------

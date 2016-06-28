@@ -4,17 +4,14 @@
 	<bonus>2Assistants</bonus>
 	<bonus>1Assistants</bonus>
 	<bonus>1Coin</bonus>
-	<bonus>1Assistant,1Politics</bonus>
+	<bonus>1Assistants,1Politics</bonus>
 	<bonus>2Coin</bonus>
 	<bonus>3VictoryPoints</bonus>
 	<bonus>1Assistants,1Coin</bonus>
 	<bonus>1VictoryPoints</bonus>
 	<bonus>1Politics</bonus>
 	<bonus>2VictoryPoints</bonus>
-	<!-- cancelare --><bonus>1GetPermit</bonus>
-	<!-- cancellare --><bonus>1TileBonus</bonus>
-	<!--  cancellare --><bonus>2CityToken</bonus>
-	<!--  <bonus>3Coin</bonus> -->
-	<!--  <bonus>1Nobility</bonus> -->
-	<!--  <bonus>1Politics,1VictoryPoints</bonus> -->
+	<bonus>3Coin</bonus>
+	<bonus>1Nobility</bonus>
+	<bonus>1Politics,1VictoryPoints</bonus>
 </bonuses>
