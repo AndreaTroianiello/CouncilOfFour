@@ -70,13 +70,14 @@ public class CityPanel extends JPanel {
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 
-
+		int p=0;//posizione componenti nella griglia in orizzontale
+		
 		//----------nome citta'----------
 		JLabel nameLabel=new JLabel(Character.toString(c.getId()));
 		double font= ((double) 3/100)*lung;
 		nameLabel.setFont(new Font("Calibre", Font.ITALIC,(int) font));
 		nameLabel.setForeground(new Color(255,255,255));
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = p;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
@@ -85,8 +86,8 @@ public class CityPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
-
-		int p=1;//posizione della griglia
+		p++;
+		
 		//----------king label----------
 		if(c.equals(k.getCity())){
 			BufferedImage imgKing=getImg("king");//lettura immagine
@@ -102,7 +103,10 @@ public class CityPanel extends JPanel {
 
 			layout.setConstraints(kingLabel, lim);
 			panel.add(kingLabel);//aggiunta bottone al layer panel
-		}else{
+		}
+		
+		//----------bonus label----------
+		if(!c.getToken().isEmpty()){
 			BufferedImage imgCityBonus=getImg("cityBonus/"+ms.cityBonus(c));//lettura immagine			
 			JLabel bonusCityLabel=new JLabel(new ImageIcon(imgCityBonus));
 			lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
@@ -134,13 +138,13 @@ public class CityPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-		
-		listener(panel, c);
+
+		listener(panel, c, k);
 		return panel;
 	}
 
-	private void listener(JPanel panel, City c){
-		
+	private void listener(JPanel panel, City c, King k){
+
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -155,7 +159,7 @@ public class CityPanel extends JPanel {
 				loggerArea.append("\nCitta' "+c.getName());
 				loggerArea.append("\n  "+ms.getNeighbourID(c));
 				loggerArea.append("\n  Regione: "+c.getRegion().getName());
-				if(c.getToken().isEmpty())
+				if(c.equals(k.getCity()))
 					loggerArea.append("\n  King city");
 				else
 					loggerArea.append("\n  Bonus: "+ms.cityBonus(c));

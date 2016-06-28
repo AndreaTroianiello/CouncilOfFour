@@ -142,7 +142,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel model=new ClientModel();
 					model.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map4.xml",model.getModel()).startPartita();
+					new Avvio("map8.xml",model.getModel()).startPartita();
 					Player p=new Player("user",model.getModel().getNobilityTrack());
 					model.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),

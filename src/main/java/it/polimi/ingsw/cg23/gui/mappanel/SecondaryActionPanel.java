@@ -74,6 +74,7 @@ public class SecondaryActionPanel extends JPanel {
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button1, lim);

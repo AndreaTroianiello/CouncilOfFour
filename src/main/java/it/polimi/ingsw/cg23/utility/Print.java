@@ -34,7 +34,7 @@ public class Print {
 	public void printList(List<?>lista){
 		
 		for(int i=0;i<lista.size();i++){//scorre la lista da stampare
-			print("",lista.get(i).toString());//stampa la lista
+			print(lista.get(i).toString(), Integer.toString(i));//stampa la lista
 		}
 	}
 
