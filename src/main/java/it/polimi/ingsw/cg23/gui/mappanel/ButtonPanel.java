@@ -31,7 +31,7 @@ public class ButtonPanel extends JPanel {
 	 * @param controller
 	 */
 	public ButtonPanel(JTextArea textArea, JTextField write, ControllerGUI controller) {
-		this.map=new MainActionPanel(textArea,controller);
+		this.map=new MainActionPanel(textArea);
 		this.sap=new SecondaryActionPanel(textArea,controller);
 		this.ip=new InfoPanel(textArea, write);
 	}

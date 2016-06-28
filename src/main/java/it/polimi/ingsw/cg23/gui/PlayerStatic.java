@@ -63,7 +63,7 @@ public class PlayerStatic extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------nome utente----------
-		JLabel userLabel = new JLabel(p.getUser());//aggiungo l'immagine alla label
+		JLabel userLabel = new JLabel("Point "+p.getUser());//aggiungo l'immagine alla label
 		userLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
 		userLabel.setForeground(new Color(255, 255, 255));
 		lim.gridx = 0;//posizione componenti nella griglia

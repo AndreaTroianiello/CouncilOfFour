@@ -9,7 +9,6 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
-import it.polimi.ingsw.cg23.client.cli.ControllerCLI;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
@@ -31,7 +30,7 @@ public class ControllerGUI implements ClientController {
 	private HomeFrame home;
 	
 	public ControllerGUI(HomeFrame home) {
-		logger = Logger.getLogger(ControllerCLI.class);
+		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		clientModel= new ClientModel();
 		this.home=home;

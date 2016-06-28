@@ -57,9 +57,20 @@ public class BonusPanel extends JPanel {
 		bonusPanel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
+		//----------------name bonus------------
+		JLabel nameBonus=new JLabel("Bonus disponibili");
+		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridy = 0;
+		lim.weightx=0;//espansione in verticale e orizzontale
+		lim.weighty=0;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=b.getRegions().size()+1;
+		layout.setConstraints(nameBonus, lim);
+		bonusPanel.add(nameBonus);
+		
 		//----------------bonus king------------
 		JLabel kingBonus;
 		if(b.getBonusKing().getCurrentBonusKing()!=0){
@@ -70,7 +81,7 @@ public class BonusPanel extends JPanel {
 		}
 		kingBonus.setName("bonus king");
 		lim.gridx = 0;//posizione componenti nella griglia
-		lim.gridy = 0;
+		lim.gridy = 1;
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
@@ -90,7 +101,7 @@ public class BonusPanel extends JPanel {
 
 			regionBonus.setName("bonus type "+b.getRegions().get(k).getName());
 			lim.gridx = k+1;//posizione componenti nella griglia
-			lim.gridy = 0;
+			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -114,7 +125,7 @@ public class BonusPanel extends JPanel {
 
 				cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
 				lim.gridx = i;//posizione componenti nella griglia
-				lim.gridy = 1;
+				lim.gridy = 2;
 				lim.weightx=1;//espansione in verticale e orizzontale
 				lim.weighty=1;
 				lim.gridheight=1;//grandezza del riquadro

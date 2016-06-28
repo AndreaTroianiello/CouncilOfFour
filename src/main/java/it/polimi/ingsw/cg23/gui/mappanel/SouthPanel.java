@@ -124,9 +124,10 @@ public class SouthPanel extends JPanel {
 		southPanel.add(kingCouncillors);
 
 		//----------------statistiche player------------
-		JButton punteggi=new JButton("stat");
+		JButton punteggi=new JButton("Points");
 		punteggi.setBackground(new Color(123, 104, 238));
 		punteggi.setOpaque(true);
+		punteggi.setToolTipText("View your points");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -182,6 +183,7 @@ public class SouthPanel extends JPanel {
 		//----------------bonus panel------------
 		JPanel bonusPanel=bp.createBonusPanel();
 		bonusPanel.setName("bonus");
+		bonusPanel.setToolTipText("Available bonus");
 		bonusPanel.setBackground(new Color(123, 104, 238));
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 4;

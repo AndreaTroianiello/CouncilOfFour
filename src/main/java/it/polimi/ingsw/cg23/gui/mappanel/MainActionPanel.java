@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
 
 /**
  * create the main action button of the gui
@@ -30,9 +29,8 @@ public class MainActionPanel extends JPanel {
 	/**
 	 * 
 	 * @param text, the area to read on
-	 * @param controller
 	 */
-	public MainActionPanel(JTextArea text, ControllerGUI controller) {
+	public MainActionPanel(JTextArea text) {
 		this.text=text;
 	}
 

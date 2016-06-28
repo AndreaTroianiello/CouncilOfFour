@@ -38,10 +38,10 @@ public class EastPanel extends JPanel {
 	 * @param write, the area to write on
 	 * @param controller
 	 */
-	public EastPanel(JTextArea loggerArea, JTextField write,ControllerGUI controller) {
+	public EastPanel(JTextArea loggerArea, JTextField write, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.write=write;
-		this.bp=new ButtonPanel(loggerArea, write,controller);
+		this.bp=new ButtonPanel(loggerArea, write, controller);
 		
 	}
 
@@ -63,7 +63,8 @@ public class EastPanel extends JPanel {
 
 		//----------logger area----------
 		loggerArea.setName("textara");
-		loggerArea.setText("Benvenuti a Cof");
+		//loggerArea.setText("Welcome to Council of four " + controller.getModel().getPlayer().getUser());
+		loggerArea.setText("Welcome to Council of four (nome utente da attivare)");
 		loggerArea.setEditable(false);
 		loggerArea.setFont(new Font("Calibre", Font.PLAIN, 15));
 		Component scrollLogger1 = new JScrollPane(loggerArea);

@@ -55,16 +55,16 @@ public class FrameMap extends JFrame {
 	 * Create the frame.
 	 * @param controller
 	 */
-	public FrameMap(/*ControllerGUI controller*/ ClientModel model) {
+	public FrameMap(ControllerGUI controller, ClientModel model) {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-		this.controller=null;
+		this.controller=controller;
 		this.model=model;
 		loggerArea=new JTextArea();
 		write=new JTextField();
 		//pannel
-		ep=new EastPanel(loggerArea, write,controller);
+		ep=new EastPanel(loggerArea, write, controller);
 		mp=new MapPanel(loggerArea);
 		sp=new SouthPanel(model, loggerArea);
 		setTitle("Mappa");
@@ -152,8 +152,8 @@ public class FrameMap extends JFrame {
 							new PoliticCard(Color.BLUE, false),
 							new PoliticCard(Color.PINK, false));
 					model.getPlayer().getHand().addAll(list);
-					//ControllerGUI controller=new ControllerGUI();
-					FrameMap frame = new FrameMap(model);
+					ControllerGUI controller=new ControllerGUI(new HomeFrame());
+					FrameMap frame = new FrameMap(controller, model);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					logger.error("errore nel fame map", e);
