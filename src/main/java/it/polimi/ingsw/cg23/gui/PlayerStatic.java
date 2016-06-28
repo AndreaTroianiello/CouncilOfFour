@@ -50,7 +50,6 @@ public class PlayerStatic extends JFrame {
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 
-
 	}
 
 	public void createGrid(Player p){

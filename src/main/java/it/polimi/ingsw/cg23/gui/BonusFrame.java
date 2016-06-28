@@ -1,5 +1,6 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.gui;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
@@ -10,51 +11,58 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
-import it.polimi.ingsw.cg23.server.model.Type;
-/**
- * create the bonus panel
- * @author viga94_
- *
- */
-public class BonusPanel extends JPanel {
+
+
+public class BonusFrame extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7246573558727825743L;
+	private static final long serialVersionUID = -2192875760852143327L;
+	private JPanel contentPane;
 	private transient Logger logger;
 	private Board b;
 	private JTextArea loggerArea;
 
 	/**
-	 * @param b, the board
-	 * @param loggerArea, the area to read on
+	 * Create the frame.
 	 */
-	public BonusPanel(Board b, JTextArea loggerArea) {
+	public BonusFrame(Board b, JTextArea loggerArea) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 500);
+		setResizable(false);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+
 		this.b=b;
 		this.loggerArea=loggerArea;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-	}
 
+	}
+	
 	/**
 	 * create the bonus panel
 	 * @return the panel
 	 */
-	public JPanel createBonusPanel(){
-		JPanel bonusPanel = new JPanel();
+	public void createBonusPanel(){
+		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
-		bonusPanel.setLayout(layout);
+		panel.setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -69,8 +77,8 @@ public class BonusPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=b.getRegions().size()+1;
 		layout.setConstraints(nameBonus, lim);
-		bonusPanel.add(nameBonus);
-		
+		panel.add(nameBonus);
+
 		//----------------bonus king------------
 		JLabel kingBonus;
 		if(b.getBonusKing().getCurrentBonusKing()!=0){
@@ -87,7 +95,7 @@ public class BonusPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(kingBonus, lim);
-		bonusPanel.add(kingBonus);
+		panel.add(kingBonus);
 		mouseOverKing(kingBonus, loggerArea, b);
 
 		//----------------bonus region------------
@@ -107,7 +115,7 @@ public class BonusPanel extends JPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(regionBonus, lim);
-			bonusPanel.add(regionBonus);
+			panel.add(regionBonus);
 			mouseOverRegion(regionBonus, loggerArea, b.getRegions().get(k));
 		}
 
@@ -131,12 +139,12 @@ public class BonusPanel extends JPanel {
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
 				layout.setConstraints(cityTypeBonus, lim);
-				bonusPanel.add(cityTypeBonus);
+				panel.add(cityTypeBonus);
 				mouseOverType(cityTypeBonus, loggerArea, b.getTypes().get(i));
 			}
 		}
-
-		return bonusPanel;
+		
+		contentPane.add(panel);
 	}
 
 	private void mouseOverKing(JLabel kingBonus, JTextArea loggerArea, Board b){
@@ -180,7 +188,7 @@ public class BonusPanel extends JPanel {
 		});
 	}
 
-	private void mouseOverType(JLabel typeBonus, JTextArea loggerArea, Type tipo){
+	private void mouseOverType(JLabel typeBonus, JTextArea loggerArea, it.polimi.ingsw.cg23.server.model.Type tipo){
 		typeBonus.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
