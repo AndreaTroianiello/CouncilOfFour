@@ -46,9 +46,9 @@ public class FrameMap extends JFrame {
 	private transient ClientModel model;
 	private static Logger logger;
 
-	private EastPanel ep;
-	private MapPanel mp;
-	private SouthPanel sp;
+	private EastPanel eastPanel;
+	private MapPanel mapPanel;
+	private SouthPanel southPanel;
 	private transient ControllerGUI controller;
 
 	/**
@@ -64,9 +64,9 @@ public class FrameMap extends JFrame {
 		loggerArea=new JTextArea();
 		write=new JTextField();
 		//pannel
-		ep=new EastPanel(loggerArea, write, controller);
-		mp=new MapPanel(loggerArea);
-		sp=new SouthPanel(model, loggerArea);
+		eastPanel=new EastPanel(loggerArea, write, controller);
+		mapPanel=new MapPanel(loggerArea, model);
+		southPanel=new SouthPanel(model, loggerArea);
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-100, Toolkit.getDefaultToolkit().getScreenSize().height-200);
@@ -87,9 +87,8 @@ public class FrameMap extends JFrame {
 		//----------text area (logger)----------
 		loggerArea=new JTextArea();
 		write=new JTextField();
-		JPanel panel=ep.loggerPanel();
 
-		Component scrollLogger = new JScrollPane(panel);
+		Component scrollLogger = new JScrollPane(eastPanel);
 		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -103,7 +102,6 @@ public class FrameMap extends JFrame {
 		contentPane.add(scrollLogger); //Inserimento
 
 		//----------pannello nord (mappa)----------
-		JPanel mapPanel=mp.createMap(model.getModel().getRegions(), model.getModel().getKing());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -117,7 +115,6 @@ public class FrameMap extends JFrame {
 
 
 		//----------pannello sud (informazioni)----------
-		JPanel southPanel=sp.setSouthPanel();
 		JScrollPane scroll=new JScrollPane(southPanel);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -132,6 +129,15 @@ public class FrameMap extends JFrame {
 		contentPane.add(scroll); //Inserimento
 
 		pack();//necessario
+	}
+	public void update(){
+		southPanel.update();
+ 		//revalidate();
+		//repaint();
+	}
+	
+	public JTextArea getLoggerArea(){
+		return loggerArea;
 	}
 
 

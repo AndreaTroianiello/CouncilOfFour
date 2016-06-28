@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
+
 /**
  * create the info button of the gui
  * @author viga94_
@@ -25,26 +28,28 @@ public class InfoPanel extends JPanel {
 	private static final long serialVersionUID = -4105281946320933564L;
 	private JTextArea textArea;
 	private JTextField write;
+	private ControllerGUI controller;
+
 
 	/**
 	 * 
 	 * @param textArea, the area to read on
 	 * @param write, the area to write on
 	 */
-	public InfoPanel(JTextArea textArea, JTextField write) {
+	public InfoPanel(JTextArea textArea, JTextField write,ControllerGUI controller) {
 		this.textArea=textArea;
 		this.write=write;
+		this.controller=controller;
+		init();
 	}
-
 	/**
 	 * create the info action
 	 * @return, the info panel
 	 */
-	public JPanel infoAction(){
-		JPanel panel=new JPanel();
+	private void init(){
 		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
-		panel.setOpaque(false);
+		setLayout(layout);
+		setOpaque(false);
 		
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
@@ -60,7 +65,7 @@ public class InfoPanel extends JPanel {
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 
 		layout.setConstraints(label, lim);
-		panel.add(label);
+		add(label);
 
 		JButton button1 = new JButton("Exit");
 		button1.setName("Uscita");
@@ -73,7 +78,7 @@ public class InfoPanel extends JPanel {
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
-		panel.add(button1);//aggiunta bottone al layer panel
+		add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,7 +106,7 @@ public class InfoPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button2, lim);
-		panel.add(button2);//aggiunta bottone al layer panel
+		add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -113,7 +118,7 @@ public class InfoPanel extends JPanel {
 		});
 
 		JButton button3=new JButton("Invia");
-		button3.setName("Invia");
+		button3.setName("Send");
 		button3.setToolTipText("Invia il testo scritto");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -122,7 +127,7 @@ public class InfoPanel extends JPanel {
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		layout.setConstraints(button3, lim); //Associazione
-		panel.add(button3); //Inserimento
+		add(button3); //Inserimento
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -136,7 +141,7 @@ public class InfoPanel extends JPanel {
 		});
 		
 		JButton button4 = new JButton("End Turn");
-		button4.setName("Fineturno");
+		button4.setName("End Turn");
 		button4.setToolTipText("Finisci il turno");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -145,15 +150,14 @@ public class InfoPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button4, lim);
-		panel.add(button4);//aggiunta bottone al layer panel
+		add(button4);//aggiunta bottone al layer panel
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//azione fine turno
+				controller.updateController(new EndTurn());
 			}
 		});
-		
-		return panel;
 	}
 	
 	/*public void update(){

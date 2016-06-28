@@ -216,9 +216,5 @@ public class CostructionCardPanel extends JPanel {
 		}
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
 	}
-	
-	/*public void update(){
-		this.repaint();
-	}*/
 }
 

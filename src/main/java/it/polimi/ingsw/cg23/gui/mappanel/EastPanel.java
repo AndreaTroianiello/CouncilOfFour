@@ -28,7 +28,7 @@ public class EastPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -7843525022282542659L;
-	private ButtonPanel bp;
+	private ButtonPanel buttonPanel;
 	private JTextArea loggerArea;
 	private JTextField write;
 	
@@ -41,8 +41,8 @@ public class EastPanel extends JPanel {
 	public EastPanel(JTextArea loggerArea, JTextField write, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.write=write;
-		this.bp=new ButtonPanel(loggerArea, write, controller);
-		
+		this.buttonPanel=new ButtonPanel(loggerArea, write, controller);
+		init();
 	}
 
 	/**
@@ -51,11 +51,9 @@ public class EastPanel extends JPanel {
 	 * @param write, the area to write on
 	 * @return the panel
 	 */
-	public JPanel loggerPanel(){
-		JPanel logger=new JPanel();
-
+	private void init(){
 		GridBagLayout layout = new GridBagLayout();
-		logger.setLayout(layout);
+		setLayout(layout);
 		
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -76,7 +74,7 @@ public class EastPanel extends JPanel {
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(scrollLogger1, lim); //Associazione
-		logger.add(scrollLogger1); //Inserimento*/
+		add(scrollLogger1); //Inserimento*/
 
 		//----------write area----------
 		write.setEditable(true);
@@ -93,7 +91,7 @@ public class EastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(scrollLogger2, lim); //Associazione
-		logger.add(scrollLogger2); //Inserimento
+		add(scrollLogger2); //Inserimento
 		write.addMouseListener(new MouseAdapter(){//cancella il testo presente
 			@Override
 			public void mouseClicked(MouseEvent me)
@@ -122,8 +120,7 @@ public class EastPanel extends JPanel {
 
 
 		//----------button----------
-		JPanel panel=bp.buttonPanel();
-		panel.setName("button panel");
+		buttonPanel.setName("button panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -131,15 +128,7 @@ public class EastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.HORIZONTAL;
-		layout.setConstraints(panel, lim); //Associazione
-		logger.add(panel); //Inserimento
-		
-		return logger;
-	}
-
-	public void update(){
-		bp.update();
-		bp.buttonPanel();
-		this.repaint();
+		layout.setConstraints(buttonPanel, lim); //Associazione
+		add(buttonPanel); //Inserimento
 	}
 }

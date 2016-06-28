@@ -145,8 +145,4 @@ public class CouncilPanel extends JPanel {
 		
 		return panel;
 	}
-	
-	/*public void update(){
-		this.repaint();
-	}*/
 }

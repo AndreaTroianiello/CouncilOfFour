@@ -42,6 +42,7 @@ public class BonusPanelOLD extends JPanel {
 	public BonusPanelOLD(Board b, JTextArea loggerArea) {
 		this.b=b;
 		this.loggerArea=loggerArea;
+		init();
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -51,10 +52,9 @@ public class BonusPanelOLD extends JPanel {
 	 * create the bonus panel
 	 * @return the panel
 	 */
-	public JPanel createBonusPanel(){
-		JPanel bonusPanel = new JPanel();
+	private void init(){
 		GridBagLayout layout = new GridBagLayout();
-		bonusPanel.setLayout(layout);
+		setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill = GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -69,7 +69,7 @@ public class BonusPanelOLD extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=b.getRegions().size()+1;
 		layout.setConstraints(nameBonus, lim);
-		bonusPanel.add(nameBonus);
+		add(nameBonus);
 		
 		//----------------bonus king------------
 		JLabel kingBonus;
@@ -87,7 +87,7 @@ public class BonusPanelOLD extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(kingBonus, lim);
-		bonusPanel.add(kingBonus);
+		add(kingBonus);
 		mouseOverKing(kingBonus, loggerArea, b);
 
 		//----------------bonus region------------
@@ -107,7 +107,7 @@ public class BonusPanelOLD extends JPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(regionBonus, lim);
-			bonusPanel.add(regionBonus);
+			add(regionBonus);
 			mouseOverRegion(regionBonus, loggerArea, b.getRegions().get(k));
 		}
 
@@ -131,12 +131,10 @@ public class BonusPanelOLD extends JPanel {
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
 				layout.setConstraints(cityTypeBonus, lim);
-				bonusPanel.add(cityTypeBonus);
+				add(cityTypeBonus);
 				mouseOverType(cityTypeBonus, loggerArea, b.getTypes().get(i));
 			}
 		}
-
-		return bonusPanel;
 	}
 
 	private void mouseOverKing(JLabel kingBonus, JTextArea loggerArea, Board b){

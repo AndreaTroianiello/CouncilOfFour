@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
+
 
 /**
  * create the main action button of the gui
@@ -25,25 +27,27 @@ public class MainActionPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -5715872370987341629L;
 	private JTextArea text;
+	private ControllerGUI controller;
 	
 	/**
 	 * 
 	 * @param text, the area to read on
 	 */
-	public MainActionPanel(JTextArea text) {
+	public MainActionPanel(JTextArea text,ControllerGUI controller) {
 		this.text=text;
+		this.controller=controller;
+		init();
 	}
 
 	/**
 	 * create the main action button
 	 * @return jpanel with the main action
 	 */
-	public JPanel mainAction(){
-		JPanel panel=new JPanel();
+	private void init(){
 		GridBagLayout layout = new GridBagLayout();
-		panel.setBackground(new Color(245,123,123));
-		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel.setLayout(layout);
+		setBackground(new Color(245,123,123));
+		setBorder(new EmptyBorder(0, 0, 0, 0));
+		setLayout(layout);
 		GridBagConstraints lim = new GridBagConstraints(); 
 
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
@@ -57,7 +61,7 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=2;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(label, lim);
-		panel.add(label);
+		add(label);
 
 		JButton button1 = new JButton("Action 1");
 		button1.setName("Azione principale 1");
@@ -68,7 +72,7 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
-		panel.add(button1);//aggiunta bottone al layer panel
+		add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +90,7 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button2, lim);
-		panel.add(button2);//aggiunta bottone al layer panel
+		add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -104,7 +108,7 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button3, lim);
-		panel.add(button3);//aggiunta bottone al layer panel
+		add(button3);//aggiunta bottone al layer panel
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -122,7 +126,7 @@ public class MainActionPanel extends JPanel {
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button4, lim);
-		panel.add(button4);//aggiunta bottone al layer panel
+		add(button4);//aggiunta bottone al layer panel
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -130,11 +134,5 @@ public class MainActionPanel extends JPanel {
 				//AZIONI AZIONE 4
 			}
 		});
-
-		return panel;
 	}
-	
-	/*public void update(){
-		this.repaint();
-	}*/
 }

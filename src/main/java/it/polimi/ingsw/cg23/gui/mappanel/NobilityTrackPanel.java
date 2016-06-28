@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 
 
@@ -35,21 +36,21 @@ public class NobilityTrackPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 2715614441311015393L;
 	private transient Logger logger;
-	private NobilityTrack nt;
 	private JTextArea loggerArea;
 
 	private final double lung;
+	private ClientModel model;
 
 	/**
 	 * 
 	 * @param nt, the nobility track
 	 * @param loggerArea, the area to read on
 	 */
-	public NobilityTrackPanel(NobilityTrack nt, JTextArea loggerArea) {
+	public NobilityTrackPanel(ClientModel model, JTextArea loggerArea) {
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
-
-		this.nt=nt;
+		this.model=model;
 		this.loggerArea=loggerArea;
+		init();
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -59,10 +60,10 @@ public class NobilityTrackPanel extends JPanel {
 	 * create the nobility track boxes
 	 * @return a panel with the nobility track
 	 */
-	public JPanel createNobility(){
-		JPanel panel=new JPanel();
+	private void init(){
+		NobilityTrack nt=model.getModel().getNobilityTrack();
 		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
+		setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -88,7 +89,7 @@ public class NobilityTrackPanel extends JPanel {
 			lim.weighty=1;
 
 			layout.setConstraints(boxLabel, lim);
-			panel.add(boxLabel);//aggiunta della label al panel
+			add(boxLabel);//aggiunta della label al panel
 
 			final int k=i;
 			boxLabel.addMouseListener(new MouseListener() {
@@ -105,8 +106,6 @@ public class NobilityTrackPanel extends JPanel {
 					writeArea(loggerArea, nt, k);}
 			});
 		}
-
-		return panel;
 	}
 
 	private void writeArea(JTextArea loggerArea, NobilityTrack nt, int k){
@@ -136,8 +135,4 @@ public class NobilityTrackPanel extends JPanel {
 
 		return image;
 	}
-
-	/*public void update(){
-		this.repaint();
-	}*/
 }

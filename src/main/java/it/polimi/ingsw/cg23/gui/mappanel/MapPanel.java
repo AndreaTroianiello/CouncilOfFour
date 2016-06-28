@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.King;
@@ -41,17 +42,19 @@ public class MapPanel extends JPanel {
 	private CityPanel cp;
 	private final double lung;
 	private JTextArea loggerArea;
+	private ClientModel model;
 
 	/**
 	 * 
 	 * @param loggerArea, the area to read on
 	 */
-	public MapPanel(JTextArea loggerArea) {
+	public MapPanel(JTextArea loggerArea,ClientModel model) {
 		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
 		this.ms=new MapSetting();
 		this.cp=new CityPanel(loggerArea);
-
+		this.model=model;
+		init();
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -63,10 +66,12 @@ public class MapPanel extends JPanel {
 	 * @param king, the king
 	 * @return a panel with the map
 	 */
-	public JPanel createMap(List<Region> reg, King king){
-		JPanel mapPanel=new JPanel();//pannello con la mappa
+	private void init(){
+		List<Region> reg=model.getModel().getRegions();
+		King king=model.getModel().getKing();
+		
 		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
-		mapPanel.setLayout(layout);//il pannello usa il layout grid bag
+		setLayout(layout);//il pannello usa il layout grid bag
 
 		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -140,9 +145,7 @@ public class MapPanel extends JPanel {
 		}
 
 		layout.setConstraints(label, lim);//applico il layout alla label con lo sfondo
-		mapPanel.add(label);//aggiungo la label al panel
-
-		return mapPanel;
+		add(label);//aggiungo la label al panel
 	}
 
 	private BufferedImage getImg(){//recupero le immagini

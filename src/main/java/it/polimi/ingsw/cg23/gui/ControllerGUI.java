@@ -17,7 +17,6 @@ import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
-import it.polimi.ingsw.cg23.provagui.FrameMap;
 
 
 public class ControllerGUI implements ClientController {
@@ -42,7 +41,7 @@ public class ControllerGUI implements ClientController {
 			map.update();
 		}else
 			if(clientModel.getModel()!=null){
-				map=new FrameMap(this);
+				map=new FrameMap(this,clientModel);
 				map.setVisible(true);
 				home.setVisible(false);
 		}
@@ -50,7 +49,7 @@ public class ControllerGUI implements ClientController {
 	
 	private void updateInfo(Change change){
 		if(map!=null){
-			//map.update();
+			map.getLoggerArea().append("\n"+change.toString());;
 		}else{
 			home.updateInfo((InfoChange)change);
 		}

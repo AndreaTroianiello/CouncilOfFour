@@ -35,12 +35,12 @@ public class SouthEastPanel extends JPanel {
 		this.stat=new PlayerStatic();
 		this.model=model;
 		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
+		init();
 	}
 
-	public JPanel createSouthEast(){
-		JPanel panel = new JPanel();
+	private void init(){
 		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
+		setLayout(layout);
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -59,7 +59,7 @@ public class SouthEastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
 		layout.setConstraints(kingCouncillors, lim);
-		panel.add(kingCouncillors);
+		add(kingCouncillors);
 
 		//----------------statistiche player------------
 		JButton punteggi=new JButton("Points");
@@ -73,7 +73,7 @@ public class SouthEastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(punteggi, lim);
-		panel.add(punteggi);
+		add(punteggi);
 		punteggi.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -104,7 +104,7 @@ public class SouthEastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(bonusPanel, lim);
-		panel.add(bonusPanel);
+		add(bonusPanel);
 		bonusPanel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -137,8 +137,6 @@ public class SouthEastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
 		layout.setConstraints(consiglieriColor, lim);
-		panel.add(consiglieriColor);
-
-		return panel;
+		add(consiglieriColor);
 	}
 }
