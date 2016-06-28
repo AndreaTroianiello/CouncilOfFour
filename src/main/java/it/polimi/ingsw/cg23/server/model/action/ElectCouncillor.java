@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
+import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -101,6 +102,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 			coins = coins +4;
 			try{
 				player.getRichness().setCoins(coins);
+				board.notifyObserver(new PlayerChange(player));
 			} catch(NegativeNumberException e){
 				getLogger().error(e);
 			}
