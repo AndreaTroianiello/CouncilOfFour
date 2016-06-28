@@ -2,7 +2,7 @@ package it.polimi.ingsw.cg23.server.model.action;
 
 import java.awt.Color;
 
-
+import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -83,10 +83,11 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 			if(!this.king){		
 				Region realRegion = controlAction.controlRegion(region, board);
 				if(realRegion != null){
-					Councillor oldCouncillor=this.region.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
+					Councillor oldCouncillor=realRegion.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
 					board.setCouncillor(oldCouncillor);
-					this.region.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-					board.notifyObserver(new CouncilChange(this.region.getCouncil()));
+					realRegion.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
+					board.notifyObserver(new CouncilChange(realRegion.getCouncil()));
+					board.notifyObserver(new BoardChange(board));
 				}
 			}
 			else{
@@ -94,6 +95,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 				board.setCouncillor(oldCouncillor);
 				board.getKing().getCouncil().getCouncillors().add(newCouncillor);							//append the chosen councillor in the same council
 				board.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
+				board.notifyObserver(new BoardChange(board));
 			}
 			int coins = player.getRichness().getCoins();
 			coins = coins +4;
