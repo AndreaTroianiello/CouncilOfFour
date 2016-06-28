@@ -70,8 +70,8 @@ public class ControllerGUI implements ClientController {
 			clientModel.setModel(model);
 			updateFrameMap();
 			return;
-		}
-		updateInfo(change);
+		}else
+			updateInfo(change);
 	}
 
 	@Override
