@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
@@ -129,15 +130,21 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(scroll, lim); //Associazione
 		contentPane.add(scroll); //Inserimento
-		loggerArea.append("cio");
 		pack();//necessario
 	}
 	
 	public void updateInfo(Change change){
-		loggerArea.append("\n"+change.toString());
+		SwingUtilities.invokeLater(new Runnable() {
+		    public void run() {
+		    	loggerArea.setText(loggerArea.getText()+"\n"+change.toString());
+		    }
+		});
 	}
-
-
+	
+	public void update(){
+		southPanel.update();
+	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override

@@ -30,12 +30,8 @@ import it.polimi.ingsw.cg23.utility.MapSetting;
  * @author viga94
  *
  */
-public class CityPanel extends JPanel {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1040653424377395735L;
+public class CityPanel{
+	
 	private transient Logger logger;
 	private transient MapSetting ms;
 	private final double lung;

@@ -29,12 +29,8 @@ import it.polimi.ingsw.cg23.utility.ColorManager;
  * @author viga94_
  *
  */
-public class PoliticCardPanel extends JPanel {
+public class PoliticCardPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7548143133078585999L;
 	private transient Logger logger;
 	private Player p;
 	private JTextArea loggerArea;

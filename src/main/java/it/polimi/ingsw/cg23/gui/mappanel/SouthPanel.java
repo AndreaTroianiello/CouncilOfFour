@@ -141,5 +141,10 @@ public class SouthPanel extends JPanel {
 		layout.setConstraints(avaiableCostrucion, lim);
 		add(avaiableCostrucion);
 	}
+	
+	public void update(){
+		removeAll();
+		init();
+	}
 
 }

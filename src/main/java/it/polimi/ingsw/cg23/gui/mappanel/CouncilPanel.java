@@ -24,12 +24,8 @@ import it.polimi.ingsw.cg23.utility.ColorManager;
  * @author viga94_
  *
  */
-public class CouncilPanel extends JPanel {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5988789718682147839L;
+public class CouncilPanel {
+	
 	private JTextArea loggerArea;
 
 	/**

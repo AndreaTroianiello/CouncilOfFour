@@ -27,12 +27,8 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
  * @author viga94_
  *
  */
-public class CostructionCardPanel extends JPanel {
+public class CostructionCardPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6311594300963247531L;
 	private transient Logger logger;
 	private JTextArea loggerArea;
 
