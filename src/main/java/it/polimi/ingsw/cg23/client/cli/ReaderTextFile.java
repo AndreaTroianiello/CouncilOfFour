@@ -32,7 +32,8 @@ public class ReaderTextFile {
 			while((line = bufferedReader.readLine()) != null) {
 				cli.print("", line);
 			}
-			bufferedReader.close();         
+			bufferedReader.close();  
+			fileReader.close();
 		}
 		catch(FileNotFoundException e) {
 			logger.error(e);                
