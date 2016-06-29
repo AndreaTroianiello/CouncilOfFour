@@ -7,9 +7,7 @@ import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
-import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
-import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.State;
 import it.polimi.ingsw.cg23.server.model.action.GameAction;
 import it.polimi.ingsw.cg23.server.model.action.MarketAction;
@@ -50,20 +48,18 @@ public class Turn {
 		initTurn();
 	}
 	
+	/**
+	 * Creates a list of observable bonuses.
+	 */
 	@SuppressWarnings("unchecked")
 	private void createBonusesObservableList(){
-		/*List<NobilityBox> boxes=board.getNobilityTrack().getNobilityBoxes();
+		List<NobilityBox> boxes=board.getNobilityTrack().getNobilityBoxes();
 		for(NobilityBox box: boxes){
 			List<Bonus> bonuses=box.getBonus();
 			for(Bonus bonus:bonuses)
 				if(bonus instanceof Observable<?>)
 					observableBonuses.add((Observable<Change>)bonus);
-		}*/
-		for(Region region:board.getRegions())
-			for(City city:region.getCities())
-				for(Bonus bonus:city.getToken())
-					if(bonus instanceof Observable<?>)
-						observableBonuses.add((Observable<Change>)bonus);
+		}
 	}
 
 	/**
@@ -77,6 +73,7 @@ public class Turn {
 		this.secondAction=true;
 		draw();
 	}
+	
 	/**
 	 * Returns the current player.
 	 * 

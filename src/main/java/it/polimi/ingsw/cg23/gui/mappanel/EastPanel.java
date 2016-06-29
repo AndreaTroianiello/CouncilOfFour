@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 
 /**
  * create the logger panel
@@ -31,6 +32,7 @@ public class EastPanel extends JPanel {
 	private ButtonPanel buttonPanel;
 	private JTextArea loggerArea;
 	private JTextField write;
+	private ControllerGUI controller;
 	
 	/**
 	 * 
@@ -42,6 +44,7 @@ public class EastPanel extends JPanel {
 		this.loggerArea=loggerArea;
 		this.write=write;
 		this.buttonPanel=new ButtonPanel(loggerArea, write, controller);
+		this.controller=controller;
 		init();
 	}
 
@@ -80,8 +83,8 @@ public class EastPanel extends JPanel {
 		write.setEditable(true);
 		write.setFont(new Font("Calibre", Font.PLAIN, 18));
 		write.setName("write area");
-		write.setToolTipText("Scrivi il testo che vuoi inviare");
-		write.setText("Scrivi il testo che vuoi inviare");
+		write.setToolTipText("Write your message.");
+		write.setText("Write your message.");
 		Component scrollLogger2 = new JScrollPane(write);
 		scrollLogger2.setName("scrollPane write area");
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -111,7 +114,7 @@ public class EastPanel extends JPanel {
 					if(("").equals(write.getText())){
 						JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
 					}else{
-						loggerArea.append("\ntesto inviato: "+write.getText());
+						controller.updateController(new SendMessage(write.getText(), controller.getModel().getPlayer()));
 						write.setText("");
 					}
 				}
