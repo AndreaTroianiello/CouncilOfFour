@@ -21,7 +21,7 @@ public class ColorManagerTest {
 	public void testGetColorName() {
 		ColorManager colorManager = new ColorManager();
 		assertNull(colorManager.getColorName(Color.CYAN));
-		assertEquals("Orange", colorManager.getColorName(Color.ORANGE));
+		assertEquals("Orange", colorManager.getColorName(new Color(255,102,0)));
 	}
 
 	/**

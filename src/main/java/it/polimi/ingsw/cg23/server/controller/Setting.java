@@ -116,7 +116,6 @@ public class Setting {
 
 		for(int k=0; k<arrayColori.length; k++){//ciclo che scorre i colori
 			for(int i=0; i<numberColor; i++){//aggiungo alla lista le carte colorate
-
 				politics.add(new PoliticCard(arrayColori[k],false));//creo una nuova carta polita e la aggiungo alla lista
 			}
 		}

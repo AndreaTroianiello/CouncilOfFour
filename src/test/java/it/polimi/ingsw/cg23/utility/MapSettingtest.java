@@ -74,7 +74,7 @@ public class MapSettingtest {
 		
 		//aggiungo i consiglieri alle regioni
 		reg.get(0).getCouncil().getCouncillors().add(new Councillor(Color.blue));
-		reg.get(0).getCouncil().getCouncillors().add(new Councillor(Color.orange));
+		reg.get(0).getCouncil().getCouncillors().add(new Councillor(Color.red));
 		reg.get(0).getCouncil().getCouncillors().add(new Councillor(Color.gray));
 		reg.get(1).getCouncil().getCouncillors().add(new Councillor(Color.black));
 		reg.get(1).getCouncil().getCouncillors().add(new Councillor(Color.pink));

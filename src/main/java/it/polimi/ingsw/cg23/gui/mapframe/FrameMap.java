@@ -32,6 +32,7 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
  * create the map
@@ -152,7 +153,7 @@ public class FrameMap extends JFrame {
 					Player p=new Player("user",models.getModel().getNobilityTrack());
 					models.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
-							new PoliticCard(Color.ORANGE, false),
+							new PoliticCard(new ColorManager().getColor("Orange"), false),
 							new PoliticCard(null, true),
 							new PoliticCard(null, true),
 							new PoliticCard(Color.BLUE, false),

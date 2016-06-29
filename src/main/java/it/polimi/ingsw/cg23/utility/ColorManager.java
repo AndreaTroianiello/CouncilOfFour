@@ -40,7 +40,7 @@ public class ColorManager {
         colorList.put("Green",new Color(0x00, 0x80, 0x00));
         colorList.put("Lavender",new Color(0xE6, 0xE6, 0xFA));
         colorList.put("Magenta",new Color(0xFF, 0x00, 0xFF));
-        colorList.put("Orange",new Color(0xFF, 0xC8, 0x00));
+        colorList.put("Orange",new Color(0xFF, 0x66, 0x00));
         colorList.put("Pink",new Color(0xFF, 0xAF, 0xAF));
         colorList.put("Purple",new Color(0x80, 0x00, 0x80));
         colorList.put("Red",new Color(0xFF, 0x00, 0x00));
