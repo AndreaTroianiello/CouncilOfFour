@@ -73,3 +73,9 @@ and can be showed with the command MARKET VIEW(the top one is the first inserted
 MARKET SELL TILE/CARD/ASSISTANTS numberTile/numberCard/numberAssistants price
 
 MARKET VIEW
+
+
+BONUS MODE:
+
+ESCBONUS 
+esce dalla modalità bonus(non lo effettua).

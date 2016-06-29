@@ -55,6 +55,8 @@ public class BonusController {
 	 * @throws IOException If the connection has problems
 	 */
 	private void parseCommand(String string, Bonus bonus) throws IOException{
+		if("ESCBONUS".equals(string))
+			return;
 		if(bonus instanceof BonusCityToken){
 			((BonusCityToken)bonus).setCities(searchCities(string,bonus.getNumber()));
 		}
