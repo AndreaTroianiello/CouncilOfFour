@@ -90,8 +90,6 @@ public class FrameMap extends JFrame {
 		GridBagConstraints lim = new GridBagConstraints();
 
 		//----------text area (logger)----------
-		loggerArea=new JTextArea();
-		write=new JTextField();
 
 		Component scrollLogger = new JScrollPane(eastPanel);
 		scrollLogger.setName("scrollPane text area logger");
@@ -136,12 +134,7 @@ public class FrameMap extends JFrame {
 	}
 	
 	public void updateInfo(Change change){
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-		    public void run() {
-		    	loggerArea.setText(loggerArea.getText()+"\n"+change.toString());
-		    }
-		});
+		loggerArea.append("\n"+change.toString());
 	}
 	
 	public void update(){

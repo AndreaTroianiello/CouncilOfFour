@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
+import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 
 /**
  * create the info button of the gui
@@ -117,9 +118,9 @@ public class InfoPanel extends JPanel {
 			}
 		});
 
-		JButton button3=new JButton("Invia");
+		JButton button3=new JButton("Send");
 		button3.setName("Send");
-		button3.setToolTipText("Invia il testo scritto");
+		button3.setToolTipText("Send the message");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.gridheight=1;//grandezza del riquadro
@@ -134,7 +135,8 @@ public class InfoPanel extends JPanel {
 				if("".equals(write.getText())||"Scrivi il testo che vuoi inviare".equals(write.getText())){
 					JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
 				}else{
-					textArea.append("\nTesto inviato: "+write.getText());
+					//textArea.append("\nTesto inviato: "+write.getText());
+					controller.updateController(new SendMessage(write.getText(),controller.getModel().getPlayer()));
 					write.setText("");
 				}
 			}
