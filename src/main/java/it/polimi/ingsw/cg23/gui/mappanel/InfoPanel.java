@@ -28,7 +28,7 @@ public class InfoPanel extends JPanel {
 	private static final long serialVersionUID = -4105281946320933564L;
 	private JTextArea textArea;
 	private JTextField write;
-	private ControllerGUI controller;
+	private transient ControllerGUI controller;
 
 
 	/**
@@ -36,7 +36,7 @@ public class InfoPanel extends JPanel {
 	 * @param textArea, the area to read on
 	 * @param write, the area to write on
 	 */
-	public InfoPanel(JTextArea textArea, JTextField write,ControllerGUI controller) {
+	public InfoPanel(JTextArea textArea, JTextField write, ControllerGUI controller) {
 		this.textArea=textArea;
 		this.write=write;
 		this.controller=controller;
@@ -50,7 +50,7 @@ public class InfoPanel extends JPanel {
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 		setOpaque(false);
-		
+
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
@@ -139,7 +139,7 @@ public class InfoPanel extends JPanel {
 				}
 			}
 		});
-		
+
 		JButton button4 = new JButton("End Turn");
 		button4.setName("End Turn");
 		button4.setToolTipText("Finisci il turno");
@@ -159,9 +159,5 @@ public class InfoPanel extends JPanel {
 			}
 		});
 	}
-	
-	/*public void update(){
-		infoAction(textArea, write);
-		this.repaint();
-	}*/
+
 }

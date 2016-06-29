@@ -39,10 +39,10 @@ public class MapPanel extends JPanel {
 	private static final long serialVersionUID = 7690616717551129511L;
 	private transient Logger logger;
 	private transient MapSetting ms;
-	private CityPanel cp;
+	private transient CityPanel cp;
 	private final double lung;
 	private JTextArea loggerArea;
-	private ClientModel model;
+	private transient ClientModel model;
 
 	/**
 	 * 
@@ -69,7 +69,7 @@ public class MapPanel extends JPanel {
 	private void init(){
 		List<Region> reg=model.getModel().getRegions();
 		King king=model.getModel().getKing();
-		
+
 		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
 		setLayout(layout);//il pannello usa il layout grid bag
 

@@ -26,7 +26,7 @@ public class PanelConnection extends JPanel {
 
 	private static final long serialVersionUID = -6068500950633356140L;
 
-	private ControllerGUI controller;
+	private transient ControllerGUI controller;
 
 	private JButton buttonSocket;	//button1
 	private JButton buttonRMI;      //button2
@@ -49,7 +49,7 @@ public class PanelConnection extends JPanel {
 
 	private void initComponent() {
 		this.setOpaque(false);
-		
+
 		labelAddress = new JLabel();
 		fieldAddress = new JTextField();
 		buttonSocket = new JButton();
@@ -68,7 +68,7 @@ public class PanelConnection extends JPanel {
 
 		buttonRMI.setText("RMI");
 		buttonRMI.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent evt) {
 				buttonRMIActionPerformed(evt);
@@ -104,9 +104,9 @@ public class PanelConnection extends JPanel {
 								.addComponent(buttonRMI))
 						.addContainerGap(64, Short.MAX_VALUE))
 				);
-		
+
 	}
-	
+
 	private void buttonSocketActionPerformed(ActionEvent evt) {                                         
 		try {
 			ClientSocket clientSocket=new ClientSocket();

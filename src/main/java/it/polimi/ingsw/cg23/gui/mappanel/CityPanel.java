@@ -31,9 +31,9 @@ import it.polimi.ingsw.cg23.utility.MapSetting;
  *
  */
 public class CityPanel{
-	
-	private transient Logger logger;
-	private transient MapSetting ms;
+
+	private Logger logger;
+	private MapSetting ms;
 	private final double lung;
 	private JTextArea loggerArea;
 
@@ -150,25 +150,26 @@ public class CityPanel{
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				loggerArea.append("\nCitta' "+c.getName());
-				loggerArea.append("\n  "+ms.getNeighbourID(c));
-				loggerArea.append("\n  Regione: "+c.getRegion().getName());
+				loggerArea.append("\nCitta' "+c.getName()+"\n  "+ms.getNeighbourID(c)+"\n  Regione: "+c.getRegion().getName());
 				if(c.equals(k.getCity()))
 					loggerArea.append("\n  King city");
 				else
 					loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
-				loggerArea.append("\n  Tipo: "+c.getType());
-				loggerArea.append("\n  Empori: ");
+				loggerArea.append("\n  Tipo: "+c.getType()+"\n  Empori: ");
 				if(c.getEmporiums().isEmpty())
 					loggerArea.append("0");
 				else{
 					for(int i=0; i<c.getEmporiums().size(); i++){
 						loggerArea.append(c.getEmporiums().get(i).toString()+" ");
-					}
-				}
-			}
+					}}}
 		});
 	}
+	
+	/**
+	 * load the image
+	 * @param name, the image name
+	 * @return
+	 */
 	private BufferedImage getImg(String name){//recupero le immagini
 		BufferedImage image=null;
 		String path="src/main/resources/images/"+name+".png";//percorso dell'immagine

@@ -31,7 +31,7 @@ import it.polimi.ingsw.cg23.utility.ColorManager;
  */
 public class PoliticCardPanel {
 
-	private transient Logger logger;
+	private Logger logger;
 	private Player p;
 	private JTextArea loggerArea;
 

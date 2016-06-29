@@ -22,10 +22,10 @@ public class SouthPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1220509934759316582L;
-	private CostructionCardPanel ccp;
-	private CouncilPanel cp;
+	private transient CostructionCardPanel ccp;
+	private transient CouncilPanel cp;
 	private NobilityTrackPanel panelNobility;
-	private PoliticCardPanel pcp;
+	private transient PoliticCardPanel pcp;
 	private transient ClientModel model;
 	private SouthEastPanel southEastPanel;
 	private JTextArea loggerArea;
@@ -141,7 +141,7 @@ public class SouthPanel extends JPanel {
 		layout.setConstraints(avaiableCostrucion, lim);
 		add(avaiableCostrucion);
 	}
-	
+
 	public void update(){
 		removeAll();
 		init();

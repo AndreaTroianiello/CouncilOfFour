@@ -39,7 +39,7 @@ public class NobilityTrackPanel extends JPanel {
 	private JTextArea loggerArea;
 
 	private final double lung;
-	private ClientModel model;
+	private transient ClientModel model;
 
 	/**
 	 * 
@@ -103,7 +103,8 @@ public class NobilityTrackPanel extends JPanel {
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					writeArea(loggerArea, nt, k);}
+					writeArea(loggerArea, nt, k);
+					}
 			});
 		}
 	}

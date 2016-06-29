@@ -29,7 +29,7 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
  */
 public class CostructionCardPanel {
 
-	private transient Logger logger;
+	private Logger logger;
 	private JTextArea loggerArea;
 
 	/**

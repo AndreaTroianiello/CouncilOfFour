@@ -47,7 +47,8 @@ public class BonusFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		setTitle("Bonus");
+		
 		this.b=b;
 		this.loggerArea=loggerArea;
 		//configurazione logger
@@ -86,6 +87,7 @@ public class BonusFrame extends JFrame {
 		JLabel bonuskingLabel=new JLabel("King");
 		lim.gridx = p;//posizione componenti nella griglia
 		lim.gridy = 1;
+		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro

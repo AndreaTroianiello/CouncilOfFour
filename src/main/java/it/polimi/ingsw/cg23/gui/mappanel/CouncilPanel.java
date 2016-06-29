@@ -220,7 +220,7 @@ public class CouncilPanel {
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				loggerArea.append(text);
+				loggerArea.append("\n"+text);
 			}
 		});
 	}

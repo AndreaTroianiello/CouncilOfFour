@@ -160,9 +160,7 @@ public class CreateMap {
 		List<Player> players=b.getPlayers();
 		int nobilitySpace=20;
 
-		for(int i=0; i<nb.size()-1; i++){//aggiunge i -
-			nobility=nobility.concat(ms.addMinus(nobilitySpace));
-		}
+		nobility+=minusFor(nobilitySpace, nb.size());//aggiunge i meno
 
 		nobility+="\n|";
 
@@ -200,13 +198,27 @@ public class CreateMap {
 
 		nobility+="\n";
 
-		for(int i=0; i<nb.size()-1; i++){//aggiunge i -
-			nobility=nobility.concat(ms.addMinus(nobilitySpace));
-		}
+		nobility+=minusFor(nobilitySpace, nb.size());
 
 		return nobility;
 	}
-
+	
+	/**
+	 * add the -
+	 * @param nobilitySpace, the space
+	 * @param nbSize, the lenght of nobility track
+	 * @return a string with the specified minus
+	 */
+	private String minusFor(int nobilitySpace, int nbSize){
+		String minus="";
+		
+		for(int i=0; i<nbSize-1; i++){//aggiunge i -
+			minus=minus.concat(ms.addMinus(nobilitySpace));
+		}
+		
+		return minus;
+	}
+	
 	/**
 	 * create the players info
 	 * @param giocatori a list with the players

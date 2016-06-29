@@ -39,13 +39,14 @@ public class PlayerStatic extends JFrame {
 	 */
 	public PlayerStatic() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setBounds(400, 200, 400, 400);
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		setTitle("Points");//nome del frame
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -60,15 +61,16 @@ public class PlayerStatic extends JFrame {
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-
+		
+		
 		//----------nome utente----------
 		JLabel userLabel = new JLabel("Point "+p.getUser());//aggiungo l'immagine alla label
 		userLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
 		userLabel.setForeground(new Color(255, 255, 255));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
 		layout.setConstraints(userLabel, lim);
@@ -79,8 +81,8 @@ public class PlayerStatic extends JFrame {
 		JLabel vicotrypoint = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
@@ -93,8 +95,8 @@ public class PlayerStatic extends JFrame {
 		JLabel coin = new JLabel(new ImageIcon(img2));//aggiungo l'immagine alla label
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(coin, lim);
@@ -105,8 +107,8 @@ public class PlayerStatic extends JFrame {
 		JLabel nobilityTrack = new JLabel(new ImageIcon(img3));//aggiungo l'immagine alla label
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(nobilityTrack, lim);
@@ -117,8 +119,8 @@ public class PlayerStatic extends JFrame {
 		JLabel assistant = new JLabel(new ImageIcon(img4));//aggiungo l'immagine alla label
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(assistant, lim);
@@ -139,11 +141,11 @@ public class PlayerStatic extends JFrame {
 		Graphics2D g2d = img.createGraphics();
 		g2d.drawImage(img, 0, 0, null);
 		g2d.setPaint(Color.white);
-		g2d.setFont(new Font("Serif", Font.BOLD, 80));
+		g2d.setFont(new Font("Serif", Font.BOLD, 60));
 		String s = Integer.toString(num);
 		FontMetrics fm = g2d.getFontMetrics();
 		int x = (img.getWidth() - fm.stringWidth(s) )/2;
-		int y = (img.getHeight() +fm.getHeight() )/2;
+		int y =(img.getHeight() +fm.getHeight() )/2;
 		g2d.drawString(s, x, y);
 		g2d.dispose();
 		return img;

@@ -21,7 +21,7 @@ public class SouthEastPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -8844330258965324138L;
 	private BonusFrame bonusf;
-	private CouncilPanel cp;
+	private transient CouncilPanel cp;
 	private PlayerStatic stat;
 	private transient ClientModel model;
 
@@ -87,8 +87,7 @@ public class SouthEastPanel extends JPanel {
 				stat.setVisible(true);
 			}
 			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+			public void mouseClicked(MouseEvent e) {/**empty, not erasable*/}
 		});
 
 		//----------------bonus panel------------
@@ -119,8 +118,7 @@ public class SouthEastPanel extends JPanel {
 				bonusf.setVisible(true);
 			}
 			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+			public void mouseClicked(MouseEvent e) {/**empty, not erasable*/}
 		});
 
 		//----------------consiglieri dipsonibili------------

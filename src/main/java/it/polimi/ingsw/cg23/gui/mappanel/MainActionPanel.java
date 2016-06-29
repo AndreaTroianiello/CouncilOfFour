@@ -27,13 +27,13 @@ public class MainActionPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -5715872370987341629L;
 	private JTextArea text;
-	private ControllerGUI controller;
-	
+	private transient ControllerGUI controller;
+
 	/**
 	 * 
 	 * @param text, the area to read on
 	 */
-	public MainActionPanel(JTextArea text,ControllerGUI controller) {
+	public MainActionPanel(JTextArea text, ControllerGUI controller) {
 		this.text=text;
 		this.controller=controller;
 		init();

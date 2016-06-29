@@ -19,7 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class PanelLogin extends JPanel {
 
 	private static final long serialVersionUID = 8087900714680895083L;
-	private ControllerGUI controller;
+	private transient ControllerGUI controller;
 	private JLabel labelInfo1;
 	private JLabel labelLogin;
 	private JButton buttonLogin;
@@ -37,9 +37,9 @@ public class PanelLogin extends JPanel {
 	}
 
 	private void initComponent() {
-		
+
 		this.setOpaque(false);
-		
+
 		labelInfo1=new JLabel();
 		labelLogin=new JLabel();
 		buttonLogin=new JButton();
@@ -118,16 +118,16 @@ public class PanelLogin extends JPanel {
 						.addComponent(labelInfo2)
 						.addContainerGap(20, Short.MAX_VALUE))
 				);
-		
+
 	}
-	
+
 	private void buttonLogginActionPerformed(ActionEvent evt) {
 		String map=(String)comboMap.getSelectedItem();
 		map=map.substring(0, map.length()-2)+map.charAt(map.length()-1);//tolgo lo spazio
 		map=map.toLowerCase();//metto tutto in minuscolo
 		controller.updateController(new CreationGame(fieldLogin.getText(),map));
 	}
-	
+
 	public JLabel getLabelInfo2(){
 		return labelInfo2;
 	}

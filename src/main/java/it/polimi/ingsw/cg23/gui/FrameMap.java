@@ -135,6 +135,7 @@ public class FrameMap extends JFrame {
 	
 	public void updateInfo(Change change){
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 		    public void run() {
 		    	loggerArea.setText(loggerArea.getText()+"\n"+change.toString());
 		    }
@@ -150,20 +151,20 @@ public class FrameMap extends JFrame {
 			@Override
 			public void run() {
 				try {
-					ClientModel model=new ClientModel();
-					model.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map8.xml",model.getModel()).startPartita();
-					Player p=new Player("user",model.getModel().getNobilityTrack());
-					model.setPlayer(p);
+					ClientModel models=new ClientModel();
+					models.setModel(new Board(null,null,null,null,null,null));
+					new Avvio("map8.xml",models.getModel()).startPartita();
+					Player p=new Player("user",models.getModel().getNobilityTrack());
+					models.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
 							new PoliticCard(Color.ORANGE, false),
 							new PoliticCard(null, true),
 							new PoliticCard(null, true),
 							new PoliticCard(Color.BLUE, false),
 							new PoliticCard(Color.PINK, false));
-					model.getPlayer().getHand().addAll(list);
-					ControllerGUI controller=new ControllerGUI(new HomeFrame());
-					FrameMap frame = new FrameMap(controller, model);
+					models.getPlayer().getHand().addAll(list);
+					ControllerGUI controllers=new ControllerGUI(new HomeFrame());
+					FrameMap frame = new FrameMap(controllers, models);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					logger.error("errore nel fame map", e);
