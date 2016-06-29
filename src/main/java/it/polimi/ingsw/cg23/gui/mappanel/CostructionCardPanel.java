@@ -103,7 +103,7 @@ public class CostructionCardPanel {
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					writeArea(loggerArea, bpt.get(k));}
+					writeArea(bpt.get(k));}
 			});
 		
 			panel.add(costructionCard);//aggiunta della label al panel
@@ -124,9 +124,11 @@ public class CostructionCardPanel {
 
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 		
-		//carte costruzione regione
+		int q=0;//posizione griglia
+		
+		//carte costruzione disponibili
 		List<BusinessPermitTile> bpt=p.getAvailableBusinessPermits();
 
 		for(int i=0; i<bpt.size(); i++){//scorre le carte costruzione visibili
@@ -137,7 +139,7 @@ public class CostructionCardPanel {
 			costructionCard.setName("costruzione"+i);
 			costructionCard.setToolTipText("Carta costruzione "+(i+1)+" "+bpt.get(i).getZone());
 			costructionCard.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
-			lim.gridx = i+1;//posizione componenti nella griglia
+			lim.gridx = q;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
@@ -145,6 +147,7 @@ public class CostructionCardPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			layout.setConstraints(costructionCard, lim);
+			q++;
 			final int k=i;
 			costructionCard.addMouseListener(new MouseListener() {
 				@Override
@@ -157,7 +160,7 @@ public class CostructionCardPanel {
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					writeArea(loggerArea, bpt.get(k));}
+					writeArea(bpt.get(k));}
 			});
 		
 			panel.add(costructionCard);//aggiunta della label al panel
@@ -197,7 +200,7 @@ public class CostructionCardPanel {
 		return nome.toUpperCase();
 	}
 	
-	private void writeArea(JTextArea loggerArea, BusinessPermitTile bpt){
+	public void writeArea(BusinessPermitTile bpt){
 		loggerArea.append("\nCarta costruzione "+bpt.getZone());
 		loggerArea.append("\n  Citta': ");
 		String id = "";
@@ -211,6 +214,13 @@ public class CostructionCardPanel {
 			bonus=bonus.concat(bpt.getBonusTile().get(i).getName()+", ");
 		}
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
+	}
+	
+	public JLabel oldCostruction(BusinessPermitTile bpt){
+		BufferedImage img=getCostructionImg(nameCostructor(bpt.getCitiesId()));//carta costruzione usata
+		JLabel oldbpt=new JLabel(new ImageIcon(img));
+		
+		return oldbpt;
 	}
 }
 

@@ -9,6 +9,7 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
+import it.polimi.ingsw.cg23.gui.mapframe.FrameMap;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;

@@ -132,13 +132,7 @@ public class CityPanel{
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-
-		listener(panel, c, k);
-		return panel;
-	}
-
-	private void listener(JPanel panel, City c, King k){
-
+		
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -150,21 +144,35 @@ public class CityPanel{
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				loggerArea.append("\nCitta' "+c.getName()+"\n  "+ms.getNeighbourID(c)+"\n  Regione: "+c.getRegion().getName());
-				if(c.equals(k.getCity()))
-					loggerArea.append("\n  King city");
-				else
-					loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
-				loggerArea.append("\n  Tipo: "+c.getType()+"\n  Empori: ");
-				if(c.getEmporiums().isEmpty())
-					loggerArea.append("0");
-				else{
-					for(int i=0; i<c.getEmporiums().size(); i++){
-						loggerArea.append(c.getEmporiums().get(i).toString()+" ");
-					}}}
+				writeArea(c, k);
+			}
 		});
+		
+		return panel;
 	}
-	
+
+	private void writeArea(City c, King k){
+		loggerArea.append("\nCitta' "+c.getName());
+		loggerArea.append("\n  "+ms.getNeighbourID(c));
+		loggerArea.append("\n  Regione: "+c.getRegion().getName());
+
+		if(c.equals(k.getCity()))
+			loggerArea.append("\n  King city");
+		else
+			loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
+
+		loggerArea.append("\n  Tipo: "+c.getType());
+		loggerArea.append("\n  Empori: ");
+
+		if(c.getEmporiums().isEmpty())
+			loggerArea.append("0");
+		else{
+			for(int i=0; i<c.getEmporiums().size(); i++){//aggiunge tutti gli empori della citta'
+				loggerArea.append(c.getEmporiums().get(i).toString()+" ");
+			}
+		}
+	}
+
 	/**
 	 * load the image
 	 * @param name, the image name

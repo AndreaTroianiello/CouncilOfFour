@@ -11,8 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
-import it.polimi.ingsw.cg23.gui.BonusFrame;
-import it.polimi.ingsw.cg23.gui.PlayerStatic;
+import it.polimi.ingsw.cg23.gui.mapframe.BonusFrame;
+import it.polimi.ingsw.cg23.gui.mapframe.CardFrame;
+import it.polimi.ingsw.cg23.gui.mapframe.PlayerStatic;
 
 public class SouthEastPanel extends JPanel {
 
@@ -24,6 +25,7 @@ public class SouthEastPanel extends JPanel {
 	private transient CouncilPanel cp;
 	private PlayerStatic stat;
 	private transient ClientModel model;
+	private CardFrame cf;
 
 	/**
 	 * Create the panel.
@@ -33,6 +35,7 @@ public class SouthEastPanel extends JPanel {
 		this.stat=new PlayerStatic();
 		this.model=model;
 		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
+		this.cf=new CardFrame(loggerArea);
 		init();
 	}
 
@@ -54,7 +57,7 @@ public class SouthEastPanel extends JPanel {
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=2;
+		lim.gridwidth=3;
 		layout.setConstraints(kingCouncillors, lim);
 		add(kingCouncillors);
 
@@ -121,6 +124,38 @@ public class SouthEastPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {/**empty, not erasable*/}
 		});
 
+		//----------------costruction card usate------------
+		JButton card=new JButton("Card");
+		card.setBackground(new Color(154, 205, 50));
+		card.setOpaque(true);
+		card.setToolTipText("View your old Costruction card");
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		layout.setConstraints(card, lim);
+		add(card);
+		card.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				cf.dispose();
+				cf.setVisible(false);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				cf.createCard(model.getPlayer());
+				cf.setVisible(true);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {/**empty, not erasable*/}
+		});
+		
 		//----------------consiglieri dipsonibili------------
 		JPanel consiglieriColor=cp.colurCouncillors(model.getModel());
 		consiglieriColor.setBackground(new Color(154, 205, 50));
@@ -129,7 +164,7 @@ public class SouthEastPanel extends JPanel {
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=2;
+		lim.gridwidth=3;
 		layout.setConstraints(consiglieriColor, lim);
 		add(consiglieriColor);
 

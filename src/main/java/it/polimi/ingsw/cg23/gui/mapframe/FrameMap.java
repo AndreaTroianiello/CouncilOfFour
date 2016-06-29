@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui;
+package it.polimi.ingsw.cg23.gui.mapframe;
 
 
 import java.awt.Color;
@@ -22,6 +22,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.gui.HomeFrame;
 import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;

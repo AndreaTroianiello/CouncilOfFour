@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui;
+package it.polimi.ingsw.cg23.gui.mapframe;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -41,7 +41,7 @@ public class BonusFrame extends JFrame {
 	 */
 	public BonusFrame(Board b, JTextArea loggerArea) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 500, 200);
+		setBounds(400, 200, 500, 200);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
