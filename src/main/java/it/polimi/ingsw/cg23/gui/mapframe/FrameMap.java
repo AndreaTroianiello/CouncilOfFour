@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.gui.mapframe;
 
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
@@ -26,6 +24,7 @@ import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.HomeFrame;
 import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
+import it.polimi.ingsw.cg23.gui.mappanel.MarketPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
@@ -72,8 +71,8 @@ public class FrameMap extends JFrame {
 		write=new JTextField();
 		//pannel
 		eastPanel=new EastPanel(loggerArea, write, controller);
-		mapPanel=new MapPanel(loggerArea, model);
-		southPanel=new SouthPanel(model, loggerArea);
+		mapPanel=new MapPanel(loggerArea, controller);
+		southPanel=new SouthPanel(controller, loggerArea);
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-100, Toolkit.getDefaultToolkit().getScreenSize().height-200);
@@ -114,7 +113,20 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-
+		/*mapPanel.setVisible(false);
+		
+		//----------pannello nord (market)----------
+		MarketPanel marketPanel=new MarketPanel(mapPanel);
+		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridy = 0;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
+		lim.gridheight=2;//grandezza del riquadro
+		lim.gridwidth=3;
+		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		layout.setConstraints(marketPanel, lim);
+		contentPane.add(marketPanel);*/
 
 		//----------pannello sud (informazioni)----------
 		JScrollPane scroll=new JScrollPane(southPanel);
@@ -188,6 +200,7 @@ public class FrameMap extends JFrame {
 					models.getModel().getTypes().get(2).setBonusUnavailable();
 					models.getModel().getBonusKing().runBonusKing(new Player("user",models.getModel().getNobilityTrack()));
 					ControllerGUI controllers=new ControllerGUI(new HomeFrame());
+					controllers.setModel(models);
 					FrameMap frame = new FrameMap(controllers, models);
 					frame.setVisible(true);
 				} catch (Exception e) {

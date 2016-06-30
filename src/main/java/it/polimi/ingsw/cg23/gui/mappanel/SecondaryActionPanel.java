@@ -11,11 +11,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.action.HireAssistant;
 
 /**
@@ -126,12 +129,17 @@ public class SecondaryActionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				text.append("\n"+button3.getName());
 				//AZIONI AZIONE 3
-				controller.updateController(new ChangeBusinessPermit(controller.getModel().findRegion("Hills")));
+				try{
+					controller.updateController(new ChangeBusinessPermit(controller.getSelectedElements().getRegion()));
+					controller.getSelectedElements().resetAll();
+				}catch(NullPointerException ex){
+					JOptionPane.showMessageDialog(null, "Region unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 
 		JButton button4 = new JButton("Elect");
-		button4.setName("Elect Councillor");
+		button4.setName("Elect a councillor");
 		button4.setToolTipText(button4.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -145,7 +153,15 @@ public class SecondaryActionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				text.append("\n"+button4.getName());
+				SelectedElements elements=controller.getSelectedElements();
+				boolean king=elements.getRegion()==null;
 				//AZIONI AZIONE 4
+				try{
+					controller.updateController(new ElectCouncillorAssistant(elements.getCouncillor(),elements.getRegion(),king));
+					elements.resetAll();
+				}catch(NullPointerException ex){
+					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 	}

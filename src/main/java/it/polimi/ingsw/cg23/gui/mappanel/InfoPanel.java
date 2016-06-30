@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -80,16 +81,9 @@ public class InfoPanel extends JPanel {
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textArea.append("\nTentativo di uscita");
-				int reply1 = JOptionPane.showConfirmDialog(null, "Vuoi veramente uscire?", "Uscita", JOptionPane.YES_NO_OPTION);
-
+				int reply1 = JOptionPane.showConfirmDialog(null, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
 				if(reply1 == JOptionPane.YES_OPTION){
-					int reply2 = JOptionPane.showConfirmDialog(null, "Sei veramente sicuro di volre andare?", "Conferma uscita", JOptionPane.YES_NO_OPTION);
-
-					if(reply2 == JOptionPane.YES_OPTION){
-						textArea.append("\nUscita");
-						setVisible(false);
-					}		              
+					controller.closeAll();
 				}				
 			}
 		});

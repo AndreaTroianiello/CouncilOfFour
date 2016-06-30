@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.mappanel.CostructionCardPanel;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
@@ -36,8 +37,8 @@ public class CardFrame extends JFrame {
 	 * Create the frame.
 	 * @param loggerArea the area to read on
 	 */
-	public CardFrame(JTextArea loggerArea) {
-		this.ccp=new CostructionCardPanel(loggerArea);
+	public CardFrame(JTextArea loggerArea,ControllerGUI controller) {
+		this.ccp=new CostructionCardPanel(loggerArea,controller);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(400, 200, 450, 300);

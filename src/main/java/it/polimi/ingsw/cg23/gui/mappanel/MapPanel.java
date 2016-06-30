@@ -4,8 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,11 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.King;
@@ -43,17 +45,19 @@ public class MapPanel extends JPanel {
 	private final double lung;
 	private JTextArea loggerArea;
 	private transient ClientModel model;
+	private ControllerGUI controller;
 
 	/**
 	 * @param model
 	 * @param loggerArea, the area to read on
 	 */
-	public MapPanel(JTextArea loggerArea, ClientModel model) {
+	public MapPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
 		this.ms=new MapSetting();
-		this.cp=new CityPanel(loggerArea);
-		this.model=model;
+		this.cp=new CityPanel(loggerArea,controller);
+		this.controller=controller;
+		this.model=controller.getModel();
 		init();
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
@@ -110,9 +114,9 @@ public class MapPanel extends JPanel {
 				lim.gridwidth=1;
 
 				if(i%2!=0&&k==4){
-					String region=city.get(j-1).getRegion().getName();
+					Region region=city.get(j-1).getRegion();
 					JButton but=new JButton();
-					but.setToolTipText("Select region "+region);
+					but.setToolTipText("Select region "+region.getName());
 					but.setOpaque(false);//bottone trasparente
 					but.setContentAreaFilled(false);//contenuto bottone trasparente
 					but.setBorderPainted(false);//bordi bottone trasparente
@@ -126,11 +130,30 @@ public class MapPanel extends JPanel {
 					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 					layout.setConstraints(but, lim);//applico il layout al pannello delle citta'
 					label.add(but);//aggiunta il panel alla label
-					but.addActionListener(new ActionListener() {
+					/*but.addActionListener(new ActionListener() {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							loggerArea.append("\nSelezionata regione "+region);
+							loggerArea.append("\nSelezionata regione "+region.getName());
+						}
+					});*/
+					but.addMouseListener(new MouseListener() {
+						@Override
+						public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+						@Override
+						public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+						@Override
+						public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+						@Override
+						public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+								loggerArea.append("\n Element selected.");
+								controller.getSelectedElements().setRegion(region);
+							}
+							if(SwingUtilities.isRightMouseButton(e))//bottone destro
+								loggerArea.append("\nSelezionata regione "+region.getName());
 						}
 					});
 				}

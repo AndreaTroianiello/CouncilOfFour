@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.utility.MapSetting;
@@ -37,15 +38,16 @@ public class CityPanel{
 	private MapSetting ms;
 	private final double lung;
 	private JTextArea loggerArea;
+	private ControllerGUI controller;
 
 	/**
 	 * @param loggerArea, the area area to read on
 	 */
-	public CityPanel(JTextArea loggerArea) {
+	public CityPanel(JTextArea loggerArea,ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
 		this.ms=new MapSetting();
-
+		this.controller=controller;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -151,8 +153,10 @@ public class CityPanel{
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(SwingUtilities.isLeftMouseButton(e))//bottone sinistro
-					loggerArea.append("\nsinistro");
+				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+					controller.getSelectedElements().setCity(c);
+					loggerArea.append("\n Element selected.");
+				}
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
 					writeArea(c, k);
 			}

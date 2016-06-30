@@ -8,11 +8,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.gui.SelectedElements;
+import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
+import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumTile;
+import it.polimi.ingsw.cg23.server.model.action.BuyPermitTile;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
+import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 
 
 /**
@@ -63,8 +70,8 @@ public class MainActionPanel extends JPanel {
 		layout.setConstraints(label, lim);
 		add(label);
 
-		JButton button1 = new JButton("Action 1");
-		button1.setName("Azione principale 1");
+		JButton button1 = new JButton("BuildTile");
+		button1.setName("Build emporium by tile.");
 		button1.setToolTipText(button1.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -78,11 +85,18 @@ public class MainActionPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 1
+				SelectedElements elements=controller.getSelectedElements();
+				try{
+					controller.updateController(new BuildEmporiumTile(elements.getTile(), elements.getCity()));
+					elements.resetAll();
+				}catch(NullPointerException ex){
+					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 
-		JButton button2 = new JButton("Action 2");
-		button2.setName("Azione principale 2");
+		JButton button2 = new JButton("BuildKing");
+		button2.setName("Build emporium by king.");
 		button2.setToolTipText(button2.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -94,13 +108,20 @@ public class MainActionPanel extends JPanel {
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button2.getName());
+				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 2
+				SelectedElements elements=controller.getSelectedElements();
+				try{
+					controller.updateController(new BuildEmporiumKing(elements.getCards(), elements.getCity()));
+					elements.resetAll();
+				}catch(NullPointerException ex){
+					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 
-		JButton button3 = new JButton("Action 3");
-		button3.setName("Azione principale 3");
+		JButton button3 = new JButton("BuyTile");
+		button3.setName("Buy a business permit tile.");
 		button3.setToolTipText(button3.getName());
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -112,13 +133,20 @@ public class MainActionPanel extends JPanel {
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button3.getName());
+				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 3
+				SelectedElements elements=controller.getSelectedElements();
+				try{
+					controller.updateController(new BuyPermitTile(elements.getCards(), elements.getRegion(),elements.getTile()));
+					elements.resetAll();
+				}catch(NullPointerException ex){
+					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 
-		JButton button4 = new JButton("Action 4");
-		button4.setName("Azione principale 4");
+		JButton button4 = new JButton("Elect");
+		button4.setName("Elect a councillor.");
 		button4.setToolTipText(button4.getName());
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -130,8 +158,16 @@ public class MainActionPanel extends JPanel {
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button4.getName());
+				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 4
+				SelectedElements elements=controller.getSelectedElements();
+				boolean king=elements.getRegion()==null;
+				try{
+					controller.updateController(new ElectCouncillor(elements.getCouncillor(),elements.getRegion(),king));
+					elements.resetAll();
+				}catch(NullPointerException ex){
+					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 	}

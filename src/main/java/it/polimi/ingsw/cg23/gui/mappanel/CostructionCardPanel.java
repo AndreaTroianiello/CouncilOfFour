@@ -16,10 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
@@ -33,13 +35,14 @@ public class CostructionCardPanel {
 
 	private Logger logger;
 	private JTextArea loggerArea;
+	private ControllerGUI controller;
 
 	/**
 	 * @param loggerArea, the area to write on
 	 */
-	public CostructionCardPanel(JTextArea loggerArea) {
+	public CostructionCardPanel(JTextArea loggerArea,ControllerGUI controller) {
 		this.loggerArea=loggerArea;
-
+		this.controller=controller;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -105,8 +108,15 @@ public class CostructionCardPanel {
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					writeArea(bpt.get(k));}
+					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+						controller.getSelectedElements().setTile(bpt.get(k));
+						loggerArea.append("\n Element selected.");
+					}
+					if(SwingUtilities.isRightMouseButton(e))//bottone destro
+						writeArea(bpt.get(k));
+					}
 			});
+
 
 			panel.add(costructionCard);//aggiunta della label al panel
 		}
@@ -162,7 +172,13 @@ public class CostructionCardPanel {
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					writeArea(bpt.get(k));}
+					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+						controller.getSelectedElements().setTile(bpt.get(k));
+						loggerArea.append("\n Element selected.");
+					}
+					if(SwingUtilities.isRightMouseButton(e))//bottone destro
+						writeArea(bpt.get(k));
+					}
 			});
 
 			panel.add(costructionCard);//aggiunta della label al panel

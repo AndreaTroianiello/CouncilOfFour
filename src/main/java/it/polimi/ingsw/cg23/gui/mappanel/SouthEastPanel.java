@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.mapframe.BonusFrame;
 import it.polimi.ingsw.cg23.gui.mapframe.CardFrame;
 import it.polimi.ingsw.cg23.gui.mapframe.PlayerStatic;
@@ -31,18 +32,20 @@ public class SouthEastPanel extends JPanel {
 	private PlayerStatic stat;
 	private transient ClientModel model;
 	private CardFrame cf;
+	private ControllerGUI controller;
 
 	/**
 	 * Create the panel.
 	 * @param model, the model
 	 * @param loggerArea the area to read on
 	 */
-	public SouthEastPanel(ClientModel model, JTextArea loggerArea) {
-		this.cp=new CouncilPanel(loggerArea);
+	public SouthEastPanel(ControllerGUI controller, JTextArea loggerArea) {
+		this.cp=new CouncilPanel(loggerArea,controller);
 		this.stat=new PlayerStatic();
-		this.model=model;
+		this.controller=controller;
+		this.model=controller.getModel();
 		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
-		this.cf=new CardFrame(loggerArea);
+		this.cf=new CardFrame(loggerArea,controller);
 		init();
 	}
 

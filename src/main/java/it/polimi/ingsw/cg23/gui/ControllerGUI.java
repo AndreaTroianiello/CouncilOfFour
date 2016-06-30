@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.gui;
 
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class ControllerGUI implements ClientController {
 	private Bonus bonus;
 	private FrameMap map;
 	private HomeFrame home;
+	private SelectedElements selectedElements;
 	
 	public ControllerGUI(HomeFrame home) {
 		logger = Logger.getLogger(this.getClass());
@@ -35,6 +37,7 @@ public class ControllerGUI implements ClientController {
 		clientModel= new ClientModel();
 		this.home=home;
 		this.bonus=null;
+		this.selectedElements=new SelectedElements();
 	}
  
 	private void updateFrameMap(){
@@ -62,6 +65,7 @@ public class ControllerGUI implements ClientController {
 			return;
 		}
 		if(change instanceof BoardChange){
+			selectedElements.resetAll();
 			Board model=((BoardChange)change).getBoard();
 			List<Player> players=model.getPlayers();
 			for(Player player: players)
@@ -79,6 +83,18 @@ public class ControllerGUI implements ClientController {
 		this.out=out;
 	}
 	
+	public void closeAll(){
+		try {
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		map.dispatchEvent(new WindowEvent(map, WindowEvent.WINDOW_CLOSING));
+	}
+	public SelectedElements getSelectedElements(){
+		return selectedElements;
+	}
 	public void updateController(Action action){
 		try {
 			out.update(action);
@@ -90,6 +106,10 @@ public class ControllerGUI implements ClientController {
 	@Override
 	public ClientModel getModel() {
 		return clientModel;
+	}
+	
+	public void setModel(ClientModel cModel) {
+		this.clientModel=cModel;
 	}
 
 	@Override

@@ -7,11 +7,14 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.controller.Setting;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -27,13 +30,15 @@ import it.polimi.ingsw.cg23.utility.ColorManager;
 public class CouncilPanel {
 
 	private JTextArea loggerArea;
+	private ControllerGUI controller;
 
 	/**
 	 * Create the panel.
 	 * @param loggerArea the area to read on
 	 */
-	public CouncilPanel(JTextArea loggerArea){
+	public CouncilPanel(JTextArea loggerArea,ControllerGUI controller){
 		this.loggerArea=loggerArea;
+		this.controller=controller;
 	}
 
 	/**
@@ -224,7 +229,14 @@ public class CouncilPanel {
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				loggerArea.append("\n"+text);
+				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+					StringTokenizer tokenizer=new StringTokenizer(text, " ");
+					tokenizer.nextToken();
+					controller.getSelectedElements().setCouncillor(new ColorManager().getColor(tokenizer.nextToken()));
+					loggerArea.append("\n Element selected.");
+				}
+				if(SwingUtilities.isRightMouseButton(e))//bottone destro
+					loggerArea.append("\n"+text);
 			}
 		});
 	}

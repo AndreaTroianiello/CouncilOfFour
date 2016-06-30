@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.Region;
 
 /**
@@ -31,24 +32,26 @@ public class SouthPanel extends JPanel {
 	private transient ClientModel model;
 	private SouthEastPanel southEastPanel;
 	private JTextArea loggerArea;
+	private ControllerGUI controller;
 
 	/**
 	 * 
 	 * @param model
 	 * @param loggerArea
 	 */
-	public SouthPanel(ClientModel model, JTextArea loggerArea) {
+	public SouthPanel(ControllerGUI controller, JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
-		this.model=model;
+		this.controller=controller;
+		this.model=controller.getModel();
 		init();
 	}
 
 	private void init(){
 		this.panelNobility=new NobilityTrackPanel(model, loggerArea);
-		this.ccp=new CostructionCardPanel(loggerArea);
-		this.cp=new CouncilPanel(loggerArea);
-		this.pcp=new PoliticCardPanel(model.getPlayer(), loggerArea);
-		this.southEastPanel=new SouthEastPanel(model, loggerArea);
+		this.ccp=new CostructionCardPanel(loggerArea,controller);
+		this.cp=new CouncilPanel(loggerArea,controller);
+		this.pcp=new PoliticCardPanel(controller, loggerArea);
+		this.southEastPanel=new SouthEastPanel(controller, loggerArea);
 
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);

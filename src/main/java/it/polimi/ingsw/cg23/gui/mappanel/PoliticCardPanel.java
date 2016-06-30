@@ -4,8 +4,8 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,12 +16,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
@@ -34,14 +37,16 @@ public class PoliticCardPanel {
 	private Logger logger;
 	private Player p;
 	private JTextArea loggerArea;
+	private ControllerGUI controller;
 
 	/**
 	 * 
 	 * @param p, the player
 	 * @param loggerArea, the area to read on
 	 */
-	public PoliticCardPanel(Player p, JTextArea loggerArea) {
-		this.p=p;
+	public PoliticCardPanel(ControllerGUI controller, JTextArea loggerArea) {
+		this.controller=controller;
+		this.p=controller.getModel().getPlayer();
 		this.loggerArea=loggerArea;
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
@@ -66,12 +71,13 @@ public class PoliticCardPanel {
 			//----------carta politica----------
 			BufferedImage img;
 			String color;
-			if(p.getHand().get(i).isJolly()){
+			PoliticCard card=p.getHand().get(i);
+			if(card.isJolly()){
 				img=politcsImg("Jolly");//carta jolly
 				color="Jolly";
 			}
 			else{
-				color=new ColorManager().getColorName(p.getHand().get(i).getColor());
+				color=new ColorManager().getColorName(card.getColor());
 				img=politcsImg(color);//carte colorate
 			}
 			JButton button1=new JButton(new ImageIcon(img));
@@ -84,13 +90,31 @@ public class PoliticCardPanel {
 			lim.gridwidth=1;
 			layout.setConstraints(button1, lim);
 			panel.add(button1);
-			button1.addActionListener(new ActionListener() {
+			/*button1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					loggerArea.append("\nSelezionata la carta politica: "+color);
 				}
+			});*/
+			button1.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+						controller.getSelectedElements().addCard(card);
+						loggerArea.append("\n Element selected.");
+					}
+					if(SwingUtilities.isRightMouseButton(e))//bottone destro
+						loggerArea.append("\nSelezionata la carta politica: "+color);
+					}
 			});
-
 			//----------etichetta spazio----------
 			//Aggiunge lo spazio dopo aver messo la carta politica
 			JLabel label2=new JLabel();
