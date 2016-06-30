@@ -130,13 +130,6 @@ public class MapPanel extends JPanel {
 					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 					layout.setConstraints(but, lim);//applico il layout al pannello delle citta'
 					label.add(but);//aggiunta il panel alla label
-					/*but.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							loggerArea.append("\nSelezionata regione "+region.getName());
-						}
-					});*/
 					but.addMouseListener(new MouseListener() {
 						@Override
 						public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -177,5 +170,13 @@ public class MapPanel extends JPanel {
 		}
 
 		return image;
+	}
+	
+	/**
+	 * update the component
+	 */
+	public void update(){
+		removeAll();
+		init();
 	}
 }

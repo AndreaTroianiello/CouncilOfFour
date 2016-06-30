@@ -152,6 +152,7 @@ public class FrameMap extends JFrame {
 	
 	public void update(){
 		southPanel.update();
+		mapPanel.update();
 	}
 	
 	public static void main(String[] args) {
