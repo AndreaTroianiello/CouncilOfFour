@@ -25,11 +25,12 @@ import it.polimi.ingsw.cg23.utility.ColorManager;
  *
  */
 public class CouncilPanel {
-	
+
 	private JTextArea loggerArea;
 
 	/**
 	 * Create the panel.
+	 * @param loggerArea the area to read on
 	 */
 	public CouncilPanel(JTextArea loggerArea){
 		this.loggerArea=loggerArea;
@@ -50,7 +51,8 @@ public class CouncilPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label0 = new JLabel("etichetta consiglieri");
-		label0.setText("Consiglieri "+reg.getName());
+		label0.setForeground(new Color(255, 215, 0));
+		label0.setText(reg.getName()+" council");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx=0;//espansione in verticale e orizzontale
@@ -66,7 +68,7 @@ public class CouncilPanel {
 			JLabel label1 = new JLabel();
 			label1.setBackground(councillors.get(i).getColor());
 			label1.setName("consigliere "+i);
-			label1.setToolTipText("Consigliere "+reg.getName()+" numero "+(i+1));
+			label1.setToolTipText("Councillors "+reg.getName()+" number "+(i+1));
 			label1.setOpaque(true);
 			label1.setPreferredSize(new Dimension(50, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
@@ -106,8 +108,9 @@ public class CouncilPanel {
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-		JLabel label0 = new JLabel("etichetta consiglieri");
-		label0.setText("Consiglieri king");
+		JLabel label0 = new JLabel();
+		label0.setText("King council");
+		label0.setForeground(new Color(255, 215, 0));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
@@ -165,7 +168,8 @@ public class CouncilPanel {
 		Color[] color=new Setting().color();//array con i colori
 
 		//----------label name----------
-		JLabel labelCouncillors = new JLabel("Councillors Color");
+		JLabel labelCouncillors = new JLabel("Available councillors");
+		labelCouncillors.setForeground(new Color(255, 215, 0));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro

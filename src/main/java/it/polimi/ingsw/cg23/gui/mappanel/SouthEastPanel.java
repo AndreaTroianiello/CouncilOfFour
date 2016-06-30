@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
@@ -71,6 +72,7 @@ public class SouthEastPanel extends JPanel {
 
 		//----------------statistiche player------------
 		JButton punteggi=new JButton("Points");
+		punteggi.setForeground(new Color(255, 215, 0));
 		punteggi.setOpaque(false);
 		punteggi.setContentAreaFilled(false);//contenuto bottone trasparente
 		punteggi.setBorderPainted(false);//bordi bottone trasparente
@@ -106,6 +108,7 @@ public class SouthEastPanel extends JPanel {
 
 		//----------------bonus panel------------
 		JButton bonus=new JButton("Bonus");
+		bonus.setForeground(new Color(255, 215, 0));
 		bonus.setOpaque(false);
 		bonus.setContentAreaFilled(false);//contenuto bottone trasparente
 		bonus.setBorderPainted(false);//bordi bottone trasparente
@@ -122,6 +125,7 @@ public class SouthEastPanel extends JPanel {
 
 		//----------------costruction card usate------------
 		JButton card=new JButton("Card");
+		card.setForeground(new Color(255, 215, 0));
 		card.setOpaque(false);
 		card.setContentAreaFilled(false);//contenuto bottone trasparente
 		card.setBorderPainted(false);//bordi bottone trasparente
