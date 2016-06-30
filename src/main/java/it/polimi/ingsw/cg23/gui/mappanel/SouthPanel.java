@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -63,7 +64,7 @@ public class SouthPanel extends JPanel {
 			//----------carte permesso di costruzione----------
 			JPanel costruzione=ccp.getShowCostructionCard(reg.get(i));
 			costruzione.setName("costruzione "+reg.get(i).getName());
-			costruzione.setBackground(new Color(154, 205, 50));
+			costruzione.setBackground(new Color(151, 111, 51));
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -78,7 +79,7 @@ public class SouthPanel extends JPanel {
 
 			//----------consiglieri regione----------
 			JPanel balcone=cp.regionBalcone(reg.get(i));
-			balcone.setBackground(new Color(154, 205, 50));
+			balcone.setBackground(new Color(151, 111, 51));
 			balcone.setName("balcone "+reg.get(i).getName());
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 1;
@@ -92,7 +93,10 @@ public class SouthPanel extends JPanel {
 
 		//----------------nobility track------------
 		panelNobility.setName("Nobility panel");
-		panelNobility.setBackground(new Color(154, 205, 50));
+		//double lung=3*(Toolkit.getDefaultToolkit().getScreenSize().width-10.0)/4;//per auto scroll
+		System.out.println(new NobilityTrackPanel(model, loggerArea).nobilityLenght());
+		
+		panelNobility.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -103,7 +107,7 @@ public class SouthPanel extends JPanel {
 		add(panelNobility);
 
 		//----------------southeast panel------------
-		southEastPanel.setBackground(new Color(154, 205, 50));
+		southEastPanel.setBackground(new Color(151, 111, 51));
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -120,7 +124,7 @@ public class SouthPanel extends JPanel {
 		scrollPolitics.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPolitics.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		politics.setName("Carte politiche");
-		politics.setBackground(new Color(154, 205, 50));
+		politics.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -137,7 +141,7 @@ public class SouthPanel extends JPanel {
 		scrollCostruction.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scrollCostruction.setPreferredSize(new Dimension(250, 80));
 		avaiableCostrucion.setName("costruzione disponibile");
-		avaiableCostrucion.setBackground(new Color(154, 205, 50));
+		avaiableCostrucion.setBackground(new Color(151, 111, 51));
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale

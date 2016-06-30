@@ -40,20 +40,24 @@ public class NobilityTrackPanel extends JPanel {
 
 	private final double lung;
 	private transient ClientModel model;
-
+	private double width;
 	/**
 	 * 
-	 * @param nt, the nobility track
+	 * @param model, the model
 	 * @param loggerArea, the area to read on
 	 */
 	public NobilityTrackPanel(ClientModel model, JTextArea loggerArea) {
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
 		this.model=model;
 		this.loggerArea=loggerArea;
-		init();
+		
+		width= (9.0/16)*lung/21;
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+		
+		init();
 	}
 
 	/**
@@ -72,10 +76,8 @@ public class NobilityTrackPanel extends JPanel {
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){
 
 			BufferedImage img=nobilityImg(i);
-			double width= (9.0/16)*lung/21;
 			double height=  ((double) img.getHeight()/img.getWidth())*width;
 			Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
-
 
 			JLabel boxLabel = new JLabel(new ImageIcon(myim));
 
@@ -108,7 +110,15 @@ public class NobilityTrackPanel extends JPanel {
 			});
 		}
 	}
-
+	
+	/**
+	 * calcola the le lenght of nobility track
+	 * @return, the lenght of nobility track
+	 */
+	public int nobilityLenght(){
+		return (int) width*(model.getModel().getNobilityTrack().getNobilityBoxes().size());
+	}
+	
 	private void writeArea(JTextArea loggerArea, NobilityTrack nt, int k){
 		if(nt.getNobilityBoxes().get(k).getBonus().toString()!="[]"){//bonus nullo
 			loggerArea.append("\nNobility Track "+k+": ");

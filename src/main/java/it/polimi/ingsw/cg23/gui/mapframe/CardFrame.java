@@ -39,8 +39,9 @@ public class CardFrame extends JFrame {
 	public CardFrame(JTextArea loggerArea) {
 		this.ccp=new CostructionCardPanel(loggerArea);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(400, 200, 450, 300);
+		setResizable(false);
 		contentPane = new JPanel();
 		setTitle("Used business permit tile");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
