@@ -68,14 +68,14 @@ public class CityPanel{
 		int p=0;//posizione componenti nella griglia in orizzontale
 		//----------nome citta'----------
 		JLabel nameLabel=new JLabel(Character.toString(c.getId()));
-		double font= ((double) 3/100)*lung;
+		double font= ((double) 2/100)*lung;
 		nameLabel.setFont(new Font("Calibre", Font.ITALIC,(int) font));
 		nameLabel.setForeground(new Color(255,255,255));
 		lim.gridx = p;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
+		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
@@ -93,7 +93,8 @@ public class CityPanel{
 			lim.weighty = 1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			p++;
+			if(c.getToken().isEmpty())
+				p++;
 
 			layout.setConstraints(kingLabel, lim);
 			panel.add(kingLabel);//aggiunta bottone al layer panel
@@ -101,11 +102,15 @@ public class CityPanel{
 
 		//----------bonus label----------
 		if(!c.getToken().isEmpty()){
-			BufferedImage imgCityBonus=getImg("cityBonus/"+ms.cityBonus(c));//lettura immagine			
-			JLabel bonusCityLabel=new JLabel(new ImageIcon(imgCityBonus));
+			BufferedImage imgCityBonus=getImg("cityBonus/"+ms.cityBonus(c));//lettura immagine	
+			double width= ((double) 2/50)*lung;
+			double height=  ((double) imgCityBonus.getHeight()/imgCityBonus.getWidth())*width;
+			Image myim=imgCityBonus.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
+
+			JLabel bonusCityLabel=new JLabel(new ImageIcon(myim));
 			lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 			lim.gridx = p;//posizione componenti nella griglia
-			lim.gridy = 0;
+			lim.gridy = 1;
 			lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 			lim.weighty = 1;
 			lim.gridheight=1;//grandezza del riquadro
@@ -127,7 +132,7 @@ public class CityPanel{
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
+		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);

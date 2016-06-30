@@ -48,7 +48,7 @@ public class MapPanel extends JPanel {
 	 * 
 	 * @param loggerArea, the area to read on
 	 */
-	public MapPanel(JTextArea loggerArea,ClientModel model) {
+	public MapPanel(JTextArea loggerArea, ClientModel model) {
 		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
 		this.ms=new MapSetting();

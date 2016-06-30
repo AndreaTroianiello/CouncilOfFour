@@ -48,12 +48,6 @@ public class EastPanel extends JPanel {
 		init();
 	}
 
-	/**
-	 * create the logger panel
-	 * @param loggerArea, the area to view
-	 * @param write, the area to write on
-	 * @return the panel
-	 */
 	private void init(){
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
@@ -85,16 +79,16 @@ public class EastPanel extends JPanel {
 		write.setName("write area");
 		write.setToolTipText("Write your message.");
 		write.setText("Write your message.");
-		Component scrollLogger2 = new JScrollPane(write);
-		scrollLogger2.setName("scrollPane write area");
+		//Component scrollLogger2 = new JScrollPane(write);
+		//scrollLogger2.setName("scrollPane write area");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(scrollLogger2, lim); //Associazione
-		add(scrollLogger2); //Inserimento
+		layout.setConstraints(write, lim); //Associazione
+		add(write); //Inserimento
 		write.addMouseListener(new MouseAdapter(){//cancella il testo presente
 			@Override
 			public void mouseClicked(MouseEvent me)
