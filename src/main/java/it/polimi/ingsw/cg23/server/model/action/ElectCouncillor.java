@@ -3,17 +3,17 @@ package it.polimi.ingsw.cg23.server.model.action;
 import java.awt.Color;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
-import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.action.utilities.Elector;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 /**
  * the class of the action that allows to elect a new councillor in a region. It contains the color 
- * of the chosen councillor, the chosen region, a boolean that shows if it is a main aciton, and a boolean
+ * of the chosen councillor, the chosen region, a boolean that shows if it is a main action, and a boolean
  * that shows if the player chooses the king's council
  *
  *@author Vincenzo
@@ -25,26 +25,7 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
 	private final ControlAction controlAction;
-	
-	/**
-	 * the constructor set the variables of the class: it set the main to true, and the other 
-	 * variables as the parameter given to the method
-	 * 
-	 * @param councillor the color of the councillor to be elected
-	 * @param region the region of the election
-	 * @param king if the election is for the king's council
-	 * @throws NullPointerException if the councillor is null, and if the region is null and the king is false.
-	 */
-	public ElectCouncillor(Color councillor, Region region, boolean king){
-		super(true);
-		if(councillor!=null&&(region!=null || king)){
-			this.councillor = councillor;
-			this.region = region;
-			this.king = king;
-		}else
-			throw new NullPointerException();
-		this.controlAction = new ControlAction();
-	}
+	private final Elector elector;
 	
 	/**
 	 * @return the king
@@ -69,9 +50,31 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	public Color getCouncillor() {
 		return councillor;
 	}
-
+	
 	/**
-	 * remove the first councillor from the chosen council and append the new one
+	 * the constructor set the variables of the class: it set the main to true, and the other 
+	 * variables as the parameter given to the method
+	 * 
+	 * @param councillor the color of the councillor to be elected
+	 * @param region the region of the election
+	 * @param king if the election is for the king's council
+	 * @throws NullPointerException if the councillor is null, and if the region is null and the king is false.
+	 */
+	public ElectCouncillor(Color councillor, Region region, boolean king){
+		super(true);
+		if(councillor!=null&&(region!=null || king)){
+			this.councillor = councillor;
+			this.region = region;
+			this.king = king;
+		}else
+			throw new NullPointerException();
+		this.controlAction = new ControlAction();
+		this.elector = new Elector(controlAction);
+	}
+	
+	/**
+	 * elects a new councillor and update the player's richness
+	 * 
 	 * @param player who runs the action
 	 * @param board the model of the game
 	 * 
@@ -81,28 +84,13 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	public boolean runAction(Player player, Board board){
 		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(newCouncillor!=null){
-			if(!this.king){		
-				Region realRegion = controlAction.controlRegion(region, board);
-				if(realRegion != null){
-					Councillor oldCouncillor=realRegion.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-					board.setCouncillor(oldCouncillor);
-					realRegion.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-					board.notifyObserver(new CouncilChange(realRegion.getCouncil()));
-					board.notifyObserver(new BoardChange(board));
-				}
-			}
-			else{
-				Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);			//remove the first councillor in the chosen council
-				board.setCouncillor(oldCouncillor);
-				board.getKing().getCouncil().getCouncillors().add(newCouncillor);							//append the chosen councillor in the same council
-				board.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
-				board.notifyObserver(new BoardChange(board));
-			}
+			this.elector.election(newCouncillor, board, this.region, this.king);
 			int coins = player.getRichness().getCoins();
 			coins = coins +4;
 			try{
 				player.getRichness().setCoins(coins);
-				board.notifyObserver(new PlayerChange(player));
+				this.notifyObserver(new PlayerChange(player));
+				board.notifyObserver(new BoardChange(board));
 			} catch(NegativeNumberException e){
 				getLogger().error(e);
 			}

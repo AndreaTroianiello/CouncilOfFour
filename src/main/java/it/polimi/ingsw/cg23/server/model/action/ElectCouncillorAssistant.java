@@ -3,12 +3,12 @@ package it.polimi.ingsw.cg23.server.model.action;
 import java.awt.Color;
 
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
-import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.action.utilities.Elector;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
@@ -26,6 +26,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	private final Region region; 											//wich region the player choose 
 	private final boolean king;
 	private ControlAction controlAction;
+	private final Elector elector;
 	
 	
 	/**
@@ -50,6 +51,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 		else
 			throw new NullPointerException();
 		this.controlAction = new ControlAction();
+		this.elector = new Elector(controlAction);
 	}
 
 	/**
@@ -77,8 +79,7 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 	}
 
 	/**
-	 * remove the first councillor from the chosen council and append
-	 * the new one
+	 * elects a new councillor and update the player's assistant's pool
 	 * @param player who runs the action
 	 * @param board the model of the game
 	 * 
@@ -98,23 +99,8 @@ public class ElectCouncillorAssistant extends GameAction implements StandardActi
 		}
 		Councillor newCouncillor=board.getCouncillor(councillor);
 		if(newCouncillor != null){
-			if(!this.king){
-				Region realRegion = controlAction.controlRegion(region, board);
-				if(realRegion != null){
-					Councillor oldCouncillor=realRegion.getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-					board.setCouncillor(oldCouncillor);
-					realRegion.getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-					board.notifyObserver(new CouncilChange(realRegion.getCouncil()));
-					board.notifyObserver(new BoardChange(board));
-				}
-			}
-			else{
-				Councillor oldCouncillor=board.getKing().getCouncil().getCouncillors().remove(0);				//remove the first councillor in the chosen council
-				board.setCouncillor(oldCouncillor);
-				board.getKing().getCouncil().getCouncillors().add(newCouncillor);								//append the chosen councillor in the same council
-				board.notifyObserver(new CouncilChange(board.getKing().getCouncil()));
-				board.notifyObserver(new BoardChange(board));
-			}
+			this.elector.election(newCouncillor, board, this.region, this.king);
+			board.notifyObserver(new BoardChange(board));
 			return true;
 		}
 		try {

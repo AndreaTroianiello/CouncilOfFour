@@ -10,6 +10,7 @@ import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.action.utilities.Payer;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
@@ -28,6 +29,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private List<PoliticCard> discardedCards = new ArrayList<>();
 	private final City destination;
 	private final ControlAction controlAction;
+	private final Payer payer;
 
 
 	/**
@@ -46,6 +48,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		}else
 			throw new NullPointerException();
 		controlAction = new ControlAction();
+		this.payer = new Payer();
 	}
 
 
@@ -66,7 +69,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			int jolly = howManyJolly(board);															//control how many jolly there are
 			int match = jolly + howManyMatch(board, board.getKing().getCouncil());						//control how many match there are
 			player.getHand().removeAll(discardedCards);
-			int payMatch = payCoins(match, player);														//pay the amount of coins relative to the match
+			int payMatch = this.payer.payCoins(this.cards, this.discardedCards, match, player);														//pay the amount of coins relative to the match
 			int steps = (int) board.getKing().getCity().minimumDistance(realDestination, new ArrayList<City>());		//control the distance between the king's city and the destination
 			int coin = player.getRichness().getCoins();													//control the richness of the player			
 
@@ -166,53 +169,6 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		return match;
 	}
 
-
-
-	/**
-	 * take the relative amount of money based on the number of match
-	 * @param match the number of match 
-	 * @param player who runs the action
-	 * @param board the model of the game
-	 * @return the money paid, -1 if the player doesn't have enough
-	 */
-	private int payCoins(int match, Player player){
-		int coin = player.getRichness().getCoins();
-		int payment = (4-match)*3+1;
-		if(match == 0){
-			return -1;
-		}
-		if(match == 4){
-			return 0;
-		}
-		else{
-			if(tryPayment(player, coin, payment)!=-1)
-				return payment;
-			return -1;
-		}
-	}
-
-
-
-	/**
-	 * try to make the payment, and catch the exception if the 
-	 * player doesn't have enough money
-	 * 
-	 * @param player who tries the payment
-	 * @param money the current money of the player
-	 * @param payment the money to be paid
-	 * @return 0 if the payment is successful, -1 otherwise
-	 */
-	private int tryPayment(Player player,int money, int payment){
-		try {
-			money = money - payment;
-			player.getRichness().setCoins(money);
-			return 0;
-		} catch (NegativeNumberException e) {
-			this.cards.addAll(discardedCards);
-			getLogger().error("The player doesn't have enough money", e);
-			return -1;
-		}
-	}
 
 	/**
 	 * build the emporium in the destination

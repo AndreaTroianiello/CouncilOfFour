@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg23.server.controller.change.BusinessPermitTileChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.action.utilities.Payer;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.Council;
@@ -31,6 +32,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 	private List<PoliticCard> discardedCards= new ArrayList<>();
 	private final ControlAction controlAction;
 	private List<PoliticCard> realHand;
+	private final Payer payer;
 	
 	
 	
@@ -52,6 +54,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 		}else
 			throw new NullPointerException();
 		this.controlAction = new ControlAction();
+		this.payer = new Payer();
 	}
 
 	
@@ -99,7 +102,7 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 			int jolly = howManyJolly(board);
 			int match = jolly + howManyMatch(board, council);
 			player.getHand().removeAll(discardedCards);
-			int moneyPaid = payCoins(match, player);
+			int moneyPaid = this.payer.payCoins(this.cards, this.discardedCards, match, player);
 			int coins = player.getRichness().getCoins();
 		
 			if(moneyPaid != -1){
@@ -181,56 +184,6 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 		
 		return jolly;
 	}
-
-	
-	/**
-	 * take the relative amount of money based on the number of match
-	 * 
-	 * @param match the number of match
-	 * @param player the player who pays 
-	 * 
-	 * @return the money paid, -1 if the player doesn't have enough money
-	 */
-	private int payCoins(int match, Player player){
-		int coin = player.getRichness().getCoins();
-		int payment = (4-match)*3+1;
-		if(match == 0){
-			getLogger().error("Your cards don't match any councillor");
-			return -1;
-		}
-		if(match == 4){
-			return 0;
-		}
-		else{
-			if(tryPayment(player, coin, payment)!=-1)
-				return payment;
-			return -1;
-		}
-	}
-	
-	
-	/**
-	 * try to make the payment, and catch the exception if the 
-	 * player doesn't have enough money
-	 * 
-	 * @param player who tries the payment
-	 * @param money the current money of the player
-	 * @param payment the money to be paid
-	 * 
-	 * @return 0 if the payment is successful, -1 otherwise
-	 */
-	private int tryPayment(Player player,int money, int payment){
-		try {
-			money = money - payment;
-			player.getRichness().setCoins(money);
-			return 0;
-		} catch (NegativeNumberException e) {
-			this.realHand.addAll(discardedCards);
-			getLogger().error("The player doesn't have enough money!", e);
-			return -1;
-		}
-	}
-
 
 	/**
 	 * @return the name and the variables of the class in string
