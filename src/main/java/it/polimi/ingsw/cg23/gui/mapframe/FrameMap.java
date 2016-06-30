@@ -31,6 +31,7 @@ import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
@@ -159,6 +160,29 @@ public class FrameMap extends JFrame {
 							new PoliticCard(Color.BLUE, false),
 							new PoliticCard(Color.PINK, false));
 					models.getPlayer().getHand().addAll(list);
+					models.getModel().getKing().setCity(models.getModel().getRegions().get(0).getCities().get(0));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
+					models.getModel().getRegions().get(1).setBonusUnavailable();
+					models.getModel().getTypes().get(2).setBonusUnavailable();
+					models.getModel().getBonusKing().runBonusKing(new Player("user",models.getModel().getNobilityTrack()));
 					ControllerGUI controllers=new ControllerGUI(new HomeFrame());
 					FrameMap frame = new FrameMap(controllers, models);
 					frame.setVisible(true);

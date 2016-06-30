@@ -66,7 +66,7 @@ public class Type implements Serializable {
 	/**
 	 *  Sets the bonus status at false. The bonus is not available.
 	 */
-	private void setBonusUnavailable() {
+	public void setBonusUnavailable() {
 		this.bonusAvailable = false;
 	}
 
