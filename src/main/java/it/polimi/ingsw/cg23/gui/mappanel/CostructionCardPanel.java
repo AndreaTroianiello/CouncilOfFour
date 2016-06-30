@@ -200,6 +200,10 @@ public class CostructionCardPanel {
 		return nome.toUpperCase();
 	}
 	
+	/**
+	 * write the bpt info on the logger area
+	 * @param bpt, the business permit card
+	 */
 	public void writeArea(BusinessPermitTile bpt){
 		loggerArea.append("\nCarta costruzione "+bpt.getZone());
 		loggerArea.append("\n  Citta': ");
@@ -216,11 +220,14 @@ public class CostructionCardPanel {
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
 	}
 	
+	/**
+	 * read the costruction image card
+	 * @param bpt, the business permit card
+	 * @return the business permita card image
+	 */
 	public JLabel oldCostruction(BusinessPermitTile bpt){
 		BufferedImage img=getCostructionImg(nameCostructor(bpt.getCitiesId()));//carta costruzione usata
-		JLabel oldbpt=new JLabel(new ImageIcon(img));
-		
-		return oldbpt;
+		return new JLabel(new ImageIcon(img));
 	}
 }
 

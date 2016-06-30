@@ -60,7 +60,7 @@ public class InfoPanel extends JPanel {
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=4;
+		lim.gridwidth=3;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -118,34 +118,10 @@ public class InfoPanel extends JPanel {
 			}
 		});
 
-		JButton button3=new JButton("Send");
-		button3.setName("Send");
-		button3.setToolTipText("Send the message");
-		lim.gridx = 2;//posizione componenti nella griglia
-		lim.gridy = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
-		layout.setConstraints(button3, lim); //Associazione
-		add(button3); //Inserimento
-		button3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if("".equals(write.getText())||"Scrivi il testo che vuoi inviare".equals(write.getText())){
-					JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
-				}else{
-					//textArea.append("\nTesto inviato: "+write.getText());
-					controller.updateController(new SendMessage(write.getText(),controller.getModel().getPlayer()));
-					write.setText("");
-				}
-			}
-		});
-
 		JButton button4 = new JButton("End Turn");
 		button4.setName("End Turn");
 		button4.setToolTipText("Finisci il turno");
-		lim.gridx = 3;//posizione componenti nella griglia
+		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;

@@ -92,9 +92,6 @@ public class FrameMap extends JFrame {
 		GridBagConstraints lim = new GridBagConstraints();
 
 		//----------text area (logger)----------
-
-		Component scrollLogger = new JScrollPane(eastPanel);
-		scrollLogger.setName("scrollPane text area logger");
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -103,8 +100,8 @@ public class FrameMap extends JFrame {
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-		layout.setConstraints(scrollLogger, lim); //Associazione
-		contentPane.add(scrollLogger); //Inserimento
+		layout.setConstraints(eastPanel, lim); //Associazione
+		contentPane.add(eastPanel); //Inserimento
 
 		//----------pannello nord (mappa)----------
 		lim.gridx = 0;//posizione componenti nella griglia

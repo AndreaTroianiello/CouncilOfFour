@@ -5,11 +5,14 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -69,7 +72,7 @@ public class EastPanel extends JPanel {
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=2;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=2;
 		layout.setConstraints(scrollLogger1, lim); //Associazione
 		add(scrollLogger1); //Inserimento*/
 
@@ -79,8 +82,6 @@ public class EastPanel extends JPanel {
 		write.setName("write area");
 		write.setToolTipText("Write your message.");
 		write.setText("Write your message.");
-		//Component scrollLogger2 = new JScrollPane(write);
-		//scrollLogger2.setName("scrollPane write area");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -114,7 +115,29 @@ public class EastPanel extends JPanel {
 				}
 			}
 		});
-
+		JButton button3=new JButton("Send");
+		button3.setName("Send");
+		button3.setToolTipText("Send the message");
+		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridy = 2;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
+		layout.setConstraints(button3, lim); //Associazione
+		add(button3); //Inserimento
+		button3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if("".equals(write.getText())||"Scrivi il testo che vuoi inviare".equals(write.getText())){
+					JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
+				}else{
+					loggerArea.append("\nTesto inviato: "+write.getText());
+					controller.updateController(new SendMessage(write.getText(),controller.getModel().getPlayer()));
+					write.setText("");
+				}
+			}
+		});
 
 		//----------button----------
 		buttonPanel.setName("button panel");
@@ -123,7 +146,7 @@ public class EastPanel extends JPanel {
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=2;
 		lim.fill=GridBagConstraints.HORIZONTAL;
 		layout.setConstraints(buttonPanel, lim); //Associazione
 		add(buttonPanel); //Inserimento

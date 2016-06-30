@@ -45,7 +45,7 @@ public class MapPanel extends JPanel {
 	private transient ClientModel model;
 
 	/**
-	 * 
+	 * @param model
 	 * @param loggerArea, the area to read on
 	 */
 	public MapPanel(JTextArea loggerArea, ClientModel model) {
@@ -120,7 +120,7 @@ public class MapPanel extends JPanel {
 					JButton but=new JButton();
 					but.setOpaque(false);//bottone trasparente
 					but.setContentAreaFilled(false);//contenuto bottone trasparente
-					//but.setBorderPainted(false);//bordi bottone trasparente
+					but.setBorderPainted(false);//bordi bottone trasparente
 					lim.gridx = i;//posizione componenti nella griglia
 					lim.gridy = k;
 					lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro

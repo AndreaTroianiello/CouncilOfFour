@@ -54,7 +54,6 @@ public class CityPanel{
 	/**
 	 * @param k, the king
 	 * @param c, the city
-	 * @param loggerArea, the area to read on
 	 * @return the city panel
 	 */
 	public JPanel createCity(City c, King k){
@@ -64,6 +63,7 @@ public class CityPanel{
 
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		int p=0;//posizione componenti nella griglia in orizzontale
 		//----------nome citta'----------
@@ -77,7 +77,6 @@ public class CityPanel{
 		lim.weighty = 1;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(nameLabel, lim);
 		panel.add(nameLabel);//aggiunta bottone al layer panel
 		p++;
@@ -86,7 +85,6 @@ public class CityPanel{
 		if(c.equals(k.getCity())){
 			BufferedImage imgKing=getImg("king");//lettura immagine
 			JLabel kingLabel=new JLabel(new ImageIcon(imgKing));
-			lim.anchor = GridBagConstraints.NORTHEAST;//posizione componenti nei riquadri
 			lim.gridx = p;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -108,7 +106,6 @@ public class CityPanel{
 			Image myim=imgCityBonus.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
 
 			JLabel bonusCityLabel=new JLabel(new ImageIcon(myim));
-			lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 			lim.gridx = p;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -134,10 +131,9 @@ public class CityPanel{
 		lim.weighty = 1;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
-		
+
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -152,7 +148,7 @@ public class CityPanel{
 				writeArea(c, k);
 			}
 		});
-		
+
 		return panel;
 	}
 

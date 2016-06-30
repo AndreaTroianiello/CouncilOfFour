@@ -24,7 +24,7 @@ public class ButtonPanel extends JPanel {
 	private MainActionPanel mainActionPanel;
 	private SecondaryActionPanel secActionPanel;
 	private InfoPanel infoPanel;
-	
+
 	/**
 	 * @param textArea, the area to read on
 	 * @param write, the area to write on
@@ -36,10 +36,9 @@ public class ButtonPanel extends JPanel {
 		this.infoPanel=new InfoPanel(textArea, write,controller);
 		init();
 	}
-	
+
 	/**
 	 * create the button panel
-	 * @return the panel
 	 */
 	private void init(){
 		GridBagLayout layout = new GridBagLayout();
@@ -75,7 +74,7 @@ public class ButtonPanel extends JPanel {
 		lim.gridwidth=2;
 		layout.setConstraints(infoPanel, lim);
 		add(infoPanel);
-		
+
 		setBackground(new Color(123,123,123));
 	}
 }

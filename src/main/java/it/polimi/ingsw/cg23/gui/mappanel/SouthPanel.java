@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
@@ -41,10 +42,6 @@ public class SouthPanel extends JPanel {
 		init();
 	}
 
-	/**
-	 * create the south panel
-	 * @return a jpanel with the south panel created
-	 */
 	private void init(){
 		this.panelNobility=new NobilityTrackPanel(model, loggerArea);
 		this.ccp=new CostructionCardPanel(loggerArea);
@@ -117,6 +114,7 @@ public class SouthPanel extends JPanel {
 
 		//----------carte politiche------------
 		JPanel politics=pcp.createCard();
+		JScrollPane scrollPolitics=new JScrollPane(politics);
 		politics.setName("Carte politiche");
 		politics.setBackground(new Color(154, 205, 50));
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -125,11 +123,12 @@ public class SouthPanel extends JPanel {
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(politics, lim);
-		add(politics);
+		layout.setConstraints(scrollPolitics, lim);
+		add(scrollPolitics);
 
 		//----------my carte costruzione------------
 		JPanel avaiableCostrucion=ccp.myCostructionCard(model.getPlayer());
+		JScrollPane scrollCostruction=new JScrollPane(avaiableCostrucion);
 		avaiableCostrucion.setName("costruzione disponibile");
 		avaiableCostrucion.setBackground(new Color(154, 205, 50));
 		lim.gridx = 1;//posizione componenti nella griglia
@@ -138,10 +137,13 @@ public class SouthPanel extends JPanel {
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(avaiableCostrucion, lim);
-		add(avaiableCostrucion);
+		layout.setConstraints(scrollCostruction, lim);
+		add(scrollCostruction);
 	}
 
+	/**
+	 * update the component
+	 */
 	public void update(){
 		removeAll();
 		init();
