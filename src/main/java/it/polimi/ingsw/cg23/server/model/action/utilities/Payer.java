@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
@@ -30,7 +29,7 @@ public class Payer implements Serializable{
 	 * @param logger
 	 */
 	public Payer() {
-		this.logger=Logger.getLogger(Action.class);
+		this.logger=Logger.getLogger(Payer.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
@@ -85,7 +84,7 @@ public class Payer implements Serializable{
 	 * @param payment the money to be paid
 	 * @return 0 if the payment is successful, -1 otherwise
 	 */
-	private int tryPayment(List<PoliticCard> cards, List<PoliticCard> discardedCards, Player player,int money, int payment){
+	private int tryPayment(List<PoliticCard> cards, List<PoliticCard> discardedCards, Player player, int money, int payment){
 		try {
 			money = money - payment;
 			player.getRichness().setCoins(money);
