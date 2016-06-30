@@ -2,9 +2,11 @@ package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.color.ColorSpace;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -221,14 +223,21 @@ public class CostructionCardPanel {
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
 	}
 
+
 	/**
-	 * read the costruction image card
-	 * @param bpt, the business permit card
-	 * @return the business permita card image
+	 * load and converts an image to a black and white one
+	 * @param bpt, the business permit tiles
+	 * @return the jlabel image 
 	 */
-	public JLabel oldCostruction(BusinessPermitTile bpt){
-		BufferedImage img=getCostructionImg(nameCostructor(bpt.getCitiesId()));//carta costruzione usata
-		return new JLabel(new ImageIcon(img));
+	public JLabel oldCostructionWB(BusinessPermitTile bpt) {
+
+		BufferedImage image=getCostructionImg(nameCostructor(bpt.getCitiesId()));//carta costruzione usata;
+		ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
+		ColorConvertOp ccop = new ColorConvertOp(cs, null);
+
+		BufferedImage imgWB= ccop.filter(image, null);
+
+		return new JLabel(new ImageIcon(imgWB));
 	}
 }
 

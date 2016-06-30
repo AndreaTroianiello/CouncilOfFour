@@ -95,7 +95,7 @@ public class CardFrame extends JFrame {
 			int q=0;//posizione griglia orizzonatale (larghezza)
 			int r=1;//posizione griglia verticale (altezza)
 			for(int i=0; i<bpt.size(); i++){
-				JLabel costructionCard = ccp.oldCostruction(bpt.get(i));//aggiungo l'immagine alla label
+				JLabel costructionCard = ccp.oldCostructionWB(bpt.get(i));//aggiungo l'immagine alla label
 				lim.gridx = q;//posizione componenti nella griglia
 				lim.gridy = r;
 				lim.weightx=1;//espansione in verticale e orizzontale

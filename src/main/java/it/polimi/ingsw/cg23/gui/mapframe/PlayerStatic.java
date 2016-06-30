@@ -149,7 +149,7 @@ public class PlayerStatic extends JFrame {
 		layout.setConstraints(nobilityTrack, lim);
 		panel.add(nobilityTrack);
 
-		JLabel nobilityLabel = new JLabel("Your nobility box posiztion");//aggiungo l'immagine alla label
+		JLabel nobilityLabel = new JLabel("Your nobility box position");//aggiungo l'immagine alla label
 		nobilityLabel.setForeground(new Color(255, 255, 255));
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 3;

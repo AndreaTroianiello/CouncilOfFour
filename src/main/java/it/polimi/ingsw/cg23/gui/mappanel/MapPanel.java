@@ -60,15 +60,9 @@ public class MapPanel extends JPanel {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 	}
 
-	/**
-	 * create the map panel
-	 * @param reg, the regions list
-	 * @param king, the king
-	 * @return a panel with the map
-	 */
 	private void init(){
-		List<Region> reg=model.getModel().getRegions();
-		King king=model.getModel().getKing();
+		List<Region> reg=model.getModel().getRegions();//the region list
+		King king=model.getModel().getKing();//the king
 
 		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
 		setLayout(layout);//il pannello usa il layout grid bag
@@ -118,6 +112,7 @@ public class MapPanel extends JPanel {
 				if(i%2!=0&&k==4){
 					String region=city.get(j-1).getRegion().getName();
 					JButton but=new JButton();
+					but.setToolTipText("Select region "+region);
 					but.setOpaque(false);//bottone trasparente
 					but.setContentAreaFilled(false);//contenuto bottone trasparente
 					but.setBorderPainted(false);//bordi bottone trasparente

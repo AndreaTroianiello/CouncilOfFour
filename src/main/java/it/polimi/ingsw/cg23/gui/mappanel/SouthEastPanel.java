@@ -71,7 +71,7 @@ public class SouthEastPanel extends JPanel {
 		add(kingCouncillors);
 
 		//----------------statistiche player------------
-		JButton punteggi=new JButton("Points");
+		JButton punteggi=new JButton("Stats");
 		punteggi.setForeground(new Color(255, 215, 0));
 		punteggi.setOpaque(false);
 		punteggi.setContentAreaFilled(false);//contenuto bottone trasparente
@@ -124,7 +124,7 @@ public class SouthEastPanel extends JPanel {
 		actionBonus(bonus);
 
 		//----------------costruction card usate------------
-		JButton card=new JButton("Card");
+		JButton card=new JButton("Tiles");
 		card.setForeground(new Color(255, 215, 0));
 		card.setOpaque(false);
 		card.setContentAreaFilled(false);//contenuto bottone trasparente
@@ -162,10 +162,12 @@ public class SouthEastPanel extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			public void mouseEntered(MouseEvent e) {
+				cf.createCard(model.getPlayer());
+				cf.setVisible(true);
+			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cf.createCard(model.getPlayer());
 				cf.setVisible(true);
 			}
 		});

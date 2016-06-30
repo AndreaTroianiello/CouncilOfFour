@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -133,7 +134,12 @@ public class CityPanel{
 		lim.gridwidth=1;
 		layout.setConstraints(label, lim);
 		panel.add(label);//aggiunta bottone al layer panel
+		listener(panel, c, k);
 
+		return panel;
+	}
+
+	private void listener(JPanel panel, City c, King k){
 		panel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -145,14 +151,15 @@ public class CityPanel{
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				writeArea(c, k);
+				if(SwingUtilities.isLeftMouseButton(e))//bottone sinistro
+					loggerArea.append("\nsinistro");
+				if(SwingUtilities.isRightMouseButton(e))//bottone destro
+					writeArea(c, k);
 			}
 		});
-
-		return panel;
 	}
-
 	private void writeArea(City c, King k){
+
 		loggerArea.append("\nCitta' "+c.getName());
 		loggerArea.append("\n  "+ms.getNeighbourID(c));
 		loggerArea.append("\n  Regione: "+c.getRegion().getName());

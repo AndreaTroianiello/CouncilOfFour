@@ -40,7 +40,7 @@ public class NobilityTrackPanel extends JPanel {
 
 	private final double lung;
 	private transient ClientModel model;
-	private double width;
+	private double widthBox;
 	/**
 	 * 
 	 * @param model, the model
@@ -51,7 +51,7 @@ public class NobilityTrackPanel extends JPanel {
 		this.model=model;
 		this.loggerArea=loggerArea;
 		
-		width= (9.0/16)*lung/21;
+		widthBox= (9.0/16)*lung/21;
 		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
@@ -76,8 +76,8 @@ public class NobilityTrackPanel extends JPanel {
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){
 
 			BufferedImage img=nobilityImg(i);
-			double height=  ((double) img.getHeight()/img.getWidth())*width;
-			Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
+			double height=  ((double) img.getHeight()/img.getWidth())*widthBox;
+			Image myim=img.getScaledInstance((int) widthBox, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
 
 			JLabel boxLabel = new JLabel(new ImageIcon(myim));
 
@@ -116,21 +116,29 @@ public class NobilityTrackPanel extends JPanel {
 	 * @return, the lenght of nobility track
 	 */
 	public int nobilityLenght(){
-		return (int) width*(model.getModel().getNobilityTrack().getNobilityBoxes().size());
+		return (int) widthBox*(model.getModel().getNobilityTrack().getNobilityBoxes().size());
 	}
 	
 	private void writeArea(JTextArea loggerArea, NobilityTrack nt, int k){
+		loggerArea.append("\nNobility Track "+k+"");
 		if(nt.getNobilityBoxes().get(k).getBonus().toString()!="[]"){//bonus nullo
-			loggerArea.append("\nNobility Track "+k+": ");
+			loggerArea.append("\n  Bonus: ");
+			String bonus="";
+			
 			for(int j=0; j<nt.getNobilityBoxes().get(k).getBonus().size(); j++){
-				loggerArea.append(nt.getNobilityBoxes().get(k).getBonus().get(j).getName()+" ");
+				bonus=bonus.concat(nt.getNobilityBoxes().get(k).getBonus().get(j).getName()+", ");
 			}
+			
+			loggerArea.append(bonus.substring(0, bonus.length()-2));
 		}
 		if(nt.getNobilityBoxes().get(k).getPlayers().toString()!="[]"){//nessun player
-			loggerArea.append(" , Player: ");
+			loggerArea.append("\n  Player: ");
+			String player="";
+			
 			for(int j=0; j<nt.getNobilityBoxes().get(k).getPlayers().size(); j++){
-				loggerArea.append(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser());
+				player=player.concat(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()+", ");
 			}
+			loggerArea.append(player.substring(0,player.length()-2));
 		}
 	}
 
