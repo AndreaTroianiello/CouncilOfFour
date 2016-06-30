@@ -116,7 +116,7 @@ public class MainActionPanel extends JPanel {
 					elements.resetAll();
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-					controller.getSelectedElements().resetAll();
+					elements.resetAll();
 				}
 			}
 		});

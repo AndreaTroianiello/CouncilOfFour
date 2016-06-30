@@ -155,7 +155,7 @@ public class CityPanel{
 			public void mouseClicked(MouseEvent e) {
 				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 					controller.getSelectedElements().setCity(c);
-					loggerArea.append("\n Element selected.");
+					loggerArea.append("\n Element selected (City:"+c.getName()+").");
 				}
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
 					writeArea(c, k);

@@ -142,7 +142,7 @@ public class MapPanel extends JPanel {
 						@Override
 						public void mouseClicked(MouseEvent e) {
 							if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
-								loggerArea.append("\n Element selected.");
+								loggerArea.append("\n Element selected(Region:"+region.getName()+").");
 								controller.getSelectedElements().setRegion(region);
 							}
 							if(SwingUtilities.isRightMouseButton(e))//bottone destro

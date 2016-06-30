@@ -232,8 +232,9 @@ public class CouncilPanel {
 				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 					StringTokenizer tokenizer=new StringTokenizer(text, " ");
 					tokenizer.nextToken();
-					controller.getSelectedElements().setCouncillor(new ColorManager().getColor(tokenizer.nextToken()));
-					loggerArea.append("\n Element selected.");
+					String color=tokenizer.nextToken();
+					controller.getSelectedElements().setCouncillor(new ColorManager().getColor(color));
+					loggerArea.append("\n Element selected(Councillor:"+color+").");
 				}
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
 					loggerArea.append("\n"+text);

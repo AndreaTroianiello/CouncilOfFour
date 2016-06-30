@@ -109,7 +109,8 @@ public class PoliticCardPanel {
 				public void mouseClicked(MouseEvent e) {
 					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 						controller.getSelectedElements().addCard(card);
-						loggerArea.append("\n Element selected.");
+						
+						loggerArea.append("\n Element selected(Card:"+color+").");
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						loggerArea.append("\nSelezionata la carta politica: "+color);

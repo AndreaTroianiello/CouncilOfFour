@@ -110,7 +110,7 @@ public class CostructionCardPanel {
 				public void mouseClicked(MouseEvent e) {
 					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 						controller.getSelectedElements().setTile(bpt.get(k));
-						loggerArea.append("\n Element selected.");
+						loggerArea.append("\n Element selected(Tile:"+k+").");
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						writeArea(bpt.get(k));
@@ -174,7 +174,7 @@ public class CostructionCardPanel {
 				public void mouseClicked(MouseEvent e) {
 					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 						controller.getSelectedElements().setTile(bpt.get(k));
-						loggerArea.append("\n Element selected.");
+						loggerArea.append("\n Element selected(Tile:"+k+").");
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						writeArea(bpt.get(k));
