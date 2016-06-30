@@ -93,7 +93,7 @@ public class SouthPanel extends JPanel {
 		//----------------nobility track------------
 		panelNobility.setName("Nobility panel");
 		int nobilityLenght=new NobilityTrackPanel(model, loggerArea).nobilityLenght();//lunghezza del nobility track
-		
+
 		panelNobility.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -118,7 +118,6 @@ public class SouthPanel extends JPanel {
 		//----------carte politiche------------
 		JPanel politics=pcp.createCard();
 		JScrollPane scrollPolitics=new JScrollPane(politics);
-		System.out.println(nobilityLenght/2);
 		scrollPolitics.setPreferredSize(new Dimension(nobilityLenght/2, 100));
 		scrollPolitics.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPolitics.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);

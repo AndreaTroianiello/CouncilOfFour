@@ -101,7 +101,7 @@ public class CityPanel{
 		//----------bonus label----------
 		if(!c.getToken().isEmpty()){
 			BufferedImage imgCityBonus=getImg("cityBonus/"+ms.cityBonus(c));//lettura immagine	
-			double width= ((double) 2/50)*lung;
+			double width= (2.0/50)*lung;
 			double height=  ((double) imgCityBonus.getHeight()/imgCityBonus.getWidth())*width;
 			Image myim=imgCityBonus.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);//ridimensionamento immagine
 
@@ -159,7 +159,7 @@ public class CityPanel{
 
 		if(c.equals(k.getCity()))
 			loggerArea.append("\n  King city");
-		else
+		if(!c.getToken().isEmpty())
 			loggerArea.append("\n  Bonus: "+ms.cityBonus(c));
 
 		loggerArea.append("\n  Tipo: "+c.getType());

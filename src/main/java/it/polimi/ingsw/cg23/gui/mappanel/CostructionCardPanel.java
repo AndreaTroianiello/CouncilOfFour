@@ -37,7 +37,7 @@ public class CostructionCardPanel {
 	 */
 	public CostructionCardPanel(JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -71,7 +71,7 @@ public class CostructionCardPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(defaultCostruction, lim);
 		panel.add(defaultCostruction);//aggiunta della label al panel
-		
+
 		//carte costruzione regione
 		List<BusinessPermitTile> bpt=reg.getDeck().getShowedDeck();
 
@@ -105,13 +105,13 @@ public class CostructionCardPanel {
 				public void mouseClicked(MouseEvent e) {
 					writeArea(bpt.get(k));}
 			});
-		
+
 			panel.add(costructionCard);//aggiunta della label al panel
 		}
 
 		return panel;
 	}
-	
+
 	/**
 	 * print the costruction card avaiable for the player
 	 * @param p, the player
@@ -125,9 +125,9 @@ public class CostructionCardPanel {
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
-		
+
 		int q=0;//posizione griglia
-		
+
 		//carte costruzione disponibili
 		List<BusinessPermitTile> bpt=p.getAvailableBusinessPermits();
 
@@ -162,7 +162,7 @@ public class CostructionCardPanel {
 				public void mouseClicked(MouseEvent e) {
 					writeArea(bpt.get(k));}
 			});
-		
+
 			panel.add(costructionCard);//aggiunta della label al panel
 		}
 
@@ -199,7 +199,7 @@ public class CostructionCardPanel {
 		}
 		return nome.toUpperCase();
 	}
-	
+
 	/**
 	 * write the bpt info on the logger area
 	 * @param bpt, the business permit card
@@ -214,12 +214,13 @@ public class CostructionCardPanel {
 		loggerArea.append(id.substring(0, id.length()-2));
 		loggerArea.append("\n  Bonus: ");
 		String bonus= "";
+
 		for(int i=0; i<bpt.getBonusTile().size(); i++){
 			bonus=bonus.concat(bpt.getBonusTile().get(i).getName()+", ");
 		}
 		loggerArea.append(bonus.substring(0, bonus.length()-2));
 	}
-	
+
 	/**
 	 * read the costruction image card
 	 * @param bpt, the business permit card
