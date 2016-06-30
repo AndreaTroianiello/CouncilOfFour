@@ -18,6 +18,11 @@ import it.polimi.ingsw.cg23.gui.mappanel.CostructionCardPanel;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
+/**
+ * create the used business permit tiles frame
+ * @author viga94_
+ *
+ */
 public class CardFrame extends JFrame {
 
 	/**
@@ -25,10 +30,11 @@ public class CardFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 3779106307996531668L;
 	private JPanel contentPane;
-	private CostructionCardPanel ccp;
+	private transient CostructionCardPanel ccp;
 
 	/**
 	 * Create the frame.
+	 * @param loggerArea the area to read on
 	 */
 	public CardFrame(JTextArea loggerArea) {
 		this.ccp=new CostructionCardPanel(loggerArea);
@@ -43,6 +49,10 @@ public class CardFrame extends JFrame {
 
 	}
 
+	/**
+	 * create the used costruction cards for the player
+	 * @param p, the player
+	 */
 	public void createCard(Player p){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
@@ -53,11 +63,10 @@ public class CardFrame extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		List<BusinessPermitTile> bpt=p.getUsedBusinessPermit();//carte permesso costrucione giocatore usate
-
 		if(bpt.isEmpty()){//non ci sono carte permesso usate
-System.out.println("ok");
+
 			//----------no card----------
-			JLabel noCardLabel = new JLabel("Nessuna carta premesso usata");//aggiungo l'immagine alla label
+			JLabel noCardLabel = new JLabel("No used business permit tiles");//aggiungo l'immagine alla label
 			noCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
 			lim.gridx = 0;//posizione componenti nella griglia
 			lim.gridy = 0;
@@ -71,7 +80,7 @@ System.out.println("ok");
 		}else{//ci sono carte permesso usate
 
 			//----------costruction card usate disponibili----------
-			JLabel yesCardLabel = new JLabel("Nessuna carta premesso usata");//aggiungo l'immagine alla label
+			JLabel yesCardLabel = new JLabel("Used business permit tiles");//aggiungo l'immagine alla label
 			yesCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
 			lim.gridx = 0;//posizione componenti nella griglia
 			lim.gridy = 0;
@@ -83,16 +92,15 @@ System.out.println("ok");
 			panel.add(yesCardLabel);
 
 			int q=0;//posizione griglia orizzonatale (larghezza)
-			int r=0;//posizione griglia verticale (altezza)
+			int r=1;//posizione griglia verticale (altezza)
 			for(int i=0; i<bpt.size(); i++){
 				JLabel costructionCard = ccp.oldCostruction(bpt.get(i));//aggiungo l'immagine alla label
-				costructionCard.setFont(new Font("Calibre", Font.PLAIN, 20));
 				lim.gridx = q;//posizione componenti nella griglia
 				lim.gridy = r;
 				lim.weightx=1;//espansione in verticale e orizzontale
 				lim.weighty=1;
 				lim.gridheight=1;//grandezza del riquadro
-				lim.gridwidth=5;
+				lim.gridwidth=1;
 				layout.setConstraints(costructionCard, lim);
 				panel.add(costructionCard);
 				final int k=i;
