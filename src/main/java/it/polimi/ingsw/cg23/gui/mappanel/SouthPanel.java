@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -93,8 +92,7 @@ public class SouthPanel extends JPanel {
 
 		//----------------nobility track------------
 		panelNobility.setName("Nobility panel");
-		//double lung=3*(Toolkit.getDefaultToolkit().getScreenSize().width-10.0)/4;//per auto scroll
-		System.out.println(new NobilityTrackPanel(model, loggerArea).nobilityLenght());
+		int nobilityLenght=new NobilityTrackPanel(model, loggerArea).nobilityLenght();//lunghezza del nobility track
 		
 		panelNobility.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
@@ -120,7 +118,8 @@ public class SouthPanel extends JPanel {
 		//----------carte politiche------------
 		JPanel politics=pcp.createCard();
 		JScrollPane scrollPolitics=new JScrollPane(politics);
-		scrollPolitics.setPreferredSize(new Dimension(250, 100));
+		System.out.println(nobilityLenght/2);
+		scrollPolitics.setPreferredSize(new Dimension(nobilityLenght/2, 100));
 		scrollPolitics.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPolitics.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		politics.setName("Carte politiche");
@@ -139,7 +138,7 @@ public class SouthPanel extends JPanel {
 		JScrollPane scrollCostruction=new JScrollPane(avaiableCostrucion);
 		scrollCostruction.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollCostruction.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		scrollCostruction.setPreferredSize(new Dimension(250, 80));
+		scrollCostruction.setPreferredSize(new Dimension(nobilityLenght/2, 80));
 		avaiableCostrucion.setName("costruzione disponibile");
 		avaiableCostrucion.setBackground(new Color(151, 111, 51));
 		lim.gridx = 1;//posizione componenti nella griglia
