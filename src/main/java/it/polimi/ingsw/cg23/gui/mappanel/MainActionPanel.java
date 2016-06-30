@@ -19,7 +19,6 @@ import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
 import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumTile;
 import it.polimi.ingsw.cg23.server.model.action.BuyPermitTile;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
-import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 
 
 /**
