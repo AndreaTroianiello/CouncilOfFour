@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.HomeFrame;
 import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
-import it.polimi.ingsw.cg23.gui.mappanel.MarketPanel;
+import it.polimi.ingsw.cg23.gui.mappanel.MarketPanelOLD;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.change.Change;

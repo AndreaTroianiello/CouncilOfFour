@@ -13,9 +13,7 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 
-import it.polimi.ingsw.cg23.gui.mapframe.FrameMap;
-
-public class MarketPanel extends JPanel {
+public class MarketPanelOLD extends JPanel {
 	private static final long serialVersionUID = 4711720372137445086L;
 	private JLabel labelMarket;
     private JScrollPane scrollMarket;
@@ -24,7 +22,7 @@ public class MarketPanel extends JPanel {
     private JButton buttonSell;
 	private MapPanel map;
    
-	public MarketPanel(MapPanel map) {
+	public MarketPanelOLD(MapPanel map) {
 		this.map=map;
         initComponents();
     }

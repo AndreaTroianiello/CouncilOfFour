@@ -25,7 +25,7 @@ public class InfoPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -4105281946320933564L;
-	private JTextArea textArea;
+	private JTextArea loggerArea;
 	private transient ControllerGUI controller;
 
 
@@ -34,8 +34,8 @@ public class InfoPanel extends JPanel {
 	 * @param textArea, the area to read on
 	 * @param controller
 	 */
-	public InfoPanel(JTextArea textArea, ControllerGUI controller) {
-		this.textArea=textArea;
+	public InfoPanel(JTextArea loggerArea, ControllerGUI controller) {
+		this.loggerArea=loggerArea;
 		this.controller=controller;
 		init();
 	}
@@ -57,7 +57,7 @@ public class InfoPanel extends JPanel {
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=3;
+		lim.gridwidth=4;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
@@ -87,8 +87,8 @@ public class InfoPanel extends JPanel {
 			}
 		});
 
-		JButton button2 = new JButton("Clear");
-		button2.setName("Clear");
+		JButton button2 = new JButton("Clear log");
+		button2.setName("Clearl");
 		button1.setToolTipText("Cancella la log area");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -101,17 +101,36 @@ public class InfoPanel extends JPanel {
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textArea.append(button2.getName());
+				loggerArea.append(button2.getName());
 				//AZIONI AZIONE clear
-				textArea.setText("Logger cancellata");
+				loggerArea.setText("Logger cancellata");
 
 			}
 		});
 
+		JButton button3 = new JButton("Clear selec");
+		button3.setName("clear selected");
+		button3.setToolTipText("Clear the selected");
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		layout.setConstraints(button3, lim);
+		add(button3);//aggiunta bottone al layer panel
+		button3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loggerArea.append("\n"+button3.getName());			
+			}
+		});
+		
 		JButton button4 = new JButton("End Turn");
 		button4.setName("End Turn");
 		button4.setToolTipText("Finisci il turno");
-		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
