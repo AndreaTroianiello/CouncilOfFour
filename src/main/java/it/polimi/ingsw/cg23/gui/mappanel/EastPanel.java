@@ -36,7 +36,7 @@ public class EastPanel extends JPanel {
 	private JTextArea loggerArea;
 	private JTextField write;
 	private ControllerGUI controller;
-	
+
 	/**
 	 * 
 	 * @param loggerArea, the area to read on
@@ -54,7 +54,7 @@ public class EastPanel extends JPanel {
 	private void init(){
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
-		
+
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
@@ -96,8 +96,8 @@ public class EastPanel extends JPanel {
 			{
 				write.setText("");
 			}
-				});
-		
+		});
+
 		write.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {/**empty*/}
@@ -106,12 +106,7 @@ public class EastPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER){
-					if(("").equals(write.getText())){
-						JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
-					}else{
-						controller.updateController(new SendMessage(write.getText(), controller.getModel().getPlayer()));
-						write.setText("");
-					}
+					sendMessage();
 				}
 			}
 		});
@@ -129,13 +124,7 @@ public class EastPanel extends JPanel {
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if("".equals(write.getText())||"Scrivi il testo che vuoi inviare".equals(write.getText())){
-					JOptionPane.showMessageDialog(null, "Devi scrivere del testo!");
-				}else{
-					loggerArea.append("\nTesto inviato: "+write.getText());
-					controller.updateController(new SendMessage(write.getText(),controller.getModel().getPlayer()));
-					write.setText("");
-				}
+				sendMessage();
 			}
 		});
 
@@ -150,5 +139,15 @@ public class EastPanel extends JPanel {
 		lim.fill=GridBagConstraints.HORIZONTAL;
 		layout.setConstraints(buttonPanel, lim); //Associazione
 		add(buttonPanel); //Inserimento
+	}
+
+	private void sendMessage(){
+		if(("").equals(write.getText())||"Write your message.".equals(write.getText())){
+			JOptionPane.showMessageDialog(null, "Invalid text.");
+		}else{
+			controller.updateController(new SendMessage(write.getText(), controller.getModel().getPlayer()));
+			write.setText("");
+		}
+
 	}
 }
