@@ -10,11 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
-import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 
 /**
  * create the info button of the gui
@@ -28,21 +26,20 @@ public class InfoPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -4105281946320933564L;
 	private JTextArea textArea;
-	private JTextField write;
 	private transient ControllerGUI controller;
 
 
 	/**
 	 * 
 	 * @param textArea, the area to read on
-	 * @param write, the area to write on
+	 * @param controller
 	 */
-	public InfoPanel(JTextArea textArea, JTextField write, ControllerGUI controller) {
+	public InfoPanel(JTextArea textArea, ControllerGUI controller) {
 		this.textArea=textArea;
-		this.write=write;
 		this.controller=controller;
 		init();
 	}
+
 	/**
 	 * create the info action
 	 * @return, the info panel
@@ -123,8 +120,8 @@ public class InfoPanel extends JPanel {
 		button4.setToolTipText("Finisci il turno");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(button4, lim);

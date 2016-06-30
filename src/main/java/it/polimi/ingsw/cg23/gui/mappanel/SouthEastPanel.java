@@ -64,7 +64,9 @@ public class SouthEastPanel extends JPanel {
 		//----------------statistiche player------------
 		JButton punteggi=new JButton("Points");
 		punteggi.setBackground(new Color(154, 205, 50));
-		punteggi.setOpaque(true);
+		punteggi.setOpaque(false);
+		punteggi.setContentAreaFilled(false);//contenuto bottone trasparente
+		punteggi.setBorderPainted(false);//bordi bottone trasparente
 		punteggi.setToolTipText("View your points");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
@@ -95,6 +97,9 @@ public class SouthEastPanel extends JPanel {
 
 		//----------------bonus panel------------
 		JButton bonusPanel=new JButton("Bonus");
+		bonusPanel.setOpaque(false);
+		bonusPanel.setContentAreaFilled(false);//contenuto bottone trasparente
+		bonusPanel.setBorderPainted(false);//bordi bottone trasparente
 		bonusPanel.setBackground(new Color(154, 205, 50));
 		bonusPanel.setToolTipText("View the game bonus");
 		lim.gridx = 1;//posizione componenti nella griglia
@@ -127,7 +132,9 @@ public class SouthEastPanel extends JPanel {
 		//----------------costruction card usate------------
 		JButton card=new JButton("Card");
 		card.setBackground(new Color(154, 205, 50));
-		card.setOpaque(true);
+		card.setOpaque(false);
+		card.setContentAreaFilled(false);//contenuto bottone trasparente
+		card.setBorderPainted(false);//bordi bottone trasparente
 		card.setToolTipText("View your old Costruction card");
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;

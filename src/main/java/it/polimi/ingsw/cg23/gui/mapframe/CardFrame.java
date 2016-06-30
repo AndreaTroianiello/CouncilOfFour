@@ -55,7 +55,7 @@ public class CardFrame extends JFrame {
 		List<BusinessPermitTile> bpt=p.getUsedBusinessPermit();//carte permesso costrucione giocatore usate
 
 		if(bpt.isEmpty()){//non ci sono carte permesso usate
-
+System.out.println("ok");
 			//----------no card----------
 			JLabel noCardLabel = new JLabel("Nessuna carta premesso usata");//aggiungo l'immagine alla label
 			noCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));

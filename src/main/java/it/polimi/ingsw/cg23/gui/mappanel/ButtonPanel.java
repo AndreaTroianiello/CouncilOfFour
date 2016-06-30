@@ -31,9 +31,9 @@ public class ButtonPanel extends JPanel {
 	 * @param controller
 	 */
 	public ButtonPanel(JTextArea textArea, JTextField write, ControllerGUI controller) {
-		this.mainActionPanel=new MainActionPanel(textArea,controller);
-		this.secActionPanel=new SecondaryActionPanel(textArea,controller);
-		this.infoPanel=new InfoPanel(textArea, write,controller);
+		this.mainActionPanel=new MainActionPanel(textArea, controller);
+		this.secActionPanel=new SecondaryActionPanel(textArea, controller);
+		this.infoPanel=new InfoPanel(textArea, controller);
 		init();
 	}
 
@@ -52,6 +52,8 @@ public class ButtonPanel extends JPanel {
 		mainActionPanel.setName("label azioni principali");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
+		lim.weightx=1;//spazio occupato
+		lim.weightx=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(mainActionPanel, lim);
@@ -61,6 +63,8 @@ public class ButtonPanel extends JPanel {
 		secActionPanel.setName("label azioni secondarie");
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 0;
+		lim.weightx=1;//spazio occupato
+		lim.weightx=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(secActionPanel, lim);

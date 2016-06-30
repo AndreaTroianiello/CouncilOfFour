@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
@@ -68,7 +69,7 @@ public class SouthPanel extends JPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			lim.weightx=1;//espansione in verticale e orizzontale
-			lim.weighty=0;
+			lim.weighty=1;
 			layout.setConstraints(costruzione, lim);
 			add(costruzione);
 		}
@@ -84,7 +85,7 @@ public class SouthPanel extends JPanel {
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
 			lim.weightx=1;//espansione in verticale e orizzontale
-			lim.weighty=0;
+			lim.weighty=1;
 			layout.setConstraints(balcone, lim);
 			add(balcone);
 		}
@@ -105,8 +106,8 @@ public class SouthPanel extends JPanel {
 		southEastPanel.setBackground(new Color(154, 205, 50));
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(southEastPanel, lim);
@@ -119,8 +120,8 @@ public class SouthPanel extends JPanel {
 		politics.setBackground(new Color(154, 205, 50));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(scrollPolitics, lim);
@@ -129,12 +130,15 @@ public class SouthPanel extends JPanel {
 		//----------my carte costruzione------------
 		JPanel avaiableCostrucion=ccp.myCostructionCard(model.getPlayer());
 		JScrollPane scrollCostruction=new JScrollPane(avaiableCostrucion);
+		scrollCostruction.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollCostruction.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		scrollCostruction.setPreferredSize(new Dimension(200, 80));
 		avaiableCostrucion.setName("costruzione disponibile");
 		avaiableCostrucion.setBackground(new Color(154, 205, 50));
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 3;
-		lim.weightx=0;//espansione in verticale e orizzontale
-		lim.weighty=0;
+		lim.weightx=1;//espansione in verticale e orizzontale
+		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		layout.setConstraints(scrollCostruction, lim);

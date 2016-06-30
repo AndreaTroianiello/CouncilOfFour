@@ -118,6 +118,8 @@ public class FrameMap extends JFrame {
 
 		//----------pannello sud (informazioni)----------
 		JScrollPane scroll=new JScrollPane(southPanel);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		southPanel.setName("south panel");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
