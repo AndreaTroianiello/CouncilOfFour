@@ -76,7 +76,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 			for(BusinessPermitTile bpt : realRegion.getDeck().getShowedDeck()){
 				board.notifyObserver(new BusinessPermitTileChange(bpt));
 			}
-			this.notifyObserver(new BoardChange(board));
+			board.notifyObserver(new BoardChange(board));
 			return true;
 		}
 		this.notifyObserver(new InfoChange("Region not found!"));
