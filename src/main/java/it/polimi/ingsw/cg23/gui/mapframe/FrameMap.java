@@ -162,7 +162,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel models=new ClientModel();
 					models.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map8.xml",models.getModel()).startPartita();
+					new Avvio("map1.xml",models.getModel()).startPartita();
 					Player p=new Player("user1",models.getModel().getNobilityTrack());
 					models.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
@@ -177,7 +177,7 @@ public class FrameMap extends JFrame {
 							new PoliticCard(Color.WHITE, false),
 							new PoliticCard(new ColorManager().getColor("Violet"), false));
 					models.getPlayer().getHand().addAll(list);
-					models.getModel().getKing().setCity(models.getModel().getRegions().get(0).getCities().get(0));
+					models.getModel().getKing().setCity(models.getModel().getRegions().get(1).getCities().get(1));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
