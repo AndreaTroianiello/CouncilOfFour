@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.HomeFrame;
 import it.polimi.ingsw.cg23.gui.mappanel.EastPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.MapPanel;
-import it.polimi.ingsw.cg23.gui.mappanel.MarketPanelOLD;
+import it.polimi.ingsw.cg23.gui.mappanel.MarketPanel;
 import it.polimi.ingsw.cg23.gui.mappanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
@@ -113,10 +113,10 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-		/*mapPanel.setVisible(false);
-		
+		/*
 		//----------pannello nord (market)----------
-		MarketPanel marketPanel=new MarketPanel(mapPanel);
+		JPanel marketPanel=new MarketPanel().market(model.getPlayer(),loggerArea);
+		marketPanel.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -126,8 +126,8 @@ public class FrameMap extends JFrame {
 		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(marketPanel, lim);
-		contentPane.add(marketPanel);*/
-
+		contentPane.add(marketPanel);
+*/
 		//----------pannello sud (informazioni)----------
 		JScrollPane scroll=new JScrollPane(southPanel);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

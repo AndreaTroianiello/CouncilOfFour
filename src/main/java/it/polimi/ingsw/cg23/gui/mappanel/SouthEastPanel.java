@@ -32,7 +32,6 @@ public class SouthEastPanel extends JPanel {
 	private PlayerStatic stat;
 	private transient ClientModel model;
 	private CardFrame cf;
-	private ControllerGUI controller;
 
 	/**
 	 * Create the panel.
@@ -42,7 +41,6 @@ public class SouthEastPanel extends JPanel {
 	public SouthEastPanel(ControllerGUI controller, JTextArea loggerArea) {
 		this.cp=new CouncilPanel(loggerArea,controller);
 		this.stat=new PlayerStatic();
-		this.controller=controller;
 		this.model=controller.getModel();
 		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
 		this.cf=new CardFrame(loggerArea,controller);

@@ -141,6 +141,7 @@ public class InfoPanel extends JPanel {
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				loggerArea.append("\nEnd Turn");
 				//azione fine turno
 				controller.updateController(new EndTurn());
 			}

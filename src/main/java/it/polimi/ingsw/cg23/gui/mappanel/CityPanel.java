@@ -44,14 +44,15 @@ public class CityPanel{
 	 * @param loggerArea, the area area to read on
 	 */
 	public CityPanel(JTextArea loggerArea,ControllerGUI controller) {
-		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
+		
+		this.loggerArea=loggerArea;
 		this.ms=new MapSetting();
 		this.controller=controller;
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-
 	}
 
 	/**
