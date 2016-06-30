@@ -107,7 +107,7 @@ public class HomeFrame extends JFrame {
 	}
 
 	public void updateInfo(InfoChange info){
-		panelLogin.getLabelInfo2().setText(info.getInfo());
+		panelLogin.infoPopup(info.getInfo());
 	}
 
 }

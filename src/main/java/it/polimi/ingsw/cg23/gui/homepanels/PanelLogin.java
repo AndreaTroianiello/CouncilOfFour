@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.controller.action.CreationGame;
@@ -12,6 +13,7 @@ import it.polimi.ingsw.cg23.server.controller.action.CreationGame;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -43,7 +45,7 @@ public class PanelLogin extends JPanel {
 		labelInfo1=new JLabel();
 		labelLogin=new JLabel();
 		buttonLogin=new JButton();
-		labelInfo2=new JLabel();
+		labelInfo2=new JLabel(new ImageIcon("src/main/resources/images/loading.gif"));
 		fieldLogin=new JTextField();
 		comboMap=new JComboBox<>();
 		labelMap=new JLabel();
@@ -61,8 +63,7 @@ public class PanelLogin extends JPanel {
 			}
 		});
 
-		labelInfo2.setForeground(new Color(255, 215, 0));
-		labelInfo2.setText("");
+		labelInfo2.setVisible(false);
 
 		labelMap.setForeground(new Color(255, 215, 0));
 		labelMap.setText("Choose a map:");
@@ -128,8 +129,12 @@ public class PanelLogin extends JPanel {
 		controller.updateController(new CreationGame(fieldLogin.getText(),map));
 	}
 
-	public JLabel getLabelInfo2(){
-		return labelInfo2;
+	public void infoPopup(String message){
+		if(message.contains("player has been created.")){
+			labelInfo2.setVisible(true);
+			buttonLogin.setEnabled(false);
+		}
+		JOptionPane.showMessageDialog(null, message, "INFO", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
