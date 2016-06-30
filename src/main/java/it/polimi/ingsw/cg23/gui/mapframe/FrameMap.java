@@ -157,7 +157,12 @@ public class FrameMap extends JFrame {
 							new PoliticCard(null, true),
 							new PoliticCard(null, true),
 							new PoliticCard(Color.BLUE, false),
-							new PoliticCard(Color.PINK, false));
+							new PoliticCard(Color.PINK, false),
+							new PoliticCard(Color.PINK, false),
+							new PoliticCard(Color.PINK, false),
+							new PoliticCard(Color.BLACK, false),
+							new PoliticCard(Color.WHITE, false),
+							new PoliticCard(new ColorManager().getColor("Violet"), false));
 					models.getPlayer().getHand().addAll(list);
 					models.getModel().getKing().setCity(models.getModel().getRegions().get(0).getCities().get(0));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));

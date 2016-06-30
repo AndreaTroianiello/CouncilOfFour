@@ -68,7 +68,7 @@ public class CouncilPanel {
 			label1.setName("consigliere "+i);
 			label1.setToolTipText("Consigliere "+reg.getName()+" numero "+(i+1));
 			label1.setOpaque(true);
-			label1.setPreferredSize(new Dimension(60, 20));
+			label1.setPreferredSize(new Dimension(50, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
@@ -79,7 +79,7 @@ public class CouncilPanel {
 			panel.add(label1);//aggiunta della label al panel
 
 			JLabel label2 = new JLabel();//label per aggiungere spazio
-			label2.setPreferredSize(new Dimension(10, 20));
+			label2.setPreferredSize(new Dimension(5, 20));
 			lim.gridx = i*2+1;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
@@ -124,7 +124,7 @@ public class CouncilPanel {
 			label1.setName("consigliere "+i);
 			label1.setToolTipText("Consigliere king numero "+(i+1));
 			label1.setOpaque(true);
-			label1.setPreferredSize(new Dimension(60, 20));
+			label1.setPreferredSize(new Dimension(50, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
@@ -134,7 +134,7 @@ public class CouncilPanel {
 			panel.add(label1);//aggiunta della label al panel
 
 			JLabel label2 = new JLabel();//label per aggiungere spazio
-			label2.setPreferredSize(new Dimension(10, 20));
+			label2.setPreferredSize(new Dimension(5, 20));
 			lim.gridx = i*2+1;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
@@ -184,7 +184,7 @@ public class CouncilPanel {
 			String text="Consiglieri "+colorName+" disponibili: "+councillorNumber;
 			label1.setToolTipText(text);
 			label1.setOpaque(true);
-			label1.setPreferredSize(new Dimension(40, 20));
+			label1.setPreferredSize(new Dimension(35, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
@@ -195,7 +195,7 @@ public class CouncilPanel {
 			listener(label1, text);
 
 			JLabel label2 = new JLabel();//label per aggiungere spazio
-			label2.setPreferredSize(new Dimension(10, 20));
+			label2.setPreferredSize(new Dimension(5, 20));
 			lim.gridx = i*2+1;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro
