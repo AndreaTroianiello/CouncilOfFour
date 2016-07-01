@@ -147,12 +147,12 @@ public class SouthPanel extends JPanel {
 
 		//----------my carte costruzione------------
 		JPanel avaiableCostrucion=ccp.myCostructionCard(model.getPlayer());//creazione pannello carte costruzione disponibili
-		JScrollPane scrollCostruction=new JScrollPane(avaiableCostrucion);
+		JScrollPane scrollCostruction=new JScrollPane(avaiableCostrucion);//creazione scrollpane
 		scrollCostruction.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollCostruction.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		scrollCostruction.setPreferredSize(new Dimension(nobilityLenght/2, 80));
-		avaiableCostrucion.setName("costruzione disponibile");
-		avaiableCostrucion.setBackground(new Color(151, 111, 51));
+		scrollCostruction.setPreferredSize(new Dimension(nobilityLenght/2, 80));//dimensioni scrollpane
+		avaiableCostrucion.setName("costruzione disponibile");//nome scrollpane
+		avaiableCostrucion.setBackground(new Color(151, 111, 51));//colore sfondo scroll pane
 		
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 3;
@@ -161,8 +161,8 @@ public class SouthPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		
-		layout.setConstraints(scrollCostruction, lim);
-		add(scrollCostruction);
+		layout.setConstraints(scrollCostruction, lim);//applicazione layout allo scrollpane
+		add(scrollCostruction);//aggiunta scrollpane al pannello
 	}
 
 	/**

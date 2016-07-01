@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -48,6 +47,7 @@ public class PoliticCardPanel {
 		this.controller=controller;
 		this.p=controller.getModel().getPlayer();
 		this.loggerArea=loggerArea;
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -60,10 +60,9 @@ public class PoliticCardPanel {
 	public JPanel createCard(){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
-		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.setLayout(layout);
+		
 		GridBagConstraints lim = new GridBagConstraints(); 
-
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 

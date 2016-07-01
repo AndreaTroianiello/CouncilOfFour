@@ -35,8 +35,9 @@ public class CouncilPanel {
 	/**
 	 * Create the panel.
 	 * @param loggerArea the area to read on
+	 * @param controller, the controller gui
 	 */
-	public CouncilPanel(JTextArea loggerArea,ControllerGUI controller){
+	public CouncilPanel(JTextArea loggerArea, ControllerGUI controller){
 		this.loggerArea=loggerArea;
 		this.controller=controller;
 	}
@@ -47,53 +48,62 @@ public class CouncilPanel {
 	 * @return a panel with the balcone
 	 */
 	public JPanel regionBalcone(Region reg){
-		JPanel panel=new JPanel();
-		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
+		JPanel panel=new JPanel();//creazione di un nuovo pannello
+		GridBagLayout layout = new GridBagLayout();//creazione di un nuovo layout
+		panel.setLayout(layout);//applicazione del layout al pannello
 
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-		JLabel label0 = new JLabel("etichetta consiglieri");
-		label0.setForeground(new Color(255, 215, 0));
-		label0.setText(reg.getName()+" council");
+		//----------etichetta nome----------
+		JLabel label0 = new JLabel(reg.getName()+" council");//creazione etichetta consiglieri
+		label0.setForeground(new Color(255, 215, 0));//colore scritta etichetta
+		
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=8;
-		layout.setConstraints(label0, lim);
+		
+		layout.setConstraints(label0, lim);//applicazione del layouta alla label
 		panel.add(label0);//aggiunta della label al panel
 
-		List<Councillor> councillors=reg.getCouncil().getCouncillors();
+		//----------ciclo consiglieri----------
+		List<Councillor> councillors=reg.getCouncil().getCouncillors();//lista dei consiglieri della regione
 		for(int i=0; i<councillors.size(); i++){//scrorre i consiglieri
 
-			JLabel label1 = new JLabel();
+			//----------label consiglieri----------
+			JLabel label1 = new JLabel();//creazione etichetta consigliere
 			label1.setBackground(councillors.get(i).getColor());
 			label1.setName("consigliere "+i);
 			label1.setToolTipText("Councillors "+reg.getName()+" number "+(i+1));
 			label1.setOpaque(true);
 			label1.setPreferredSize(new Dimension(50, 20));
+			
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			layout.setConstraints(label1, lim);
+			
+			layout.setConstraints(label1, lim);//applicazione del layout alla label
 			panel.add(label1);//aggiunta della label al panel
 
+			//----------label spazio----------
 			JLabel label2 = new JLabel();//label per aggiungere spazio
-			label2.setPreferredSize(new Dimension(5, 20));
+			label2.setPreferredSize(new Dimension(5, 20));//dimensione label
+			
 			lim.gridx = i*2+1;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			layout.setConstraints(label2, lim);
+			
+			layout.setConstraints(label2, lim);//applicazione del layouta alla label
 			panel.add(label2);//aggiunta della label al panel
 		}
 
@@ -193,7 +203,7 @@ public class CouncilPanel {
 			String text="Consiglieri "+colorName+" disponibili: "+councillorNumber;
 			label1.setToolTipText(text);
 			label1.setOpaque(true);
-			label1.setPreferredSize(new Dimension(35, 20));
+			label1.setPreferredSize(new Dimension(40, 20));
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.gridheight=1;//grandezza del riquadro

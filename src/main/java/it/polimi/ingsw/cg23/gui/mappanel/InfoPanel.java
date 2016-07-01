@@ -37,6 +37,7 @@ public class InfoPanel extends JPanel {
 	public InfoPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
+
 		init();
 	}
 
@@ -126,7 +127,7 @@ public class InfoPanel extends JPanel {
 				loggerArea.append("\n"+button3.getName());			
 			}
 		});
-		
+
 		JButton button4 = new JButton("End Turn");
 		button4.setName("End Turn");
 		button4.setToolTipText("Finisci il turno");

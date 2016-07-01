@@ -80,7 +80,7 @@ public class EastPanel extends JPanel {
 		write.setEditable(true);//write area modificabile
 		write.setFont(new Font("Calibre", Font.PLAIN, 18));//font write area
 		write.setName("write area");//nome write area
-		write.setToolTipText("Write your message.");
+		write.setToolTipText("Write the message you want to send.");
 		write.setText("Write your message.");
 
 		lim.gridx = 0;//posizione componenti nella griglia
