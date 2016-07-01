@@ -126,7 +126,7 @@ public class InfoPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\n"+button3.getName());
 				controller.getSelectedElements().resetAll();
-				loggerArea.setText("Selections cleaned.");
+				loggerArea.append("Selections cleaned.");
 			}
 		});
 

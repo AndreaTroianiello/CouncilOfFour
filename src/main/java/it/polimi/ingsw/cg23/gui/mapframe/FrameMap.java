@@ -119,7 +119,7 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-		mapPanel.setVisible(false);
+		
 		
 		//----------pannello nord (market)----------
 		marketPanel=new MarketPanel(controller,loggerArea);
@@ -135,6 +135,7 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(marketPanel, lim);
 		contentPane.add(marketPanel);
+		marketPanel.setVisible(false);
 		
 		//----------pannello sud (informazioni)----------
 		JScrollPane scroll=new JScrollPane(southPanel);

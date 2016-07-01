@@ -108,7 +108,7 @@ public class MainActionPanel extends JPanel {
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button1.getName());
+				text.append("\n"+button2.getName());
 				//AZIONI AZIONE 2
 				SelectedElements elements=controller.getSelectedElements();
 				try{
@@ -134,11 +134,13 @@ public class MainActionPanel extends JPanel {
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button1.getName());
+				text.append("\n"+button3.getName());
 				//AZIONI AZIONE 3
 				SelectedElements elements=controller.getSelectedElements();
 				try{
-					controller.updateController(new BuyPermitTile(elements.getCards(), elements.getRegion(),elements.getTile()));
+					controller.updateController(new BuyPermitTile(elements.getCards(),
+												controller.getModel().findRegion(elements.getTile().getZone()),
+												elements.getTile()));
 					elements.resetAll();
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
@@ -160,7 +162,7 @@ public class MainActionPanel extends JPanel {
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button1.getName());
+				text.append("\n"+button4.getName());
 				//AZIONI AZIONE 4
 				SelectedElements elements=controller.getSelectedElements();
 				boolean king=elements.getRegion()==null;

@@ -21,6 +21,7 @@ import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 
 public class MarketPanel extends JPanel {
 
@@ -100,10 +101,13 @@ public class MarketPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\nSell button");
 				SelectedElements elements=controller.getSelectedElements();
-				if(elements.getCards().isEmpty()||elements.getTile()==null)
-					askAssistants(controller.getModel().getPlayer());
+				if(!elements.getCards().isEmpty())
+					new MarketDialog(controller, elements.getCards().get(0)).setVisible(true);
 				else
-					controller.updateController(new MarketSell(null, 0));
+					if(elements.getTile()!=null)
+						new MarketDialog(controller, elements.getTile()).setVisible(true);
+					else
+						new MarketDialog(controller, new AssistantsPool()).setVisible(true);
 			}
 		});
 
@@ -112,7 +116,7 @@ public class MarketPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\nBuy button");
 				controller.updateController(new MarketBuy(controller.getModel()
-											.findItem(""+table.getColumn(table.getSelectedRow()).getModelIndex()
+											.findItem(""+table.getSelectedRow()
 											)));
 			}
 		});
