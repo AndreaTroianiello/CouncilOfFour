@@ -104,7 +104,7 @@ public class InfoPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append(button2.getName());
 				//AZIONI AZIONE clear
-				loggerArea.setText("Logger cancellata");
+				loggerArea.setText("Logger cleaned.");
 
 			}
 		});
@@ -124,7 +124,9 @@ public class InfoPanel extends JPanel {
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loggerArea.append("\n"+button3.getName());			
+				loggerArea.append("\n"+button3.getName());
+				controller.getSelectedElements().resetAll();
+				loggerArea.setText("Selections cleaned.");
 			}
 		});
 
