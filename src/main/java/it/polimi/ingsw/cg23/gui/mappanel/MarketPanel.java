@@ -23,15 +23,16 @@ public class MarketPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4032301896451894064L;
-
+	private JTextArea loggerArea;
+	
 	/**
 	 * Create the panel.
 	 */
-	public MarketPanel() {
-
+	public MarketPanel(JTextArea loggerArea) {
+		this.loggerArea=loggerArea;
 	}
 
-	public JPanel market(Player p, JTextArea loggerArea){
+	public JPanel market(Player p){
 		JPanel panel=new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);

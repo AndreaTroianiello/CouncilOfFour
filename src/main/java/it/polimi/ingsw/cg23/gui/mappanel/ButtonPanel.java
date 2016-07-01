@@ -34,6 +34,7 @@ public class ButtonPanel extends JPanel {
 		this.mainActionPanel=new MainActionPanel(textArea, controller);
 		this.secActionPanel=new SecondaryActionPanel(textArea, controller);
 		this.infoPanel=new InfoPanel(textArea, controller);
+
 		init();
 	}
 
@@ -41,10 +42,10 @@ public class ButtonPanel extends JPanel {
 	 * create the button panel
 	 */
 	private void init(){
-		GridBagLayout layout = new GridBagLayout();
-		setLayout(layout);
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagLayout layout = new GridBagLayout();//creo un nuovo layout
+		setLayout(layout);//setto il layout al pannello
 
+		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
@@ -79,6 +80,6 @@ public class ButtonPanel extends JPanel {
 		layout.setConstraints(infoPanel, lim);
 		add(infoPanel);
 
-		setBackground(new Color(123,123,123));
+		setBackground(new Color(123,123,123));//setto lo sfondo del pannello
 	}
 }

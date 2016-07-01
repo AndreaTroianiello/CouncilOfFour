@@ -41,6 +41,8 @@ public class NobilityTrackPanel extends JPanel {
 	private final double lung;
 	private transient ClientModel model;
 	private double widthBox;
+	private NobilityTrack nt;
+	
 	/**
 	 * 
 	 * @param model, the model
@@ -50,8 +52,9 @@ public class NobilityTrackPanel extends JPanel {
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
 		this.model=model;
 		this.loggerArea=loggerArea;
+		this.nt=model.getModel().getNobilityTrack();
 		
-		widthBox= (9.0/16)*lung/21;
+		widthBox= (9.0/16)*lung/nt.getNobilityBoxes().size();
 		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
@@ -65,7 +68,6 @@ public class NobilityTrackPanel extends JPanel {
 	 * @return a panel with the nobility track
 	 */
 	private void init(){
-		NobilityTrack nt=model.getModel().getNobilityTrack();
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 

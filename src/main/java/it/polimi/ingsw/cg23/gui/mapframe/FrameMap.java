@@ -115,7 +115,7 @@ public class FrameMap extends JFrame {
 		contentPane.add(mapPanel);
 		/*
 		//----------pannello nord (market)----------
-		JPanel marketPanel=new MarketPanel().market(model.getPlayer(),loggerArea);
+		JPanel marketPanel=new MarketPanel(loggerArea).market(model.getPlayer(),loggerArea);
 		marketPanel.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -162,7 +162,7 @@ public class FrameMap extends JFrame {
 				try {
 					ClientModel models=new ClientModel();
 					models.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map1.xml",models.getModel()).startPartita();
+					new Avvio("map5.xml",models.getModel()).startPartita();
 					Player p=new Player("user1",models.getModel().getNobilityTrack());
 					models.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),

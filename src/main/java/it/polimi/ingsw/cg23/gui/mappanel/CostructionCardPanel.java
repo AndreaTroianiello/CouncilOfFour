@@ -43,6 +43,7 @@ public class CostructionCardPanel {
 	public CostructionCardPanel(JTextArea loggerArea,ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -114,7 +115,7 @@ public class CostructionCardPanel {
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						writeArea(bpt.get(k));
-					}
+				}
 			});
 
 
@@ -130,18 +131,16 @@ public class CostructionCardPanel {
 	 * @return a panel with the player's costruction card
 	 */
 	public JPanel myCostructionCard(Player p){
-		JPanel panel=new JPanel();
-		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
+		JPanel panel=new JPanel();//creazioni di un nuovo pannello
+		GridBagLayout layout = new GridBagLayout();//creazione di un nuovo layout
+		panel.setLayout(layout);//assegnazione del layout al pannello
 
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints();//definizione del layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.WEST;//posizione componenti nei riquadri
 
 		int q=0;//posizione griglia
-
-		//carte costruzione disponibili
-		List<BusinessPermitTile> bpt=p.getAvailableBusinessPermits();
+		List<BusinessPermitTile> bpt=p.getAvailableBusinessPermits();//carte costruzione disponibili
 
 		for(int i=0; i<bpt.size(); i++){//scorre le carte costruzione visibili
 
@@ -160,8 +159,9 @@ public class CostructionCardPanel {
 			lim.gridwidth=1;
 			layout.setConstraints(costructionCard, lim);
 			q++;
+			
 			final int k=i;
-			costructionCard.addMouseListener(new MouseListener() {
+			costructionCard.addMouseListener(new MouseListener() {//azioni pannello click mouse
 				@Override
 				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 				@Override
@@ -178,7 +178,7 @@ public class CostructionCardPanel {
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						writeArea(bpt.get(k));
-					}
+				}
 			});
 
 			panel.add(costructionCard);//aggiunta della label al panel
@@ -212,10 +212,12 @@ public class CostructionCardPanel {
 	 */
 	private String nameCostructor(List<Character> id){
 		String nome="";
-		for(int i=0; i<id.size(); i++){
-			nome=nome.concat(""+id.get(i));
+		
+		for(int i=0; i<id.size(); i++){//scorro il numero di city id di una carta costruzione
+			nome=nome.concat(Character.toString(id.get(i)));
 		}
-		return nome.toUpperCase();
+		
+		return nome.toUpperCase();//ritorno la stringa in maiuscolo
 	}
 
 	/**
@@ -223,20 +225,25 @@ public class CostructionCardPanel {
 	 * @param bpt, the business permit card
 	 */
 	public void writeArea(BusinessPermitTile bpt){
-		loggerArea.append("\nCarta costruzione "+bpt.getZone());
+		loggerArea.append("\nCarta costruzione "+bpt.getZone());//aggiungo alla loggerArea le informazioni della carta costrucione
 		loggerArea.append("\n  Citta': ");
 		String id = "";
-		for(int i=0; i<bpt.getCitiesId().size(); i++){
+		
+		for(int i=0; i<bpt.getCitiesId().size(); i++){//scorro gli id citta' della carta costrucione
 			id=id.concat(bpt.getCitiesId().get(i)+", ");
 		}
+		
 		loggerArea.append(id.substring(0, id.length()-2));
 		loggerArea.append("\n  Bonus: ");
-		String bonus= "";
 
-		for(int i=0; i<bpt.getBonusTile().size(); i++){
-			bonus=bonus.concat(bpt.getBonusTile().get(i).getName()+", ");
-		}
-		loggerArea.append(bonus.substring(0, bonus.length()-2));
+		if(!bpt.getBonusTile().isEmpty()){//nel caso ci siano bonus
+			String bonus= "";
+			for(int i=0; i<bpt.getBonusTile().size(); i++){
+				bonus=bonus.concat(bpt.getBonusTile().get(i).getName()+", ");
+			}
+			loggerArea.append(bonus.substring(0, bonus.length()-2));
+		}else//nel caso non ci siano bonus
+			loggerArea.append("0");
 	}
 
 

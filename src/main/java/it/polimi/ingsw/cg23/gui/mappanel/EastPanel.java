@@ -23,19 +23,16 @@ import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 
 /**
- * create the logger panel
+ * create the east panel
  * @author viga94_
  *
  */
 public class EastPanel extends JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7843525022282542659L;
 	private ButtonPanel buttonPanel;
 	private JTextArea loggerArea;
 	private JTextField write;
-	private ControllerGUI controller;
+	private transient ControllerGUI controller;
 
 	/**
 	 * 
@@ -48,49 +45,55 @@ public class EastPanel extends JPanel {
 		this.write=write;
 		this.buttonPanel=new ButtonPanel(loggerArea, write, controller);
 		this.controller=controller;
+
 		init();
 	}
 
 	private void init(){
-		GridBagLayout layout = new GridBagLayout();
-		setLayout(layout);
+		GridBagLayout layout = new GridBagLayout();//creazione di un nuovo layout
+		setLayout(layout);//applicazione del layout al pannello
 
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints();//settaggio layout
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------logger area----------
-		loggerArea.setName("textara");
+		loggerArea.setName("textara");//nome loggerArea
 		//loggerArea.setText("Welcome to Council of four " + controller.getModel().getPlayer().getUser());
 		loggerArea.setText("Welcome to Council of four (nome utente da attivare)");
-		loggerArea.setEditable(false);
-		loggerArea.setFont(new Font("Calibre", Font.PLAIN, 15));
-		Component scrollLogger1 = new JScrollPane(loggerArea);
-		scrollLogger1.setName("scrollPane text area logger");
+		loggerArea.setEditable(false);//loggerArea non modificabile
+		loggerArea.setFont(new Font("Calibre", Font.PLAIN, 15));//font loggerArea
+		Component scrollLogger1 = new JScrollPane(loggerArea);//scroller loggerArea
+		scrollLogger1.setName("scrollPane text area logger");//nome scroll
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=2;
-		layout.setConstraints(scrollLogger1, lim); //Associazione
-		add(scrollLogger1); //Inserimento*/
+
+		layout.setConstraints(scrollLogger1, lim);//applicazione del layout allo scroller
+		add(scrollLogger1);//aggiunta dello scroll al pannello
 
 		//----------write area----------
-		write.setEditable(true);
-		write.setFont(new Font("Calibre", Font.PLAIN, 18));
-		write.setName("write area");
+		write.setEditable(true);//write area modificabile
+		write.setFont(new Font("Calibre", Font.PLAIN, 18));//font write area
+		write.setName("write area");//nome write area
 		write.setToolTipText("Write your message.");
 		write.setText("Write your message.");
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(write, lim); //Associazione
-		add(write); //Inserimento
-		write.addMouseListener(new MouseAdapter(){//cancella il testo presente
+
+		layout.setConstraints(write, lim);//applicazione del layout alla write area
+		add(write);//aggiunta write area al pannello
+
+		write.addMouseListener(new MouseAdapter(){//cancella il testo presente cliccando con il mouse
 			@Override
 			public void mouseClicked(MouseEvent me)
 			{
@@ -98,11 +101,11 @@ public class EastPanel extends JPanel {
 			}
 		});
 
-		write.addKeyListener(new KeyListener() {
+		write.addKeyListener(new KeyListener() {//aggiunta tasto invio
 			@Override
-			public void keyTyped(KeyEvent e) {/**empty*/}
+			public void keyTyped(KeyEvent e) {/**empty, not erasable*/}
 			@Override
-			public void keyReleased(KeyEvent e) {/**empty*/}
+			public void keyReleased(KeyEvent e) {/**empty, not erasable*/}
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER){
@@ -110,26 +113,31 @@ public class EastPanel extends JPanel {
 				}
 			}
 		});
-		JButton button3=new JButton("Send");
-		button3.setName("Send");
+
+		//----------send button----------
+		JButton button3=new JButton("Send");//creazione di un nuovo bottone
+		button3.setName("Send");//nome del bottone
 		button3.setToolTipText("Send the message");
+
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
-		layout.setConstraints(button3, lim); //Associazione
-		add(button3); //Inserimento
-		button3.addActionListener(new ActionListener() {
+
+		layout.setConstraints(button3, lim); //applicazione del layout al bottone
+		add(button3);//aggiunta del bottone al pannello
+
+		button3.addActionListener(new ActionListener() {//azioni bottone
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sendMessage();
 			}
 		});
 
-		//----------button----------
-		buttonPanel.setName("button panel");
+		//----------button panel----------
+		buttonPanel.setName("button panel");//nome del button panel
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -137,10 +145,14 @@ public class EastPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
 		lim.fill=GridBagConstraints.HORIZONTAL;
-		layout.setConstraints(buttonPanel, lim); //Associazione
-		add(buttonPanel); //Inserimento
+
+		layout.setConstraints(buttonPanel, lim);//applicazione del layout al button panel
+		add(buttonPanel);//aggiunta button panel al panel
 	}
 
+	/**
+	 * send the message write in the write area
+	 */
 	private void sendMessage(){
 		if(("").equals(write.getText())||"Write your message.".equals(write.getText())){
 			JOptionPane.showMessageDialog(null, "Invalid text.");

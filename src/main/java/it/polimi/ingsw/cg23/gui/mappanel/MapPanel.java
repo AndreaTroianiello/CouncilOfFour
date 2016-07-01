@@ -45,7 +45,7 @@ public class MapPanel extends JPanel {
 	private final double lung;
 	private JTextArea loggerArea;
 	private transient ClientModel model;
-	private ControllerGUI controller;
+	private transient ControllerGUI controller;
 
 	/**
 	 * @param model
