@@ -81,10 +81,9 @@ public class EastPanel extends JPanel {
 		write.setName("write area");//nome write area
 		write.setToolTipText("Write the message you want to send.");
 		write.setText("Write your message.");
-
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
