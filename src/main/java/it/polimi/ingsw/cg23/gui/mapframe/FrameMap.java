@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,8 +31,10 @@ import it.polimi.ingsw.cg23.server.controller.Avvio;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
@@ -54,6 +57,7 @@ public class FrameMap extends JFrame {
 	private EastPanel eastPanel;
 	private MapPanel mapPanel;
 	private SouthPanel southPanel;
+	private MarketPanel marketPanel;
 	private transient ControllerGUI controller;
 
 	/**
@@ -102,6 +106,8 @@ public class FrameMap extends JFrame {
 		layout.setConstraints(eastPanel, lim); //Associazione
 		contentPane.add(eastPanel); //Inserimento
 
+		
+
 		//----------pannello nord (mappa)----------
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -113,9 +119,10 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-		/*
+		
 		//----------pannello nord (market)----------
-		JPanel marketPanel=new MarketPanel(loggerArea).market(model.getPlayer(),loggerArea);
+		marketPanel=new MarketPanel(controller,loggerArea);
+		marketPanel.setVisible(false);
 		marketPanel.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -127,7 +134,7 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(marketPanel, lim);
 		contentPane.add(marketPanel);
-*/
+		
 		//----------pannello sud (informazioni)----------
 		JScrollPane scroll=new JScrollPane(southPanel);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -152,7 +159,12 @@ public class FrameMap extends JFrame {
 	
 	public void update(){
 		southPanel.update();
+		boolean value=controller.getModel().getModel().getStatus().getStatus().contains("MARKET");
+		marketPanel.setVisible(value);
+		mapPanel.setVisible(!value);
+		marketPanel.fillTable();
 		mapPanel.update();
+		
 	}
 	
 	public static void main(String[] args) {
@@ -200,12 +212,17 @@ public class FrameMap extends JFrame {
 					models.getModel().getRegions().get(1).setBonusUnavailable();
 					models.getModel().getTypes().get(2).setBonusUnavailable();
 					models.getModel().getBonusKing().runBonusKing(new Player("user",models.getModel().getNobilityTrack()));
+					models.getModel().getMarket().addItemToSell(new Item(new PoliticCard(null, true), p, 5));
+					models.getModel().getMarket().addItemToSell(new Item(new BusinessPermitTile(Arrays.asList('A','B'),"ciao"), p, 5));
+					AssistantsPool pool=new AssistantsPool();
+					pool.setAssistants(10);
+					models.getModel().getMarket().addItemToSell(new Item(pool, p, 15));
 					ControllerGUI controllers=new ControllerGUI(new HomeFrame());
 					controllers.setModel(models);
 					FrameMap frame = new FrameMap(controllers, models);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					logger.error("errore nel fame map", e);
+					logger.error("errore nel frame map", e);
 				}
 			}
 		});

@@ -59,8 +59,7 @@ public class EastPanel extends JPanel {
 
 		//----------logger area----------
 		loggerArea.setName("textara");//nome loggerArea
-		//loggerArea.setText("Welcome to Council of four " + controller.getModel().getPlayer().getUser());
-		loggerArea.setText("Welcome to Council of four (nome utente da attivare)");
+		loggerArea.setText("Welcome to Council of four " + controller.getModel().getPlayer().getUser());
 		loggerArea.setEditable(false);//loggerArea non modificabile
 		loggerArea.setFont(new Font("Calibre", Font.PLAIN, 15));//font loggerArea
 		Component scrollLogger1 = new JScrollPane(loggerArea);//scroller loggerArea

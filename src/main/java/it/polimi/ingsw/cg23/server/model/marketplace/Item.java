@@ -55,7 +55,7 @@ public class Item implements Serializable {
 	public Player getPlayer() {
 		return player;
 	}
-
+	
 	/**
 	 * It generates a string formed by the most significant statistics of the Item.
 	 * @return string
