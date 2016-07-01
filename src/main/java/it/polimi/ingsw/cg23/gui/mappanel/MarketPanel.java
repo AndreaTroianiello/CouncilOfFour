@@ -37,6 +37,7 @@ public class MarketPanel extends JPanel {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
 		this.tableCreator=new Table(controller.getModel());
+		
 		init();
 	}
 
