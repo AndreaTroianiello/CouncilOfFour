@@ -27,8 +27,8 @@ public class MarketPanel extends JPanel {
 	private ControllerGUI controller;
 	private JTable fakeTable;
 	private Table tableCreator;
-	private final double lung;
-	private final double alt;
+	private final int lung;
+	//private final double alt;
 	
 	/**
 	 * Create the panel.
@@ -38,8 +38,8 @@ public class MarketPanel extends JPanel {
 		this.controller=controller;
 		this.tableCreator=new Table(controller.getModel());
 		
-		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
-		alt=Toolkit.getDefaultToolkit().getScreenSize().height-50;//altezza-50
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width;//lughezza dello schermo meno 10
+		//alt=Toolkit.getDefaultToolkit().getScreenSize().height-50;//altezza-50
 		
 		init();
 	}
@@ -54,8 +54,8 @@ public class MarketPanel extends JPanel {
 
 		
 		double width= (3.0/4)*lung;
-		double height=(3.0/4)*alt;
-		setSize(new Dimension((int)width, (int)height));
+		//double height=(3.0/4)*alt;
+		//setSize(new Dimension((int)width, (int)height));
 		
 		//----------etichetta market----------
 		JLabel marketLabel=new JLabel("Market");
@@ -70,7 +70,7 @@ public class MarketPanel extends JPanel {
 		add(marketLabel);
 
 		//----------tabella finta----------
-		JLabel lab=new JLabel("                              ");
+		JLabel lab=new JLabel(addSpace(lung/100));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -98,7 +98,8 @@ public class MarketPanel extends JPanel {
 		add(scrollTable);
 
 		//----------tabella finta----------
-		JLabel lab2=new JLabel("                              ");
+		JLabel lab2=new JLabel(addSpace(lung/100));
+		System.out.println(lung/100);
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -158,5 +159,15 @@ public class MarketPanel extends JPanel {
 	
 	public void fillTable(){
 		tableCreator.fillTable();
+	}
+	
+	private String addSpace(int s){
+		String space="";
+		
+		for(int i=0; i<s; i++){
+			space=space.concat(" ");
+		}
+		
+		return space;
 	}
 }
