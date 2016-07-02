@@ -1,12 +1,9 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -161,15 +158,14 @@ public class MarketDialog extends JFrame {
     }                    
 
 	private void buttonSellActionPerformed(ActionEvent evt) {                                           
-
 		try {
 			if(item instanceof AssistantsPool)
-				((AssistantsPool)item).setAssistants(boxAssistants.getSelectedIndex());
+				((AssistantsPool)item).setAssistants(boxAssistants.getSelectedIndex()+1);
 			controller.updateController(new MarketSell(item, Integer.parseInt(fieldCoins.getText())));
 		} catch (NegativeNumberException | NumberFormatException e) {
 			logger.error(e);
 		}
-
+		this.dispose();
 	}                                          
     private void buttonCancelActionPerformed(ActionEvent evt) {                                             
         this.dispose();

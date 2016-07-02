@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,7 +50,6 @@ public class FrameMap extends JFrame {
 	private JPanel contentPane;
 	private JTextArea loggerArea;
 	private JTextField write;
-	private transient ClientModel model;
 	private static Logger logger;
 
 	private EastPanel eastPanel;
@@ -64,13 +62,12 @@ public class FrameMap extends JFrame {
 	 * Create the frame.
 	 * @param controller
 	 */
-	public FrameMap(ControllerGUI controller, ClientModel model) {
+	public FrameMap(ControllerGUI controller) {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 		
 		this.controller=controller;
-		this.model=model;
 		loggerArea=new JTextArea();
 		write=new JTextField();
 		//pannel
@@ -222,7 +219,7 @@ public class FrameMap extends JFrame {
 					models.getModel().getMarket().addItemToSell(new Item(pool, p, 15));
 					ControllerGUI controllers=new ControllerGUI(new HomeFrame());
 					controllers.setModel(models);
-					FrameMap frame = new FrameMap(controllers, models);
+					FrameMap frame = new FrameMap(controllers);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					logger.error("errore nel frame map", e);

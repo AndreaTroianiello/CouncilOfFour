@@ -7,9 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,10 +15,7 @@ import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.SelectedElements;
-import it.polimi.ingsw.cg23.server.controller.action.Action;
-import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
-import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 
 public class MarketPanel extends JPanel {
@@ -124,26 +119,5 @@ public class MarketPanel extends JPanel {
 	
 	public void fillTable(){
 		tableCreator.fillTable();
-	}
-	private int askAssistants(Player p){
-
-		JComboBox<Integer> list=new JComboBox<Integer>();//combo box per gli assistenti
-		list.setToolTipText("Select the number of assistants you want to sell");
-
-		if(p.getAssistantsPool().getAssistants()==0){
-			list.addItem(0);
-		}else{
-			for(int i=0; i<p.getAssistantsPool().getAssistants(); i++){//riempio la combo box
-				list.addItem(i+1);
-			}
-		}
-		int option = JOptionPane.showOptionDialog(null, list, "Sell assistants", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-
-		if (option == JOptionPane.OK_OPTION){//azioni se viene schiacciato ok
-			return list.getSelectedIndex()+1;
-		}else
-			return 0;
-
-
 	}
 }

@@ -45,7 +45,7 @@ public class ControllerGUI implements ClientController {
 			map.update();
 		}else
 			if(clientModel.getModel()!=null){
-				map=new FrameMap(this,clientModel);
+				map=new FrameMap(this);
 				map.setVisible(true);
 				home.setVisible(false);
 		}
