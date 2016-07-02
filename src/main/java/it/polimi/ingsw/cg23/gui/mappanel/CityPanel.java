@@ -176,11 +176,13 @@ public class CityPanel{
 
 		loggerArea.append("\n  Tipo: "+c.getType());
 		loggerArea.append("\n  Empori: ");
-
 		if(c.getEmporiums().isEmpty())
 			loggerArea.append("0");
 		else{
 			for(int i=0; i<c.getEmporiums().size(); i++){//aggiunge tutti gli empori della citta'
+				if("NaN".equals(c.getEmporiums().get(i).getPlayer()))
+					loggerArea.append("");
+					else
 				loggerArea.append(c.getEmporiums().get(i).toString()+" ");
 			}
 		}

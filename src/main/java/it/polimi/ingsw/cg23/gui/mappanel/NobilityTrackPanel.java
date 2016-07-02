@@ -123,6 +123,7 @@ public class NobilityTrackPanel extends JPanel {
 
 	private void writeArea(JTextArea loggerArea, NobilityTrack nt, int k){
 		loggerArea.append("\nNobility Track "+k+"");
+		
 		if(nt.getNobilityBoxes().get(k).getBonus().toString()!="[]"){//bonus nullo
 			loggerArea.append("\n  Bonus: ");
 			String bonus="";
@@ -133,6 +134,7 @@ public class NobilityTrackPanel extends JPanel {
 
 			loggerArea.append(bonus.substring(0, bonus.length()-2));
 		}
+		
 		if(nt.getNobilityBoxes().get(k).getPlayers().toString()!="[]"){//nessun player
 			loggerArea.append("\n  Player: ");
 			String player="";

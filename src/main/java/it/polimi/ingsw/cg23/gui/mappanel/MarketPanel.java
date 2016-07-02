@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
@@ -51,11 +50,6 @@ public class MarketPanel extends JPanel {
 		GridBagConstraints lim = new GridBagConstraints();
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-
-		
-		double width= (3.0/4)*lung;
-		//double height=(3.0/4)*alt;
-		//setSize(new Dimension((int)width, (int)height));
 		
 		//----------etichetta market----------
 		JLabel marketLabel=new JLabel("Market");
@@ -70,7 +64,7 @@ public class MarketPanel extends JPanel {
 		add(marketLabel);
 
 		//----------tabella finta----------
-		JLabel lab=new JLabel(addSpace(lung/100));
+		JLabel lab=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -78,7 +72,6 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		//lab.setVisible(false);
 		layout.setConstraints(lab, lim);
 		add(lab);
 		
@@ -98,8 +91,7 @@ public class MarketPanel extends JPanel {
 		add(scrollTable);
 
 		//----------tabella finta----------
-		JLabel lab2=new JLabel(addSpace(lung/100));
-		System.out.println(lung/100);
+		JLabel lab2=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -107,7 +99,6 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		//lab2.setVisible(false);
 		layout.setConstraints(lab2, lim);
 		add(lab2);
 		
