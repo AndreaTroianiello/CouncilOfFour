@@ -166,7 +166,8 @@ public class FrameMap extends JFrame {
 		mapPanel.setVisible(!value);
 		marketPanel.fillTable();
 		mapPanel.update();
-		
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public static void main(String[] args) {
