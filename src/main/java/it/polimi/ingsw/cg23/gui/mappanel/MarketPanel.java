@@ -19,52 +19,60 @@ import it.polimi.ingsw.cg23.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 
+/**
+ * create the market panel
+ * @author viga94_
+ *
+ */
 public class MarketPanel extends JPanel {
 
 	private static final long serialVersionUID = 4032301896451894064L;
 	private JTextArea loggerArea;
-	private ControllerGUI controller;
-	private JTable fakeTable;
-	private Table tableCreator;
-	private final int lung;
-	//private final double alt;
-	
+	private transient ControllerGUI controller;
+	private JTable table;
+	private transient Table tableCreator;
+	private final int lung;//lunghezza finestra
+
 	/**
 	 * Create the panel.
+	 * @param controller, the controller
+	 * @param loggerArea, the area to read on
 	 */
-	public MarketPanel(ControllerGUI controller,JTextArea loggerArea) {
+	public MarketPanel(ControllerGUI controller, JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
 		this.tableCreator=new Table(controller.getModel());
-		
-		lung=Toolkit.getDefaultToolkit().getScreenSize().width;//lughezza dello schermo meno 10
-		//alt=Toolkit.getDefaultToolkit().getScreenSize().height-50;//altezza-50
-		
+
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width;//lughezza dello schermo
+
 		init();
 	}
 
+	/**
+	 * create the market components
+	 */
 	private void init(){
-		GridBagLayout layout = new GridBagLayout();
+		GridBagLayout layout = new GridBagLayout();//nuovo layout
 		setLayout(layout);
 
-		GridBagConstraints lim = new GridBagConstraints();
+		GridBagConstraints lim = new GridBagConstraints();//settaggio layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-		
+
 		//----------etichetta market----------
-		JLabel marketLabel=new JLabel("Market");
-		marketLabel.setForeground(new Color(255, 215, 0));
+		JLabel marketLabel=new JLabel("Market");//etichetta scritta
+		marketLabel.setForeground(new Color(255, 215, 0));//colore scritta
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
-		layout.setConstraints(marketLabel, lim);
-		add(marketLabel);
+		layout.setConstraints(marketLabel, lim);//applicazione del layout alla label
+		add(marketLabel);//aggiunta della label al panel
 
 		//----------tabella finta----------
-		JLabel lab=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
+		JLabel spaceLabel1=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -72,12 +80,12 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(lab, lim);
-		add(lab);
-		
-		
+		layout.setConstraints(spaceLabel1, lim);//applicazione del layout alla label
+		add(spaceLabel1);//aggiunta della label al panel
+
+
 		//----------tabella----------
-		fakeTable=tableCreator.createTableMarket();
+		table=tableCreator.createTableMarket();//tabella market
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -85,13 +93,13 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		JScrollPane scrollTable=new JScrollPane(fakeTable);
+		JScrollPane scrollTable=new JScrollPane(table);//applicazione dello scroll al panel
 		scrollTable.setAutoscrolls(true);
-		layout.setConstraints(scrollTable, lim);
-		add(scrollTable);
+		layout.setConstraints(scrollTable, lim);//applicazione del layout allo scroll
+		add(scrollTable);//aggiunta dello scroll al panel
 
 		//----------tabella finta----------
-		JLabel lab2=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
+		JLabel spaceLabel2=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -99,18 +107,18 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(lab2, lim);
-		add(lab2);
-		
+		layout.setConstraints(spaceLabel2, lim);//applicazione del layout alla label
+		add(spaceLabel2);//aggiunta della label al panel
+
 		//----------button panel (sell + buy)----------
-		JPanel panel=new JPanel();
-		panel.setBackground(new Color(151, 111, 51));
+		JPanel littlePanel=new JPanel();//nuovo pannello per i bottoni buy and sell
+		littlePanel.setBackground(new Color(151, 111, 51));//sfondo del panello
 
-		JButton sellButton=new JButton("Sell");
-		panel.add(sellButton);
+		JButton sellButton=new JButton("Sell");//bottone sell
+		littlePanel.add(sellButton);//aggiunta del bottone al littlePanel
 
-		JButton buyButton=new JButton("Buy");
-		panel.add(buyButton);
+		JButton buyButton=new JButton("Buy");//bottone buy
+		littlePanel.add(buyButton);//aggiunta del bottone al littlePanel
 
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -119,10 +127,10 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(panel, lim);
-		add(panel);
+		layout.setConstraints(littlePanel, lim);//applicazione del layout al littlePanel
+		add(littlePanel);//aggiunta del littlePanel al pannello
 
-		sellButton.addActionListener(new ActionListener() {
+		sellButton.addActionListener(new ActionListener() {//azioni di ascolto bottone sell
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\nSell button");
@@ -137,28 +145,33 @@ public class MarketPanel extends JPanel {
 			}
 		});
 
-		buyButton.addActionListener(new ActionListener() {
+		buyButton.addActionListener(new ActionListener() {//azioni di ascolto buy button
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\nBuy button");
 				controller.updateController(new MarketBuy(controller.getModel()
-											.findItem(""+fakeTable.getSelectedRow()
-											)));
+						.findItem(""+table.getSelectedRow()
+								)));
 			}
 		});
 	}
-	
+
 	public void fillTable(){
 		tableCreator.fillTable();
 	}
-	
+
+	/**
+	 * create a tring with the specified space
+	 * @param s, the number of space
+	 * @return a string with the specified space
+	 */
 	private String addSpace(int s){
 		String space="";
-		
+
 		for(int i=0; i<s; i++){
 			space=space.concat(" ");
 		}
-		
+
 		return space;
 	}
 }

@@ -35,7 +35,7 @@ public class SouthEastPanel extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * @param model, the model
+	 * @param controller, the controller
 	 * @param loggerArea the area to read on
 	 */
 	public SouthEastPanel(ControllerGUI controller, JTextArea loggerArea) {
@@ -44,6 +44,7 @@ public class SouthEastPanel extends JPanel {
 		this.model=controller.getModel();
 		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
 		this.cf=new CardFrame(loggerArea,controller);
+		
 		init();
 	}
 
@@ -51,10 +52,10 @@ public class SouthEastPanel extends JPanel {
 	 * inizializate the componente
 	 */
 	private void init(){
-		GridBagLayout layout = new GridBagLayout();
-		setLayout(layout);
+		GridBagLayout layout = new GridBagLayout();//layout
+		setLayout(layout);//applicazione del layout al pannello
 
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints(); //impostazioni layout
 		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
@@ -62,12 +63,14 @@ public class SouthEastPanel extends JPanel {
 		JPanel kingCouncillors=cp.kingBalcone(model.getModel().getKing());
 		kingCouncillors.setName("consiglieri re");
 		kingCouncillors.setOpaque(false);
+		
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
+		
 		layout.setConstraints(kingCouncillors, lim);
 		add(kingCouncillors);
 
@@ -78,12 +81,14 @@ public class SouthEastPanel extends JPanel {
 		punteggi.setContentAreaFilled(false);//contenuto bottone trasparente
 		punteggi.setBorderPainted(false);//bordi bottone trasparente
 		punteggi.setToolTipText("View your points");
+		
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		
 		layout.setConstraints(punteggi, lim);
 		add(punteggi);
 		punteggi.addMouseListener(new MouseListener() {
@@ -114,6 +119,7 @@ public class SouthEastPanel extends JPanel {
 		bonus.setContentAreaFilled(false);//contenuto bottone trasparente
 		bonus.setBorderPainted(false);//bordi bottone trasparente
 		bonus.setToolTipText("View the game bonus");
+		
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -131,12 +137,14 @@ public class SouthEastPanel extends JPanel {
 		card.setContentAreaFilled(false);//contenuto bottone trasparente
 		card.setBorderPainted(false);//bordi bottone trasparente
 		card.setToolTipText("View your old Costruction card");
+		
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		
 		layout.setConstraints(card, lim);
 		add(card);
 		actionCard(card);
@@ -144,16 +152,22 @@ public class SouthEastPanel extends JPanel {
 		//----------------consiglieri dipsonibili------------
 		JPanel consiglieriColor=cp.colurCouncillors(model.getModel());
 		consiglieriColor.setOpaque(false);
+		
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
+		
 		layout.setConstraints(consiglieriColor, lim);
 		add(consiglieriColor);
 	}
 
+	/**
+	 * action used costruction card
+	 * @param card, the card button
+	 */
 	private void actionCard(JButton card){
 		card.addMouseListener(new MouseListener() {
 			@Override
@@ -174,6 +188,10 @@ public class SouthEastPanel extends JPanel {
 		});
 	}
 
+	/**
+	 * bonus panel action
+	 * @param bonus, the bonus button
+	 */
 	private void actionBonus(JButton bonus){
 		bonus.addMouseListener(new MouseListener() {
 			@Override

@@ -14,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
@@ -31,6 +34,7 @@ public class SecondaryActionPanel extends JPanel {
 	private static final long serialVersionUID = -1693691013491659757L;
 	private JTextArea text;
 	private transient ControllerGUI controller;
+	private transient Logger logger;
 
 	/**
 	 * 
@@ -40,6 +44,11 @@ public class SecondaryActionPanel extends JPanel {
 	public SecondaryActionPanel(JTextArea text,ControllerGUI controller) {
 		this.text=text;
 		this.controller=controller;
+		
+		//configurazione logger
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+
 		init();
 	}
 
@@ -62,18 +71,21 @@ public class SecondaryActionPanel extends JPanel {
 		JLabel label=new JLabel("Secondary action");
 		label.setName("secondary action");
 		label.setToolTipText(label.getName());
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=2;
+
 		layout.setConstraints(label, lim);
 		add(label);
 
 		JButton button1 = new JButton("Hire");
 		button1.setName("Hire Assistants");
 		button1.setToolTipText(button1.getName());
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
@@ -81,6 +93,7 @@ public class SecondaryActionPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(button1, lim);
 		add(button1);//aggiunta bottone al layer panel
 		button1.addActionListener(new ActionListener() {
@@ -95,12 +108,14 @@ public class SecondaryActionPanel extends JPanel {
 		JButton button2 = new JButton("Addictional");
 		button2.setName("Addictional Action");
 		button2.setToolTipText(button2.getName());
+
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(button2, lim);
 		add(button2);//aggiunta bottone al layer panel
 		button2.addActionListener(new ActionListener() {
@@ -116,14 +131,17 @@ public class SecondaryActionPanel extends JPanel {
 		JButton button3 = new JButton("Change");
 		button3.setName("Change");
 		button3.setToolTipText(button3.getName());
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		
 		layout.setConstraints(button3, lim);
 		add(button3);//aggiunta bottone al layer panel
+		
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -135,6 +153,7 @@ public class SecondaryActionPanel extends JPanel {
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Region unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					controller.getSelectedElements().resetAll();
+					logger.error("Error!", ex);
 				}
 			}
 		});
@@ -142,14 +161,17 @@ public class SecondaryActionPanel extends JPanel {
 		JButton button4 = new JButton("Elect");
 		button4.setName("Elect a councillor");
 		button4.setToolTipText(button4.getName());
+		
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		
 		layout.setConstraints(button4, lim);
 		add(button4);//aggiunta bottone al layer panel
+		
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -163,6 +185,7 @@ public class SecondaryActionPanel extends JPanel {
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					elements.resetAll();
+					logger.error("Error!", ex);
 				}
 			}
 		});

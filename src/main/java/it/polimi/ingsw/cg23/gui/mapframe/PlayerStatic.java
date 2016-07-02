@@ -57,9 +57,6 @@ public class PlayerStatic extends JFrame {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-
-
-
 	}
 
 	/**
@@ -74,7 +71,6 @@ public class PlayerStatic extends JFrame {
 		GridBagConstraints lim = new GridBagConstraints(); 
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-
 
 		//----------nome utente----------
 		JLabel userLabel = new JLabel("Point "+p.getUser());//aggiungo l'immagine alla label
@@ -92,6 +88,7 @@ public class PlayerStatic extends JFrame {
 		//----------victory points----------
 		Image img1=createImage("Victorypoints", p.getVictoryTrack().getVictoryPoints());
 		JLabel vicotrypoint = new JLabel(new ImageIcon(img1));//aggiungo l'immagine alla label
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -99,71 +96,85 @@ public class PlayerStatic extends JFrame {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(vicotrypoint, lim);
 		panel.add(vicotrypoint);
 		vicotrypoint.add(new JLabel("caio"));
 
+		//----------victory points descrizione----------
 		JLabel vicotrLabel = new JLabel("The victory points you have");//aggiungo l'immagine alla label
 		vicotrLabel.setForeground(new Color(255, 255, 255));
+
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(vicotrLabel, lim);
 		panel.add(vicotrLabel);
 
 		//----------coin---------
 		Image img2=createImage("Coin", p.getRichness().getCoins());
 		JLabel coin = new JLabel(new ImageIcon(img2));//aggiungo l'immagine alla label
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(coin, lim);
 		panel.add(coin);
 
+		//----------coin descrizione---------
 		JLabel coinLabel = new JLabel("Your coins");//aggiungo l'immagine alla label
 		coinLabel.setForeground(new Color(255, 255, 255));
+
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(coinLabel, lim);
 		panel.add(coinLabel);
 
 		//----------nobility track----------
 		Image img3=createImage("Nobility track", p.getNobilityBoxPosition());
 		JLabel nobilityTrack = new JLabel(new ImageIcon(img3));//aggiungo l'immagine alla label
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(nobilityTrack, lim);
 		panel.add(nobilityTrack);
 
+		//----------nobility track descrizione----------
 		JLabel nobilityLabel = new JLabel("Your nobility box position");//aggiungo l'immagine alla label
 		nobilityLabel.setForeground(new Color(255, 255, 255));
+
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(nobilityLabel, lim);
 		panel.add(nobilityLabel);
 
 		//----------assistants----------
 		Image img4=createImage("Assistants", p.getAssistantsPool().getAssistants());
-
 		JLabel assistant = new JLabel(new ImageIcon(img4));//aggiungo l'immagine alla label
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 4;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -173,8 +184,10 @@ public class PlayerStatic extends JFrame {
 		layout.setConstraints(assistant, lim);
 		panel.add(assistant);
 
+		//----------assistants description----------
 		JLabel assistantLabel = new JLabel("Your assistants");//aggiungo l'immagine alla label
 		assistantLabel.setForeground(new Color(255, 255, 255));
+		
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 4;
 		lim.weightx=1;//espansione in verticale e orizzontale
@@ -214,6 +227,10 @@ public class PlayerStatic extends JFrame {
 
 	}
 
+	/**
+	 * coin image height
+	 * @return, the coin image height
+	 */
 	private double heightImg(){
 		BufferedImage img=getImg("Coin");
 		double width=(2.0/50)*lung;
@@ -221,6 +238,11 @@ public class PlayerStatic extends JFrame {
 
 	}
 
+	/**
+	 * load the image
+	 * @param name, the image name
+	 * @return, the image
+	 */
 	private BufferedImage getImg(String name){//recupero l'immagine della carta costruzione
 		BufferedImage image=null;
 		String path="src/main/resources/images/stat/"+name+".png";//percorso dell'immagine

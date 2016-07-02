@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.gui.mapframe;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -117,12 +116,10 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
-		//mapPanel.setVisible(false);
 		
 		
 		//----------pannello nord (market)----------
 		marketPanel=new MarketPanel(controller,loggerArea);
-		//marketPanel.setVisible(true);
 		marketPanel.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
@@ -155,10 +152,17 @@ public class FrameMap extends JFrame {
 		pack();//necessario
 	}
 	
+	/**
+	 * recevie a status change
+	 * @param change
+	 */
 	public void updateInfo(Change change){
 		loggerArea.append("\n"+change.toString());
 	}
 	
+	/**
+	 * update the gui
+	 */
 	public void update(){
 		southPanel.update();
 		boolean value=controller.getModel().getModel().getStatus().getStatus().contains("MARKET");

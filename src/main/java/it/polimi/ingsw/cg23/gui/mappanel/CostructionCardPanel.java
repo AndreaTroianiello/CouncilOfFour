@@ -39,8 +39,9 @@ public class CostructionCardPanel {
 
 	/**
 	 * @param loggerArea, the area to write on
+	 * @param controller, the controller
 	 */
-	public CostructionCardPanel(JTextArea loggerArea,ControllerGUI controller) {
+	public CostructionCardPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
 		
@@ -55,11 +56,11 @@ public class CostructionCardPanel {
 	 * @return the panel with the showed costruction card
 	 */
 	public JPanel getShowCostructionCard(Region reg){
-		JPanel panel=new JPanel();
-		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
+		JPanel panel=new JPanel();//creazione di un nuovo pannello
+		GridBagLayout layout = new GridBagLayout();//creazione di un nuovo layout
+		panel.setLayout(layout);//applicazione del layout al pannello
 
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints();//settaggio layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
@@ -75,7 +76,7 @@ public class CostructionCardPanel {
 		lim.ipadx=10;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		layout.setConstraints(defaultCostruction, lim);
+		layout.setConstraints(defaultCostruction, lim);//applicazione del layout al label
 		panel.add(defaultCostruction);//aggiunta della label al panel
 
 		//carte costruzione regione
@@ -86,7 +87,7 @@ public class CostructionCardPanel {
 			//----------carte costruzione----------
 			BufferedImage img=getCostructionImg(nameCostructor(bpt.get(i).getCitiesId()));//carta costruzione 1
 			JLabel costructionCard = new JLabel(new ImageIcon(img));//aggiungo l'immagine alla label
-			costructionCard.setName("costruzione"+i);
+			costructionCard.setName("costruzione"+i);//nome della label
 			costructionCard.setToolTipText("Carta costruzione "+(i+1)+" "+bpt.get(i).getZone());
 			costructionCard.setBounds(0, 0, img.getWidth(), img.getHeight());//dimensioni della label
 			lim.gridx = i+1;//posizione componenti nella griglia
@@ -96,8 +97,9 @@ public class CostructionCardPanel {
 			lim.ipadx=10;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			layout.setConstraints(costructionCard, lim);
+			layout.setConstraints(costructionCard, lim);//applicazione del layout al label
 			final int k=i;
+			
 			costructionCard.addMouseListener(new MouseListener() {
 				@Override
 				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -108,16 +110,15 @@ public class CostructionCardPanel {
 				@Override
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
-				public void mouseClicked(MouseEvent e) {
+				public void mouseClicked(MouseEvent e) {//azioni al click del mouse 
 					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 						controller.getSelectedElements().setTile(bpt.get(k));
 						loggerArea.append("\n Element selected(Tile:"+k+").");
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
-						writeArea(bpt.get(k));
+						writeArea(bpt.get(k));//scrittura delle informazioni della carta costruzione sulla logger area
 				}
 			});
-
 
 			panel.add(costructionCard);//aggiunta della label al panel
 		}
@@ -157,8 +158,8 @@ public class CostructionCardPanel {
 			lim.ipadx=10;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			layout.setConstraints(costructionCard, lim);
-			q++;
+			layout.setConstraints(costructionCard, lim);//applicazione del layout alla carta costruzione
+			q++;//incremento la posizione sulla griglia
 			
 			final int k=i;
 			costructionCard.addMouseListener(new MouseListener() {//azioni pannello click mouse
@@ -253,14 +254,14 @@ public class CostructionCardPanel {
 	 * @return the jlabel image 
 	 */
 	public JLabel oldCostructionWB(BusinessPermitTile bpt) {
-
-		BufferedImage image=getCostructionImg(nameCostructor(bpt.getCitiesId()));//carta costruzione usata;
+		BufferedImage image=getCostructionImg(nameCostructor(bpt.getCitiesId()));//caricamento immagine
+		
 		ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
 		ColorConvertOp ccop = new ColorConvertOp(cs, null);
 
-		BufferedImage imgWB= ccop.filter(image, null);
+		BufferedImage imgWB= ccop.filter(image, null);//trasformazione immagine in bianco e nero
 
-		return new JLabel(new ImageIcon(imgWB));
+		return new JLabel(new ImageIcon(imgWB));//ritorno la label con la carta costruzione
 	}
 }
 

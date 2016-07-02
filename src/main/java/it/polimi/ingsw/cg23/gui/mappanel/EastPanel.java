@@ -43,7 +43,7 @@ public class EastPanel extends JPanel {
 	public EastPanel(JTextArea loggerArea, JTextField write, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.write=write;
-		this.buttonPanel=new ButtonPanel(loggerArea, write, controller);
+		this.buttonPanel=new ButtonPanel(loggerArea, controller);
 		this.controller=controller;
 
 		init();

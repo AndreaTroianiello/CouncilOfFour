@@ -36,12 +36,13 @@ public class MainActionPanel extends JPanel {
 	private transient ControllerGUI controller;
 
 	/**
-	 * 
+	 * @param controller, the controller
 	 * @param text, the area to read on
 	 */
 	public MainActionPanel(JTextArea text, ControllerGUI controller) {
 		this.text=text;
 		this.controller=controller;
+		
 		init();
 	}
 

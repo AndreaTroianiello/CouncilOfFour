@@ -36,8 +36,8 @@ public class SouthPanel extends JPanel {
 
 	/**
 	 * 
-	 * @param model
-	 * @param loggerArea
+	 * @param controller, the controller
+	 * @param loggerArea, the area to read on
 	 */
 	public SouthPanel(ControllerGUI controller, JTextArea loggerArea) {
 		this.loggerArea=loggerArea;

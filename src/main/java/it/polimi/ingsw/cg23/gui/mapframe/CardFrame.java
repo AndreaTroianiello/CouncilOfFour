@@ -36,8 +36,9 @@ public class CardFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 * @param loggerArea the area to read on
+	 * @param controller, the controller
 	 */
-	public CardFrame(JTextArea loggerArea,ControllerGUI controller) {
+	public CardFrame(JTextArea loggerArea, ControllerGUI controller) {
 		this.ccp=new CostructionCardPanel(loggerArea,controller);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,12 +71,14 @@ public class CardFrame extends JFrame {
 			//----------no card----------
 			JLabel noCardLabel = new JLabel("No used business permit tiles");//aggiungo l'immagine alla label
 			noCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
+			
 			lim.gridx = 0;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.weightx=1;//espansione in verticale e orizzontale
 			lim.weighty=1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
+			
 			layout.setConstraints(noCardLabel, lim);
 			panel.add(noCardLabel);
 
@@ -84,12 +87,14 @@ public class CardFrame extends JFrame {
 			//----------costruction card usate disponibili----------
 			JLabel yesCardLabel = new JLabel("Used business permit tiles");//aggiungo l'immagine alla label
 			yesCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
+			
 			lim.gridx = 0;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.weightx=1;//espansione in verticale e orizzontale
 			lim.weighty=1;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=5;
+			
 			layout.setConstraints(yesCardLabel, lim);
 			panel.add(yesCardLabel);
 
@@ -97,12 +102,14 @@ public class CardFrame extends JFrame {
 			int r=1;//posizione griglia verticale (altezza)
 			for(int i=0; i<bpt.size(); i++){
 				JLabel costructionCard = ccp.oldCostructionWB(bpt.get(i));//aggiungo l'immagine alla label
+				
 				lim.gridx = q;//posizione componenti nella griglia
 				lim.gridy = r;
 				lim.weightx=1;//espansione in verticale e orizzontale
 				lim.weighty=1;
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
+				
 				layout.setConstraints(costructionCard, lim);
 				panel.add(costructionCard);
 				final int k=i;

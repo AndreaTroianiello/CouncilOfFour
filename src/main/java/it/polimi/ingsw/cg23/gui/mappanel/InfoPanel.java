@@ -28,11 +28,9 @@ public class InfoPanel extends JPanel {
 	private JTextArea loggerArea;
 	private transient ControllerGUI controller;
 
-
 	/**
-	 * 
-	 * @param textArea, the area to read on
-	 * @param controller
+	 * @param loggerArea, the area to read on
+	 * @param controller, the controller
 	 */
 	public InfoPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
@@ -46,11 +44,11 @@ public class InfoPanel extends JPanel {
 	 * @return, the info panel
 	 */
 	private void init(){
-		GridBagLayout layout = new GridBagLayout();
-		setLayout(layout);
+		GridBagLayout layout = new GridBagLayout();//nuovo layout
+		setLayout(layout);//applicazione al del layout al panello
 		setOpaque(false);
 
-		GridBagConstraints lim = new GridBagConstraints();
+		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label=new JLabel("Info");

@@ -38,6 +38,8 @@ public class BonusFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param b, the baord
+	 * @param loggerArea, the area to read on
 	 */
 	public BonusFrame(Board b, JTextArea loggerArea) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,13 +50,13 @@ public class BonusFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		setTitle("Bonus");
-		
+
 		this.b=b;
 		this.loggerArea=loggerArea;
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-
 	}
 
 	/**
@@ -103,7 +105,7 @@ public class BonusFrame extends JFrame {
 				BufferedImage img=getImg("bonusKing/"+bk.getBonusValues().get(i).intValue());
 				kingBonus=new JLabel(new ImageIcon(img));
 				kingBonus.setName("bonus king");
-				lim.gridx = p;;//posizione componenti nella griglia
+				lim.gridx = p;//posizione componenti nella griglia
 				lim.gridy = 1;
 				lim.weightx=1;//espansione in verticale e orizzontale
 				lim.weighty=1;
@@ -142,6 +144,7 @@ public class BonusFrame extends JFrame {
 				lim.weighty=1;
 				lim.gridheight=1;//grandezza del riquadro
 				lim.gridwidth=1;
+
 				layout.setConstraints(regionBonus, lim);
 				panel.add(regionBonus);
 				mouseOverRegion(regionBonus, loggerArea, b.getRegions().get(k));
@@ -152,12 +155,14 @@ public class BonusFrame extends JFrame {
 		int r=0;//posizione componenti colonna bonus type
 		//----------------bonus region label------------
 		JLabel bonusTypeLabel=new JLabel("Type");
+
 		lim.gridx = r;//posizione componenti nella griglia
 		lim.gridy = 3;
 		lim.weightx=1;//espansione in verticale e orizzontale
 		lim.weighty=1;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+
 		layout.setConstraints(bonusTypeLabel, lim);
 		panel.add(bonusTypeLabel);
 		r++;
@@ -171,14 +176,15 @@ public class BonusFrame extends JFrame {
 				if(b.getTypes().get(i).isBonusAvailable()){
 					BufferedImage img=getImg("bonusType/"+b.getTypes().get(i).getName());
 					cityTypeBonus=new JLabel(new ImageIcon(img));
-
 					cityTypeBonus.setName("bonus type "+b.getTypes().get(i).getName());
+
 					lim.gridx = r;//posizione componenti nella griglia
 					lim.gridy = 3;
 					lim.weightx=1;//espansione in verticale e orizzontale
 					lim.weighty=1;
 					lim.gridheight=1;//grandezza del riquadro
 					lim.gridwidth=1;
+
 					layout.setConstraints(cityTypeBonus, lim);
 					panel.add(cityTypeBonus);
 					mouseOverType(cityTypeBonus, loggerArea, b.getTypes().get(i));
@@ -190,6 +196,12 @@ public class BonusFrame extends JFrame {
 		contentPane.add(panel);
 	}
 
+	/**
+	 * action listener mouse
+	 * @param kingBonus, the king bonus
+	 * @param loggerArea, the logger area
+	 * @param b, the board
+	 */
 	private void mouseOverKing(JLabel kingBonus, JTextArea loggerArea, Board b){
 		kingBonus.addMouseListener(new MouseListener() {
 			@Override
@@ -210,6 +222,12 @@ public class BonusFrame extends JFrame {
 		});
 	}
 
+	/**
+	 * mouse action over region
+	 * @param regionBonus, the region bonuses
+	 * @param loggerArea
+	 * @param reg, the regions
+	 */
 	private void mouseOverRegion(JLabel regionBonus, JTextArea loggerArea, Region reg){
 		regionBonus.addMouseListener(new MouseListener() {
 			@Override
@@ -231,6 +249,12 @@ public class BonusFrame extends JFrame {
 		});
 	}
 
+	/**
+	 * mouse listener over types
+	 * @param typeBonus
+	 * @param loggerArea
+	 * @param tipo
+	 */
 	private void mouseOverType(JLabel typeBonus, JTextArea loggerArea, it.polimi.ingsw.cg23.server.model.Type tipo){
 		typeBonus.addMouseListener(new MouseListener() {
 			@Override

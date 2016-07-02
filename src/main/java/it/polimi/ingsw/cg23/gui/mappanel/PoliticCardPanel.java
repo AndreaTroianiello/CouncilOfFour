@@ -40,7 +40,7 @@ public class PoliticCardPanel {
 
 	/**
 	 * 
-	 * @param p, the player
+	 * @param controller, the controller
 	 * @param loggerArea, the area to read on
 	 */
 	public PoliticCardPanel(ControllerGUI controller, JTextArea loggerArea) {
@@ -58,11 +58,11 @@ public class PoliticCardPanel {
 	 * @return the politic card panel
 	 */
 	public JPanel createCard(){
-		JPanel panel=new JPanel();
-		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
+		JPanel panel=new JPanel();//nuovo pannello
+		GridBagLayout layout = new GridBagLayout();//nuovo layout
+		panel.setLayout(layout);//applicazione del layout al pannelo
 		
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints(); //impostazioni layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
 
@@ -71,31 +71,29 @@ public class PoliticCardPanel {
 			BufferedImage img;
 			String color;
 			PoliticCard card=p.getHand().get(i);
-			if(card.isJolly()){
+			
+			if(card.isJolly()){//carta politica jolly
 				img=politcsImg("Jolly");//carta jolly
 				color="Jolly";
 			}
 			else{
-				color=new ColorManager().getColorName(card.getColor());
+				color=new ColorManager().getColorName(card.getColor());//recupero il colore della carta politica
 				img=politcsImg(color);//carte colorate
 			}
-			JButton button1=new JButton(new ImageIcon(img));
-			button1.setName("Carta politca "+i+", "+color);
-			button1.setToolTipText("Carta politica "+color);
-			button1.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+			
+			JButton politicButton=new JButton(new ImageIcon(img));//bottone carta politica
+			politicButton.setName("Carta politca "+i+", "+color);
+			politicButton.setToolTipText("Carta politica "+color);
+			politicButton.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+			
 			lim.gridx=i*2;
 			lim.gridy=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			layout.setConstraints(button1, lim);
-			panel.add(button1);
-			/*button1.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					loggerArea.append("\nSelezionata la carta politica: "+color);
-				}
-			});*/
-			button1.addMouseListener(new MouseListener() {
+			
+			layout.setConstraints(politicButton, lim);//applicazione del layout al bottone della carta politica
+			panel.add(politicButton);//aggiunta della carta politica al pannello
+			politicButton.addMouseListener(new MouseListener() {//azioni del mouse per la carta politica
 				@Override
 				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 				@Override
@@ -115,15 +113,18 @@ public class PoliticCardPanel {
 						loggerArea.append("\nSelezionata la carta politica: "+color);
 					}
 			});
+			
 			//----------etichetta spazio----------
 			//Aggiunge lo spazio dopo aver messo la carta politica
 			JLabel label2=new JLabel();
 			label2.setName(i+" spazio");
 			label2.setPreferredSize(new Dimension(5, 50));
+			
 			lim.gridx=i*2+1;
 			lim.gridy=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
+			
 			layout.setConstraints(label2, lim);
 			panel.add(label2);
 		}
@@ -131,6 +132,11 @@ public class PoliticCardPanel {
 		return panel;
 	}
 
+	/**
+	 * load the image
+	 * @param name, the color of the politic card
+	 * @return the politic card image
+	 */
 	private BufferedImage politcsImg(String name){//recupero l'immagine delle carte politiche
 		BufferedImage image=null;
 		String path="src/main/resources/images/politics/"+name+".png";//percorso dell'immagine

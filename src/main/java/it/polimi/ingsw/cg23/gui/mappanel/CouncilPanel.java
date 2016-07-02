@@ -116,11 +116,11 @@ public class CouncilPanel {
 	 * @return the king conucillor
 	 */
 	public JPanel kingBalcone(King k){
-		JPanel panel=new JPanel();
-		GridBagLayout layout = new GridBagLayout();
+		JPanel panel=new JPanel();//pannello del balcone del re
+		GridBagLayout layout = new GridBagLayout();//nuovo layout
 		panel.setLayout(layout);
 
-		GridBagConstraints lim = new GridBagConstraints(); 
+		GridBagConstraints lim = new GridBagConstraints();//impostazioni del layout
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		JLabel label0 = new JLabel();
@@ -244,11 +244,9 @@ public class CouncilPanel {
 					tokenizer.nextToken();
 					String color=tokenizer.nextToken();
 					controller.getSelectedElements().setCouncillor(new ColorManager().getColor(color));
-					loggerArea.append("\n Element selected(Councillor:"+color+").");
-				}
+					loggerArea.append("\n Element selected: (Councillor:"+color+").");}
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
-					loggerArea.append("\n"+text);
-			}
+					loggerArea.append("\n"+text);}
 		});
 	}
 

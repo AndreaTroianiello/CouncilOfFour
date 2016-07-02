@@ -48,18 +48,20 @@ public class MapPanel extends JPanel {
 	private transient ControllerGUI controller;
 
 	/**
-	 * @param model
+	 * @param controller, the controller
 	 * @param loggerArea, the area to read on
 	 */
 	public MapPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
-		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
-		
-		this.ms=new MapSetting();
-		this.cp=new CityPanel(loggerArea,controller);
 		this.controller=controller;
 		this.model=controller.getModel();
+		this.ms=new MapSetting();
+		this.cp=new CityPanel(loggerArea,controller);
+		
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
+		
 		init();
+		
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -104,7 +106,7 @@ public class MapPanel extends JPanel {
 					citta.setToolTipText(city.get(j).getName());
 					j++;
 					citta.setOpaque(false);
-				}else{
+				}else{//pannello vuoto
 					citta.setOpaque(false);
 				}
 
@@ -116,12 +118,14 @@ public class MapPanel extends JPanel {
 				lim.gridwidth=1;
 
 				if(i%2!=0&&k==4){
-					Region region=city.get(j-1).getRegion();
-					JButton but=new JButton();
-					but.setToolTipText("Select region "+region.getName());
-					but.setOpaque(false);//bottone trasparente
-					but.setContentAreaFilled(false);//contenuto bottone trasparente
-					but.setBorderPainted(false);//bordi bottone trasparente
+					Region region=city.get(j-1).getRegion();//regione attuale
+					
+					JButton regionButton=new JButton();//creazione bottone della regione
+					regionButton.setToolTipText("Select region "+region.getName());
+					regionButton.setOpaque(false);//bottone trasparente
+					regionButton.setContentAreaFilled(false);//contenuto bottone trasparente
+					regionButton.setBorderPainted(false);//bordi bottone trasparente
+					
 					lim.gridx = i;//posizione componenti nella griglia
 					lim.gridy = k;
 					lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -130,28 +134,13 @@ public class MapPanel extends JPanel {
 					lim.gridwidth=1;
 					lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-					layout.setConstraints(but, lim);//applico il layout al pannello delle citta'
-					label.add(but);//aggiunta il panel alla label
-					but.addMouseListener(new MouseListener() {
-						@Override
-						public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-						@Override
-						public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-						@Override
-						public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-						@Override
-						public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
-								loggerArea.append("\n Element selected(Region:"+region.getName()+").");
-								controller.getSelectedElements().setRegion(region);
-							}
-							if(SwingUtilities.isRightMouseButton(e))//bottone destro
-								loggerArea.append("\nSelezionata regione "+region.getName());
-						}
-					});
+					
+					layout.setConstraints(regionButton, lim);//applico il layout al pannello delle citta'
+					label.add(regionButton);//aggiunta il panel alla label
+					
+					listener(regionButton, region);//azioni cliccando il bottone della regione
 				}
+				
 				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
 				label.add(citta);//aggiunta il panel alla label
 			}
@@ -161,6 +150,10 @@ public class MapPanel extends JPanel {
 		add(label);//aggiungo la label al panel
 	}
 
+	/**
+	 * load the images
+	 * @return the image
+	 */
 	private BufferedImage getImg(){//recupero le immagini
 		BufferedImage image=null;
 		String path="src/main/resources/images/region 1200.jpg";//percorso dell'immagine
@@ -172,6 +165,33 @@ public class MapPanel extends JPanel {
 		}
 
 		return image;
+	}
+	
+	/**
+	 * execute action clicking on the region button
+	 * @param but, the region button
+	 * @param region, the actual region
+	 */
+	private void listener(JButton but, Region region){
+		but.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
+					loggerArea.append("\n Element selected(Region:"+region.getName()+").");
+					controller.getSelectedElements().setRegion(region);
+				}
+				if(SwingUtilities.isRightMouseButton(e))//bottone destro
+					loggerArea.append("\nSelezionata regione "+region.getName());
+			}
+		});
 	}
 	
 	/**
