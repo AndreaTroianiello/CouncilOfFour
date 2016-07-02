@@ -25,7 +25,7 @@ public class MarketPanel extends JPanel {
 	private static final long serialVersionUID = 4032301896451894064L;
 	private JTextArea loggerArea;
 	private ControllerGUI controller;
-	private JTable table;
+	private JTable fakeTable;
 	private Table tableCreator;
 	private final double lung;
 	private final double alt;
@@ -65,12 +65,12 @@ public class MarketPanel extends JPanel {
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=3;
 		layout.setConstraints(marketLabel, lim);
 		add(marketLabel);
 
-		//----------tabella----------
-		table=tableCreator.createTableMarket();
+		//----------tabella finta----------
+		JLabel lab=new JLabel("                              ");
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -78,11 +78,38 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		JScrollPane scrollTable=new JScrollPane(table);
+		//lab.setVisible(false);
+		layout.setConstraints(lab, lim);
+		add(lab);
+		
+		
+		//----------tabella----------
+		fakeTable=tableCreator.createTableMarket();
+		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		JScrollPane scrollTable=new JScrollPane(fakeTable);
 		scrollTable.setAutoscrolls(true);
 		layout.setConstraints(scrollTable, lim);
 		add(scrollTable);
 
+		//----------tabella finta----------
+		JLabel lab2=new JLabel("                              ");
+		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridy = 1;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
+		lim.gridheight=1;//grandezza del riquadro
+		lim.gridwidth=1;
+		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		//lab2.setVisible(false);
+		layout.setConstraints(lab2, lim);
+		add(lab2);
+		
 		//----------button panel (sell + buy)----------
 		JPanel panel=new JPanel();
 		panel.setBackground(new Color(151, 111, 51));
@@ -98,7 +125,7 @@ public class MarketPanel extends JPanel {
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
 		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridwidth=3;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(panel, lim);
 		add(panel);
@@ -123,7 +150,7 @@ public class MarketPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\nBuy button");
 				controller.updateController(new MarketBuy(controller.getModel()
-											.findItem(""+table.getSelectedRow()
+											.findItem(""+fakeTable.getSelectedRow()
 											)));
 			}
 		});

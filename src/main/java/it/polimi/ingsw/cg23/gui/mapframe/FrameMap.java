@@ -98,11 +98,11 @@ public class FrameMap extends JFrame {
 		//----------text area (logger)----------
 		lim.gridx = 3;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty =0;
 		lim.gridheight=3;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.fill=GridBagConstraints.VERTICAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(eastPanel, lim); //Associazione
 		contentPane.add(eastPanel); //Inserimento
@@ -110,19 +110,20 @@ public class FrameMap extends JFrame {
 		//----------pannello nord (mappa)----------
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=3;
 		lim.fill=GridBagConstraints.VERTICAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
+		//mapPanel.setVisible(false);
 		
 		
 		//----------pannello nord (market)----------
 		marketPanel=new MarketPanel(controller,loggerArea);
-		marketPanel.setVisible(true);
+		//marketPanel.setVisible(true);
 		marketPanel.setBackground(new Color(151, 111, 51));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
