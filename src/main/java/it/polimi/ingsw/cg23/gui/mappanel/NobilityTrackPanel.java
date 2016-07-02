@@ -138,11 +138,7 @@ public class NobilityTrackPanel extends JPanel {
 			String player="";
 
 			for(int j=0; j<nt.getNobilityBoxes().get(k).getPlayers().size(); j++){
-				if("NaN".equals(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()))
-					player=player.concat("");
-				else
-					player=player.concat(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()+", ");
-
+				player=player.concat(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()+", ");
 			}
 			loggerArea.append(player.substring(0,player.length()-2));
 		}

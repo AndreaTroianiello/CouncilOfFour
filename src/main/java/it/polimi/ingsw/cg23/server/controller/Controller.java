@@ -14,6 +14,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.*;
 import it.polimi.ingsw.cg23.server.model.components.Emporium;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.view.View;
 import it.polimi.ingsw.cg23.utility.CreateMap;
@@ -164,7 +165,7 @@ public class Controller implements Observer<Action>{
 	private void gameTwoPlayers(){
 		Random rnd=new Random();
 		if(model.getPlayers().size()==2){
-			Player player=new Player("NaN",model.getNobilityTrack());
+			Player player=new Player("NaN",new NobilityTrack(1));
 			List<Region>reg=model.getRegions();
 			for(Region r:reg){
 				List<Character> list=r.getDeck().getShowedDeck().get(rnd.nextInt(r.getDeck().getShowedDeck().size())).getCitiesId();

@@ -66,11 +66,12 @@ public class BonusNobility implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		NobilityBox nobilityBox = this.board.getNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition()+steps);
-		nobilityBox.removePlayer(player);
+		NobilityBox nobilityBoxNow = this.board.getNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition());
+		NobilityBox nobilityBoxNext = this.board.getNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition()+steps);
+		nobilityBoxNow.removePlayer(player);
+		nobilityBoxNext.addPlayer(player);
 		player.setNobilityBoxPoistion(player.getNobilityBoxPosition()+steps);
-		this.board.getNobilityTrack().getNobilityBoxes().get(player.getNobilityBoxPosition()).addPlayer(player);
-		for(Bonus b: nobilityBox.getBonus()){
+		for(Bonus b: nobilityBoxNext.getBonus()){
 			b.giveBonus(player);
 		}
 	}
