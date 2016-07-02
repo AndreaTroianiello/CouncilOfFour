@@ -150,7 +150,7 @@ public class MarketPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				loggerArea.append("\nBuy button");
 				controller.updateController(new MarketBuy(controller.getModel()
-						.findItem(""+table.getSelectedRow()
+						.findItem(Integer.toString(table.getSelectedRow())
 								)));
 			}
 		});

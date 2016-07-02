@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import it.polimi.ingsw.cg23.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.BuildEmporiumKing;
@@ -34,6 +37,7 @@ public class MainActionPanel extends JPanel {
 	private static final long serialVersionUID = -5715872370987341629L;
 	private JTextArea text;
 	private transient ControllerGUI controller;
+	private transient Logger logger;
 
 	/**
 	 * @param controller, the controller
@@ -42,7 +46,11 @@ public class MainActionPanel extends JPanel {
 	public MainActionPanel(JTextArea text, ControllerGUI controller) {
 		this.text=text;
 		this.controller=controller;
-		
+
+		//configurazione logger
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+
 		init();
 	}
 
@@ -92,6 +100,7 @@ public class MainActionPanel extends JPanel {
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					controller.getSelectedElements().resetAll();
+					logger.error("Error!", ex);
 				}
 			}
 		});
@@ -118,6 +127,7 @@ public class MainActionPanel extends JPanel {
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					elements.resetAll();
+					logger.error("Error!", ex);
 				}
 			}
 		});
@@ -140,12 +150,13 @@ public class MainActionPanel extends JPanel {
 				SelectedElements elements=controller.getSelectedElements();
 				try{
 					controller.updateController(new BuyPermitTile(elements.getCards(),
-												controller.getModel().findRegion(elements.getTile().getZone()),
-												elements.getTile()));
+							controller.getModel().findRegion(elements.getTile().getZone()),
+							elements.getTile()));
 					elements.resetAll();
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					elements.resetAll();
+					logger.error("Error!", ex);
 				}
 			}
 		});
@@ -173,6 +184,7 @@ public class MainActionPanel extends JPanel {
 				}catch(NullPointerException ex){
 					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
 					elements.resetAll();
+					logger.error("Error!", ex);
 				}
 			}
 		});

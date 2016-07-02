@@ -44,7 +44,7 @@ public class SecondaryActionPanel extends JPanel {
 	public SecondaryActionPanel(JTextArea text,ControllerGUI controller) {
 		this.text=text;
 		this.controller=controller;
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -138,10 +138,10 @@ public class SecondaryActionPanel extends JPanel {
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		
+
 		layout.setConstraints(button3, lim);
 		add(button3);//aggiunta bottone al layer panel
-		
+
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -161,17 +161,17 @@ public class SecondaryActionPanel extends JPanel {
 		JButton button4 = new JButton("Elect");
 		button4.setName("Elect a councillor");
 		button4.setToolTipText(button4.getName());
-		
+
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 2;
 		lim.ipadx=0;//bordi componente
 		lim.ipady=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		
+
 		layout.setConstraints(button4, lim);
 		add(button4);//aggiunta bottone al layer panel
-		
+
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
