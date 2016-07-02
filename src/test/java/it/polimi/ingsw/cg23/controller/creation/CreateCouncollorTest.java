@@ -63,25 +63,32 @@ public class CreateCouncollorTest {
 		k=new King(cities.get(1));
 	}
 
-
+	/**
+	 * it tests if createCouncillor creates the councillors properly
+	 */
 	@Test
-	public void createCouncillorTest() {
+	public void testCreateCouncillorShouldCreate10CouncillorPerColor() {
 		int i=10;
 		List<Councillor> c=cc.createCouncillor(i);//creo i consiglieri
 		assertEquals(c.size(), i*6);//6 è il numero di colori
 	}
 
-
+	/**
+	 * it tests if balconiKing fill the king's council with four councillors
+	 */
 	@Test
-	public void balconiKingtest() {
+	public void testBalconiKingShoudFillTheKingsCouncilWith4Councillors() {
 		List<Councillor> c=cc.createCouncillor(10);//creo i consiglieri
 		cc.setBalconi(k, c);//setto il balcone del re
 		assertNotNull(k.getCouncil().getCouncillors());
 		assertEquals(k.getCouncil().getCouncillors().size(), 4);//controllo che il balcone del re abbia 4 consiglieri
 	}
 
+	/**
+	 * it tests if balconiKing fill the region's council with four councillors
+	 */
 	@Test
-	public void balconiRegionTest() {
+	public void testBalconiRegionShoudFillTheRegionsCouncilWith4Councillors() {
 		List<Councillor> c=cc.createCouncillor(10);//creo i consiglieri
 		cc.setBalconi(regions.get(1), c);//setto il balcone del re
 		assertNotNull(regions.get(1).getCouncil().getCouncillors());

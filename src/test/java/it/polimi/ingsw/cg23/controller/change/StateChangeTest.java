@@ -9,8 +9,11 @@ import it.polimi.ingsw.cg23.server.model.State;
 
 public class StateChangeTest {
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
-	public void testStateChange() {
+	public void testToString() {
 		State newState=new State();
 		StateChange change=new StateChange(newState);
 		assertEquals(change.toString(),"StateChange [newState=State [status=INITIALIZATION]]");

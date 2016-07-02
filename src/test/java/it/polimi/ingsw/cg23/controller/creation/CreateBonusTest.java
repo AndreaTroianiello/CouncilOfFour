@@ -36,20 +36,30 @@ public class CreateBonusTest {
 
 	}
 
+	/**
+	 * it tests if bonusList return a list with size 9
+	 */
 	@Test
-	public void bonusListTest() {
+	public void testBonusList() {
 		assertEquals(cb.bonusList(null).size(), 9);
 		assertNotNull(cb.bonusList(null));
 	}
 
+	/**
+	 * it tests if bonusKing return an object bonusKing with 6 bonuses in it
+	 */
 	@Test
-	public void bonusKingTest() {
+	public void testBonusKingShouldReturnABonusKingWith6BonusesInIt() {
 		assertEquals(cb.bonusKing().getBonusValues().size(), 6);
 		assertNotNull(cb.bonusKing());
 	}
 
+	/**
+	 * it tests if getCondtructorBonus set the bonuses of tile if the list of the bonus is full, it doesn't do 
+	 * it otherwise
+	 */
 	@Test
-	public void CostructorBonusTest() {
+	public void testCostructorBonusShouldSetTheBonusOfTheTileIfTheListIsFilledAndItShouldntOtherwise() {
 		String bonus1="3VictoryPoints,1Assistants";
 		String bonus2="3Coin,3Politics,1Nobility";
 		cb.getCostructorBonus(bpt1, bonus1);
@@ -65,8 +75,11 @@ public class CreateBonusTest {
 		assertEquals(bpt2.getBonusTile().size(), 3);
 	}
 
+	/**
+	 * it tests if getCityBonus works properly
+	 */
 	@Test
-	public void CityBonusTest(){
+	public void testCityBonus(){
 		cb.bonusList(null);//creo la lista dei bonus
 		cb.getCityBonus(c1);
 		assertNotNull(c1.getToken());

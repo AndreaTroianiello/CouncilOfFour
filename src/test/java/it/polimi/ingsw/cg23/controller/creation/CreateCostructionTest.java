@@ -35,15 +35,21 @@ public class CreateCostructionTest {
 		reg.add(new Region("Hills", 5, new RegionDeck(2), bonusKing));
 	}
 
+	/**
+	 * it tests if createRegionDeck fill the region's deck
+	 */
 	@Test
-	public void createRegionDeckTest() {
+	public void testCreateRegionDeckShouldFillTheRegionDeck() {
 		cc.createCardCostruction(null);
 		cc.createRegionDeck(reg);
 		assertFalse(reg.get(0).getDeck().isEmpty());
 	}
 
+	/**
+	 * it tests if createCostruction creates the business permit tiles properly
+	 */
 	@Test
-	public void createCostructionTest() {
+	public void testCreateCostruction() {
 		assertEquals(cc.createCardCostruction(null).size(), 45);
 	}
 

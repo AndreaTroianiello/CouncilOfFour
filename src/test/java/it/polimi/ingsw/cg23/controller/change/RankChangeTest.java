@@ -20,6 +20,9 @@ public class RankChangeTest {
 				new Player("user3",new NobilityTrack(1)));
 	}
 
+	/**
+	 * it tests if getRank and toString work properly
+	 */
 	@Test
 	public void testBoardChange() {
 		RankChange change=new RankChange(players);

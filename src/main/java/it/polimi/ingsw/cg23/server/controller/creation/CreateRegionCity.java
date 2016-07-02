@@ -57,7 +57,7 @@ public class CreateRegionCity {
 	}
 
 	/**
-	 * create the cities object and add at the citta list
+	 * create the cities object and add it in the cities' list
 	 * @param j the number of the region
 	 * @param r the region
 	 * @param typeList the type list

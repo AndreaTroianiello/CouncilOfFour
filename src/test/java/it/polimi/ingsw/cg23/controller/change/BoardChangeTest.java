@@ -31,6 +31,9 @@ public class BoardChangeTest {
 		
 	}
 
+	/**
+	 * it tests if getBoard and toString work properly
+	 */
 	@Test
 	public void testBoardChange() {
 		BoardChange change=new BoardChange(board);

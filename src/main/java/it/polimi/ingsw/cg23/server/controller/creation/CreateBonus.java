@@ -125,9 +125,9 @@ public class CreateBonus {
 	}
 
 	/**
-	 * add bonuses at costruction card
+	 * add bonuses in the construction card
 	 * @param bpt the business permit tile
-	 * @param bonusTotali a string with alla bonuses
+	 * @param bonusTotali a string with all the bonuses
 	 */
 	public void getCostructorBonus(BusinessPermitTile bpt, String bonusTotali){
 

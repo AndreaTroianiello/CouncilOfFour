@@ -24,6 +24,9 @@ public class CouncilChangeTest {
 		}
 	}
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
 	public void testCouncilChange() {
 		CouncilChange change=new CouncilChange(newCouncil);

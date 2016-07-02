@@ -16,12 +16,17 @@ public class AvvioTest {
 	Avvio avv;
 	
 	@Before
-	public void etUp() throws XmlException{
+	public void setUp() throws XmlException{
 		avv=new Avvio("map1.xml", new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null));
 	}
 	
+	/**
+	 * it tests if in the board there are 8 councillor in the pool, if the king's city is Juvelar, if the king's
+	 * council has 4 councillor, if the nobilityTrack's size is 21 and if it is properly filled, 
+	 * and if there are 3 regions
+	 */
 	@Test
-	public void getBoardTest() {
+	public void testStartPartitaShouldCreateProperlyTheBoard() {
 		avv.startPartita();
 		Board b=avv.getBoard();
 		
@@ -34,8 +39,12 @@ public class AvvioTest {
 		assertEquals(b.getNobilityTrack().getNobilityBoxes().get(2).getBonus().get(0).getName(), "2VictoryPoints");//nobility track pieno
 	}
 
+	/**
+	 * it tests if there are 5 type of city, if the politic's card's deck is not empty, if each city but Juvelar
+	 * has a token, and if each city has at least one neighbor 
+	 */
 	@Test
-	public void startPartitaTest(){
+	public void testStartPartitaShouldWorksProperly(){
 		avv.startPartita();
 		Board b=avv.getBoard();
 		assertEquals(b.getTypes().size(), 5);//numero di tipi

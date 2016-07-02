@@ -18,6 +18,9 @@ public class CityChangeTest {
 		
 	}
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
 	public void testCityChange() {
 		CityChange change=new CityChange(city);

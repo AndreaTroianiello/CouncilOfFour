@@ -20,8 +20,11 @@ public class BusinessPermitTileChangeTest {
 		tile.addBonus(new BonusVictoryPoints(1));
 	}
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
-	public void testBoardChange() {
+	public void testToString() {
 		BusinessPermitTileChange change=new BusinessPermitTileChange(tile);
 		assertEquals(change.toString(),"BusinessPermitTileChange [Tile= [Cities=[A, B, C], Bonuses=[BonusVictoryPoints[points=1]]]");
 	}

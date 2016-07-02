@@ -15,8 +15,11 @@ public class PlayerChangeTest {
 	public void setUp() throws Exception {
 	}
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
-	public void testPlayerChange() {
+	public void testToString() {
 		Player newPlayer=new Player("user",new NobilityTrack(1));
 		PlayerChange change=new PlayerChange(newPlayer);
 		assertEquals(change.toString(),"PlayerChange [newPlayer=Player [user=user, additionalAction=false,"

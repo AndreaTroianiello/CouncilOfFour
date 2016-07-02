@@ -8,9 +8,11 @@ import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 
 public class InfoChangeTest {
 
-
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
-	public void testInfoChange() {
+	public void testToString() {
 		InfoChange change=new InfoChange("error");
 		assertEquals(change.toString(),"InfoChange [msg=error]");
 	}

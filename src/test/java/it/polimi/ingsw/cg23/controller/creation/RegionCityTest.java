@@ -70,8 +70,11 @@ public class RegionCityTest {
 		citta3=new ArrayList<>();
 	}
 
+	/**
+	 * it tests if createRegions creates the 3 regions properly
+	 */
 	@Test
-	public void regionTest() {
+	public void testCreateRegionsShouldCreate3Regions() {
 		regions=crc.createRegions(bonusKing);
 		assertEquals(regions.size(), 3);
 		assertNotNull(regions.get(0));
@@ -79,8 +82,11 @@ public class RegionCityTest {
 		assertNotNull(regions.get(2));
 	}
 
+	/**
+	 * it tests if createCities creates 5 cities in each region
+	 */
 	@Test
-	public void cityTest() {
+	public void testCreateCitiesSholdCreate5CitiesInEachRegion() {
 		regions=crc.createRegions(bonusKing);//regioni
 		citta1=crc.createCities(0, regions.get(0), tipi);
 		citta2=crc.createCities(1, regions.get(1), tipi);
@@ -96,8 +102,11 @@ public class RegionCityTest {
 		}
 	}
 
+	/**
+	 * it tests if addNeighbors set the neighbors properly
+	 */
 	@Test
-	public void neighbourTest() {
+	public void testAddNeighbor() {
 		regions=crc.createRegions(bonusKing);//regioni
 		citta1=crc.createCities(0, regions.get(0), tipi);//citta'
 		crc.addNeighbors(citta1);

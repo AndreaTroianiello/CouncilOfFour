@@ -34,8 +34,11 @@ public class EmporiumsChangeTest {
 		city.getEmporiums().addAll(emporiums);
 	}
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
-	public void testCityChange() {
+	public void testToString() {
 		EmporiumsChange change=new EmporiumsChange(city.getEmporiums());
 		assertEquals(change.toString(),"EmporiumsChange [ Emporiums= [City=A, Players=[player1, player2, player3, player4]]");
 	}

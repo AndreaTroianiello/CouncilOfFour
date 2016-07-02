@@ -71,40 +71,61 @@ public class SettingTest {
 		cartePolitiche=s.politicList(13,12);
 	}
 
+	/**
+	 * it tests if king() return the king's city when there is a purple city in the list passed, and if it return
+	 * null otherwise
+	 */
 	@Test
-	public void kingTest() {
+	public void testKingShouldReturnTheKingCityIfInTheListThereIsARegionWhitPurpleTypeAndNullOtherwise() {
 		King k1=s.king(cities1);
 		assertEquals(k1.getCity().getName(), "Palermo");
 		King k2=s.king(cities2);
 		assertEquals(k2, null);
 	}
 
+	/**
+	 * it tests if 4 politic's cards are added to the player's hand when the int parameter is 4
+	 */
 	@Test
-	public void PescaTest() {
+	public void testPescaShouldGiveThePlayer4PoliticsCardsIfTheParameterIs4() {
 		s.pesca(new Deck(cartePolitiche), player, 4);
 		assertEquals(player.get(0).getHand().size(), 4);
 	}
 
+	/**
+	 * it tests if the color's array's length is 6
+	 */
 	@Test
-	public void colorTest() {
+	public void testColorShouldCreateAnArrayWith6ColorInIt() {
 		assertEquals(s.color().length, 6);
 	}
 
+	/**
+	 * it tests if politicList create a list of n(number of cards per color)*color(number of color)+k(number
+	 * of jolly) politic's cards
+	 */
 	@Test
-	public void politicCardTest() {
+	public void testPoliticListShouldCreateAListOfPoliticsCards() {
 		int n=10;
 		int k=2;
 		int col=s.color().length;
 		assertEquals(s.politicList(n, k).size(), n*col+k);
 	}
 
+	/**
+	 * it tests if createType creates 5 types
+	 */
 	@Test
-	public void createTypeTest() {
+	public void testCreateTypeShouldCreates5Types() {
 		assertEquals(s.createType(bonusKing).size(), 5);
 	}
 
+	/**
+	 * it tests nobilityTrackFill fill the nobilityTrack with 21 boxes and if there are
+	 * 11 boxes occupied by bonuses
+	 */
 	@Test
-	public void nobilityTrackFillTest() {
+	public void testNobilityTrackFillShouldFillTheNobilityTrackWith21BoxesAnd11OfThemHaveBonuses() {
 		NobilityTrack nt=new NobilityTrack(21);
 		nt=s.nobilityTrackFill(nt);
 		for(int i=0; i<nt.getNobilityBoxes().size(); i++){

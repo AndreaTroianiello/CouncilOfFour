@@ -13,6 +13,9 @@ public class ChatChangeTest {
 	public void setUp() throws Exception {
 	}
 
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
 	public void testToString() {
 		ChatChange change = new ChatChange("Ciao", "user");
