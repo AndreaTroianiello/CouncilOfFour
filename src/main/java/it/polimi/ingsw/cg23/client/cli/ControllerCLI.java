@@ -21,7 +21,7 @@ import it.polimi.ingsw.cg23.utility.CreateMap;
 import it.polimi.ingsw.cg23.utility.Print;
 
 /**
- * The client Command Line Interface's controller.
+ * The client Command Line Interface's controller. This manages the inputs of the user.
  * @author Andrea
  *
  */
@@ -87,7 +87,6 @@ public class ControllerCLI implements ClientController{
 	 * @throws IOException If the connection has problems.
 	 */
 	public void updateController(String string) throws IOException{
-		string+="";
 		StringTokenizer tokenizer=new StringTokenizer(string," ");
 		switch (tokenizer.nextToken()) {
 		case "QUIT":
@@ -124,7 +123,7 @@ public class ControllerCLI implements ClientController{
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
 	private void parseShowCommand(StringTokenizer tokenizer){
-		Board model=clientModel.getModel();
+		Board model=clientModel.getBoard();
 		if(model==null){
 			cli.print("", "Command refused.");
 			return;
@@ -163,7 +162,7 @@ public class ControllerCLI implements ClientController{
 	 */
 	@Override
 	public void updateController(Change change) {
-		if(change instanceof PlayerChange && clientModel.getModel()==null){
+		if(change instanceof PlayerChange && clientModel.getBoard()==null){
 			clientModel.setPlayer(((PlayerChange)change).getPlayer());
 			return;
 		}
@@ -172,12 +171,7 @@ public class ControllerCLI implements ClientController{
 			return;
 		}
 		if(change instanceof BoardChange){
-			Board model=((BoardChange)change).getBoard();
-			List<Player> players=model.getPlayers();
-			for(Player player: players)
-				if(clientModel.getPlayer().getUser().equals(player.getUser()))
-					clientModel.setPlayer(player);
-			clientModel.setModel(model);
+			replaceBoard((BoardChange)change);
 			return;
 		}
 		if(change instanceof BonusChange){
@@ -185,5 +179,19 @@ public class ControllerCLI implements ClientController{
 			setBonus(((BonusChange)change).getBonus());
 		}else
 			cli.print(change,"");
+	}
+
+	/**
+	 * Replaces the board when the client receive a BoardChange.
+	 * @param change The board change received.
+	 */
+	private void replaceBoard(BoardChange change) {
+		Board model=change.getBoard();
+		List<Player> players=model.getPlayers();
+		for(Player player: players)
+			if(clientModel.getPlayer().getUser().equals(player.getUser()))
+				clientModel.setPlayer(player);
+		clientModel.setBoard(model);
+		
 	}
 }

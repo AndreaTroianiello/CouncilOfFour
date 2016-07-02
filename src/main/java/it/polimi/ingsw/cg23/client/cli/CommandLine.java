@@ -43,7 +43,7 @@ public class CommandLine {
 		cli.print("","RUNNING");
 		while (run) {
 			try {
-				controller.updateController(stdIn.nextLine());
+				controller.updateController(stdIn.nextLine()+"");
 			} catch (IOException e) {
 				logger.error(e);
 				run=false;

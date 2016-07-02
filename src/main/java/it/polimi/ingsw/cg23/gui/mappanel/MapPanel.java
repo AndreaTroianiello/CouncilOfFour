@@ -68,8 +68,8 @@ public class MapPanel extends JPanel {
 	}
 
 	private void init(){
-		List<Region> reg=model.getModel().getRegions();//the region list
-		King king=model.getModel().getKing();//the king
+		List<Region> reg=model.getBoard().getRegions();//the region list
+		King king=model.getBoard().getKing();//the king
 
 		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
 		setLayout(layout);//il pannello usa il layout grid bag

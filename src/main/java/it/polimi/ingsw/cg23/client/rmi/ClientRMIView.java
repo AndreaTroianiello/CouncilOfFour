@@ -19,7 +19,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
 	private static final long serialVersionUID = 1191452922375955484L;
 	private transient ClientController controller;
-	private RMIViewRemote rmiServerView;
+	private transient RMIViewRemote rmiServerView;
 	
 	/**
 	 * The constructor of ClientRMIView.

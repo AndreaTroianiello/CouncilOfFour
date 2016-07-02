@@ -20,7 +20,11 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
-
+/**
+ * The client GUI's controller. This manages the inputs of the user.
+ * @author Andrea
+ *
+ */
 public class ControllerGUI implements ClientController {
 
 	private Logger logger;
@@ -31,6 +35,10 @@ public class ControllerGUI implements ClientController {
 	private HomeFrame home;
 	private SelectedElements selectedElements;
 	
+	/**
+	 * The constructor of the ControllerGUI. Initializes the variables at the default values.
+	 * @param home
+	 */
 	public ControllerGUI(HomeFrame home) {
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
@@ -40,17 +48,24 @@ public class ControllerGUI implements ClientController {
 		this.selectedElements=new SelectedElements();
 	}
  
+	/**
+	 * Updates the frame map. If the frame map doesn't exit, initializes it.
+	 */
 	private void updateFrameMap(){
 		if(map!=null){
 			map.update();
 		}else
-			if(clientModel.getModel()!=null){
+			if(clientModel.getBoard()!=null){
 				map=new FrameMap(this);
 				map.setVisible(true);
 				home.setVisible(false);
 		}
 	}
 	
+	/**
+	 * Updates the current frame with the informations received.
+	 * @param change The change received.
+	 */
 	private void updateInfo(Change change){
 		if(map!=null){
 			map.updateInfo(change);
@@ -58,9 +73,14 @@ public class ControllerGUI implements ClientController {
 			home.updateInfo((InfoChange)change);
 		}
 	}
+	
+	 /**
+	 * Notifies the controller.
+	 * @param change The change to be communicated.
+	 */
 	@Override
 	public void updateController(Change change) {
-		if(change instanceof PlayerChange && clientModel.getModel()==null){
+		if(change instanceof PlayerChange && clientModel.getBoard()==null){
 			clientModel.setPlayer(((PlayerChange)change).getPlayer());
 			return;
 		}
@@ -71,30 +91,46 @@ public class ControllerGUI implements ClientController {
 			for(Player player: players)
 				if(clientModel.getPlayer().getUser().equals(player.getUser()))
 					clientModel.setPlayer(player);
-			clientModel.setModel(model);
+			clientModel.setBoard(model);
 			updateFrameMap();
 			return;
 		}else
 			updateInfo(change);
 	}
 
+	/**
+	 * Sets the out view of the client.
+	 * @param out The class that manages the objects to send to the server.
+	 */
 	@Override
 	public void setOutView(ClientViewOut out) {
 		this.out=out;
 	}
 	
+	/**
+	 * Closes the connection and close the FrameMap.
+	 */
 	public void closeAll(){
 		try {
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		map.dispatchEvent(new WindowEvent(map, WindowEvent.WINDOW_CLOSING));
 	}
+	
+	/**
+	 * Returns the SelectedElements object of the controller.
+	 * @return SelectedElements object.
+	 */
 	public SelectedElements getSelectedElements(){
 		return selectedElements;
 	}
+	
+	/**
+	 * Updates the controller with the action to send.
+	 * @param action The action to send.
+	 */
 	public void updateController(Action action){
 		try {
 			out.update(action);
@@ -103,15 +139,27 @@ public class ControllerGUI implements ClientController {
 		}
 	}
 	
+	/**
+	 * Returns the client's model.
+	 * @return ClientModel
+	 */
 	@Override
 	public ClientModel getModel() {
 		return clientModel;
 	}
 	
+	/**
+	 * 
+	 * @param cModel
+	 */
 	public void setModel(ClientModel cModel) {
 		this.clientModel=cModel;
 	}
 
+	/**
+	 * Sets the bonus received.
+	 * @param bonus The bonus received.
+	 */
 	@Override
 	public void setBonus(Bonus bonus) {
 		this.bonus=bonus;	

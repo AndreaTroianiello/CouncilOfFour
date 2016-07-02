@@ -11,7 +11,7 @@ public class SendMessage extends Action {
 	private static final long serialVersionUID = 3097121314859196861L;
 	private String message;
 	private Player player;
-	public SendMessage(String message,Player player) throws NullPointerException{
+	public SendMessage(String message,Player player){
 		this.message=message;
 		this.player=player;
 	}

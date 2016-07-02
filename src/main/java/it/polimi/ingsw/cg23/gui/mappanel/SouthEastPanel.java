@@ -42,7 +42,7 @@ public class SouthEastPanel extends JPanel {
 		this.cp=new CouncilPanel(loggerArea,controller);
 		this.stat=new PlayerStatic();
 		this.model=controller.getModel();
-		this.bonusf=new BonusFrame(model.getModel(), loggerArea);
+		this.bonusf=new BonusFrame(model.getBoard(), loggerArea);
 		this.cf=new CardFrame(loggerArea,controller);
 		
 		init();
@@ -60,7 +60,7 @@ public class SouthEastPanel extends JPanel {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
 		//----------------consiglieri del re------------
-		JPanel kingCouncillors=cp.kingBalcone(model.getModel().getKing());
+		JPanel kingCouncillors=cp.kingBalcone(model.getBoard().getKing());
 		kingCouncillors.setName("consiglieri re");
 		kingCouncillors.setOpaque(false);
 		
@@ -150,7 +150,7 @@ public class SouthEastPanel extends JPanel {
 		actionCard(card);
 
 		//----------------consiglieri dipsonibili------------
-		JPanel consiglieriColor=cp.colurCouncillors(model.getModel());
+		JPanel consiglieriColor=cp.colurCouncillors(model.getBoard());
 		consiglieriColor.setOpaque(false);
 		
 		lim.gridx = 0;//posizione componenti nella griglia

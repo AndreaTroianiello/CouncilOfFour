@@ -5,7 +5,18 @@ import java.util.StringTokenizer;
 
 import it.polimi.ingsw.cg23.utility.Print;
 
+/**
+ * The class that starts the client CLI.
+ * @author Andrea
+ *
+ */
 public class Client {
+	
+	/**
+	 * The private constructor of the client.
+	 */
+	private Client(){
+	}
 
 	/**
 	 * Lets you choose the type of connection and starts the client.
@@ -19,7 +30,7 @@ public class Client {
 		CommandLine command=new CommandLine(cli);
 		Scanner stdIn = new Scanner(System.in);
 		while(run){
-			StringTokenizer tokenizer=new StringTokenizer(stdIn.nextLine()," ");
+			StringTokenizer tokenizer=new StringTokenizer(stdIn.nextLine()+""," ");
 			if(tokenizer.hasMoreTokens())
 				switch (tokenizer.nextToken()) {
 				case "SOCKET":

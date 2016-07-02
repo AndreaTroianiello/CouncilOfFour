@@ -51,7 +51,7 @@ public class NobilityTrackPanel extends JPanel {
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;
 		this.model=model;
 		this.loggerArea=loggerArea;
-		this.nt=model.getModel().getNobilityTrack();
+		this.nt=model.getBoard().getNobilityTrack();
 
 		widthBox= (9.0/16)*lung/nt.getNobilityBoxes().size();//larghezza del nobility box
 
@@ -117,7 +117,7 @@ public class NobilityTrackPanel extends JPanel {
 	 * @return, the lenght of nobility track
 	 */
 	public int nobilityLenght(){
-		return (int) widthBox*(model.getModel().getNobilityTrack().getNobilityBoxes().size());
+		return (int) widthBox*(model.getBoard().getNobilityTrack().getNobilityBoxes().size());
 	}
 
 	/**

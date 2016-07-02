@@ -21,8 +21,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
- * the home frame of the game
- * @author viga94_
+ * The class that starts the client GUI.
+ * @author Andrea
  *
  */
 public class HomeFrame extends JFrame {
@@ -36,7 +36,7 @@ public class HomeFrame extends JFrame {
 	
 
 	/**
-	 * Create the frame.
+	 * The constructor of HomeFrame. It creates the frame.
 	 */
 	public HomeFrame() {
 		logger = Logger.getLogger(HomeFrame.class);
@@ -45,6 +45,62 @@ public class HomeFrame extends JFrame {
 		initComponents();
 	}
 	
+	/**
+	 * Initializes the componets of the JFrame.
+	 */
+	private void initComponents() {
+		panelLogin=new PanelLogin(controller);
+		panelConnection = new PanelConnection(controller,this);
+		labelBackground=new JLabel();
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Council of Four");
+		setBounds(new Rectangle(100, 100, 400, 497));
+		setMaximumSize(new Dimension(700, 870));
+		setMinimumSize(new Dimension(400, 497));
+		setName("home"); // NOI18N
+		setPreferredSize(new Dimension(400, 497));
+		setResizable(false);
+		getContentPane().setLayout(null);
+
+		//Panel Login.
+		getContentPane().add(panelLogin);
+		panelLogin.setBounds(-10, 230, 400, 220);
+		panelLogin.setVisible(false);
+
+		//Panel Connection.
+		getContentPane().add(panelConnection);
+		panelConnection.setBounds(0, 230, 400, 230);
+
+		try {
+			BufferedImage image = ImageIO.read(new File("src/main/resources/images/Home-CouncilOfFour.jpg"));
+			labelBackground.setIcon(new ImageIcon(image));
+			labelBackground.setAlignmentY(0.0F);
+			getContentPane().add(labelBackground);
+			labelBackground.setBounds(0, 0, image.getWidth(), image.getHeight());
+		} catch (IOException e) {
+			logger.error("impossibile caricare l'ìmmagine", e);
+		}
+		
+		pack();
+	}
+	
+	/**
+	 * Switches the panelLogin with panelConnection and vice versa. 
+	 */
+	public void switchPanel(){
+		panelLogin.setVisible(!panelLogin.isVisible());
+		panelConnection.setVisible(!panelConnection.isVisible());
+	}
+
+	/**
+	 * Updates the HomeFrame with the informations received.
+	 * @param info The informations received.
+	 */
+	public void updateInfo(InfoChange info){
+		panelLogin.infoPopup(" "+info.getInfo());
+	}
+
 	/**
 	 * Launch the application.
 	 * @param args
@@ -62,52 +118,4 @@ public class HomeFrame extends JFrame {
 			}
 		});
 	}
-
-	private void initComponents() {
-		panelLogin=new PanelLogin(controller);
-		panelConnection = new PanelConnection(controller,this);
-		labelBackground=new JLabel();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Council of Four");
-		setBounds(new Rectangle(100, 100, 400, 497));
-		setMaximumSize(new Dimension(700, 870));
-		setMinimumSize(new Dimension(400, 497));
-		setName("home"); // NOI18N
-		setPreferredSize(new Dimension(400, 497));
-		setResizable(false);
-		getContentPane().setLayout(null);
-
-		//Panel 2
-		getContentPane().add(panelLogin);
-		panelLogin.setBounds(-10, 230, 400, 220);
-		panelLogin.setVisible(false);
-
-		//Panel 1
-		getContentPane().add(panelConnection);
-		panelConnection.setBounds(0, 230, 400, 230);
-
-		try {
-			BufferedImage image = ImageIO.read(new File("src/main/resources/images/Home-CouncilOfFour.jpg"));
-			labelBackground.setIcon(new ImageIcon(image));
-			labelBackground.setAlignmentY(0.0F);
-			getContentPane().add(labelBackground);
-			labelBackground.setBounds(0, 0, image.getWidth(), image.getHeight());
-		} catch (IOException e) {
-
-			logger.error("impossibile caricare l'ìmmagine", e);
-		}
-		
-		pack();
-	}
-	
-	public void switchPanel(){
-		panelLogin.setVisible(!panelLogin.isVisible());
-		panelConnection.setVisible(!panelConnection.isVisible());
-	}
-
-	public void updateInfo(InfoChange info){
-		panelLogin.infoPopup(" "+info.getInfo());
-	}
-
 }

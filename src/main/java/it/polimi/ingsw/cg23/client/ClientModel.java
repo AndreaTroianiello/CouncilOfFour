@@ -25,7 +25,7 @@ import it.polimi.ingsw.cg23.utility.ColorManager;
  *
  */
 public class ClientModel {
-	private Board model;
+	private Board board;
 	private Player player;
 	private Logger logger;
 	private List<PoliticCard> cards;
@@ -34,7 +34,7 @@ public class ClientModel {
 	 * The constructor of ClientModel. Initializes the variables at null.
 	 */
 	public ClientModel() {
-		this.model=null;
+		this.board=null;
 		this.player=null;
 		this.cards=new ArrayList<>();
 		logger= Logger.getLogger(ClientModel.class);
@@ -45,16 +45,16 @@ public class ClientModel {
 	 * Returns the game's model on the client.
 	 * @return the game's model.
 	 */
-	public Board getModel() {
-		return model;
+	public Board getBoard() {
+		return board;
 	}
 	
 	/**
 	 * Sets the game's model on the client.
-	 * @param model the game's model to set.
+	 * @param board the game's model to set.
 	 */
-	public void setModel(Board model) {
-		this.model = model;
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 	
 	/**
@@ -86,8 +86,8 @@ public class ClientModel {
 	 * @return the city, if it isn't found returns null.
 	 */
 	public City findCity(String cityName){
-		for(int i=0; i<model.getRegions().size(); i++){
-			City c=model.getRegions().get(i).searchCityById(cityName.toUpperCase().charAt(0));
+		for(int i=0; i<board.getRegions().size(); i++){
+			City c=board.getRegions().get(i).searchCityById(cityName.toUpperCase().charAt(0));
 			if(c!=null)
 				return c;
 		}
@@ -100,9 +100,9 @@ public class ClientModel {
 	 * @return the region, if it isn't found returns null.
 	 */
 	public Region findRegion(String regionName){
-		for(int i=0; i<model.getRegions().size(); i++){
-			if(model.getRegions().get(i).getName().equals(regionName))
-				return model.getRegions().get(i);
+		for(int i=0; i<board.getRegions().size(); i++){
+			if(board.getRegions().get(i).getName().equals(regionName))
+				return board.getRegions().get(i);
 		}
 		return null;
 	}
@@ -160,7 +160,7 @@ public class ClientModel {
 			logger.error(e);
 			return null;
 		}
-		Market market=model.getMarket();
+		Market market=board.getMarket();
 		if(number>=market.getItems().size())
 			return null;
 		else

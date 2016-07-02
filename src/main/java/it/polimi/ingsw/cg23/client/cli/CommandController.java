@@ -72,7 +72,7 @@ public class CommandController {
 	 * @throws IOException If the connection has problems
 	 * @throws NoSuchElementException if the string doesn't contain some parameters..
 	 */
-	private void parseCommand(String string) throws IOException,NoSuchElementException{
+	private void parseCommand(String string) throws IOException{
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();
 		switch (inputLine) {
@@ -134,7 +134,7 @@ public class CommandController {
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
 	private void parseMarketCommand(StringTokenizer tokenizer) throws IOException{
-		Board model=clientModel.getModel();
+		Board model=clientModel.getBoard();
 		if(model==null){
 			cli.print("", "Command refused.");
 			return;
@@ -164,7 +164,6 @@ public class CommandController {
 	 * @throws NoSuchElementException if the string doesn't contain many parameters.
 	 */
 	private void parseMainCommand(String string) throws IOException{
-		String tok=null;
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;
 		switch(tokenizer.nextToken()){
@@ -194,7 +193,7 @@ public class CommandController {
 			controller.updateController(action);
 			break;
 		case "ELECT":
-			tok=tokenizer.nextToken();
+			String tok=tokenizer.nextToken();
 			if("KING".equals(tok))
 				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),null, true);
 			else

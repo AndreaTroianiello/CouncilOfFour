@@ -61,6 +61,7 @@ public class ClientHandler implements Runnable,ClientViewOut {
 	 * Closes the Socket connection.
 	 * @throws IOException if the Socket connection has problems.
 	 */
+	@Override
 	public void close() throws IOException{
 		this.run=false;
 		socket.close();

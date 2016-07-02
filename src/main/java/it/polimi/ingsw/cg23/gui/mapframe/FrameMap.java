@@ -165,7 +165,7 @@ public class FrameMap extends JFrame {
 	 */
 	public void update(){
 		southPanel.update();
-		boolean value=controller.getModel().getModel().getStatus().getStatus().contains("MARKET");
+		boolean value=controller.getModel().getBoard().getStatus().getStatus().contains("MARKET");
 		marketPanel.setVisible(value);
 		mapPanel.setVisible(!value);
 		marketPanel.fillTable();
@@ -180,9 +180,9 @@ public class FrameMap extends JFrame {
 			public void run() {
 				try {
 					ClientModel models=new ClientModel();
-					models.setModel(new Board(null,null,null,null,null,null));
-					new Avvio("map5.xml",models.getModel()).startPartita();
-					Player p=new Player("user1",models.getModel().getNobilityTrack());
+					models.setBoard(new Board(null,null,null,null,null,null));
+					new Avvio("map5.xml",models.getBoard()).startPartita();
+					Player p=new Player("user1",models.getBoard().getNobilityTrack());
 					models.setPlayer(p);
 					List<PoliticCard> list=Arrays.asList(new PoliticCard(Color.BLACK, false),
 							new PoliticCard(new ColorManager().getColor("Orange"), false),
@@ -196,7 +196,7 @@ public class FrameMap extends JFrame {
 							new PoliticCard(Color.WHITE, false),
 							new PoliticCard(new ColorManager().getColor("Violet"), false));
 					models.getPlayer().getHand().addAll(list);
-					models.getModel().getKing().setCity(models.getModel().getRegions().get(1).getCities().get(1));
+					models.getBoard().getKing().setCity(models.getBoard().getRegions().get(1).getCities().get(1));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
 					models.getPlayer().setUsedBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
@@ -216,14 +216,14 @@ public class FrameMap extends JFrame {
 					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
 					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
 					models.getPlayer().addAvailableBusinessPermit(new BusinessPermitTile(Arrays.asList('A','B','E'), ""));
-					models.getModel().getRegions().get(1).setBonusUnavailable();
-					models.getModel().getTypes().get(2).setBonusUnavailable();
-					models.getModel().getBonusKing().runBonusKing(new Player("user",models.getModel().getNobilityTrack()));
-					models.getModel().getMarket().addItemToSell(new Item(new PoliticCard(null, true), p, 5));
-					models.getModel().getMarket().addItemToSell(new Item(new BusinessPermitTile(Arrays.asList('A','B'),"ciao"), p, 5));
+					models.getBoard().getRegions().get(1).setBonusUnavailable();
+					models.getBoard().getTypes().get(2).setBonusUnavailable();
+					models.getBoard().getBonusKing().runBonusKing(new Player("user",models.getBoard().getNobilityTrack()));
+					models.getBoard().getMarket().addItemToSell(new Item(new PoliticCard(null, true), p, 5));
+					models.getBoard().getMarket().addItemToSell(new Item(new BusinessPermitTile(Arrays.asList('A','B'),"ciao"), p, 5));
 					AssistantsPool pool=new AssistantsPool();
 					pool.setAssistants(10);
-					models.getModel().getMarket().addItemToSell(new Item(pool, p, 15));
+					models.getBoard().getMarket().addItemToSell(new Item(pool, p, 15));
 					ControllerGUI controllers=new ControllerGUI(new HomeFrame());
 					controllers.setModel(models);
 					FrameMap frame = new FrameMap(controllers);

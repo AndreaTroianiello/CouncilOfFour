@@ -1,8 +1,5 @@
 package it.polimi.ingsw.cg23.client;
 
-
-import java.io.IOException;
-
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
@@ -14,9 +11,8 @@ import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 public interface ClientController {
 	
 	/**
-	 * Notifies the controller with a string.
-	 * @param change The change to be communicated
-	 * @throws IOException If the connection has problems.
+	 * Notifies the controller.
+	 * @param change The change to be communicated.
 	 */
 	public void updateController(Change change);
 	

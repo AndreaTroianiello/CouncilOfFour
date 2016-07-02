@@ -54,7 +54,7 @@ public class Table{
 	
 	public void fillTable(){
 		init();
-		Market market=clientModel.getModel().getMarket();
+		Market market=clientModel.getBoard().getMarket();
 		List<Item> items=market.getItems();
 		for(int index=0;index<items.size();index++){
 			Item item=items.get(index);

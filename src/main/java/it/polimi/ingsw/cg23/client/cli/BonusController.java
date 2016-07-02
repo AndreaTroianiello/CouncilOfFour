@@ -17,6 +17,11 @@ import it.polimi.ingsw.cg23.server.model.bonus.BonusCityToken;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusGetPermitTile;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusTileBonus;
 
+/**
+ * Class that handles the translation of commands when you have received a bonus.
+ * @author Andrea
+ *
+ */
 public class BonusController {
 
 	private ControllerCLI controller;

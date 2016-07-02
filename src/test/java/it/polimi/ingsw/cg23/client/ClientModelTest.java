@@ -42,8 +42,8 @@ public class ClientModelTest {
 	@Test
 	public void testGetBoard() {
 		ClientModel client = new ClientModel();
-		client.setModel(board);;
-		assertEquals(board, client.getModel());
+		client.setBoard(board);;
+		assertEquals(board, client.getBoard());
 	}	
 	
 	/**
@@ -62,7 +62,7 @@ public class ClientModelTest {
 	@Test
 	public void testFindCityShouldReturnNullIfTheCityIsNotInTheRegion() {
 		ClientModel client = new ClientModel();
-		client.setModel(board);
+		client.setBoard(board);
 		this.board.getRegions().add(this.region);
 		assertNull(client.findCity("bo"));
 	}
@@ -73,7 +73,7 @@ public class ClientModelTest {
 	@Test
 	public void testFindCityShouldReturnTheCityIfTheCityIsInTheRegion() {
 		ClientModel client = new ClientModel();
-		client.setModel(board);
+		client.setBoard(board);
 		City city = new City('B', "Barcellona", new Type("gold", 0, null), region);
 		this.region.addCity(city);
 		this.board.getRegions().add(this.region);
@@ -86,7 +86,7 @@ public class ClientModelTest {
 	@Test
 	public void testFindRegionShouldReturnTheRegionIfItIsInTheBoard() {
 		ClientModel client = new ClientModel();
-		client.setModel(board);
+		client.setBoard(board);
 		this.board.getRegions().add(this.region);
 		assertEquals(this.region, client.findRegion("costa"));
 	}
@@ -97,7 +97,7 @@ public class ClientModelTest {
 	@Test
 	public void testFindRegionShouldReturnNullIfTheRegionIsNotInTheBoard() {
 		ClientModel client = new ClientModel();
-		client.setModel(board);
+		client.setBoard(board);
 		this.board.getRegions().add(this.region);
 		assertNull(client.findRegion("collina"));
 	}
@@ -133,7 +133,7 @@ public class ClientModelTest {
 	@Test
 	public void testFindRegionTile() {
 		ClientModel client = new ClientModel();
-		client.setModel(board);
+		client.setBoard(board);
 		this.board.getRegions().add(this.region);
 		BusinessPermitTile tile = new BusinessPermitTile(null, null);
 		List<BusinessPermitTile> businessPermitTiles = new ArrayList<>();
@@ -151,7 +151,7 @@ public class ClientModelTest {
 	public void testFindItem() {
 		ClientModel client = new ClientModel();
 		Item assistants = new Item(new AssistantsPool(), this.player, 3);
-		client.setModel(board);
+		client.setBoard(board);
 		assertNull(client.findItem("l"));
 		assertNull(client.findItem("0"));
 		this.board.getMarket().addItemToSell(assistants);

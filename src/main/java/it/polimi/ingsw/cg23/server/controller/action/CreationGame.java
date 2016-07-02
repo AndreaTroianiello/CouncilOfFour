@@ -42,17 +42,16 @@ public class CreationGame extends Action {
 	 * @param model The model of the game.
 	 */
 	public void runAction(Controller controller,Board model){
-		createMap(controller, model);
+		createMap(model);
 		if(model.getNobilityTrack()!=null)
 			createPlayer(controller, model);
 	}
 	
 	/**
 	 * It loads map if no one else did. 
-	 * @param controller The controller of the game.
 	 * @param model The model of the game.
 	 */
-	private void createMap(Controller controller,Board model){
+	private void createMap(Board model){
 		if(model.getDeck()==null){
 			try {
 				new Avvio(map+".xml",model).startPartita();

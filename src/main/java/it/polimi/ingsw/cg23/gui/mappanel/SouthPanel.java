@@ -61,7 +61,7 @@ public class SouthPanel extends JPanel {
 		lim.fill = GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
-		List<Region> reg=model.getModel().getRegions();//lista delle regioni
+		List<Region> reg=model.getBoard().getRegions();//lista delle regioni
 		for(int i=0; i<reg.size(); i++){//scorre le regioni-> aggiunge le carte permesso
 
 			//----------carte permesso di costruzione----------

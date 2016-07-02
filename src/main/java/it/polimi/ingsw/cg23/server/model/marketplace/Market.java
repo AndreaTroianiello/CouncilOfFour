@@ -72,10 +72,7 @@ public class Market implements Serializable{
 	public void removeAssistants(AssistantsPool item,Player player) throws NegativeNumberException{
 		int assistants=item.getAssistants();
 		assistants+=player.getAssistantsPool().getAssistants();
-		/*try {*/
-			player.getAssistantsPool().setAssistants(assistants);
-		/*} catch (NegativeNumberException e) {
-		}*/
+		player.getAssistantsPool().setAssistants(assistants);
 	}
 	
 	/**

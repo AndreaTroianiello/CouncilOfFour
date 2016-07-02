@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.client.cli;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -10,22 +9,32 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.polimi.ingsw.cg23.utility.Print;
 
+/**
+ * ReaderTextFile reads the file that contains the instructions of the CLI.
+ * @author Andrea
+ *
+ */
 public class ReaderTextFile {
 
 	private Print cli;
 	private Logger logger;
-
+	
+	/**
+	 * The constructor of ReaderTextFile.
+	 * @param cli the object that prints the informations on the screen.
+	 */
 	public ReaderTextFile(Print cli) {
 		this.cli=cli;
 		logger = Logger.getLogger(ReaderTextFile.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
+	/**
+	 * Reads the file README-CLI.txt
+	 */
 	public void readFile(){
-
 		String fileName = "README-CLI.txt";
 		String line = null;
-
 		try {
 			FileReader fileReader =new FileReader(fileName);
 			BufferedReader bufferedReader =new BufferedReader(fileReader);
@@ -34,9 +43,6 @@ public class ReaderTextFile {
 			}
 			bufferedReader.close();  
 			fileReader.close();
-		}
-		catch(FileNotFoundException e) {
-			logger.error(e);                
 		}
 		catch(IOException e) {
 			logger.error(e);
