@@ -73,11 +73,11 @@ public class MarketPanel extends JPanel {
 		JLabel lab=new JLabel(addSpace(lung/100));
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		//lab.setVisible(false);
 		layout.setConstraints(lab, lim);
 		add(lab);
@@ -102,11 +102,11 @@ public class MarketPanel extends JPanel {
 		System.out.println(lung/100);
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		//lab2.setVisible(false);
 		layout.setConstraints(lab2, lim);
 		add(lab2);
