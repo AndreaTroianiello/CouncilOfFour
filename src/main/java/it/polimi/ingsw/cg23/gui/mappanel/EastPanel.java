@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -77,7 +77,7 @@ public class EastPanel extends JPanel {
 
 		//----------write area----------
 		write.setEditable(true);//write area modificabile
-		write.setFont(new Font("Calibre", Font.PLAIN, 18));//font write area
+		write.setFont(new Font("Calibre", Font.PLAIN, 16));//font write area
 		write.setName("write area");//nome write area
 		write.setToolTipText("Write the message you want to send.");
 		write.setText("Write your message.");
@@ -90,11 +90,18 @@ public class EastPanel extends JPanel {
 
 		layout.setConstraints(write, lim);//applicazione del layout alla write area
 		add(write);//aggiunta write area al pannello
-
-		write.addMouseListener(new MouseAdapter(){//cancella il testo presente cliccando con il mouse
+		
+		write.addMouseListener(new MouseListener() {//azioni pannello click mouse
 			@Override
-			public void mouseClicked(MouseEvent me)
-			{
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				write.setText("");
 			}
 		});

@@ -42,7 +42,7 @@ public class NobilityTrackPanel extends JPanel {
 	private transient ClientModel model;
 	private double widthBox;
 	private NobilityTrack nt;
-	
+
 	/**
 	 * 
 	 * @param model, the model
@@ -53,13 +53,13 @@ public class NobilityTrackPanel extends JPanel {
 		this.model=model;
 		this.loggerArea=loggerArea;
 		this.nt=model.getModel().getNobilityTrack();
-		
+
 		widthBox= (9.0/16)*lung/nt.getNobilityBoxes().size();
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-		
+
 		init();
 	}
 
@@ -108,11 +108,11 @@ public class NobilityTrackPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					writeArea(loggerArea, nt, k);
-					}
+				}
 			});
 		}
 	}
-	
+
 	/**
 	 * calcola the le lenght of nobility track
 	 * @return, the lenght of nobility track
@@ -120,25 +120,29 @@ public class NobilityTrackPanel extends JPanel {
 	public int nobilityLenght(){
 		return (int) widthBox*(model.getModel().getNobilityTrack().getNobilityBoxes().size());
 	}
-	
+
 	private void writeArea(JTextArea loggerArea, NobilityTrack nt, int k){
 		loggerArea.append("\nNobility Track "+k+"");
 		if(nt.getNobilityBoxes().get(k).getBonus().toString()!="[]"){//bonus nullo
 			loggerArea.append("\n  Bonus: ");
 			String bonus="";
-			
+
 			for(int j=0; j<nt.getNobilityBoxes().get(k).getBonus().size(); j++){
 				bonus=bonus.concat(nt.getNobilityBoxes().get(k).getBonus().get(j).getName()+", ");
 			}
-			
+
 			loggerArea.append(bonus.substring(0, bonus.length()-2));
 		}
 		if(nt.getNobilityBoxes().get(k).getPlayers().toString()!="[]"){//nessun player
 			loggerArea.append("\n  Player: ");
 			String player="";
-			
+
 			for(int j=0; j<nt.getNobilityBoxes().get(k).getPlayers().size(); j++){
-				player=player.concat(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()+", ");
+				if("NaN".equals(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()))
+					player=player.concat("");
+				else
+					player=player.concat(nt.getNobilityBoxes().get(k).getPlayers().get(j).getUser()+", ");
+
 			}
 			loggerArea.append(player.substring(0,player.length()-2));
 		}

@@ -1,8 +1,10 @@
 package it.polimi.ingsw.cg23.gui.mappanel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +27,8 @@ public class MarketPanel extends JPanel {
 	private ControllerGUI controller;
 	private JTable table;
 	private Table tableCreator;
+	private final double lung;
+	private final double alt;
 	
 	/**
 	 * Create the panel.
@@ -33,6 +37,9 @@ public class MarketPanel extends JPanel {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
 		this.tableCreator=new Table(controller.getModel());
+		
+		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
+		alt=Toolkit.getDefaultToolkit().getScreenSize().height-50;//altezza-50
 		
 		init();
 	}
@@ -45,6 +52,11 @@ public class MarketPanel extends JPanel {
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 
+		
+		double width= (3.0/4)*lung;
+		double height=(3.0/4)*alt;
+		setSize(new Dimension((int)width, (int)height));
+		
 		//----------etichetta market----------
 		JLabel marketLabel=new JLabel("Market");
 		marketLabel.setForeground(new Color(255, 215, 0));

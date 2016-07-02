@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg23.gui.mapframe;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -76,11 +77,14 @@ public class FrameMap extends JFrame {
 		southPanel=new SouthPanel(controller, loggerArea);
 		setTitle("Mappa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-100, Toolkit.getDefaultToolkit().getScreenSize().height-200);
+		setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width-200, Toolkit.getDefaultToolkit().getScreenSize().height-200);
+		setMaximumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-200, Toolkit.getDefaultToolkit().getScreenSize().height-200));
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		grid();
+		
 	}
 
 	/**
@@ -102,17 +106,15 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(eastPanel, lim); //Associazione
 		contentPane.add(eastPanel); //Inserimento
-
 		
-
 		//----------pannello nord (mappa)----------
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
+		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 1;
 		lim.gridheight=2;//grandezza del riquadro
 		lim.gridwidth=3;
-		lim.fill=GridBagConstraints.NONE;//occupazione dello spazio libero della griglia (both=tutto pieno)
+		lim.fill=GridBagConstraints.VERTICAL;//occupazione dello spazio libero della griglia (both=tutto pieno)
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(mapPanel, lim);
 		contentPane.add(mapPanel);
@@ -149,6 +151,7 @@ public class FrameMap extends JFrame {
 		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
 		layout.setConstraints(scroll, lim); //Associazione
 		contentPane.add(scroll); //Inserimento
+		
 		pack();//necessario
 	}
 	

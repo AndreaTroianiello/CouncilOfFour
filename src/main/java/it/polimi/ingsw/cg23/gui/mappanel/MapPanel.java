@@ -54,6 +54,7 @@ public class MapPanel extends JPanel {
 	public MapPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
+		
 		this.ms=new MapSetting();
 		this.cp=new CityPanel(loggerArea,controller);
 		this.controller=controller;
@@ -78,6 +79,7 @@ public class MapPanel extends JPanel {
 		BufferedImage img=getImg();//immagine di sfondo
 		double width= (3.0/4)*lung;
 		double height=  ((double) img.getHeight()/img.getWidth())*width;
+
 		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
 
 		JLabel label=new JLabel(new ImageIcon(myim));//etichetta con l'immagine di sfondo
