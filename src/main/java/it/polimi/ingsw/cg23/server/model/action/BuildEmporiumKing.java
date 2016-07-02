@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.EmporiumsChange;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
+import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
 import it.polimi.ingsw.cg23.server.model.Player;
@@ -30,7 +31,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private final City destination;
 	private final ControlAction controlAction;
 	private final Payer payer;
-
+	private List<PoliticCard> realHand;
 
 	/**
 	 * the constructor set the variable of the class: main is set to true, cards and destination are
@@ -64,12 +65,12 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	@Override
 	public boolean runAction(Player player, Board board) {
 		City realDestination = this.controlAction.controlCity(this.destination, board);
-		List<PoliticCard> realHand = this.controlAction.controlPoliticCards(cards, player);
+		this.realHand = this.controlAction.controlPoliticCards(cards, player);
 		if(realDestination != null && realHand != null){
 			int jolly = howManyJolly(board);															//control how many jolly there are
 			int match = jolly + howManyMatch(board, board.getKing().getCouncil());						//control how many match there are
 			player.getHand().removeAll(discardedCards);
-			int payMatch = this.payer.payCoins(this.cards, this.discardedCards, match, player);														//pay the amount of coins relative to the match
+			int payMatch = this.payer.payCoins(realHand, this.discardedCards, match, player);														//pay the amount of coins relative to the match
 			int steps = (int) board.getKing().getCity().minimumDistance(realDestination, new ArrayList<City>());		//control the distance between the king's city and the destination
 			int coin = player.getRichness().getCoins();													//control the richness of the player			
 
@@ -92,7 +93,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 
 				if(player.getAvailableEmporium() != null){
 					try {
-						buildEmporiumK(player, board, steps, jolly, payMatch);
+						buildEmporiumK(realDestination, player, board, steps, jolly, payMatch);
 					} catch (NegativeNumberException e) {
 						this.notifyObserver(new InfoChange(e.getMessage()));
 						getLogger().error(e);
@@ -112,6 +113,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 			}
 			else
 				return false;
+			this.notifyObserver(new PlayerChange(player));
 			board.notifyObserver(new BoardChange(board));
 			board.notifyObserver(new EmporiumsChange(board.getKing().getCity().getEmporiums()));
 			return true;
@@ -129,12 +131,12 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	private int howManyJolly(Board board){
 		int jolly = 0;
 
-		for(PoliticCard card: cards)					//iterate the politic cards
+		for(PoliticCard card: realHand)					//iterate the politic cards
 			if(card.isJolly()){							//if the card is a jolly
 				jolly = jolly + 1;						//update the counter
 				this.discardedCards.add(card);			//and add the card to the discardedCards
 			}
-		this.cards.removeAll(discardedCards);			//remove all the jolly from the politic cards
+		this.realHand.removeAll(discardedCards);			//remove all the jolly from the politic cards
 		board.getDeck().discardCards(discardedCards);
 
 		return jolly;
@@ -154,16 +156,16 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 		int councilLenght = council.getCouncillors().size();
 
 		for(int i=0; i<councilLenght; i++){									//iterate the council
-			for(PoliticCard card: cards){									//iterate the politic cards
+			for(PoliticCard card: realHand){									//iterate the politic cards
 				if(card.getColor().toString().equals(council.getCouncillors().get(i).getColor().toString())){
 					match = match + 1;										//if there is a match update the counter
 					this.discardedCards.add(card);							//add the card to the discarded cards
-					this.cards.remove(card);								//remove the card from the politic cards
+					this.realHand.remove(card);								//remove the card from the politic cards
 					break;													//and break the cycle
 				}
 			}
 		}
-		cards.removeAll(discardedCards);
+		this.realHand.removeAll(discardedCards);
 		board.getDeck().discardCards(discardedCards);
 
 		return match;
@@ -179,15 +181,15 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * @param payMatch the money paid
 	 * @throws NegativeNumberException 
 	 */
-	private void buildEmporiumK(Player player, Board board, int steps, int jolly, int payMatch) throws NegativeNumberException{
+	private void buildEmporiumK(City destination, Player player, Board board, int steps, int jolly, int payMatch) throws NegativeNumberException{
 		try {
-			this.destination.buildEmporium(player.getAvailableEmporium());
+			destination.buildEmporium(player.getAvailableEmporium());
 			board.getKing().setCity(destination);
 			board.getDeck().discardCards(discardedCards);
 		} catch (NegativeNumberException e) {
 			getLogger().error("The player doesn't have enough assistants", e);
 			int currentCoin = player.getRichness().getCoins();
-			this.cards.addAll(discardedCards);
+			this.realHand.addAll(discardedCards);
 			player.getRichness().setCoins(currentCoin+steps*2+jolly+payMatch);	//if the player doesn't have available emporiums, give back the money previously paid
 		}
 	}
