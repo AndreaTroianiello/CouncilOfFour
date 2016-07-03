@@ -75,9 +75,9 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 					realCity.buildEmporium(player.getAvailableEmporium());
 					player.getAvailableBusinessPermits().remove(realTile);
 					player.setUsedBusinessPermit(realTile);
+					board.notifyObserver(new EmporiumsChange(realCity.getEmporiums()));
 					board.notifyObserver(new BoardChange(board));
-				board.notifyObserver(new EmporiumsChange(realCity.getEmporiums()));
-				return true;
+					return true;
 				} catch (NegativeNumberException e) {
 					getLogger().error("The player doesn't have enough assistants", e);	
 					this.notifyObserver(new InfoChange("The player doesn't have enough assistants"));

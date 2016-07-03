@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.server.model.action.utilities;
 
 import java.io.Serializable;
 
-import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.CouncilChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
@@ -45,7 +44,6 @@ public class Elector implements Serializable{
 				board.setCouncillor(oldCouncillor);
 				realRegion.getCouncil().getCouncillors().add(councillor);								//append the chosen councillor in the same council
 				board.notifyObserver(new CouncilChange(realRegion.getCouncil()));
-				board.notifyObserver(new BoardChange(board));
 			}
 		}
 		else{

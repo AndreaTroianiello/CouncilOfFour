@@ -49,7 +49,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 		assistants = assistants + 1;
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
-			board.notifyObserver(new PlayerChange(player));
+			this.notifyObserver(new PlayerChange(player));
 		} catch (NegativeNumberException e) {
 			this.notifyObserver(new InfoChange(e.getMessage()));
 			getLogger().error(e);

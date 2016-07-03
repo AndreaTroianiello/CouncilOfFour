@@ -130,8 +130,8 @@ public class BuyPermitTile extends GameAction implements StandardAction{
 				return false;
 		
 			List<BusinessPermitTile> changedDeck = realRegion.getDeck().getShowedDeck();
-			board.notifyObserver(new BoardChange(board));
 			board.notifyObserver(new BusinessPermitTileChange(changedDeck.get(changedDeck.size()-1)));
+			board.notifyObserver(new BoardChange(board));
 			return true;
 		}
 		return false;
