@@ -17,15 +17,23 @@ public class ColorXmlText {
 		rc=new ReadColorXml();
 	}
 
+	/**
+	 * it tests if colorNumber returns the number of color in the xml's file
+	 * @throws XmlException
+	 */
 	@Test
-	public void colorNumberTest() throws XmlException{
+	public void testColorNumberShouldReturnTheNumberOfTheColorInTheXml() throws XmlException{
 		int colorNum=rc.colorNumber("Colori.xml");
 		assertEquals(colorNum, 6);//numero di colori nel file xml
 		assertNotEquals(colorNum, 0);
 	}
 	
+	/**
+	 * it tests if coloriXml creates an array of strings with all the color in the xml
+	 * @throws XmlException
+	 */
 	@Test
-	public void colorTest() throws XmlException{
+	public void testColoriXmlShouldCreateAnArrayWithAllTheColorsInTheXmlFile() throws XmlException{
 		String[] colors=rc.coloriXml("Colori.xml");//numero di colori nel file xml
 		assertEquals(colors.length, rc.colorNumber("Colori.xml"));
 		
@@ -37,13 +45,21 @@ public class ColorXmlText {
 		
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void fail2() throws XmlException{
+	public void testColorNumberShouldThrowsAnXmlExceptionIfTheFileDoesntExist() throws XmlException{
 		assertEquals(rc.colorNumber("colore.xml"), 0);
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void fail() throws XmlException{
+	public void testColoriXmlShouldThrowsAnXmlExceptionIfTheFileDoesntExist() throws XmlException{
 		assertEquals(rc.coloriXml("Coloris.xml").length, 0);
 	}
 

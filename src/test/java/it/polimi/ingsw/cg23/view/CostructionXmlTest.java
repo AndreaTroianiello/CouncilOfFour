@@ -17,8 +17,12 @@ public class CostructionXmlTest {
 		rcx=new ReadCostructionXml();
 	}
 	
+	/**
+	 * it tests if readCarlXml returns a two-dimensional array with the permit tiles informations in it
+	 * @throws XmlException
+	 */
 	@Test
-	public void readCostructionTestTrue() throws XmlException {
+	public void testReadCardXmlShouldReturnATwoDimensionalArrayWithThePermitTilesInformationsInIt() throws XmlException {
 		String[][] costructionCards=rcx.readCardXml("CostructionCard.xml");
 		assertEquals(costructionCards.length, 45);//numero di carte costruzione
 		
@@ -29,7 +33,10 @@ public class CostructionXmlTest {
 		}
 	}
 	
-	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
 	public void readCostructionTestFalse() throws XmlException {
 		assertEquals(rcx.readCardXml("CostructionCards.xml").length, 45);//file inesistente

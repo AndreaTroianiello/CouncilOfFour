@@ -23,8 +23,11 @@ public class XmlInterfaceTest {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
 	}
 
+	/**
+	 * it tests if getType returns an array with all the types in it
+	 */
 	@Test
-	public void getTypeTest() {
+	public void testGetTypeShouldReturnAnArrayWithAllTheTypesInIt() {
 		String[][] type=xI.getType("Type.xml");
 		assertEquals(type.length, 5);//numero dei tipi
 
@@ -35,13 +38,20 @@ public class XmlInterfaceTest {
 
 	}
 
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=Exception.class)
-	public void getTypeTestFail() throws Exception{
+	public void testGetTypeShouldThrowsAnXmlExceptionIfTheFileNameIsWrong() throws Exception{
 		assertNotEquals(xI.getType("ConfigurazionePartitas.xml").length, 5);//nome del file sbagliato
 	}
 
+	/**
+	 * it tests if getNobilityTrackLength returns the length of the nobility track
+	 */
 	@Test
-	public void getNobilityTrackLenghtTest() {
+	public void testGetNobilityTrackLenghtShouldReturnTheLengthOfTheNobilityTrack() {
 		int length=xI.getNobilityTrackLength("NobilityTrack.xml");
 		assertEquals(length, 21);//lunghezza del nobility track
 
@@ -49,9 +59,11 @@ public class XmlInterfaceTest {
 		assertEquals(xI.getNobilityTrackLength("NobilityTracks.xml"), 0);//nome del file sbagliato
 	}
 
-
+	/**
+	 * it tests if getNobilityTrackBonus returns a two dimensional array with the nobility track's infos in it
+	 */
 	@Test
-	public void getNobilityTrackBonusTest(){
+	public void testGetNobilityTrackBonusShouldReturnAnArrayWithTheNobilityTracksInfosInIt(){
 		String[][] ntBonus=xI.getNobilityTrackBonus("NobilityTrack.xml");
 
 		assertEquals(ntBonus.length, 11);//ci sono 11 bonus nel nobility track
@@ -64,8 +76,11 @@ public class XmlInterfaceTest {
 		assertNull(xI.getNobilityTrackBonus("NobilityTracks.xml"));//nome del file sbagliato
 	}
 
+	/**
+	 * it tests if cittaXml returns an array with the cities' infos in it
+	 */
 	@Test
-	public void getCittaXmlTest(){
+	public void testCittaXmlShouldReturnAnArrayWithTheCitiesInfosInIt(){
 		String[][] cities = null;
 		String name1="map1.xml";
 		try {
@@ -91,8 +106,11 @@ public class XmlInterfaceTest {
 		}//il file non esiste
 	}
 
+	/**
+	 * it tests if getBonusRegion returns an array with the regions and the bonuses in them
+	 */
 	@Test
-	public void getBonusRegionTest(){
+	public void getBonusRegionShouldReturnAnArrayWithTheRegionsAndTheBonusesInThem(){
 		String[][] regBonus=xI.getBonusRegion("map1.xml");
 
 		assertEquals(regBonus.length, 3);
@@ -103,8 +121,11 @@ public class XmlInterfaceTest {
 		assertNull(xI.getBonusRegion("ConfigurazionePartitas.xml"));//file inesistente
 	}
 
+	/**
+	 * it tests if costructionCard returns an array with the permit tile's infos in it
+	 */
 	@Test
-	public void costructionCard(){
+	public void testCostructionCardShouldReturnAnArrayWithAllTheTilesInfosInIt(){
 		String[][] costructionCards=xI.costructionCard("CostructionCard.xml");
 
 		assertEquals(costructionCards.length, 45);
@@ -116,8 +137,11 @@ public class XmlInterfaceTest {
 		assertNull(xI.costructionCard("CostructionCards.xml"));//file inesistente
 	}
 
+	/**
+	 * it tests if colorXml returns an array with all the colors in it
+	 */
 	@Test
-	public void colorTest(){
+	public void testColorXmlShouldReturnAnArrayWithAllTheColorsInIt(){
 		assertEquals(xI.colorNumberXml("Colori.xml"), 6);
 		String[] colors=xI.colorXml("Colori.xml");
 		assertEquals(colors.length, 6);
@@ -128,15 +152,23 @@ public class XmlInterfaceTest {
 		}
 	}
 
+	/**
+	 * it tests if it throws an xml exception when the file's name is incorrect
+	 * @throws XmlException
+	 */
 	@Test (expected=Exception.class)
-	public void colorTestFail(){
+	public void ctestColorXmlShouldThrowsAnExceptionWhenTheNameOfTheFileIsIncorrect(){
 		assertEquals(xI.colorNumberXml("Coloric.xml"), 0);
 		String[] colors=xI.colorXml("Colorim.xml");
 		assertEquals(colors.length, null);
 	}
 
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test (expected=Exception.class)
-	public void BonusCityTest(){
+	public void testBonusCityShouldThrowsAnExceptionWhenTheFileDoesntExist(){
 		String[] bonus=xI.bonusCity("CityBonus.xml");
 		assertEquals(bonus.length, 14);
 

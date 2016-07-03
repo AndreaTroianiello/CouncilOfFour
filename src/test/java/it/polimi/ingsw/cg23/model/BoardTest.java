@@ -39,16 +39,22 @@ public class BoardTest {
 		king=new King(new City('A', "Aosta", type, region));
 	}
 
+	/**
+	 * it tests if getDeck works properly
+	 */
 	@Test
-	public void testDeck() {
+	public void testGetDeckShouldReturnThePoliticCardsDeck() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNull(board.getDeck());
 		board.setDeck(deck);
 		assertEquals(board.getDeck(),deck);
 	}
 
+	/**
+	 * i tests if getTypes return a list with all the types
+	 */
 	@Test
-	public void testTypes() {
+	public void testGetType() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getTypes().size(),0);
 		List<Type> types=new ArrayList<>();
@@ -57,8 +63,11 @@ public class BoardTest {
 		assertEquals(board.getTypes().size(),1);
 	}
 
+	/**
+	 * it tests if getRegions returns a list with the regions
+	 */
 	@Test
-	public void testRegions() {
+	public void testGetRegions() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getRegions().size(),0);
 		List<Region> regions=new ArrayList<>();
@@ -67,25 +76,33 @@ public class BoardTest {
 		assertEquals(board.getRegions().size(),1);
 	}
 
-
+	/**
+	 * it tests if getNobilityTrack works properly
+	 */
 	@Test
-	public void testNobilityTrack() {
+	public void testGetNobilityTrack() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNull(board.getNobilityTrack());
 		board.setNobilityTrack(nobilityTrack);
 		assertNotNull(board.getNobilityTrack());
 	}
 
+	/**
+	 * it tests if getKing works properly
+	 */
 	@Test
-	public void testKing() {
+	public void testGetKing() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNull(board.getKing());
 		board.setKing(king);
 		assertNotNull(board.getKing());
 	}
 
+	/**
+	 * it tests if getCouncillor works properly
+	 */
 	@Test
-	public void testCouncillor() {
+	public void testGetCouncillor() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getCouncillorPool().size(),0);
 		assertNull(board.getCouncillor(Color.BLACK));
@@ -93,23 +110,32 @@ public class BoardTest {
 		assertNotNull(board.getCouncillor(Color.BLACK));
 		assertEquals(board.getCouncillorPool().size(),0);
 	}
-
+	
+	/**
+	 * it tests if getPlayer works properly
+	 */
 	@Test
-	public void testPlayers() {
+	public void testGetPlayers() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getPlayers().size(),0);
 		board.addPlayer(p);
 		assertEquals(board.getPlayers().size(),1);		
 	}
 
+	/**
+	 * it tests if getStatus works properly
+	 */
 	@Test
 	public void testGetStatus() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertEquals(board.getStatus().getStatus(),"INITIALIZATION");		
 	}
 	
+	/**
+	 * it tests if getMarket works properly
+	 */
 	@Test
-	public void testMarket() {
+	public void testGetMarket() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNotNull(board.getMarket());
 		

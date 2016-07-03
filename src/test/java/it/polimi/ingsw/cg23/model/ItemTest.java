@@ -28,8 +28,11 @@ public class ItemTest {
 		p=new Player("ciao", new NobilityTrack(1));
 	}
 
+	/**
+	 * it tests if getItem works properly
+	 */
 	@Test
-	public void testItem() {
+	public void testGetItemShouldReturnAnInstanceOfTheChosenItem() {
 		Item item1=new Item(card, p, 10);
 		Item item2=new Item(assistants, p, 5);
 		Item item3=new Item(tile, p, 3);
@@ -40,6 +43,9 @@ public class ItemTest {
 		assertEquals(item3.getPlayer(),p);
 	}
 	
+	/**
+	 * it tests if toString works properly
+	 */
 	@Test
 	public void testToString(){
 		Item item1=new Item(card, p, 10);

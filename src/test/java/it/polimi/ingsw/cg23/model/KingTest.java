@@ -31,19 +31,28 @@ public class KingTest {
 		new City('B', "Bari", type, region);
 	}
 
+	/**
+	 * it tests if getCity works properly
+	 */
 	@Test
 	public void testGetCity() {
 		King king=new King(region.searchCityById('A'));
 		assertEquals(king.getCity(), region.searchCityById('A'));
 	}
 
+	/**
+	 * it tests if setCity actually set the right city
+	 */
 	@Test
-	public void testSetCity() {
+	public void testSetCityShouldSetTheCityKingAsTheCityPassed() {
 		King king=new King(region.searchCityById('A'));
 		king.setCity(region.searchCityById('B'));
 		assertEquals(king.getCity(), region.searchCityById('B'));
 	}
 
+	/**
+	 * it tests if getCouncil works properly
+	 */
 	@Test
 	public void testGetCouncil() {
 		King king=new King(region.searchCityById('A'));

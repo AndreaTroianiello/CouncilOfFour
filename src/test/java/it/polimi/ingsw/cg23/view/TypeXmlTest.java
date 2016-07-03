@@ -17,8 +17,12 @@ public class TypeXmlTest {
 		rt=new ReadType();
 	}
 
+	/**
+	 * it tests if typeXml returns an array of string with all the type's colors in it
+	 * @throws XmlException
+	 */
 	@Test
-	public void typeTest() throws XmlException {
+	public void testTypeXmlShouldReturnAnArrayOfStringsWithAllTheTypesColorInIt() throws XmlException {
 		String[][] type=rt.typeXml("Type.xml");
 		
 		assertEquals(type.length, 5);//numero di righe

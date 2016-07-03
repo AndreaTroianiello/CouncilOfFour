@@ -27,7 +27,7 @@ import it.polimi.ingsw.cg23.server.model.components.RegionDeck;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.utility.MapSetting;
 
-public class MapSettingtest {
+public class MapSettingTest {
 
 	private MapSetting ms;
 	private Type type1,type2;
@@ -164,8 +164,11 @@ public class MapSettingtest {
 		board.addPlayer(giocatori.get(1));
 	}
 
+	/**
+	 * it tests if getCityFromRegion return the list of cities with all the Cities in cities
+	 */
 	@Test
-	public void getCityfromRegionTest() {
+	public void testGetCityFromRegionShouldCreateAListOfCitiesWithAllTheCitiesInCities() {
 		List<City> citta=ms.getCityfromRegion(reg);
 
 		assertEquals(citta.size(), 6);
@@ -180,16 +183,23 @@ public class MapSettingtest {
 		}
 	}
 
+	/**
+	 * it tests if cityBonus converts the bonus in a string properly
+	 */
 	@Test
-	public void cityBonusTest(){
+	public void testCityBonusShouldConvertTheBonusInAString(){
 		assertEquals(ms.cityBonus(cities.get(0)), "AdditionalAction");
 		assertEquals(ms.cityBonus(cities.get(1)), "0Assistants");
 		assertEquals(ms.cityBonus(cities.get(2)), "10Coin");
 
 	}
 
+	/**
+	 * it tests if addSpace adds spaces until the string reaches the wanted length if the string is smaller then
+	 * the wanted length, and does nothing if it is greater
+	 */
 	@Test
-	public void addSpaceTest(){
+	public void testAddSpaceShouldAddSpaceUntilTheStringReachTheWantedLength(){
 		String prova="prova";
 		int space=10;
 		assertEquals(ms.addSpace(prova, space).length(), space);
@@ -199,16 +209,22 @@ public class MapSettingtest {
 		
 	}
 
+	/**
+	 * it tests if printName returns the names of the regions in a string of the wanted length 
+	 */
 	@Test
-	public void printNameTest(){
+	public void testPrintNameShouldContainsTheNameOfAllTheRegionsInReg(){
 		String nome=ms.printName(reg, 50);
 		assertTrue(nome.contains(reg.get(0).getName().toUpperCase()));
 		assertTrue(nome.contains(reg.get(1).getName().toUpperCase()));
 		assertEquals(nome.length(), 50*reg.size());
 	}
 
+	/**
+	 * it tests if createCostructionShowed return a string with all the showed tiles of all the regions
+	 */
 	@Test
-	public void createCostuctionCardTest(){
+	public void testCreateCostructionShowedShouldReturnAStringWithAllTheNameOfTheShowedTilesOfAllTheRegions(){
 		String nome=ms.createCostructionShowed(reg, 50);
 		assertTrue(nome.contains(reg.get(0).getName()));
 		assertTrue(nome.contains(reg.get(1).getName()));
@@ -220,8 +236,11 @@ public class MapSettingtest {
 		}
 	}
 
+	/**
+	 * it tests if getNeighbourID returns a string with all the neighbors of the city passed
+	 */
 	@Test
-	public void neightbourTest(){
+	public void testNeighbourIDShouldReturnAStringWithAllTheNeighborIDOfTheCity(){
 		for(int i=0; i<cities.size(); i++){
 			String nome=ms.getNeighbourID(cities.get(i));
 			assertTrue(nome.contains("Neighbors:"));
@@ -229,8 +248,11 @@ public class MapSettingtest {
 		}
 	}
 	
+	/**
+	 * it tests if addMinus returns a string with the wanted number of '-'
+	 */
 	@Test
-	public void addMinusTest(){
+	public void testAddMinusShouldReturnAStringWithTheWantedNumberOfMinus(){
 		String nome=ms.addMinus(20);
 		assertEquals(nome.length(), 20);
 		assertNotEquals(nome, "");
@@ -238,8 +260,11 @@ public class MapSettingtest {
 		assertTrue(nome.contains("--"));
 	}
 	
+	/**
+	 * it tests if councillors returns a string with the region's council 
+	 */
 	@Test
-	public void councillorsTest(){
+	public void testCouncillorsShouldReturnAStringWithTheNameOfTheRegionAndTheCouncil(){
 		for(int i=0; i<reg.size(); i++){
 			String nome=ms.councillors(reg);
 			assertTrue(nome.contains(reg.get(i).getName()+ " Council"));
@@ -249,8 +274,11 @@ public class MapSettingtest {
 		}
 	}
 	
+	/**
+	 * it tests if bonusCouncilKingType returns a string with the king's council and his type
+	 */
 	@Test
-	public void bonusCouncilKingTypetest(){
+	public void testBonusCouncilKingTypeShouldReturnAStringWithTheKingsCouncilAndHisType(){
 		String nome=ms.bonusCouncilKingType(board);
 		assertEquals(nome.length(), 50*3);
 		assertTrue(nome.contains("King Council:"));

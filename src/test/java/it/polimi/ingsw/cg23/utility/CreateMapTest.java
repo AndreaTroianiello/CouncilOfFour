@@ -138,8 +138,12 @@ public class CreateMapTest {
 		board.addPlayer(giocatori.get(1));
 	}
 
+	/**
+	 * it tests if after createMap the map contains the name of the regions, of the cities, of the players, 
+	 * and if each city contains his type 
+	 */
 	@Test
-	public void createMapTest() {
+	public void testCreateMapShouldCreateAMapThatContainsTheNameOfRegionsCitiesTypesAndPlayers() {
 		String map=cm.createMap(reg, giocatori, k);
 		assertTrue(map.contains(reg.get(0).getName().toUpperCase()));//la mappa contiene il nome della regione
 		assertTrue(map.contains(reg.get(1).getName().toUpperCase()));
@@ -152,8 +156,12 @@ public class CreateMapTest {
 		assertTrue(map.contains(giocatori.get(1).getUser()));
 	}
 
+	/**
+	 * it tests if after createMapDraw the map contains the name of the regions, of the cities, of the players, 
+	 * and if each city contains his type 
+	 */
 	@Test
-	public void createMapDrawTest() {
+	public void testCreateMapDrawShouldCreateAMapThatContainsTheNameOfRegionsCitiesTypesAndPlayers() {
 		String map=cm.createMapDraw(board);
 		assertTrue(map.contains(reg.get(0).getName().toUpperCase()));//la mappa contiene il nome della regione
 		assertTrue(map.contains(reg.get(1).getName().toUpperCase()));
@@ -166,8 +174,11 @@ public class CreateMapTest {
 		assertTrue(map.contains(giocatori.get(1).getUser()));
 	}
 	
+	/**
+	 * it tests if createPlayerInfo creates a string with the players info
+	 */
 	@Test
-	public void createPlayerInfoTest(){
+	public void testCreatePlayerInfoShouldCreateAStringWithThePlayersInfo(){
 		String playerInfo=cm.createPlayerInfo(giocatori);
 		
 		assertTrue(playerInfo.contains(giocatori.get(0).getUser()));

@@ -22,8 +22,11 @@ public class DeckTest {
 			politicCards.add(new PoliticCard(Color.BLACK, false));
 	}
 
+	/**
+	 * it tests if deckIsEmpty works properly
+	 */
 	@Test
-	public void testDeckEmpty() {
+	public void testDeckIsEmptyShouldReturnTrueIfThereArentCardsInIt() {
 		Deck deck=new Deck(politicCards);
 		for(int index=0;index<10;++index)
 			deck.draw();
@@ -31,8 +34,11 @@ public class DeckTest {
 		assertNull(deck.draw());
 	}
 	
+	/**
+	 * it tests if discardCard remove a card from the list and add it to the deck 
+	 */
 	@Test
-	public void testDiscardedCards() {
+	public void testDiscardCardShoudAddACardInTheDeck() {
 		Deck deck=new Deck(politicCards);
 		List<PoliticCard> discardedCards=new ArrayList<>();
 		for(int index=0;index<10;++index)

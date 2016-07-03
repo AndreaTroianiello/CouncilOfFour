@@ -17,8 +17,12 @@ public class BonusCittaXmlTest {
 		this.cityBonus=new ReadCityBonusXml();
 	}
 
+	/**
+	 * it tests if bonusCityXml is able to find all the bonuses in the xml
+	 * @throws XmlException
+	 */
 	@Test
-	public void BonusCityTest() throws XmlException {
+	public void testBonusCityXmlShouldCreateAnArrayOfStringsWithAllTheBonusesInIt() throws XmlException {
 		String[] bonus=cityBonus.bonusCityXml("CityBonus.xml");
 		
 		assertEquals(bonus.length, 14);
@@ -28,8 +32,12 @@ public class BonusCittaXmlTest {
 		}
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void BonusCityTestFail() throws XmlException{
+	public void testBonusCityXmlException() throws XmlException{
 		String[] bonus=cityBonus.bonusCityXml("CityBonused.xml");//file inesistente
 		assertNotEquals(bonus.length, 14);
 	}

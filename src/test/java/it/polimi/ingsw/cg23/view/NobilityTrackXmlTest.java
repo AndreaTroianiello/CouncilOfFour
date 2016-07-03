@@ -17,14 +17,22 @@ public class NobilityTrackXmlTest {
 		ntx=new ReadNobilityTrackXml();
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void NobilityLenghtTest() throws XmlException {
+	public void testNobilityTrackLenghtShouldThrowsAnExceptionIfTheXmlFileDoesntExist() throws XmlException {
 		assertEquals(ntx.nobilityTrackLenght("NobilityTrack.xml"), 21);
 		assertNotEquals(ntx.nobilityTrackLenght("NobilityTracks.xml"), 21);//file inesistente
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void NobilityTest() throws XmlException {
+	public void testNobilityTrackBonusShouldThrowsAnExceptionIfTheXmlFileDoesntExist() throws XmlException {
 		assertEquals(ntx.nobilityTrackBonus("NobilityTrack.xml").length, 11);
 		assertNotEquals(ntx.nobilityTrackBonus("NobilityTracks.xml"), 11);//file inesistente
 	}

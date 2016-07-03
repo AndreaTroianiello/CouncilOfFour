@@ -27,6 +27,9 @@ public class RankTest {
 		setting.nobilityTrackFill(board.getNobilityTrack());
 	}
 
+	/**
+	 * it tests if createRank creates the list of the top players properly
+	 */
 	@Test
 	public void testRank1() {
 		Rank rank=new Rank(board);
@@ -43,6 +46,9 @@ public class RankTest {
 		assertEquals(board.getPlayers().get(2).getUser(),"user2");	
 	}
 	
+	/**
+	 * it tests if createRank creates the list of the top players properly
+	 */
 	@Test
 	public void testRank2() throws NegativeNumberException {
 		Rank rank=new Rank(board);
@@ -69,6 +75,10 @@ public class RankTest {
 		assertTrue(board.getPlayers().get(2).getVictoryTrack().getVictoryPoints()==0);
 		assertTrue(board.getPlayers().get(3).getVictoryTrack().getVictoryPoints()==0);
 	}
+	
+	/**
+	 * it tests if createRank creates the list of the top players properly
+	 */
 	@Test
 	public void testRank3() throws NegativeNumberException {
 		Rank rank=new Rank(board);

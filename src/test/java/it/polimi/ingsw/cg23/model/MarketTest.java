@@ -34,8 +34,13 @@ public class MarketTest {
 		players=Arrays.asList(new Player("user1",new NobilityTrack(1)),new Player("user2",new NobilityTrack(1)),new Player("user3",new NobilityTrack(1)));
 	}
 
+	/**
+	 * it tests if getItems returns a list with the item in the market, and if addItemToSell add an item
+	 * in the market
+	 * @throws NegativeNumberException
+	 */
 	@Test
-	public void testMarket() throws NegativeNumberException {
+	public void testGetItemsAndAddItemToSellShouldAddAnItemInTheMarket() throws NegativeNumberException {
 		Market market=new Market();
 		assertEquals(market.getItems().size(), 0);
 		market.addItemToSell(item1);
@@ -51,8 +56,11 @@ public class MarketTest {
 		assertEquals(item3.getPlayer().getAssistantsPool().getAssistants(),10);
 	}
 
+	/**
+	 * it tests if generatePlayersList returns a list with all the players
+	 */
 	@Test
-	public void testPlayers(){
+	public void testGeneratePlayersListShouldReturnAListWithAllThePlayers(){
 		Market market=new Market();
 		List<Player> newPlayers=market.generatePlayersList(players);
 		assertEquals(newPlayers.size(), players.size());

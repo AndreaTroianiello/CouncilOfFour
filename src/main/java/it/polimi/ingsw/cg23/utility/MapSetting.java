@@ -61,6 +61,8 @@ public class MapSetting {
 	}
 
 	/**
+	 * add some spaces in a string to reach the wanted length
+	 * 
 	 * @param nome the String you want to extend
 	 * @param totalSpace the total length you need (string + space)
 	 * @return the String extended

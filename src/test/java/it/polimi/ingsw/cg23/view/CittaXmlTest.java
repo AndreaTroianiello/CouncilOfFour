@@ -17,14 +17,22 @@ public class CittaXmlTest {
 		rcx=new ReadCittaXml();
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void bonusRegionTest() throws XmlException {
+	public void testBonusRegionShouldThrowsAnXmlExceptionIfTheFileDoesntExist() throws XmlException {
 		assertEquals(rcx.getBonusRegion("ConfigurazionePartita.xml").length, 3);
 		assertNotEquals(rcx.getBonusRegion("ConfigurazionePartitas.xml").length, 3);//file inesistente
 	}
 	
+	/**
+	 * it tests if it throws an xml exception when the file doesn't exist
+	 * @throws XmlException
+	 */
 	@Test(expected=XmlException.class)
-	public void ReadFileXxmlTest() throws XmlException{
+	public void testReadFileXxml() throws XmlException{
 		String[][] cities=rcx.readFileXml("ConfigurazionePartita.xml");
 		assertEquals(cities.length, 15);
 		
