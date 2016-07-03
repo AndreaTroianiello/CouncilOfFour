@@ -111,16 +111,7 @@ public class CommandController {
 			controller.updateController(action);
 			break;
 		case "ASSISTANTS":
-			AssistantsPool pool=new AssistantsPool();
-			try {
-				pool.setAssistants(Integer.parseInt(tokenizer.nextToken()));
-			} catch (NumberFormatException | NegativeNumberException e){
-				logger.error(e);
-				return;
-			}
-			action = new MarketSell(pool,
-					Integer.parseInt(tokenizer.nextToken()));
-			controller.updateController(action);
+			sellAssistants(tokenizer.nextToken());
 			break;
 		default:
 			cli.print("", "Command not found.");
@@ -192,20 +183,10 @@ public class CommandController {
 			controller.updateController(action);
 			break;
 		case "ELECT":
-			String tok=tokenizer.nextToken();
-			if("KING".equals(tok))
-				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),null, true);
-			else
-				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
-			controller.updateController(action);
+			electPerform(tokenizer);
 			break;
 		case "ELECTASSISTANT":
-			tok=tokenizer.nextToken();
-			if("KING".equals(tok))
-				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()), null, true);
-			else
-				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
-			controller.updateController(action);
+			electAssistantPerform(tokenizer);
 			break;
 		case "HIRE":
 			action = new HireAssistant();
@@ -220,4 +201,53 @@ public class CommandController {
 			break;
 		}
 	}
+	
+	/**
+	 * Creates the ElectCouncillor and notifies the view.
+	 * @param tokenizer The tokenizer received.
+	 * @throws IOException if the socket connection has problem
+	 */
+	private void electPerform(StringTokenizer tokenizer) throws IOException {
+		Action action;
+		String tok=tokenizer.nextToken();
+		if("KING".equals(tok))
+			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),null, true);
+		else
+			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
+		controller.updateController(action);
+		
+	}
+
+	/**
+	 * Creates the ElectCouncillorAssistant and notifies the view.
+	 * @param tokenizer The tokenizer received.
+	 * @throws IOException if the socket connection has problem
+	 */
+	private void electAssistantPerform(StringTokenizer tokenizer) throws IOException {
+		Action action;
+		String tok=tokenizer.nextToken();
+		if("KING".equals(tok))
+			action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()), null, true);
+		else
+			action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
+		controller.updateController(action);	
+	}
+
+	/**
+	 * Creates the MarketSell and notifies the view.
+	 * @param token The token received.
+	 * @throws IOException if the socket connection has problem
+	 */
+	private void sellAssistants(String token) throws IOException{
+		AssistantsPool pool=new AssistantsPool();
+		try {
+			pool.setAssistants(Integer.parseInt(token));
+		} catch (NumberFormatException | NegativeNumberException e){
+			logger.error(e);
+			return;
+		}
+		controller.updateController(new MarketSell(pool,
+									Integer.parseInt(token)));
+	}
 }
+

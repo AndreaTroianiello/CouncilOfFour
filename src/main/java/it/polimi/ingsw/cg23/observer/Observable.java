@@ -40,7 +40,6 @@ public abstract class Observable<C> {
 	 * @param c The object to be notified.
 	 */
 	public void notifyObserver(C c){
-		System.out.println("I am the "+this.getClass().getSimpleName());
 		for(Observer<C> o: this.observers){
 			o.update(c);
 		}

@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg23.client.rmi;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
@@ -15,11 +14,10 @@ import it.polimi.ingsw.cg23.server.view.rmi.RMIViewRemote;
  * @author Andrea
  *
  */
-public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote,ClientViewOut{
+public class ClientRMIView implements ClientViewRemote,ClientViewOut{
 
-	private static final long serialVersionUID = 1191452922375955484L;
-	private transient ClientController controller;
-	private transient RMIViewRemote rmiServerView;
+	private ClientController controller;
+	private RMIViewRemote rmiServerView;
 	
 	/**
 	 * The constructor of ClientRMIView.

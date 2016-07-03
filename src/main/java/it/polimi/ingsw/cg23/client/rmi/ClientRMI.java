@@ -4,6 +4,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -40,7 +41,8 @@ public class ClientRMI{
 		Registry registry=LocateRegistry.getRegistry(address,RMI_PORT);
 		RMIViewRemote serverStub=(RMIViewRemote) registry.lookup(NAME);
 		ClientRMIView rmiView=new ClientRMIView(controller);
-		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(rmiView));
+		ClientViewRemote view=(ClientViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
+		RMIViewRemote rmiServerView=(RMIViewRemote) registry.lookup(serverStub.registerClient(view));
 		rmiView.setRMIServerView(rmiServerView);
 		logger.info("Connection created");
 	}
