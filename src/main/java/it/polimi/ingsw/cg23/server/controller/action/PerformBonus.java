@@ -8,6 +8,11 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
+/**
+ * PerformBonus allows the player to perform the bonus.
+ * @author Andrea
+ *
+ */
 public class PerformBonus extends Action {
 
 	private static final long serialVersionUID = 8543622884209194036L;

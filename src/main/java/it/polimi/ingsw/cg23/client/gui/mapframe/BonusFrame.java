@@ -24,12 +24,13 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 
-
+/**
+ * BonusFrame manages the game's bonuses.
+ * @author Andrea
+ *
+ */
 public class BonusFrame extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2192875760852143327L;
 	private JPanel contentPane;
 	private transient Logger logger;

@@ -23,6 +23,11 @@ import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 import it.polimi.ingsw.cg23.server.model.marketplace.CanBeSold;
 
+/**
+ * This frame permits to sell some items.
+ * @author Andrea
+ *
+ */
 public class MarketDialog extends JFrame {
 
 	private static final long serialVersionUID = 6353088208693082884L;
@@ -53,6 +58,9 @@ public class MarketDialog extends JFrame {
 		initComponents();
 	}
 
+	/**
+	 * Initializes components of the frame.
+	 */
 	private void initComponents() {
 
 		panelDialog = new JPanel();
@@ -160,6 +168,10 @@ public class MarketDialog extends JFrame {
 		pack();
 	}                    
 
+	/**
+	 * The action performed when the buttonSell receives a event.
+	 * @param evt Event received.
+	 */
 	private void buttonSellActionPerformed(ActionEvent evt) {                                           
 		try {
 			if(item instanceof AssistantsPool)
@@ -169,7 +181,12 @@ public class MarketDialog extends JFrame {
 			logger.error(e);
 		}
 		this.dispose();
-	}                                          
+	}   
+	
+	/**
+	 * The action performed when the buttonCancel receives a event.
+	 * @param evt Event received.
+	 */
 	private void buttonCancelActionPerformed(ActionEvent evt) {                                             
 		this.dispose();
 	}                                            

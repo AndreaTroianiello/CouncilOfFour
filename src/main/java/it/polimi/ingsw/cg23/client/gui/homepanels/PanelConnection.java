@@ -22,6 +22,11 @@ import it.polimi.ingsw.cg23.client.gui.HomeFrame;
 import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
 
+/**
+ * This panel allows to create a connection with the server.
+ * @author Andrea
+ *
+ */
 public class PanelConnection extends JPanel {
 
 	private static final long serialVersionUID = -6068500950633356140L;
@@ -37,7 +42,8 @@ public class PanelConnection extends JPanel {
 	private static Logger logger;
 	/**
 	 * Create the panel.
-	 * @param homeFrame 
+	 * @param controller The controller of the GUI. 
+	 * @param homeFrame The frame that contains this panel.
 	 */
 	public PanelConnection(ControllerGUI controller, HomeFrame homeFrame) {
 		this.controller=controller;
@@ -47,6 +53,9 @@ public class PanelConnection extends JPanel {
 		initComponent();
 	}
 
+	/**
+	 * Initializes components of the panel.
+	 */
 	private void initComponent() {
 		this.setOpaque(false);
 
@@ -107,6 +116,10 @@ public class PanelConnection extends JPanel {
 
 	}
 
+	/**
+	 * The action performed when the buttonSocket receives a event.
+	 * @param evt Event received.
+	 */
 	private void buttonSocketActionPerformed(ActionEvent evt) {                                         
 		try {
 			ClientSocket clientSocket=new ClientSocket();
@@ -118,6 +131,10 @@ public class PanelConnection extends JPanel {
 		}
 	}
 
+	/**
+	 * The action performed when the buttonReceive receives a event.
+	 * @param evt Event received.
+	 */
 	private void buttonRMIActionPerformed(ActionEvent evt) {                                         
 		try {
 			ClientRMI clientRMI=new ClientRMI();

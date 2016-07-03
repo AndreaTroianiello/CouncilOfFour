@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,11 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
 import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.client.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.server.model.marketplace.Item;
+import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 
 /**
  * create the market panel
@@ -30,7 +34,7 @@ public class MarketPanel extends JPanel {
 	private JTextArea loggerArea;
 	private transient ControllerGUI controller;
 	private JTable table;
-	private transient Table tableCreator;
+	private DefaultTableModel model;
 	private final int lung;//lunghezza finestra
 
 	/**
@@ -41,8 +45,6 @@ public class MarketPanel extends JPanel {
 	public MarketPanel(ControllerGUI controller, JTextArea loggerArea) {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
-		this.tableCreator=new Table(controller.getModel());
-
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width;//lughezza dello schermo
 
 		init();
@@ -85,7 +87,8 @@ public class MarketPanel extends JPanel {
 
 
 		//----------tabella----------
-		table=tableCreator.createTableMarket();//tabella market
+		table=new JTable();//tabella market
+		initMarketTable();
 		lim.gridx = 1;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -156,8 +159,44 @@ public class MarketPanel extends JPanel {
 		});
 	}
 
+	/**
+	 * Fills the table with the market's items.
+	 */
 	public void fillTable(){
-		tableCreator.fillTable();
+		initMarketTable();
+		Market market=controller.getModel().getBoard().getMarket();
+		List<Item> items=market.getItems();
+		for(int index=0;index<items.size();index++){
+			Item item=items.get(index);
+			model.addRow(new Object[]{item.getItem().toString(),
+									  item.getItem().getClass().getSimpleName(),
+									  item.getAmount(),
+									  item.getCoins(),
+									  item.getPlayer().getUser()});
+		}
+	}
+	
+	/**
+	 * Initializes the market table.
+	 */
+	private void initMarketTable(){
+		model=new DefaultTableModel(
+	            new Object [][] {
+	            },
+	            new String [] {
+	               "Information", "Type", "Amount", "Coins", "Player"
+	            }
+	        ) {
+				private static final long serialVersionUID = -4879233531111422052L;
+				boolean[] canEdit = new boolean [] {
+	                false, false, false, false, false
+	            };
+
+	            public boolean isCellEditable(int rowIndex, int columnIndex) {
+	                return canEdit [columnIndex];
+	            }
+	      };
+	      table.setModel(model);//aggiungo alla tabella il modello
 	}
 
 	/**
@@ -167,11 +206,9 @@ public class MarketPanel extends JPanel {
 	 */
 	private String addSpace(int s){
 		String space="";
-
 		for(int i=0; i<s; i++){
 			space=space.concat(" ");
 		}
-
 		return space;
 	}
 }

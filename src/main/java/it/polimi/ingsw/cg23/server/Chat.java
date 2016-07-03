@@ -8,6 +8,11 @@ import it.polimi.ingsw.cg23.observer.Observer;
 import it.polimi.ingsw.cg23.server.controller.action.SendMessage;
 import it.polimi.ingsw.cg23.server.view.View;
 
+/**
+ * Chat manages the messages received.
+ * @author Andrea
+ *
+ */
 public class Chat implements Observer<SendMessage> {
 
 	private Set<View> views;

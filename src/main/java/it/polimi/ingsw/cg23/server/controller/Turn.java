@@ -246,11 +246,18 @@ public class Turn {
 		else
 			runActionNormal();
 	}
-
+	
+	/**
+	 * Registers the action's view as an observer of bonuses.
+	 */
 	public void registerObserverBonuses(){
 		for(Observable<Change> bonus:observableBonuses)
 			bonus.registerObserver(action.getPlayer());
 	}
+	
+	/**
+	 * Unregisters the observer of bonuses.
+	 */
 	public void unregisterObserverBonuses(){
 		for(Observable<Change> bonus:observableBonuses)
 			bonus.unregisterObserver(action.getPlayer());

@@ -17,6 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/**
+ * This panel contains everything needed to create a game.
+ * @author Andrea
+ *
+ */
 public class PanelLogin extends JPanel {
 
 	private static final long serialVersionUID = 8087900714680895083L;
@@ -37,6 +42,9 @@ public class PanelLogin extends JPanel {
 		initComponent();
 	}
 
+	/**
+	 * Initializes the components of the panel.
+	 */
 	private void initComponent() {
 
 		this.setOpaque(false);
@@ -54,11 +62,11 @@ public class PanelLogin extends JPanel {
 		labelLogin.setForeground(new java.awt.Color(255, 215, 0));
 		labelLogin.setText("Insert your username:");
 
-		buttonLogin.setText("Login");
+		buttonLogin.setText("Enter");
 		buttonLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				buttonLogginActionPerformed(evt);
+				buttonLoginActionPerformed(evt);
 			}
 		});
 
@@ -121,13 +129,21 @@ public class PanelLogin extends JPanel {
 
 	}
 
-	private void buttonLogginActionPerformed(ActionEvent evt) {
+	/**
+	 * The action performed when the buttonLogin receives a event.
+	 * @param evt Event received.
+	 */
+	private void buttonLoginActionPerformed(ActionEvent evt) {
 		String map=(String)comboMap.getSelectedItem();
 		map=map.substring(0, map.length()-2)+map.charAt(map.length()-1);//tolgo lo spazio
 		map=map.toLowerCase();//metto tutto in minuscolo
 		controller.updateController(new CreationGame(fieldLogin.getText(),map));
 	}
 
+	/**
+	 * Notifies the player when the panel receives a message.
+	 * @param message
+	 */
 	public void infoPopup(String message){
 		if(message.contains("player has been created.")){
 			labelInfo2.setVisible(true);
