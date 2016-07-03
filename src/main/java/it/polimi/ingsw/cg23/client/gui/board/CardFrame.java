@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.client.gui.southpanel.CostructionCardPanel;
+import it.polimi.ingsw.cg23.client.gui.board.southpanel.CostructionCardPanel;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 

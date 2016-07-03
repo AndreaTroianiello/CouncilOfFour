@@ -29,7 +29,7 @@ public class ControllerGUI implements ClientController {
 	private Logger logger;
 	private ClientModel clientModel;
 	private ClientViewOut out;
-	private BoardFrame map;
+	private BoardFrame board;
 	private HomeFrame home;
 	private SelectedElements selectedElements;
 	
@@ -49,12 +49,12 @@ public class ControllerGUI implements ClientController {
 	 * Updates the frame map. If the frame map doesn't exit, initializes it.
 	 */
 	private void updateFrameMap(){
-		if(map!=null){
-			map.update();
+		if(board!=null){
+			board.update();
 		}else
 			if(clientModel.getBoard()!=null){
-				map=new BoardFrame(this);
-				map.setVisible(true);
+				board=new BoardFrame(this);
+				board.setVisible(true);
 				home.dispose();
 		}
 	}
@@ -64,8 +64,8 @@ public class ControllerGUI implements ClientController {
 	 * @param change The change received.
 	 */
 	private void updateInfo(Change change){
-		if(map!=null){
-			map.updateInfo(change);
+		if(board!=null){
+			board.updateInfo(change);
 		}else{
 			home.updateInfo((InfoChange)change);
 		}
@@ -113,7 +113,7 @@ public class ControllerGUI implements ClientController {
 		} catch (IOException e) {
 			logger.error(e);
 		}
-		map.dispatchEvent(new WindowEvent(map, WindowEvent.WINDOW_CLOSING));
+		board.dispatchEvent(new WindowEvent(board, WindowEvent.WINDOW_CLOSING));
 	}
 	
 	/**

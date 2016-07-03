@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.eastpanel;
+package it.polimi.ingsw.cg23.client.gui.board.eastpanel;
 
 
 import java.awt.Color;

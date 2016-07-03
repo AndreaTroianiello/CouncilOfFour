@@ -149,7 +149,6 @@ public class PanelLogin extends JPanel {
 			labelInfo2.setVisible(true);
 			buttonLogin.setEnabled(false);
 		}
-		//JOptionPane.showMessageDialog(null, message, "INFO", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

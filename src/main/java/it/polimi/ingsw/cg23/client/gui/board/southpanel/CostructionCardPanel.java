@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.southpanel;
+package it.polimi.ingsw.cg23.client.gui.board.southpanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
