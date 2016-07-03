@@ -10,7 +10,7 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
-import it.polimi.ingsw.cg23.client.gui.mapframe.FrameMap;
+import it.polimi.ingsw.cg23.client.gui.board.BoardFrame;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
@@ -29,7 +29,7 @@ public class ControllerGUI implements ClientController {
 	private Logger logger;
 	private ClientModel clientModel;
 	private ClientViewOut out;
-	private FrameMap map;
+	private BoardFrame map;
 	private HomeFrame home;
 	private SelectedElements selectedElements;
 	
@@ -53,7 +53,7 @@ public class ControllerGUI implements ClientController {
 			map.update();
 		}else
 			if(clientModel.getBoard()!=null){
-				map=new FrameMap(this);
+				map=new BoardFrame(this);
 				map.setVisible(true);
 				home.dispose();
 		}

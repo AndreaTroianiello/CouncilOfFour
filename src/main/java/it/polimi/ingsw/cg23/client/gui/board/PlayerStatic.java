@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.mapframe;
+package it.polimi.ingsw.cg23.client.gui.board;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

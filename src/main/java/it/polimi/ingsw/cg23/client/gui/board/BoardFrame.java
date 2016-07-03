@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.mapframe;
+package it.polimi.ingsw.cg23.client.gui.board;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -13,10 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.client.gui.mappanel.EastPanel;
-import it.polimi.ingsw.cg23.client.gui.mappanel.MapPanel;
-import it.polimi.ingsw.cg23.client.gui.mappanel.MarketPanel;
-import it.polimi.ingsw.cg23.client.gui.mappanel.SouthPanel;
+import it.polimi.ingsw.cg23.client.gui.eastpanel.EastPanel;
+import it.polimi.ingsw.cg23.client.gui.marketplace.MarketPanel;
+import it.polimi.ingsw.cg23.client.gui.northpanel.MapPanel;
+import it.polimi.ingsw.cg23.client.gui.southpanel.SouthPanel;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 
 /**
@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
  * @author viga94_
  *
  */
-public class FrameMap extends JFrame {
+public class BoardFrame extends JFrame {
 
 	/**
 	 * 
@@ -44,7 +44,7 @@ public class FrameMap extends JFrame {
 	 * Create the frame.
 	 * @param controller
 	 */
-	public FrameMap(ControllerGUI controller) {
+	public BoardFrame(ControllerGUI controller) {
 		this.controller=controller;
 		loggerArea=new JTextArea();
 		write=new JTextField();

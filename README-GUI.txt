@@ -6,7 +6,7 @@ The player can come back in the game when he sends something(even a refused acti
 if the game isn't ended yet.
 
 Start the server from Server.java(package it.polimi.ingswcg23.server)
-Start game from the client from HomeFrame.java(package it.polimi.ingsw.cg23.gui)
+Start game from the client from HomeFrame.java(package it.polimi.ingsw.cg23.client.gui)
 
 _________________________________________________________________________________________________________
 ACTIONS:

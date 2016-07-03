@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.northpanel;
 
 import java.awt.Color;
 import java.awt.Font;

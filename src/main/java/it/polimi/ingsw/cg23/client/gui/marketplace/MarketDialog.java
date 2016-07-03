@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.marketplace;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.client.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.eastpanel;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
