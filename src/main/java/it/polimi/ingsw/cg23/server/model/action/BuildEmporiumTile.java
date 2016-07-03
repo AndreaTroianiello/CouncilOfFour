@@ -70,18 +70,23 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 		City realCity = controlAction.controlCity(this.city, board);
 		BusinessPermitTile realTile = controlAction.controlBusinessPermit(card, player);
 		if(player.getAvailableEmporium() != null && realCity != null && realTile != null){
-			try {
-				realCity.buildEmporium(player.getAvailableEmporium());
-				player.getAvailableBusinessPermits().remove(realTile);
-				player.setUsedBusinessPermit(realTile);
-				board.notifyObserver(new BoardChange(board));
+			if(realTile.getCitiesId().contains(realCity.getId())){
+				try {
+					realCity.buildEmporium(player.getAvailableEmporium());
+					player.getAvailableBusinessPermits().remove(realTile);
+					player.setUsedBusinessPermit(realTile);
+					board.notifyObserver(new BoardChange(board));
 				board.notifyObserver(new EmporiumsChange(realCity.getEmporiums()));
 				return true;
-			} catch (NegativeNumberException e) {
-				getLogger().error("The player doesn't have enough assistants", e);	
-				this.notifyObserver(new InfoChange("The player doesn't have enough assistants"));
-				return false;
-			}	
+				} catch (NegativeNumberException e) {
+					getLogger().error("The player doesn't have enough assistants", e);	
+					this.notifyObserver(new InfoChange("The player doesn't have enough assistants"));
+					return false;
+				}	
+			}
+			else{
+				this.notifyObserver(new InfoChange("The city selected is not in the chosen tile"));
+			}
 		}
 		return false;
 	}

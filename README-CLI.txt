@@ -5,6 +5,7 @@ If all the player are suspended, the game ends.
 The player can come back in the game when he sends something(even a refused action or a chat message),
 if the game isn't ended yet.
 
+Start the server from Server.java(package it.polimi.ingswcg23.server)
 Start game from CLI: Client.java (package it.polimi.ingsw.cg23.client.cli)
 CLI's commands:
 
@@ -25,6 +26,9 @@ preference for the map(his map will be chosen if he is the first player created 
 
 ____________________________________________________________________________________________________________
 ACTIONS:
+
+NB: before you can run an action that requires the use of the politics card you have to choose your cards with
+	the command CHOOSECARDS and the numbers of the chosen cards(which you can see with the command SHOW HAND)
 
 ADDITIONAL(secondary action)
 
