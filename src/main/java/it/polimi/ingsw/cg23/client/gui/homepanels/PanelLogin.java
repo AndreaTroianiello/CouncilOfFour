@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.homepanels;
+package it.polimi.ingsw.cg23.client.gui.homepanels;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -7,7 +7,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.controller.action.CreationGame;
 
 import javax.swing.JButton;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui;
+package it.polimi.ingsw.cg23.client.gui;
 
 import java.awt.Color;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.mappanel;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.action.MarketSell;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;

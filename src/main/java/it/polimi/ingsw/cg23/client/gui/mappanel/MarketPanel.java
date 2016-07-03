@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.mappanel;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -14,8 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.gui.SelectedElements;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.MarketBuy;
 import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 

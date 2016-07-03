@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mapframe;
+package it.polimi.ingsw.cg23.client.gui.mapframe;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.gui.mappanel.CostructionCardPanel;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.mappanel.CostructionCardPanel;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 

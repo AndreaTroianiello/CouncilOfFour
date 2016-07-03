@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.mappanel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
 import it.polimi.ingsw.cg23.server.model.Region;
 
 /**

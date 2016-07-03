@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.mappanel;
 
 
 import java.awt.Color;
@@ -8,7 +8,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
 
 /**
  * create the button bunel (main action, secondary action, info button)

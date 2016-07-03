@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.mappanel;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import it.polimi.ingsw.cg23.client.ClientModel;
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.gui.mapframe.BonusFrame;
-import it.polimi.ingsw.cg23.gui.mapframe.CardFrame;
-import it.polimi.ingsw.cg23.gui.mapframe.PlayerStatic;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.mapframe.BonusFrame;
+import it.polimi.ingsw.cg23.client.gui.mapframe.CardFrame;
+import it.polimi.ingsw.cg23.client.gui.mapframe.PlayerStatic;
 
 /**
  * create the south east panel

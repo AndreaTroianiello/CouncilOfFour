@@ -1,8 +1,5 @@
 package it.polimi.ingsw.cg23.server.model.bonus;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-
 import it.polimi.ingsw.cg23.observer.Observable;
 import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
@@ -23,15 +20,12 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	private final String name;
 	private int number;
 	private int numberTile;
-	private static Logger logger;
 
 	/**
 	 * the constructor set number and numberTile to 1 and the name of the bonus
 	 * 
 	 */
 	public BonusTileBonus() {
-		BonusTileBonus.logger = Logger.getLogger(BonusTileBonus.class);
-		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.number=1;
 		this.numberTile=-1;
 		this.name="TileBonus";
