@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui;
+package it.polimi.ingsw.cg23.client.gui;
 
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import org.apache.log4j.PropertyConfigurator;
 import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
-import it.polimi.ingsw.cg23.gui.mapframe.FrameMap;
+import it.polimi.ingsw.cg23.client.gui.mapframe.FrameMap;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
@@ -18,7 +18,6 @@ import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
-import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
 /**
  * The client GUI's controller. This manages the inputs of the user.
@@ -30,7 +29,6 @@ public class ControllerGUI implements ClientController {
 	private Logger logger;
 	private ClientModel clientModel;
 	private ClientViewOut out;
-	private Bonus bonus;
 	private FrameMap map;
 	private HomeFrame home;
 	private SelectedElements selectedElements;
@@ -44,7 +42,6 @@ public class ControllerGUI implements ClientController {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		clientModel= new ClientModel();
 		this.home=home;
-		this.bonus=null;
 		this.selectedElements=new SelectedElements();
 	}
  
@@ -146,23 +143,6 @@ public class ControllerGUI implements ClientController {
 	@Override
 	public ClientModel getModel() {
 		return clientModel;
-	}
-	
-	/**
-	 * 
-	 * @param cModel
-	 */
-	public void setModel(ClientModel cModel) {
-		this.clientModel=cModel;
-	}
-
-	/**
-	 * Sets the bonus received.
-	 * @param bonus The bonus received.
-	 */
-	@Override
-	public void setBonus(Bonus bonus) {
-		this.bonus=bonus;	
 	}
 
 }

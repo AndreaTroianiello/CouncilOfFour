@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui;
+package it.polimi.ingsw.cg23.client.gui;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -12,8 +12,8 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.gui.homepanels.PanelConnection;
-import it.polimi.ingsw.cg23.gui.homepanels.PanelLogin;
+import it.polimi.ingsw.cg23.client.gui.homepanels.PanelConnection;
+import it.polimi.ingsw.cg23.client.gui.homepanels.PanelLogin;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 
 import javax.swing.ImageIcon;

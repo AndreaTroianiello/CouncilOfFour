@@ -68,7 +68,6 @@ public class ControllerCLI implements ClientController{
 	 * Sets the bonus to elaborate.
 	 * @param bonus If the bonus is null the controller is in normal mode, else if isn't null elaborate the bonus during the update.
 	 */
-	@Override
 	public void setBonus(Bonus bonus) {
 		this.bonus=bonus;	
 	}

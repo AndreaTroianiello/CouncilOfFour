@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.homepanels;
+package it.polimi.ingsw.cg23.client.gui.homepanels;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -17,10 +17,10 @@ import javax.swing.GroupLayout.Alignment;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.HomeFrame;
 import it.polimi.ingsw.cg23.client.rmi.ClientRMI;
 import it.polimi.ingsw.cg23.client.socket.ClientSocket;
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.gui.HomeFrame;
 
 public class PanelConnection extends JPanel {
 

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mapframe;
+package it.polimi.ingsw.cg23.client.gui.mapframe;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;

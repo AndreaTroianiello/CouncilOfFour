@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.gui.mappanel;
+package it.polimi.ingsw.cg23.client.gui.mappanel;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -17,8 +17,8 @@ import javax.swing.border.EmptyBorder;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import it.polimi.ingsw.cg23.gui.ControllerGUI;
-import it.polimi.ingsw.cg23.gui.SelectedElements;
+import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
+import it.polimi.ingsw.cg23.client.gui.SelectedElements;
 import it.polimi.ingsw.cg23.server.model.action.AdditionalAction;
 import it.polimi.ingsw.cg23.server.model.action.ChangeBusinessPermit;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
