@@ -54,6 +54,16 @@ public class BuyPermitTileTest {
 		council.getCouncillors().add(new Councillor(Color.RED));
 		council.getCouncillors().add(new Councillor(Color.WHITE));
 	}
+	
+	/**
+	 * it tests if the NullPointerException is thrown when the parameters are null
+	 * @throws NullPointerException
+	 */
+	@Test(expected=NullPointerException.class)
+	public void testConstructorShouldThrowNullPointerExceptionIfHisParametersAreNull() throws NullPointerException{
+		BuyPermitTile action = new BuyPermitTile(null, null, null);
+		action.runAction(player, board);
+	}
 
 	/**
 	 * tests if the chosenTile is added to the player's permit tile
@@ -122,6 +132,7 @@ public class BuyPermitTileTest {
 		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
+		action.toString();
 		action.runAction(player, board);
 		List<BusinessPermitTile> cards = player.getAvailableBusinessPermits();
 		assertEquals(new ArrayList<>(), cards);

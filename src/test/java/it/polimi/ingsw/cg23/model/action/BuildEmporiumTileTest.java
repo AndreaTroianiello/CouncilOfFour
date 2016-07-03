@@ -123,7 +123,7 @@ public class BuildEmporiumTileTest {
 	}
 	
 	/**
-	 * it tests if the NullPointerException is thrown when the paramaters are null
+	 * it tests if the NullPointerException is thrown when the parameters are null
 	 * @throws NullPointerException
 	 */
 	@Test(expected=NullPointerException.class)

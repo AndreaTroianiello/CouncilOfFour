@@ -59,7 +59,7 @@ you must select which item you want to buy from the list and the press buy
 __________________________________________________________________________________________________________________
 
 BONUS ACTION:
-When you receive a special bonus opens a dialog window.
+When you receive a special bonus it automatically opens a dialog's window.
 
 GetPermitTile: 
 -parameter1: region
