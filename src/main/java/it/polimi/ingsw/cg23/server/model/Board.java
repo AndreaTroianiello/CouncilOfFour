@@ -235,6 +235,7 @@ public class Board extends Observable<Change> implements Serializable{
 		types=null;
 		king=null;
 		nobilityTrack=null;
+		bonusKing=null;
 		councillorPool.clear();
 	}
 

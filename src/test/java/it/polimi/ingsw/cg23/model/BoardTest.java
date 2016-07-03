@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -19,6 +20,7 @@ import it.polimi.ingsw.cg23.server.model.components.Deck;
 import it.polimi.ingsw.cg23.server.model.components.King;
 import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 
 public class BoardTest {
 	
@@ -138,7 +140,22 @@ public class BoardTest {
 	public void testGetMarket() {
 		Board board=new Board(null, new ArrayList<>(), new ArrayList<>(), null, null, null);
 		assertNotNull(board.getMarket());
-		
 	}
-
+	/**
+	 * Tests resetAll()
+	 */
+	@Test
+	public void testReset(){
+		Board board=new Board(deck, new ArrayList<>(), new ArrayList<>(),nobilityTrack, king, new BonusKing(Arrays.asList(0)));
+		board.getRegions().add(region);
+		board.getTypes().add(type);
+		board.resetBoard();
+		assertNull(board.getDeck());
+		assertNull(board.getKing());
+		assertNull(board.getNobilityTrack());
+		assertNull(board.getBonusKing());
+		assertNull(board.getRegions());
+		assertNull(board.getTypes());
+		assertTrue(board.getCouncillorPool().isEmpty());
+	}
 }

@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg23.server.model.marketplace;
 import java.io.Serializable;
 
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
 
 /**
  * The item to sell in the market. This item can be a number of assistants, a business permit tile or a politic card.
@@ -54,6 +55,17 @@ public class Item implements Serializable {
 	 */
 	public Player getPlayer() {
 		return player;
+	}
+	
+	/**
+	 * Returns the amount of the item to sell.
+	 * @return
+	 */
+	public int getAmount(){
+		if(itemToSell instanceof AssistantsPool)
+			return ((AssistantsPool)itemToSell).getAssistants();
+		else
+			return 1;
 	}
 	
 	/**

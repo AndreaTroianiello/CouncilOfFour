@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.model;
+package it.polimi.ingsw.cg23.server.model.components;
 
 import static org.junit.Assert.*;
 
@@ -44,6 +44,7 @@ public class BonusKingTest {
 		BonusKing bonusKing= new BonusKing(bonuses);
 		assertEquals(bonusKing.getCurrentBonusKing(),10);
 		assertEquals(bonusKing.getCurrentIndexBonusKing(),0);
+		assertEquals(bonusKing.toString(),"BonusKing [index=0, bonus=[10, 3, 0]]");
 	}
 	
 	/**

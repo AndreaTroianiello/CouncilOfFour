@@ -133,7 +133,7 @@ public class Type implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Type [name=" + name + ", bonus=" + bonus + ", bonusAvailable=" + bonusAvailable
+		return "Type [name=" + name + ", bonus=" + bonus.getName() + ", bonusAvailable=" + bonusAvailable
 				+ "]";
 	}
 }

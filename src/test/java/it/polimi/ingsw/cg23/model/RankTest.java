@@ -70,10 +70,10 @@ public class RankTest {
 		assertEquals(board.getPlayers().get(1).getUser(),"user3");
 		assertEquals(board.getPlayers().get(2).getUser(),"user1");	
 		assertEquals(board.getPlayers().get(3).getUser(),"user2");
-		assertTrue(board.getPlayers().get(0).getVictoryTrack().getVictoryPoints()==8);
-		assertTrue(board.getPlayers().get(1).getVictoryTrack().getVictoryPoints()==5);
-		assertTrue(board.getPlayers().get(2).getVictoryTrack().getVictoryPoints()==0);
-		assertTrue(board.getPlayers().get(3).getVictoryTrack().getVictoryPoints()==0);
+		assertTrue(board.getPlayers().get(0).getVictoryTrack().getVictoryPoints()==11);
+		assertTrue(board.getPlayers().get(1).getVictoryTrack().getVictoryPoints()==8);
+		assertTrue(board.getPlayers().get(2).getVictoryTrack().getVictoryPoints()==3);
+		assertTrue(board.getPlayers().get(3).getVictoryTrack().getVictoryPoints()==3);
 	}
 	
 	/**
@@ -96,10 +96,10 @@ public class RankTest {
 		boxes.get(5).addPlayer(board.getPlayers().get(0));
 		boxes.get(8).addPlayer(board.getPlayers().get(2));
 		rank.createRank();
-		assertTrue(board.getPlayers().get(0).getVictoryTrack().getVictoryPoints()==5);
-		assertTrue(board.getPlayers().get(1).getVictoryTrack().getVictoryPoints()==2);
-		assertTrue(board.getPlayers().get(2).getVictoryTrack().getVictoryPoints()==2);
-		assertTrue(board.getPlayers().get(3).getVictoryTrack().getVictoryPoints()==2);
+		assertTrue(board.getPlayers().get(0).getVictoryTrack().getVictoryPoints()==8);
+		assertTrue(board.getPlayers().get(1).getVictoryTrack().getVictoryPoints()==5);
+		assertTrue(board.getPlayers().get(2).getVictoryTrack().getVictoryPoints()==5);
+		assertTrue(board.getPlayers().get(3).getVictoryTrack().getVictoryPoints()==5);
 		assertEquals(board.getPlayers().get(0).getUser(),"user3");
 		assertEquals(board.getPlayers().get(1).getUser(),"user2");
 		assertEquals(board.getPlayers().get(2).getUser(),"user4");	

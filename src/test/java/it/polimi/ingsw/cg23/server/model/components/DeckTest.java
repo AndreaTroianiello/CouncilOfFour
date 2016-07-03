@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.model;
+package it.polimi.ingsw.cg23.server.model.components;
 
 import static org.junit.Assert.*;
 
@@ -50,6 +50,16 @@ public class DeckTest {
 			deck.draw();
 		assertTrue(deck.deckIsEmpty());
 		assertNull(deck.draw());
+	}
+	
+	/**
+	 * Tests the toString().
+	 */
+	@Test
+	public void testToString(){
+		Deck deck=new Deck(politicCards);
+		assertEquals(deck.toString(),
+				"Deck [politicCards=[PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black], PoliticCard [color=Black]], discardedCards=[]]");
 	}
 
 }

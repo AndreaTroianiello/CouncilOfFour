@@ -34,6 +34,20 @@ public class Rank{
 	}
 	
 	/**
+	 * Updates the victory points of the player 
+	 */
+	private void updateTiles(){
+		int maxTiles=model.getPlayers()
+				.stream()
+				.mapToInt(p->p.getUsedBusinessPermit().size()+p.getAvailableBusinessPermits().size())
+				.max().orElse(-1);
+		model.getPlayers()
+			.stream()
+			.filter(p->p.getUsedBusinessPermit().size()+p.getAvailableBusinessPermits().size()==maxTiles)
+			.forEach(p->p.getVictoryTrack().setVictoryPoints(p.getVictoryTrack().getVictoryPoints()+3));
+	}
+	
+	/**
 	 * Updates the victory points of the players who arrived later in the nobility track.
 	 */
 	private void updateNobilityTrack(){
@@ -61,6 +75,7 @@ public class Rank{
 		List<Player> players=model.getPlayers();
 		updateFinalPlayer();
 		updateNobilityTrack();
+		updateTiles();
 		for(int index = 0; index < players.size(); index++) {
 			boolean flag = false;
 			for(int j = 0; j < players.size()-1; j++) {

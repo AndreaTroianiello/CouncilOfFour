@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg23.model;
+package it.polimi.ingsw.cg23.server.model.components;
 
 import static org.junit.Assert.*;
 
