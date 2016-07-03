@@ -11,6 +11,11 @@ import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 
+/**
+ * the class that controls if the parameter passed to the action are actually in the board
+ * @author Vincenzo
+ *
+ */
 public class ControlAction implements Serializable{
 	
 	private static final long serialVersionUID = 3589241930022739342L;
