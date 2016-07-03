@@ -107,8 +107,13 @@ public class BuildEmporiumTileTest {
 		assertEquals(false, this.city.containsEmporium(player2));
 	}
 	
+	/**
+	 * it tests if the NullPointerException is thrown when the paramaters are null
+	 * @throws NullPointerException
+	 */
 	@Test(expected=NullPointerException.class)
 	public void testNullPointerException() throws NullPointerException{
 		BuildEmporiumTile action = new BuildEmporiumTile(null, null);
+		action.getCard();
 	}
 }

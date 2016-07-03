@@ -137,6 +137,7 @@ public class ElectCouncillorAssistantTest {
 	public void testNullPointerExceptionCouncillor() throws NullPointerException{
 		this.councillor=Color.ORANGE;
 		ElectCouncillorAssistant action = new ElectCouncillorAssistant(null, null, true);
+		action.getClass();
 	}
 	
 	/**
@@ -147,6 +148,7 @@ public class ElectCouncillorAssistantTest {
 	public void testNullPointerExceptionRegion() throws NullPointerException{
 		this.councillor=Color.ORANGE;
 		ElectCouncillorAssistant action2 = new ElectCouncillorAssistant(this.councillor, null, false);
+		action2.getClass();
 	}
 
 	/**

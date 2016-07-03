@@ -13,7 +13,6 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
 import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
-import it.polimi.ingsw.cg23.server.model.action.ElectCouncillorAssistant;
 import it.polimi.ingsw.cg23.server.model.components.Council;
 import it.polimi.ingsw.cg23.server.model.components.Councillor;
 import it.polimi.ingsw.cg23.server.model.components.King;
@@ -113,6 +112,7 @@ public class ElectCouncillorTest {
 	public void testNullPointerExceptionCouncillor() throws NullPointerException{
 		this.councillor=Color.ORANGE;
 		ElectCouncillor action = new ElectCouncillor(null, null, true);
+		action.getClass();
 	}
 
 	/**
