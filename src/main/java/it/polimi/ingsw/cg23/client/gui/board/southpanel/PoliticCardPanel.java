@@ -47,7 +47,7 @@ public class PoliticCardPanel {
 		this.controller=controller;
 		this.p=controller.getModel().getPlayer();
 		this.loggerArea=loggerArea;
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -61,7 +61,7 @@ public class PoliticCardPanel {
 		JPanel panel=new JPanel();//nuovo pannello
 		GridBagLayout layout = new GridBagLayout();//nuovo layout
 		panel.setLayout(layout);//applicazione del layout al pannelo
-		
+
 		GridBagConstraints lim = new GridBagConstraints(); //impostazioni layout
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
 		lim.anchor = GridBagConstraints.EAST;//posizione componenti nei riquadri
@@ -71,7 +71,7 @@ public class PoliticCardPanel {
 			BufferedImage img;
 			String color;
 			PoliticCard card=p.getHand().get(i);
-			
+
 			if(card.isJolly()){//carta politica jolly
 				img=politcsImg("Jolly");//carta jolly
 				color="Jolly";
@@ -80,17 +80,17 @@ public class PoliticCardPanel {
 				color=new ColorManager().getColorName(card.getColor());//recupero il colore della carta politica
 				img=politcsImg(color);//carte colorate
 			}
-			
+
 			JButton politicButton=new JButton(new ImageIcon(img));//bottone carta politica
 			politicButton.setName("Carta politca "+i+", "+color);
 			politicButton.setToolTipText("Carta politica "+color);
 			politicButton.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
-			
+
 			lim.gridx=i*2;
 			lim.gridy=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			
+
 			layout.setConstraints(politicButton, lim);//applicazione del layout al bottone della carta politica
 			panel.add(politicButton);//aggiunta della carta politica al pannello
 			politicButton.addMouseListener(new MouseListener() {//azioni del mouse per la carta politica
@@ -99,32 +99,32 @@ public class PoliticCardPanel {
 				@Override
 				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 				@Override
-				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-				@Override
-				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
-				@Override
 				public void mouseClicked(MouseEvent e) {
 					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
 						controller.getSelectedElements().addCard(card);
-						
-						loggerArea.append("\n Element selected(Card:"+color+").");
+
+						loggerArea.append("\n Element selected (Card:"+color+").");
 					}
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						loggerArea.append("\nSelezionata la carta politica: "+color);
-					}
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			});
-			
+
 			//----------etichetta spazio----------
 			//Aggiunge lo spazio dopo aver messo la carta politica
 			JLabel label2=new JLabel();
 			label2.setName(i+" spazio");
 			label2.setPreferredSize(new Dimension(5, 50));
-			
+
 			lim.gridx=i*2+1;
 			lim.gridy=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			
+
 			layout.setConstraints(label2, lim);
 			panel.add(label2);
 		}

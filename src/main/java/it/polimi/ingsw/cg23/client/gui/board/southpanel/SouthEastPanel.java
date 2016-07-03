@@ -175,8 +175,6 @@ public class SouthEastPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				cf.createCard(model.getPlayer());
 				cf.setVisible(true);
@@ -185,6 +183,9 @@ public class SouthEastPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				cf.setVisible(true);
 			}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			
 		});
 	}
 

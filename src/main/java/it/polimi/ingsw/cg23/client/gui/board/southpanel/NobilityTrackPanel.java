@@ -83,7 +83,7 @@ public class NobilityTrackPanel extends JPanel {
 			JLabel boxLabel = new JLabel(new ImageIcon(myim));//creazione della label con l'immagine del nobility box
 			boxLabel.setName("box "+i);
 			boxLabel.setToolTipText("Box Nobility Track "+i);
-			
+
 			lim.gridx = i;//posizione componenti nella griglia
 			lim.gridy = 0;
 			lim.gridheight=1;//grandezza del riquadro
@@ -97,10 +97,6 @@ public class NobilityTrackPanel extends JPanel {
 			final int k=i;
 			boxLabel.addMouseListener(new MouseListener() {//azioni al click del mouse
 				@Override
-				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-				@Override
-				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-				@Override
 				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
@@ -108,6 +104,10 @@ public class NobilityTrackPanel extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					writeArea(loggerArea, nt, k);
 				}
+				@Override
+				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+				@Override
+				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			});
 		}
 	}
@@ -128,7 +128,7 @@ public class NobilityTrackPanel extends JPanel {
 	 */
 	private void writeArea(JTextArea loggerArea, NobilityTrack nt, int k){
 		loggerArea.append("\nNobility Track "+k+"");
-		
+
 		if(nt.getNobilityBoxes().get(k).getBonus().toString()!="[]"){//bonus nullo
 			loggerArea.append("\n  Bonus: ");
 			String bonus="";
@@ -139,7 +139,7 @@ public class NobilityTrackPanel extends JPanel {
 
 			loggerArea.append(bonus.substring(0, bonus.length()-2));
 		}
-		
+
 		if(nt.getNobilityBoxes().get(k).getPlayers().toString()!="[]"){//nessun player
 			loggerArea.append("\n  Player: ");
 			String player="";

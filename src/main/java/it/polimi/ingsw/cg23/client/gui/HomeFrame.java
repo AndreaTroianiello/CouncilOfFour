@@ -29,11 +29,11 @@ public class HomeFrame extends JFrame {
 
 	private static final long serialVersionUID = -7250417194617661777L;
 	private transient ControllerGUI controller;
-    private PanelConnection panelConnection;
+	private PanelConnection panelConnection;
 	private PanelLogin panelLogin;
 	private static Logger logger;
 	private JLabel labelBackground;
-	
+
 
 	/**
 	 * The constructor of HomeFrame. It creates the frame.
@@ -44,7 +44,7 @@ public class HomeFrame extends JFrame {
 		controller=new ControllerGUI(this);
 		initComponents();
 	}
-	
+
 	/**
 	 * Initializes the componets of the JFrame.
 	 */
@@ -52,7 +52,7 @@ public class HomeFrame extends JFrame {
 		panelLogin=new PanelLogin(controller);
 		panelConnection = new PanelConnection(controller,this);
 		labelBackground=new JLabel();
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Council of Four");
 		setBounds(new Rectangle(100, 100, 400, 497));
@@ -81,10 +81,10 @@ public class HomeFrame extends JFrame {
 		} catch (IOException e) {
 			logger.error("impossibile caricare l'ìmmagine", e);
 		}
-		
+
 		pack();
 	}
-	
+
 	/**
 	 * Switches the panelLogin with panelConnection and vice versa. 
 	 */

@@ -88,20 +88,20 @@ public class EastPanel extends JPanel {
 
 		layout.setConstraints(write, lim);//applicazione del layout alla write area
 		add(write);//aggiunta write area al pannello
-		
+
 		write.addMouseListener(new MouseListener() {//azioni pannello click mouse
 			@Override
-			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				write.setText("");
 			}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 		});
 
 		write.addKeyListener(new KeyListener() {//aggiunta tasto invio

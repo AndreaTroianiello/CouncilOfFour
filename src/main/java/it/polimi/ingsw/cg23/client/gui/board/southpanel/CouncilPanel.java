@@ -59,14 +59,14 @@ public class CouncilPanel {
 		//----------etichetta nome----------
 		JLabel label0 = new JLabel(reg.getName()+" council");//creazione etichetta consiglieri
 		label0.setForeground(new Color(255, 215, 0));//colore scritta etichetta
-		
+
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 0;
 		lim.weightx=0;//espansione in verticale e orizzontale
 		lim.weighty=0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=8;
-		
+
 		layout.setConstraints(label0, lim);//applicazione del layouta alla label
 		panel.add(label0);//aggiunta della label al panel
 
@@ -81,28 +81,28 @@ public class CouncilPanel {
 			label1.setToolTipText("Councillors "+reg.getName()+" number "+(i+1));
 			label1.setOpaque(true);
 			label1.setPreferredSize(new Dimension(50, 20));
-			
+
 			lim.gridx = i*2;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			
+
 			layout.setConstraints(label1, lim);//applicazione del layout alla label
 			panel.add(label1);//aggiunta della label al panel
 
 			//----------label spazio----------
 			JLabel label2 = new JLabel();//label per aggiungere spazio
 			label2.setPreferredSize(new Dimension(5, 20));//dimensione label
-			
+
 			lim.gridx = i*2+1;//posizione componenti nella griglia
 			lim.gridy = 1;
 			lim.weightx=0;//espansione in verticale e orizzontale
 			lim.weighty=0;
 			lim.gridheight=1;//grandezza del riquadro
 			lim.gridwidth=1;
-			
+
 			layout.setConstraints(label2, lim);//applicazione del layouta alla label
 			panel.add(label2);//aggiunta della label al panel
 		}
@@ -230,13 +230,11 @@ public class CouncilPanel {
 	private void listener(JLabel label, String text){
 		label.addMouseListener(new MouseListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
@@ -247,6 +245,8 @@ public class CouncilPanel {
 					loggerArea.append("\n Element selected: (Councillor:"+color+").");}
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
 					loggerArea.append("\n"+text);}
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 		});
 	}
 

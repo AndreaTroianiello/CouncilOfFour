@@ -44,7 +44,7 @@ public class CostructionCardPanel {
 	public CostructionCardPanel(JTextArea loggerArea, ControllerGUI controller) {
 		this.loggerArea=loggerArea;
 		this.controller=controller;
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -55,7 +55,7 @@ public class CostructionCardPanel {
 	 * @param reg, the region
 	 * @return the panel with the showed costruction card
 	 */
-	public JPanel getShowCostructionCard(Region reg){
+	public JPanel getShowCostructionCard(Region reg){//carte costruzioni mostrate delle regioni
 		JPanel panel=new JPanel();//creazione di un nuovo pannello
 		GridBagLayout layout = new GridBagLayout();//creazione di un nuovo layout
 		panel.setLayout(layout);//applicazione del layout al pannello
@@ -99,7 +99,7 @@ public class CostructionCardPanel {
 			lim.gridwidth=1;
 			layout.setConstraints(costructionCard, lim);//applicazione del layout al label
 			final int k=i;
-			
+
 			costructionCard.addMouseListener(new MouseListener() {
 				@Override
 				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
@@ -131,7 +131,7 @@ public class CostructionCardPanel {
 	 * @param p, the player
 	 * @return a panel with the player's costruction card
 	 */
-	public JPanel myCostructionCard(Player p){
+	public JPanel myCostructionCard(Player p){//carte costruzione usabili dal giocatore
 		JPanel panel=new JPanel();//creazioni di un nuovo pannello
 		GridBagLayout layout = new GridBagLayout();//creazione di un nuovo layout
 		panel.setLayout(layout);//assegnazione del layout al pannello
@@ -160,17 +160,15 @@ public class CostructionCardPanel {
 			lim.gridwidth=1;
 			layout.setConstraints(costructionCard, lim);//applicazione del layout alla carta costruzione
 			q++;//incremento la posizione sulla griglia
-			
+
 			final int k=i;
 			costructionCard.addMouseListener(new MouseListener() {//azioni pannello click mouse
+				@Override
+				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-				@Override
-				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-				@Override
-				public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
@@ -180,6 +178,8 @@ public class CostructionCardPanel {
 					if(SwingUtilities.isRightMouseButton(e))//bottone destro
 						writeArea(bpt.get(k));
 				}
+				@Override
+				public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 			});
 
 			panel.add(costructionCard);//aggiunta della label al panel
@@ -213,11 +213,11 @@ public class CostructionCardPanel {
 	 */
 	private String nameCostructor(List<Character> id){
 		String nome="";
-		
+
 		for(int i=0; i<id.size(); i++){//scorro il numero di city id di una carta costruzione
 			nome=nome.concat(Character.toString(id.get(i)));
 		}
-		
+
 		return nome.toUpperCase();//ritorno la stringa in maiuscolo
 	}
 
@@ -229,11 +229,11 @@ public class CostructionCardPanel {
 		loggerArea.append("\nCarta costruzione "+bpt.getZone());//aggiungo alla loggerArea le informazioni della carta costrucione
 		loggerArea.append("\n  Citta': ");
 		String id = "";
-		
+
 		for(int i=0; i<bpt.getCitiesId().size(); i++){//scorro gli id citta' della carta costrucione
 			id=id.concat(bpt.getCitiesId().get(i)+", ");
 		}
-		
+
 		loggerArea.append(id.substring(0, id.length()-2));
 		loggerArea.append("\n  Bonus: ");
 
@@ -247,7 +247,6 @@ public class CostructionCardPanel {
 			loggerArea.append("0");
 	}
 
-
 	/**
 	 * load and converts an image to a black and white one
 	 * @param bpt, the business permit tiles
@@ -255,7 +254,7 @@ public class CostructionCardPanel {
 	 */
 	public JLabel oldCostructionWB(BusinessPermitTile bpt) {
 		BufferedImage image=getCostructionImg(nameCostructor(bpt.getCitiesId()));//caricamento immagine
-		
+
 		ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
 		ColorConvertOp ccop = new ColorConvertOp(cs, null);
 

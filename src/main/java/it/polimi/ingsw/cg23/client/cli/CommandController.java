@@ -184,9 +184,7 @@ public class CommandController {
 			break;
 		case "BUYTILE":
 			Region region=clientModel.findRegion(tokenizer.nextToken());
-			action = new BuyPermitTile(clientModel.getCards(),
-					region,
-					clientModel.findRegionTile(tokenizer.nextToken(), region));
+			action = new BuyPermitTile(clientModel.getCards(),region,clientModel.findRegionTile(tokenizer.nextToken(), region));
 			controller.updateController(action);
 			break;
 		case "CHANGE":
@@ -198,18 +196,15 @@ public class CommandController {
 			if("KING".equals(tok))
 				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),null, true);
 			else
-				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),
-						clientModel.findRegion(tok), false);
+				action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
 			controller.updateController(action);
 			break;
 		case "ELECTASSISTANT":
 			tok=tokenizer.nextToken();
 			if("KING".equals(tok))
-				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
-						null, true);
+				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()), null, true);
 			else
-				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
-						clientModel.findRegion(tok), false);
+				action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
 			controller.updateController(action);
 			break;
 		case "HIRE":

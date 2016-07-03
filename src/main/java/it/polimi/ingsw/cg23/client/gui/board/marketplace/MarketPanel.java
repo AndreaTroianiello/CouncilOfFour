@@ -72,16 +72,16 @@ public class MarketPanel extends JPanel {
 		add(marketLabel);//aggiunta della label al panel
 
 		//----------tabella finta----------
-		JLabel spaceLabel1=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
+		JLabel spaceLbl1=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
-		lim.weighty = 0;
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
+		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weighty = 0;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(spaceLabel1, lim);//applicazione del layout alla label
-		add(spaceLabel1);//aggiunta della label al panel
+		layout.setConstraints(spaceLbl1, lim);//applicazione del layout alla label
+		add(spaceLbl1);//aggiunta della label al panel
 
 
 		//----------tabella----------
@@ -100,7 +100,7 @@ public class MarketPanel extends JPanel {
 		add(scrollTable);//aggiunta dello scroll al panel
 
 		//----------tabella finta----------
-		JLabel spaceLabel2=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
+		JLabel spaceLbl2=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
 		lim.gridx = 2;//posizione componenti nella griglia
 		lim.gridy = 1;
 		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
@@ -108,18 +108,18 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=1;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(spaceLabel2, lim);//applicazione del layout alla label
-		add(spaceLabel2);//aggiunta della label al panel
+		layout.setConstraints(spaceLbl2, lim);//applicazione del layout alla label
+		add(spaceLbl2);//aggiunta della label al panel
 
 		//----------button panel (sell + buy)----------
-		JPanel littlePanel=new JPanel();//nuovo pannello per i bottoni buy and sell
-		littlePanel.setBackground(new Color(151, 111, 51));//sfondo del panello
+		JPanel littleButtonPanel=new JPanel();//nuovo pannello per i bottoni buy and sell
+		littleButtonPanel.setBackground(new Color(151, 111, 51));//sfondo del panello
 
 		JButton sellButton=new JButton("Sell");//bottone sell
-		littlePanel.add(sellButton);//aggiunta del bottone al littlePanel
+		littleButtonPanel.add(sellButton);//aggiunta del bottone al littlePanel
 
 		JButton buyButton=new JButton("Buy");//bottone buy
-		littlePanel.add(buyButton);//aggiunta del bottone al littlePanel
+		littleButtonPanel.add(buyButton);//aggiunta del bottone al littlePanel
 
 		lim.gridx = 0;//posizione componenti nella griglia
 		lim.gridy = 2;
@@ -128,8 +128,8 @@ public class MarketPanel extends JPanel {
 		lim.gridheight=1;//grandezza del riquadro
 		lim.gridwidth=3;
 		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(littlePanel, lim);//applicazione del layout al littlePanel
-		add(littlePanel);//aggiunta del littlePanel al pannello
+		layout.setConstraints(littleButtonPanel, lim);//applicazione del layout al littlePanel
+		add(littleButtonPanel);//aggiunta del littlePanel al pannello
 
 		sellButton.addActionListener(e->{
 			loggerArea.append("\nSell button");

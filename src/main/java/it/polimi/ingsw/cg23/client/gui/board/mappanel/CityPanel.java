@@ -141,7 +141,7 @@ public class CityPanel{
 		lim.gridwidth=1;
 		layout.setConstraints(label, lim);//applicazione del layout alla label
 		panel.add(label);//aggiunta della label al pannello
-		
+
 		listener(panel, c, k);//azioni per stampare sulla logger area le informazioni della citta'
 
 		return panel;
@@ -158,11 +158,7 @@ public class CityPanel{
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
@@ -172,9 +168,13 @@ public class CityPanel{
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
 					writeArea(c, k);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 		});
 	}
-	
+
 	/**
 	 * print the city informaztion on the logger area
 	 * @param c, the actual city
@@ -193,7 +193,7 @@ public class CityPanel{
 
 		loggerArea.append("\n  Tipo: "+c.getType());
 		loggerArea.append("\n  Empori: ");
-		
+
 		if(c.getEmporiums().isEmpty())
 			loggerArea.append("0");
 		else{

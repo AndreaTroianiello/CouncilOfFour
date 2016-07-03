@@ -115,24 +115,26 @@ public class CardFrame extends JFrame {
 				final int k=i;
 				costructionCard.addMouseListener(new MouseListener() {
 					@Override
-					public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-					@Override
 					public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-					@Override
-					public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 					@Override
 					public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						ccp.writeArea(bpt.get(k));
 					}
+					@Override
+					public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+					@Override
+					public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 				});
+				
 				q++;
 				if(q%5==0){//metto al massino 5 carte costruzione per riga
 					q=0;
 					r++;
 				}
 			}
+			
 		}
 
 		contentPane.add(panel);

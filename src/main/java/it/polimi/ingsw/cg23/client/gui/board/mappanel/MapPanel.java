@@ -57,11 +57,11 @@ public class MapPanel extends JPanel {
 		this.model=controller.getModel();
 		this.ms=new MapSetting();
 		this.cp=new CityPanel(loggerArea,controller);
-		
+
 		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
-		
+
 		init();
-		
+
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -119,13 +119,13 @@ public class MapPanel extends JPanel {
 
 				if(i%2!=0&&k==4){
 					Region region=city.get(j-1).getRegion();//regione attuale
-					
+
 					JButton regionButton=new JButton();//creazione bottone della regione
 					regionButton.setToolTipText("Select region "+region.getName());
 					regionButton.setOpaque(false);//bottone trasparente
 					regionButton.setContentAreaFilled(false);//contenuto bottone trasparente
 					regionButton.setBorderPainted(false);//bordi bottone trasparente
-					
+
 					lim.gridx = i;//posizione componenti nella griglia
 					lim.gridy = k;
 					lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
@@ -134,13 +134,13 @@ public class MapPanel extends JPanel {
 					lim.gridwidth=1;
 					lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
-					
+
 					layout.setConstraints(regionButton, lim);//applico il layout al pannello delle citta'
 					label.add(regionButton);//aggiunta il panel alla label
-					
+
 					listener(regionButton, region);//azioni cliccando il bottone della regione
 				}
-				
+
 				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
 				label.add(citta);//aggiunta il panel alla label
 			}
@@ -166,7 +166,7 @@ public class MapPanel extends JPanel {
 
 		return image;
 	}
-	
+
 	/**
 	 * execute action clicking on the region button
 	 * @param but, the region button
@@ -175,13 +175,9 @@ public class MapPanel extends JPanel {
 	private void listener(JButton but, Region region){
 		but.addMouseListener(new MouseListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
@@ -191,9 +187,13 @@ public class MapPanel extends JPanel {
 				if(SwingUtilities.isRightMouseButton(e))//bottone destro
 					loggerArea.append("\nSelezionata regione "+region.getName());
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 		});
 	}
-	
+
 	/**
 	 * update the component
 	 */

@@ -206,13 +206,7 @@ public class BonusFrame extends JFrame {
 	private void mouseOverKing(JLabel kingBonus, JTextArea loggerArea, Board b){
 		kingBonus.addMouseListener(new MouseListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(b.getBonusKing().getCurrentBonusKing()==0)
@@ -220,6 +214,13 @@ public class BonusFrame extends JFrame {
 				else
 					loggerArea.append("\nBonus king disponibile: "+b.getBonusKing().getCurrentBonusKing()+"VictoryPoints");
 			}
+			@Override
+			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			
 		});
 	}
 
@@ -234,10 +235,6 @@ public class BonusFrame extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -247,6 +244,10 @@ public class BonusFrame extends JFrame {
 				else
 					loggerArea.append(reg.getName()+" disponibile: "+reg.getBonus().getName());
 			}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			@Override
+			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
 		});
 	}
 
@@ -259,13 +260,11 @@ public class BonusFrame extends JFrame {
 	private void mouseOverType(JLabel typeBonus, JTextArea loggerArea, it.polimi.ingsw.cg23.server.model.Type tipo){
 		typeBonus.addMouseListener(new MouseListener() {
 			@Override
+			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			@Override
 			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
 			@Override
-			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
-			@Override
 			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
-			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				loggerArea.append("\nBonus ");
@@ -274,6 +273,8 @@ public class BonusFrame extends JFrame {
 				else
 					loggerArea.append(tipo.getName()+" disponibile: "+tipo.getBonus().getName());
 			}
+			@Override
+			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
 		});
 	}
 
