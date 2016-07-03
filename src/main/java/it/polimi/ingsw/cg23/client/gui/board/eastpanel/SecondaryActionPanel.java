@@ -6,8 +6,6 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -48,7 +46,6 @@ public class SecondaryActionPanel extends JPanel {
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
-
 		init();
 	}
 
@@ -96,13 +93,10 @@ public class SecondaryActionPanel extends JPanel {
 
 		layout.setConstraints(button1, lim);
 		add(button1);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button1.addActionListener(e->{
 				text.append("\n"+button1.getName());
 				//AZIONI AZIONE 1
 				controller.updateController(new HireAssistant());
-			}
 		});
 
 		JButton button2 = new JButton("Addictional");
@@ -118,14 +112,10 @@ public class SecondaryActionPanel extends JPanel {
 
 		layout.setConstraints(button2, lim);
 		add(button2);//aggiunta bottone al layer panel
-		button2.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button2.addActionListener(e->{
 				text.append("\n"+button2.getName());
 				//AZIONI AZIONE 2
 				controller.updateController(new AdditionalAction());
-			}
 		});
 
 		JButton button3 = new JButton("Change");
@@ -142,9 +132,7 @@ public class SecondaryActionPanel extends JPanel {
 		layout.setConstraints(button3, lim);
 		add(button3);//aggiunta bottone al layer panel
 
-		button3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button3.addActionListener(e->{
 				text.append("\n"+button3.getName());
 				//AZIONI AZIONE 3
 				try{
@@ -155,7 +143,6 @@ public class SecondaryActionPanel extends JPanel {
 					controller.getSelectedElements().resetAll();
 					logger.error("Error!", ex);
 				}
-			}
 		});
 
 		JButton button4 = new JButton("Elect");
@@ -172,9 +159,7 @@ public class SecondaryActionPanel extends JPanel {
 		layout.setConstraints(button4, lim);
 		add(button4);//aggiunta bottone al layer panel
 
-		button4.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button4.addActionListener(e->{
 				text.append("\n"+button4.getName());
 				SelectedElements elements=controller.getSelectedElements();
 				boolean king=elements.getRegion()==null;
@@ -187,7 +172,6 @@ public class SecondaryActionPanel extends JPanel {
 					elements.resetAll();
 					logger.error("Error!", ex);
 				}
-			}
 		});
 	}
 }

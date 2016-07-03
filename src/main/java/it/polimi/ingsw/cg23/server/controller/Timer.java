@@ -66,6 +66,7 @@ public class Timer implements Runnable {
 			view=null;
 			controller=null;
 			running=false;
+			Thread.currentThread().interrupt();
 		}
 	}
 

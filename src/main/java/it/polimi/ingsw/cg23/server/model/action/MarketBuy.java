@@ -30,7 +30,7 @@ public class MarketBuy extends GameAction implements MarketAction {
 	 * @param item The item to buy.
 	 * @throws NullPointerException if the parameters are null.
 	 */
-	public MarketBuy(Item item) throws NullPointerException{
+	public MarketBuy(Item item){
 		super(false);
 		if(item!=null)
 			this.item=item;

@@ -41,6 +41,7 @@ public class NewGame implements Runnable{
 			new Thread(new GameControl(index,controller)).start();
 		} catch (InterruptedException e) {
 			logger.error(e);
+			Thread.currentThread().interrupt();
 		}
 	}
 }

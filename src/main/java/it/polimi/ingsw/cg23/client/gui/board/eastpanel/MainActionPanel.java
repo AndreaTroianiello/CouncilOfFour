@@ -3,8 +3,6 @@ package it.polimi.ingsw.cg23.client.gui.board.eastpanel;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,13 +29,12 @@ import it.polimi.ingsw.cg23.server.model.action.ElectCouncillor;
  */
 public class MainActionPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5715872370987341629L;
 	private JTextArea text;
 	private transient ControllerGUI controller;
 	private transient Logger logger;
+	private String message1;
+	private String message2;
 
 	/**
 	 * @param controller, the controller
@@ -46,7 +43,8 @@ public class MainActionPanel extends JPanel {
 	public MainActionPanel(JTextArea text, ControllerGUI controller) {
 		this.text=text;
 		this.controller=controller;
-
+		this.message1="Error!";
+		this.message2="Elements unselected.";
 		//configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
@@ -88,20 +86,17 @@ public class MainActionPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
 		add(button1);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button1.getName());
-				//AZIONI AZIONE 1
-				SelectedElements elements=controller.getSelectedElements();
-				try{
-					controller.updateController(new BuildEmporiumTile(elements.getTile(), elements.getCity()));
-					elements.resetAll();
-				}catch(NullPointerException ex){
-					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-					controller.getSelectedElements().resetAll();
-					logger.error("Error!", ex);
-				}
+		button1.addActionListener(e->{
+			text.append("\n"+button1.getName());
+			//AZIONI AZIONE 1
+			SelectedElements elements=controller.getSelectedElements();
+			try{
+				controller.updateController(new BuildEmporiumTile(elements.getTile(), elements.getCity()));
+				elements.resetAll();
+			}catch(NullPointerException ex){
+				JOptionPane.showMessageDialog(null, message2, "INFO", JOptionPane.INFORMATION_MESSAGE);
+				controller.getSelectedElements().resetAll();
+				logger.error(message1, ex);
 			}
 		});
 
@@ -115,20 +110,17 @@ public class MainActionPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button2, lim);
 		add(button2);//aggiunta bottone al layer panel
-		button2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button2.getName());
-				//AZIONI AZIONE 2
-				SelectedElements elements=controller.getSelectedElements();
-				try{
-					controller.updateController(new BuildEmporiumKing(elements.getCards(), elements.getCity()));
-					elements.resetAll();
-				}catch(NullPointerException ex){
-					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-					elements.resetAll();
-					logger.error("Error!", ex);
-				}
+		button2.addActionListener(e->{
+			text.append("\n"+button2.getName());
+			//AZIONI AZIONE 2
+			SelectedElements elements=controller.getSelectedElements();
+			try{
+				controller.updateController(new BuildEmporiumKing(elements.getCards(), elements.getCity()));
+				elements.resetAll();
+			}catch(NullPointerException ex){
+				JOptionPane.showMessageDialog(null, message2, "INFO", JOptionPane.INFORMATION_MESSAGE);
+				elements.resetAll();
+				logger.error(message1, ex);
 			}
 		});
 
@@ -142,22 +134,19 @@ public class MainActionPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button3, lim);
 		add(button3);//aggiunta bottone al layer panel
-		button3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button3.getName());
-				//AZIONI AZIONE 3
-				SelectedElements elements=controller.getSelectedElements();
-				try{
-					controller.updateController(new BuyPermitTile(elements.getCards(),
-							controller.getModel().findRegion(elements.getTile().getZone()),
-							elements.getTile()));
-					elements.resetAll();
-				}catch(NullPointerException ex){
-					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-					elements.resetAll();
-					logger.error("Error!", ex);
-				}
+		button3.addActionListener(e->{
+			text.append("\n"+button3.getName());
+			//AZIONI AZIONE 3
+			SelectedElements elements=controller.getSelectedElements();
+			try{
+				controller.updateController(new BuyPermitTile(elements.getCards(),
+						controller.getModel().findRegion(elements.getTile().getZone()),
+						elements.getTile()));
+				elements.resetAll();
+			}catch(NullPointerException ex){
+				JOptionPane.showMessageDialog(null, message2, "INFO", JOptionPane.INFORMATION_MESSAGE);
+				elements.resetAll();
+				logger.error(message1, ex);
 			}
 		});
 
@@ -171,21 +160,18 @@ public class MainActionPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button4, lim);
 		add(button4);//aggiunta bottone al layer panel
-		button4.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				text.append("\n"+button4.getName());
-				//AZIONI AZIONE 4
-				SelectedElements elements=controller.getSelectedElements();
-				boolean king=elements.getRegion()==null;
-				try{
-					controller.updateController(new ElectCouncillor(elements.getCouncillor(),elements.getRegion(),king));
-					elements.resetAll();
-				}catch(NullPointerException ex){
-					JOptionPane.showMessageDialog(null, "Elements unselected.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-					elements.resetAll();
-					logger.error("Error!", ex);
-				}
+		button4.addActionListener(e->{
+			text.append("\n"+button4.getName());
+			//AZIONI AZIONE 4
+			SelectedElements elements=controller.getSelectedElements();
+			boolean king=elements.getRegion()==null;
+			try{
+				controller.updateController(new ElectCouncillor(elements.getCouncillor(),elements.getRegion(),king));
+				elements.resetAll();
+			}catch(NullPointerException ex){
+				JOptionPane.showMessageDialog(null, message2, "INFO", JOptionPane.INFORMATION_MESSAGE);
+				elements.resetAll();
+				logger.error(message1, ex);
 			}
 		});
 	}

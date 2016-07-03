@@ -50,7 +50,7 @@ public class BonusController {
 			parseCommand(string,bonus);
 			controller.setBonus(null);
 		}catch(NoSuchElementException | NullPointerException | NumberFormatException e){
-			logger.error("Wrong command.");
+			logger.error("Wrong command.",e);
 		}
 	}
 	

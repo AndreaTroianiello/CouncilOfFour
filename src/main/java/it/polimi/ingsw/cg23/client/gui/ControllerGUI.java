@@ -11,13 +11,16 @@ import it.polimi.ingsw.cg23.client.ClientController;
 import it.polimi.ingsw.cg23.client.ClientModel;
 import it.polimi.ingsw.cg23.client.ClientViewOut;
 import it.polimi.ingsw.cg23.client.gui.board.BoardFrame;
+import it.polimi.ingsw.cg23.client.gui.board.bonus.BonusDialog;
 import it.polimi.ingsw.cg23.server.controller.action.Action;
 import it.polimi.ingsw.cg23.server.controller.change.BoardChange;
+import it.polimi.ingsw.cg23.server.controller.change.BonusChange;
 import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 import it.polimi.ingsw.cg23.server.controller.change.PlayerChange;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
+import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 
 /**
  * The client GUI's controller. This manages the inputs of the user.
@@ -46,9 +49,9 @@ public class ControllerGUI implements ClientController {
 	}
  
 	/**
-	 * Updates the frame map. If the frame map doesn't exit, initializes it.
+	 * Updates the board frame. If the board frame doesn't exit, initializes it.
 	 */
-	private void updateFrameMap(){
+	private void updateBoardFrame(){
 		if(board!=null){
 			board.update();
 		}else
@@ -65,7 +68,10 @@ public class ControllerGUI implements ClientController {
 	 */
 	private void updateInfo(Change change){
 		if(board!=null){
-			board.updateInfo(change);
+			if(change instanceof Bonus)
+				new BonusDialog(this, ((BonusChange)change).getBonus()).setVisible(true);
+			else
+				board.updateInfo(change);
 		}else{
 			home.updateInfo((InfoChange)change);
 		}
@@ -89,7 +95,7 @@ public class ControllerGUI implements ClientController {
 				if(clientModel.getPlayer().getUser().equals(player.getUser()))
 					clientModel.setPlayer(player);
 			clientModel.setBoard(model);
-			updateFrameMap();
+			updateBoardFrame();
 			return;
 		}else
 			updateInfo(change);

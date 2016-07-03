@@ -43,6 +43,7 @@ public class GameControl implements Runnable {
 			} catch (InterruptedException e) {
 				logger.error(e);
 				run=false;
+				Thread.currentThread().interrupt();
 			}
 
 		}

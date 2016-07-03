@@ -62,7 +62,7 @@ public class CommandController {
 		try{
 			parseCommand(string);
 		}catch(NoSuchElementException | NullPointerException | NumberFormatException e){
-			logger.error("Wrong command.");
+			logger.error("Wrong command.",e);
 		}
 	}
 	
@@ -115,6 +115,7 @@ public class CommandController {
 			try {
 				pool.setAssistants(Integer.parseInt(tokenizer.nextToken()));
 			} catch (NumberFormatException | NegativeNumberException e){
+				logger.error(e);
 				return;
 			}
 			action = new MarketSell(pool,

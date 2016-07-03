@@ -1,8 +1,6 @@
 package it.polimi.ingsw.cg23.client.gui.board.marketplace;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -95,18 +93,10 @@ public class MarketDialog extends JFrame {
 		}
 
 		buttonCancel.setText("Cancel");
-		buttonCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				buttonCancelActionPerformed(evt);
-			}
-		});
+		buttonCancel.addActionListener(e->buttonCancelActionPerformed());
 
 		buttonSell.setText("Ok");
-		buttonSell.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				buttonSellActionPerformed(evt);
-			}
-		});
+		buttonSell.addActionListener(e->buttonSellActionPerformed());
 
 		labelCoins.setText("Coins:");
 
@@ -170,9 +160,8 @@ public class MarketDialog extends JFrame {
 
 	/**
 	 * The action performed when the buttonSell receives a event.
-	 * @param evt Event received.
 	 */
-	private void buttonSellActionPerformed(ActionEvent evt) {                                           
+	private void buttonSellActionPerformed() {                                           
 		try {
 			if(item instanceof AssistantsPool)
 				((AssistantsPool)item).setAssistants(boxAssistants.getSelectedIndex()+1);
@@ -185,9 +174,8 @@ public class MarketDialog extends JFrame {
 	
 	/**
 	 * The action performed when the buttonCancel receives a event.
-	 * @param evt Event received.
 	 */
-	private void buttonCancelActionPerformed(ActionEvent evt) {                                             
+	private void buttonCancelActionPerformed() {                                             
 		this.dispose();
 	}                                            
 }

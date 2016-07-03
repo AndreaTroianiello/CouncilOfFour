@@ -40,7 +40,7 @@ public class BuildEmporiumKing extends GameAction implements StandardAction{
 	 * @param destination where the player wants to build an emporium
 	 * @throws NullPointerException if the parameters are null.
 	 */
-	public BuildEmporiumKing(List<PoliticCard> cards, City destination) throws NullPointerException{
+	public BuildEmporiumKing(List<PoliticCard> cards, City destination){
 		super(true);
 		if(cards!=null && destination!=null){
 			this.cards = cards;

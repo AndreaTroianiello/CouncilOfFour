@@ -128,7 +128,7 @@ public class RankPanel extends JPanel {
 				boolean[] canEdit = new boolean [] {
 	                false, false, false, false, false
 	            };
-
+				@Override
 	            public boolean isCellEditable(int rowIndex, int columnIndex) {
 	                return canEdit [columnIndex];
 	            }

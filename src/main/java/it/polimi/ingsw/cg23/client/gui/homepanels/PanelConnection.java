@@ -1,8 +1,6 @@
 package it.polimi.ingsw.cg23.client.gui.homepanels;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 
@@ -68,21 +66,10 @@ public class PanelConnection extends JPanel {
 		labelAddress.setText("IP Address:");
 
 		buttonSocket.setText("SOCKET");
-		buttonSocket.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				buttonSocketActionPerformed(evt);
-			}
-		});
+		buttonSocket.addActionListener(e->buttonSocketActionPerformed());
 
 		buttonRMI.setText("RMI");
-		buttonRMI.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				buttonRMIActionPerformed(evt);
-			}
-		});
+		buttonRMI.addActionListener(e->buttonRMIActionPerformed());
 
 		GroupLayout panelLayout = new GroupLayout(this);
 		this.setLayout(panelLayout);
@@ -118,9 +105,8 @@ public class PanelConnection extends JPanel {
 
 	/**
 	 * The action performed when the buttonSocket receives a event.
-	 * @param evt Event received.
 	 */
-	private void buttonSocketActionPerformed(ActionEvent evt) {                                         
+	private void buttonSocketActionPerformed() {                                         
 		try {
 			ClientSocket clientSocket=new ClientSocket();
 			clientSocket.startClient(controller,fieldAddress.getText());
@@ -133,9 +119,8 @@ public class PanelConnection extends JPanel {
 
 	/**
 	 * The action performed when the buttonReceive receives a event.
-	 * @param evt Event received.
 	 */
-	private void buttonRMIActionPerformed(ActionEvent evt) {                                         
+	private void buttonRMIActionPerformed() {                                         
 		try {
 			ClientRMI clientRMI=new ClientRMI();
 			clientRMI.startClient(controller,fieldAddress.getText());

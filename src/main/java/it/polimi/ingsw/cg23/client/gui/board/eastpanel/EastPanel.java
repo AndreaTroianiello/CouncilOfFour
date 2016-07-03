@@ -5,8 +5,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -134,12 +132,7 @@ public class EastPanel extends JPanel {
 		layout.setConstraints(button3, lim); //applicazione del layout al bottone
 		add(button3);//aggiunta del bottone al pannello
 
-		button3.addActionListener(new ActionListener() {//azioni bottone
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				sendMessage();
-			}
-		});
+		button3.addActionListener(e->sendMessage());
 
 		//----------button panel----------
 		buttonPanel.setName("button panel");//nome del button panel

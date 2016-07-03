@@ -29,14 +29,14 @@ public class Server {
 	private static final int SOCKET_PORT=29999;
 	private static final String NAME = "council";
 	private static final int RMI_PORT=52365;
-	
+
 	private static Logger logger;
-	
+
 	private int index; 							//Number of the players connected.
 	private Board model;						//The model of the game.
 	private Controller controller;				//The controller of the game.
 	private Chat chat;                          //The chat of the game.
-	
+
 	/**
 	 * The constructor of Server.
 	 */
@@ -45,7 +45,7 @@ public class Server {
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 		this.index=0;
 	}
-	
+
 	/**
 	 * Starts the RMI connection.
 	 * @throws RemoteException If the RMI connection has problem.
@@ -58,30 +58,35 @@ public class Server {
 		registry.bind(NAME, viewRemote);
 		logger.info("SERVER RMI, NAME:"+NAME+" AND PORT:" + RMI_PORT);
 	}
-	
+
 	/**
 	 * Starts the socket connection.
 	 * @throws IOException If the socket connection has problem.
 	 */
 	private void startSocket() throws IOException{
 		boolean run=true;
-		
+
 		ExecutorService executor=Executors.newCachedThreadPool();
 		ServerSocket serverSocket=new ServerSocket(SOCKET_PORT);
 		logger.info("SERVER SOCKET, PORT:" + SOCKET_PORT);
-		
+
 		while(run){
-			Socket socket=serverSocket.accept();
-			incrementIndex();
-			ServerSocketView view=new ServerSocketView(socket,chat);
-			this.model.registerObserver(view);
-			view.registerObserver(this.controller);
-			executor.submit(view);			
+			try{
+				Socket socket=serverSocket.accept();
+				incrementIndex();
+				ServerSocketView view=new ServerSocketView(socket,chat);
+				this.model.registerObserver(view);
+				view.registerObserver(this.controller);
+				executor.submit(view);
+			}catch(IOException e){
+				run=false;
+				logger.error(e);
+			}
 		}
-		
+
 		serverSocket.close();
 	}
-		
+
 	/**
 	 * Returns the index of players.
 	 * @return the index
@@ -96,7 +101,7 @@ public class Server {
 	public void resetIndex() {
 		this.index = 0;
 	}
-	
+
 	/**
 	 * Increments the index of the connected views.
 	 */
@@ -108,11 +113,11 @@ public class Server {
 			new Thread(new NewGame(this)).start();
 		logger.info(index);	
 	}
-	
+
 	public Chat getChat(){
 		return chat;
 	}
-	
+
 	/**
 	 * Initializes a new controller and model.
 	 */
@@ -136,7 +141,7 @@ public class Server {
 	public Board getModel(){
 		return model;
 	}
-	
+
 	/**
 	 * Starts the server.
 	 * @param args

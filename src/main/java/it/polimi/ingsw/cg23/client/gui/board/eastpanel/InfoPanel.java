@@ -2,8 +2,6 @@ package it.polimi.ingsw.cg23.client.gui.board.eastpanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -76,13 +74,10 @@ public class InfoPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button1, lim);
 		add(button1);//aggiunta bottone al layer panel
-		button1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int reply1 = JOptionPane.showConfirmDialog(null, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
-				if(reply1 == JOptionPane.YES_OPTION){
-					controller.closeAll();
-				}				
+		button1.addActionListener(e->{
+			int reply1 = JOptionPane.showConfirmDialog(null, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
+			if(reply1 == JOptionPane.YES_OPTION){
+				controller.closeAll();
 			}
 		});
 
@@ -97,14 +92,10 @@ public class InfoPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(button2, lim);
 		add(button2);//aggiunta bottone al layer panel
-		button2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button2.addActionListener(e->{
 				loggerArea.append(button2.getName());
 				//AZIONI AZIONE clear
 				loggerArea.setText("Logger cleaned.");
-
-			}
 		});
 
 		JButton button3 = new JButton("Clear selec");
@@ -119,14 +110,11 @@ public class InfoPanel extends JPanel {
 		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
 		layout.setConstraints(button3, lim);
 		add(button3);//aggiunta bottone al layer panel
-		button3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button3.addActionListener(e->{
 				loggerArea.append("\n"+button3.getName());
 				controller.getSelectedElements().resetAll();
-				loggerArea.append("Selections cleaned.");
-			}
-		});
+				loggerArea.append("\nSelections cleaned.");
+			});
 
 		JButton button4 = new JButton("End Turn");
 		button4.setName("End Turn");
@@ -139,14 +127,10 @@ public class InfoPanel extends JPanel {
 		lim.gridwidth=1;
 		layout.setConstraints(button4, lim);
 		add(button4);//aggiunta bottone al layer panel
-		button4.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		button4.addActionListener(e->{
 				loggerArea.append("\nEnd Turn");
 				//azione fine turno
 				controller.updateController(new EndTurn());
-			}
-		});
+			});
 	}
-
 }

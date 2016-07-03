@@ -21,7 +21,8 @@ public class PerformBonus extends Action {
 	
 	/**
 	 * The constructor of PerformBonus.
-	 * @param name The name of the player.
+	 * @param player The owner of the bonus.
+	 * @param bonus The bonus activated.
 	 * @throws NullPointerException if the parameters are null.
 	 */
 	public PerformBonus(Player player,Bonus bonus) {

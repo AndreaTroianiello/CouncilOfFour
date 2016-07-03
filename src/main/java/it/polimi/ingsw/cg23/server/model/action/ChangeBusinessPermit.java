@@ -31,7 +31,7 @@ public class ChangeBusinessPermit extends GameAction implements StandardAction{
 	 * @param region where to change the tiles
 	 * @throws NullPointerException if the parameter is null.
 	 */
-	public ChangeBusinessPermit(Region region) throws NullPointerException {
+	public ChangeBusinessPermit(Region region){
 		super(false);
 		if(region!=null)
 			this.region = region;

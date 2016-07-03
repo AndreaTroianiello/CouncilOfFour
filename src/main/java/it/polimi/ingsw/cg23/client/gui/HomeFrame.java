@@ -106,16 +106,6 @@ public class HomeFrame extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					HomeFrame frame = new HomeFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					logger.error(e);
-				}
-			}
-		});
+		EventQueue.invokeLater(()->new HomeFrame().setVisible(true));
 	}
 }

@@ -33,16 +33,13 @@ public class ReaderTextFile {
 	 * Reads the file README-CLI.txt
 	 */
 	public void readFile(){
-		String fileName = "README-CLI.txt";
+		String fileName = "CLI.txt";
 		String line = null;
-		try {
-			FileReader fileReader =new FileReader(fileName);
-			BufferedReader bufferedReader =new BufferedReader(fileReader);
+		try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
 			while((line = bufferedReader.readLine()) != null) {
 				cli.print("", line);
 			}
-			bufferedReader.close();  
-			fileReader.close();
+			bufferedReader.close();
 		}
 		catch(IOException e) {
 			logger.error(e);

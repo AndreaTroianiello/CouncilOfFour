@@ -28,6 +28,27 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	private final Elector elector;
 	
 	/**
+	 * the constructor set the variables of the class: it set the main to true, and the other 
+	 * variables as the parameter given to the method
+	 * 
+	 * @param councillor the color of the councillor to be elected
+	 * @param region the region of the election
+	 * @param king if the election is for the king's council
+	 * @throws NullPointerException if the councillor is null, and if the region is null and the king is false.
+	 */
+	public ElectCouncillor(Color councillor, Region region, boolean king){
+		super(true);
+		if(councillor!=null&&(region!=null || king)){
+			this.councillor = councillor;
+			this.region = region;
+			this.king = king;
+		}else
+			throw new NullPointerException();
+		this.controlAction = new ControlAction();
+		this.elector = new Elector(controlAction);
+	}
+	
+	/**
 	 * @return the king
 	 */
 	public boolean isKing() {
@@ -49,27 +70,6 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 	 */
 	public Color getCouncillor() {
 		return councillor;
-	}
-	
-	/**
-	 * the constructor set the variables of the class: it set the main to true, and the other 
-	 * variables as the parameter given to the method
-	 * 
-	 * @param councillor the color of the councillor to be elected
-	 * @param region the region of the election
-	 * @param king if the election is for the king's council
-	 * @throws NullPointerException if the councillor is null, and if the region is null and the king is false.
-	 */
-	public ElectCouncillor(Color councillor, Region region, boolean king){
-		super(true);
-		if(councillor!=null&&(region!=null || king)){
-			this.councillor = councillor;
-			this.region = region;
-			this.king = king;
-		}else
-			throw new NullPointerException();
-		this.controlAction = new ControlAction();
-		this.elector = new Elector(controlAction);
 	}
 	
 	/**

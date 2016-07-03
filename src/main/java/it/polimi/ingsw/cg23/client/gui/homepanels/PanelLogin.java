@@ -1,8 +1,6 @@
 package it.polimi.ingsw.cg23.client.gui.homepanels;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -63,12 +61,7 @@ public class PanelLogin extends JPanel {
 		labelLogin.setText("Insert your username:");
 
 		buttonLogin.setText("Enter");
-		buttonLogin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				buttonLoginActionPerformed(evt);
-			}
-		});
+		buttonLogin.addActionListener(e->buttonLoginActionPerformed());
 
 		labelInfo2.setVisible(false);
 
@@ -131,9 +124,8 @@ public class PanelLogin extends JPanel {
 
 	/**
 	 * The action performed when the buttonLogin receives a event.
-	 * @param evt Event received.
 	 */
-	private void buttonLoginActionPerformed(ActionEvent evt) {
+	private void buttonLoginActionPerformed() {
 		String map=(String)comboMap.getSelectedItem();
 		map=map.substring(0, map.length()-2)+map.charAt(map.length()-1);//tolgo lo spazio
 		map=map.toLowerCase();//metto tutto in minuscolo

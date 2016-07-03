@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -133,29 +131,23 @@ public class MarketPanel extends JPanel {
 		layout.setConstraints(littlePanel, lim);//applicazione del layout al littlePanel
 		add(littlePanel);//aggiunta del littlePanel al pannello
 
-		sellButton.addActionListener(new ActionListener() {//azioni di ascolto bottone sell
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				loggerArea.append("\nSell button");
-				SelectedElements elements=controller.getSelectedElements();
-				if(!elements.getCards().isEmpty())
-					new MarketDialog(controller, elements.getCards().get(0)).setVisible(true);
+		sellButton.addActionListener(e->{
+			loggerArea.append("\nSell button");
+			SelectedElements elements=controller.getSelectedElements();
+			if(!elements.getCards().isEmpty())
+				new MarketDialog(controller, elements.getCards().get(0)).setVisible(true);
+			else
+				if(elements.getTile()!=null)
+					new MarketDialog(controller, elements.getTile()).setVisible(true);
 				else
-					if(elements.getTile()!=null)
-						new MarketDialog(controller, elements.getTile()).setVisible(true);
-					else
-						new MarketDialog(controller, new AssistantsPool()).setVisible(true);
-			}
+					new MarketDialog(controller, new AssistantsPool()).setVisible(true);
 		});
 
-		buyButton.addActionListener(new ActionListener() {//azioni di ascolto buy button
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				loggerArea.append("\nBuy button");
-				controller.updateController(new MarketBuy(controller.getModel()
-						.findItem(Integer.toString(table.getSelectedRow())
-								)));
-			}
+		buyButton.addActionListener(e->{
+			loggerArea.append("\nBuy button");
+			controller.updateController(new MarketBuy(controller.getModel()
+					.findItem(Integer.toString(table.getSelectedRow())
+							)));
 		});
 	}
 
@@ -169,34 +161,35 @@ public class MarketPanel extends JPanel {
 		for(int index=0;index<items.size();index++){
 			Item item=items.get(index);
 			model.addRow(new Object[]{item.getItem().toString(),
-									  item.getItem().getClass().getSimpleName(),
-									  item.getAmount(),
-									  item.getCoins(),
-									  item.getPlayer().getUser()});
+					item.getItem().getClass().getSimpleName(),
+					item.getAmount(),
+					item.getCoins(),
+					item.getPlayer().getUser()});
 		}
 	}
-	
+
 	/**
 	 * Initializes the market table.
 	 */
 	private void initMarketTable(){
 		model=new DefaultTableModel(
-	            new Object [][] {
-	            },
-	            new String [] {
-	               "Information", "Type", "Amount", "Coins", "Player"
-	            }
-	        ) {
-				private static final long serialVersionUID = -4879233531111422052L;
-				boolean[] canEdit = new boolean [] {
-	                false, false, false, false, false
-	            };
+				new Object [][] {
+				},
+				new String [] {
+						"Information", "Type", "Amount", "Coins", "Player"
+				}
+				) {
+			private static final long serialVersionUID = -4879233531111422052L;
+			boolean[] canEdit = new boolean [] {
+					false, false, false, false, false
+			};
 
-	            public boolean isCellEditable(int rowIndex, int columnIndex) {
-	                return canEdit [columnIndex];
-	            }
-	      };
-	      table.setModel(model);//aggiungo alla tabella il modello
+			@Override
+			public boolean isCellEditable(int rowIndex, int columnIndex) {
+				return canEdit [columnIndex];
+			}
+		};
+		table.setModel(model);//aggiungo alla tabella il modello
 	}
 
 	/**

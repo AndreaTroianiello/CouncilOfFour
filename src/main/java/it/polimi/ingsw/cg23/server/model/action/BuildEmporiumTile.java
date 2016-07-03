@@ -31,7 +31,7 @@ public class BuildEmporiumTile extends GameAction implements StandardAction{
 	 * @param city where to build the emporium
 	 * @throws NullPointerException if the parameters are null.
 	 */ 
-	public BuildEmporiumTile(BusinessPermitTile card, City city) throws NullPointerException {
+	public BuildEmporiumTile(BusinessPermitTile card, City city){
 		super(true);
 		if(card!=null&&city!=null){
 			this.card = card;

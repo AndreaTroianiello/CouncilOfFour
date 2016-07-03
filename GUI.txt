@@ -56,4 +56,24 @@ decide how many assistant you want to sell and at which price
 
 BUY
 you must select which item you want to buy from the list and the press buy
- 
+__________________________________________________________________________________________________________________
+
+BONUS ACTION:
+When you receive a special bonus opens a dialog window.
+
+GetPermitTile: 
+-parameter1: region
+-parameter2: numberTile
+
+GetTileBonus: 
+-parameter1: numberTile
+
+GetCityToken: 
+-parameter1: nameCity1
+-parameter2: nameCity2 (if it serves)
+
+SEND
+Performs the bonus
+
+CANCEL
+Doesn't perform the bonus and closes the window. 
