@@ -5,8 +5,6 @@ If all the player are suspended, the game ends.
 The player can come back in the game when he sends something(even a refused action or a chat message),
 if the game isn't ended yet.
 
-Start the server from Server.java(package it.polimi.ingswcg23.server)
-Start game from CLI: Client.java (package it.polimi.ingsw.cg23.client.cli)
 CLI's commands:
 
 HELP
