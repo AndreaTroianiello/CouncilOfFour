@@ -33,7 +33,7 @@ public class Table{
 	            new Object [][] {
 	            },
 	            new String [] {
-	                "Position","Type", "Coins", "Player"
+	                "Type", "Amount", "Coins", "Player"
 	            }
 	        ) {
 				private static final long serialVersionUID = -4879233531111422052L;
@@ -58,8 +58,8 @@ public class Table{
 		List<Item> items=market.getItems();
 		for(int index=0;index<items.size();index++){
 			Item item=items.get(index);
-			model.addRow(new Object[]{index+1,
-									  item.getItem().toString(),
+			model.addRow(new Object[]{item.getItem().getClass().getSimpleName(),
+									  item.getAmount(),
 									  item.getCoins(),
 									  item.getPlayer().getUser()});
 		}
