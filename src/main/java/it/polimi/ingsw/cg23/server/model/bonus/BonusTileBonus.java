@@ -55,7 +55,7 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		if(player.getAvailableBusinessPermits().size()==0){
+		if(player.getAvailableBusinessPermits().isEmpty()){
 			this.notifyObserver(new InfoChange("The list is empty."));
 			return;
 		}

@@ -25,12 +25,14 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BuildEmporiumTileTest {
 	
-	BusinessPermitTile card;
-	Player player;
-	Board board;
-	City city;
-	List<Integer> bonusKing = new ArrayList<>();
-	Type type = new Type("purple", 5, new BonusKing(bonusKing));
+	private BusinessPermitTile card;
+	private Player player;
+	private Board board;
+	private City city;
+	private List<Integer> bonusKing = new ArrayList<>();
+	private Type type = new Type("purple", 5, new BonusKing(bonusKing));
+	private Region region;
+	private City city2;
 
 
 	@Before
@@ -45,10 +47,12 @@ public class BuildEmporiumTileTest {
 		types.add(type);
 		King king = new King(new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing))));
 		List<Region> regions = new ArrayList<>();
-		Region region = new Region("regione", 0, null, new BonusKing(bonusKing));
+		this.region = new Region("regione", 0, null, new BonusKing(bonusKing));
 		regions.add(region);
 		city = new City('I', "Ioio", new Type(null, 0, new BonusKing(bonusKing)), region);
+		this.city2 = new City('P', "Palermo", new Type(null, 0, new BonusKing(bonusKing)), region);
 		region.addCity(city);
+		region.addCity(city2);
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, null, king, null);
 	}
 
@@ -90,6 +94,17 @@ public class BuildEmporiumTileTest {
 		player.addAvailableBusinessPermit(card);
 		action.runAction(player, board);
 		assertEquals(true, this.city.containsEmporium(player));
+	}
+	
+	/**
+	 * it tests if runAction() works properly when it's all fine
+	 */
+	@Test
+	public void testRunActionShouldntBuildAnEmporiumIfTheCityIsntInTheTile(){
+		BuildEmporiumTile action = new BuildEmporiumTile(card, city2);
+		player.addAvailableBusinessPermit(card);
+		action.runAction(player, board);
+		assertEquals(false, this.city2.containsEmporium(player));
 	}
 
 	/**

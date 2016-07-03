@@ -80,7 +80,7 @@ public class BonusGetPermitTile extends Observable<Change> implements Bonus {
 		Region realRegion=searchRegion();
 		if(realRegion!=null){
 			RegionDeck deck=realRegion.getDeck();
-			if(deck.getShowedDeck().size()==0){
+			if(deck.getShowedDeck().isEmpty()){
 				this.notifyObserver(new InfoChange("The tiles are finished."));
 				return;
 			}

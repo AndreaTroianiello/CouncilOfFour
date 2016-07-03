@@ -55,7 +55,12 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 		return king;
 	}
 
-
+	/**
+	 * @return the councillor
+	 */
+	public Color getCouncillor() {
+		return councillor;
+	}
 
 	/**
 	 * @return the region
@@ -64,13 +69,6 @@ public class ElectCouncillor extends GameAction implements StandardAction{
 		return region;
 	}
 
-
-	/**
-	 * @return the councillor
-	 */
-	public Color getCouncillor() {
-		return councillor;
-	}
 	
 	/**
 	 * elects a new councillor and update the player's richness

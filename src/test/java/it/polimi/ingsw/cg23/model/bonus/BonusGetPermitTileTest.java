@@ -11,6 +11,7 @@ import org.junit.Test;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.Region;
+import it.polimi.ingsw.cg23.server.model.bonus.BonusAdditionalAction;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusGetPermitTile;
 import it.polimi.ingsw.cg23.server.model.components.BonusKing;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
@@ -36,6 +37,7 @@ public class BonusGetPermitTileTest {
 		this.citiesId = new ArrayList<>();
 		this.citiesId.add('R');
 		this.tile = new BusinessPermitTile(citiesId, "Costa");
+		this.tile.addBonus(new BonusAdditionalAction());
 		this.region.getDeck().getShowedDeck().add(tile);
 		this.player = new Player("user", new NobilityTrack(3));
 	}

@@ -80,13 +80,13 @@ public class Payer implements Serializable{
 	 * player doesn't have enough money
 	 * 
 	 * @param player who tries the payment
-	 * @param money the current money of the player
+	 * @param coin the current money of the player
 	 * @param payment the money to be paid
 	 * @return 0 if the payment is successful, -1 otherwise
 	 */
-	private int tryPayment(List<PoliticCard> cards, List<PoliticCard> discardedCards, Player player, int money, int payment){
+	private int tryPayment(List<PoliticCard> cards, List<PoliticCard> discardedCards, Player player, int coin, int payment){
 		try {
-			money = money - payment;
+			int money = coin - payment;
 			player.getRichness().setCoins(money);
 			return 0;
 		} catch (NegativeNumberException e) {
