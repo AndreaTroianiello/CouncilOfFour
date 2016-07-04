@@ -7,41 +7,43 @@ import it.polimi.ingsw.cg23.utility.Print;
 
 /**
  * The class that starts the client CLI.
+ * 
  * @author Andrea
  *
  */
 public class Client {
-	
+
 	/**
 	 * The private constructor of the client.
 	 */
-	private Client(){
+	private Client() {
 	}
 
 	/**
 	 * Lets you choose the type of connection and starts the client.
+	 * 
 	 * @param args
 	 */
-	public static void main(String[] args){
-		Print cli=new Print();
-		boolean run=true;
-		cli.print("","Welcome to Council of Four game!");
-		cli.print("","Choose the type of connection. (SOCKET or RMI)");
-		CommandLine command=new CommandLine(cli);
+	public static void main(String[] args) {
+		Print cli = new Print();
+		boolean run = true;
+		cli.print("", "Welcome to Council of Four game!");
+		cli.print("", "Choose the type of connection. (SOCKET or RMI)");
+		CommandLine command = new CommandLine(cli);
 		Scanner stdIn = new Scanner(System.in);
-		while(run){
-			StringTokenizer tokenizer=new StringTokenizer(stdIn.nextLine()+""," ");
-			if(tokenizer.hasMoreTokens())
+		while (run) {
+			StringTokenizer tokenizer = new StringTokenizer(stdIn.nextLine() + "", " ");
+			if (tokenizer.hasMoreTokens())
 				switch (tokenizer.nextToken()) {
 				case "SOCKET":
-					run=command.startSocket(tokenizer, stdIn, cli);
+					run = command.startSocket(tokenizer, stdIn, cli);
 					break;
 				case "RMI":
-					run=command.startRMI(tokenizer, stdIn, cli);
+					run = command.startRMI(tokenizer, stdIn, cli);
 					break;
 				case "QUIT":
 					cli.print("", "Bye.");
-					run=false;
+					run = false;
 					break;
 				case "HELP":
 					new ReaderTextFile(cli).readFile();

@@ -24,22 +24,25 @@ public class ClientSocket {
 	/**
 	 * The constructor of ClientSocket.
 	 */
-	public ClientSocket(){
+	public ClientSocket() {
 		logger = Logger.getLogger(ClientSocket.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
-	
+
 	/**
 	 * Starts the Socket connection. Initializes the out/in handler objects.
-	 * @param controller The client's controller.
-	 * @throws IOException if the socket connection has problems.
+	 * 
+	 * @param controller
+	 *            The client's controller.
+	 * @throws IOException
+	 *             if the socket connection has problems.
 	 */
 	public void startClient(ClientController controller, String address) throws IOException {
 		Socket socket = new Socket(address, PORT);
 		ExecutorService executor = Executors.newFixedThreadPool(2);
-		ClientHandler clientHandler=new ClientHandler(socket,controller);
+		ClientHandler clientHandler = new ClientHandler(socket, controller);
 		executor.submit(clientHandler);
 		logger.info("Connection created");
 	}
-	
+
 }

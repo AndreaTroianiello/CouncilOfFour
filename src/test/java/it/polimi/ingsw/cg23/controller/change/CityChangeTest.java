@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.controller.change;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,10 +12,11 @@ import it.polimi.ingsw.cg23.server.model.Type;
 
 public class CityChangeTest {
 	private City city;
+
 	@Before
 	public void setUp() throws Exception {
-		city=new City('A', "Aosta", new Type("type1",0,null), new Region("regione1",0,null,null));
-		
+		city = new City('A', "Aosta", new Type("type1", 0, null), new Region("regione1", 0, null, null));
+
 	}
 
 	/**
@@ -23,8 +24,9 @@ public class CityChangeTest {
 	 */
 	@Test
 	public void testCityChange() {
-		CityChange change=new CityChange(city);
-		assertEquals(change.toString(),"CityChange [newCity=City [id=A, name=Aosta, region=regione1, bonus=[], type=type1, neighbors=0]]");
+		CityChange change = new CityChange(city);
+		assertEquals(change.toString(),
+				"CityChange [newCity=City [id=A, name=Aosta, region=regione1, bonus=[], type=type1, neighbors=0]]");
 	}
 
 }

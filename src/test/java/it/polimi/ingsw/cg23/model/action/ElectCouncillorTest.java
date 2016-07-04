@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -20,20 +21,19 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class ElectCouncillorTest {
-	
+
 	private boolean king;
 	private Region region;
 	private Color councillor;
 	private Player player;
 	private Board board;
 	private List<Region> regions = new ArrayList<>();
-	
 
 	@Before
 	public void setUp() throws Exception {
-		this.king=false;
-		this.region=new Region("mare", 0, null, null);
-		this.councillor=Color.ORANGE;
+		this.king = false;
+		this.region = new Region("mare", 0, null, null);
+		this.councillor = Color.ORANGE;
 		regions.add(region);
 		player = new Player("player1", new NobilityTrack(3));
 		King theKing = new King(null);
@@ -41,12 +41,12 @@ public class ElectCouncillorTest {
 	}
 
 	/**
-	 * it tests if when there aren't councillor of the chosen color in the pool runAction doesn't
-	 * change the council
+	 * it tests if when there aren't councillor of the chosen color in the pool
+	 * runAction doesn't change the council
 	 */
 	@Test
 	public void testRunActionShouldntChangeTheCouncilWhenThereArentCouncillorsOfTheChosenColorInThePool() {
-		this.councillor=Color.ORANGE;
+		this.councillor = Color.ORANGE;
 		ElectCouncillor action = new ElectCouncillor(councillor, region, false);
 		Council council = region.getCouncil();
 		council.getCouncillors().add(new Councillor(Color.BLUE));
@@ -57,15 +57,17 @@ public class ElectCouncillorTest {
 		action.runAction(player, board);
 		assertSame(newCouncil, council);
 	}
-	
+
 	/**
-	 * it tests if runAction change the last councillor of the councillor pool of the 
-	 * chosen region and if it gives the player 4 coins
+	 * it tests if runAction change the last councillor of the councillor pool
+	 * of the chosen region and if it gives the player 4 coins
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldChangeTheRegionCouncilAndGiveThePlayer4CoinsIfItIsAllFine() throws NegativeNumberException{
-		this.councillor=Color.ORANGE;
+	public void testRunActionShouldChangeTheRegionCouncilAndGiveThePlayer4CoinsIfItIsAllFine()
+			throws NegativeNumberException {
+		this.councillor = Color.ORANGE;
 		ElectCouncillor action = new ElectCouncillor(councillor, region, false);
 		List<Councillor> councillorPool = board.getCouncillorPool();
 		Councillor newCouncillor = new Councillor(Color.ORANGE);
@@ -80,15 +82,17 @@ public class ElectCouncillorTest {
 		assertEquals(newCouncillor, council.getCouncillors().get(3));
 		assertEquals(14, player.getRichness().getCoins());
 	}
-	
+
 	/**
-	 * it tests if runAction change the last councillor of the councillor pool of the 
-	 * chosen region and if it gives the player 4 coins
+	 * it tests if runAction change the last councillor of the councillor pool
+	 * of the chosen region and if it gives the player 4 coins
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldChangeTheKingCouncilAndGiveThePlayer4CoinsIfItIsAllFine() throws NegativeNumberException{
-		this.councillor=Color.ORANGE;
+	public void testRunActionShouldChangeTheKingCouncilAndGiveThePlayer4CoinsIfItIsAllFine()
+			throws NegativeNumberException {
+		this.councillor = Color.ORANGE;
 		ElectCouncillor action = new ElectCouncillor(councillor, null, true);
 		List<Councillor> councillorPool = board.getCouncillorPool();
 		Councillor newCouncillor = new Councillor(Color.ORANGE);
@@ -106,11 +110,12 @@ public class ElectCouncillorTest {
 
 	/**
 	 * it tests if the constructor throws the null pointer exception
+	 * 
 	 * @throws NullPointerException
 	 */
-	@Test(expected=NullPointerException.class)
-	public void testNullPointerExceptionCouncillor() throws NullPointerException{
-		this.councillor=Color.ORANGE;
+	@Test(expected = NullPointerException.class)
+	public void testNullPointerExceptionCouncillor() throws NullPointerException {
+		this.councillor = Color.ORANGE;
 		ElectCouncillor action = new ElectCouncillor(null, null, true);
 		action.getClass();
 	}
@@ -148,8 +153,10 @@ public class ElectCouncillorTest {
 	@Test
 	public void testToString() {
 		ElectCouncillor action = new ElectCouncillor(this.councillor, this.region, true);
-		assertEquals("ElectCouncillor [councillor=java.awt.Color[r=255,g=200,b=0], region=Region [name=mare, bonus=0VictoryPoints, cities=0, bonusAvailable=true], king=true]", action.toString());
+		assertEquals(
+				"ElectCouncillor [councillor=java.awt.Color[r=255,g=200,b=0], region=Region [name=mare, bonus=0VictoryPoints, cities=0, bonusAvailable=true], king=true]",
+				action.toString());
 
 	}
-   
+
 }

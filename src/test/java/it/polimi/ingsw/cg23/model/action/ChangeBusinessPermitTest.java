@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +52,10 @@ public class ChangeBusinessPermitTest {
 	}
 
 	/**
-	 * it tests if runAction() changes the showed cards when the player has enough assistants
-	 * @throws NegativeNumberException 
+	 * it tests if runAction() changes the showed cards when the player has
+	 * enough assistants
+	 * 
+	 * @throws NegativeNumberException
 	 */
 	@Test
 	public void testRunActionShouldChangeTheShowedDeckWhenTiIsAllFine() throws NegativeNumberException {
@@ -62,21 +65,26 @@ public class ChangeBusinessPermitTest {
 		action.runAction(player, board);
 		assertNotEquals(showedDeck, region.getDeck().getShowedDeck());
 	}
-	
+
 	/**
-	 * it tests if runAction() doesn't change the showed cards when the player hasn't enough assistants
-	 * @throws NegativeNumberException 
+	 * it tests if runAction() doesn't change the showed cards when the player
+	 * hasn't enough assistants
+	 * 
+	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheTilesWhenThePlayerDoesntHaveEnoughAssistants() throws NegativeNumberException {
+	public void testRunActionShouldntChangeTheTilesWhenThePlayerDoesntHaveEnoughAssistants()
+			throws NegativeNumberException {
 		ChangeBusinessPermit action = new ChangeBusinessPermit(region);
 		player.getAssistantsPool().setAssistants(0);
 		action.runAction(player, board);
 		assertEquals(showedDeck, board.getRegions().get(0).getDeck().getShowedDeck());
 	}
-	
+
 	/**
-	 * it tests if the method doesn't change the tiles when the region is not found
+	 * it tests if the method doesn't change the tiles when the region is not
+	 * found
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
@@ -89,7 +97,6 @@ public class ChangeBusinessPermitTest {
 		action.runAction(player, testBoard);
 		assertEquals(showedDeck, region.getDeck().getShowedDeck());
 	}
-
 
 	/**
 	 * it tests if getRegion() works properly
@@ -107,7 +114,9 @@ public class ChangeBusinessPermitTest {
 	@Test
 	public void testToString() {
 		ChangeBusinessPermit action = new ChangeBusinessPermit(this.region);
-		assertEquals("ChangeBusinessPermit [region=Region [name=montagna, bonus=0VictoryPoints, cities=0, bonusAvailable=true]]", action.toString());
+		assertEquals(
+				"ChangeBusinessPermit [region=Region [name=montagna, bonus=0VictoryPoints, cities=0, bonusAvailable=true]]",
+				action.toString());
 	}
 
 }

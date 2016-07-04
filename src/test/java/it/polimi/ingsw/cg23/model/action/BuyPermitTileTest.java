@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -32,7 +32,6 @@ public class BuyPermitTileTest {
 	private List<PoliticCard> cards = new ArrayList<>();
 	private List<Character> citiesId = new ArrayList<>();
 	Council council;
-	
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,7 +42,7 @@ public class BuyPermitTileTest {
 		player.getHand().addAll(cards);
 		RegionDeck deck = new RegionDeck(2);
 		deck.getShowedDeck().add(choosenTile);
-		region = new Region("si", 5,deck , null);
+		region = new Region("si", 5, deck, null);
 		List<Region> regions = new ArrayList<>();
 		regions.add(region);
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, null, null, null, null);
@@ -54,23 +53,26 @@ public class BuyPermitTileTest {
 		council.getCouncillors().add(new Councillor(Color.RED));
 		council.getCouncillors().add(new Councillor(Color.WHITE));
 	}
-	
+
 	/**
-	 * it tests if the NullPointerException is thrown when the parameters are null
+	 * it tests if the NullPointerException is thrown when the parameters are
+	 * null
+	 * 
 	 * @throws NullPointerException
 	 */
-	@Test(expected=NullPointerException.class)
-	public void testConstructorShouldThrowNullPointerExceptionIfHisParametersAreNull() throws NullPointerException{
+	@Test(expected = NullPointerException.class)
+	public void testConstructorShouldThrowNullPointerExceptionIfHisParametersAreNull() throws NullPointerException {
 		BuyPermitTile action = new BuyPermitTile(null, null, null);
 		action.runAction(player, board);
 	}
 
 	/**
 	 * tests if the chosenTile is added to the player's permit tile
-	 * @throws NegativeNumberException 
+	 * 
+	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunAction() throws NegativeNumberException{
+	public void testRunAction() throws NegativeNumberException {
 		this.player.getAssistantsPool().setAssistants(10);
 		this.player.getRichness().setCoins(100);
 		this.region.getDeck().getShowedDeck().add(choosenTile);
@@ -99,23 +101,24 @@ public class BuyPermitTileTest {
 		List<PoliticCard> politics = action.getCards();
 		assertEquals(cards, politics);
 	}
-	
+
 	/**
-	* it tests if getRegion works properly
-	*/
+	 * it tests if getRegion works properly
+	 */
 	@Test
 	public void testGetRegion() {
 		BuyPermitTile action = new BuyPermitTile(cards, region, choosenTile);
 		Region actualRegion = action.getRegion();
 		assertEquals(region, actualRegion);
 	}
-	
+
 	/**
 	 * it tests if runAction() works properly when there are no match
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheCityIfThereAreNoMatch() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheCityIfThereAreNoMatch() throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
 		PoliticCard card2 = new PoliticCard(Color.PINK, false);
@@ -137,13 +140,14 @@ public class BuyPermitTileTest {
 		List<BusinessPermitTile> cards = player.getAvailableBusinessPermits();
 		assertEquals(new ArrayList<>(), cards);
 	}
-	
+
 	/**
-	 * @throws NegativeNumberException 
+	 * @throws NegativeNumberException
 	 * 
 	 */
 	@Test
-	public void testRunActionShouldGiveTheTileIfThePlayerHas4MatchesAndEnoughMoneyForTheSteps() throws NegativeNumberException{
+	public void testRunActionShouldGiveTheTileIfThePlayerHas4MatchesAndEnoughMoneyForTheSteps()
+			throws NegativeNumberException {
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		PoliticCard card3 = new PoliticCard(Color.BLACK, false);
@@ -171,21 +175,22 @@ public class BuyPermitTileTest {
 		assertEquals(choosenTile.toString(), card.get(0).toString());
 	}
 
-
 	/**
 	 * tests if toString() works properly
 	 */
-	/*@Test
-	public void testToString() {
-		BuyPermitTile action = new BuyPermitTile(null, null, null);
-		assertEquals("BuyPermitTile [cards=null, region=null, chosenTile=null]", action.toString());
-	}*/
-	
+	/*
+	 * @Test public void testToString() { BuyPermitTile action = new
+	 * BuyPermitTile(null, null, null); assertEquals(
+	 * "BuyPermitTile [cards=null, region=null, chosenTile=null]",
+	 * action.toString()); }
+	 */
+
 	/**
-	 * it tests if runAction() works properly when the player doesn't have enough money
+	 * it tests if runAction() works properly when the player doesn't have
+	 * enough money
 	 */
 	@Test
-	public void testRunActionShouldntDoAnythingIfThePlayerDoesntHaveMoney() throws NegativeNumberException{
+	public void testRunActionShouldntDoAnythingIfThePlayerDoesntHaveMoney() throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -202,13 +207,15 @@ public class BuyPermitTileTest {
 		System.out.println("FINITO TEST");
 		assertEquals(expected, card);
 	}
-	
+
 	/**
-	 * tests if runAction() works properly when the player doesn't have enough money for the match payment
+	 * tests if runAction() works properly when the player doesn't have enough
+	 * money for the match payment
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntGiveTheCardWhenThePlayerDoesntHaveEnoughMoney() throws NegativeNumberException{
+	public void testRunActionShouldntGiveTheCardWhenThePlayerDoesntHaveEnoughMoney() throws NegativeNumberException {
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		PoliticCard card3 = new PoliticCard(Color.BLACK, false);
@@ -231,12 +238,13 @@ public class BuyPermitTileTest {
 		List<BusinessPermitTile> cards = player.getAvailableBusinessPermits();
 		assertEquals(new ArrayList<>(), cards);
 	}
-	
+
 	/**
-	 * it tests if runAction() works properly when the player doesn't have enough money for the jolly
+	 * it tests if runAction() works properly when the player doesn't have
+	 * enough money for the jolly
 	 */
 	@Test
-	public void testRunActionShouldntGiveTheCardIfThePlayerDoesntHaveMoneyForTheJolly() throws NegativeNumberException{
+	public void testRunActionShouldntGiveTheCardIfThePlayerDoesntHaveMoneyForTheJolly() throws NegativeNumberException {
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
 		council.getCouncillors().add(new Councillor(Color.BLUE));

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.cg23.server.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -26,13 +28,13 @@ import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class TurnTest {
-									
-	private GameAction action;	
+
+	private GameAction action;
 	private Board board;
 	private Player player1;
 	private Player player2;
 	private Deck deck;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		List<Region> regions = new ArrayList<>();
@@ -56,7 +58,7 @@ public class TurnTest {
 	@Test
 	public void testGetCurrentPlayer() {
 		Turn turn = new Turn(board);
-		Player currentPlayer =turn.getCurrentPlayer();
+		Player currentPlayer = turn.getCurrentPlayer();
 		assertEquals(player1, currentPlayer);
 	}
 
@@ -68,7 +70,7 @@ public class TurnTest {
 		Turn turn = new Turn(board);
 		assertTrue(turn.isChangeState());
 	}
-	
+
 	/**
 	 * it tests if the state of the game isn't changed
 	 */
@@ -97,14 +99,14 @@ public class TurnTest {
 		assertFalse(turn.changePlayer());
 		assertTrue(turn.getCurrentPlayer().equals(player2));
 	}
-	
+
 	/**
 	 * it tests if when the status is "TURN" the player draw a politic's card
 	 * 
 	 * @throws NegativeNumberException
 	 */
-	@Test 
-	public void testIfChangePlayerMakeThePlayerDraw() throws NegativeNumberException{
+	@Test
+	public void testIfChangePlayerMakeThePlayerDraw() throws NegativeNumberException {
 		Turn turn = new Turn(board);
 		this.board.getStatus().setStatus("MARKET: BUYING");
 		this.player1.switchAdditionalAction();
@@ -112,33 +114,35 @@ public class TurnTest {
 		turn.changePlayer();
 		assertFalse(player1.getHand().isEmpty());
 	}
-	
+
 	/**
-	 * it tests if when the current player is the first the status is changed porperly
+	 * it tests if when the current player is the first the status is changed
+	 * porperly
 	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testChangeActionIfTheStatusIsChangedProperly() throws NegativeNumberException{
+	public void testChangeActionIfTheStatusIsChangedProperly() throws NegativeNumberException {
 		Turn turn = new Turn(board);
 		this.board.getStatus().setStatus("MARKET: SELLING");
 		turn.changePlayer();
 		turn.changePlayer();
 		assertEquals("MARKET: BUYING", board.getStatus().getStatus());
 	}
-	
+
 	/**
-	 * it tests if changePlayer returns true when the current player is the final player
+	 * it tests if changePlayer returns true when the current player is the
+	 * final player
 	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testChangeActionShouldReturnTrueIfTheCurrentPlayerIsTheFinal() throws NegativeNumberException{
+	public void testChangeActionShouldReturnTrueIfTheCurrentPlayerIsTheFinal() throws NegativeNumberException {
 		Turn turn = new Turn(board);
 		board.getStatus().setFinalPlayer(player2);
 		assertTrue(turn.changePlayer());
 	}
-	
+
 	/**
 	 * it tests if the method returns the right board
 	 */
@@ -148,7 +152,7 @@ public class TurnTest {
 		turn.setPlayers(null);
 		assertEquals(board, turn.getBoard());
 	}
-	
+
 	/**
 	 * it tests if isFinalTurn returns the right boolean
 	 */
@@ -166,7 +170,8 @@ public class TurnTest {
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldSwitchHireAssistantsShouldHireAnAssistantWhenTheActionIsHireAssistant() throws NegativeNumberException {
+	public void testRunActionShouldSwitchHireAssistantsShouldHireAnAssistantWhenTheActionIsHireAssistant()
+			throws NegativeNumberException {
 		Turn turn = new Turn(board);
 		this.player1.getAssistantsPool().setAssistants(10);
 		this.player1.getRichness().setCoins(2);
@@ -174,20 +179,20 @@ public class TurnTest {
 		turn.runAction();
 		assertTrue(this.player1.getAssistantsPool().getAssistants() == 10);
 	}
-	
+
 	/**
-	 * it tests if runAction doesn't give the player the chance to do two main action when
-	 * he doesn't have additional action
+	 * it tests if runAction doesn't give the player the chance to do two main
+	 * action when he doesn't have additional action
 	 */
 	@Test
-	public void testRunActionShouldntMakeThePlayerHaveTwoMainActionIfHeDoesntHaveAdditionalAction(){
+	public void testRunActionShouldntMakeThePlayerHaveTwoMainActionIfHeDoesntHaveAdditionalAction() {
 		Turn turn = new Turn(board);
 		Region region = new Region("mare", 0, null, null);
 		region.getCouncil().getCouncillors().add(new Councillor(new Color(0, 0, 0)));
 		this.board.getRegions().add(region);
 		this.board.getCouncillorPool().add(new Councillor(new Color(25, 0, 0)));
 		this.board.getCouncillorPool().add(new Councillor(new Color(0, 0, 0)));
-		for(int i=0; i<10; i++){
+		for (int i = 0; i < 10; i++) {
 			this.player1.getAvailableEmporium();
 		}
 		turn.setAction(new ElectCouncillor(new Color(25, 0, 0), region, false));
@@ -202,7 +207,7 @@ public class TurnTest {
 	 * it tests if additionalAction makes the player has two main action
 	 */
 	@Test
-	public void testRunActionShouldMakeThePlayerMakesTwoMainActionWhenIsAdditionalAction(){
+	public void testRunActionShouldMakeThePlayerMakesTwoMainActionWhenIsAdditionalAction() {
 		Turn turn = new Turn(board);
 		Region region = new Region("mare", 0, null, null);
 		region.getCouncil().getCouncillors().add(new Councillor(new Color(0, 0, 0)));
@@ -218,15 +223,18 @@ public class TurnTest {
 		assertTrue(region.getCouncil().getCouncillors().get(0).getColor().equals(new Color(0, 0, 0)));
 
 	}
-	
+
 	/**
-	 * it tests if the marketSell action works and take the item form the player when it's the selling turn,
-	 * if marketBuy gives the item when it's the buying turn, and if it did nothing when the player wants to 
-	 * do a market's action but is not the right turn
+	 * it tests if the marketSell action works and take the item form the player
+	 * when it's the selling turn, if marketBuy gives the item when it's the
+	 * buying turn, and if it did nothing when the player wants to do a market's
+	 * action but is not the right turn
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionMarketSellShouldTakeTheItemFromThePlayerAndMarketBuyShouldGiveItToThePlayer() throws NegativeNumberException{
+	public void testRunActionMarketSellShouldTakeTheItemFromThePlayerAndMarketBuyShouldGiveItToThePlayer()
+			throws NegativeNumberException {
 		Turn turn = new Turn(board);
 		this.board.getStatus().setStatus("MARKET: SELLING");
 		AssistantsPool assistants = new AssistantsPool();
@@ -246,7 +254,7 @@ public class TurnTest {
 		turn.runAction();
 		assertEquals(10, this.player1.getAssistantsPool().getAssistants());
 	}
-	
+
 	/**
 	 * it tests if toString() works properly
 	 */
@@ -255,12 +263,12 @@ public class TurnTest {
 		Turn turn = new Turn(board);
 		assertEquals("Turn [currentPlayer=user1, mainIndex=1, mainAction=true, secondAction=true]", turn.toString());
 	}
-	
+
 	/**
 	 * it tests if setTimer and getTimer work properly
 	 */
 	@Test
-	public void testSetGetTimer(){
+	public void testSetGetTimer() {
 		Turn turn = new Turn(board);
 		Timer timer = new Timer(null, null);
 		timer.isRunning();

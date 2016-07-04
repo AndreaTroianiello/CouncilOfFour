@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.controller.change;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -14,9 +14,9 @@ public class StateChangeTest {
 	 */
 	@Test
 	public void testToString() {
-		State newState=new State();
-		StateChange change=new StateChange(newState);
-		assertEquals(change.toString(),"StateChange [newState=State [status=INITIALIZATION]]");
+		State newState = new State();
+		StateChange change = new StateChange(newState);
+		assertEquals(change.toString(), "StateChange [newState=State [status=INITIALIZATION]]");
 	}
 
 }

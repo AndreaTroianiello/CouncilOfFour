@@ -4,9 +4,9 @@ import java.util.List;
 
 import it.polimi.ingsw.cg23.server.model.Player;
 
-
 /**
  * The RankChange serves to notify the final list of players.
+ * 
  * @author Andrea
  *
  */
@@ -17,22 +17,27 @@ public class RankChange implements Change {
 
 	/**
 	 * The constructor of the RankChange
-	 * @param newRank The list of the players.
+	 * 
+	 * @param newRank
+	 *            The list of the players.
 	 */
 	public RankChange(List<Player> newRank) {
-		this.newRank=newRank;
+		this.newRank = newRank;
 	}
-	
+
 	/**
 	 * Returns the rank of the game.
+	 * 
 	 * @return the newRank, a list of players.
 	 */
-	public List<Player> getRank(){
+	public List<Player> getRank() {
 		return newRank;
 	}
-	
+
 	/**
-	 * It generates a string formed by the most significant statistics of the RankChange.
+	 * It generates a string formed by the most significant statistics of the
+	 * RankChange.
+	 * 
 	 * @return string
 	 */
 	@Override

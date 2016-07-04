@@ -4,7 +4,7 @@ import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.Player;
 
 /**
- * the class of the bonus that allows to have another main action. 
+ * the class of the bonus that allows to have another main action.
  * 
  * @author Vincenzo
  *
@@ -13,51 +13,51 @@ public class BonusAdditionalAction implements Bonus {
 
 	private static final long serialVersionUID = -7894718147717452032L;
 	private final String name;
-	
+
 	/**
 	 * the constructor set the name of the bonus
 	 */
-	public BonusAdditionalAction(){
-		this.name="AdditionalAction";
+	public BonusAdditionalAction() {
+		this.name = "AdditionalAction";
 	}
-	
+
 	/**
-	 * if the player have the additional action set to false,
-	 * it switches it
+	 * if the player have the additional action set to false, it switches it
 	 * 
-	 * @param player whom the bonus is given to
-	 */ 
+	 * @param player
+	 *            whom the bonus is given to
+	 */
 	@Override
 	public void giveBonus(Player player) {
 		boolean addictionalAction = player.isAdditionalAction();
-		if(!addictionalAction){
+		if (!addictionalAction) {
 			player.switchAdditionalAction();
 		}
 	}
-	
+
 	@Override
-	public int getNumber(){
+	public int getNumber() {
 		return 0;
 	}
-	
+
 	@Override
-	public void setNumber(int number){
-		//Not implemented.
+	public void setNumber(int number) {
+		// Not implemented.
 	}
-	
+
 	@Override
 	public void setBoard(Board board) {
-		// Not implemented.		
+		// Not implemented.
 	}
-	
+
 	/**
 	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
-	public String getName(){
+	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * @return the name of the bonus in string
 	 */
@@ -71,6 +71,6 @@ public class BonusAdditionalAction implements Bonus {
 	 */
 	@Override
 	public Bonus copy() {
-		return new BonusAdditionalAction(); 
-	}	
+		return new BonusAdditionalAction();
+	}
 }

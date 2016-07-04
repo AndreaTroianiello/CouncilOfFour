@@ -23,11 +23,12 @@ import it.polimi.ingsw.cg23.server.model.bonus.BonusTileBonus;
 
 /**
  * This dialog allows to perform a bonus.
+ * 
  * @author Andrea
  *
  */
 public class BonusDialog extends JFrame {
-	
+
 	private static final long serialVersionUID = 7093234192379688331L;
 	private JButton buttonCancel;
 	private JButton buttonSend;
@@ -43,9 +44,9 @@ public class BonusDialog extends JFrame {
 	/**
 	 * Creates new form BonusDialog
 	 */
-	public BonusDialog(ControllerGUI controller,Bonus bonus) {
-		this.controller=controller;
-		this.bonus=bonus;
+	public BonusDialog(ControllerGUI controller, Bonus bonus) {
+		this.controller = controller;
+		this.bonus = bonus;
 		initComponents();
 	}
 
@@ -71,110 +72,92 @@ public class BonusDialog extends JFrame {
 
 		panel.setMinimumSize(new Dimension(387, 134));
 
-		labelInfo.setText("You have activated the "+ bonus.getName() +". Choose the appropriate parameters.");
+		labelInfo.setText("You have activated the " + bonus.getName() + ". Choose the appropriate parameters.");
 
 		labelParameter1.setText("Parameter1:");
 
 		labelParameter2.setText("Parameter2:");
-		
-		if(bonus.getNumber()>1||bonus instanceof BonusGetPermitTile){
+
+		if (bonus.getNumber() > 1 || bonus instanceof BonusGetPermitTile) {
 			labelParameter2.setVisible(false);
 			fieldParameter2.setVisible(false);
 		}
-		
+
 		buttonSend.setText("Send");
-		buttonSend.addActionListener(e->buttonSendActionPerformed());
+		buttonSend.addActionListener(e -> buttonSendActionPerformed());
 
 		buttonCancel.setText("Cancel");
-		buttonCancel.addActionListener(e->buttonCancelActionPerformed());
+		buttonCancel.addActionListener(e -> buttonCancelActionPerformed());
 
 		GroupLayout jPanel1Layout = new GroupLayout(panel);
 		panel.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(
-				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addGroup(jPanel1Layout.createSequentialGroup()
-										.addContainerGap()
+		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
+						.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout
+								.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(labelInfo)
+								.addGroup(jPanel1Layout.createSequentialGroup().addGap(29, 29, 29)
 										.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-												.addComponent(labelInfo)
-												.addGroup(jPanel1Layout.createSequentialGroup()
-														.addGap(29, 29, 29)
-														.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-																.addComponent(labelParameter1)
-																.addComponent(labelParameter2))
-														.addGap(49, 49, 49)
-														.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-																.addComponent(fieldParameter1)
-																.addComponent(fieldParameter2, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))))
-								.addGroup(jPanel1Layout.createSequentialGroup()
-										.addGap(88, 88, 88)
-										.addComponent(buttonSend)
-										.addGap(70, 70, 70)
-										.addComponent(buttonCancel)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		jPanel1Layout.setVerticalGroup(
-				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(labelInfo)
+												.addComponent(labelParameter1).addComponent(labelParameter2))
+										.addGap(49, 49, 49).addGroup(
+												jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+														.addComponent(fieldParameter1).addComponent(fieldParameter2,
+																GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))))
+						.addGroup(jPanel1Layout.createSequentialGroup().addGap(88, 88, 88).addComponent(buttonSend)
+								.addGap(70, 70, 70).addComponent(buttonCancel)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(labelInfo)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(fieldParameter1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(fieldParameter1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
 								.addComponent(labelParameter1))
 						.addGap(18, 18, 18)
 						.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(labelParameter2)
-								.addComponent(fieldParameter2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(labelParameter2).addComponent(fieldParameter2, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(buttonSend)
-								.addComponent(buttonCancel))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
+								.addComponent(buttonSend).addComponent(buttonCancel))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				);
-		layout.setVerticalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				);
+		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panel,
+				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panel,
+				GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE));
 
 		pack();
-	}                       
+	}
 
 	/**
 	 * The action performed when the buttonSend receives a event.
 	 */
-	private void buttonSendActionPerformed() {                                             
-		if(bonus instanceof BonusCityToken){
-			List<City> cities=new ArrayList<>();
+	private void buttonSendActionPerformed() {
+		if (bonus instanceof BonusCityToken) {
+			List<City> cities = new ArrayList<>();
 			cities.add(controller.getModel().findCity(fieldParameter1.getText()));
-			if(controller.getModel().findCity(fieldParameter1.getText())!=null)
+			if (controller.getModel().findCity(fieldParameter1.getText()) != null)
 				cities.add(controller.getModel().findCity(fieldParameter1.getText()));
-			((BonusCityToken)bonus).setCities(cities);
+			((BonusCityToken) bonus).setCities(cities);
 		}
-		if(bonus instanceof BonusGetPermitTile){
-			((BonusGetPermitTile)bonus).setTile(controller.getModel().findRegion(fieldParameter1.getText()),
-												Integer.parseInt(fieldParameter2.getText()));
+		if (bonus instanceof BonusGetPermitTile) {
+			((BonusGetPermitTile) bonus).setTile(controller.getModel().findRegion(fieldParameter1.getText()),
+					Integer.parseInt(fieldParameter2.getText()));
 		}
-		if(bonus instanceof BonusTileBonus){
-			((BonusTileBonus)bonus).setNumberTile(Integer.parseInt(fieldParameter1.getText()));
+		if (bonus instanceof BonusTileBonus) {
+			((BonusTileBonus) bonus).setNumberTile(Integer.parseInt(fieldParameter1.getText()));
 		}
 		controller.updateController(new PerformBonus(controller.getModel().getPlayer(), bonus));
-	}                                            
+	}
 
 	/**
 	 * The action performed when the buttonCancel receives a event.
 	 */
-	private void buttonCancelActionPerformed() {                                           
+	private void buttonCancelActionPerformed() {
 		dispose();
-	}                                          
-                     
-	                   
+	}
+
 }

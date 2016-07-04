@@ -4,10 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.cg23.server.model.components.*;
+import it.polimi.ingsw.cg23.server.model.components.AssistantsPool;
+import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
+import it.polimi.ingsw.cg23.server.model.components.Emporium;
+import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
+import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
+import it.polimi.ingsw.cg23.server.model.components.Richness;
+import it.polimi.ingsw.cg23.server.model.components.VictoryTrack;
+
 /**
- * The class of the player. The player is characterized by a username and contains a list of his emporiums (used and available), a richness,
- * a victory track, a list of politic cards and a nobility position.
+ * The class of the player. The player is characterized by a username and
+ * contains a list of his emporiums (used and available), a richness, a victory
+ * track, a list of politic cards and a nobility position.
  * 
  * @author Andrea
  *
@@ -15,39 +23,47 @@ import it.polimi.ingsw.cg23.server.model.components.*;
 public class Player implements Serializable {
 
 	private static final long serialVersionUID = 3461638919381415919L;
-	private final String user;									//name of the player
-	private List<Emporium> availableEmporiums;					//the emporiums that are available to place
-	private List<Emporium> usedEmporiums;						//the emporiums that are already placed
-	private boolean additionalAction;							// main action given by the star bonus, the default value is false
-	private final AssistantsPool assistantsPool;				
+	private final String user; // name of the player
+	private List<Emporium> availableEmporiums; // the emporiums that are
+												// available to place
+	private List<Emporium> usedEmporiums; // the emporiums that are already
+											// placed
+	private boolean additionalAction; // main action given by the star bonus,
+										// the default value is false
+	private final AssistantsPool assistantsPool;
 	private final Richness richness;
 	private final VictoryTrack victoryTrack;
-	private List<PoliticCard> politicsCards;					//the player's hand
+	private List<PoliticCard> politicsCards; // the player's hand
 	private List<BusinessPermitTile> availableBusinesPermits;
 	private List<BusinessPermitTile> usedBusinessPermits;
-	private final NobilityTrack nobilityTrack;					//the nobility track
-	private int nobilityBoxPosition;							//the position of the player
-	
+	private final NobilityTrack nobilityTrack; // the nobility track
+	private int nobilityBoxPosition; // the position of the player
+
 	/**
 	 * The class' constructor. Initializes the player with default stats.
-	 * @param user The username of the player.
-	 * @param assistants The initial number of player's assistants.
-	 * @param coins The initial number of player's coins.
-	 * @param nobilityTrack The nobility track of the game.
+	 * 
+	 * @param user
+	 *            The username of the player.
+	 * @param assistants
+	 *            The initial number of player's assistants.
+	 * @param coins
+	 *            The initial number of player's coins.
+	 * @param nobilityTrack
+	 *            The nobility track of the game.
 	 */
-	public Player(String user, NobilityTrack nobilityTrack) { 
+	public Player(String user, NobilityTrack nobilityTrack) {
 		this.user = user;
 		this.additionalAction = false;
 		this.assistantsPool = new AssistantsPool();
 		this.richness = new Richness();
 		this.victoryTrack = new VictoryTrack();
-		this.politicsCards= new ArrayList<>();
-		this.availableEmporiums=new ArrayList<>();
-		this.usedEmporiums=new ArrayList<>();
-		this.availableBusinesPermits=new ArrayList<>();
-		this.usedBusinessPermits=new ArrayList<>();
-		this.nobilityBoxPosition=0; 
-		this.nobilityTrack= nobilityTrack;
+		this.politicsCards = new ArrayList<>();
+		this.availableEmporiums = new ArrayList<>();
+		this.usedEmporiums = new ArrayList<>();
+		this.availableBusinesPermits = new ArrayList<>();
+		this.usedBusinessPermits = new ArrayList<>();
+		this.nobilityBoxPosition = 0;
+		this.nobilityTrack = nobilityTrack;
 		this.nobilityTrack.getNobilityBoxes().get(0).addPlayer(this);
 		initializeAvailableEmporium();
 	}
@@ -64,33 +80,34 @@ public class Player implements Serializable {
 	/**
 	 * Adds the available emporiums at the player's list.
 	 * 
-	 * @param availableEmporium 
+	 * @param availableEmporium
 	 */
 	private void initializeAvailableEmporium() {
-		for(int index=0;index<10;++index)
+		for (int index = 0; index < 10; ++index)
 			this.availableEmporiums.add(new Emporium(this));
 	}
-	
+
 	/**
 	 * Returns the status of the available emporiums
 	 * 
-	 * @return the status of availableEmporiums' list. It is true if this list is empty.
+	 * @return the status of availableEmporiums' list. It is true if this list
+	 *         is empty.
 	 */
-	public boolean isAvailableEmporiumEmpty(){
+	public boolean isAvailableEmporiumEmpty() {
 		return availableEmporiums.isEmpty();
 	}
-	
+
 	/**
 	 * Returns an available emporium of the player.
 	 * 
 	 * @return an available emporium or null (if the list in is empty).
 	 */
 	public Emporium getAvailableEmporium() {
-		if(isAvailableEmporiumEmpty())
+		if (isAvailableEmporiumEmpty())
 			return null;
 		return availableEmporiums.remove(0);
 	}
-	
+
 	/**
 	 * Returns the list of all emporiums builded by the player.
 	 * 
@@ -103,14 +120,16 @@ public class Player implements Serializable {
 	/**
 	 * Adds the emporium at the list of emporiums used
 	 * 
-	 * @param emporium an emporium builded.
+	 * @param emporium
+	 *            an emporium builded.
 	 */
 	public void setEmporium(Emporium emporium) {
 		this.usedEmporiums.add(emporium);
 	}
 
 	/**
-	 * Returns the status of the addictional action. If it's true, the player can perform another principal action.
+	 * Returns the status of the addictional action. If it's true, the player
+	 * can perform another principal action.
 	 * 
 	 * @return the additionalAction status.
 	 */
@@ -134,7 +153,6 @@ public class Player implements Serializable {
 		return assistantsPool;
 	}
 
-	
 	/**
 	 * Returns the richness of the player.
 	 * 
@@ -143,7 +161,7 @@ public class Player implements Serializable {
 	public Richness getRichness() {
 		return richness;
 	}
-	
+
 	/**
 	 * Returns the victory track of the player.
 	 * 
@@ -152,16 +170,17 @@ public class Player implements Serializable {
 	public VictoryTrack getVictoryTrack() {
 		return this.victoryTrack;
 	}
-	
+
 	/**
 	 * Adds a politic card at player's hand.
 	 * 
-	 * @param politicCard a politic card.
+	 * @param politicCard
+	 *            a politic card.
 	 */
 	public void addPoliticCard(PoliticCard politicCard) {
 		politicsCards.add(politicCard);
 	}
-	
+
 	/**
 	 * Returns all politic cards of the player.
 	 * 
@@ -179,11 +198,12 @@ public class Player implements Serializable {
 	public List<BusinessPermitTile> getAvailableBusinessPermits() {
 		return availableBusinesPermits;
 	}
-	
+
 	/**
 	 * Adds a business permit title at the player's available titles.
 	 * 
-	 * @param businessPermit the business permit title to add at player's permits.
+	 * @param businessPermit
+	 *            the business permit title to add at player's permits.
 	 */
 	public void addAvailableBusinessPermit(BusinessPermitTile businessPermit) {
 		this.availableBusinesPermits.add(businessPermit);
@@ -198,11 +218,11 @@ public class Player implements Serializable {
 		return usedBusinessPermits;
 	}
 
-	
 	/**
 	 * Adds a business permits title at player's used titles.
 	 * 
-	 * @param usedBusinessPermits the used business permit title.
+	 * @param usedBusinessPermits
+	 *            the used business permit title.
 	 */
 	public void setUsedBusinessPermit(BusinessPermitTile businessPermit) {
 		this.usedBusinessPermits.add(businessPermit);
@@ -220,7 +240,8 @@ public class Player implements Serializable {
 	/**
 	 * Sets the position of the player on the nobility track.
 	 * 
-	 * @param nobilityBoxPoistion the nobilityBoxPoistion to set.
+	 * @param nobilityBoxPoistion
+	 *            the nobilityBoxPoistion to set.
 	 */
 	public void setNobilityBoxPoistion(int nobilityBoxPoistion) {
 		this.nobilityBoxPosition = nobilityBoxPoistion;
@@ -236,14 +257,16 @@ public class Player implements Serializable {
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the Player.
+	 * It generates a string formed by the most significant statistics of the
+	 * Player.
+	 * 
 	 * @return string
 	 */
 	@Override
 	public String toString() {
-		return "Player [user=" + user + ", additionalAction=" + additionalAction + ", assistantsPool=" + assistantsPool.getAssistants()
-				+ ", richness=" + richness.getCoins() + ", victoryTrack=" + victoryTrack.getVictoryPoints() + ", nobilityBoxPosition="
-				+ nobilityBoxPosition + "]";
+		return "Player [user=" + user + ", additionalAction=" + additionalAction + ", assistantsPool="
+				+ assistantsPool.getAssistants() + ", richness=" + richness.getCoins() + ", victoryTrack="
+				+ victoryTrack.getVictoryPoints() + ", nobilityBoxPosition=" + nobilityBoxPosition + "]";
 	}
-	
+
 }

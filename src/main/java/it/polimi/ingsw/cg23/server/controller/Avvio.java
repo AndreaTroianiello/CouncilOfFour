@@ -3,7 +3,10 @@ package it.polimi.ingsw.cg23.server.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.cg23.server.controller.creation.*;
+import it.polimi.ingsw.cg23.server.controller.creation.CreateBonus;
+import it.polimi.ingsw.cg23.server.controller.creation.CreateCostruction;
+import it.polimi.ingsw.cg23.server.controller.creation.CreateCouncillor;
+import it.polimi.ingsw.cg23.server.controller.creation.CreateRegionCity;
 import it.polimi.ingsw.cg23.server.controller.xmlreader.XmlInterface;
 import it.polimi.ingsw.cg23.server.model.Board;
 import it.polimi.ingsw.cg23.server.model.City;
@@ -35,14 +38,14 @@ public class Avvio {
 	private Deck dec;
 	private King king;
 
-	private List <Player> giocatori;//lista giocatori
-	private List <City> citta;//lista giocatori
-	private List <Region> regions;//lista giocatori
-	private List <PoliticCard> politcards;//lista giocatori
-	private List <Bonus> bonusList;//lista dei bonus
-	private List <BusinessPermitTile> costructionCard;//lista dei bonus
-	private List <Type> tipi;//lista dei bonus
-	private List <Councillor> consiglieri;
+	private List<Player> giocatori;// lista giocatori
+	private List<City> citta;// lista giocatori
+	private List<Region> regions;// lista giocatori
+	private List<PoliticCard> politcards;// lista giocatori
+	private List<Bonus> bonusList;// lista dei bonus
+	private List<BusinessPermitTile> costructionCard;// lista dei bonus
+	private List<Type> tipi;// lista dei bonus
+	private List<Councillor> consiglieri;
 
 	private Board board;
 	private BonusKing bk;
@@ -51,116 +54,129 @@ public class Avvio {
 
 	/**
 	 * costructor
-	 * @param endPath the name of the xml file
-	 * @param board the board to refill
-	 * @throws XmlException 
+	 * 
+	 * @param endPath
+	 *            the name of the xml file
+	 * @param board
+	 *            the board to refill
+	 * @throws XmlException
 	 */
-	public Avvio(String endPath, Board board) throws XmlException{
-		cc=new CreateCostruction();
-		cco=new CreateCouncillor();
-		crc=new CreateRegionCity(endPath);
-		cl=new Print();
-		s=new Setting();
-		cb=new CreateBonus();
+	public Avvio(String endPath, Board board) throws XmlException {
+		cc = new CreateCostruction();
+		cco = new CreateCouncillor();
+		crc = new CreateRegionCity(endPath);
+		cl = new Print();
+		s = new Setting();
+		cb = new CreateBonus();
 
-		this.board=board;
-		this.leggiXml= new XmlInterface();
-		this.bk=cb.bonusKing();
-		this.citta=new ArrayList<>();
-		this.giocatori=new ArrayList<>();
-		this.consiglieri=new ArrayList<>();
-		this.nT= new NobilityTrack(leggiXml.getNobilityTrackLength("NobilityTrack.xml"));//recupero la lunghezza dall'xml
+		this.board = board;
+		this.leggiXml = new XmlInterface();
+		this.bk = cb.bonusKing();
+		this.citta = new ArrayList<>();
+		this.giocatori = new ArrayList<>();
+		this.consiglieri = new ArrayList<>();
+		this.nT = new NobilityTrack(leggiXml.getNobilityTrackLength("NobilityTrack.xml"));// recupero
+																							// la
+																							// lunghezza
+																							// dall'xml
 	}
 
 	/**
 	 * to start the game
 	 */
-	public void startPartita(){//metodo per avviare la partita
+	public void startPartita() {// metodo per avviare la partita
 
 		cl.print("", "Creo gli elementi di gioco:");
 		cl.print("", "-Creo i giocatori");
 
-		//----------creo i type----------
-		tipi=s.createType(bk);//creo i type (colori) delle citta'
+		// ----------creo i type----------
+		tipi = s.createType(bk);// creo i type (colori) delle citta'
 		cl.print("", "-Creo i type");
 
-		//----------bonus----------
-		bonusList=cb.bonusList(board);//recupero la lista con tutti i bonus
+		// ----------bonus----------
+		bonusList = cb.bonusList(board);// recupero la lista con tutti i bonus
 		cl.print("", "-Creo i bonus");
 
-		//----------regioni----------
-		regions=crc.createRegions(bk);//crea le regioni e ne ritorna la lista
+		// ----------regioni----------
+		regions = crc.createRegions(bk);// crea le regioni e ne ritorna la lista
 		cl.print("", "-Creo le regioni");
 
-		//----------citta'----------
-		for(int i=0; i<regions.size(); i++){//ciclo che scorre le regioni
-			citta.addAll(crc.createCities(i, regions.get(i), tipi));//recupero le citta' della regione
+		// ----------citta'----------
+		for (int i = 0; i < regions.size(); i++) {// ciclo che scorre le regioni
+			citta.addAll(crc.createCities(i, regions.get(i), tipi));// recupero
+																	// le citta'
+																	// della
+																	// regione
 		}
 
-		for(int j=0; j<citta.size(); j++){//ciclo che scorre le citta'
-			cb.getCityBonus(citta.get(j));//aggiungo alla citta' i bonus
+		for (int j = 0; j < citta.size(); j++) {// ciclo che scorre le citta'
+			cb.getCityBonus(citta.get(j));// aggiungo alla citta' i bonus
 		}
-		crc.addNeighbors(citta);//aggiungo i vicini alle citta'
+		crc.addNeighbors(citta);// aggiungo i vicini alle citta'
 		cl.print("", "-Creo le citta'");
 
-		//----------king----------
-		king=s.king(citta);//creato il re
+		// ----------king----------
+		king = s.king(citta);// creato il re
 		cl.print("", "-Creo il re");
 
-		//----------carte politiche----------
-		politcards=s.politicList(13,12);//crea le carte politiche e le mette in una lista
-		cl.print("", "-Creo le carte politiche"); 
+		// ----------carte politiche----------
+		politcards = s.politicList(13, 12);// crea le carte politiche e le mette
+											// in una lista
+		cl.print("", "-Creo le carte politiche");
 
-		//----------deck----------
-		dec=new Deck(politcards);//creato il deck
+		// ----------deck----------
+		dec = new Deck(politcards);// creato il deck
 		cl.print("", "-Creo il deck");
 
-		//----------carte permesso di costruzione----------
-		costructionCard=cc.createCardCostruction(board);//crea le carte costruzione e le metto nella lista
-		cc.createRegionDeck(regions);//riempie i regiondeck delle regioni
+		// ----------carte permesso di costruzione----------
+		costructionCard = cc.createCardCostruction(board);// crea le carte
+															// costruzione e le
+															// metto nella lista
+		cc.createRegionDeck(regions);// riempie i regiondeck delle regioni
 		cl.print("", "-Creo le carte permesso di costruzione");
 
-		//----------consiglieri e balconi----------
-		consiglieri=cco.createCouncillor(4);//crea i consiglieri
+		// ----------consiglieri e balconi----------
+		consiglieri = cco.createCouncillor(4);// crea i consiglieri
 
-		for(int i=0; i<regions.size(); i++){//scorro il numero di regioni
-			cco.setBalconi(regions.get(i), consiglieri);//crea i balconi delle regioni
+		for (int i = 0; i < regions.size(); i++) {// scorro il numero di regioni
+			cco.setBalconi(regions.get(i), consiglieri);// crea i balconi delle
+														// regioni
 		}
-		cco.setBalconi(king, consiglieri);//crea il balcone del re
+		cco.setBalconi(king, consiglieri);// crea il balcone del re
 		cl.print("", "-Creo i consiglieri");
 
-		//----------nobility track----------
-		s.nobilityTrackFill(nT);//riempio il nobility track
+		// ----------nobility track----------
+		s.nobilityTrackFill(nT);// riempio il nobility track
 		cl.print("", "-Setto il Nobility track");
 
-		//----------board settaggio----------
-		setBoard(board);//setta la baord
+		// ----------board settaggio----------
+		setBoard(board);// setta la baord
 		cl.print("", "-Setto la board");
 
-		//----------plancia----------
+		// ----------plancia----------
 		cl.print("", "-Creo la plancia di gioco");
-		cl.createMap(board);//stampa la plancia di gioco dalla lista
-		//printAll();//stampa tutte le liste
+		cl.createMap(board);// stampa la plancia di gioco dalla lista
+		// printAll();//stampa tutte le liste
 	}
 
 	/**
 	 * print all the list
 	 */
-	public void printAll(){
+	public void printAll() {
 		cl.print("", "STAMPO TUTTO");
-		cl.print(bonusList.size(),"Numero di bonus:");
+		cl.print(bonusList.size(), "Numero di bonus:");
 		cl.printList(bonusList);
-		cl.print(regions.size(),"Numero di regioni:");
+		cl.print(regions.size(), "Numero di regioni:");
 		cl.printList(regions);
-		cl.print(citta.size(),"Numero di citta':");
+		cl.print(citta.size(), "Numero di citta':");
 		cl.printList(citta);
-		cl.print(giocatori.size(),"Numero di giocatori:");
+		cl.print(giocatori.size(), "Numero di giocatori:");
 		cl.printList(giocatori);
-		cl.print(politcards.size(),"Numero di carte politiche:");
+		cl.print(politcards.size(), "Numero di carte politiche:");
 		cl.printList(politcards);
-		cl.print(costructionCard.size(),"Numero di carte costruzione:");
+		cl.print(costructionCard.size(), "Numero di carte costruzione:");
 		cl.printList(costructionCard);
-		cl.print(tipi.size(),"Numero di tipi (colori):");
+		cl.print(tipi.size(), "Numero di tipi (colori):");
 		cl.printList(tipi);
 		cl.print(bk.toString(), "");
 		cl.print(board, "");
@@ -168,26 +184,30 @@ public class Avvio {
 
 	/**
 	 * set the board
-	 * @param board the model of the game
+	 * 
+	 * @param board
+	 *            the model of the game
 	 */
-	private void setBoard(Board board){
+	private void setBoard(Board board) {
 
-		board.setDeck(dec);//aggiungo il dec alla board
-		board.setKing(king);//aggiungo il re alla board
-		board.setRegions(regions);//aggiungo le regioni alla board
-		board.setTypes(tipi);//aggiungo i tipi alla board
-		for(int i=0; i<consiglieri.size(); i++){
-			board.setCouncillor(consiglieri.get(i));//aggiungo i consiglieri avanzati alla board
+		board.setDeck(dec);// aggiungo il dec alla board
+		board.setKing(king);// aggiungo il re alla board
+		board.setRegions(regions);// aggiungo le regioni alla board
+		board.setTypes(tipi);// aggiungo i tipi alla board
+		for (int i = 0; i < consiglieri.size(); i++) {
+			board.setCouncillor(consiglieri.get(i));// aggiungo i consiglieri
+													// avanzati alla board
 		}
-		board.setNobilityTrack(nT);//aggiungo il nobility track alla board
+		board.setNobilityTrack(nT);// aggiungo il nobility track alla board
 		board.setBonusKing(bk);
 	}
 
 	/**
 	 * Returns the model of the game
+	 * 
 	 * @return the board
 	 */
-	public Board getBoard(){
+	public Board getBoard() {
 		return board;
 	}
 }

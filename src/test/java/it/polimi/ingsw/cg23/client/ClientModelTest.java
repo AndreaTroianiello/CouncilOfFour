@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.client;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class ClientModelTest {
 	private Player player;
 	private List<Region> regions;
 	private Region region;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		this.regions = new ArrayList<>();
@@ -42,10 +43,11 @@ public class ClientModelTest {
 	@Test
 	public void testGetBoard() {
 		ClientModel client = new ClientModel();
-		client.setBoard(board);;
+		client.setBoard(board);
+		;
 		assertEquals(board, client.getBoard());
-	}	
-	
+	}
+
 	/**
 	 * it tests if getPlayer works properly
 	 */
@@ -66,7 +68,7 @@ public class ClientModelTest {
 		this.board.getRegions().add(this.region);
 		assertNull(client.findCity("bo"));
 	}
-	
+
 	/**
 	 * it tests if findCity return the right city
 	 */
@@ -90,9 +92,10 @@ public class ClientModelTest {
 		this.board.getRegions().add(this.region);
 		assertEquals(this.region, client.findRegion("costa"));
 	}
-	
+
 	/**
-	 * it tests if findRegion return null when it doesn't find the region in the board
+	 * it tests if findRegion return null when it doesn't find the region in the
+	 * board
 	 */
 	@Test
 	public void testFindRegionShouldReturnNullIfTheRegionIsNotInTheBoard() {
@@ -106,15 +109,15 @@ public class ClientModelTest {
 	 * it tests if findColor works properlys
 	 */
 	@Test
-	public void testFindColor() {		
+	public void testFindColor() {
 		ClientModel client = new ClientModel();
 		Color color = client.findColor("White");
 		assertEquals(new Color(255, 255, 255), color);
 	}
-	
+
 	/**
-	 * it tests if findPlayerTile returns null when the paramter is not an integer, and if it returns the
-	 * right tile when it's all fine
+	 * it tests if findPlayerTile returns null when the paramter is not an
+	 * integer, and if it returns the right tile when it's all fine
 	 */
 	@Test
 	public void testFindPlayerTile() {
@@ -127,8 +130,8 @@ public class ClientModelTest {
 	}
 
 	/**
-	 * it tests if findRegionTile returns null when the paramter is not an integer, and if it returns the
-	 * right tile when it's all fine
+	 * it tests if findRegionTile returns null when the paramter is not an
+	 * integer, and if it returns the right tile when it's all fine
 	 */
 	@Test
 	public void testFindRegionTile() {
@@ -141,11 +144,12 @@ public class ClientModelTest {
 		businessPermitTiles.add(tile);
 		this.board.getRegions().get(0).getDeck().setBusinessPermitTiles(businessPermitTiles);
 		assertEquals(tile, client.findRegionTile("0", region));
-		}
+	}
 
 	/**
-	 * it tests if findItem return the chosen item of the market when it's all fine, and if it return null 
-	 * when you insert a number greater then the market's size or if the parameter passed is not an integer
+	 * it tests if findItem return the chosen item of the market when it's all
+	 * fine, and if it return null when you insert a number greater then the
+	 * market's size or if the parameter passed is not an integer
 	 */
 	@Test
 	public void testFindItem() {
@@ -159,8 +163,8 @@ public class ClientModelTest {
 	}
 
 	/**
-	 * it tests if findPoliticCard returns null when the parameter is not an integer and if it returns
-	 * the politic card chosen when it is all fine
+	 * it tests if findPoliticCard returns null when the parameter is not an
+	 * integer and if it returns the politic card chosen when it is all fine
 	 */
 	@Test
 	public void testFindPoliticCard() {

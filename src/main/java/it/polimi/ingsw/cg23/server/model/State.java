@@ -8,22 +8,23 @@ import java.io.Serializable;
  * @author Andrea
  *
  */
-public class State implements Serializable{
+public class State implements Serializable {
 
 	private static final long serialVersionUID = 5440571559577905431L;
 	private String status;
 	private Player finalPlayer;
 	private Player currentPlayer;
-	
+
 	/**
-	 * The constructor of the class. 
+	 * The constructor of the class.
 	 * 
-	 * @param status The initial status.
+	 * @param status
+	 *            The initial status.
 	 */
 	public State() {
-		this.status="INITIALIZATION";
-		this.currentPlayer=null;
-		this.finalPlayer=null;
+		this.status = "INITIALIZATION";
+		this.currentPlayer = null;
+		this.finalPlayer = null;
 	}
 
 	/**
@@ -38,7 +39,8 @@ public class State implements Serializable{
 	/**
 	 * Sets the status of the game.
 	 * 
-	 * @param status the status to set
+	 * @param status
+	 *            the status to set
 	 */
 	public void setStatus(String status) {
 		this.status = status;
@@ -56,7 +58,8 @@ public class State implements Serializable{
 	/**
 	 * Sets the current player of the turn.
 	 * 
-	 * @param currentPlayer the currentPlayer to set
+	 * @param currentPlayer
+	 *            the currentPlayer to set
 	 */
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
@@ -74,46 +77,48 @@ public class State implements Serializable{
 	/**
 	 * Sets the player who has built all emporiums available first.
 	 * 
-	 * @param player the player to set
+	 * @param player
+	 *            the player to set
 	 */
 	public void setFinalPlayer(Player player) {
 		this.finalPlayer = player;
 	}
-	
+
 	/**
 	 * Changes the status of the model.
 	 */
 	public void changeStatus() {
-		if(finalPlayer!=null && !"FINAL TURN".equals(status)){
-			status="FINAL TURN";
+		if (finalPlayer != null && !"FINAL TURN".equals(status)) {
+			status = "FINAL TURN";
 			return;
 		}
-		if("TURN".equals(status)){
-			status="MARKET: SELLING";
+		if ("TURN".equals(status)) {
+			status = "MARKET: SELLING";
 			return;
 		}
-		if("MARKET: SELLING".equals(status)){
-			status="MARKET: BUYING";
+		if ("MARKET: SELLING".equals(status)) {
+			status = "MARKET: BUYING";
 			return;
 		}
-		if("MARKET: BUYING".equals(status) || "INITIALIZATION".equals(status))
-			status="TURN";
+		if ("MARKET: BUYING".equals(status) || "INITIALIZATION".equals(status))
+			status = "TURN";
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the State.
+	 * It generates a string formed by the most significant statistics of the
+	 * State.
+	 * 
 	 * @return string
 	 */
 	@Override
 	public String toString() {
-		String state= "State [status=" + status;
-		if(currentPlayer!=null)
-			state+=", current player=" + currentPlayer.getUser();
-		if(finalPlayer!=null)
-			state+=", final player=" + finalPlayer.getUser();
-		state+="]";
+		String state = "State [status=" + status;
+		if (currentPlayer != null)
+			state += ", current player=" + currentPlayer.getUser();
+		if (finalPlayer != null)
+			state += ", final player=" + finalPlayer.getUser();
+		state += "]";
 		return state;
 	}
-	
-	
+
 }

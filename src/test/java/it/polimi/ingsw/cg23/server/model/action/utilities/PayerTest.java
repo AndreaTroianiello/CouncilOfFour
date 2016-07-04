@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.server.model.action.utilities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +19,14 @@ public class PayerTest {
 	private List<PoliticCard> cards;
 	private List<PoliticCard> discardedCards;
 	private Player player;
-	
+
 	@Before
-	public void SetUp() throws Exception{
+	public void SetUp() throws Exception {
 		this.cards = new ArrayList<>();
 		this.discardedCards = new ArrayList<>();
 		this.player = new Player("user1", new NobilityTrack(1));
 	}
-	
+
 	/**
 	 * it tests if getLogger works properly
 	 */
@@ -44,7 +45,7 @@ public class PayerTest {
 		Payer payer = new Payer();
 		assertEquals(-1, payer.payCoins(cards, discardedCards, 0, player));
 	}
-	
+
 	/**
 	 * it tests if payCoins returns 0 if there are 4 matches
 	 */
@@ -53,19 +54,22 @@ public class PayerTest {
 		Payer payer = new Payer();
 		assertEquals(0, payer.payCoins(cards, discardedCards, 4, player));
 	}
-	
+
 	/**
-	 * it tests if payCoins returns -1 if there are 1 match and the player doesn't have enough money
+	 * it tests if payCoins returns -1 if there are 1 match and the player
+	 * doesn't have enough money
 	 */
 	@Test
 	public void testPayCoinsShouldReturnMinus1IfThereAre1MatchAndThePlayerDoesntHaveEnoughMoney() {
 		Payer payer = new Payer();
 		assertEquals(-1, payer.payCoins(cards, discardedCards, 1, player));
 	}
-	
+
 	/**
-	 * it tests if payCoins returns 10 if there is 1 match and the player have enough money
-	 * @throws NegativeNumberException 
+	 * it tests if payCoins returns 10 if there is 1 match and the player have
+	 * enough money
+	 * 
+	 * @throws NegativeNumberException
 	 */
 	@Test
 	public void testPayCoinsShouldReturnMinus10IfThereIs1Match() throws NegativeNumberException {

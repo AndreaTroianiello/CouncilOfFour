@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 public class BonusAssistantsTest {
 
 	Player player;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("a", new NobilityTrack(3));
@@ -32,6 +32,7 @@ public class BonusAssistantsTest {
 
 	/**
 	 * it tests if the bonus gives the palyer the right amount of assistants
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
@@ -42,21 +43,20 @@ public class BonusAssistantsTest {
 		bonus.giveBonus(player);
 		assertEquals(10, player.getAssistantsPool().getAssistants());
 	}
-	
+
 	/**
 	 * it tests if giveBonus works properly when the number is negative
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testGiveBonusShouldntWorkWhenTheNumberIsNegative() throws NegativeNumberException{
+	public void testGiveBonusShouldntWorkWhenTheNumberIsNegative() throws NegativeNumberException {
 		BonusAssistants bonus = new BonusAssistants();
 		bonus.setNumber(-3);
 		player.getAssistantsPool().setAssistants(0);
 		bonus.giveBonus(player);
 		assertEquals(0, player.getAssistantsPool().getAssistants());
 	}
-	
-	
 
 	/**
 	 * it tests if getName works properly
@@ -85,6 +85,7 @@ public class BonusAssistantsTest {
 	public void testClone() {
 		BonusAssistants bonus = new BonusAssistants();
 		BonusAssistants newBonus = (BonusAssistants) bonus.copy();
-		assertEquals(bonus.getName(), newBonus.getName());	}
+		assertEquals(bonus.getName(), newBonus.getName());
+	}
 
 }

@@ -31,6 +31,7 @@ import it.polimi.ingsw.cg23.utility.MapSetting;
 
 /**
  * create the panel map
+ * 
  * @author viga94_
  *
  */
@@ -48,120 +49,154 @@ public class MapPanel extends JPanel {
 	private transient ControllerGUI controller;
 
 	/**
-	 * @param controller, the controller
-	 * @param loggerArea, the area to read on
+	 * @param controller,
+	 *            the controller
+	 * @param loggerArea,
+	 *            the area to read on
 	 */
 	public MapPanel(JTextArea loggerArea, ControllerGUI controller) {
-		this.loggerArea=loggerArea;
-		this.controller=controller;
-		this.model=controller.getModel();
-		this.ms=new MapSetting();
-		this.cp=new CityPanel(loggerArea,controller);
+		this.loggerArea = loggerArea;
+		this.controller = controller;
+		this.model = controller.getModel();
+		this.ms = new MapSetting();
+		this.cp = new CityPanel(loggerArea, controller);
 
-		lung=Toolkit.getDefaultToolkit().getScreenSize().width-10.0;//lughezza dello schermo meno 10
+		lung = Toolkit.getDefaultToolkit().getScreenSize().width - 10.0;// lughezza
+																		// dello
+																		// schermo
+																		// meno
+																		// 10
 
 		init();
 
-		//configurazione logger
+		// configurazione logger
 		logger = Logger.getLogger(this.getClass());
-		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+		PropertyConfigurator.configure("src/main/resources/logger.properties");// carica
+																				// la
+																				// configurazione
+																				// del
+																				// logger
 	}
 
-	private void init(){
-		List<Region> reg=model.getBoard().getRegions();//the region list
-		King king=model.getBoard().getKing();//the king
+	private void init() {
+		List<Region> reg = model.getBoard().getRegions();// the region list
+		King king = model.getBoard().getKing();// the king
 
-		GridBagLayout layout = new GridBagLayout();//layout GridBagLayout
-		setLayout(layout);//il pannello usa il layout grid bag
+		GridBagLayout layout = new GridBagLayout();// layout GridBagLayout
+		setLayout(layout);// il pannello usa il layout grid bag
 
-		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		GridBagConstraints lim = new GridBagConstraints();// impostazioni layout
+		lim.fill = GridBagConstraints.NONE;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;// posizione componenti nei
+												// riquadri
 
-		BufferedImage img=getImg();//immagine di sfondo
-		double width= (3.0/4)*lung;
-		double height=  ((double) img.getHeight()/img.getWidth())*width;
+		BufferedImage img = getImg();// immagine di sfondo
+		double width = (3.0 / 4) * lung;
+		double height = ((double) img.getHeight() / img.getWidth()) * width;
 
-		Image myim=img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
+		Image myim = img.getScaledInstance((int) width, (int) height, Image.SCALE_DEFAULT);
 
-		JLabel label=new JLabel(new ImageIcon(myim));//etichetta con l'immagine di sfondo
-		lim.gridx = 0;//posizione componenti nella griglia
+		JLabel label = new JLabel(new ImageIcon(myim));// etichetta con
+														// l'immagine di sfondo
+		lim.gridx = 0;// posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
 
-		label.setLayout(layout);//la label usa il layout grid bag
+		label.setLayout(layout);// la label usa il layout grid bag
 
-		List<City> city=ms.getCityfromRegion(reg);//lista con le citta'
+		List<City> city = ms.getCityfromRegion(reg);// lista con le citta'
 
-		int j=0;
-		for(int i=0; i<reg.size()*2; i++){//scorre le colonne
-			for(int k=0; k<5; k++){//scorre le righe
+		int j = 0;
+		for (int i = 0; i < reg.size() * 2; i++) {// scorre le colonne
+			for (int k = 0; k < 5; k++) {// scorre le righe
 
-				JPanel citta = new JPanel();//pannello con le citta'
-				if((i+k)%2==0){//posiziona le citta' a scacchiera
-					citta=cp.createCity(city.get(j), king);//recupero il pannello con la citta'
+				JPanel citta = new JPanel();// pannello con le citta'
+				if ((i + k) % 2 == 0) {// posiziona le citta' a scacchiera
+					citta = cp.createCity(city.get(j), king);// recupero il
+																// pannello con
+																// la citta'
 					citta.setToolTipText(city.get(j).getName());
 					j++;
 					citta.setOpaque(false);
-				}else{//pannello vuoto
+				} else {// pannello vuoto
 					citta.setOpaque(false);
 				}
 
-				lim.gridx = i;//posizione componenti nella griglia
+				lim.gridx = i;// posizione componenti nella griglia
 				lim.gridy = k;
-				lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+				lim.weightx = 1;// occupa tutto lo spazio all'interno del
+								// riquadro
 				lim.weighty = 1;
-				lim.gridheight=1;//grandezza del riquadro
-				lim.gridwidth=1;
+				lim.gridheight = 1;// grandezza del riquadro
+				lim.gridwidth = 1;
 
-				if(i%2!=0&&k==4){
-					Region region=city.get(j-1).getRegion();//regione attuale
+				if (i % 2 != 0 && k == 4) {
+					Region region = city.get(j - 1).getRegion();// regione
+																// attuale
 
-					JButton regionButton=new JButton();//creazione bottone della regione
-					regionButton.setToolTipText("Select region "+region.getName());
-					regionButton.setOpaque(false);//bottone trasparente
-					regionButton.setContentAreaFilled(false);//contenuto bottone trasparente
-					regionButton.setBorderPainted(false);//bordi bottone trasparente
+					JButton regionButton = new JButton();// creazione bottone
+															// della regione
+					regionButton.setToolTipText("Select region " + region.getName());
+					regionButton.setOpaque(false);// bottone trasparente
+					regionButton.setContentAreaFilled(false);// contenuto
+																// bottone
+																// trasparente
+					regionButton.setBorderPainted(false);// bordi bottone
+															// trasparente
 
-					lim.gridx = i;//posizione componenti nella griglia
+					lim.gridx = i;// posizione componenti nella griglia
 					lim.gridy = k;
-					lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+					lim.weightx = 1;// occupa tutto lo spazio all'interno del
+									// riquadro
 					lim.weighty = 1;
-					lim.gridheight=1;//grandezza del riquadro
-					lim.gridwidth=1;
-					lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-					lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+					lim.gridheight = 1;// grandezza del riquadro
+					lim.gridwidth = 1;
+					lim.fill = GridBagConstraints.BOTH;// grandezza componenti
+														// nei riquadri (both=
+														// tutto pieno)
+					lim.anchor = GridBagConstraints.CENTER;// posizione
+															// componenti nei
+															// riquadri
 
-					layout.setConstraints(regionButton, lim);//applico il layout al pannello delle citta'
-					label.add(regionButton);//aggiunta il panel alla label
+					layout.setConstraints(regionButton, lim);// applico il
+																// layout al
+																// pannello
+																// delle citta'
+					label.add(regionButton);// aggiunta il panel alla label
 
-					listener(regionButton, region);//azioni cliccando il bottone della regione
+					listener(regionButton, region);// azioni cliccando il
+													// bottone della regione
 				}
 
-				layout.setConstraints(citta, lim);//applico il layout al pannello delle citta'
-				label.add(citta);//aggiunta il panel alla label
+				layout.setConstraints(citta, lim);// applico il layout al
+													// pannello delle citta'
+				label.add(citta);// aggiunta il panel alla label
 			}
 		}
 
-		layout.setConstraints(label, lim);//applico il layout alla label con lo sfondo
-		add(label);//aggiungo la label al panel
+		layout.setConstraints(label, lim);// applico il layout alla label con lo
+											// sfondo
+		add(label);// aggiungo la label al panel
 	}
 
 	/**
 	 * load the images
+	 * 
 	 * @return the image
 	 */
-	private BufferedImage getImg(){//recupero le immagini
-		BufferedImage image=null;
-		String path="src/main/resources/images/region 1200.jpg";//percorso dell'immagine
+	private BufferedImage getImg() {// recupero le immagini
+		BufferedImage image = null;
+		String path = "src/main/resources/images/region 1200.jpg";// percorso
+																	// dell'immagine
 
 		try {
 			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
-			logger.error("impossibile caricare l'ìmmagine della carta costruzione: "+path, e);
+			logger.error("impossibile caricare l'ìmmagine della carta costruzione: " + path, e);
 		}
 
 		return image;
@@ -169,35 +204,50 @@ public class MapPanel extends JPanel {
 
 	/**
 	 * execute action clicking on the region button
-	 * @param but, the region button
-	 * @param region, the actual region
+	 * 
+	 * @param but,
+	 *            the region button
+	 * @param region,
+	 *            the actual region
 	 */
-	private void listener(JButton but, Region region){
+	private void listener(JButton but, Region region) {
 		but.addMouseListener(new MouseListener() {
 			@Override
-			public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+			public void mousePressed(MouseEvent e) {
+				/** empty, not erasable */
+			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+			public void mouseExited(MouseEvent e) {
+				/** empty, not erasable */
+			}
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(SwingUtilities.isLeftMouseButton(e)){//bottone sinistro
-					loggerArea.append("\n Element selected(Region:"+region.getName()+").");
+				if (SwingUtilities.isLeftMouseButton(e)) {// bottone sinistro
+					loggerArea.append("\n Element selected(Region:" + region.getName() + ").");
 					controller.getSelectedElements().setRegion(region);
 				}
-				if(SwingUtilities.isRightMouseButton(e))//bottone destro
-					loggerArea.append("\nSelezionata regione "+region.getName());
+				if (SwingUtilities.isRightMouseButton(e)) // bottone destro
+					loggerArea.append("\nSelezionata regione " + region.getName());
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+			public void mouseEntered(MouseEvent e) {
+				/** empty, not erasable */
+			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+			public void mouseReleased(MouseEvent e) {
+				/** empty, not erasable */
+			}
 		});
 	}
 
 	/**
 	 * update the component
 	 */
-	public void update(){
+	public void update() {
 		removeAll();
 		init();
 	}

@@ -14,6 +14,7 @@ import it.polimi.ingsw.cg23.server.controller.action.EndTurn;
 
 /**
  * create the info button of the gui
+ * 
  * @author viga94_
  *
  */
@@ -27,37 +28,40 @@ public class InfoPanel extends JPanel {
 	private transient ControllerGUI controller;
 
 	/**
-	 * @param loggerArea, the area to read on
-	 * @param controller, the controller
+	 * @param loggerArea,
+	 *            the area to read on
+	 * @param controller,
+	 *            the controller
 	 */
 	public InfoPanel(JTextArea loggerArea, ControllerGUI controller) {
-		this.loggerArea=loggerArea;
-		this.controller=controller;
+		this.loggerArea = loggerArea;
+		this.controller = controller;
 
 		init();
 	}
 
 	/**
-	 * create the info action
-	 * @return, the info panel
+	 * create the info action @return, the info panel
 	 */
-	private void init(){
-		GridBagLayout layout = new GridBagLayout();//nuovo layout
-		setLayout(layout);//applicazione al del layout al panello
+	private void init() {
+		GridBagLayout layout = new GridBagLayout();// nuovo layout
+		setLayout(layout);// applicazione al del layout al panello
 		setOpaque(false);
 
-		GridBagConstraints lim = new GridBagConstraints();//impostazioni layout
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		GridBagConstraints lim = new GridBagConstraints();// impostazioni layout
+		lim.anchor = GridBagConstraints.CENTER;// posizione componenti nei
+												// riquadri
 
-		JLabel label=new JLabel("Info");
+		JLabel label = new JLabel("Info");
 		label.setName("info label");
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 0;// posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=4;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 4;
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.fill = GridBagConstraints.NONE;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
 
 		layout.setConstraints(label, lim);
 		add(label);
@@ -65,18 +69,19 @@ public class InfoPanel extends JPanel {
 		JButton button1 = new JButton("Exit");
 		button1.setName("Uscita");
 		button1.setToolTipText("Exit from the game");
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 0;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
+		lim.fill = GridBagConstraints.BOTH;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
 		layout.setConstraints(button1, lim);
-		add(button1);//aggiunta bottone al layer panel
-		button1.addActionListener(e->{
+		add(button1);// aggiunta bottone al layer panel
+		button1.addActionListener(e -> {
 			int reply1 = JOptionPane.showConfirmDialog(null, "Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
-			if(reply1 == JOptionPane.YES_OPTION){
+			if (reply1 == JOptionPane.YES_OPTION) {
 				controller.closeAll();
 			}
 		});
@@ -84,53 +89,54 @@ public class InfoPanel extends JPanel {
 		JButton button2 = new JButton("Clear log");
 		button2.setName("Clearl");
 		button1.setToolTipText("Cancella la log area");
-		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridx = 1;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
 		layout.setConstraints(button2, lim);
-		add(button2);//aggiunta bottone al layer panel
-		button2.addActionListener(e->{
-				loggerArea.append(button2.getName());
-				//AZIONI AZIONE clear
-				loggerArea.setText("Logger cleaned.");
+		add(button2);// aggiunta bottone al layer panel
+		button2.addActionListener(e -> {
+			loggerArea.append(button2.getName());
+			// AZIONI AZIONE clear
+			loggerArea.setText("Logger cleaned.");
 		});
 
 		JButton button3 = new JButton("Clear selec");
 		button3.setName("clear selected");
 		button3.setToolTipText("Clear the selected");
-		lim.gridx = 2;//posizione componenti nella griglia
+		lim.gridx = 2;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
+		lim.fill = GridBagConstraints.BOTH;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
 		layout.setConstraints(button3, lim);
-		add(button3);//aggiunta bottone al layer panel
-		button3.addActionListener(e->{
-				loggerArea.append("\n"+button3.getName());
-				controller.getSelectedElements().resetAll();
-				loggerArea.append("\nSelections cleaned.");
-			});
+		add(button3);// aggiunta bottone al layer panel
+		button3.addActionListener(e -> {
+			loggerArea.append("\n" + button3.getName());
+			controller.getSelectedElements().resetAll();
+			loggerArea.append("\nSelections cleaned.");
+		});
 
 		JButton button4 = new JButton("End Turn");
 		button4.setName("End Turn");
 		button4.setToolTipText("Finisci il turno");
-		lim.gridx = 3;//posizione componenti nella griglia
+		lim.gridx = 3;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
 		layout.setConstraints(button4, lim);
-		add(button4);//aggiunta bottone al layer panel
-		button4.addActionListener(e->{
-				loggerArea.append("\nEnd Turn");
-				//azione fine turno
-				controller.updateController(new EndTurn());
-			});
+		add(button4);// aggiunta bottone al layer panel
+		button4.addActionListener(e -> {
+			loggerArea.append("\nEnd Turn");
+			// azione fine turno
+			controller.updateController(new EndTurn());
+		});
 	}
 }

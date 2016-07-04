@@ -17,63 +17,97 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
  * read the color from the xml file
  */
 public class ReadColorXml {
-	private String path="src/main/resources/xmlFiles/";//file location
+	private String path = "src/main/resources/xmlFiles/";// file location
 
 	/**
 	 * find the colors in the xml file
-	 * @param endPath the xml file name
+	 * 
+	 * @param endPath
+	 *            the xml file name
 	 * @return an array with the colors
 	 * @throws XmlException
 	 */
-	public String[] coloriXml(String endPath) throws XmlException{
-		
+	public String[] coloriXml(String endPath) throws XmlException {
 
 		try {
-			String[] color = new String[colorNumber(endPath)];//array con i colori
+			String[] color = new String[colorNumber(endPath)];// array con i
+																// colori
 
-			File inputFile = new File(path+endPath);//creato nuovo file
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
-			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
+			File inputFile = new File(path + endPath);// creato nuovo file
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();// creata
+																					// la
+																					// factory
+																					// per
+																					// processare
+																					// il
+																					// flusso
+																					// di
+																					// dati
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();// inizializzato
+																		// un
+																		// nuovo
+																		// documento
+			Document doc = dBuilder.parse(inputFile);// carica il documento dal
+														// file
 
-			NodeList colori=doc.getElementsByTagName("color");//lista dei nodi che contengono "city"
+			NodeList colori = doc.getElementsByTagName("color");// lista dei
+																// nodi che
+																// contengono
+																// "city"
 
-			for (int i=0; i<colori.getLength(); i++){//scorre le citta' presenti nel file xml
-				color[i]=colori.item(i).getTextContent();
+			for (int i = 0; i < colori.getLength(); i++) {// scorre le citta'
+															// presenti nel file
+															// xml
+				color[i] = colori.item(i).getTextContent();
 			}
 
-			
 			return color;
-		}catch (IOException | ParserConfigurationException | SAXException  e) {
+		} catch (IOException | ParserConfigurationException | SAXException e) {
 			throw new XmlException(e);
 		}
-		
-		
+
 	}
 
 	/**
 	 * calcolate the number of colors in the xml file
-	 * @param endPath, the name of the xml file
+	 * 
+	 * @param endPath,
+	 *            the name of the xml file
 	 * @return the number of colors
 	 * @throws XmlException
 	 */
-	public int colorNumber(String endPath) throws XmlException{
-		int colorsNum=0;
+	public int colorNumber(String endPath) throws XmlException {
+		int colorsNum = 0;
 
 		try {
-			File inputFile = new File(path+endPath);//creato nuovo file
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
-			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
+			File inputFile = new File(path + endPath);// creato nuovo file
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();// creata
+																					// la
+																					// factory
+																					// per
+																					// processare
+																					// il
+																					// flusso
+																					// di
+																					// dati
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();// inizializzato
+																		// un
+																		// nuovo
+																		// documento
+			Document doc = dBuilder.parse(inputFile);// carica il documento dal
+														// file
 
-			NodeList colori=doc.getElementsByTagName("color");//lista dei nodi che contengono "city"
-			colorsNum=colori.getLength();
+			NodeList colori = doc.getElementsByTagName("color");// lista dei
+																// nodi che
+																// contengono
+																// "city"
+			colorsNum = colori.getLength();
 
 			return colorsNum;
-		}catch (IOException | ParserConfigurationException | SAXException  e) {
+		} catch (IOException | ParserConfigurationException | SAXException e) {
 			throw new XmlException(e);
 		}
-		
+
 	}
 
 }

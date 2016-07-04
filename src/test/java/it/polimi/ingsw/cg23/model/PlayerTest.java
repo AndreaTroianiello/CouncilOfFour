@@ -1,6 +1,11 @@
 package it.polimi.ingsw.cg23.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -26,6 +31,7 @@ public class PlayerTest {
 	Player p;
 	List<PoliticCard> cards;
 	BusinessPermitTile tile;
+
 	/**
 	 * initialization of the test's items.
 	 * 
@@ -33,20 +39,20 @@ public class PlayerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		cards=new ArrayList<>();
+		cards = new ArrayList<>();
 		cards.add(new PoliticCard(Color.BLACK, false));
 		cards.add(new PoliticCard(Color.RED, false));
 		cards.add(new PoliticCard(Color.YELLOW, false));
 		cards.add(new PoliticCard(null, true));
 		cards.add(new PoliticCard(Color.BLUE, false));
 		cards.add(new PoliticCard(Color.PINK, false));
-		List<Character> citiesId=new ArrayList<>();
+		List<Character> citiesId = new ArrayList<>();
 		citiesId.add('A');
 		citiesId.add('B');
 		citiesId.add('C');
-		tile=new BusinessPermitTile(citiesId, "collina" );
+		tile = new BusinessPermitTile(citiesId, "collina");
 		tile.addBonus(new BonusVictoryPoints(3));
-		p=new Player("player1",new NobilityTrack(3));
+		p = new Player("player1", new NobilityTrack(3));
 		p.getAssistantsPool().setAssistants(10);
 	}
 
@@ -54,10 +60,10 @@ public class PlayerTest {
 	 * Tests the username of the player.
 	 */
 	@Test
-	public void testUser(){
+	public void testUser() {
 		assertNotNull(p.getUser());
-		assertNotEquals(p.getUser(),"");
-		assertEquals(p.getUser(),"player1");
+		assertNotEquals(p.getUser(), "");
+		assertEquals(p.getUser(), "player1");
 	}
 
 	/**
@@ -74,7 +80,7 @@ public class PlayerTest {
 			assertNotEquals(p.getAssistantsPool().getAssistants(), -1);
 			assertEquals(p.getAssistantsPool().getAssistants(), 10);
 		}
-		
+
 		try {
 			p.getAssistantsPool().setAssistants(11);
 			assertEquals(p.getAssistantsPool().getAssistants(), 11);
@@ -85,22 +91,22 @@ public class PlayerTest {
 			assertEquals(p.getAssistantsPool().getAssistants(), 10);
 		}
 	}
-	
+
 	/**
 	 * Tests the richness of the player.
 	 */
 	@Test
 	public void testRichness() {
 		assertNotNull(p.getRichness());
-		assertEquals(p.getRichness().getCoins(),0);
+		assertEquals(p.getRichness().getCoins(), 0);
 		try {
 			p.getRichness().setCoins(-1);
-			assertEquals(p.getRichness().getCoins(),-1);
+			assertEquals(p.getRichness().getCoins(), -1);
 		} catch (Exception e) {
 			assertNotEquals(p.getRichness().getCoins(), -1);
 			assertEquals(p.getRichness().getCoins(), 0);
 		}
-		
+
 		try {
 			p.getRichness().setCoins(11);
 			assertEquals(p.getRichness().getCoins(), 11);
@@ -111,60 +117,60 @@ public class PlayerTest {
 			assertEquals(p.getRichness().getCoins(), 10);
 		}
 	}
-	
+
 	/**
 	 * Tests the victory points of the player.
 	 */
 	@Test
 	public void testVictoryPoints() {
 		assertNotNull(p.getVictoryTrack());
-		assertEquals(p.getVictoryTrack().getVictoryPoints(),0);
+		assertEquals(p.getVictoryTrack().getVictoryPoints(), 0);
 		p.getVictoryTrack().setVictoryPoints(-10);
 		assertEquals(p.getVictoryTrack().getVictoryPoints(), -10);
 		p.getVictoryTrack().setVictoryPoints(10);
 		assertEquals(p.getVictoryTrack().getVictoryPoints(), 10);
 	}
-	
+
 	/**
 	 * Tests the hand of the player.
 	 */
 	@Test
 	public void testHand() {
-		assertEquals(p.getHand().size(),0);
-		for(PoliticCard card:cards)
+		assertEquals(p.getHand().size(), 0);
+		for (PoliticCard card : cards)
 			p.addPoliticCard(card);
 		assertEquals(p.getHand().size(), cards.size());
 	}
-	
+
 	/**
 	 * Tests the emporiums of the player.
 	 */
 	@Test
 	public void testEmporiums() {
 		assertFalse(p.isAvailableEmporiumEmpty());
-		Emporium e=p.getAvailableEmporium();
+		Emporium e = p.getAvailableEmporium();
 		assertNotNull(e);
 		assertEquals(e.getPlayer(), p);
 		assertNull(e.getCity());
-		while(!p.isAvailableEmporiumEmpty())
+		while (!p.isAvailableEmporiumEmpty())
 			p.setEmporium(p.getAvailableEmporium());
 		assertTrue(p.isAvailableEmporiumEmpty());
-		assertNotEquals(p.getEmporiums().size(),0);
+		assertNotEquals(p.getEmporiums().size(), 0);
 	}
-	
+
 	/**
 	 * Tests the business permit tiles of the player.
 	 */
 	@Test
 	public void testBusinessPermitTiles() {
-		assertEquals(p.getAvailableBusinessPermits().size(),0);
-		assertEquals(p.getUsedBusinessPermit().size(),0);
+		assertEquals(p.getAvailableBusinessPermits().size(), 0);
+		assertEquals(p.getUsedBusinessPermit().size(), 0);
 		p.setUsedBusinessPermit(tile);
 		p.addAvailableBusinessPermit(tile);
-		assertEquals(p.getAvailableBusinessPermits().size(),1);
-		assertEquals(p.getUsedBusinessPermit().size(),1);
+		assertEquals(p.getAvailableBusinessPermits().size(), 1);
+		assertEquals(p.getUsedBusinessPermit().size(), 1);
 	}
-	
+
 	/**
 	 * Tests the additional action of the player.
 	 */
@@ -176,19 +182,16 @@ public class PlayerTest {
 		p.switchAdditionalAction();
 		assertFalse(p.isAdditionalAction());
 	}
-	
+
 	/**
 	 * Tests the nobility track of the player.
 	 */
 	@Test
 	public void testNobilityTrack() {
 		assertNotNull(p.getNobilityTrack());
-		assertEquals(p.getNobilityBoxPosition(),0);
+		assertEquals(p.getNobilityBoxPosition(), 0);
 		p.setNobilityBoxPoistion(1);
-		assertEquals(p.getNobilityBoxPosition(),1);
+		assertEquals(p.getNobilityBoxPosition(), 1);
 	}
-	
-	
-	
 
 }

@@ -6,22 +6,25 @@ import it.polimi.ingsw.cg23.server.model.City;
 
 /**
  * The pawn king is used to build a emporium in the king's city.
+ * 
  * @author Andrea
  *
  */
-public class King implements Serializable{
-	
+public class King implements Serializable {
+
 	private static final long serialVersionUID = -2378038028693192360L;
 	private City city;
 	private final Council council;
-	
+
 	/**
 	 * The constructor of the pawn King.
-	 * @param city The initial city of the king.
+	 * 
+	 * @param city
+	 *            The initial city of the king.
 	 */
-	public King(City city){
-		this.city=city;
-		this.council= new Council();
+	public King(City city) {
+		this.city = city;
+		this.council = new Council();
 	}
 
 	/**
@@ -36,7 +39,8 @@ public class King implements Serializable{
 	/**
 	 * Sets the new king's city.
 	 * 
-	 * @param city the city to set.
+	 * @param city
+	 *            the city to set.
 	 */
 	public void setCity(City city) {
 		this.city = city;
@@ -52,7 +56,9 @@ public class King implements Serializable{
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the King.
+	 * It generates a string formed by the most significant statistics of the
+	 * King.
+	 * 
 	 * @return string
 	 */
 	@Override

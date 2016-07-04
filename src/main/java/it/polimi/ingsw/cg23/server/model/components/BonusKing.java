@@ -8,26 +8,29 @@ import it.polimi.ingsw.cg23.server.model.bonus.Bonus;
 import it.polimi.ingsw.cg23.server.model.bonus.BonusVictoryPoints;
 
 /**
- * The bonus king is common to Region and Type. This is invoked when a bonus is give.
+ * The bonus king is common to Region and Type. This is invoked when a bonus is
+ * give.
  * 
  * @author Andrea
  */
-public class BonusKing implements Serializable{
-	
+public class BonusKing implements Serializable {
+
 	private static final long serialVersionUID = -6662021675560087243L;
-	private int index;								//The current bonus king.
-	private List<Integer> bonusValues;				//Set of all bonus king.
-	
+	private int index; // The current bonus king.
+	private List<Integer> bonusValues; // Set of all bonus king.
+
 	/**
 	 * The constructor of the bonus king.
 	 * 
-	 * @param bonusValues A list of integer, these are the values of victory points that bonus king gives.
+	 * @param bonusValues
+	 *            A list of integer, these are the values of victory points that
+	 *            bonus king gives.
 	 */
-	public BonusKing(List<Integer> bonusValues){
-		this.index=0;
-		this.bonusValues=bonusValues;
+	public BonusKing(List<Integer> bonusValues) {
+		this.index = 0;
+		this.bonusValues = bonusValues;
 	}
-	
+
 	/**
 	 * Returns the value of current bonus king.
 	 * 
@@ -36,16 +39,17 @@ public class BonusKing implements Serializable{
 	public int getCurrentBonusKing() {
 		return bonusValues.get(index);
 	}
-	
+
 	/**
 	 * Sets the values of bonus king.
 	 * 
-	 * @param bonusValues the all values of the bonus king.
+	 * @param bonusValues
+	 *            the all values of the bonus king.
 	 */
 	public void setBonusValues(List<Integer> bonusValues) {
-		this.bonusValues=bonusValues;
+		this.bonusValues = bonusValues;
 	}
-	
+
 	/**
 	 * Returns the list of values of the bonus king
 	 * 
@@ -60,31 +64,34 @@ public class BonusKing implements Serializable{
 	 * 
 	 * @return the index
 	 */
-	public int getCurrentIndexBonusKing(){
+	public int getCurrentIndexBonusKing() {
 		return index;
 	}
-	
+
 	/**
-	 * Increases of one position the index of current bonus. 
+	 * Increases of one position the index of current bonus.
 	 */
-	private void increasePosition(){
-		if(index<bonusValues.size()-1)					//The index can be at most the size of the set minus 1.
+	private void increasePosition() {
+		if (index < bonusValues.size() - 1) // The index can be at most the size
+											// of the set minus 1.
 			this.index++;
 	}
-	
+
 	/**
 	 * Runs the bonus with the current value and increases the index.
 	 * 
 	 * @param player
 	 */
-	public void runBonusKing(Player player){
-		Bonus bonusKing=new BonusVictoryPoints(bonusValues.get(index));
+	public void runBonusKing(Player player) {
+		Bonus bonusKing = new BonusVictoryPoints(bonusValues.get(index));
 		bonusKing.giveBonus(player);
 		increasePosition();
 	}
-	
+
 	/**
-	 * It generates a string formed by the most significant statistics of the BonusKing.
+	 * It generates a string formed by the most significant statistics of the
+	 * BonusKing.
+	 * 
 	 * @return string
 	 */
 	@Override

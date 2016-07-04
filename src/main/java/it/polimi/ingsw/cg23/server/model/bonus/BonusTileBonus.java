@@ -9,13 +9,14 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
 /**
- * the class of the bonus that allows to run the bonus from a tile the player is in possession. 
- *  
+ * the class of the bonus that allows to run the bonus from a tile the player is
+ * in possession.
+ * 
  * @author Vincenzo
  *
  */
-public class BonusTileBonus extends Observable<Change> implements Bonus {
-	
+public class BonusTileBonus extends Observable<Change>implements Bonus {
+
 	private static final long serialVersionUID = -5750535311281465339L;
 	private final String name;
 	private int number;
@@ -26,66 +27,78 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	 * 
 	 */
 	public BonusTileBonus() {
-		this.number=1;
-		this.numberTile=-1;
-		this.name="TileBonus";
+		this.number = 1;
+		this.numberTile = -1;
+		this.name = "TileBonus";
 	}
 
 	/**
 	 * Set the numberTile
 	 * 
-	 * @param numberTile the number of the tile chosen
+	 * @param numberTile
+	 *            the number of the tile chosen
 	 */
 	public void setNumberTile(int numberTile) {
-		this.numberTile=numberTile;
+		this.numberTile = numberTile;
 	}
-	
+
 	/**
 	 * @return the bonus name and the number(if exist)
 	 */
 	@Override
-	public String getName(){
-		return number+name;
+	public String getName() {
+		return number + name;
 	}
 
 	/**
 	 * for businessPermitTile give the player the bonuses in it
 	 * 
-	 * @param player whom the bonus is given to
+	 * @param player
+	 *            whom the bonus is given to
 	 */
 	@Override
 	public void giveBonus(Player player) {
-		if(player.getAvailableBusinessPermits().isEmpty()){
+		if (player.getAvailableBusinessPermits().isEmpty()) {
 			this.notifyObserver(new InfoChange("The list is empty."));
 			return;
 		}
-		if(numberTile<player.getAvailableBusinessPermits().size() && numberTile>=0){
-			BusinessPermitTile businessPermitTile=player.getAvailableBusinessPermits().get(numberTile);   					//add the chosen PermitTitle to the player collection
-			for(Bonus bonus: businessPermitTile.getBonusTile()){					//iterate the bonus in the tile and
-				bonus.giveBonus(player);												//for each bonus give it to the player
+		if (numberTile < player.getAvailableBusinessPermits().size() && numberTile >= 0) {
+			BusinessPermitTile businessPermitTile = player.getAvailableBusinessPermits().get(numberTile); // add
+																											// the
+																											// chosen
+																											// PermitTitle
+																											// to
+																											// the
+																											// player
+																											// collection
+			for (Bonus bonus : businessPermitTile.getBonusTile()) { // iterate
+																	// the bonus
+																	// in the
+																	// tile and
+				bonus.giveBonus(player); // for each bonus give it to the player
 			}
-		}else{
+		} else {
 			this.notifyObserver(new BonusChange(this));
 			return;
 		}
 	}
-	
+
 	@Override
-	public void setNumber(int number){
-		//this is a method of the Bonus interfaced not used in this class
+	public void setNumber(int number) {
+		// this is a method of the Bonus interfaced not used in this class
 	}
-	
+
 	/**
 	 * @return number
 	 */
 	@Override
-	public int getNumber(){
+	public int getNumber() {
 		return number;
 	}
 
 	@Override
 	public void setBoard(Board board) {
-		// Not implemented.	
+		// Not implemented.
 	}
 
 	/**
@@ -95,14 +108,13 @@ public class BonusTileBonus extends Observable<Change> implements Bonus {
 	public String toString() {
 		return "BonusTileBonus [businessPermitCard=" + number + "]";
 	}
-	
+
 	/**
 	 * @return a new BonusTileBonus
 	 */
 	@Override
 	public Bonus copy() {
-		return new BonusTileBonus(); 
-	}	
-	
+		return new BonusTileBonus();
+	}
 
 }

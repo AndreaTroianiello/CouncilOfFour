@@ -10,51 +10,63 @@ import it.polimi.ingsw.cg23.server.controller.change.Change;
 import it.polimi.ingsw.cg23.server.view.rmi.RMIViewRemote;
 
 /**
- * The ClientRMIView manages the input and output objects flow, when a RMI connection between client and server is used.
+ * The ClientRMIView manages the input and output objects flow, when a RMI
+ * connection between client and server is used.
+ * 
  * @author Andrea
  *
  */
-public class ClientRMIView implements ClientViewRemote,ClientViewOut{
+public class ClientRMIView implements ClientViewRemote, ClientViewOut {
 
 	private ClientController controller;
 	private RMIViewRemote rmiServerView;
-	
+
 	/**
 	 * The constructor of ClientRMIView.
-	 * @param controller The game's controller.
-	 * @throws RemoteException if the RMI connection has problems.	
+	 * 
+	 * @param controller
+	 *            The game's controller.
+	 * @throws RemoteException
+	 *             if the RMI connection has problems.
 	 */
 	public ClientRMIView(ClientController controller) throws RemoteException {
-		this.controller=controller;
+		this.controller = controller;
 		controller.setOutView(this);
 	}
-	
+
 	/**
 	 * Sets the Client's RMI view on the server.
-	 * @param rmiServerView The server' stub.
+	 * 
+	 * @param rmiServerView
+	 *            The server' stub.
 	 */
 	public void setRMIServerView(RMIViewRemote rmiServerView) {
-		this.rmiServerView=rmiServerView;
-		
+		this.rmiServerView = rmiServerView;
+
 	}
-	
+
 	/**
 	 * Updates the client's controller with the incoming change.
-	 * @throws RemoteException if the RMI connection has problems.	
+	 * 
+	 * @throws RemoteException
+	 *             if the RMI connection has problems.
 	 */
 	@Override
-	public void  updateClient(Change change) throws RemoteException{
-		if(change!=null)
+	public void updateClient(Change change) throws RemoteException {
+		if (change != null)
 			controller.updateController(change);
 	}
-	
+
 	/**
 	 * Sends the action to the server.
-	 * @param action The action to send.
-	 * @throws IOException if the RMI connection has problems.	
+	 * 
+	 * @param action
+	 *            The action to send.
+	 * @throws IOException
+	 *             if the RMI connection has problems.
 	 */
 	@Override
-	public void update(Action action) throws IOException{
+	public void update(Action action) throws IOException {
 		rmiServerView.performAction(action);
 	}
 
@@ -63,7 +75,6 @@ public class ClientRMIView implements ClientViewRemote,ClientViewOut{
 	 */
 	@Override
 	public void close() throws RemoteException {
-		rmiServerView=null;		
+		rmiServerView = null;
 	}
 }
-

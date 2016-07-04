@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.controller.creation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +21,16 @@ public class CreateCostructionTest {
 	private List<Integer> bonuses;
 
 	@Before
-	public void setUp(){
-		cc=new CreateCostruction();
+	public void setUp() {
+		cc = new CreateCostruction();
 
-		//Set up the bonus king
-		bonuses=new ArrayList<>();
-		reg=new ArrayList<>();
+		// Set up the bonus king
+		bonuses = new ArrayList<>();
+		reg = new ArrayList<>();
 		bonuses.add(10);
 		bonuses.add(3);
 		bonuses.add(0);
-		BonusKing bonusKing=new BonusKing(bonuses);
+		BonusKing bonusKing = new BonusKing(bonuses);
 
 		reg.add(new Region("Coast", 5, new RegionDeck(2), bonusKing));
 		reg.add(new Region("Hills", 5, new RegionDeck(2), bonusKing));

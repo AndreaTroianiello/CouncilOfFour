@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.server.model.action.utilities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -21,18 +21,20 @@ public class ElectorTest {
 	private Councillor councillor;
 	private Board board;
 	private Region region;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		this.controlAction = new ControlAction();
 		this.councillor = new Councillor(Color.ORANGE);
 		this.region = new Region("Coast", 0, null, null);
-		List<Region> regions = new ArrayList<>();regions.add(region);
+		List<Region> regions = new ArrayList<>();
+		regions.add(region);
 		this.board = new Board(null, regions, null, null, new King(null), null);
 	}
 
 	/**
-	 * it tests if election change the councillors of the king's council if it's all ok
+	 * it tests if election change the councillors of the king's council if it's
+	 * all ok
 	 */
 	@Test
 	public void testElectionShouldChangeTheKingCouncilIfItsKing() {
@@ -41,9 +43,10 @@ public class ElectorTest {
 		elector.election(councillor, board, region, true);
 		assertEquals(councillor, this.board.getKing().getCouncil().getCouncillors().get(0));
 	}
-	
+
 	/**
-	 * it tests if election change the councillors of the region's council if it's all ok
+	 * it tests if election change the councillors of the region's council if
+	 * it's all ok
 	 */
 	@Test
 	public void testElectionShouldChangeTheRegionCouncilIfItsAllOk() {
@@ -52,9 +55,10 @@ public class ElectorTest {
 		elector.election(councillor, board, region, false);
 		assertEquals(councillor, this.board.getRegions().get(0).getCouncil().getCouncillors().get(0));
 	}
-	
+
 	/**
-	 * it tests if election change the councillors of the region's council if it's all ok
+	 * it tests if election change the councillors of the region's council if
+	 * it's all ok
 	 */
 	@Test
 	public void testElectionShouldntChangeTheRegionCouncilIfItIsntAllOk() {

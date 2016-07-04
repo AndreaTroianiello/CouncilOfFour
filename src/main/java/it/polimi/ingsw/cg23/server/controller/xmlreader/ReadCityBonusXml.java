@@ -12,8 +12,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import it.polimi.ingsw.cg23.server.model.exception.XmlException;
+
 /**
  * read the city bonus in the xml file
+ * 
  * @author viga94
  *
  */
@@ -23,34 +25,54 @@ public class ReadCityBonusXml {
 	/**
 	 * read the bonuses from the xml file
 	 */
-	public ReadCityBonusXml(){
-		path="src/main/resources/xmlFiles/";//file location
+	public ReadCityBonusXml() {
+		path = "src/main/resources/xmlFiles/";// file location
 	}
 
 	/**
 	 * find the bonuses in the xml file
-	 * @param endPath the file name
+	 * 
+	 * @param endPath
+	 *            the file name
 	 * @return an array with the bonus find in the xml file
 	 * @throws XmlException
 	 */
-	public String[] bonusCityXml(String endPath) throws XmlException{
+	public String[] bonusCityXml(String endPath) throws XmlException {
 
 		try {
 
-			File inputFile = new File(path+endPath);//creato nuovo file
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();//creata la factory per processare il flusso di dati
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();//inizializzato un nuovo documento
-			Document doc = dBuilder.parse(inputFile);//carica il documento dal file
+			File inputFile = new File(path + endPath);// creato nuovo file
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();// creata
+																					// la
+																					// factory
+																					// per
+																					// processare
+																					// il
+																					// flusso
+																					// di
+																					// dati
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();// inizializzato
+																		// un
+																		// nuovo
+																		// documento
+			Document doc = dBuilder.parse(inputFile);// carica il documento dal
+														// file
 
-			NodeList bonus=doc.getElementsByTagName("bonus");//lista dei nodi che contengono "bonus"
-			String[] bonuses=new String[bonus.getLength()];//array che contiene i bonus trovati
-			
-			for(int i=0; i<bonus.getLength(); i++){//ciclo che scorre i bonus trovati
-				bonuses[i]=bonus.item(i).getTextContent();
+			NodeList bonus = doc.getElementsByTagName("bonus");// lista dei nodi
+																// che
+																// contengono
+																// "bonus"
+			String[] bonuses = new String[bonus.getLength()];// array che
+																// contiene i
+																// bonus trovati
+
+			for (int i = 0; i < bonus.getLength(); i++) {// ciclo che scorre i
+															// bonus trovati
+				bonuses[i] = bonus.item(i).getTextContent();
 			}
 
 			return bonuses;
-		}catch (IOException | ParserConfigurationException | SAXException  e) {
+		} catch (IOException | ParserConfigurationException | SAXException e) {
 			throw new XmlException(e);
 		}
 	}

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * This interface indicates the items that can be sold in the market.
+ * 
  * @author Andrea
  *
  */

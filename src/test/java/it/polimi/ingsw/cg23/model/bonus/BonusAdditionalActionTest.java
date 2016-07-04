@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 public class BonusAdditionalActionTest {
 
 	Player player;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("a", new NobilityTrack(1));
@@ -23,7 +23,7 @@ public class BonusAdditionalActionTest {
 	 */
 	@Test
 	public void testGiveBonusShouldSwitchAdditionalActionIfItIsFalse() {
-		if(player.isAdditionalAction())
+		if (player.isAdditionalAction())
 			player.switchAdditionalAction();
 		BonusAdditionalAction bonus = new BonusAdditionalAction();
 		bonus.giveBonus(player);
@@ -32,19 +32,18 @@ public class BonusAdditionalActionTest {
 		assertEquals(0, bonus.getNumber());
 		assertEquals(true, player.isAdditionalAction());
 	}
-	
+
 	/**
 	 * it tests if giveBonus doesn't switch addictionAciton when it is false
 	 */
 	@Test
 	public void testGiveBonusShouldntDoAnythingIfAdditionalActionIsTrue() {
-		if(!player.isAdditionalAction())
+		if (!player.isAdditionalAction())
 			player.switchAdditionalAction();
 		BonusAdditionalAction bonus = new BonusAdditionalAction();
 		bonus.giveBonus(player);
 		assertEquals(true, player.isAdditionalAction());
 	}
-
 
 	/**
 	 * it tests if getName works properly
@@ -72,7 +71,7 @@ public class BonusAdditionalActionTest {
 		BonusAdditionalAction bonus = new BonusAdditionalAction();
 		BonusAdditionalAction newBonus = (BonusAdditionalAction) bonus.copy();
 		assertEquals(bonus.getName(), newBonus.getName());
-		
+
 	}
 
 }

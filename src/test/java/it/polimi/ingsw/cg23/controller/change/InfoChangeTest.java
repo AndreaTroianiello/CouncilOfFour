@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.controller.change;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,17 +13,18 @@ public class InfoChangeTest {
 	 * it test getInfo() method.
 	 */
 	@Test
-	public void testGetInfo(){
-		InfoChange change=new InfoChange("error");
+	public void testGetInfo() {
+		InfoChange change = new InfoChange("error");
 		assertTrue(change.getInfo().equals("error"));
 	}
+
 	/**
 	 * it tests if toString works properly
 	 */
 	@Test
 	public void testToString() {
-		InfoChange change=new InfoChange("error");
-		assertEquals(change.toString(),"InfoChange [msg=error]");
+		InfoChange change = new InfoChange("error");
+		assertEquals(change.toString(), "InfoChange [msg=error]");
 	}
 
 }

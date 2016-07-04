@@ -30,6 +30,7 @@ import it.polimi.ingsw.cg23.utility.Print;
 
 /**
  * This class elaborates the command line input.
+ * 
  * @author Andrea
  *
  */
@@ -42,42 +43,52 @@ public class CommandController {
 
 	/**
 	 * The constructor of CommandController
-	 * @param controller The main controller of the client.
-	 * @param cli The Print class that prints to video.
+	 * 
+	 * @param controller
+	 *            The main controller of the client.
+	 * @param cli
+	 *            The Print class that prints to video.
 	 */
-	public CommandController(ControllerCLI controller,Print cli) {
-		this.controller=controller;
-		this.cli=cli;
+	public CommandController(ControllerCLI controller, Print cli) {
+		this.controller = controller;
+		this.cli = cli;
 		logger = Logger.getLogger(CommandController.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
-	
+
 	/**
 	 * Notifies the controller with a string.
-	 * @param string The string to be communicated
-	 * @throws IOException If the connection has problems.
+	 * 
+	 * @param string
+	 *            The string to be communicated
+	 * @throws IOException
+	 *             If the connection has problems.
 	 */
-	public void updateCommand(String string) throws IOException{
-		clientModel=controller.getModel();
-		try{
+	public void updateCommand(String string) throws IOException {
+		clientModel = controller.getModel();
+		try {
 			parseCommand(string);
-		}catch(NoSuchElementException | NullPointerException | NumberFormatException e){
-			logger.error("Wrong command.",e);
+		} catch (NoSuchElementException | NullPointerException | NumberFormatException e) {
+			logger.error("Wrong command.", e);
 		}
 	}
-	
+
 	/**
 	 * Manages the command string.
-	 * @param string The string that contains the commands
-	 * @throws IOException If the connection has problems
-	 * @throws NoSuchElementException if the string doesn't contain some parameters..
+	 * 
+	 * @param string
+	 *            The string that contains the commands
+	 * @throws IOException
+	 *             If the connection has problems
+	 * @throws NoSuchElementException
+	 *             if the string doesn't contain some parameters..
 	 */
-	private void parseCommand(String string) throws IOException{
+	private void parseCommand(String string) throws IOException {
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		String inputLine = tokenizer.nextToken();
 		switch (inputLine) {
 		case "CREATION":
-			controller.updateController(new CreationGame(tokenizer.nextToken(),tokenizer.nextToken()));
+			controller.updateController(new CreationGame(tokenizer.nextToken(), tokenizer.nextToken()));
 			break;
 		case "MARKET":
 			parseMarketCommand(tokenizer);
@@ -93,13 +104,17 @@ public class CommandController {
 
 	/**
 	 * Manages the string if contains a market buy command.
-	 * @param string The string that contains the commands
-	 * @throws IOException If the connection has problems.
-	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 * 
+	 * @param string
+	 *            The string that contains the commands
+	 * @throws IOException
+	 *             If the connection has problems.
+	 * @throws NoSuchElementException
+	 *             if the string doesn't contain many parameters.
 	 */
-	private void parseActionSell(StringTokenizer tokenizer) throws IOException{
+	private void parseActionSell(StringTokenizer tokenizer) throws IOException {
 		Action action;
-		switch(tokenizer.nextToken()){
+		switch (tokenizer.nextToken()) {
 		case "TILE":
 			action = new MarketSell(clientModel.findPlayerTile(tokenizer.nextToken()),
 					Integer.parseInt(tokenizer.nextToken()));
@@ -121,17 +136,21 @@ public class CommandController {
 
 	/**
 	 * Manages the string if contains a market command.
-	 * @param string The string that contains the commands
-	 * @throws IOException If the connection has problems.
-	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 * 
+	 * @param string
+	 *            The string that contains the commands
+	 * @throws IOException
+	 *             If the connection has problems.
+	 * @throws NoSuchElementException
+	 *             if the string doesn't contain many parameters.
 	 */
-	private void parseMarketCommand(StringTokenizer tokenizer) throws IOException{
-		Board model=clientModel.getBoard();
-		if(model==null){
+	private void parseMarketCommand(StringTokenizer tokenizer) throws IOException {
+		Board model = clientModel.getBoard();
+		if (model == null) {
 			cli.print("", "Command refused.");
 			return;
 		}
-		switch(tokenizer.nextToken()){
+		switch (tokenizer.nextToken()) {
 		case "BUY":
 			Action action = new MarketBuy(clientModel.findItem(tokenizer.nextToken()));
 			controller.updateController(action);
@@ -140,7 +159,7 @@ public class CommandController {
 			parseActionSell(tokenizer);
 			break;
 		case "VIEW":
-			cli.print("","Items for sale:");
+			cli.print("", "Items for sale:");
 			cli.printList(model.getMarket().getItems());
 			break;
 		default:
@@ -148,24 +167,27 @@ public class CommandController {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Manages the string if contains a main command.
-	 * @param string The string that contains the commands
-	 * @throws IOException If the connection has problems. 
-	 * @throws NoSuchElementException if the string doesn't contain many parameters.
+	 * 
+	 * @param string
+	 *            The string that contains the commands
+	 * @throws IOException
+	 *             If the connection has problems.
+	 * @throws NoSuchElementException
+	 *             if the string doesn't contain many parameters.
 	 */
-	private void parseMainCommand(String string) throws IOException{
+	private void parseMainCommand(String string) throws IOException {
 		StringTokenizer tokenizer = new StringTokenizer(string, " ");
 		Action action;
-		switch(tokenizer.nextToken()){
+		switch (tokenizer.nextToken()) {
 		case "ADDITIONAL":
 			action = new AdditionalAction();
 			controller.updateController(action);
 			break;
 		case "BUILDKING":
-			action = new BuildEmporiumKing(clientModel.getCards(),
-					clientModel.findCity(tokenizer.nextToken()));
+			action = new BuildEmporiumKing(clientModel.getCards(), clientModel.findCity(tokenizer.nextToken()));
 			controller.updateController(action);
 			break;
 		case "BUILDTILE":
@@ -174,8 +196,9 @@ public class CommandController {
 			controller.updateController(action);
 			break;
 		case "BUYTILE":
-			Region region=clientModel.findRegion(tokenizer.nextToken());
-			action = new BuyPermitTile(clientModel.getCards(),region,clientModel.findRegionTile(tokenizer.nextToken(), region));
+			Region region = clientModel.findRegion(tokenizer.nextToken());
+			action = new BuyPermitTile(clientModel.getCards(), region,
+					clientModel.findRegionTile(tokenizer.nextToken(), region));
 			controller.updateController(action);
 			break;
 		case "CHANGE":
@@ -201,53 +224,62 @@ public class CommandController {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Creates the ElectCouncillor and notifies the view.
-	 * @param tokenizer The tokenizer received.
-	 * @throws IOException if the socket connection has problem
+	 * 
+	 * @param tokenizer
+	 *            The tokenizer received.
+	 * @throws IOException
+	 *             if the socket connection has problem
 	 */
 	private void electPerform(StringTokenizer tokenizer) throws IOException {
 		Action action;
-		String tok=tokenizer.nextToken();
-		if("KING".equals(tok))
-			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),null, true);
+		String tok = tokenizer.nextToken();
+		if ("KING".equals(tok))
+			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()), null, true);
 		else
-			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
+			action = new ElectCouncillor(clientModel.findColor(tokenizer.nextToken()), clientModel.findRegion(tok),
+					false);
 		controller.updateController(action);
-		
+
 	}
 
 	/**
 	 * Creates the ElectCouncillorAssistant and notifies the view.
-	 * @param tokenizer The tokenizer received.
-	 * @throws IOException if the socket connection has problem
+	 * 
+	 * @param tokenizer
+	 *            The tokenizer received.
+	 * @throws IOException
+	 *             if the socket connection has problem
 	 */
 	private void electAssistantPerform(StringTokenizer tokenizer) throws IOException {
 		Action action;
-		String tok=tokenizer.nextToken();
-		if("KING".equals(tok))
+		String tok = tokenizer.nextToken();
+		if ("KING".equals(tok))
 			action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()), null, true);
 		else
-			action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),clientModel.findRegion(tok), false);
-		controller.updateController(action);	
+			action = new ElectCouncillorAssistant(clientModel.findColor(tokenizer.nextToken()),
+					clientModel.findRegion(tok), false);
+		controller.updateController(action);
 	}
 
 	/**
 	 * Creates the MarketSell and notifies the view.
-	 * @param token The token received.
-	 * @throws IOException if the socket connection has problem
+	 * 
+	 * @param token
+	 *            The token received.
+	 * @throws IOException
+	 *             if the socket connection has problem
 	 */
-	private void sellAssistants(String token) throws IOException{
-		AssistantsPool pool=new AssistantsPool();
+	private void sellAssistants(String token) throws IOException {
+		AssistantsPool pool = new AssistantsPool();
 		try {
 			pool.setAssistants(Integer.parseInt(token));
-		} catch (NumberFormatException | NegativeNumberException e){
+		} catch (NumberFormatException | NegativeNumberException e) {
 			logger.error(e);
 			return;
 		}
-		controller.updateController(new MarketSell(pool,
-									Integer.parseInt(token)));
+		controller.updateController(new MarketSell(pool, Integer.parseInt(token)));
 	}
 }
-

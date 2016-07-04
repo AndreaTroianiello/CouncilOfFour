@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +16,7 @@ public class BonusTileBonusTest {
 
 	private Player player;
 	private BusinessPermitTile tile;
-	
-	
+
 	@Before
 	public void setUp() throws Exception {
 		this.player = new Player("player2", new NobilityTrack(2));
@@ -27,12 +25,14 @@ public class BonusTileBonusTest {
 	}
 
 	/**
-	 * it tests if giveBonus actually give the bonus when the numberTile is set properly and if doesn't
-	 * when the numberTile isn't set
+	 * it tests if giveBonus actually give the bonus when the numberTile is set
+	 * properly and if doesn't when the numberTile isn't set
+	 * 
 	 * @throws NegativeNumberException
 	 */
-	@Test 
-	public void testGiveBonusShouldGiveTheBonusInTheTileIfTheNumberTileIsSetndItShouldntGiveItOtherwise() throws NegativeNumberException{
+	@Test
+	public void testGiveBonusShouldGiveTheBonusInTheTileIfTheNumberTileIsSetndItShouldntGiveItOtherwise()
+			throws NegativeNumberException {
 		BonusTileBonus bonus = new BonusTileBonus();
 		this.player.getAvailableBusinessPermits().add(tile);
 		bonus.giveBonus(player);
@@ -43,13 +43,13 @@ public class BonusTileBonusTest {
 		bonus.giveBonus(player);
 		assertEquals(12, this.player.getRichness().getCoins());
 	}
-	
+
 	/**
-	 * it tests if giveBonus doesn't give the bonus when the player doesn't have available business
-	 * permit tile
+	 * it tests if giveBonus doesn't give the bonus when the player doesn't have
+	 * available business permit tile
 	 */
 	@Test
-	public void testGiveBonusShouldntGiveTheBonusIfThePlayerDoesntHaveAvailableTile(){
+	public void testGiveBonusShouldntGiveTheBonusIfThePlayerDoesntHaveAvailableTile() {
 		BonusTileBonus bonus = new BonusTileBonus();
 		bonus.giveBonus(player);
 		assertEquals(0, this.player.getRichness().getCoins());
@@ -64,7 +64,6 @@ public class BonusTileBonusTest {
 		assertEquals("1TileBonus", bonus.getName());
 	}
 
-
 	/**
 	 * it tests if getName works properly
 	 */
@@ -73,12 +72,12 @@ public class BonusTileBonusTest {
 		BonusTileBonus bonus = new BonusTileBonus();
 		assertEquals("BonusTileBonus [businessPermitCard=1]", bonus.toString());
 	}
-	
+
 	/**
 	 * it tests if getNumber works properly
 	 */
 	@Test
-	public void testGetNumber(){
+	public void testGetNumber() {
 		BonusTileBonus bonus = new BonusTileBonus();
 		assertEquals(1, bonus.getNumber());
 	}

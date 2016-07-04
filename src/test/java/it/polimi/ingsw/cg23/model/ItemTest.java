@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +19,14 @@ public class ItemTest {
 	private AssistantsPool assistants;
 	private BusinessPermitTile tile;
 	private Player p;
-	
+
 	@Before
 	public void setUp() throws Exception {
-		card=new PoliticCard(null, false);
-		assistants=new AssistantsPool();
+		card = new PoliticCard(null, false);
+		assistants = new AssistantsPool();
 		assistants.setAssistants(10);
-		tile=new BusinessPermitTile(null,"");
-		p=new Player("ciao", new NobilityTrack(1));
+		tile = new BusinessPermitTile(null, "");
+		p = new Player("ciao", new NobilityTrack(1));
 	}
 
 	/**
@@ -33,23 +34,24 @@ public class ItemTest {
 	 */
 	@Test
 	public void testGetItemShouldReturnAnInstanceOfTheChosenItem() {
-		Item item1=new Item(card, p, 10);
-		Item item2=new Item(assistants, p, 5);
-		Item item3=new Item(tile, p, 3);
+		Item item1 = new Item(card, p, 10);
+		Item item2 = new Item(assistants, p, 5);
+		Item item3 = new Item(tile, p, 3);
 		assertTrue(item1.getItem() instanceof PoliticCard);
 		assertTrue(item2.getItem() instanceof AssistantsPool);
 		assertTrue(item3.getItem() instanceof BusinessPermitTile);
-		assertEquals(item1.getCoins(),10);
-		assertEquals(item3.getPlayer(),p);
+		assertEquals(item1.getCoins(), 10);
+		assertEquals(item3.getPlayer(), p);
 	}
-	
+
 	/**
 	 * it tests if toString works properly
 	 */
 	@Test
-	public void testToString(){
-		Item item1=new Item(card, p, 10);
-		assertEquals(item1.toString(),"Item [coins=" + 10 + ", itemToSell=" + card.toString() + ", player=" + p.getUser() + "]");
+	public void testToString() {
+		Item item1 = new Item(card, p, 10);
+		assertEquals(item1.toString(),
+				"Item [coins=" + 10 + ", itemToSell=" + card.toString() + ", player=" + p.getUser() + "]");
 
 	}
 }

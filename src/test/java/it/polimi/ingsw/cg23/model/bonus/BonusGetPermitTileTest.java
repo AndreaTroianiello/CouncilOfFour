@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class BonusGetPermitTileTest {
 	private BusinessPermitTile tile;
 	private Player player;
 	private List<Character> citiesId;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		List<Integer> king = new ArrayList<>();
@@ -50,12 +51,12 @@ public class BonusGetPermitTileTest {
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
 		assertEquals("1GetPermitTile", bonus.getName());
 	}
-	
+
 	/**
 	 * it tests if giveBonus add the tile to the player's tiles
 	 */
 	@Test
-	public void testGiveBonusShouldAddThePermitTileInThePlayersTile(){
+	public void testGiveBonusShouldAddThePermitTileInThePlayersTile() {
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
 		bonus.giveBonus(player);
 		assertTrue(this.player.getAvailableBusinessPermits().isEmpty());
@@ -64,12 +65,13 @@ public class BonusGetPermitTileTest {
 		bonus.giveBonus(player);
 		assertEquals(this.tile, this.player.getAvailableBusinessPermits().get(0));
 	}
-	
+
 	/**
-	 * it tests if it doesn't give the tile if the showed deck of the region is empty
+	 * it tests if it doesn't give the tile if the showed deck of the region is
+	 * empty
 	 */
 	@Test
-	public void testGiveBonusShouldntAddThePermitIfTheShowedDeckIsEmpty(){
+	public void testGiveBonusShouldntAddThePermitIfTheShowedDeckIsEmpty() {
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
 		bonus.setBoard(board);
 		this.region.getDeck().getShowedDeck().clear();
@@ -82,7 +84,7 @@ public class BonusGetPermitTileTest {
 	 * it tests if it doesn't give the bonus when the region is not in the board
 	 */
 	@Test
-	public void testGiveBonusShouldntAddTheCardIfTheRegionIsNotInTheBoard(){
+	public void testGiveBonusShouldntAddTheCardIfTheRegionIsNotInTheBoard() {
 		BonusGetPermitTile bonus = new BonusGetPermitTile();
 		bonus.setBoard(board);
 		Region nullRegion = new Region("Ciao", 0, null, null);
@@ -90,6 +92,7 @@ public class BonusGetPermitTileTest {
 		bonus.giveBonus(player);
 		assertTrue(this.player.getAvailableBusinessPermits().isEmpty());
 	}
+
 	/**
 	 * it tests if toString works properly
 	 */

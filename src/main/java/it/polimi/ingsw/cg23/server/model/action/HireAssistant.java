@@ -7,28 +7,30 @@ import it.polimi.ingsw.cg23.server.model.Player;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 /**
- * the class of the action that allows to hire an assistants by paying 3 coins. It contains a boolean
- * that shows if it is a main action or not.
+ * the class of the action that allows to hire an assistants by paying 3 coins.
+ * It contains a boolean that shows if it is a main action or not.
  *
- *@author Vincenzo
+ * @author Vincenzo
  */
-public class HireAssistant extends GameAction implements StandardAction{
-	
+public class HireAssistant extends GameAction implements StandardAction {
+
 	private static final long serialVersionUID = 157988041663947858L;
 
 	/**
-	 * the constructor set the variables of the class: the boolean main is set to false
+	 * the constructor set the variables of the class: the boolean main is set
+	 * to false
 	 */
 	public HireAssistant() {
 		super(false);
 	}
 
 	/**
-	 * give the player an assistant and take
-	 * from him 3 coins
+	 * give the player an assistant and take from him 3 coins
 	 * 
-	 * @param palyer who runs the action
-	 * @param board the model of the game
+	 * @param palyer
+	 *            who runs the action
+	 * @param board
+	 *            the model of the game
 	 * 
 	 * @return true if the action is succesfull, false otherwise
 	 */
@@ -36,7 +38,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 	public boolean runAction(Player player, Board board) {
 		int coin = player.getRichness().getCoins();
 		int assistants = player.getAssistantsPool().getAssistants();
-		
+
 		coin = coin - 3;
 		try {
 			player.getRichness().setCoins(coin);
@@ -45,7 +47,7 @@ public class HireAssistant extends GameAction implements StandardAction{
 			getLogger().error(e);
 			return false;
 		}
-		
+
 		assistants = assistants + 1;
 		try {
 			player.getAssistantsPool().setAssistants(assistants);
@@ -65,8 +67,5 @@ public class HireAssistant extends GameAction implements StandardAction{
 	public String toString() {
 		return "HireAssistant []";
 	}
-	
-	
-	
 
 }

@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
 
 /**
  * The action CreationPlayer is used to create new players.
+ * 
  * @author Andrea
  *
  */
@@ -21,41 +22,49 @@ public class CreationGame extends Action {
 	private final String name;
 	private String map;
 	private String message;
-	
+
 	/**
 	 * The constructor of CreationPlayer.
-	 * @param name The name of the player.
-	 * @throws NullPointerException if the parameters are null.
+	 * 
+	 * @param name
+	 *            The name of the player.
+	 * @throws NullPointerException
+	 *             if the parameters are null.
 	 */
-	public CreationGame(String name,String map) {
-		if(name!=null && map!=null){
-			this.name=name;
-			this.map=map;
-		}else 
+	public CreationGame(String name, String map) {
+		if (name != null && map != null) {
+			this.name = name;
+			this.map = map;
+		} else
 			throw new NullPointerException();
-		message="";
+		message = "";
 	}
-	
+
 	/**
 	 * Runs the action. If the name is already used doesn't create the player.
-	 * @param controller The controller of the game.
-	 * @param model The model of the game.
+	 * 
+	 * @param controller
+	 *            The controller of the game.
+	 * @param model
+	 *            The model of the game.
 	 */
-	public void runAction(Controller controller,Board model){
+	public void runAction(Controller controller, Board model) {
 		createMap(model);
-		if(model.getNobilityTrack()!=null)
+		if (model.getNobilityTrack() != null)
 			createPlayer(controller, model);
 	}
-	
+
 	/**
-	 * It loads map if no one else did. 
-	 * @param model The model of the game.
+	 * It loads map if no one else did.
+	 * 
+	 * @param model
+	 *            The model of the game.
 	 */
-	private void createMap(Board model){
-		if(model.getDeck()==null){
+	private void createMap(Board model) {
+		if (model.getDeck() == null) {
 			try {
-				new Avvio(map+".xml",model).startPartita();
-				message="Your map has been chosen and";
+				new Avvio(map + ".xml", model).startPartita();
+				message = "Your map has been chosen and";
 			} catch (XmlException e) {
 				getLogger().error(e);
 				model.resetBoard();
@@ -63,25 +72,27 @@ public class CreationGame extends Action {
 			}
 		}
 	}
-	
+
 	/**
-	 * It creates the player. 
-	 * @param controller The controller of the game.
-	 * @param model The model of the game.
+	 * It creates the player.
+	 * 
+	 * @param controller
+	 *            The controller of the game.
+	 * @param model
+	 *            The model of the game.
 	 */
-	private void createPlayer(Controller controller,Board model){
-		boolean exist=false;
-		List<Player> players=model.getPlayers();
-		for(Player player: players)
-			if(name.equals(player.getUser()))
-				exist=true;
-		if(!exist){
-			Player player=new Player(name, model.getNobilityTrack());
+	private void createPlayer(Controller controller, Board model) {
+		boolean exist = false;
+		List<Player> players = model.getPlayers();
+		for (Player player : players)
+			if (name.equals(player.getUser()))
+				exist = true;
+		if (!exist) {
+			Player player = new Player(name, model.getNobilityTrack());
 			controller.putSocketPlayer(super.getPlayer(), player);
 			this.notifyObserver(new PlayerChange(player));
 			this.notifyObserver(new InfoChange(message + " your player has been created."));
-		}
-		else
+		} else
 			this.notifyObserver(new InfoChange(message + " the username already exists."));
 	}
 

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BuildEmporiumTileTest {
-	
+
 	private BusinessPermitTile card;
 	private Player player;
 	private Board board;
@@ -34,7 +34,6 @@ public class BuildEmporiumTileTest {
 	private Region region;
 	private City city2;
 
-
 	@Before
 	public void setUp() throws Exception {
 		List<Character> cityIDs = new ArrayList<>();
@@ -42,7 +41,7 @@ public class BuildEmporiumTileTest {
 		card = new BusinessPermitTile(cityIDs, null);
 		player = new Player("player1", new NobilityTrack(3));
 		int n = 5;
-		bonusKing.add(n);	
+		bonusKing.add(n);
 		List<Type> types = new ArrayList<>();
 		types.add(type);
 		King king = new King(new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing))));
@@ -56,7 +55,6 @@ public class BuildEmporiumTileTest {
 		board = new Board(new Deck(new ArrayList<PoliticCard>()), regions, types, null, king, null);
 	}
 
-	
 	/**
 	 * it tests if getCityID works properly
 	 */
@@ -82,25 +80,27 @@ public class BuildEmporiumTileTest {
 	@Test
 	public void testToString() {
 		BuildEmporiumTile action = new BuildEmporiumTile(this.card, this.city);
-		assertEquals("BuildEmporiumTile [card=BusinessPermitTile [citiesId=[I], bonusTile=[] zone=null], city=City [id=I, name=Ioio, region=regione, bonus=[], type=null, neighbors=0]]", action.toString());
+		assertEquals(
+				"BuildEmporiumTile [card=BusinessPermitTile [citiesId=[I], bonusTile=[] zone=null], city=City [id=I, name=Ioio, region=regione, bonus=[], type=null, neighbors=0]]",
+				action.toString());
 	}
-	
+
 	/**
 	 * it tests if runAction() works properly when it's all fine
 	 */
 	@Test
-	public void testRunActionShouldBuildAnEmporiumIfItsAllFine(){
+	public void testRunActionShouldBuildAnEmporiumIfItsAllFine() {
 		BuildEmporiumTile action = new BuildEmporiumTile(card, city);
 		player.addAvailableBusinessPermit(card);
 		action.runAction(player, board);
 		assertEquals(true, this.city.containsEmporium(player));
 	}
-	
+
 	/**
 	 * it tests if runAction() works properly when it's all fine
 	 */
 	@Test
-	public void testRunActionShouldntBuildAnEmporiumIfTheCityIsntInTheTile(){
+	public void testRunActionShouldntBuildAnEmporiumIfTheCityIsntInTheTile() {
 		BuildEmporiumTile action = new BuildEmporiumTile(card, city2);
 		player.addAvailableBusinessPermit(card);
 		action.runAction(player, board);
@@ -108,11 +108,14 @@ public class BuildEmporiumTileTest {
 	}
 
 	/**
-	 * it tests if runAction() works properly when the player doesn't have assistants
-	 * @throws NegativeNumberException 
+	 * it tests if runAction() works properly when the player doesn't have
+	 * assistants
+	 * 
+	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants() throws NegativeNumberException{
+	public void testRunActionShouldntBuildIfThereIsAnEmporiumInTheCityAndThePlayerDoesntHaveAssistants()
+			throws NegativeNumberException {
 		Player player2 = new Player("player2", new NobilityTrack(3));
 		player2.getRichness().setCoins(100);
 		player2.addAvailableBusinessPermit(card);
@@ -121,13 +124,15 @@ public class BuildEmporiumTileTest {
 		action.runAction(player2, board);
 		assertEquals(false, this.city.containsEmporium(player2));
 	}
-	
+
 	/**
-	 * it tests if the NullPointerException is thrown when the parameters are null
+	 * it tests if the NullPointerException is thrown when the parameters are
+	 * null
+	 * 
 	 * @throws NullPointerException
 	 */
-	@Test(expected=NullPointerException.class)
-	public void testNullPointerException() throws NullPointerException{
+	@Test(expected = NullPointerException.class)
+	public void testNullPointerException() throws NullPointerException {
 		BuildEmporiumTile action = new BuildEmporiumTile(null, null);
 		action.getCard();
 	}

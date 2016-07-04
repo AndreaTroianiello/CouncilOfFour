@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,13 +17,13 @@ public class BonusNobilityTest {
 	private Board board;
 	private Player player;
 	private Bonus bonus2;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		NobilityTrack nobilityTrack = new NobilityTrack(10);
 		bonus2 = new BonusCoin(4);
 		nobilityTrack.getNobilityBoxes().get(2).addBonus(bonus2);
-		board = new Board(null, null, null ,nobilityTrack, null, null);
+		board = new Board(null, null, null, nobilityTrack, null, null);
 		player = new Player("a", nobilityTrack);
 	}
 

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 public class BonusCoinTest {
 
 	private Player player;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("a", new NobilityTrack(3));
@@ -41,6 +41,7 @@ public class BonusCoinTest {
 
 	/**
 	 * it tests if giveBonus works properly
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test

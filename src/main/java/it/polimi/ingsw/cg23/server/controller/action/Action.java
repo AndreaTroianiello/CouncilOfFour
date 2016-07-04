@@ -12,55 +12,63 @@ import it.polimi.ingsw.cg23.server.view.View;
 
 /**
  * The action of the application.
+ * 
  * @author Vincenzo
  */
-public abstract class Action extends Observable<Change> implements Serializable{
+public abstract class Action extends Observable<Change>implements Serializable {
 
 	private static final long serialVersionUID = -818604974357806991L;
 	private transient View player;
 	private transient Logger logger;
-	
+
 	/**
 	 * The constructor of the Action.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
-	public Action(){
-		this.player=null;
-		this.logger=Logger.getLogger(Action.class);
+	public Action() {
+		this.player = null;
+		this.logger = Logger.getLogger(Action.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
 
 	/**
 	 * Sets the player of the action.
-	 * @param player the owner of the action.
+	 * 
+	 * @param player
+	 *            the owner of the action.
 	 */
-	public void setPlayer(View player){
-		this.player=player;
+	public void setPlayer(View player) {
+		this.player = player;
 	}
-	
+
 	/**
 	 * Return the player of the action.
+	 * 
 	 * @return the owner of the action.
 	 */
-	public View getPlayer(){
+	public View getPlayer() {
 		return player;
 	}
-	
+
 	/**
 	 * Sets the logger of the action.
-	 * @param logger action's logger.
+	 * 
+	 * @param logger
+	 *            action's logger.
 	 */
-	public void setLogger(Logger logger){
-		this.logger=logger;
+	public void setLogger(Logger logger) {
+		this.logger = logger;
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 	}
-	
+
 	/**
 	 * Returns the logger of the action.
+	 * 
 	 * @return logger
 	 */
-	public Logger getLogger(){
+	public Logger getLogger() {
 		return logger;
 	}
-	
+
 }

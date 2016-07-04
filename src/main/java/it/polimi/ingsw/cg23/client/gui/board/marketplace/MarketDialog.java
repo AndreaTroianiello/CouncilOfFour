@@ -23,6 +23,7 @@ import it.polimi.ingsw.cg23.server.model.marketplace.CanBeSold;
 
 /**
  * This frame permits to sell some items.
+ * 
  * @author Andrea
  *
  */
@@ -44,14 +45,14 @@ public class MarketDialog extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MarketDialog(ControllerGUI controller,CanBeSold item) {
-		//configurazione logger
+	public MarketDialog(ControllerGUI controller, CanBeSold item) {
+		// configurazione logger
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
 
-		this.controller=controller;
-		this.item=item;
-		setBounds(100, 100, 0,0);
+		this.controller = controller;
+		this.item = item;
+		setBounds(100, 100, 0, 0);
 
 		initComponents();
 	}
@@ -76,106 +77,92 @@ public class MarketDialog extends JFrame {
 
 		labelInfo.setText("Choose the parameters");
 
-		if(item instanceof AssistantsPool){
-			//Fill the JComboBox with the assistants.
-			if(controller.getModel().getPlayer().getAssistantsPool().getAssistants()==0){
+		if (item instanceof AssistantsPool) {
+			// Fill the JComboBox with the assistants.
+			if (controller.getModel().getPlayer().getAssistantsPool().getAssistants() == 0) {
 				boxAssistants.addItem(0);
-			}else{
-				for(int i=0; i<controller.getModel().getPlayer().getAssistantsPool().getAssistants(); i++){
-					boxAssistants.addItem(i+1);
+			} else {
+				for (int i = 0; i < controller.getModel().getPlayer().getAssistantsPool().getAssistants(); i++) {
+					boxAssistants.addItem(i + 1);
 				}
 			}
 			labelAssistants.setText("Assistants:");
-		}
-		else{
+		} else {
 			boxAssistants.setVisible(false);
 			labelAssistants.setVisible(false);
 		}
 
 		buttonCancel.setText("Cancel");
-		buttonCancel.addActionListener(e->buttonCancelActionPerformed());
+		buttonCancel.addActionListener(e -> buttonCancelActionPerformed());
 
 		buttonSell.setText("Ok");
-		buttonSell.addActionListener(e->buttonSellActionPerformed());
+		buttonSell.addActionListener(e -> buttonSellActionPerformed());
 
 		labelCoins.setText("Coins:");
 
 		GroupLayout panelDialogLayout = new GroupLayout(panelDialog);
 		panelDialog.setLayout(panelDialogLayout);
-		panelDialogLayout.setHorizontalGroup(
-				panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+		panelDialogLayout.setHorizontalGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(panelDialogLayout.createSequentialGroup()
 						.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addGroup(panelDialogLayout.createSequentialGroup()
-										.addContainerGap()
+								.addGroup(panelDialogLayout.createSequentialGroup().addContainerGap()
 										.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-												.addComponent(labelAssistants)
-												.addComponent(labelCoins))
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-												.addComponent(fieldCoins, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
-												.addGroup(panelDialogLayout.createSequentialGroup()
-														.addComponent(buttonSell)
-														.addGap(43, 43, 43)
-														.addComponent(buttonCancel))
-												.addComponent(boxAssistants, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(panelDialogLayout.createSequentialGroup()
-										.addGap(78, 78, 78)
-										.addComponent(labelInfo)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		panelDialogLayout.setVerticalGroup(
-				panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelDialogLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(labelInfo)
+												.addComponent(labelAssistants).addComponent(labelCoins))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+										.addComponent(fieldCoins, GroupLayout.PREFERRED_SIZE, 209,
+												GroupLayout.PREFERRED_SIZE)
+										.addGroup(panelDialogLayout.createSequentialGroup().addComponent(buttonSell)
+												.addGap(43, 43, 43).addComponent(buttonCancel))
+										.addComponent(boxAssistants, GroupLayout.PREFERRED_SIZE, 209,
+												GroupLayout.PREFERRED_SIZE)))
+						.addGroup(panelDialogLayout.createSequentialGroup().addGap(78, 78, 78).addComponent(labelInfo)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		panelDialogLayout.setVerticalGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(panelDialogLayout.createSequentialGroup().addContainerGap().addComponent(labelInfo)
 						.addGap(18, 18, 18)
 						.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(fieldCoins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(fieldCoins, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
 								.addComponent(labelCoins))
 						.addGap(18, 18, 18)
 						.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(boxAssistants, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(boxAssistants, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
 								.addComponent(labelAssistants))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(panelDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(buttonCancel)
-								.addComponent(buttonSell))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
+								.addComponent(buttonCancel).addComponent(buttonSell))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(panelDialog, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				);
-		layout.setVerticalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(panelDialog, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				);
+		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panelDialog,
+				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panelDialog,
+				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
 		pack();
-	}                    
+	}
 
 	/**
 	 * The action performed when the buttonSell receives a event.
 	 */
-	private void buttonSellActionPerformed() {                                           
+	private void buttonSellActionPerformed() {
 		try {
-			if(item instanceof AssistantsPool)
-				((AssistantsPool)item).setAssistants(boxAssistants.getSelectedIndex()+1);
+			if (item instanceof AssistantsPool)
+				((AssistantsPool) item).setAssistants(boxAssistants.getSelectedIndex() + 1);
 			controller.updateController(new MarketSell(item, Integer.parseInt(fieldCoins.getText())));
 		} catch (NegativeNumberException | NumberFormatException e) {
 			logger.error(e);
 		}
 		this.dispose();
-	}   
-	
+	}
+
 	/**
 	 * The action performed when the buttonCancel receives a event.
 	 */
-	private void buttonCancelActionPerformed() {                                             
+	private void buttonCancelActionPerformed() {
 		this.dispose();
-	}                                            
+	}
 }

@@ -1,13 +1,12 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class GameActionTest {
 
-	
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -16,7 +15,7 @@ public class GameActionTest {
 	 * it tests if isMain works properly
 	 */
 	@Test
-	public void testIsMain(){
+	public void testIsMain() {
 		GameAction action = new HireAssistant();
 		assertFalse(action.isMain());
 	}

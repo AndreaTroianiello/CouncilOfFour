@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-
 import org.apache.log4j.Logger;
 
 import it.polimi.ingsw.cg23.server.Chat;
@@ -16,6 +15,7 @@ import it.polimi.ingsw.cg23.server.view.View;
 
 /**
  * The view that manages the connections of the socket clients.
+ * 
  * @author Andrea
  *
  */
@@ -28,21 +28,27 @@ public class ServerSocketView extends View implements Runnable {
 
 	/**
 	 * The constructor of ServerSocketView.
-	 * @param socket The socket of the connection.
-	 * @param model The board of the game.
-	 * @throws IOException if the socket connection has problems.
+	 * 
+	 * @param socket
+	 *            The socket of the connection.
+	 * @param chat
+	 *            The game chat.
+	 * @throws IOException
+	 *             if the socket connection has problems.
 	 */
-	public ServerSocketView(Socket socket,Chat chat) throws IOException {
-		this.chat=chat;
+	public ServerSocketView(Socket socket, Chat chat) throws IOException {
+		this.chat = chat;
 		this.chat.addView(this);
-		this.socket=socket;
+		this.socket = socket;
 		this.socketIn = new ObjectInputStream(socket.getInputStream());
 		this.socketOut = new ObjectOutputStream(socket.getOutputStream());
 	}
 
 	/**
 	 * Notify the client with the incoming change.
-	 * @param change the change to be sent to the client.
+	 * 
+	 * @param change
+	 *            the change to be sent to the client.
 	 */
 	@Override
 	public void update(Change change) {
@@ -57,50 +63,53 @@ public class ServerSocketView extends View implements Runnable {
 			setSuspended(true);
 		}
 	}
-	
+
 	/**
 	 * Manages the object received.
-	 * @param object the object received.
+	 * 
+	 * @param object
+	 *            the object received.
 	 */
 
-	private void performUpdate(Object object){
-		if(object==null)
+	private void performUpdate(Object object) {
+		if (object == null)
 			return;
 		setSuspended(false);
 		Action action = (Action) object;
 		action.setLogger(Logger.getLogger(Action.class));
 		action.setPlayer(this);
-		if(action instanceof SendMessage){
-			chat.update((SendMessage)action);
-		}
-		else{
+		if (action instanceof SendMessage) {
+			chat.update((SendMessage) action);
+		} else {
 			getLogger().info("VIEW: received the action " + action);
 			action.registerObserver(this);
 			this.notifyObserver(action);
 		}
 	}
+
 	/**
-	 * The run of the thread. When receives a action,notify the controller with the incoming action.
+	 * The run of the thread. When receives a action,notify the controller with
+	 * the incoming action.
 	 */
 	@Override
 	public void run() {
-		boolean run=true;
+		boolean run = true;
 		while (run) {
 
 			try {
 
 				Object object = socketIn.readObject();
 				performUpdate(object);
-				
-			} catch (ClassNotFoundException e){
+
+			} catch (ClassNotFoundException e) {
 				getLogger().error(e);
 			} catch (IOException e) {
 				getLogger().error(e);
-				run=false;
+				run = false;
 			}
 		}
 	}
-	
+
 	/**
 	 * Close the Socket connection.
 	 */
@@ -109,7 +118,7 @@ public class ServerSocketView extends View implements Runnable {
 		try {
 			socket.close();
 			chat.resetViews();
-			chat=null;
+			chat = null;
 		} catch (IOException e) {
 			getLogger().error(e);
 		}

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.controller.change;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;

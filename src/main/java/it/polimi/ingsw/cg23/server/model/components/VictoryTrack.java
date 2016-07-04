@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 /**
  * The victory track contains the victory points of the player.
+ * 
  * @author Andrea
  *
  */
 public class VictoryTrack implements Serializable {
-	
+
 	private static final long serialVersionUID = 394372805913576038L;
 	private int victoryPoints;
 
@@ -31,10 +32,11 @@ public class VictoryTrack implements Serializable {
 	/**
 	 * Sets the victory points contained in the victory track.
 	 * 
-	 * @param victoryPoints the number of victory points to set
+	 * @param victoryPoints
+	 *            the number of victory points to set
 	 */
 	public void setVictoryPoints(int victoryPoints) {
 		this.victoryPoints = victoryPoints;
 	}
-	
+
 }

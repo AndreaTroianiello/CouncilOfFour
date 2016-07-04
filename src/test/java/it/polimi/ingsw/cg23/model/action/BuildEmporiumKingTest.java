@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import it.polimi.ingsw.cg23.server.model.components.PoliticCard;
 import it.polimi.ingsw.cg23.server.model.exception.NegativeNumberException;
 
 public class BuildEmporiumKingTest {
-	
+
 	private Player player;
 	private Board board;
 	private List<PoliticCard> cards;
@@ -34,31 +34,31 @@ public class BuildEmporiumKingTest {
 	private List<Integer> bonusKing = new ArrayList<>();
 	private City kingCity;
 	private Region region;
-	
+
 	Type type = new Type("purple", 5, new BonusKing(bonusKing));
 
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("player 1", new NobilityTrack(3));
 		int n = 5;
-		bonusKing.add(n);	
+		bonusKing.add(n);
 		List<Type> types = new ArrayList<>();
 		types.add(type);
 		kingCity = new City('J', "Juvelar", type, new Region(null, 0, null, new BonusKing(bonusKing)));
 		King king = new King(kingCity);
 		region = new Region("mare", 0, null, null);
-		this.board = new Board(new Deck(new ArrayList<PoliticCard>()), new ArrayList<Region>(), types, null, king, null);
+		this.board = new Board(new Deck(new ArrayList<PoliticCard>()), new ArrayList<Region>(), types, null, king,
+				null);
 		board.getRegions().add(region);
 	}
 
-
-	
 	/**
 	 * it tests if runAction() works properly when all is fine
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldChangeTheKingCityToDestinationIfAllIsFine() throws NegativeNumberException{
+	public void testRunActionShouldChangeTheKingCityToDestinationIfAllIsFine() throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -85,12 +85,13 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(destination, city);
 	}
-	
+
 	/**
-	 * it tests if runAction() works properly when the player doesn't have enough money
+	 * it tests if runAction() works properly when the player doesn't have
+	 * enough money
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoney() throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -116,13 +117,14 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(board.getKing().getCity(), city);
 	}
-	
-	
+
 	/**
-	 * it tests if runAction() works properly when the player doesn't have enough money for the jolly
+	 * it tests if runAction() works properly when the player doesn't have
+	 * enough money for the jolly
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoneyForTheJolly() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveMoneyForTheJolly()
+			throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -149,13 +151,16 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(board.getKing().getCity(), city);
 	}
-	
+
 	/**
-	 * it tests if runAction() works properly when the player doesn't have assistants
+	 * it tests if runAction() works properly when the player doesn't have
+	 * assistants
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheKingCityIfThereAreEmporiumAndThePlayerDoesntHaveAssistants()
+			throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -186,11 +191,13 @@ public class BuildEmporiumKingTest {
 	}
 
 	/**
-	 * it tests if runAction() works properly when the player doesn't have emporiums
+	 * it tests if runAction() works properly when the player doesn't have
+	 * emporiums
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveEmpuriums() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheKingCityIfThePlayerDoesntHaveEmpuriums() throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -208,7 +215,7 @@ public class BuildEmporiumKingTest {
 		this.player.getRichness().setCoins(100);
 		this.player.getAssistantsPool().setAssistants(10);
 		this.player.setEmporium(new Emporium(this.player));
-		for(int i=0; i<10; i++){
+		for (int i = 0; i < 10; i++) {
 			this.player.getAvailableEmporium();
 		}
 		this.destination = new City('I', "Iuvenar", this.type, new Region(null, 0, null, new BonusKing(bonusKing)));
@@ -220,13 +227,14 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(kingCity, city);
 	}
-	
+
 	/**
 	 * it tests if runAction() works properly when there are no match
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheCityIfThereAreNoMatch() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheCityIfThereAreNoMatch() throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(Color.ORANGE, false);
 		PoliticCard card2 = new PoliticCard(Color.PINK, false);
@@ -253,13 +261,14 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(kingCity, city);
 	}
-	
+
 	/**
-	 * @throws NegativeNumberException 
+	 * @throws NegativeNumberException
 	 * 
 	 */
 	@Test
-	public void testRunActionShouldChangeTheCityIfThePlayerHas4MatchesAndEnoughMoneyForTheSteps() throws NegativeNumberException{
+	public void testRunActionShouldChangeTheCityIfThePlayerHas4MatchesAndEnoughMoneyForTheSteps()
+			throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -292,13 +301,16 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(this.destination, city);
 	}
-	
+
 	/**
-	 * tests if runAction() works properly when the player doesn't have enough money for the match payment
+	 * tests if runAction() works properly when the player doesn't have enough
+	 * money for the match payment
+	 * 
 	 * @throws NegativeNumberException
 	 */
 	@Test
-	public void testRunActionShouldntChangeTheKingCityWhenThePlayerDoesntHaveEnoughMoney() throws NegativeNumberException{
+	public void testRunActionShouldntChangeTheKingCityWhenThePlayerDoesntHaveEnoughMoney()
+			throws NegativeNumberException {
 		System.out.println("I'M RUNNING THE TEST");
 		PoliticCard card1 = new PoliticCard(null, true);
 		PoliticCard card2 = new PoliticCard(Color.BLUE, false);
@@ -328,5 +340,5 @@ public class BuildEmporiumKingTest {
 		City city = board.getKing().getCity();
 		assertEquals(kingCity, city);
 	}
-	
+
 }

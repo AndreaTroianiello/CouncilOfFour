@@ -10,47 +10,54 @@ import it.polimi.ingsw.cg23.server.model.exception.XmlException;
  *
  */
 public class XmlInterface {
-	private ReadCittaXml cittaXml;//legge l'xml delle citta'
-	private ReadCostructionXml costructionXml;//legge l'xml delle carte costruzione
-	private ReadNobilityTrackXml nobilityXml;//legge il nobility track dall'xml
-	private ReadColorXml colorXml;//legge i colori dall'xml
-	private ReadType typeXml;//legge i tipi dall'xml
-	private ReadCityBonusXml bonusXml;//legge i bonus delle citta' dal file xml
+	private ReadCittaXml cittaXml;// legge l'xml delle citta'
+	private ReadCostructionXml costructionXml;// legge l'xml delle carte
+												// costruzione
+	private ReadNobilityTrackXml nobilityXml;// legge il nobility track dall'xml
+	private ReadColorXml colorXml;// legge i colori dall'xml
+	private ReadType typeXml;// legge i tipi dall'xml
+	private ReadCityBonusXml bonusXml;// legge i bonus delle citta' dal file xml
 
-	private static Logger logger;//logger
+	private static Logger logger;// logger
 
-	//variabile err nel caso di errore nella lettura del file xml
-	String err="ERROR! Errore nella lettura del file xml: ";
+	// variabile err nel caso di errore nella lettura del file xml
+	String err = "ERROR! Errore nella lettura del file xml: ";
 
 	/**
 	 * constructor
 	 */
-	public XmlInterface(){
-		//configurazione logger
+	public XmlInterface() {
+		// configurazione logger
 		logger = Logger.getLogger(this.getClass());
-		PropertyConfigurator.configure("src/main/resources/logger.properties");//carica la configurazione del logger
+		PropertyConfigurator.configure("src/main/resources/logger.properties");// carica
+																				// la
+																				// configurazione
+																				// del
+																				// logger
 
-		this.cittaXml=new ReadCittaXml();
-		this.costructionXml=new ReadCostructionXml();
-		this.nobilityXml=new ReadNobilityTrackXml();
-		this.colorXml=new ReadColorXml();
-		this.typeXml=new ReadType();
-		this.bonusXml=new ReadCityBonusXml();
+		this.cittaXml = new ReadCittaXml();
+		this.costructionXml = new ReadCostructionXml();
+		this.nobilityXml = new ReadNobilityTrackXml();
+		this.colorXml = new ReadColorXml();
+		this.typeXml = new ReadType();
+		this.bonusXml = new ReadCityBonusXml();
 	}
 
 	/**
 	 * find the type(color) of the city
-	 * @param endPath, the name of the file with the .xml
+	 * 
+	 * @param endPath,
+	 *            the name of the file with the .xml
 	 * @return a two-dimensional array with the type(color)
 	 */
-	public String[][] getType(String endPath){
-		String[][] type=null;
+	public String[][] getType(String endPath) {
+		String[][] type = null;
 
-		try {//provo a leggere il file xml
-			type=typeXml.typeXml(endPath);
+		try {// provo a leggere il file xml
+			type = typeXml.typeXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
-			type=null;
+			type = null;
 		}
 
 		return type;
@@ -58,17 +65,19 @@ public class XmlInterface {
 
 	/**
 	 * find the length of the nobility track
-	 * @param endPath the name of the file with the .xml
+	 * 
+	 * @param endPath
+	 *            the name of the file with the .xml
 	 * @return the length of the nobility track
 	 */
-	public int getNobilityTrackLength(String endPath){
-		int nobilityTrackLenght=0;
+	public int getNobilityTrackLength(String endPath) {
+		int nobilityTrackLenght = 0;
 
-		try {//provo a leggere il file xml
-			nobilityTrackLenght=nobilityXml.nobilityTrackLenght(endPath);
+		try {// provo a leggere il file xml
+			nobilityTrackLenght = nobilityXml.nobilityTrackLenght(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
-			nobilityTrackLenght=0;
+			nobilityTrackLenght = 0;
 		}
 
 		return nobilityTrackLenght;
@@ -76,17 +85,19 @@ public class XmlInterface {
 
 	/**
 	 * return the info of nobility track
-	 * @param endPath the name of the file with the .xml
+	 * 
+	 * @param endPath
+	 *            the name of the file with the .xml
 	 * @return a two-dimensional array with the nobility track info
 	 */
-	public String[][] getNobilityTrackBonus(String endPath){
-		String[][] nobilityTrackBonus=null;
+	public String[][] getNobilityTrackBonus(String endPath) {
+		String[][] nobilityTrackBonus = null;
 
-		try {//provo a leggere il file xml
-			nobilityTrackBonus=nobilityXml.nobilityTrackBonus(endPath);
+		try {// provo a leggere il file xml
+			nobilityTrackBonus = nobilityXml.nobilityTrackBonus(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
-			nobilityTrackBonus=null;
+			nobilityTrackBonus = null;
 		}
 
 		return nobilityTrackBonus;
@@ -94,79 +105,85 @@ public class XmlInterface {
 
 	/**
 	 * load the xml file with the game's informations
+	 * 
 	 * @return a two-dimensional array with all the city info
-	 * @param endPath the name of the file to read
-	 * @throws XmlException 
+	 * @param endPath
+	 *            the name of the file to read
+	 * @throws XmlException
 	 */
-	public String[][] cittaXml(String endPath) throws XmlException{
+	public String[][] cittaXml(String endPath) throws XmlException {
 
 		String[][] cityInfo;
-		cityInfo=cittaXml.readFileXml(endPath);
-		
-		/* array cityInfo prototype returned
-		 * coloumn 0: name of the city
-		 * coloumn 1: color of the city
-		 * coloumn 2: link of the city (the id to which it is connected the city)
-		 * coloumn 3: id of the city
-		 * coloumn 4: region of the city
+		cityInfo = cittaXml.readFileXml(endPath);
+
+		/*
+		 * array cityInfo prototype returned coloumn 0: name of the city coloumn
+		 * 1: color of the city coloumn 2: link of the city (the id to which it
+		 * is connected the city) coloumn 3: id of the city coloumn 4: region of
+		 * the city
 		 */
-		return cityInfo;//ritorna l'array con le informazioni delle citta'
+		return cityInfo;// ritorna l'array con le informazioni delle citta'
 	}
 
 	/**
 	 * read the bonus region from the xml file
-	 * @param endPath the name of the file with .xml
+	 * 
+	 * @param endPath
+	 *            the name of the file with .xml
 	 * @return a two-dimensional array with the region name and bonus region
 	 */
-	public String[][] getBonusRegion(String endPath){
+	public String[][] getBonusRegion(String endPath) {
 		String[][] bonusRegion = null;
 
-		try {//provo a leggere il file xml
-			bonusRegion=cittaXml.getBonusRegion(endPath);
+		try {// provo a leggere il file xml
+			bonusRegion = cittaXml.getBonusRegion(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
 			bonusRegion = null;
 		}
 
-		return bonusRegion;//ritorna un array con i bonus della regione
+		return bonusRegion;// ritorna un array con i bonus della regione
 	}
 
 	/**
 	 * read the construction card in the xml file
-	 * @param endPath the final part of the xml file path (name+extension)
+	 * 
+	 * @param endPath
+	 *            the final part of the xml file path (name+extension)
 	 * @return a two-dimensional array with the construction cards info
 	 */
-	public String[][] costructionCard(String endPath){
-		String[][] costructionCard=null;
+	public String[][] costructionCard(String endPath) {
+		String[][] costructionCard = null;
 
-		try {//provo a leggere il file xml
-			costructionCard=costructionXml.readCardXml(endPath);
+		try {// provo a leggere il file xml
+			costructionCard = costructionXml.readCardXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
-			costructionCard=null;
+			costructionCard = null;
 		}
 
 		return costructionCard;
-		/* array CostructionCard prototype
-		 * coloumn 0: region
-		 * coloumn 1: city
+		/*
+		 * array CostructionCard prototype coloumn 0: region coloumn 1: city
 		 * coloumn 2: bonus
 		 */
 	}
 
 	/**
 	 * find the colors in the xml file
-	 * @param endPath the xml file name
+	 * 
+	 * @param endPath
+	 *            the xml file name
 	 * @return an array with the colors
 	 */
-	public String[] colorXml(String endPath){
-		String[] color=null;
+	public String[] colorXml(String endPath) {
+		String[] color = null;
 
-		try {//provo a leggere il file xml
-			color=colorXml.coloriXml(endPath);
+		try {// provo a leggere il file xml
+			color = colorXml.coloriXml(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
-			color=null;
+			color = null;
 		}
 
 		return color;
@@ -174,35 +191,39 @@ public class XmlInterface {
 
 	/**
 	 * find the number of colors in the xml file
-	 * @param endPath the name of the xml file
+	 * 
+	 * @param endPath
+	 *            the name of the xml file
 	 * @return the number of color in the xml file
 	 */
-	public int colorNumberXml(String endPath){
-		int color=0;
+	public int colorNumberXml(String endPath) {
+		int color = 0;
 
-		try {//provo a leggere il file xml
-			color=colorXml.colorNumber(endPath);
+		try {// provo a leggere il file xml
+			color = colorXml.colorNumber(endPath);
 		} catch (XmlException e) {
 			logger.error(err + endPath, e);
-			color=0;
+			color = 0;
 		}
 
 		return color;
 	}
-	
+
 	/**
 	 * find the city bonus in the xml file
-	 * @param endPath the file name
+	 * 
+	 * @param endPath
+	 *            the file name
 	 * @return an array with the city bonus
 	 */
-	public String[] bonusCity(String endPath){
-		String[] bonus=null;
+	public String[] bonusCity(String endPath) {
+		String[] bonus = null;
 
-		try {//provo a leggere il file xml
-			bonus=bonusXml.bonusCityXml(endPath);
+		try {// provo a leggere il file xml
+			bonus = bonusXml.bonusCityXml(endPath);
 		} catch (XmlException e) {
-			logger.error(err + endPath, e);//errore
-			bonus=null;
+			logger.error(err + endPath, e);// errore
+			bonus = null;
 		}
 
 		return bonus;

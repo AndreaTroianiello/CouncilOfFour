@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.utility;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.awt.Color;
 
@@ -14,14 +15,14 @@ public class ColorManagerTest {
 	}
 
 	/**
-	 * the test control if getColorName return null when the color is not in the list, and if it return the 
-	 * name of the color when it is
+	 * the test control if getColorName return null when the color is not in the
+	 * list, and if it return the name of the color when it is
 	 */
 	@Test
 	public void testGetColorName() {
 		ColorManager colorManager = new ColorManager();
 		assertNull(colorManager.getColorName(Color.CYAN));
-		assertEquals("Orange", colorManager.getColorName(new Color(255,102,0)));
+		assertEquals("Orange", colorManager.getColorName(new Color(255, 102, 0)));
 	}
 
 	/**

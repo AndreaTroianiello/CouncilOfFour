@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,7 @@ import it.polimi.ingsw.cg23.server.model.components.NobilityTrack;
 public class BonusVictoryPointsTest {
 
 	private Player player;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		player = new Player("a", new NobilityTrack(3));

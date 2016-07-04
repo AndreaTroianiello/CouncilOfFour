@@ -7,18 +7,21 @@ import it.polimi.ingsw.cg23.server.model.Player;
 
 /**
  * The player's emporium to be built in a city.
+ * 
  * @author Andrea
  *
  */
 public class Emporium implements Serializable {
-	
+
 	private static final long serialVersionUID = -2660058974560248850L;
 	private final Player player;
 	private City city;
-	
+
 	/**
 	 * The constructor of the emporium. The default value of city is null.
-	 * @param player The owner of this emporium.
+	 * 
+	 * @param player
+	 *            The owner of this emporium.
 	 */
 	public Emporium(Player player) {
 		this.player = player;
@@ -26,7 +29,7 @@ public class Emporium implements Serializable {
 	}
 
 	/**
-	 * Returns the city in which it was built the emporium. 
+	 * Returns the city in which it was built the emporium.
 	 * 
 	 * @return the city
 	 */
@@ -35,9 +38,10 @@ public class Emporium implements Serializable {
 	}
 
 	/**
-	 * Sets the city of emporium. 
+	 * Sets the city of emporium.
 	 * 
-	 * @param city the city in which it was built the emporium.
+	 * @param city
+	 *            the city in which it was built the emporium.
 	 */
 	public void setCity(City city) {
 		this.city = city;
@@ -53,12 +57,14 @@ public class Emporium implements Serializable {
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the Emporium.
+	 * It generates a string formed by the most significant statistics of the
+	 * Emporium.
+	 * 
 	 * @return string
 	 */
 	@Override
 	public String toString() {
 		return player.getUser();
 	}
-	
+
 }

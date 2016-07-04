@@ -22,64 +22,70 @@ import it.polimi.ingsw.cg23.server.view.socket.ServerSocketView;
 
 /**
  * The Server accepts new connections from clients.
+ * 
  * @author Andrea
  *
  */
 public class Server {
-	private static final int SOCKET_PORT=29999;
+	private static final int SOCKET_PORT = 29999;
 	private static final String NAME = "council";
-	private static final int RMI_PORT=52365;
+	private static final int RMI_PORT = 52365;
 
 	private static Logger logger;
 
-	private int index; 							//Number of the players connected.
-	private Board model;						//The model of the game.
-	private Controller controller;				//The controller of the game.
-	private Chat chat;                          //The chat of the game.
+	private int index; // Number of the players connected.
+	private Board model; // The model of the game.
+	private Controller controller; // The controller of the game.
+	private Chat chat; // The chat of the game.
 
 	/**
 	 * The constructor of Server.
 	 */
-	public Server(){
+	public Server() {
 		logger = Logger.getLogger(Server.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		this.index=0;
+		this.index = 0;
 	}
 
 	/**
 	 * Starts the RMI connection.
-	 * @throws RemoteException If the RMI connection has problem.
-	 * @throws AlreadyBoundException If the RMI connection has problem.
+	 * 
+	 * @throws RemoteException
+	 *             If the RMI connection has problem.
+	 * @throws AlreadyBoundException
+	 *             If the RMI connection has problem.
 	 */
-	private void startRMI() throws RemoteException, AlreadyBoundException{
-		Registry registry=LocateRegistry.createRegistry(RMI_PORT);
-		RMIView rmiView=new RMIView(this,registry);		
-		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
+	private void startRMI() throws RemoteException, AlreadyBoundException {
+		Registry registry = LocateRegistry.createRegistry(RMI_PORT);
+		RMIView rmiView = new RMIView(this, registry);
+		RMIViewRemote viewRemote = (RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
 		registry.bind(NAME, viewRemote);
-		logger.info("SERVER RMI, NAME:"+NAME+" AND PORT:" + RMI_PORT);
+		logger.info("SERVER RMI, NAME:" + NAME + " AND PORT:" + RMI_PORT);
 	}
 
 	/**
 	 * Starts the socket connection.
-	 * @throws IOException If the socket connection has problem.
+	 * 
+	 * @throws IOException
+	 *             If the socket connection has problem.
 	 */
-	private void startSocket() throws IOException{
-		boolean run=true;
+	private void startSocket() throws IOException {
+		boolean run = true;
 
-		ExecutorService executor=Executors.newCachedThreadPool();
-		ServerSocket serverSocket=new ServerSocket(SOCKET_PORT);
+		ExecutorService executor = Executors.newCachedThreadPool();
+		ServerSocket serverSocket = new ServerSocket(SOCKET_PORT);
 		logger.info("SERVER SOCKET, PORT:" + SOCKET_PORT);
 
-		while(run){
-			try{
-				Socket socket=serverSocket.accept();
+		while (run) {
+			try {
+				Socket socket = serverSocket.accept();
 				incrementIndex();
-				ServerSocketView view=new ServerSocketView(socket,chat);
+				ServerSocketView view = new ServerSocketView(socket, chat);
 				this.model.registerObserver(view);
 				view.registerObserver(this.controller);
 				executor.submit(view);
-			}catch(IOException e){
-				run=false;
+			} catch (IOException e) {
+				run = false;
 				logger.error(e);
 			}
 		}
@@ -89,6 +95,7 @@ public class Server {
 
 	/**
 	 * Returns the index of players.
+	 * 
 	 * @return the index
 	 */
 	public int getIndex() {
@@ -105,54 +112,58 @@ public class Server {
 	/**
 	 * Increments the index of the connected views.
 	 */
-	public void incrementIndex(){
+	public void incrementIndex() {
 		++index;
-		if(index==1)
+		if (index == 1)
 			initializationGame();
-		if(index==2)
+		if (index == 2)
 			new Thread(new NewGame(this)).start();
-		logger.info(index);	
+		logger.info(index);
 	}
 
-	public Chat getChat(){
+	public Chat getChat() {
 		return chat;
 	}
 
 	/**
 	 * Initializes a new controller and model.
 	 */
-	private void initializationGame(){
-		model=new Board(null,null,null,null,null,null);
+	private void initializationGame() {
+		model = new Board(null, null, null, null, null, null);
 		controller = new Controller(model);
-		chat=new Chat();
+		chat = new Chat();
 	}
 
 	/**
 	 * Returns the controller of the game.
+	 * 
 	 * @return controller
 	 */
-	public Controller getController(){
+	public Controller getController() {
 		return controller;
 	}
+
 	/**
 	 * Returns the model of the game
+	 * 
 	 * @return model
 	 */
-	public Board getModel(){
+	public Board getModel() {
 		return model;
 	}
 
 	/**
 	 * Starts the server.
+	 * 
 	 * @param args
 	 */
-	public static void main(String[] args)  {
-		Server server=new Server();
+	public static void main(String[] args) {
+		Server server = new Server();
 		try {
 			server.startRMI();
 			server.startSocket();
 		} catch (IOException | AlreadyBoundException e) {
 			logger.error(e);
 		}
-	}	
+	}
 }

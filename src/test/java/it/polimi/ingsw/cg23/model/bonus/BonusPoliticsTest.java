@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.model.bonus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -21,14 +21,14 @@ public class BonusPoliticsTest {
 	private Board board;
 	private Deck deck;
 	private Player player;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		PoliticCard card = new PoliticCard(Color.ORANGE, false);
 		List<PoliticCard> cards = new ArrayList<>();
 		cards.add(card);
 		deck = new Deck(cards);
-		board = new Board( deck, null, null, null, null, null);
+		board = new Board(deck, null, null, null, null, null);
 		player = new Player("a", new NobilityTrack(1));
 	}
 
@@ -71,7 +71,7 @@ public class BonusPoliticsTest {
 		PoliticCard expectedCard = new PoliticCard(Color.ORANGE, false);
 		assertEquals(expectedCard.getColor(), player.getHand().get(0).getColor());
 	}
-	
+
 	/**
 	 * it tests if giveBonus works properly when there is no card in the deck
 	 */

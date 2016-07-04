@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -16,12 +19,9 @@ import it.polimi.ingsw.cg23.client.gui.homepanels.PanelConnection;
 import it.polimi.ingsw.cg23.client.gui.homepanels.PanelLogin;
 import it.polimi.ingsw.cg23.server.controller.change.InfoChange;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 /**
  * The class that starts the client GUI.
+ * 
  * @author Andrea
  *
  */
@@ -34,14 +34,13 @@ public class HomeFrame extends JFrame {
 	private static Logger logger;
 	private JLabel labelBackground;
 
-
 	/**
 	 * The constructor of HomeFrame. It creates the frame.
 	 */
 	public HomeFrame() {
 		logger = Logger.getLogger(HomeFrame.class);
 		PropertyConfigurator.configure("src/main/resources/logger.properties");
-		controller=new ControllerGUI(this);
+		controller = new ControllerGUI(this);
 		initComponents();
 	}
 
@@ -49,9 +48,9 @@ public class HomeFrame extends JFrame {
 	 * Initializes the componets of the JFrame.
 	 */
 	private void initComponents() {
-		panelLogin=new PanelLogin(controller);
-		panelConnection = new PanelConnection(controller,this);
-		labelBackground=new JLabel();
+		panelLogin = new PanelLogin(controller);
+		panelConnection = new PanelConnection(controller, this);
+		labelBackground = new JLabel();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Council of Four");
@@ -63,12 +62,12 @@ public class HomeFrame extends JFrame {
 		setResizable(false);
 		getContentPane().setLayout(null);
 
-		//Panel Login.
+		// Panel Login.
 		getContentPane().add(panelLogin);
 		panelLogin.setBounds(-10, 230, 400, 220);
 		panelLogin.setVisible(false);
 
-		//Panel Connection.
+		// Panel Connection.
 		getContentPane().add(panelConnection);
 		panelConnection.setBounds(0, 230, 400, 230);
 
@@ -86,26 +85,29 @@ public class HomeFrame extends JFrame {
 	}
 
 	/**
-	 * Switches the panelLogin with panelConnection and vice versa. 
+	 * Switches the panelLogin with panelConnection and vice versa.
 	 */
-	public void switchPanel(){
+	public void switchPanel() {
 		panelLogin.setVisible(!panelLogin.isVisible());
 		panelConnection.setVisible(!panelConnection.isVisible());
 	}
 
 	/**
 	 * Updates the HomeFrame with the informations received.
-	 * @param info The informations received.
+	 * 
+	 * @param info
+	 *            The informations received.
 	 */
-	public void updateInfo(InfoChange info){
-		panelLogin.infoPopup(" "+info.getInfo());
+	public void updateInfo(InfoChange info) {
+		panelLogin.infoPopup(" " + info.getInfo());
 	}
 
 	/**
 	 * Launch the application.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(()->new HomeFrame().setVisible(true));
+		EventQueue.invokeLater(() -> new HomeFrame().setVisible(true));
 	}
 }

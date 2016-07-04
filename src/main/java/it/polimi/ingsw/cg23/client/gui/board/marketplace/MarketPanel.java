@@ -23,6 +23,7 @@ import it.polimi.ingsw.cg23.server.model.marketplace.Market;
 
 /**
  * create the market panel
+ * 
  * @author viga94_
  *
  */
@@ -33,17 +34,22 @@ public class MarketPanel extends JPanel {
 	private transient ControllerGUI controller;
 	private JTable table;
 	private DefaultTableModel model;
-	private final int lung;//lunghezza finestra
+	private final int lung;// lunghezza finestra
 
 	/**
 	 * Create the panel.
-	 * @param controller, the controller
-	 * @param loggerArea, the area to read on
+	 * 
+	 * @param controller,
+	 *            the controller
+	 * @param loggerArea,
+	 *            the area to read on
 	 */
 	public MarketPanel(ControllerGUI controller, JTextArea loggerArea) {
-		this.loggerArea=loggerArea;
-		this.controller=controller;
-		lung=Toolkit.getDefaultToolkit().getScreenSize().width;//lughezza dello schermo
+		this.loggerArea = loggerArea;
+		this.controller = controller;
+		lung = Toolkit.getDefaultToolkit().getScreenSize().width;// lughezza
+																	// dello
+																	// schermo
 
 		init();
 	}
@@ -51,156 +57,163 @@ public class MarketPanel extends JPanel {
 	/**
 	 * create the market components
 	 */
-	private void init(){
-		GridBagLayout layout = new GridBagLayout();//nuovo layout
+	private void init() {
+		GridBagLayout layout = new GridBagLayout();// nuovo layout
 		setLayout(layout);
 
-		GridBagConstraints lim = new GridBagConstraints();//settaggio layout
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		GridBagConstraints lim = new GridBagConstraints();// settaggio layout
+		lim.fill = GridBagConstraints.NONE;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;// posizione componenti nei
+												// riquadri
 
-		//----------etichetta market----------
-		JLabel marketLabel=new JLabel("Market");//etichetta scritta
-		marketLabel.setForeground(new Color(255, 215, 0));//colore scritta
-		lim.gridx = 0;//posizione componenti nella griglia
+		// ----------etichetta market----------
+		JLabel marketLabel = new JLabel("Market");// etichetta scritta
+		marketLabel.setForeground(new Color(255, 215, 0));// colore scritta
+		lim.gridx = 0;// posizione componenti nella griglia
 		lim.gridy = 0;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=3;
-		layout.setConstraints(marketLabel, lim);//applicazione del layout alla label
-		add(marketLabel);//aggiunta della label al panel
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 3;
+		layout.setConstraints(marketLabel, lim);// applicazione del layout alla
+												// label
+		add(marketLabel);// aggiunta della label al panel
 
-		//----------tabella finta----------
-		JLabel spaceLbl1=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
-		lim.gridx = 0;//posizione componenti nella griglia
+		// ----------tabella finta----------
+		JLabel spaceLbl1 = new JLabel(addSpace(lung / 100));// aggiunge spazi
+															// per centrare la
+															// tabella
+		lim.gridx = 0;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
+		lim.weightx = 0;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(spaceLbl1, lim);//applicazione del layout alla label
-		add(spaceLbl1);//aggiunta della label al panel
+		lim.fill = GridBagConstraints.NONE;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		layout.setConstraints(spaceLbl1, lim);// applicazione del layout alla
+												// label
+		add(spaceLbl1);// aggiunta della label al panel
 
-
-		//----------tabella----------
-		table=new JTable();//tabella market
+		// ----------tabella----------
+		table = new JTable();// tabella market
 		initMarketTable();
-		lim.gridx = 1;//posizione componenti nella griglia
+		lim.gridx = 1;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		JScrollPane scrollTable=new JScrollPane(table);//applicazione dello scroll al panel
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
+		lim.fill = GridBagConstraints.BOTH;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		JScrollPane scrollTable = new JScrollPane(table);// applicazione dello
+															// scroll al panel
 		scrollTable.setAutoscrolls(true);
-		layout.setConstraints(scrollTable, lim);//applicazione del layout allo scroll
-		add(scrollTable);//aggiunta dello scroll al panel
+		layout.setConstraints(scrollTable, lim);// applicazione del layout allo
+												// scroll
+		add(scrollTable);// aggiunta dello scroll al panel
 
-		//----------tabella finta----------
-		JLabel spaceLbl2=new JLabel(addSpace(lung/100));//aggiunge spazi per centrare la tabella
-		lim.gridx = 2;//posizione componenti nella griglia
+		// ----------tabella finta----------
+		JLabel spaceLbl2 = new JLabel(addSpace(lung / 100));// aggiunge spazi
+															// per centrare la
+															// tabella
+		lim.gridx = 2;// posizione componenti nella griglia
 		lim.gridy = 1;
-		lim.weightx = 0;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 0;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 0;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=1;
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(spaceLbl2, lim);//applicazione del layout alla label
-		add(spaceLbl2);//aggiunta della label al panel
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 1;
+		lim.fill = GridBagConstraints.NONE;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		layout.setConstraints(spaceLbl2, lim);// applicazione del layout alla
+												// label
+		add(spaceLbl2);// aggiunta della label al panel
 
-		//----------button panel (sell + buy)----------
-		JPanel littleButtonPanel=new JPanel();//nuovo pannello per i bottoni buy and sell
-		littleButtonPanel.setBackground(new Color(151, 111, 51));//sfondo del panello
+		// ----------button panel (sell + buy)----------
+		JPanel littleButtonPanel = new JPanel();// nuovo pannello per i bottoni
+												// buy and sell
+		littleButtonPanel.setBackground(new Color(151, 111, 51));// sfondo del
+																	// panello
 
-		JButton sellButton=new JButton("Sell");//bottone sell
-		littleButtonPanel.add(sellButton);//aggiunta del bottone al littlePanel
+		JButton sellButton = new JButton("Sell");// bottone sell
+		littleButtonPanel.add(sellButton);// aggiunta del bottone al littlePanel
 
-		JButton buyButton=new JButton("Buy");//bottone buy
-		littleButtonPanel.add(buyButton);//aggiunta del bottone al littlePanel
+		JButton buyButton = new JButton("Buy");// bottone buy
+		littleButtonPanel.add(buyButton);// aggiunta del bottone al littlePanel
 
-		lim.gridx = 0;//posizione componenti nella griglia
+		lim.gridx = 0;// posizione componenti nella griglia
 		lim.gridy = 2;
-		lim.weightx = 1;//occupa tutto lo spazio all'interno del riquadro
+		lim.weightx = 1;// occupa tutto lo spazio all'interno del riquadro
 		lim.weighty = 1;
-		lim.gridheight=1;//grandezza del riquadro
-		lim.gridwidth=3;
-		lim.fill=GridBagConstraints.NONE;//grandezza componenti nei riquadri (both= tutto pieno)
-		layout.setConstraints(littleButtonPanel, lim);//applicazione del layout al littlePanel
-		add(littleButtonPanel);//aggiunta del littlePanel al pannello
+		lim.gridheight = 1;// grandezza del riquadro
+		lim.gridwidth = 3;
+		lim.fill = GridBagConstraints.NONE;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		layout.setConstraints(littleButtonPanel, lim);// applicazione del layout
+														// al littlePanel
+		add(littleButtonPanel);// aggiunta del littlePanel al pannello
 
-		sellButton.addActionListener(e->{
+		sellButton.addActionListener(e -> {
 			loggerArea.append("\nSell button");
-			SelectedElements elements=controller.getSelectedElements();
-			if(!elements.getCards().isEmpty())
+			SelectedElements elements = controller.getSelectedElements();
+			if (!elements.getCards().isEmpty())
 				new MarketDialog(controller, elements.getCards().get(0)).setVisible(true);
+			else if (elements.getTile() != null)
+				new MarketDialog(controller, elements.getTile()).setVisible(true);
 			else
-				if(elements.getTile()!=null)
-					new MarketDialog(controller, elements.getTile()).setVisible(true);
-				else
-					new MarketDialog(controller, new AssistantsPool()).setVisible(true);
+				new MarketDialog(controller, new AssistantsPool()).setVisible(true);
 		});
 
-		buyButton.addActionListener(e->{
+		buyButton.addActionListener(e -> {
 			loggerArea.append("\nBuy button");
-			controller.updateController(new MarketBuy(controller.getModel()
-					.findItem(Integer.toString(table.getSelectedRow())
-							)));
+			controller.updateController(
+					new MarketBuy(controller.getModel().findItem(Integer.toString(table.getSelectedRow()))));
 		});
 	}
 
 	/**
 	 * Fills the table with the market's items.
 	 */
-	public void fillTable(){
+	public void fillTable() {
 		initMarketTable();
-		Market market=controller.getModel().getBoard().getMarket();
-		List<Item> items=market.getItems();
-		for(int index=0;index<items.size();index++){
-			Item item=items.get(index);
-			model.addRow(new Object[]{item.getItem().toString(),
-					item.getItem().getClass().getSimpleName(),
-					item.getAmount(),
-					item.getCoins(),
-					item.getPlayer().getUser()});
+		Market market = controller.getModel().getBoard().getMarket();
+		List<Item> items = market.getItems();
+		for (int index = 0; index < items.size(); index++) {
+			Item item = items.get(index);
+			model.addRow(new Object[] { item.getItem().toString(), item.getItem().getClass().getSimpleName(),
+					item.getAmount(), item.getCoins(), item.getPlayer().getUser() });
 		}
 	}
 
 	/**
 	 * Initializes the market table.
 	 */
-	private void initMarketTable(){
-		model=new DefaultTableModel(
-				new Object [][] {
-				},
-				new String [] {
-						"Information", "Type", "Amount", "Coins", "Player"
-				}
-				) {
+	private void initMarketTable() {
+		model = new DefaultTableModel(new Object[][] {},
+				new String[] { "Information", "Type", "Amount", "Coins", "Player" }) {
 			private static final long serialVersionUID = -4879233531111422052L;
-			boolean[] canEdit = new boolean [] {
-					false, false, false, false, false
-			};
+			boolean[] canEdit = new boolean[] { false, false, false, false, false };
 
 			@Override
 			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return canEdit [columnIndex];
+				return canEdit[columnIndex];
 			}
 		};
-		table.setModel(model);//aggiungo alla tabella il modello
+		table.setModel(model);// aggiungo alla tabella il modello
 	}
 
 	/**
 	 * create a tring with the specified space
-	 * @param s, the number of space
+	 * 
+	 * @param s,
+	 *            the number of space
 	 * @return a string with the specified space
 	 */
-	private String addSpace(int s){
-		String space="";
-		for(int i=0; i<s; i++){
-			space=space.concat(" ");
+	private String addSpace(int s) {
+		String space = "";
+		for (int i = 0; i < s; i++) {
+			space = space.concat(" ");
 		}
 		return space;
 	}

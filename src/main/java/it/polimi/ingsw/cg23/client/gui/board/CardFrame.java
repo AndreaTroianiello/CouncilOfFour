@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import it.polimi.ingsw.cg23.client.gui.ControllerGUI;
@@ -21,6 +22,7 @@ import it.polimi.ingsw.cg23.server.model.components.BusinessPermitTile;
 
 /**
  * create the used business permit tiles frame
+ * 
  * @author viga94_
  *
  */
@@ -35,13 +37,16 @@ public class CardFrame extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param loggerArea the area to read on
-	 * @param controller, the controller
+	 * 
+	 * @param loggerArea
+	 *            the area to read on
+	 * @param controller,
+	 *            the controller
 	 */
 	public CardFrame(JTextArea loggerArea, ControllerGUI controller) {
-		this.ccp=new CostructionCardPanel(loggerArea,controller);
+		this.ccp = new CostructionCardPanel(loggerArea, controller);
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(400, 200, 450, 300);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -54,87 +59,117 @@ public class CardFrame extends JFrame {
 
 	/**
 	 * create the used costruction cards for the player
-	 * @param p, the player
+	 * 
+	 * @param p,
+	 *            the player
 	 */
-	public void createCard(Player p){
-		JPanel panel=new JPanel();
+	public void createCard(Player p) {
+		JPanel panel = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
 
-		GridBagConstraints lim = new GridBagConstraints(); 
-		lim.fill=GridBagConstraints.BOTH;//grandezza componenti nei riquadri (both= tutto pieno)
-		lim.anchor = GridBagConstraints.CENTER;//posizione componenti nei riquadri
+		GridBagConstraints lim = new GridBagConstraints();
+		lim.fill = GridBagConstraints.BOTH;// grandezza componenti nei riquadri
+											// (both= tutto pieno)
+		lim.anchor = GridBagConstraints.CENTER;// posizione componenti nei
+												// riquadri
 
-		List<BusinessPermitTile> bpt=p.getUsedBusinessPermit();//carte permesso costrucione giocatore usate
-		if(bpt.isEmpty()){//non ci sono carte permesso usate
+		List<BusinessPermitTile> bpt = p.getUsedBusinessPermit();// carte
+																	// permesso
+																	// costrucione
+																	// giocatore
+																	// usate
+		if (bpt.isEmpty()) {// non ci sono carte permesso usate
 
-			//----------no card----------
-			JLabel noCardLabel = new JLabel("No used business permit tiles");//aggiungo l'immagine alla label
+			// ----------no card----------
+			JLabel noCardLabel = new JLabel("No used business permit tiles");// aggiungo
+																				// l'immagine
+																				// alla
+																				// label
 			noCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
-			
-			lim.gridx = 0;//posizione componenti nella griglia
+
+			lim.gridx = 0;// posizione componenti nella griglia
 			lim.gridy = 0;
-			lim.weightx=1;//espansione in verticale e orizzontale
-			lim.weighty=1;
-			lim.gridheight=1;//grandezza del riquadro
-			lim.gridwidth=1;
-			
+			lim.weightx = 1;// espansione in verticale e orizzontale
+			lim.weighty = 1;
+			lim.gridheight = 1;// grandezza del riquadro
+			lim.gridwidth = 1;
+
 			layout.setConstraints(noCardLabel, lim);
 			panel.add(noCardLabel);
 
-		}else{//ci sono carte permesso usate
+		} else {// ci sono carte permesso usate
 
-			//----------costruction card usate disponibili----------
-			JLabel yesCardLabel = new JLabel("Used business permit tiles");//aggiungo l'immagine alla label
+			// ----------costruction card usate disponibili----------
+			JLabel yesCardLabel = new JLabel("Used business permit tiles");// aggiungo
+																			// l'immagine
+																			// alla
+																			// label
 			yesCardLabel.setFont(new Font("Calibre", Font.PLAIN, 20));
-			
-			lim.gridx = 0;//posizione componenti nella griglia
+
+			lim.gridx = 0;// posizione componenti nella griglia
 			lim.gridy = 0;
-			lim.weightx=1;//espansione in verticale e orizzontale
-			lim.weighty=1;
-			lim.gridheight=1;//grandezza del riquadro
-			lim.gridwidth=5;
-			
+			lim.weightx = 1;// espansione in verticale e orizzontale
+			lim.weighty = 1;
+			lim.gridheight = 1;// grandezza del riquadro
+			lim.gridwidth = 5;
+
 			layout.setConstraints(yesCardLabel, lim);
 			panel.add(yesCardLabel);
 
-			int q=0;//posizione griglia orizzonatale (larghezza)
-			int r=1;//posizione griglia verticale (altezza)
-			for(int i=0; i<bpt.size(); i++){
-				JLabel costructionCard = ccp.oldCostructionWB(bpt.get(i));//aggiungo l'immagine alla label
-				
-				lim.gridx = q;//posizione componenti nella griglia
+			int q = 0;// posizione griglia orizzonatale (larghezza)
+			int r = 1;// posizione griglia verticale (altezza)
+			for (int i = 0; i < bpt.size(); i++) {
+				JLabel costructionCard = ccp.oldCostructionWB(bpt.get(i));// aggiungo
+																			// l'immagine
+																			// alla
+																			// label
+
+				lim.gridx = q;// posizione componenti nella griglia
 				lim.gridy = r;
-				lim.weightx=1;//espansione in verticale e orizzontale
-				lim.weighty=1;
-				lim.gridheight=1;//grandezza del riquadro
-				lim.gridwidth=1;
-				
+				lim.weightx = 1;// espansione in verticale e orizzontale
+				lim.weighty = 1;
+				lim.gridheight = 1;// grandezza del riquadro
+				lim.gridwidth = 1;
+
 				layout.setConstraints(costructionCard, lim);
 				panel.add(costructionCard);
-				final int k=i;
+				final int k = i;
 				costructionCard.addMouseListener(new MouseListener() {
 					@Override
-					public void mousePressed(MouseEvent e) {/**empty, not erasable*/}
+					public void mousePressed(MouseEvent e) {
+						/** empty, not erasable */
+					}
+
 					@Override
-					public void mouseEntered(MouseEvent e) {/**empty, not erasable*/}
+					public void mouseEntered(MouseEvent e) {
+						/** empty, not erasable */
+					}
+
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						ccp.writeArea(bpt.get(k));
 					}
+
 					@Override
-					public void mouseExited(MouseEvent e) {/**empty, not erasable*/}
+					public void mouseExited(MouseEvent e) {
+						/** empty, not erasable */
+					}
+
 					@Override
-					public void mouseReleased(MouseEvent e) {/**empty, not erasable*/}
+					public void mouseReleased(MouseEvent e) {
+						/** empty, not erasable */
+					}
 				});
-				
+
 				q++;
-				if(q%5==0){//metto al massino 5 carte costruzione per riga
-					q=0;
+				if (q % 5 == 0) {// metto al massino 5 carte costruzione per
+									// riga
+					q = 0;
 					r++;
 				}
 			}
-			
+
 		}
 
 		contentPane.add(panel);

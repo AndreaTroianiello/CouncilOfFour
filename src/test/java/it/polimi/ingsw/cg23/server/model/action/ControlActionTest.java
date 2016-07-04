@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg23.server.model.action;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class ControlActionTest {
 	private Board board;
 	private Region region;
 	private Player player;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		List<Region> regions = new ArrayList<>();
@@ -35,8 +36,8 @@ public class ControlActionTest {
 	}
 
 	/**
-	 * it tests if controlRegion return null if the argument is null and if the region isn't in the board,
-	 * and the region when it is
+	 * it tests if controlRegion return null if the argument is null and if the
+	 * region isn't in the board, and the region when it is
 	 */
 	@Test
 	public void testControlRegion() {
@@ -48,8 +49,8 @@ public class ControlActionTest {
 	}
 
 	/**
-	 * it tests if the method returns null when the player doesn't have the chosen cards, and if it
-	 * returns the chosen cards when the player has them 
+	 * it tests if the method returns null when the player doesn't have the
+	 * chosen cards, and if it returns the chosen cards when the player has them
 	 */
 	@Test
 	public void testControlPoliticCards() {
@@ -61,12 +62,12 @@ public class ControlActionTest {
 		cards.add(new PoliticCard(Color.RED, false));
 		cards.add(new PoliticCard(null, true));
 		assertEquals(this.player.getHand(), control.controlPoliticCards(cards, player));
-		
+
 	}
 
 	/**
-	 * it tests if the method returns null when the player doesn't have the chosen tile, and if it returns the
-	 * tile when he has it
+	 * it tests if the method returns null when the player doesn't have the
+	 * chosen tile, and if it returns the tile when he has it
 	 */
 	@Test
 	public void testControlBusinessPermit() {
@@ -78,10 +79,10 @@ public class ControlActionTest {
 		this.player.addAvailableBusinessPermit(tile);
 		assertEquals(this.player.getAvailableBusinessPermits().get(0), control.controlBusinessPermit(tile, player));
 	}
-	
+
 	/**
-	 * it tests if the method returns null when the region doesn't have the chosen tile, and if it returns 
-	 * the tile when it has it
+	 * it tests if the method returns null when the region doesn't have the
+	 * chosen tile, and if it returns the tile when it has it
 	 */
 	@Test
 	public void testControlBusinessPermitRegion() {

@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg23.server.model.marketplace.Item;
 
 /**
  * The ItemChange serves to notify a new item.
+ * 
  * @author Andrea
  *
  */
@@ -14,14 +15,18 @@ public class ItemChange implements Change {
 
 	/**
 	 * The constructor of the ItemChange
-	 * @param newItem The new item.
+	 * 
+	 * @param newItem
+	 *            The new item.
 	 */
-	public ItemChange(Item newItem){
-		this.newItem=newItem;
+	public ItemChange(Item newItem) {
+		this.newItem = newItem;
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the ItemChange.
+	 * It generates a string formed by the most significant statistics of the
+	 * ItemChange.
+	 * 
 	 * @return string
 	 */
 	@Override

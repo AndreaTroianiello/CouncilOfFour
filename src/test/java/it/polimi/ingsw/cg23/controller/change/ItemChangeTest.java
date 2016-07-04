@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg23.controller.change;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,8 +22,10 @@ public class ItemChangeTest {
 	 */
 	@Test
 	public void testToString() {
-		ItemChange change=new ItemChange(new Item(new PoliticCard(null,true), new Player("user",new NobilityTrack(1)), 5));
-		assertEquals(change.toString(),"ItemChange [Item=Item [coins=5, itemToSell=PoliticCard [jolly=true], player=user]]");
+		ItemChange change = new ItemChange(
+				new Item(new PoliticCard(null, true), new Player("user", new NobilityTrack(1)), 5));
+		assertEquals(change.toString(),
+				"ItemChange [Item=Item [coins=5, itemToSell=PoliticCard [jolly=true], player=user]]");
 	}
 
 }

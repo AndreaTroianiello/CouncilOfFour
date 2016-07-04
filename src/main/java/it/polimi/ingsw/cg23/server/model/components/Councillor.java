@@ -6,24 +6,27 @@ import java.io.Serializable;
 import it.polimi.ingsw.cg23.utility.ColorManager;
 
 /**
- * The councillor can be used in a council and can be matched a politic card of the same color.
+ * The councillor can be used in a council and can be matched a politic card of
+ * the same color.
+ * 
  * @author Andrea
  *
  */
 public class Councillor implements Serializable {
-	
+
 	private static final long serialVersionUID = -4682589451268368747L;
 	private final Color color;
-	
+
 	/**
 	 * The constructor of councillor.
 	 * 
-	 * @param color The color of councillor.
+	 * @param color
+	 *            The color of councillor.
 	 */
-	public Councillor(Color color){
-		this.color=color;
+	public Councillor(Color color) {
+		this.color = color;
 	}
-	
+
 	/**
 	 * Returns the color of the councillor.
 	 * 
@@ -34,14 +37,15 @@ public class Councillor implements Serializable {
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the Councillor.
+	 * It generates a string formed by the most significant statistics of the
+	 * Councillor.
+	 * 
 	 * @return string
 	 */
 	@Override
 	public String toString() {
-		ColorManager manager=new ColorManager();
-		return "Councillor [color="+ manager.getColorName(color) +"]";
+		ColorManager manager = new ColorManager();
+		return "Councillor [color=" + manager.getColorName(color) + "]";
 	}
-	
-	
+
 }

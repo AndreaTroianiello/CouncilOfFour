@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg23.server.model.components.Council;
 
 /**
  * The CouncilChange serves to notify a new council.
+ * 
  * @author Andrea
  *
  */
@@ -14,18 +15,22 @@ public class CouncilChange implements Change {
 
 	/**
 	 * The constructor of the CouncilChange
-	 * @param council The new council.
+	 * 
+	 * @param council
+	 *            The new council.
 	 */
-	public CouncilChange(Council council){
-		this.council=council;
+	public CouncilChange(Council council) {
+		this.council = council;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "CouncilChange [Council= ["+ council.getCouncillors() + "]";
+		return "CouncilChange [Council= [" + council.getCouncillors() + "]";
 	}
 
 }

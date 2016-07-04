@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg23.server.model.Player;
 
 /**
  * The PlayerChange serves to notify a new player.
+ * 
  * @author Andrea
  *
  */
@@ -11,25 +12,30 @@ public class PlayerChange implements Change {
 
 	private static final long serialVersionUID = -1986727673842582938L;
 	private final Player newPlayer;
-	
+
 	/**
 	 * The constructor of the BoardChange
-	 * @param newBoard The new board.
+	 * 
+	 * @param newBoard
+	 *            The new board.
 	 */
-	public PlayerChange(Player newPlayer){
-		this.newPlayer=newPlayer;
+	public PlayerChange(Player newPlayer) {
+		this.newPlayer = newPlayer;
 	}
-	
+
 	/**
 	 * Returns the player to be notified
+	 * 
 	 * @return the player
 	 */
-	public Player getPlayer(){
+	public Player getPlayer() {
 		return newPlayer;
 	}
 
 	/**
-	 * It generates a string formed by the most significant statistics of the PlayerChange.
+	 * It generates a string formed by the most significant statistics of the
+	 * PlayerChange.
+	 * 
 	 * @return string
 	 */
 	@Override
@@ -38,5 +44,3 @@ public class PlayerChange implements Change {
 	}
 
 }
-
-
